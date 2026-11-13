@@ -1,0 +1,50 @@
+import FateWorld.Legacy.MassAEqCorrected
+import FateWorld.Legacy.TowerExactLaw
+
+/-! ===========================================================================
+  §0  `multS` = `|α|^(|V|-|S|)` —— 统一「mass 纤维大小」的两个表述
+
+  ## 背景
+
+  本会话发现 10 处真实数学错误，其中 4 处属于**同一系统性盲点**：
+  把 `mass S`（`S ⊊ univ`）当作「单点求和」，漏掉 `|α|^(|V|-|S|)` 因子。
+
+  `Fate/TowerExactLaw.lean` 已经用 `multS S x` 正确刻画了这个因子：
+  ```lean
+  noncomputable def multS (S) (x) : ℝ := ∑ w, if (∀ u ∈ S, w u = x u) then 1 else 0
+  theorem mass_self_eq : mass S (mass S p) x = multS S x * mass S p x
+  theorem multS_univ : multS univ x = 1
+  theorem mass_self_fails (hm : multS S x ≠ 1) (hp : mass S p x ≠ 0) :
+      mass S (mass S p) x ≠ mass S p x
+  ```
+
+  本会话的 `Fate/SubFibCard.lean` 用另一种表述算同一个量：
+  `card_sub_fib' : #{w : ↥Z → α // w|_S = y} = |α|^(|Z|-|S|)`。
+
+  ## 本文件
+
+  `multS_eq_card_pow`：`multS S x = |α|^(|V|-|S|)`。
+
+  **⟹ 这条把两个框架正式连接起来**，任何用到 `multS` 的地方都可以换成
+  `|α|` 幂形式，反之亦然。
+  =========================================================================== -/
+
+namespace Fate.C6c
+open Finset Fate Fate.View19 Fate.DAGFactorization
+universe u
+variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
+
+-- ⭐ 统一：multS 就是 |α|^(|V|-|S|)
+theorem multS_eq_card_pow (S : Finset V) (x : V → α) :
+    Fate.TowerExactLaw.multS S x = ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) := by
+  unfold Fate.TowerExactLaw.multS
+  rw [Finset.sum_boole]
+  have h1 : (Finset.univ.filter (fun w : V → α => ∀ u ∈ S, w u = x u)).card
+      = Fintype.card α ^ (Fintype.card V - S.card) := by
+    rw [← Fate.GraphToProbView7.card_subtype_fib S x]
+    exact (Fintype.card_subtype (fun w : V → α => ∀ u ∈ S, w u = x u)).symm
+  rw [h1]
+  push_cast
+  ring
+
+end Fate.C6c

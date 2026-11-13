@@ -1,0 +1,2 @@
+模块,文件,缺陷类型,现象,根因,处置,是否迁移引入
+G2Backdoor,Stage2/G2Backdoor.lean,命名空间不一致,"34 条错误：Unknown identifier 'Fate.R290.SetupWithM' 等 30 处","BackdoorWithM.lean 定义的是 namespace Fate.R289(第181行)，本文件通篇按 Fate.R290 引用","按迁移纪律不改代码；修复需将该文件 30 处 R290 改为 R289，走升层流程",否

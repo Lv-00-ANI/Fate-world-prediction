@@ -1,0 +1,17 @@
+# Fate-world-prediction 的构建配置
+# 与 ../命运-v2 保持同一工具链，保证迁移过来的代码编译行为一致。
+# 本机离线：依赖走本地 path，不触网。交付/评审时把 path 换成 github rev。
+#
+# ⚠ 只声明 mathlib。aesop / batteries / Qq 等由它传递带入；
+#   显式再声明会被 Lake 判为重复依赖而直接失败（上游已踩过这个坑）。
+
+name = "fate-world-prediction"
+
+[[require]]
+name = "mathlib"
+path = "D:/mathlib/packages/mathlib"
+
+# 主模块树：根入口 FateWorld.lean，子模块 FateWorld/**
+[[lean_lib]]
+name = "FateWorld"
+roots = ["FateWorld"]

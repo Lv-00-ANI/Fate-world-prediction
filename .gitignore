@@ -1,0 +1,25 @@
+# 构建产物
+.lake/
+*.olean
+*.ilean
+*.trace
+*.hash
+
+# 门禁生成物（每次审计自动重建）
+_audit_core.lean
+
+# 临时
+_reports_tmp/
+.DS_Store
+Thumbs.db
+
+# 构建脚本与日志（本机用，不入库）
+_build.ps1
+_build.log
+_build.done
+__pycache__/
+*.pyc
+
+# 构建输出日志
+_migration/last_build*.txt
+_migration/verify_build.txt
