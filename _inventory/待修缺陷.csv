@@ -1,2 +1,2 @@
-模块,文件,缺陷类型,现象,根因,处置,是否迁移引入
-G2Backdoor,Stage2/G2Backdoor.lean,命名空间不一致,"34 条错误：Unknown identifier 'Fate.R290.SetupWithM' 等 30 处","BackdoorWithM.lean 定义的是 namespace Fate.R289(第181行)，本文件通篇按 Fate.R290 引用","按迁移纪律不改代码；修复需将该文件 30 处 R290 改为 R289，走升层流程",否
+模块,文件,缺陷类型,原现象,根因,处置,状态
+G2Backdoor,Stage2/G2Backdoor.lean,命名空间错误 + 错误定理 + 类型不匹配,"37 条错误：Unknown identifier 'Fate.R290.SetupWithM' 等","(1) 引用 Fate.R290，实际定义在 BackdoorWithM.lean:181 的 Fate.R289；(2) 符号漏写 SetupWithM 中间层；(3) descendant_cases 调用签名错；(4) MFreeOfX 定义量化过宽；(5) 定理 m_not_descendant_of_free 方向反了（MFreeOfX ⟹ M 仍是后代）","按正确数学关系重写 §3：新增 m_in_descendant / edge_to_m_implies_mem / noDescendantM_singleton_iff，删除错误定理",已修复

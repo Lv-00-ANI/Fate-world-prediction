@@ -3,7 +3,7 @@
 > **《命运》世界模型 / 预测系统的正式工程仓库。**
 >
 > [![Lean](https://img.shields.io/badge/Lean-4.33.0--rc1-blue)](https://leanprover.github.io/)
-> [![Modules](https://img.shields.io/badge/modules-1107-green)]()
+> [![Modules](https://img.shields.io/badge/modules-1106-green)]()
 > [![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
 >
 > **建立**：2026-11-13 · **远程**：https://github.com/Lv-00-ANI/Fate-world-prediction
@@ -158,8 +158,8 @@ powershell -ExecutionPolicy Bypass -File _gate.ps1
 
 | 项 | 状态 |
 |---|---|
-| 模块总数 | **1107**（FateV2 256 + Legacy 851） |
-| 构建 | ✅ **1106 / 1107 通过** |
+| 模块总数 | **1106**（FateV2 256 + Legacy 850） |
+| 构建 | ✅ **1106 / 1106 全通过**（9765 jobs，零 error、零 sorryAx） |
 | 可执行 demo | ✅ 五层端到端能跑出数值 |
 | **空壳补全** | ✅ **15 / 15 完成**（220 个新声明） |
 | 公理测绘 | ⬜ 未做（开发期按需逐个去除） |
@@ -216,7 +216,7 @@ powershell -ExecutionPolicy Bypass -File _gate.ps1
 |---|---|---|
 | ~~P0~~ | ~~补完空壳~~ | ✅ **已完成（15/15）** |
 | **P0** | 迁移门禁脚本到本仓库 | 现在还要去 `命运-v2` 跑 |
-| **P1** | 修 `G2Backdoor` 的 30 处命名空间错误 | `_inventory/待修缺陷.csv` |
+| ~~P1~~ | ~~修 `G2Backdoor`~~ | ✅ **已完成** |
 | **P1** | 公理测绘（批量 `#print axioms`） | 给开发期去除公理排优先级 |
 | **P2** | 从 `Legacy` 升层有价值的模块 | 需逐个读，不能靠文件名判断 |
 | **P3** | 接真实数据 | 阻塞于外部（暂无数据） |
@@ -237,7 +237,7 @@ powershell -ExecutionPolicy Bypass -File _gate.ps1
 
 | # | 债务 | 状态 |
 |---|---|---|
-| 1 | `Stage2/G2Backdoor.lean` 30 处引用不存在的 `Fate.R290` | 源文件缺陷，非迁移引入 |
+| 1 | ~~`G2Backdoor` 引用不存在的 `Fate.R290`~~ | ✅ **已修复**（重写 §3，见 `_inventory/待修缺陷.csv`） |
 | 2 | 19 个文件缺迁移登记头（G8 未过） | 机械项 |
 | 3 | `Legacy/` 851 个模块未评估价值 | 需逐个读 |
 | 4 | 门禁脚本仍在 `../命运-v2/` | 待迁入 |

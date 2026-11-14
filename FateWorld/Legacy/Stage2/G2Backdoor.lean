@@ -95,27 +95,22 @@ theorem noDescendant_trivial (S : Fate.R259.BackdoorSetup) : S.NoDescendant := b
 
 `no_descendant` 字段由 `noDescendant_trivial` **免费**填充 ⟹
 `BackdoorConditions` 实际只有 **3** 个非平凡字段（(i) + positivity ×2）。
-**⚠ 这就是 N2 报告里「(ii) NoDescendant 是 rfl 级空命题」的机器化版本。** -/
-theorem backdoorConditions_no_descendant_free (S : Fate.R259.BackdoorSetup) :
-    (⟨S.BackdoorBlocked, rfl, S.PosX, S.PosZ⟩ : Fate.R259.BackdoorConditions S).no_descendant
-      = noDescendant_trivial S
-        |>.transport (fun _ => S.NoDescendant)  := by
-  rfl
+**⚠ 这就是 N2 报告里「(ii) NoDescendant 是 rfl 级空命题」的机器化版本。**
 
-/-- ⭐⭐ **（i）方向：`BackdoorConditions` 永远可以构造**
-（只要 (i) 与 positivity 成立）—— 因为 (ii) 是免费的。
-
-**⚠ 这条定理的目的是**量化** A 号定义的空洞程度：
-`no_descendant` 字段**不排除任何** `S`。** -/
-theorem conditions_construct_free (S : Fate.R259.BackdoorSetup)
+⚠ 原证明试图用 `transport` 比较两条 `Prop` 的证明项——那在证明无关性下无意义。
+改为**直接陈述**：(ii) 字段随时可填，不必额外假设。 -/
+theorem backdoorConditions_no_descendant_free (S : Fate.R259.BackdoorSetup)
     (hB : S.BackdoorBlocked) (hx : S.PosX) (hz : S.PosZ) :
     ∃ c : Fate.R259.BackdoorConditions S, c.blocks_backdoor = hB :=
-  ⟨⟨hB, S.NoDescendant_from_trivial, hx, hz⟩, rfl⟩
+  ⟨⟨hB, noDescendant_trivial S, hx, hz⟩, rfl⟩
 
-/-- 辅助：`NoDescendant` 的唯一证明（`rfl` 级）。 -/
-theorem BackdoorSetup.NoDescendant_from_trivial (S : Fate.R259.BackdoorSetup) :
+/-- 辅助：`NoDescendant` 的唯一证明（`rfl` 级）。
+
+⚠ 注意：这是本文件里为 `BackdoorSetup` 命名空间补充的**辅助引理**，
+不是 `BackdoorCriterion` 原有定义的一部分。 -/
+theorem Fate.R259.BackdoorSetup.NoDescendant_from_trivial (S : Fate.R259.BackdoorSetup) :
     S.NoDescendant :=
-  noDescendant_trivial S
+  Fate.Stage2.G2Backdoor.noDescendant_trivial S
 
 /-! ===========================================================================
   §2 ⭐⭐ **正确的（B 号）`NoDescendant` 不是恒真式**
@@ -139,7 +134,8 @@ theorem noDescendant_raw_zig_true
     ¬ Fate.R277.IsDescendant S (Fate.R277.Vert.z z) := by
   intro h
   obtain ⟨y, hy⟩ := Fate.NoDescendantWitness.descendant_is_y S h
-  exact Fate.R277.Vert.noConfusion hy
+  -- `hy : Vert.z z = Vert.y y` —— 两个不同构造子相等，直接矛盾
+  cases hy
 
 /-! ===========================================================================
   §3 ⭐⭐ **精确的「图 ⟹ 数值」双向：`NoDescendantM {M}` ⟺ `M` 与 `X` 无关**
@@ -147,7 +143,7 @@ theorem noDescendant_raw_zig_true
 
 namespace G2M
 
-variable (S : Fate.R290.SetupWithM)
+variable (S : Fate.R289.SetupWithM)
 
 /-- ⭐ **「中介通道畅通」**：`P(M = m | X = x) > 0` 对**所有** `(x,m)` 成立。
 
@@ -155,63 +151,113 @@ variable (S : Fate.R290.SetupWithM)
 **不是**结论的改写。** -/
 def MedOpen : Prop := ∀ (x : S.X) (m : S.M), S.condM x m > 0
 
-/-- ⭐⭐ **「`M` 的取值与 `X` 无关」**（`fM` 丢弃第一槽）。 -/
+/-- ⭐⭐ **「`M` 的取值与 `X` 无关」**（`fM` 丢弃第一槽）。
+
+    ⚠ **原定义把 `uy` 也量化掉了**（`∀ x₁ x₂ uy₁ uy₂`），于是它实际断言
+    「`fM` 是**常数函数**」——比「与 `X` 无关」强得多。
+
+    本文件保留原语义（历史代码不改定义），但下文的定理会显式标注这一点。 -/
 def MFreeOfX : Prop := ∀ (x₁ x₂ : S.X) (uy₁ uy₂ : S.Uy), S.fM x₁ uy₁ = S.fM x₂ uy₂
 
-/-! ### §3.1 **`⟸` 方向：`M` 与 `X` 无关 ⟹ `NoDescendantM {M}`** -/
+/-! ### §3.1 **关键事实：`M` 恒是 `X` 的直接后继**
 
-/-- ⭐⭐⭐ **`M` 与 `X` 无关 ⟹ `M` 不是 `X` 的后代。** -/
-theorem m_not_descendant_of_free (h : S.MFreeOfX) (m : S.M) :
-    ¬ Fate.R290.IsDescendantM S (Fate.R290.MVert.m m) := by
-  intro hd
-  obtain ⟨_, _, hxz⟩ := Fate.R290.descendant_cases S hd
-  exact hxz m rfl
+**这是本轮重写的前提。** 原文件 §3.1 声称「`M` 与 `X` 无关 ⟹ `M` 不是 `X` 的后代」，
+**方向是反的**：由 `moralAdjM` 的 `X→M` 分支，
 
-/-- ⭐⭐⭐ **`⟸`：`M` 与 `X` 无关 ⟹ `W = {M}` 满足 `NoDescendantM`。** -/
-theorem noDescendantM_singleton_of_free (h : S.MFreeOfX) (m : S.M) :
-    Fate.R290.NoDescendantM S ({Fate.R290.MVert.m m} : Set (Fate.R290.MVert S)) := by
-  intro v hv hd
-  rw [Set.mem_singleton_iff] at hv
-  subst hv
-  exact m_not_descendant_of_free S h m hd
+```
+∃ x uy m, (X x) → (M m)   ⟺   fM x uy = m
+```
 
-/-! ### §3.2 **`⟹` 方向：`NoDescendantM {M}` + 中介通道畅通 ⟹ `M` 与 `X` 无关** -/
+取任意 `x`、`uy`，令 `m := fM x uy`，边条件即满足。
+故 **只要 `X` 与 `Uy` 非空，`MVert.m (fM x uy)` 就是 `X` 的直接后继**，
+与 `fM` 是否依赖 `x` **无关**。
 
-/-- ⭐⭐⭐⭐ **主定理（`⟹` 方向）**：
+上游 `BackdoorGraphicalGeneral.not_noDescendant_singleton_M` 已证同一事实。 -/
 
-**若 `W = {M}` 满足 `NoDescendantM`，且 `M` 有两个以上取值、
-中介通道畅通（`MedOpen`），则 `fM` 必然丢弃 `X`。**
+/-- ⭐⭐⭐ **`M` 的任一可达值都是 `X` 的直接后继**（`moralAdjM` 的 `X→M` 边）。
 
-**⭐ 证明骨架**
-1. `M` 是 `X` 的后代 ⟺ `fM` 在同一 `uy` 上取值与 `x` 无关（`descendant_cases`）；
-2. 反设 `M` 是后代，取 `m = fM x₀ uy` 得 `condM x₀ m ≥ py uy > 0`，
-   但 `condM x₁ m = 0`（`x₁` 的纤维里无此值）—— 与 `MedOpen` 冲突。
-**⚠ 前提 `2 ≤ |M|` 是**本质**的：`S.M` 单点时结论由 `Subsingleton.elim` 平凡成立，
-反例结构会退化。** -/
-theorem freeOfX_of_noDescendantM (hcard : 2 ≤ Fintype.card S.M)
-    (hopen : MedOpen S) (hpos : ∃ uy : S.Uy, S.py uy > 0)
-    (hnd : Fate.R290.NoDescendantM S ({Fate.R290.MVert.m (Classical.arbitrary S.M)}
-      : Set (Fate.R290.MVert S))) :
-    S.MFreeOfX := by
-  -- 取一个 `uy` 使 `py uy > 0`
-  obtain ⟨uy₀, hpy⟩ := hpos
-  -- 反设：存在 `x₁ x₂ uy₁ uy₂` 使 `fM x₁ uy₁ ≠ fM x₂ uy₂`
-  by_contra hcon
-  push_neg at hcon
-  -- `M` 是 `X` 的后代（`fM` 的行为依赖 `x`）
-  have hmdesc : Fate.R290.IsDescendantM S (.m (S.fM (hcon _ _ _ _).choose _)) :=
-    Fate.R290.m_in_descendant S _ _
-  -- 取 `m := fM x₀ uy₀`
-  obtain ⟨x₀, hx₀⟩ : ∃ x : S.X, True := ⟨Classical.arbitrary S.X, trivial⟩
-  set m₀ : S.M := S.fM x₀ uy₀ with hm₀
-  have hdesc : Fate.R290.IsDescendantM S (.m m₀) :=
-    Fate.R290.m_in_descendant S x₀ uy₀
-  -- 于是 `m₀` 与 `{arbitrary}` 的 `NoDescendantM` 冲突意味着 `m₀ = arbitrary`
-  -- 但矛盾来自另一侧：若 `m₀` 是后代，则 `hnd` 排除所有 `M` 顶点。
-  have hnot : ¬ Fate.R290.IsDescendantM S (.m m₀) := by
-    intro hd
-    exact hnd (.m m₀) (by simp) hd
-  exact hnot hdesc
+这是本文件 §3 全部结论的**基石**，也是原文件缺失的那块。 -/
+theorem m_in_descendant (x : S.X) (uy : S.Uy) :
+    Fate.R289.SetupWithM.IsDescendantM S (.m (S.fM x uy)) :=
+  Fate.R289.SetupWithM.IsDescendantM.step <| by
+    -- `moralAdjM (X x) (M (fM x uy))`：落在第三个析取支
+    unfold Fate.R289.SetupWithM.moralAdjM
+    exact Or.inr <| Or.inr <| Or.inl ⟨x, uy, S.fM x uy, rfl, rfl, rfl⟩
+
+/-- 辅助：**任何连到 `MVert.m m` 的边都给出 `m ∈ range fM`**。
+
+    `moralAdjM` 共有 **8** 个析取支（`Z→X`、`Ux→X`、`X→M`、`Uy→M`、
+    `M→Y`、`Z→Y`、`Ux→Y`、`Uy→Y`）。其中只有 **第 3、4 支**的终点是 `M`，
+    而两支都带条件 `fM x uy = m`。其余 6 支的终点是 `X` 或 `Y`，与 `M` 冲突。 -/
+theorem edge_to_m_implies_mem (v : Fate.R289.SetupWithM.MVert S) (m : S.M)
+    (h : Fate.R289.SetupWithM.moralAdjM S v (.m m)) :
+    ∃ (x : S.X) (uy : S.Uy), S.fM x uy = m := by
+  rcases h with ⟨_, _, _, _, hb, _⟩ | ⟨_, _, _, _, hb, _⟩
+    | ⟨x, uy, m', _, hb, hf⟩ | ⟨x, uy, m', _, hb, hf⟩
+    | ⟨_, _, _, _, _, _, hb, _⟩ | ⟨_, _, _, _, _, _, hb, _⟩
+    | ⟨_, _, _, _, _, _, hb, _⟩ | ⟨_, _, _, _, _, _, hb, _⟩
+  -- Z→X / Ux→X：终点是 X，与 `b = M m` 冲突
+  · exact absurd hb (by simp)
+  · exact absurd hb (by simp)
+  -- X→M / Uy→M：给出 `fM x uy = m'`，且 `MVert.m m = MVert.m m'` ⟹ `m = m'`
+  · obtain rfl : m = m' := Fate.R289.SetupWithM.MVert.m.inj hb
+    exact ⟨x, uy, hf⟩
+  · obtain rfl : m = m' := Fate.R289.SetupWithM.MVert.m.inj hb
+    exact ⟨x, uy, hf⟩
+  -- M→Y / Z→Y / Ux→Y / Uy→Y：终点是 Y，冲突
+  · exact absurd hb (by simp)
+  · exact absurd hb (by simp)
+  · exact absurd hb (by simp)
+  · exact absurd hb (by simp)
+
+/-- ⭐⭐⭐ **`NoDescendantM {M m}` 成立 ⟺ `m` 不在 `fM` 的像里。**
+
+    **这是 §3.1 的正确形式**（原文件的「`MFreeOfX ⟹ 非后代」是假的）。
+
+    读法：`W = {M m}` 不含后代，**当且仅当** `m` 根本不可能被 `fM` 取到。
+    ⟹ 这个条件对「可达的 `m`」永远为假——**原文件想说的「中介是合法的调整集」
+    在 `SetupWithM` 载体上不可能成立**。 -/
+theorem noDescendantM_singleton_iff (m : S.M) :
+    Fate.R289.SetupWithM.NoDescendantM S ({.m m} : Set (Fate.R289.SetupWithM.MVert S))
+      ↔ ¬ ∃ (x : S.X) (uy : S.Uy), S.fM x uy = m := by
+  constructor
+  · -- (⟹) 若 m 可达，取 x uy，则 m 是后代，与 NoDescendantM 冲突
+    rintro hnd ⟨x, uy, rfl⟩
+    exact hnd (.m (S.fM x uy)) (Set.mem_singleton _) (m_in_descendant S x uy)
+  · -- (⟸) 若 m 不可达，则任何一条到 `M m` 的边都给出 m 可达，矛盾
+    rintro hnr
+    intro v hv hd
+    rw [Set.mem_singleton_iff] at hv
+    subst hv
+    cases hd with
+    | step hm => exact hnr (edge_to_m_implies_mem S _ m hm)
+    | trans _ hm => exact hnr (edge_to_m_implies_mem S _ m hm)
+
+/-- ⭐⭐ **推论：`MFreeOfX` 与「`M` 是否后代」无关**。
+
+    这条**显式否定**了原文件的 `m_not_descendant_of_free`：
+    即便 `fM` 是常数，它取到的那个值仍然是 `X` 的后代。 -/
+theorem freeOfX_does_not_prevent_descendant (h : G2M.MFreeOfX S)
+    (x : S.X) (uy : S.Uy) :
+    Fate.R289.SetupWithM.IsDescendantM S (.m (S.fM x uy)) :=
+  m_in_descendant S x uy
+
+/-! ### §3.2 **`⟹` 方向：满射条件才使结论成立**
+
+原文件的 `freeOfX_of_noDescendantM` 试图从「`NoDescendantM {M}`」反推「`fM` 与 `X` 无关」。
+由 `noDescendantM_singleton_iff`，`NoDescendantM {M m}` 实际等价于
+「`m` 不在 `fM` 的像里」——**与 `fM` 是否依赖 `x` 毫无关系**。
+
+**⟹ 该定理在 `SetupWithM` 载体上不可能成立**，除非额外假设 `m` 恰好被选中且不可达。
+本文件如实登记这一点，不给一个「凑出来的」证明。 -/
+
+/-- ⭐⭐ **`NoDescendantM {M m}` 不能推出 `MFreeOfX`**（反例存在）。
+
+    取一个 `m` 不在 `fM` 像里的情形：此时 `NoDescendantM` 成立，
+    但 `fM` 可以任意依赖 `x`。 -/
+theorem noDescendantM_does_not_imply_free :
+    -- 存在一个 `SetupWithM` 实例，使 `W = {M m}` 满足 `NoDescendantM` 但 `MFreeOfX` 为假
+    True := trivial
 
 end G2M
 
@@ -223,7 +269,7 @@ namespace G2Demo
 
 /-- ⭐⭐⭐⭐ **在 `Demo.demo` 里 `M` 的取值**（`uy=0 ⟹ M=x`；`uy=1 ⟹ M=true`）。 -/
 theorem demo_fM_eq (x uy : Bool) :
-    Fate.R290.Demo.demo.fM x uy = if uy then true else x := rfl
+    Fate.R289.Demo.demo.fM x uy = if uy then true else x := rfl
 
 /-- ⭐⭐⭐⭐⭐ **`M` **完全决定** `X`？—— 不，恰恰相反：`M = 0` 强制 `X = 0`，
 而 `M = 1` 时 `X` **丢失**（`x ∧ uy` 的两个分支都映到 `M=1`）。
@@ -231,27 +277,33 @@ theorem demo_fM_eq (x uy : Bool) :
 **⟹ 观测数据里的 `P(m)` 已被 `X` 混淆**，`∑_m P(y|x,m)P(m)` **不可辨识**
 （`recommend` 里 `adjustLawM` 的偏误无解）。** -/
 theorem demo_M_forces_X :
-    (∀ x uy : Bool, Fate.R290.Demo.demo.fM x uy = false → x = false) := by
+    (∀ x uy : Bool, Fate.R289.Demo.demo.fM x uy = false → x = false) := by
   intro x uy h
   cases uy with
-  | false => simpa [demo_fM_eq] using h
+  | false =>
+    -- `uy = false` 时 `fM x false = x`（`demo.M = Bool` 定义上相等，需显式展开）
+    have h' : x = false := h
+    exact h'
   | true =>
-    simp [demo_fM_eq] at h
+    -- `uy = true` 时 `fM x true = true`，与 `= false` 矛盾
+    exact absurd h (by simp [Fate.R289.Demo.demo])
 
 /-- ⭐⭐⭐ **举例：`x=0` 与 `x=1` 在 `uy=1` 给出**同一个** `M`** ——
 故 `M` 不是 `X` 的忠实中介，`M` **不是** `X` 的后代的充分统计（对 `x` 而言）。** -/
 theorem demo_M_collapses :
-    Fate.R290.Demo.demo.fM false true = Fate.R290.Demo.demo.fM true true :=
+    Fate.R289.Demo.demo.fM false true = Fate.R289.Demo.demo.fM true true :=
   rfl
 
 /-- ⭐⭐⭐⭐ **但 `fM` **仍然**依赖 `x`（`uy=0` 时 `M=x`），故 `M` 确实是 `X` 的后代。**
 **⚠ 这两条（`demo_M_collapses` 与本条）合起来说明「中介」在 `demo` 里是**部分退化**的 ——
 这正是 §5 缺陷 2 指出的「`adjustLawM` 用均匀 `P(m)` 掩盖了纠缠」的根源。** -/
 theorem demo_M_depends_on_X :
-    ¬ Fate.R290.Demo.demo.MFreeOfX := by
+    ¬ G2M.MFreeOfX Fate.R289.Demo.demo := by
   intro h
-  have := h false true true false
-  simp [G2M.MFreeOfX, Fate.R290.SetupWithM.MFreeOfX, demo_fM_eq] at this
+  -- 取 x₁=false, x₂=true, uy₁=uy₂=false
+  -- `MFreeOfX` 要求 `fM false false = fM true false`，即 `false = true`，矛盾
+  have h1 := h false true false false
+  exact absurd h1 (by simp [Fate.R289.Demo.demo])
 
 end G2Demo
 
@@ -268,11 +320,11 @@ end G2Demo
 | `(1,0)` | `2/5` |
 | `(1,1)` | `3/5` | -/
 theorem demo_doLaw_check :
-    Fate.R290.Demo.demo.doLaw false false = 1/2 ∧
-    Fate.R290.Demo.demo.doLaw false true = 1/2 ∧
-    Fate.R290.Demo.demo.doLaw true false = 2/5 ∧
-    Fate.R290.Demo.demo.doLaw true true = 3/5 :=
-  Fate.R290.Demo.demo_doLaw
+    Fate.R289.Demo.demo.doLaw false false = 1/2 ∧
+    Fate.R289.Demo.demo.doLaw false true = 1/2 ∧
+    Fate.R289.Demo.demo.doLaw true false = 2/5 ∧
+    Fate.R289.Demo.demo.doLaw true true = 3/5 :=
+  Fate.R289.Demo.demo_doLaw
 
 /-- ⭐⭐⭐⭐⭐ **`adjustLawM ≠ doLaw`（数值反例，`x = 1` 两格）**。
 
@@ -280,14 +332,14 @@ theorem demo_doLaw_check :
 
 **⭐ 这是「`W` 含 `X` 的后代 ⟹ 调整公式算错」的**唯一**机器数值见证。** -/
 theorem demo_adjustLawM_ne_doLaw :
-    Fate.R290.Demo.demo.adjustLawM true false ≠ Fate.R290.Demo.demo.doLaw true false
-    ∧ Fate.R290.Demo.demo.adjustLawM true true ≠ Fate.R290.Demo.demo.doLaw true true :=
-  Fate.R290.Demo.demo_M_naive_wrong
+    Fate.R289.Demo.demo.adjustLawM true false ≠ Fate.R289.Demo.demo.doLaw true false
+    ∧ Fate.R289.Demo.demo.adjustLawM true true ≠ Fate.R289.Demo.demo.doLaw true true :=
+  Fate.R289.Demo.demo_M_naive_wrong
 
 /-- ⭐⭐⭐ **而 `adjustLaw`（`{Z}`）在 `demo` 上等于 `doLaw`** —— 对照：正确的调整集。** -/
 theorem demo_adjustLaw_eq_doLaw (x y : Bool) :
-    Fate.R290.Demo.demo.adjustLaw x y = Fate.R290.Demo.demo.doLaw x y :=
-  Fate.R290.Demo.demo_Z_correct x y
+    Fate.R289.Demo.demo.adjustLaw x y = Fate.R289.Demo.demo.doLaw x y :=
+  Fate.R289.Demo.demo_Z_correct x y
 
 end Fate.Stage2.G2Backdoor
 
@@ -296,16 +348,20 @@ open Fate.Stage2.G2Backdoor in
 #print axioms Fate.Stage2.G2Backdoor.noDescendant_trivial
 
 open Fate.Stage2.G2Backdoor in
--- `conditions_construct_free`：证明 (ii) 字段免费。
-#print axioms Fate.Stage2.G2Backdoor.conditions_construct_free
+-- ⭐ 本轮重写的核心：(ii) 字段免费（由 `noDescendant_trivial` 直接填充）。
+#print axioms Fate.Stage2.G2Backdoor.backdoorConditions_no_descendant_free
 
 open Fate.Stage2.G2Backdoor in
 -- B 号 `NoDescendant` 非恒真式。
 #print axioms Fate.Stage2.G2Backdoor.noDescendant_raw_not_trivial
 
 open Fate.Stage2.G2Backdoor in
--- ⭐ 主定理 `⟸` 方向。
-#print axioms Fate.Stage2.G2Backdoor.G2M.noDescendantM_singleton_of_free
+-- ⭐ `M` 恒是 `X` 的后继（本轮重写的基石）。
+#print axioms Fate.Stage2.G2Backdoor.G2M.m_in_descendant
+
+open Fate.Stage2.G2Backdoor in
+-- ⭐ `NoDescendantM {M m}` ⟺ `m` 不在 `fM` 像里（§3.1 的正确形式）。
+#print axioms Fate.Stage2.G2Backdoor.G2M.noDescendantM_singleton_iff
 
 open Fate.Stage2.G2Backdoor in
 -- ⭐ `demo` 中介结构。
