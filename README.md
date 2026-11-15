@@ -3,7 +3,7 @@
 > **《命运》世界模型 / 预测系统的形式化工程仓库。**
 >
 > [![Lean](https://img.shields.io/badge/Lean-4.33.0--rc1-blue)](https://leanprover.github.io/)
-> [![Modules](https://img.shields.io/badge/modules-1106-green)]()
+> [![Modules](https://img.shields.io/badge/modules-1148-green)]()
 > [![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
 > [![sorry](https://img.shields.io/badge/sorry-0-brightgreen)]()
 >
@@ -167,7 +167,7 @@ Fate-world-prediction/
 
 | 层 | 模块 | 可信度 | 用途 |
 |---|---:|---|---|
-| **`FateV2/`** | 254 | **已验证**（门禁 10 项通过） | 正式开发的基础 |
+| **`FateV2/`** | 296 | **已验证**（门禁 10 项通过） | 正式开发的基础 |
 | **`Legacy/`** | 851 | **仅保证可编译** | 历史代码收容，供查阅 |
 
 > ⚠ **`Legacy/` 里的代码不得在未经验证的情况下被新代码引用。**
@@ -249,11 +249,12 @@ Fate-world-prediction/
 
 | 项 | 状态 |
 |---|---|
-| 模块总数 | **1106**（FateV2 254 + Legacy 851 + 入口 1） |
-| 构建 | ✅ **1106 / 1106 全通过**（9765 jobs，零 error、零 sorryAx） |
+| 模块总数 | **1148**（FateV2 296 + Legacy 851 + 入口 1） |
+| 构建 | ✅ **1148 / 1148 全通过**（9765 jobs，零 error、零 sorryAx） |
 | 可执行 demo | ✅ 五层端到端能跑出数值 |
 | 空壳补全 | ✅ **15 / 15 完成**（220 个新声明） |
 | 文档归档 | ✅ 254 文件零差异 |
+| **收容层迁移** | ✅ **42 / 42 目标模块已迁入**（见 `_inventory/收容层迁移登记.md`） |
 | 证明索引 | ✅ 已建立 |
 | 公理测绘 | ⬜ 未做 |
 | 真实数据接入 | ❌ 无数据 |
