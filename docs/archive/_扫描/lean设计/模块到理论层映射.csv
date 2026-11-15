@@ -1,0 +1,803 @@
+﻿模块,理论层,定理数,定义数,字节数,模块文档
+ActInputDecomp,L13-未归类,11,2,17277,命运理论 · Lean 4 形式化实现
+AdaptiveEtaConsumer,L13-未归类,20,1,13802,`Fate.AdaptiveEtaConsumer` —— `PipelineAdaptiveEta` 的**真实消费者**
+Adjacency,L3-因果结构,5,1,4221,§0  紧邻性：不预设索引结构，只要求「先于」关系（作者：靠后续实际决定）
+Adjudication,L10-裁决机制,13,27,31978,命运理论 · Lean 4 形式化实现
+AdjudicationKUnified,L10-裁决机制,17,1,17614,H5 · **裁决 K 的统一形式化**（信息完整度 ↔ 最优唯一性）
+Adjunction,L5-规则层与FCA,16,0,16746,命运理论 · Lean 4 形式化实现
+AdjustmentUnified,L13-未归类,13,2,21480,`Fate.AdjustmentUnified` —— **【AA5】前门 / 后门两种识别策略的对比**
+AlgoKNNComponents,L13-未归类,14,2,16311,MVFCA 算法线 · 方案丁：**kNN 图连通分量** 作为闭集族
+Alpha,L5-规则层与FCA,16,12,33205,命运理论 · Lean 4 形式化实现
+AlphaAndStochasticWiring,L5-规则层与FCA,23,1,28326,命运理论 · Lean 4 形式化实现
+AlphaAndStochasticWiringConsumer,L5-规则层与FCA,10,3,16654,命运理论 · Lean 4 形式化实现
+AlphaConcreteInstance,L5-规则层与FCA,39,11,19812,命运理论 · Lean 4 形式化实现
+AlphaDataConsumed,L5-规则层与FCA,7,0,13474,命运理论 · Lean 4 形式化实现
+AlphaDataToLawRule,L5-规则层与FCA,13,7,19712,命运理论 · Lean 4 形式化实现
+AlphaDataToPartition,L5-规则层与FCA,15,4,16965,命运理论 · Lean 4 形式化实现
+AlphaFCAConstruction,L5-规则层与FCA,49,13,41974,命运理论 · Lean 4 形式化实现
+AlphaFourOp,L5-规则层与FCA,33,0,28637,命运理论 · Lean 4 形式化实现
+AlphaFourOpConsumer,L5-规则层与FCA,13,0,20489,命运理论 · Lean 4 形式化实现
+AlphaKernel,L5-规则层与FCA,4,2,7322,§6  Q-3 的消解：抽象等价关系取为 α 的**核**（作者授权）
+AlphaKernelAudit,L5-规则层与FCA,4,4,6108,Fate.AlphaKernelAudit
+AlphaMVFCA,L5-规则层与FCA,6,3,6906,§0  从 MVFCA 闭包到 `α` 的局部域划分（作者裁决 O2 的落实）
+AlphaOf,L5-规则层与FCA,3,4,4554,§0  `α` 的具体实现：由 `target` 构造的完整 `AlphaSpec` 实例
+AlphaRulesLocal,L5-规则层与FCA,4,1,5753,§0  `RulesLocal`：从局部域构造规则（`α` 的另一半）
+AlphaStatistical,L5-规则层与FCA,13,9,28892,命运理论 · Lean 4 形式化实现
+Ancestral,L12-桥,14,5,12039,§64  ⭐⭐⭐ **祖先图与道德化图** —— 构造 d-分离 / 因果发现的标准工具
+AncestralInheritanceRouteB,L12-桥,27,11,35252,`Fate/AncestralInheritanceRouteB` —— **第 4 路：`LMG` 在祖先闭包上的继承**
+ArrowEquivA,L13-未归类,2,0,1477,§1  `arrowEquivA`  (V → α) ≃ (↥A → α) × (↥(A : Set V)ᶜ → α)
+Assembly,L1-对象与轨迹,11,5,17102,§7  「四 + 甲」组装引理（组装引理 / Assembly Lemma）—— 最小可编译落点
+AssemblyGainShared,L1-对象与轨迹,17,10,21464,命运理论 · Lean 4 形式化实现
+AssemblyInstance,L1-对象与轨迹,7,3,13913,§8  「四 + 甲」组装引理的**非空实例**（Assembly Instance）—— 最小可编译落点
+AssemblyMeta,L1-对象与轨迹,8,5,19654,
+AttrAcceptable,L10-裁决机制,17,1,5336,Fate.AttrAcceptable —— 「依裁决 K」的属性合格判据
+AudUnivLayer2,L13-未归类,11,0,6455,第2层 · 全称性审计（可验证的补强定理）
+AudUnivLayer2b,L13-未归类,3,0,1682,第2层 · 全称性审计（反例：某些 ∃ 不可升级为 ∀）
+Audit10Factorizes,L11-评估系统,10,3,11790,`Fate/Audit10Factorizes` —— **第 10 路：独立复核 `FactorRecursionRouteB.Factorizes`**
+BackdoorAdjustment,L7-预测/干预/反事实,3,2,6656,`Fate/BackdoorAdjustment` —— **backdoor 准则的调整公式**（**第 226 轮**）
+BackdoorCriterion,L7-预测/干预/反事实,44,8,37619,🔴🔴 **第 266 轮降级声明（N2 对抗性审核发现，含 Lean 探针）**
+BackdoorFiber,L7-预测/干预/反事实,10,4,15435,⚠⚠ **第 230 轮降级声明（对抗性审核 B8 发现，已独立验证）**
+BackdoorGenuine,L7-预测/干预/反事实,42,23,66320,🔴🔴 **第 297 轮降级声明（Z8 审核发现）**
+BackdoorGraphicalGeneral,L7-预测/干预/反事实,12,0,15512,`Fate/BackdoorGraphicalGeneral` —— ⭐⭐⭐⭐⭐ **一般形式的图论 ⟹ 数值**（**第 295 轮**）
+BackdoorSepAlgSep,L7-预测/干预/反事实,9,1,16448,`Fate.BackdoorSepAlgSep` —— **用正确的桥：`USeparated ⟹ 代数可分离性`**
+BackdoorSepNumeric,L7-预测/干预/反事实,2,0,7481,🔴🔴🔴 **第 241 轮降级声明（AA8 审核）—— **假反省**（第十七次失误）**
+BackdoorWithM,L7-预测/干预/反事实,46,14,59928,🔴 **第 290 轮诚实声明（F6 的设计验证与三条缺陷）**
+BackdoorXMY,L7-预测/干预/反事实,14,1,15258,`Fate/BackdoorXMY` —— ⭐⭐⭐⭐⭐ **`USeparated ⟹ adjustLaw(W) 正确`**
+BackdoorZGraphical,L7-预测/干预/反事实,10,0,13607,🔴🔴 **第 294 轮诚实声明（Y8 终局体检，最刺眼的两条）**
+BalanceComponents,L13-未归类,3,0,5065,§0  主定理 C 的配平组件（`ancestral_dSep_CondIndep` 的最后一步材料）
+BalanceFactorPart,L13-未归类,5,0,5271,# 配平的「常数部分」：`p ≡ 1` 的 `CondIndep` 实例（机检，零缺口）
+BanachFixedPoint,L13-未归类,6,0,5164,# 第 8 层：从赋范空间到度量空间 —— Banach 不动点定理
+BarCorrected,L13-未归类,2,2,1859,§0  `bar_univ` 的**正确版本**（原版为假）
+BarSdiffEq,L13-未归类,2,0,2038,§0  `bar (T \ {s})` 的被积函数分解
+BarSdiffIndep,L13-未归类,2,0,2538,§0  `sink_peel` 的**根本原因**：左边与 `x` 无关
+Basic,L1-对象与轨迹,0,15,17273,命运理论 · Lean 4 形式化实现
+BlockCIDerivation,L13-未归类,11,0,13690,§0  BlockCI derivation — honest statement of what is and is not provable
+BlockCIFactorization,L13-未归类,2,0,2753,§0  `BlockCI_Gap` 的完整链路
+BlockCIGeneralC,L13-未归类,1,0,2828,§0  `BlockCI_Gap` 的一般 `C` 情形
+BlockCIOfBlockSplit,L13-未归类,2,0,3585,§0  `blockCI_of_block_split` 修正版的两个关键引理
+BlockCIOfBlockSplitFinal,L13-未归类,2,0,2951,§0  `blockCI_of_block_split` —— `BlockCI_Gap` 的 `C = ∅` 情形
+BlockCIUltimate,L13-未归类,2,0,2467,§0  ⭐⭐⭐ 终极组合：Pearl 因子化 + d-分离 ⟹ BlockCI_Gap
+BlockLayerLowerBound,L13-未归类,6,0,6327,BlockLayer 网格分块：`maxdiam*` 关于 `nb` 的**下界分析**——可机检核心
+BoundWriteBack,L8-误差/假设,40,6,42578,命运理论 · Lean 4 形式化实现
+BridgeA1,L12-桥,14,1,11613,`Fate/BridgeA1` —— **清单 A1（`pa(v) ∩ nd(v) = ∅`）的裁决**
+BridgeA1Prime,L12-桥,9,1,6316,`Fate/BridgeA1Prime` —— **A1 的正确替代：`pa G v ∩ de G v = ∅`**
+BridgeA2,L12-桥,13,1,14826,`Fate/BridgeA2` —— **A2：`v ∉ pa(v)`**
+BridgeA3,L12-桥,18,0,24524,`Fate/BridgeA3` —— **清单 A3：乘性 `φ` 的边缘化分离**
+BridgeA4Fixed,L12-桥,2,0,2272,§0  `factorizes_colliderP` 的**正确版本**
+BridgeB1Final,L12-桥,11,5,13819,`Fate/BridgeB1Final` —— **清单 B1：祖先闭子图上的继承（如实的修复版）**
+BridgeB2,L12-桥,15,4,25501,`Fate/BridgeB2` —— **B2：DAG 的拓扑序存在性（定义 + 证明）**
+BridgeB3,L12-桥,17,3,22201,`Fate/BridgeB3` —— **清单 B3：`dSep` 与拓扑序兼容（沿拓扑序逐点剥离）**
+BridgeB4,L12-桥,8,3,13557,`Fate/BridgeB4` —— **段 B4：`LMG ⟹ 全局 Markov`（一般 DAG）**
+BridgeCarriers,L12-桥,3,4,3303,§17  **桥的两种载体是同一对象**（原 `_probe_bridge` 的正式化）
+BridgeDSepGeneral,L12-桥,1,0,3015,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeDirect,L12-桥,34,6,38143,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeDirectConsumer,L12-桥,8,1,13631,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeEquiv,L12-桥,2,0,11581,§C2  ⭐⭐ **`CondIndepFin` 与 `bridgeStatement` 的等价**
+BridgeExpanded,L12-桥,32,5,30477,
+BridgeExpandedT7,L12-桥,8,0,7328,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeFinal,L12-桥,15,0,38477,§B3  ⭐⭐⭐⭐⭐ **桥的最终定理**（第 170 轮 A4 洞察的直接组装）
+BridgeFull,L12-桥,18,3,25896,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeFullFixed,L12-桥,23,4,31829,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeGeneralize,L12-桥,11,1,21928,`Fate/BridgeGeneralize` —— **任务 B：因果缺口从 3 节点推广到一般 DAG**
+BridgeGeneralizeTight,L12-桥,7,4,8266,Authors: Jiyuan Tan
+BridgeGeneralizeWiring,L12-桥,6,0,8398,`Fate/BridgeGeneralizeWiring` —— **任务 B：把 `BridgeGeneralize` 接进主链（消孤岛）**
+BridgeIntegrated,L12-桥,4,1,5754,Fate_agent_staging/BridgeIntegrated.lean
+BridgeKernel,L12-桥,20,0,39892,- ⭐⭐⭐ **`comap projZ`-可测函数在**每个纤维上是常数****（**桥的第 2 步核心**）。
+BridgeMinZPrime,L12-桥,35,7,28302,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeMinZPrimeConsumer,L12-桥,12,0,17240,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeProof,L12-桥,2,0,4995,§94  ⭐⭐⭐ **桥的证明（第一步）**：展开链 + 关键中间引理
+BridgeProofStep3,L12-桥,2,0,5986,§95  ⭐⭐⭐ **桥的证明（第三步）**：有限测度上条件期望核的显式刻画
+BridgeQuotient,L12-桥,4,4,5266,§32  **桥商的下降与泛性质**（原 `_probe_q18` 中未覆盖部分的正式化）
+BridgeReverse,L12-桥,1,0,9828,§D1  ⭐⭐ **`bridgeStatement p` ⟹ `CondIndepFin p`**（**逆方向**，重建版）
+BridgeSingleFiber,L12-桥,2,0,10278,§D2  ⭐⭐ **单纤维版逆方向**：`bridgeStatement p ⟹ CondIndepFin` 的逐 `z` 形式
+BridgeStrategy1TopoPeel,L12-桥,13,0,23630,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeStrategy4CoordSlice,L12-桥,13,2,16704,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeStrategy5FiberBijection,L12-桥,7,3,12792,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeThreeNode,L12-桥,16,0,19572,`Fate/BridgeThreeNode` —— **C1：三节点图的 `Factorizes` ⟹ `CondMul`，并让 `dSep` 真正上桌**
+BridgeView2Elimination,L12-桥,15,0,16298,`Fate/BridgeView2Elimination` —— **「图 ⟹ 概率」桥的第 2 种证明策略**
+BridgeView3AtomStratification,L12-桥,12,2,21427,
+BridgeView9EdgeKernel,L12-桥,24,6,34478,
+BridgeView9EdgeKernelConsumer,L12-桥,12,3,19059,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeZPrimeDSep,L12-桥,12,3,10276,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeZipA,L12-桥,35,5,21093,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeZipAConsumer,L12-桥,10,0,12252,Released under Apache 2.0 license as described in the file LICENSE.
+BridgeZipDown,L12-桥,6,2,12905,Released under Apache 2.0 license as described in the file LICENSE.
+CFLattice,L7-预测/干预/反事实,8,6,7188,§8  最优 CF 的**分层结构**（作者裁决「最优最强」的形式化落地）
+CFLatticeGen,L7-预测/干预/反事实,29,6,33475,§9  读出方案格结构的**推广**（`Fate/CFLattice.lean` 的强化版）
+CFMap,L7-预测/干预/反事实,5,6,7369,# §7  反事实映射 Φ：最优 CF 的形式化（作者裁决「最优最强」）
+CapstoneDriftFromObs,L13-未归类,9,0,21188,命运理论 · **从观测生成模型推出漂移界（真正的 `hstep` 拆除）**
+CapstoneLipschitzLink,L13-未归类,8,0,14769,`Fate.CapstoneLipschitzLink`
+CardBalanceLMGc,L13-未归类,1,0,2154,§0  ⭐ `LMGc` 的指数配平：`|{v} ∪ pa v| + |nd v| = |pa v| + |{v} ∪ nd v|`
+CategoricalStratification,L5-规则层与FCA,6,0,7516,§53  ⭐⭐ **范畴层的档位分层**（推广 `Set` 层的 `cardStratification`）
+CausalClassificationBridge,L3-因果结构,23,3,30321,
+CausalClosureTight,L3-因果结构,6,0,9326,Released under Apache 2.0 license as described in the file LICENSE.
+CausalCtxUnified,L3-因果结构,9,1,4703,# `Fate.CausalCtxUnified` —— 合并两份重复的 `ctxOf`
+CausalDescendant,L3-因果结构,14,11,11800,§63  ⭐⭐⭐ **d-分离的**后代层**** —— 图论层的**最后一块**
+CausalDirection,L3-因果结构,17,6,14066,§61  ⭐⭐⭐ **d-分离的**方向层****：collider / 分叉 / 链
+CausalDrivesGazeV2,L3-因果结构,7,1,4567,# `Fate.CausalDrivesGazeV2` —— 因果驱动分类（最小可行版本）
+CausalEffect,L3-因果结构,10,3,19287,命运理论 · Lean 4 形式化实现
+CausalEventFormal,L3-因果结构,11,8,16995,命运理论 · 开放问题 1.3 的形式化：因果事件 = 变量子集上的赋值
+CausalFCAAdjacency,L3-因果结构,10,3,16717,命运理论 · Lean 4 形式化实现
+CausalFCADSep,L3-因果结构,19,5,18587,Released under Apache 2.0 license as described in the file LICENSE.
+CausalOnWorldModel,L9-世界模型,6,1,15092,`Fate.CausalOnWorldModel` —— **因果 × 世界模型的接线层**
+CausalOnWorldModelAdjust,L9-世界模型,5,0,10245,`Fate.CausalOnWorldModelAdjust` —— **`DoLawOn` ⟹ `adjustLaw` 的精确分解**
+CausalPath,L3-因果结构,5,6,7543,§62  ⭐⭐⭐ **d-分离的**路径层****：逐节点开口性
+CausalRouteDo,L3-因果结构,10,0,20602,`Fate/CausalRouteDo` —— **因果路线 A：直接用 do-calculus 语义定义干预律**
+CellDiameter,L13-未归类,14,4,23519,命运理论 · Lean 4 形式化实现
+CfNecessity,L7-预测/干预/反事实,31,0,22828,`Fate/CfNecessity` —— **T4.3 反方向分析：`(M.sg u).2` 依赖 `u` 是不是必要的？**
+CfPartialIdent,L7-预测/干预/反事实,48,2,27982,`Fate/CfPartialIdent` —— **O3 弱档：外生 `u` 完全不可观测 ⟹ 反事实的部分识别**
+CfPartialIdentConsumer,L7-预测/干预/反事实,18,1,23480,`Fate/CfPartialIdentConsumer` —— `Fate/CfPartialIdent` 的**消费方**
+CfUnconditionalVertex,L7-预测/干预/反事实,6,3,12665,命运理论 · Lean 4 形式化实现
+ChainBudgetBound,L13-未归类,22,0,30850,
+ChainDSepCondMul,L13-未归类,19,1,22760,Released under Apache 2.0 license as described in the file LICENSE.
+ChainErrorBudget,L8-误差/假设,19,3,20525,命运理论 · Lean 4 形式化实现
+ChainErrorBudgetBound,L8-误差/假设,18,0,36741,
+ChainErrorBudgetGrounded,L8-误差/假设,24,1,28128,命运理论 · Lean 4 形式化实现
+ChainErrorBudgetPredN,L8-误差/假设,8,0,21005,命运理论 · Lean 4 形式化实现
+ChainErrorBudgetPredNGen,L8-误差/假设,8,0,16444,命运理论 · Lean 4 形式化实现
+ChainErrorBudgetPredNTight,L8-误差/假设,3,0,10843,命运理论 · Lean 4 形式化实现
+ChainErrorBudgetTightWiring,L8-误差/假设,3,3,8314,命运理论 · Lean 4 形式化实现
+ChainGenuineGap1,L12-桥,29,1,19152,`Fate.ChainGenuineGap1` —— 链 `0 → 1 → 2` 上缺口 1 的闭合尝试（第 272 轮）
+ChainMarkovExplicitAntecedent,L13-未归类,11,5,19861,`Fate.ChainMarkovExplicitAntecedent` —— **显式前件版 `dSep ⟹ CondIndep`**
+ChainMarkovInductive,L13-未归类,2,0,8148,🔴🔴🔴 **第 258 轮降级声明（M8 对抗性审核发现，含 Lean 探针 P1–P5）**
+Classification,L5-规则层与FCA,75,30,71985,命运理论 · FCA 分类系统层（作者裁决 N + O 的落点）
+CliqueChain,L13-未归类,13,3,36223,🔴 **第 271 轮 D7 审核判决（Q1，16 探针，47 定理，全部实跑）**
+CliqueDecompositionGenuine,L13-未归类,2,0,4351,`Fate/CliqueDecompositionGenuine` —— **`USeparated` 真正起作用的定理**（**第 272 轮**）
+CliqueGrouping,L13-未归类,4,1,6585,`Fate/CliqueGrouping` —— **Oxford 定理 4.1 的**任意团集**分组**（**第 262 轮**）
+CliqueSideSeparable,L12-桥,13,4,17602,`Fate/CliqueSideSeparable` —— ⭐⭐⭐⭐⭐ **缺口 1 的概率桥**（**第 273 轮**）
+ClosedLoopGeneral,L9-世界模型,32,6,47681,命运理论 · Lean 4 形式化实现
+ClosedLoopNoisy,L9-世界模型,25,2,35223,命运理论 · Lean 4 形式化实现
+ClosedLoopUnified,L9-世界模型,14,4,36431,命运理论 · Lean 4 形式化实现
+ClosedLoopWiring,L9-世界模型,9,1,15287,命运理论 · Lean 4 形式化实现
+ColliderDAGValues,L13-未归类,1,0,2393,§0  `colliderDAG` 上 `colliderP` 的 mass 值
+ColliderPValues,L13-未归类,3,0,3162,§0  `mass` 在 `colliderP` 上的具体数值（为 `not_lmg_colliderP_chain` 做准备）
+CompNotCommutative,L13-未归类,10,5,16223,命运理论 · Lean 4 形式化实现
+Compactness,L5-规则层与FCA,11,4,17125,命运理论 · Lean 4 形式化实现
+Completeness,L5-规则层与FCA,31,8,53726,命运理论 · Lean 4 形式化实现
+ComposeDefault,L5-规则层与FCA,6,0,18574,命运理论 · Lean 4 形式化实现
+ComposeEmbedding,L5-规则层与FCA,5,0,10946,命运理论 · Lean 4 形式化实现
+ComposeOperator,L5-规则层与FCA,16,15,37007,命运理论 · Lean 4 形式化实现
+ComposeSemantics,L5-规则层与FCA,5,1,6290,`Fate/ComposeSemantics.lean` —— **∘ 的两种语义不可同时成立**
+ComposeUnified,L5-规则层与FCA,7,3,20231,命运理论 · Lean 4 形式化实现
+ConceptLatticeComplete,L5-规则层与FCA,14,3,13609,命运理论 · Lean 4 形式化实现
+ConcreteBridge,L12-桥,8,6,7773,§27  ⭐⭐ **具体桥方案**：一步可观测签名商（原 `_probe_q32` 的正式化）
+ConcreteBridgeQuant,L12-桥,8,1,9858,§43  ⭐⭐ **具体桥方案的定量刻画**（「定量化」计划第三步）
+CondIndep2,L12-桥,28,11,32764,§CondIndep2  ⭐⭐⭐⭐ **双条件变量条件独立：`CondMul` 的直接推广**
+CondIndepCondMulBridge,L12-桥,13,0,10769,§CondIndepCondMulBridge  ⭐⭐⭐ **桥接 `CondIndep` 与 `CondMul`**
+CondIndepContraction,L12-桥,9,1,16089,§Semigraphoid 收缩律（非空洞版本）：`blockRel_contraction`
+CondIndepEmptyZ,L12-桥,17,0,21807,§0  主定理 C 的**最终组装**（`Z = ∅`）：`condIndep_emptyZ`
+CondIndepGeneralNZ,L12-桥,18,1,23673,§0  主定理 C 的一般 `Z` 版本（**非零前提变体**）：`condIndep_general`
+CondIndepIntersection,L12-桥,12,4,16878,§Semigraphoid 交公理（intersection / graphoid）：**非空洞版本**
+CondIndepN,L12-桥,25,5,24693,§GenC3 ⭐⭐⭐ **N 元条件独立**（$n$ 元推广）
+CondIndepSemigraphoid,L12-桥,49,2,49059,§Semigraphoid ⭐⭐⭐⭐⭐ **条件独立作为关系**：半图样公理（semigraphoid / graphoid）
+CondMI,L13-未归类,17,0,25092,Released under Apache 2.0 license as described in the file LICENSE.
+CondMassTower,L13-未归类,26,0,21281,📗 **路线甲：条件化密度 `condMass` 及其塔性质**
+CondMulSeparable,L12-桥,1,0,2837,`Fate/CondMulSeparable` —— **条件独立 ⟹ 可分离**（**第 244 轮**）
+ContinuousEval,L13-未归类,7,1,10556,命运理论 · Lean 4 形式化实现
+ContinuousEvalQ,L13-未归类,7,4,7388,`Fate/ContinuousEvalQ` — 第 3 层「可运行」在 ℚ 上的**可读**连续参数实现
+ContinuousEvalQBridge,L12-桥,1,0,2394,`Fate/ContinuousEvalQBridge` —— **`ℚ` 版 `thetaNQ` 与 `ℝ` 版 `thetaN` 的桥**
+ConvergeToOptimalCounterexample,L8-误差/假设,20,4,19707,命运理论 · Lean 4 形式化实现
+ConvergeToOptimalDemo,L8-误差/假设,28,3,21452,命运理论 · Lean 4 形式化实现
+ConvergeToOptimalDemoConsumer,L8-误差/假设,5,0,9929,命运理论 · Lean 4 形式化实现
+ConvergeToOptimalIter,L8-误差/假设,4,0,4067,§0  D 裁决缺的那条：收敛到唯一最优的**动力学**版本
+ConvergeToOptimalND,L8-误差/假设,40,3,42368,命运理论 · Lean 4 形式化实现
+ConvergeToOptimalStrong,L8-误差/假设,6,0,9140,命运理论 · Lean 4 形式化实现
+ConvergeToOptimalV2,L8-误差/假设,6,1,4707,§0  版本 2：收敛到唯一最优参数（作者第 39 轮裁决 D）
+ConvergenceContrast,L8-误差/假设,16,1,18521,命运理论 · Lean 4 形式化实现
+ConvergenceOptimal,L8-误差/假设,13,0,18243,命运理论 · Lean 4 形式化实现
+CorrectsProperties,L13-未归类,25,2,24422,命运理论 · Lean 4 形式化实现
+CorrectsPropertiesConsumer,L13-未归类,7,0,16797,命运理论 · Lean 4 形式化实现
+Counterfactual,L7-预测/干预/反事实,19,9,21100,§1  反事实等价与商结构（桥问题的突破）
+CounterfactualAlgebra,L7-预测/干预/反事实,8,10,6263,§25  ⭐⭐ **反事实的代数**：`do` 与 `∼_cf` 的交互（原 `_probe_q20` 的正式化）
+CounterfactualStrictness,L7-预测/干预/反事实,7,3,4642,§15  ⭐⭐ 反事实等价**严格弱于**相等（原 `_probe_q14` 的正式化）
+CtxStructureSurvey,L13-未归类,5,2,9386,命运理论 · Lean 4 形式化实现
+DAGBridge,L3-因果结构,22,8,20172,§69  ⭐⭐⭐ **`CausDAG.DAG` 与 `CausalDirection.CausalGraph` 的桥**
+DAGBridgeConsumer,L3-因果结构,5,0,11991,§CHAIN-5 ⭐⭐⭐ **把 `Fate/DAGBridge`（22 条定理）接入主链**
+DAGFactorization,L3-因果结构,23,8,31023,🔴🔴🔴 **第 263 轮降级声明（N1 对抗性审核发现，含 Lean 探针）**
+DAGFactorizationGeneral,L3-因果结构,21,5,29202,🔴🔴🔴 **第 263 轮降级声明（N1 对抗性审核发现，含 Lean 探针）**
+DSepCondNonMonotone,L12-桥,5,3,4834,Released under Apache 2.0 license as described in the file LICENSE.
+DSepTopoPeel,L12-桥,9,2,9958,`Fate/DSepTopoPeel` —— **第 6 路：`dSep` 与拓扑序的兼容性（逐点剥离）**
+DSeparation,L12-桥,4,4,5573,§60  ⭐⭐⭐ **d-分离的形式化起点**（**推翻债务台账的「⛔ 不可做」**）
+DeadPremiseAudit,L11-评估系统,23,10,18034,`DeadPremiseAudit` —— **死前提审计**（方法论文档的形式化载体）
+DeadPremiseAuditConsumer,L11-评估系统,17,1,29334,`Fate.DeadPremiseAuditConsumer` —— 把「死前提审计器」接到主链上
+DemoConcrete,L13-未归类,6,0,3772,# `Fate.DemoConcrete` —— 前件在具体场景中自动成立
+DemoEndToEnd,L9-世界模型,21,16,11218,`Fate.Demo.EndToEnd` —— **端到端可执行演示：μ 世界模型跑 N 步、`norm_num` 出数字**
+DetFunToStep,L12-桥,4,0,6799,规则核心链 · 桥路线甲（Dirac 规则 → Step）· **相容定理**（P0-1，第 721 轮）
+DetFunToStepDraft,L12-桥,0,4,3679,规则核心链 · 桥路线甲（Dirac 规则 → Step）· **可行性勘察草案**
+DetTrajScan,L13-未归类,12,4,19767,规则核心链 · COMPLEX-1 §5 第 2、3 条：`detTraj` 的 O(T²) → O(T)
+DirectedClosure,L13-未归类,4,2,5298,§18  ⭐⭐ **有向并的闭性失效**：FCA 闭包算子**非代数**
+DoCalculus,L7-预测/干预/反事实,7,1,7292,§64  ⭐⭐⭐ **do-算子的代数律**（**T1A.5 的第一步**）
+DoCalculusRules,L7-预测/干预/反事实,9,4,11321,🔴 **第 265 轮 D6 降级声明（判据 D6 自动检出）**
+DoLawWorldModel,L9-世界模型,16,6,21362,`Fate/DoLawWorldModel` —— ⭐⭐⭐⭐ **Z8：把 `doLaw` / `doProb` 接到 `WorldModel` 的干预能力上**
+DoSemanticsBridge,L7-预测/干预/反事实,7,2,6471,🔴 **第 265 轮 D6 降级声明（判据 D6 自动检出）**
+EndToEnd,L7-预测/干预/反事实,15,0,30285,`Fate.EndToEnd` —— **端到端串联**：观测 → 预测 → 残差 → 更新
+EndToEndBoundFixed,L7-预测/干预/反事实,26,27,34707,`Fate.EndToEndBoundFixed` —— **`Fate.EndToEndBound` 的修复版 + 缺口判定**
+EndToEndBounds,L7-预测/干预/反事实,10,15,17474,`Fate.EndToEndBounds` —— **②③④ 三个环节各自的「界」**（界 + 紧 + 下界）
+EndToEndConverge,L7-预测/干预/反事实,22,2,26077,命运理论 · Lean 4 形式化实现
+EndToEndConvergeConsumer,L7-预测/干预/反事实,7,0,15477,命运理论 · Lean 4 形式化实现
+EndToEndConvergence,L7-预测/干预/反事实,3,0,5521,# 端到端迭代的收敛（`EndToEndConvergence`）
+EndToEndError,L8-误差/假设,13,13,16088,§EndToEndError  端到端误差 + 逐层诊断误差：形式化「两者都报、不相加」
+EndToEndPipelineBridge,L7-预测/干预/反事实,4,0,7345,# 端到端迭代与管线迭代的结构等价（`EndToEndPipelineBridge`）
+EndToEndPipelineTendsto,L7-预测/干预/反事实,9,0,18450,`Fate.EndToEndPipelineTendsto` —— **把端到端闭环接到收敛定理**（T858A-v2）
+EndToEndQConsumer,L7-预测/干预/反事实,9,0,18300,`Fate.EndToEndQConsumer` —— **`ℚ` 版迭代的真实消费者：桥到 `thetaN_closed`**
+EndToEndSelectorNotConstant,L7-预测/干预/反事实,4,3,5418,命运理论 · Lean 4 形式化
+EndToEndSelectorWiring,L7-预测/干预/反事实,8,0,15728,命运理论 · Lean 4 形式化
+EndToEndUnconditional,L7-预测/干预/反事实,6,0,16337,`Fate.EndToEndUnconditional` —— **拆退化分支：`x = 0` 时不声称收敛到 `θ*`**
+EndToEndUnconditionalConsumer,L7-预测/干预/反事实,6,0,12567,`Fate.EndToEndUnconditionalConsumer` —— `EndToEndUnconditional` 的**真实消费者**
+EndToEndUnconditionalEval,L7-预测/干预/反事实,9,4,10297,`Fate.EndToEndUnconditionalEval` —— **给 3 条无前件 `ℝ` 定理配 `ℚ` 数值实例**
+EndToEndUnconditionalQ,L7-预测/干预/反事实,5,2,7840,`Fate.EndToEndUnconditionalQ` —— `EndToEndUnconditional` 的 **`ℚ` 数值镜像**
+EndToEndWithRulesNegative,L7-预测/干预/反事实,10,0,16215,`Fate.EndToEndWithRulesNegative` —— **缺口三的否定结果**
+EquivalenceLevels,L13-未归类,14,8,8792,§16  ⭐⭐ **三种等价层级**：`∼_cf ⊆ ∼_int ⊆ ∼_obs`（原 `_probe_q13` 的正式化）
+ErrBandLink,L8-误差/假设,27,5,18033,§ErrBandLink  三种误差（err）与带偏离损失（`bandLoss`）的对接
+ErrBandLinkConsumer,L8-误差/假设,13,1,24758,命运理论 · 叶子接线 6：`ErrBandLink` → 主链误差带
+ErrDefinitions,L8-误差/假设,21,6,13874,§0  三种误差泛函（作者裁决 C：三种 err 都定义）
+ErrIterGeneral,L8-误差/假设,9,3,14661,命运理论 · Lean 4 形式化实现
+ErrorBand,L8-误差/假设,5,0,4760,命运理论 · **T4.3：误差带（error band）**
+ErrorBound,L8-误差/假设,32,2,40816,命运理论 · **阶段 2：误差界** —— 缺口 4 的**真内容**
+ErrorBoundChain,L8-误差/假设,32,3,32026,命运理论 · **阶段 2：误差界** —— 缺口 4 的**真内容**
+ErrorBoundChainConsumer,L8-误差/假设,5,0,6765,Fate · **接入：ErrorBoundChain 的消费方**
+ErrorCriterion,L8-误差/假设,19,3,11349,Fate.ErrorCriterion —— 裁决 K 的**抽象**形式：「误差判据需要噪声尺度 σ」
+ErrorCriterionImpliesBound,L8-误差/假设,32,0,35212,Fate/ErrorCriterionImpliesBound.lean
+ErrorCriterionUnified,L8-误差/假设,38,3,29601,
+ErrorDimUnified,L8-误差/假设,8,5,13055,Released under Apache 2.0 license as described in the file LICENSE.
+ErrorGraph,L8-误差/假设,18,10,18825,§ErrorGraph  误差图谱（作者裁决 E 之「方案 4」）
+ErrorMagnitude,L8-误差/假设,29,3,33976,Released under Apache 2.0 license as described in the file LICENSE.
+EstimateErrorBound,L6-规则学习/估计,10,0,32086,
+EtaMaxFromData,L13-未归类,4,0,13290,命运理论 · Lean 4 形式化实现
+EvalClosedLoop,L13-未归类,18,8,20257,命运理论 · Lean 4 形式化实现
+EvalDemo,L9-世界模型,13,16,12117,命运理论 · `#eval` 数值预测演示（世界模型最小实例）
+EvalReal,L13-未归类,17,20,19161,命运理论 · 真正的 `#eval` 数值预测（端到端 θ' 更新）
+EvalRealProof,L13-未归类,17,0,9418,命运理论 · 【C2】数值与理论一致性（对 `Fate.EvalReal` 的 `#eval` 结果各写定理）
+EvaluationSystems,L11-评估系统,24,15,121950,
+EvaluationSystemsConsumer,L11-评估系统,7,0,14960,命运理论 · **EvaluationSystems 的消费方**（EvaluationSystemsConsumer）
+ExistingToolsAudit,L13-未归类,0,0,2616,§0  ⚠⚠ **重大发现**：`Fate/GraphToProbView7.lean` 已有 `LMGc` 所需的核心工具
+FCA,L5-规则层与FCA,14,5,12943,命运理论 · Lean 4 形式化实现
+FactorMarkov,L13-未归类,11,5,23322,Released under Apache 2.0 license as described in the file LICENSE.
+FactorRecursionRouteB,L13-未归类,16,5,27952,`Fate/FactorRecursionRouteB` —— **路线乙：因子递归（不经过 `mass` 塔性质）**
+FactorRecursionRouteB_Obligations,L10-裁决机制,13,4,12744,`Fate/FactorRecursionRouteB_Obligations` —— **路线 3 的裁决与可证义务**
+FactorizesCondMul,L12-桥,15,9,18670,`Fate/FactorizesCondMul` —— G1：`Factorizes ⟹ CondMul`（**含一个反例的交付**）
+FactorizesNotImpliesLMG,L12-桥,5,0,5250,§0  `factorizes_not_implies_LMG` 的**正确证明**
+FactorizesOnComponents,L12-桥,6,1,7570,§0  `Components ⟹ CondMul`：补齐 T1A2Substance 写了一半的证明
+FactorizesToCondMul,L12-桥,7,7,15952,`Fate/FactorizesToCondMul` —— G1 缺口：`Factorizes ⟹ CondMul`
+FactorizesToHyper,L12-桥,8,1,5984,Fate_agent_staging/FactorizesToHyper.lean
+FcaRuleEntersWorldModel,L12-桥,10,6,18014,P2 · **断点② 的桥**：把 FCA（`dgBasis`）抽出的规则**真正驱动**世界模型
+FcaToRuleTerm,L13-未归类,14,7,18809,规则核心链 · **FCA 数据 → `RuleTerm`（丙：FROM-FCA-TO-RULETERM）**
+FillGap,L13-未归类,2,0,3783,§0  填掉 `dist_to_optimum_Gap`（第 58 轮）
+FillGapStrong,L13-未归类,7,0,15570,§0  `FillGapStrong` —— 把 `endToEnd_distance_to_optimum` 的 `hfix` 前件
+FinCondIndep,L6-规则学习/估计,10,6,21511,§FinCondIndep  ⭐⭐⭐ **有限条件独立**：谓词与「条件分布相等」形式的等价
+FinCondIndepMeasure,L6-规则学习/估计,3,3,6210,§91  ⭐⭐⭐ **桥的第二端**：把嵌入与 `CondIndepFun` 对齐
+FinCondIndepSymm,L6-规则学习/估计,5,3,8190,§70  ⭐⭐⭐ **有限条件独立的对称性**（`Fate.FinCondIndepSymm`）
+FinFactorization,L6-规则学习/估计,10,1,15695,⭐⭐⭐ **因子化 ⟹ 条件独立** —— `Fate.FinFactorization`
+FinJoint,L6-规则学习/估计,7,5,13989,§70  ⭐⭐⭐ **有限联合律 `FinJoint` 与三个边缘律** —— 无测度版骨架
+FinMarkov,L6-规则学习/估计,8,7,31078,§69  ⭐⭐⭐ **有限条件独立（`CondIndepFin`）接到项目自有的 SCM 载体上**
+FinMeasureBridge,L6-规则学习/估计,16,2,35008,§87  ⭐⭐⭐ **有限律 → `Measure` 的嵌入**（**桥的第一端**）
+FiniteCondIndep,L13-未归类,15,5,26843,§69  ⭐⭐⭐ **有限条件独立（无测度版）** —— $X \perp\!\!\!\perp Y \mid Z$ 的骨架
+FinsetUnivOpt1,L13-未归类,13,0,14977,命运理论 · **`Finset.univ` 复杂度压降（第 1 批，3 处真算法）**
+FirstLayerBound,L13-未归类,21,0,31710,
+FirstLayerCapstone,L13-未归类,23,0,43266,命运理论 · Lean 4 形式化实现
+FirstLayerExpectation,L13-未归类,9,0,26546,命运理论 · Lean 4 形式化实现
+FirstLayerExpected,L13-未归类,10,0,21002,命运理论 · Lean 4 形式化实现
+FirstLayerExpectedFinal,L13-未归类,3,0,6368,`Fate/FirstLayerExpectedFinal` —— **第 1 层：`hest` 真正消失的期望形式**
+FirstLayerExpectedFinalRedundant,L13-未归类,3,0,4311,`Fate/FirstLayerExpectedFinalRedundant` —— **验证 `Final` 是否被 `General` 覆盖**
+FirstLayerExpectedGeneral,L13-未归类,3,0,6060,`Fate/FirstLayerExpectedGeneral` —— **第 1 层：一般 `xhat` 的期望形式**
+FirstLayerUnified,L13-未归类,4,0,6447,`Fate/FirstLayerUnified` —— **第 1 层两种分解的统一**
+FitBoundary,L8-误差/假设,41,17,51413,命运理论 · **阶段 2：误差界** —— 裁决 K 的「刚好拟合 / 过拟合边界」
+FitBoundaryLowerBound,L8-误差/假设,23,8,39106,命运理论 · 分支 gap-k-refactor · P0-C1
+FitBoundaryLowerBoundConsumer,L8-误差/假设,15,0,15321,命运理论 · 分支 gap-k-refactor · P0-D2
+FourNodeCondMul,L13-未归类,9,6,14182,`Fate/FourNodeCondMul` —— **第 8 路（概率侧）：四节点链上的因子分解 ⟹ 条件独立**
+FourNodeSeparation,L13-未归类,25,8,27530,`Fate/FourNodeSeparation` —— **第 8 路：四节点情形的 d-分离**
+FourOperators,L5-规则层与FCA,15,8,24073,§统一  **四算子统一框架**：α / γ / ∘ / υ
+Frame,L5-规则层与FCA,14,36,44240,命运理论 · Lean 4 形式化实现
+FrameBridge,L5-规则层与FCA,4,3,6575,§2  把 `Model`/`Obs` 接到本项目的 `Frame`（突破的具体化）
+Frontdoor,L7-预测/干预/反事实,11,0,18688,`Fate._r239_F4` —— **Pearl 的 front-door 准则：调整公式的代数骨架**
+FrontdoorChainProof,L7-预测/干预/反事实,55,4,41950,⭐⭐ **第 246 轮澄清：本文件与 `FrontdoorCounterexample.lean` **不矛盾****
+FrontdoorCounterexample,L7-预测/干预/反事实,73,7,35807,⭐⭐ **第 246 轮澄清：本文件与 `FrontdoorChainProof.lean` **不矛盾****
+FrontdoorCounterexample2,L7-预测/干预/反事实,29,4,15852,# R254 · positivity **必要性**：第二个、结构上**不**同的反例
+FrontdoorCriterion,L7-预测/干预/反事实,61,7,61707,`Fate.FrontdoorCriterion` —— **front-door 准则的完整形式化**（第 255 轮）
+FullPipelineDemo,L13-未归类,1,23,10066,P0-F4 · **全链路可执行演示**（CHAIN-4 判定「可行，难度中」）
+FunThetaWorldModel,L13-未归类,19,9,26795,`Fate.FunThetaWorldModel` —— **T-1b：θ 是函数（在 WorldModel 里的真实例）**
+Fusion,L12-桥,7,3,7527,§23  ⭐⭐ **数据融合的桥论形式化**（原 `_probe_fusion` 的正式化）
+FusionConvergence,L13-未归类,8,1,6207,§46  ⭐⭐ **数据融合的收敛条件**（「定量化」计划第四步）
+G1ParentNonDescendant,L10-裁决机制,9,1,8190,`Fate/G1ParentNonDescendant` —— **第 1 路的交付：G1 的裁决**
+GaloisEmbedding,L5-规则层与FCA,14,1,13205,命运理论 · Lean 4 形式化实现
+GammaOperator,L5-规则层与FCA,41,16,49615,命运理论 · Lean 4 形式化实现
+GapFalse,L8-误差/假设,7,22,17803,`Fate.GapFalse` —— **`dist_to_optimum_Gap` 的全称形式为假**（负面结论）
+GapIsFalse,L8-误差/假设,11,21,19702,`Fate.GapIsFalse` —— **`dist_to_optimum_Gap` 的全称形式为假**（负面结论）
+GapTrimWeightedCount,L8-误差/假设,19,0,27326,§99  ⭐⭐⭐⭐ **缺口 A：`trim` 与 `weightedCount` 的对接**
+GaussMarkovScalar,L13-未归类,9,0,20720,命运理论 · **P-005 重做：Gauss–Markov 标量版**
+GaussMarkovScalarSymm,L13-未归类,5,0,12811,命运理论 · **Gauss–Markov 标量版 · 补充：对称化尝试与未完成项登记**
+GaussMarkovVector,L13-未归类,12,0,22255,命运理论 · **Gauss–Markov 向量版（推广 Fate.GaussMarkovScalar）**
+GazeAlgebra,L5-规则层与FCA,22,6,35755,命运理论 · 三种目光的代数结构（作者裁决 I 的文献纪律 + 作者裁决 R 的加强纪律）
+GazeAlgebraConsumer,L5-规则层与FCA,11,4,10044,命运理论 · GazeAlgebra 接入主链（叶子接线 4）
+GazeRevisesCausal,L13-未归类,0,0,15429,
+GhostAliases,L13-未归类,8,0,6148,§0  幽灵定理的规范名别名
+GhostBoundaries,L13-未归类,10,1,16801,`Fate/GhostBoundaries`
+GlobalMarkovChain4,L12-桥,36,7,50887,`Fate/GlobalMarkovChain4` —— **四节点链的全局 Markov 性**（第 245 轮）
+GlobalMarkovChainN,L12-桥,40,3,44015,`Fate/GlobalMarkovChainN` —— **任意长度链的全局 Markov 性**
+GlobalMarkovChainNConsumer,L12-桥,7,0,13227,`Fate/GlobalMarkovChainN` 的**消费方**（P5 并行任务；一次只接一个模块）
+GlobalMarkovMinimal,L12-桥,23,2,31206,### ⭐ 接线登记（JJ3）：`import Fate.PearlGlobalMarkov`
+GraphOps,L3-因果结构,10,2,7356,§65  ⭐⭐⭐ **图操作**（$G_{\underline{X}}$ / $G_{\overline{X}}$）—— do-calculus 的前提
+GraphToProbView17,L12-桥,24,9,40852,`Fate/GraphToProbView17` —— **「图 ⟹ 概率」桥的第 17 种证明策略**
+GraphToProbView17Consumer,L12-桥,6,0,8629,Fate/GraphToProbView17Consumer.lean
+GraphToProbView7,L12-桥,24,0,35860,
+GuardNecessary,L13-未归类,3,2,3517,"§HP  ⭐⭐⭐⭐⭐ **`hp : ∀ w, 0 ≤ p w` 是**必需**的（第 177 轮）"
+H3LowerBound,L13-未归类,12,1,20832,H3 · 观测组的**一般下界** —— 精确刻画
+H5AdjudicationK,L10-裁决机制,13,2,15796,H5 · **裁决 K 组同义反复检查**（可验证的补强）
+ICPCoverage,L7-预测/干预/反事实,4,3,7076,§19  ⭐⭐ **ICP 覆盖保证的群体层**：一条**被论文隐藏的前件**
+Implication,L5-规则层与FCA,34,12,37433,命运理论 · Lean 4 形式化实现
+InstIsDirac,L13-未归类,11,0,7429,实例层的 IsDirac 兑现（CHAIN-1 P0-F1）
+InstSpaceToLawRule,L13-未归类,12,4,20558,命运理论 · **`LawRule` 的实例层**：`α : InstSpace → LawRule` 需要什么？
+InstanceChain,L1-对象与轨迹,11,17,15145,§0  实例与属性链（作者确认后定稿）
+InterventionGeneral,L7-预测/干预/反事实,13,7,11777,§X6  干预选择：`Bool` → **一般有限集**的紧性泛化
+InterventionSelection,L7-预测/干预/反事实,31,13,25548,命运理论 · 干预选择：在分支模拟结果上做优化
+InterventionSharp,L7-预测/干预/反事实,9,1,21086,命运理论 · 干预选择最优：次优差距下界与「紧」
+InterventionSharpWiring,L7-预测/干预/反事实,12,6,7891,命运理论 · 干预选择的「次优差距下界」在具体实例上的接入
+InterventionSup,L7-预测/干预/反事实,17,0,13586,§X6  干预选择最优值的**真上确界**形式（`Finset.sup'`）
+InterventionSupConsumer,L7-预测/干预/反事实,9,0,7582,§D1  `InterventionSup` 的**消费者**（G46 真消费）
+InterventionTight,L7-预测/干预/反事实,29,6,26621,§X5  干预选择的最优性**紧性**
+InvarianceContentful,L13-未归类,11,3,14409,命运理论 · Lean 4 形式化实现
+KK1NoiseAsymmetry,L13-未归类,22,14,20700,`Fate.KK1NoiseAsymmetry` —— **噪声不对称的核实与后果**（KK1）
+KK1NoiseAsymmetryConsumer,L13-未归类,13,0,33595,
+KahnTopo,L13-未归类,14,0,15019,Released under Apache 2.0 license as described in the file LICENSE.
+KernelAdjunction,L13-未归类,7,0,4753,§14  **核映射的伴随结构**：读出格与 setoid 格的精确对应
+KernelQuotient,L5-规则层与FCA,29,14,44277,§10  统一框架：**核–商理论**（`KernelQuotient`）
+KernelQuotientCategorical,L5-规则层与FCA,24,5,38767,§12  核–商理论的**范畴化**（`KernelQuotientCategorical`）
+KernelQuotientExtra,L5-规则层与FCA,4,0,3565,§13  **核-商理论的补充定理**（并入统一框架）
+KernelQuotientRecovery,L5-规则层与FCA,8,0,5437,§11  **三套结构的回收**：证明它们都是一般理论的**特例**
+LMGGlobalMarkovRoute5,L12-桥,11,0,13141,`Fate/LMGGlobalMarkovRoute5` —— **第 5 路：`LMG ⟹ 全局 Markov` 的拓扑序归纳**
+LMGcCondIndepEquiv,L12-桥,3,2,4444,"§0  ⭐ `LMGc ⟺ ∀ v, CondIndep p {v} (nd v) (pa v)`"
+LMGcCoverGap,L12-桥,0,0,2066,§0  ⚠ `LMGc` 直接计算路线的**第二个障碍**：`nd v` 的 cover 条件不满足
+LMGcCoverObstacle,L12-桥,0,0,1551,§0  ⚠ `LMGc` 与现有桥之间的**障碍**：cover 条件不成立
+LMGcDirectRoute,L12-桥,0,0,1644,§0  `LMGc` 的**直接计算路线**（绕开 `zEquiv`）
+LMGcFinalVerdict,L12-桥,0,1,2259,§0  ⚠ `LMGc` 的**最终判决**：`FactorizesC ⟹ LMGc` 已被机检证伪
+LMGcProjectionNote,L12-桥,0,0,1932,§0  `LMGc` 的投影可行性分析：`|α|` 指数**自动抵消**，但 `hcover` 的成员推导失效
+LMGcRouteHistory,L12-桥,0,0,1815,§0  ⚠ `LMGc` 的**路线失败史**（诚实登记）
+LawDetToStepGen,L12-桥,6,2,11680,规则核心链 · 桥路线甲（Dirac 规则 → Step）· **抽象上下文推广**（P0-4）
+LawRule,L9-世界模型,34,14,24259,§0  规则层的类型学基础（作者裁决后定稿）
+LawRuleAlgebraUnify,L9-世界模型,24,1,25380,规格 5.3.4 开放问题 5.1 · 三候选与 `compose = 取交` 的统一
+LawRuleCondMul,L9-世界模型,12,13,19469,`Fate/LawRuleCondMul` —— **`CondMul` 能否用 `LawRule` 表达？**
+LawRuleCondMulConsumer,L9-世界模型,9,1,13306,`Fate/LawRuleCondMul` 的**消费方**（P5 并行任务；一次只接一个模块）
+LawRuleIdentifiability,L9-世界模型,10,0,10333,命运理论 · Lean 4 形式化实现
+LawRuleInstances,L9-世界模型,31,7,23300,命运理论 · Lean 4 形式化实现
+LawRuleLattice,L9-世界模型,7,0,5566,命运理论 · Lean 4 形式化实现
+LawRuleMarginal,L9-世界模型,8,1,11483,命运理论 · Lean 4 形式化实现
+LawRulePointDecidability,L9-世界模型,15,4,11738,"**Verified, zero-sorry replacement** for `Fate.LawRulePointDecidability`."
+LawRulePointDecidabilityConsumer,L9-世界模型,12,0,13973,`Fate.LawRulePointDecidability` 的**消费方**（P5-1：一次只接一个模块）
+LawRulePointExtract,L9-世界模型,16,1,29267,命运理论 · 单点档 ⟹ 确定性函数的**精确可提取条件**
+LawRuleRuleBridge,L9-世界模型,20,0,16728,§LRB  `LawRule` ⟷ `Frame.Rule` 的**双向映射**（补齐 `Rule.toLaw` 的反向）
+LawRuleSatisfiability,L9-世界模型,12,4,15389,命运理论 · Lean 4 形式化实现
+LawRuleSatisfiabilityConsumer,L9-世界模型,11,1,12372,规则核心链 · P5 · **规则族的可满足性 × 单点可判定性 × SCM 桥**
+LawRuleSequence,L9-世界模型,28,3,24646,命运理论 · Lean 4 形式化实现
+LawRuleToTraj,L9-世界模型,18,7,33453,命运理论 · 从 `LawRule` 到轨迹：`IsPoint` 能否生成 `TrajGen`？
+LawRuleTwoDomains,L9-世界模型,12,3,14900,命运理论 · Lean 4 形式化实现
+LawRuleUnion,L9-世界模型,13,1,11126,命运理论 · Lean 4 形式化实现
+Layer1NoisyChain,L13-未归类,20,0,42272,# Layer1NoisyChain —— 第 1 层噪声链：把 `d` 从「外部假设」变成「从 `P` 推出」
+Layer1NoisyExpected,L13-未归类,1,0,5109,`Fate/Layer1NoisyExpected` —— **第 1 层：随机载体下的期望主定理**
+LearnFunction,L6-规则学习/估计,42,8,35667,`Fate.LearnFunction` —— **GG2：学习一个函数（不是学习一个参数）**
+LearnFunctionUnified,L6-规则学习/估计,17,3,26060,`Fate.LearnFunctionUnified` —— **NN2：把「θ 是函数的学习」与「θ 是点的学习」聚合**
+LegContribution,L13-未归类,6,1,5703,§58  ⭐⭐ **腿的贡献分解**（n 腿组装的延伸：谁在起作用？）
+LipschitzFromFinite,L10-裁决机制,3,1,9538,命运理论 · **裁决 1：(乙) 有限分离空间上 L 的存在性**
+LoopBound,L13-未归类,6,1,10210,§34  ⭐⭐ **从存在性到定量**：循环的**单调性与严格性**
+LoopBoundReal,L13-未归类,20,0,27818,`Fate/LoopBoundReal` —— ⭐⭐⭐ **`MainLoop.step` 上真·循环界**
+MVFCAClosure,L5-规则层与FCA,7,6,6433,§0  MVFCA 闭包的补全：`cl` 幂等 + `ClosureOperator` 实例 + 闭集交封闭
+MVFCAFinset,L5-规则层与FCA,12,8,14765,MVFCA · **`minClosed` / `attrClosure` 的 Finset 版（可枚举算法）**
+MVFCAPositive,L5-规则层与FCA,17,7,15965,MVFCA 肯定方向构造 · 第三种格：**块划分 ⊗ 层细化**（grid-block lattice）
+MacroShiftsMicro,L3-因果结构,2,0,8705,MacroShiftsMicro.lean  ——  「宏观状态改变微观因果」的非平凡见证（简化版）
+MainChainConsumer,L13-未归类,6,0,19627,命运理论 · Lean 4 形式化实现
+MainLoop,L7-预测/干预/反事实,25,6,24592,✅✅✅ **第 276 轮修复声明：`step` 不再是常值函数**
+MainLoopSupportBridge,L7-预测/干预/反事实,11,2,21006,命运理论 · **阶段 2：误差界** —— 把「主循环的停止判据」接到「数据支持度」上
+MainTheoremC,L13-未归类,3,1,3613,§0  主定理 C（`ancestral_dSep_CondIndep`）：幽灵定理的实质实现
+MainTheoremCFinal,L13-未归类,6,0,6131,§0  主定理 C 的 `Z = ∅` 情形：完整组装
+MainlineIntegration,L12-桥,9,1,15962,§B4 ⭐⭐⭐⭐⭐ **把桥的最终定理接进主链**（第 177 轮）
+MainlineTheorems,L13-未归类,4,1,5273,## §1 T6.6 —— **商上的运算良定义性判别**
+MarginSizeIrrelevant,L13-未归类,7,0,10129,§0  `margin_size_irrelevant`：为幽灵名补上实名别名
+MarkovBridge,L12-桥,3,2,5991,`Fate/MarkovBridge` —— **Markov 桥：d-分离 ⟹ 条件独立**（**第 234 轮**）
+MarkovBridgeAncestral,L12-桥,4,0,6758,🔴🔴🔴 **第 258 轮降级声明（M8 对抗性审核发现，含 Lean 探针 P1–P5）**
+MarkovBridgeReal,L12-桥,3,1,8916,🔴 **第 265 轮 D6 降级声明（判据 D6 自动检出）**
+MarkovBridgeTheorem,L12-桥,3,0,6008,🔴🔴🔴 **第 258 轮降级声明（M8 对抗性审核发现，含 Lean 探针 P1–P5）**
+MarkovBridgeTopo,L12-桥,6,1,5180,🔴🔴🔴 **第 258 轮降级声明（M8 对抗性审核发现，含 Lean 探针 P1–P5）**
+MarkovEquivalence,L13-未归类,21,3,25249,Released under Apache 2.0 license as described in the file LICENSE.
+MarkovFaithfulness,L13-未归类,13,7,17370,`Fate.MarkovFaithfulness` —— **反例构造的对称面**
+MarkovGroupWiring,L3-因果结构,10,1,16968,`Fate/MarkovGroupWiring` —— **R-1：因果 Markov 组的真实接线**
+MarkovToSeparable,L13-未归类,1,0,3370,`Fate/MarkovToSeparable` —— **从链 Markov 性导出可分离**（**第 284 轮**）
+MarkovToSeparableGen,L13-未归类,16,5,14988,`Fate/MarkovToSeparableGen` —— ⭐⭐⭐ **缺口 1：`USeparated ⟹ 团分解`**（**第 287 轮**）
+MassADecompFinal,L13-未归类,2,0,3784,§ mass 的 A-分解
+MassAEqCorrected,L13-未归类,3,0,2413,§0  `mass_A_eq` 的**正确版本**（原版有三重缺陷）
+MassBoundaryValues,L13-未归类,5,0,2167,§0  `mass` 的**边界值一览**（防错的语义基准）
+MassFactorOfReads,L13-未归类,3,0,4223,§0  `blockCI_of_block_split` 修正版的核心定理
+MassIndepOfCompl,L13-未归类,13,0,11077,§0  「只依赖补集」区域的新引理：`mass T g` 与 `x` 无关
+MassInsertCorrected,L13-未归类,3,0,4036,§0  mass_insert_of_insensitive 的**正确版本**
+MassMultSBridge,L13-未归类,1,0,1953,§0  `mass S g x = multS S x * g x`（当 `g` 只读 `S`）
+MassOfReadsCover,L13-未归类,2,0,2735,§0  ⭐ `mass S p x = |α|^(|V| - |S|) * p x`（当所有因子只读 `S` 时）
+MassProCover,L13-未归类,3,0,3874,§0  主定理 C 的组装引擎（`ancestral_dSep_CondIndep` 的核心引理）
+MassSdiffConst,L13-未归类,2,0,4923,§0  `mass (T \ {s}) = |α| · mass T`（常数情形）
+MiddleZoneDichotomy,L7-预测/干预/反事实,7,7,5732,§22  ⭐⭐ **中间地带的二分法**（原 `_probe_q25` 的正式化，本节为**收束**）
+MinimalLegSet,L13-未归类,4,2,6791,§59  ⭐⭐ **最小充分腿集**（贡献分解的**优化版本**）
+MinimalSufficient,L7-预测/干预/反事实,11,5,7808,§24  ⭐⭐ **反事实的最小充分统计量**（原 `_probe_q19` 的正式化）
+Minimality,L5-规则层与FCA,10,5,15828,命运理论 · Lean 4 形式化实现
+MoralGraphMarkov,L13-未归类,1,2,6950,`Fate/MoralGraphMarkov` —— **缺口 1：道德图上的分离能够推导出条件独立**（**第 260 轮**）
+MultSUnify,L13-未归类,4,0,2043,§0  `multS` = `|α|^(|V|-|S|)` —— 统一「mass 纤维大小」的两个表述
+MultiObject,L10-裁决机制,3,6,6396,§0  多对象系统 = 积空间（作者裁决）
+NKernelValue,L13-未归类,19,2,27830,§GenN ⭐⭐ **N 元的核值引理**（`CondIndepN` 的测度层对接）
+NLegAssembly,L13-未归类,7,1,7151,§57  ⭐⭐ **n 腿组装的核理论**（推广 `Fate/Assembly.lean` 的 2 腿情形）
+NaryAlgebra,L12-桥,1,0,2967,§GenNAlebra ⭐⭐⭐⭐⭐ **N 元的代数因子化**（**N 元桥的代数核心**，第 185 轮）
+NaryAssembly,L12-桥,1,1,2233,§GenNAssembly  N-ary bridge: fiber mass identity (round 196)
+NaryBridge,L12-桥,1,0,2789,§GenNBridge ⭐⭐⭐⭐ **N 元桥：代数层 ↔ 测度层的对齐**（**第 188 轮**）
+NaryBridgeDone,L12-桥,4,2,13911,§fin_Q0   ⭐⭐⭐⭐⭐ **N 元桥的最终定理（一句话）**
+NaryBridgeFinal,L12-桥,1,0,2365,"§GenNFinalBridge  ⭐⭐⭐⭐⭐ THE N-ARY BRIDGE, FINAL FORM (round 203)"
+NaryBridgeMulti,L12-桥,1,0,1481,§GenNBridgeMulti ⭐⭐⭐⭐⭐ **N 元桥：多坐标的乘积形式**（**第 189 轮**）
+NaryCancel,L12-桥,3,0,2451,§GenNCancel  pure real-algebra core of the N-ary bridge's final step (round 201)
+NaryClose,L12-桥,2,0,2320,§GenNClose  closing lemma in the shape the bridge actually produces (round 205)
+NaryConnect,L13-未归类,1,3,3860,§GenNConnect ⭐⭐⭐⭐ **N 元的代数层 ↔ 测度层连接**（**第 187 轮**）
+NaryConnect2,L13-未归类,1,0,1409,- ⭐ **`coordSet` 上的可判定性**。
+NaryConnect3,L13-未归类,2,0,5530,§GenNConnect2  THE TWO CONNECTION LEMMAS (a) and (b) (round 202)
+NaryFiberDecomp,L13-未归类,1,0,2173,§GenNFiber  fiber decomposition of `mu.real` (round 195)
+NaryFin2,L13-未归类,2,0,3082,§GenNDegenerate  the N-ary condition at `|ι| = 2` (round 209)
+NaryFinal,L12-桥,3,0,8321,§GenNFinal ⭐⭐⭐⭐⭐ **N 元核值引理**（**N 元桥的最终一块砖**，第 184 轮）
+NaryFinalBridge,L12-桥,2,0,3916,§GenNFinalBridge  N 元桥的最终组装 (round 190)
+NaryGeneric,L12-桥,2,0,3322,§GenNGeneric  general (Set-indexed) form of the N-ary bridge (round 207)
+NaryIndex,L12-桥,11,0,16107,§GenNIndex  ⭐ THE N-ARY BRIDGE — a single entry point (round 208)
+NaryIndexCheck,L13-未归类,0,0,4426,§GenNIndexCheck  machine check that every theorem named in `NaryIndex` exists
+NaryKernel,L12-桥,3,0,3333,§GenNKernel ⭐⭐⭐⭐ **N 元的核值工具**（**N 元桥的第三块砖**，第 183 轮）
+NaryKernel2,L12-桥,2,0,4488,§GenNKernel2 ⭐⭐⭐⭐⭐ **N 元核值引理**（**N 元桥的第四块砖**，第 184 轮）
+NaryLink,L13-未归类,2,0,1998,§GenNLink  set identity for the joint set (round 201)
+NaryMargSum,L13-未归类,2,0,2791,§GenNMargSum  marginal sums (round 193)
+NaryMassLink,L13-未归类,1,0,1394,§GenNMass  `NMass` in slice form (round 197)
+NaryMeasure,L12-桥,2,1,3793,§GenN ⭐⭐⭐ **N 元加权计数测度**（**N 元桥的第一块砖**，第 180 轮）
+NaryPointwise,L12-桥,1,0,3517,§GenNPointwise  GLOBAL (∀ a) form of the N-ary bridge final theorem (round 206)
+NaryProduct,L12-桥,1,0,3145,§GenNProduct  THE KEY ALGEBRAIC STEP of the N-ary bridge (round 198)
+NaryRealSum,L12-桥,1,0,2784,§GenNRealSum ⭐⭐⭐⭐ **`μ.real` = 真实求和**（**N 元桥的关键桥梁**，第 189 轮）
+NaryTrim,L12-桥,3,0,4851,§GenNTrim ⭐⭐⭐⭐⭐ **N 元的 `trim` 判据**（**N 元桥的第二块砖**，第 182 轮）
+NoCoverCondIndepPlan,L13-未归类,0,0,1831,§0  ⚠ 无 `cover` 的 `CondIndep`：结构性结论
+NoDescendantWitness,L13-未归类,4,0,4596,`Fate/NoDescendantWitness` —— **Pearl (ii) 的真正检验**（**第 288 轮**）
+NoiseIdentifiability,L13-未归类,7,0,10801,命运理论 · **B：噪声可识别性 —— Capstone 1.3 缺口的机械化钉住**
+NonDescendantsMem,L13-未归类,3,0,1986,§0  ⭐ 用 `nd` 的定义替代 `hcover`：`nd` 的成员刻画
+NonemptyFree,L13-未归类,4,0,8681,`Fate/NonemptyFree` —— **DOWN-1 A 类实测：去掉可去的 `[Nonempty]` 假设**
+NonemptyFree2,L13-未归类,12,0,23012,`Fate/NonemptyFree2` —— **DOWN-1 A 类扩展（第二批）：再找 4+ 条可去的 `[Nonempty]`**
+NonemptyFree3,L13-未归类,4,0,8446,`Fate/NonemptyFree3` —— **DOWN-1 A 类扩展（第三批）：再去 3 条 `[Nonempty]`**
+NonemptyFree4,L13-未归类,6,1,10047,`Fate/NonemptyFree4` —— **DOWN-1 第 2 批：`SCMEndToEnd` 的 `[Nonempty Y]` 去除（4 条）**
+NotLMGColliderP,L13-未归类,1,0,2415,§0  `not_lmg_colliderP_chain` 的完整证明
+ObsErrorRandom,L8-误差/假设,5,0,11275,命运理论 · **G4：随机观测下的估计误差界**
+ObsEstSharp,L8-误差/假设,8,2,20825,命运理论 · **H2：把「估计器误差界」修成一条真正有内容的定理**
+ObsEstimationStrong,L13-未归类,27,2,38332,命运理论 · **阶段 2：A14 估计分支【强档】**
+ObsEstimationStrongG4Link,L8-误差/假设,3,0,6877,命运理论 · **G4 随机化观测 ⟹ 确定性估计误差界（真连接）**
+ObsEstimationWeak,L13-未归类,24,6,23420,`Fate.ObsEstimationWeak` —— **A14 估计分支【弱档】（等价类）**
+ObsEstimationWeakConsumer,L13-未归类,5,0,7959,Fate · **接入：ObsEstimationWeak 的消费方**
+ObservationUnified,L1-对象与轨迹,23,8,22912,§OU  ⭐⭐ **观测反推潜变量的统一框架**（A14 与 O3 的三档抽象）
+ObservationUnifiedConsumer,L1-对象与轨迹,9,2,21283,
+OptimalEta,L13-未归类,24,1,26411,命运理论 · Lean 4 形式化实现
+OptimalityChain,L13-未归类,13,0,27928,命运理论 · Lean 4 形式化实现
+OptimalityGapTheory,L8-误差/假设,12,2,10918,§OptimalityGapTheory  次优性度量理论：误差预算沿链可加
+OptimalityPattern,L11-评估系统,19,2,24873,命运理论 · Lean 4 形式化实现
+OptimalityThirdInstance,L13-未归类,15,0,26782,命运理论 · Lean 4 形式化实现
+Pairing,L5-规则层与FCA,5,9,5105,§0  配对接口：唯一与真实数据格式耦合的地方（作者确认）
+PairingAlphaBridge,L5-规则层与FCA,13,5,11795,§P3-①  配对层 → FCA 数据的桥（**对象集紧锁版**）
+PairingToAlphaData,L5-规则层与FCA,3,8,5380,规则核心链 · 断点① · **配对层 → FCA 数据**
+ParamSCM,L2-命与运,14,6,29217,命运理论 · Lean 4 形式化实现
+ParamSCMConsumer,L2-命与运,10,2,20064,命运理论 · Lean 4 形式化实现
+ParametricEquiv,L2-命与运,9,6,7443,§28  ⭐⭐ **参数化的中间等价关系**（原 `_probe_q24` 的正式化）
+ParentMap,L3-因果结构,14,2,9654,"§67  ⭐⭐⭐ **父集映射**（$\mathrm{pa} : V \to \mathrm{Set}\,V$）—— SCM 结构方程的图侧接口"
+PathDepIsDerived,L13-未归类,8,1,22743,"命运理论 · 「路径依赖」是 (f, θ, x₀) 的推论（开放问题 1.5）"
+PathDependence,L13-未归类,14,16,28060,命运理论 · 「路径依赖」的三种形式化（开放问题 1.4）
+PathWitnessDep,L3-因果结构,9,5,16939,§PathWitnessDep ⭐⭐⭐ **直接路径论证：d-连接路径 ⟹ 依赖性的构造式版本**
+PearlChain,L3-因果结构,11,2,13079,§P213-B1  ⭐⭐⭐ **Pearl 1.2.4 的最小特例**（链 $a \to b \to c$，$Z = \{b\}$）
+PearlCondIndepBridge,L12-桥,18,3,26243,⚠⚠ **第 244 轮降级声明（H7 对抗性审核发现）**
+PearlFork,L3-因果结构,13,4,13684,⭐⭐⭐ **第 213 轮 B2：fork（分叉 / 共同原因）情形 —— 自足翻译**
+PearlGlobalMarkov,L3-因果结构,23,2,28935,⚠⚠⚠ **第 238 轮降级声明（对抗性审核 E5 发现，已用 Lean 探针实测）**
+PearlHierarchy,L3-因果结构,8,5,14701,Pearl 三层级（因果层级）在 Lean 中的形式化 —— 以 **第三层（反事实）** 为重点
+PearlJointLaw,L3-因果结构,14,1,14868,"**SCM ⟹ 联合律**：从 `PearlHierarchy.SCM` 的 `(pU, sg)` 构造联合律 `P(V)`，"
+PearlLawRuleBridge,L3-因果结构,19,3,24317,`PearlHierarchy.SCM` 诱导 `LawRule` —— 构造 + 判别定理
+PearlLawRuleBridgeConsumer,L3-因果结构,6,0,12261,消费方：`PearlLawRuleBridge` —— Dirac 单点档识别 × 组合不可约性
+PearlMarkov,L3-因果结构,6,3,6820,`Fate/PearlMarkov` —— **Pearl 定理 1.2.4 的三元结构核心**（**第 224 轮**）
+PearlMarkovBridgeG1,L3-因果结构,25,3,29659,§r242_G1  ⭐⭐⭐⭐ **Pearl 1.2.4 的真正核心，最小实例**：`d-分离 ⟹ 条件独立`
+PearlMarkovCrossFrameworks,L3-因果结构,11,0,14581,`Fate/PearlMarkovCrossFrameworks` —— **Pearl 系跨框架真接线**（R-20）
+PearlPathCompose,L3-因果结构,5,1,6752,`Fate/PearlPathCompose` —— **沿路径组合条件独立**（**第 225 轮**）
+PearlPathDecomp,L3-因果结构,28,8,31649,`Fate.PearlPathDecomp` —— **Pearl 1.2.4 第 3 步：路径分解**（**第 230 轮 B11**）
+PipelineAdaptiveEta,L7-预测/干预/反事实,9,0,10070,`Fate.PipelineAdaptiveEta` —— **变步长（自适应步长）的端到端收敛**
+PipelineAdaptiveEtaComplexity,L7-预测/干预/反事实,5,0,8523,`Fate.PipelineAdaptiveEtaComplexity` —— **O(1) 收敛判据（免迭代）**
+PipelineAdaptiveEtaMartingale,L7-预测/干预/反事实,5,0,10001,`Fate.PipelineAdaptiveEtaMartingale` —— **第 7 层：鞅收敛（Martingale convergence）**
+PipelineAdaptiveEtaNormed,L7-预测/干预/反事实,6,0,7082,`Fate.PipelineAdaptiveEtaNormed` —— **变步长收敛从 ℝ 推广到赋范空间**
+PipelineAdaptiveEtaRobust,L7-预测/干预/反事实,3,0,8262,`Fate.PipelineAdaptiveEtaRobust` —— **突破「确定性」限定条件：噪声下的鲁棒收敛**
+PipelineAdaptiveEtaStochastic,L7-预测/干预/反事实,4,0,7082,`Fate.PipelineAdaptiveEtaStochastic` —— **从确定性有界噪声到概率意义收敛**
+PipelineComplexityOptimal,L7-预测/干预/反事实,4,0,6664,`Fate.PipelineComplexityOptimal` —— **最优步数选择（最小 N 的存在）**
+PipelineEndToEndCapstone,L7-预测/干预/反事实,4,0,8019,`Fate.PipelineEndToEndCapstone` —— **组合定理：7 层理论的端到端保证**
+PipelineLipschitz,L7-预测/干预/反事实,8,0,11460,`Fate.PipelineLipschitz`
+PipelineTendstoGen,L7-预测/干预/反事实,15,0,27314,### 🔧 修复记录（本文件相对于 `_quarantine/_broken/PipelineTendstoGen.lean` 的改动）
+PipelineTendstoSpecializes,L7-预测/干预/反事实,2,0,8823,命运理论 · **G3 接入：一般版 `pipelineTendstoGen` 与 ℝ 特化版的一致性**
+PolicyAlgorithm,L13-未归类,12,0,12271,§P1-1  `Policy.choose` 从参数变成算法
+ProdSplitSides,L13-未归类,5,0,4558,§0  `prod_split_sides`：乘积拆分引理（幽灵定理的实质实现）
+ProxyRefinement,L7-预测/干预/反事实,6,4,6614,§26  ⭐⭐ **代理细化反事实等价**（原 `_probe_q18b` 的正式化）
+QuantCompletion,L13-未归类,6,0,5789,§36  ⭐⭐ **定量化补完**：两类缺口的关闭
+QuotientCardinality,L13-未归类,5,1,5146,§35  ⭐⭐ **商结构的定量刻画**（「定量化」计划的第二步）
+R44CutBridge,L13-未归类,7,0,8301,Released under Apache 2.0 license as described in the file LICENSE.
+R44SigmaAssembly,L13-未归类,6,0,8602,Released under Apache 2.0 license as described in the file LICENSE.
+R44SubstanceBridge,L13-未归类,7,0,7381,Released under Apache 2.0 license as described in the file LICENSE.
+RebaseSplit,L13-未归类,10,2,7998,RebaseSplit：把 `Split` / `ReadSet` 搬到子类型 `↥A` 上
+RegressBridge,L6-规则学习/估计,10,0,14103,`RegressBridge` —— ⭐ **桥的第二端（`FinMeasureBridge`）的回归测试**
+RegressFinMarkov,L6-规则学习/估计,13,0,14015,`RegressFinMarkov` —— ⭐ **`FinMarkov` 的回归测试**（**第 125 轮新增**）
+RegressStep9Fiber,L6-规则学习/估计,6,0,8404,_step9_R1.lean  —  ⚠ **本文件的两个结论**（诚实的失败报告 + 修正后的真定理）
+ResidualLoop,L8-误差/假设,21,8,28379,`Fate.ResidualLoop` —— **残差回写闭环**（P2-1）
+ResidualReduces,L8-误差/假设,58,2,47749,`Fate.ResidualReduces` —— **残差回写确实减小误差**（线2 · 任务A）
+ResidualReducesInj,L8-误差/假设,19,2,15917,`Fate.ResidualReducesInj` —— **G1 判决：`Hinv` 不可放松为「`A` 有左逆 / `A` 单射」**
+RetreatPlan,L7-预测/干预/反事实,8,8,8208,§20  ⭐⭐ **退守方案**：中间地带为空时的两条断言（原 `_probe_q33d` 的正式化）
+RoundtripAsymmetry,L13-未归类,5,0,11846,规则核心链 · P-U(1) 甲丙路线统一层普查 · **往返不对称性**（第 723 轮）
+RouteBGapNote,L13-未归类,0,0,1606,§0  `FactorizesC ⟹ LMGc`（即 `FactorizesC_implies_LMGc_Gap`）的结构分析
+RouteC,L13-未归类,6,3,13876,Released under Apache 2.0 license as described in the file LICENSE.
+Rule13Genuine,L5-规则层与FCA,14,5,22936,`Fate/Rule13Genuine` —— **缺口 3（续）：规则 1 与规则 3 的真语义版本**
+Rule13GenuineConsumer,L5-规则层与FCA,22,0,22459,`Fate/Rule13GenuineConsumer` —— **`Rule13Genuine` 的消费层**
+Rule1Genuine,L5-规则层与FCA,54,14,70710,
+Rule1Semantic,L5-规则层与FCA,29,2,44155,`Fate/_r242_G3` —— **缺口 3：do-calculus 规则 1 的语义版本**（第 242 轮 · G3）
+Rule23Semantic,L5-规则层与FCA,31,5,40584,⚠⚠ **第 247 轮降级声明（J1 批量审核发现）**
+Rule2Genuine,L5-规则层与FCA,54,20,65436,`Fate/Rule2Genuine` —— **缺口 3：规则 2 的真语义版本**
+RuleActivation,L5-规则层与FCA,23,6,19523,规则层 · **动态激活机制**（全参与 + 按需激活）
+RuleActivationClosureOp,L5-规则层与FCA,22,6,21132,§0  激活闭包的抽象化：`ClosureOperator` 实例
+RuleActivationClosureOpConsumer,L5-规则层与FCA,12,0,10326,`Fate/RuleActivationClosureOpConsumer` —— **`RuleActivationClosureOp` 的消费层**
+RuleDrivesEndToEnd,L5-规则层与FCA,19,1,36347,P0-2/P0-3 · 把 `LawRule` 抽出的 `Step` **真正接进** `WorldModel` / `EndToEnd` 主链
+RuleEntersWorldModel,L5-规则层与FCA,16,15,24131,规则核心链 · P0-2 / P0-3 · **规则驱动的整条世界模型轨迹**
+RuleEvaluation,L5-规则层与FCA,7,2,19299,命运理论 · **规则评价框架**（科学哲学驱动的半启发式框架）
+RuleExec,L5-规则层与FCA,11,8,12837,规则核心链 · **IR 提取到可执行**（乙-3）
+RuleExecDemo,L5-规则层与FCA,3,7,5262,规则可执行引擎 · **`#eval` 演示**（P1-H1）
+RuleLevel,L5-规则层与FCA,22,13,19681,命运理论 · 规则层级（Rule Level）
+RuleMainChainConsumer,L5-规则层与FCA,6,0,10490,P0-G1 · 把规则桥接进主链：`ruleWorldModelWithRules` 的**第一个外部消费者**
+RuleReadSet,L5-规则层与FCA,36,11,28752,`Fate/RuleReadSet` —— **规则读集与规则间依赖**（含激活闭包）
+RuleReadSetWiring,L5-规则层与FCA,24,5,28293,`Fate/RuleReadSetWiring` —— **把 `RuleReadSet` 的依赖结构接进 `WorldModelCompleteV2`**
+RuleReadSetWiringConsumer,L5-规则层与FCA,6,0,13663,`Fate/RuleReadSetWiringConsumer` —— **消费 `RuleReadSetWiring` 的核心结论**
+RuleRelaxation,L5-规则层与FCA,10,1,19182,P4 · 乙路线 · **规则与机制的误差逼近：格序形式**
+RuleSimConsistency,L5-规则层与FCA,14,4,22188,T12 · `WorldModel.rules` 与其 `simulator` 的**一致性定理**
+RuleSyntax,L5-规则层与FCA,9,5,12560,规则核心链 · **IR 语法层**（乙-1）
+RuleSyntaxExt,L5-规则层与FCA,14,3,14765,规则核心链 · **IR 语法扩展层**（乙-2 第 2 件）
+RuleSyntaxGen,L5-规则层与FCA,5,5,10683,规则核心链 · **IR 语法层的线性有序域泛化**（GEN-1 审计 §3 排名 1）
+RuleSyntaxGenOps,L5-规则层与FCA,29,15,28669,规则核心链 · **四算子 / 概率-微分-迭代 / 可执行判定 在线性有序域上的泛化**
+RuleSyntaxOps,L5-规则层与FCA,23,7,16838,规则核心链 · **IR 四算子的语法层对应**（乙-2 第 1 件）
+SCMEndToEnd,L3-因果结构,22,1,27319,命运理论 · Lean 4 形式化实现
+SCMEndToEndConsumer,L3-因果结构,9,0,26073,命运理论 · Lean 4 形式化实现
+SCMEndToEndGeneral,L3-因果结构,6,0,13171,命运理论 · Lean 4 形式化实现
+SCMEndToEndGeneralQ,L3-因果结构,7,1,10974,命运理论 · Lean 4 形式化实现
+SCMGraph,L3-因果结构,38,8,34480,`Fate.SCMGraph` —— **从 SCM 的 `sg` 提取「谁依赖谁」，构造 `SCMGraph`**
+SCMGraphSemantics,L3-因果结构,10,0,16233,`Fate.SCMGraphSemantics` —— **把 `Fate.SCMGraph` 真正接进 `Fate.SCMSemantics`**
+SCMIdentifiability,L3-因果结构,24,2,33895,
+SCMIdentifiabilityCorrect,L3-因果结构,6,0,13703,Fate/SCMIdentifiabilityCorrect.lean
+SCMKernel,L3-因果结构,17,1,28569,§K  ⭐⭐⭐⭐ **SCM 的 Kernel 视角**（每节点一个 kernel，Markov 性可证）
+SCMLawBridge,L3-因果结构,16,0,24204,§LR  ⭐⭐⭐⭐ **`PearlHierarchy.SCM` 能否诱导 `LawRule`？** —— 能，且分三档
+SCMLawBridgeAdvance,L3-因果结构,13,0,21270,§LR+  ⭐⭐⭐⭐ **`PearlHierarchy.SCM` ⟹ `LawRule`：桥推进（第 2 轮）**
+SCMResidual,L3-因果结构,45,3,47084,命运理论 · Lean 4 形式化实现
+SCMSemantics,L3-因果结构,1,0,6841,§68  ⭐⭐⭐ **SCM → 概率语义的桥**（第 67 轮审计指出的**真正阻塞点**）
+SCMUnificationA,L3-因果结构,6,1,7257,命运理论 · Lean 4 形式化实现
+SCMWorldModel,L3-因果结构,14,4,37878,
+SCMWorldModelEval,L3-因果结构,18,11,26758,命运理论 · Lean 4 形式化实现
+SCMWorldModelEvalNum,L3-因果结构,15,15,25874,命运理论 · Lean 4 形式化实现
+Satisfiability,L5-规则层与FCA,30,4,31927,命运理论 · Lean 4 形式化实现
+ScenarioBranchLimit,L13-未归类,6,0,9856,命运理论 · Lean 4 形式化实现
+ScenarioConvergence,L13-未归类,16,2,26120,命运理论 · Lean 4 形式化实现
+ScenarioSharp,L13-未归类,7,0,17831,命运理论 · Lean 4 形式化实现
+ScenarioSharpForTree,L13-未归类,6,0,16418,命运理论 · Lean 4 形式化实现
+ScenarioSharpWiring,L13-未归类,6,0,16512,命运理论 · Lean 4 形式化实现
+ScoreBound,L11-评估系统,2,2,3279,# `ScoreBound.lean` — 把 `s` 绑定到打分器 `linScore w x`（如实登记）
+ScoreK,L11-评估系统,5,0,5133,§0  干预选择的判准：损失最小化 ⊕ 裁决 K（作者裁决「2 和 1 都行」）
+ScottContinuity,L13-未归类,12,4,15960,命运理论 · Lean 4 形式化实现
+ScratchAssemblyLearns,L13-未归类,9,0,3722,- `A : ℝ →L[ℝ] ℝ` 取 `x • id`，即 `A θ = x * θ`。
+SdiffEraseEq,L13-未归类,1,0,2060,§0  `univ \ (T \ {s}) = {s} ∪ (univ \ T)` —— `sink_peel` 的补集分解
+SeparableCondMul,L13-未归类,1,0,3864,`Fate/SeparableCondMul` —— **可分离 ⟹ 条件独立**（**第 242 轮**）
+SeparatedCondMul,L12-桥,2,0,6694,🔴🔴 **第 281 轮降级声明（U8 对抗性审核发现，含 7 个探针）**
+SeparatedCondMulUnified,L12-桥,10,0,18390,`Fate/SeparatedCondMulUnified` —— **跨模块聚合：可分离性 + `Z` 侧条件乘性
+SeparatedCondMulZ,L12-桥,36,16,29306,🔴🔴 **第 283 轮 D8 降级声明（V1 审核，7 个探针）**
+SeparatedImpliesSide,L12-桥,2,0,6159,🔴🔴 **第 281 轮降级声明（U8 对抗性审核发现，含 7 个探针）**
+SeparationDecomposition,L12-桥,28,5,30438,🔴 **第 269 轮精确审核（P1，含探针反例）**
+SetLemmas,L13-未归类,2,0,628,# 通用集合引理
+SetupXMY,L13-未归类,2,10,8371,🔴🔴🔴 **第 297 轮降级声明（Z8 审核，含 3 个 D7 探针）**
+SetupXMYDemo,L13-未归类,9,0,4848,`Fate/SetupXMYDemo` —— ⭐⭐⭐⭐⭐ **`demoX`：后门调整 vs 中介调整**
+SetupXMYDemoLaw,L13-未归类,22,0,8415,`Fate/SetupXMYDemoLaw` —— `demoX` 的**数值表**与**两个否证定理**
+SetupXMYDemoLawConsumer,L13-未归类,14,2,10179,Released under Apache 2.0 license as described in the file LICENSE.
+SharedParamGain,L13-未归类,15,12,33811,命运理论 · Lean 4 形式化实现
+SharedThetaChain,L13-未归类,20,0,40017,命运理论 · Lean 4 形式化实现
+SigmaDataDependence,L8-误差/假设,6,0,13073,命运理论 · **σ 的数值依赖外部数据（`SigmaDataDependence`）**
+SigmaEstimation,L8-误差/假设,13,0,21234,命运理论 · **V4：把 σ 不可证这件事转成可证的东西**
+SigmaFromAIC,L8-误差/假设,26,6,46075,
+SigmaFromDomain,L8-误差/假设,13,3,20568,命运理论 · **σ 估计的破法丁**：σ 作领域参数传入 + 未给时肘点兜底
+SigmaFromInfoGain,L8-误差/假设,13,3,17651,命运理论 · **σ 估计 · 破法丙** —— 加密分辨率的信息增益判据
+SigmaGammaFromData,L8-误差/假设,12,0,17549,命运理论 · **裁决 K §六·补三：σ ↔ γ 循环的真正破解**
+SigmaLandscape,L8-误差/假设,27,0,42531,命运理论 · **σ 的立体地形图：把 Gauss–Markov 接进 σ 估计链条**
+SigmaUnified,L8-误差/假设,13,3,33407,命运理论 · **σ 三条破解路径的汇合层（`SigmaUnified`）**
+SimEndToEndLink,L13-未归类,9,0,18539,`Fate.SimEndToEndLink` —— **`WorldModel.sim` 与 `endToEndIter` 的显式连接**
+SinkPeelCounterexample,L13-未归类,3,2,2421,§0  `sink_peel` 的**机检反例**（`T = {s}` 时不成立）
+SinkPeelDiagnosis,L13-未归类,1,0,1606,§0  `sink_peel` 的**完整诊断**（不是定理，是结构分析 + 一个机检反例的引用）
+SinkPeelFinalVerdict,L13-未归类,0,0,1914,§0  `sink_peel` 的**最终判决**：不是「补因子/加前提」能修的
+SinkPeelGeneralRefutation,L13-未归类,2,0,2628,§0  `sink_peel` 的**一般反证**（不是特例，是结构性证伪）
+SolutionCLMGcCounterexample,L13-未归类,6,0,5579,§0  ⭐ `FactorizesC ⟹ LMGc` 的**机检反例**
+SolutionCLMGcNote,L13-未归类,0,0,1682,§0  ⚠ `FactorizesC ⟹ LMGc` 的**疑似反例**（`colliderDAG` + `colliderP`）
+SplitFromDAG,L13-未归类,12,5,16937,Released under Apache 2.0 license as described in the file LICENSE.
+SplitFromDSepComplete,L13-未归类,12,2,21701,Released under Apache 2.0 license as described in the file LICENSE.
+Stage1A,L4-轨迹生成,4,10,18916,命运理论 · Lean 4 形式化实现
+StatAlpha,L6-规则学习/估计,24,8,20205,§Stat  α 的**统计版本**：用实例的经验分布构造 α（经验条件核 + 置信带）
+StatAlphaConsumer,L6-规则学习/估计,8,0,12690,§Stat α 的**统计版**接入 `LawRule` 主链（消费模块）
+SteadyErrEstimate,L13-未归类,14,0,20074,命运理论 · **AA3：把 `SigmaEstimation` 接进 `ClosedLoopNoisy`**
+StepExpressiveness,L13-未归类,3,1,3296,§0  T-1b：`Step` 签名的表达能力上限（第 44 轮，主控直接构造）
+StepToLaw,L12-桥,5,0,10705,规则核心链 · 桥路线丙（Step → LawRule）· **往返定理**（P1-1，第 722 轮）
+StepToLawDraft,L12-桥,0,1,6418,规则核心链 · 桥路线丙（Step → LawRule）· **可行性勘察草案**
+StepToLawGenFiber,L12-桥,11,1,18709,规则核心链 · 桥路线丙 · **抽象版左往返的纤维形式**（P0-5 修复）
+Strategy11AncestralHull,L12-桥,28,3,30617,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy11FiberPinned,L7-预测/干预/反事实,12,2,22984,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy11TopoPrefix,L7-预测/干预/反事实,12,1,15402,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy12FactorSplitBridge,L7-预测/干预/反事实,9,0,15010,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy13FactorHoist,L7-预测/干预/反事实,11,4,12675,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy13FiberFubini,L7-预测/干预/反事实,13,2,15659,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy13Filler,L7-预测/干预/反事实,7,5,10262,# 视角 13（续）：填充引理 —— **因子闭包填充（filler）**
+Strategy13Fixed,L7-预测/干预/反事实,2,0,4922,§0  Strategy13FiberFubini 的**正确版本**
+Strategy13TypedSplit,L7-预测/干预/反事实,4,2,3498,# 视角 13：『图 ⟹ 概率』桥的第 13 种策略 —— 三元划分因子分解（typed split）
+Strategy9SinkPeelNorm,L7-预测/干预/反事实,7,5,10700,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy9SinkPeelVerdict,L7-预测/干预/反事实,8,6,12948,Released under Apache 2.0 license as described in the file LICENSE.
+Strategy9TopoLayerTruncation,L7-预测/干预/反事实,15,1,24731,
+StrongSignature,L13-未归类,6,2,8427,§45  ⭐⭐ **强化签名**：结构刻画（第 44 轮负面结果的**进一步澄清**）
+SubFibCard,L13-未归类,2,0,2393,§0  子类型纤维的基数（`blockCI_of_block_split` 的计数部分）
+SubMassFoundations,L13-未归类,4,0,2723,§0  ⭐ 子系统 `mass` 的两块基石
+SubMassPlan,L12-桥,0,0,2048,§0  子系统 `mass` 的桥：最后一块拼图
+SumMulSep,L13-未归类,4,0,3148,§0  乘积分离律：`Σ_w f w * g w = (Σ f)(Σ g)`（无尾块下）
+SumMulSepFull,L13-未归类,7,1,6924,§0  乘积分离律的完整实现（无尾块下）
+SumSeparation,L13-未归类,0,0,3638,§0  无尾块的乘积分解：`mass ∅` 的分离律
+SupportBound,L8-误差/假设,13,5,19452,命运理论 · **阶段 2：误差界** —— 用「数据支持度」给泛化定上界
+SynClosureBounded,L13-未归类,10,0,11851,命运理论 · Lean 4 形式化实现
+SynClosureSemiNaive,L13-未归类,10,1,12677,命运理论 · Lean 4 形式化实现
+T04NotationFidelity,L13-未归类,5,3,6357,`Fate/T04NotationFidelity` —— **T0.4 记号替换保真性**（**第 221 轮**）
+T111QuotientPred,L7-预测/干预/反事实,2,2,3971,`Fate/T111QuotientPred` —— **T1.11 规则作为实例的商**（**第 221 轮**）
+T112Candidates,L5-规则层与FCA,10,0,11611,`Fate/T112Candidates` —— **T1.12 · 步骤 1–2：五个候选命题的探针测试**
+T112Exactly,L5-规则层与FCA,16,1,20454,`Fate/T112Exactly` —— **T1.12 · 第 5 次尝试：把问题彻底答完**
+T112FCAConnection,L5-规则层与FCA,7,1,7621,`Fate/T112FCAConnection` —— **T1.12 T1.11 与 FCA 的衔接**（**第 223 轮**）
+T112FCAPolar,L5-规则层与FCA,7,0,7730,⚠ **第 247 轮标注（J1 批量审核）：**本模块是纯格论，非概率****
+T112FCASpecific,L5-规则层与FCA,97,19,35176,`Fate/T112FCASpecific` —— 第 247 轮：**真正 FCA 特有**的定理（含诚实标注）
+T112FCASpecific2,L5-规则层与FCA,14,0,15968,`Fate/T112FCASpecific2` —— **T1.12 · 步骤 3：穿过探针的 FCA 特有定理**
+T112FCATheorems,L5-规则层与FCA,12,2,13147,`Fate/T112FCATheorems` —— **T1.12 · 第 4 次尝试：经判据筛选的真 FCA 特有定理**
+T112PairProbe,L5-规则层与FCA,3,3,4745,`Fate/T112PairProbe` —— **T1.12 · 步骤 2 的「两个底集」探针**
+T112SecondQuotient,L5-规则层与FCA,52,2,42458,`Fate/T112SecondQuotient` —— **T1.12 的「二次商」**
+T112UnaryClosure,L5-规则层与FCA,4,4,5159,`Fate/T112UnaryClosure` —— **T1.12 任务 · 步骤 2 探针公用件**
+T1A1,L7-预测/干预/反事实,8,3,15861,Released under Apache 2.0 license as described in the file LICENSE.
+T1A1Graphs,L7-预测/干预/反事实,20,7,28876,Released under Apache 2.0 license as described in the file LICENSE.
+T1A2,L7-预测/干预/反事实,19,3,14526,Released under Apache 2.0 license as described in the file LICENSE.
+T1A2Bridge,L7-预测/干预/反事实,3,1,2234,# `Fate/T1A2Bridge` —— `T1A.2` 的 G3 桥（`CondMul` 的乘法形式）
+T1A2CI,L7-预测/干预/反事实,4,0,3342,# `Fate/T1A2CI` —— `T1A.2` 的代数核心
+T1A2CI3,L7-预测/干预/反事实,10,0,12916,Released under Apache 2.0 license as described in the file LICENSE.
+T1A2Chain,L7-预测/干预/反事实,3,0,3990,# `Fate/T1A2Chain` —— `T1A.2` 在**链图**上的 specialize
+T1A2Encode,L7-预测/干预/反事实,13,0,14021,# `Fate/T1A2Encode` —— `T1A.2` 的编码桥（G1 缺口）
+T1A2Fin,L7-预测/干预/反事实,5,3,13932,# `Fate/T1A2Fin` —— 把 `(V → Bool) → ℝ` 上的乘积形式接到 `FinJoint`
+T1A2N,L7-预测/干预/反事实,2,0,1899,# `Fate/T1A2N` —— `T1A.2` 的抽象推广
+T1A2Prob,L7-预测/干预/反事实,3,1,4356,# `Fate/T1A2Prob` —— 概率侧：从乘积形式到独立性
+T1A2Substance,L11-评估系统,36,3,28933,Released under Apache 2.0 license as described in the file LICENSE.
+T1A2Theta,L7-预测/干预/反事实,10,1,9378,Released under Apache 2.0 license as described in the file LICENSE.
+T1DegeneracyVerify,L13-未归类,22,9,28660,`Fate.T1DegeneracyVerify` —— **T-1 退化问题的验证**（CC1，最高优先）
+T1DegeneracyVerifyConsumer,L13-未归类,11,6,19299,`Fate.T1DegeneracyVerifyConsumer` —— **T-1 退化判据接入 `LawRule.IsPoint`**
+T1MultiDim,L13-未归类,24,2,24580,Released under Apache 2.0 license as described in the file LICENSE.
+T1Verify,L13-未归类,4,1,4499,§0  T-1 退化的 Lean 验证（第 38 轮，主控直接构造）
+T1VerifyStrong,L13-未归类,5,0,7621,命运理论 · Lean 4 形式化实现
+T21DSepWellDefined,L7-预测/干预/反事实,10,0,10977,🔴🔴🔴 **第 239 轮降级声明（F3 审核发现）：本文件 10/10 全是定义展开**
+T21Decidable,L7-预测/干预/反事实,2,0,8059,`Fate/T21Decidable` —— **T2.1 的可判定性：第一部分**（**第 235 轮**）
+T21FiniteSearch,L7-预测/干预/反事实,25,5,18643,命运理论 · **T2.1 的实质证明：有限图上 d-分离的可判定性**
+T21FiniteSearchConsumer,L7-预测/干预/反事实,12,0,11428,命运理论 · **T21FiniteSearch 的消费方**（有限搜索 ⟹ 可计算的 d-分离前置件）
+T314Identifiability,L7-预测/干预/反事实,15,3,11978,⚠⚠ **第 230 轮降级声明（对抗性审核 B8 发现，已独立验证）**
+T33DoGraph,L7-预测/干预/反事实,27,10,24193,`Fate/_r230_B2` —— **T3.3：`do` 的删边与模型替换是同一操作的两个投影**
+T33DoGraphConsumer,L7-预测/干预/反事实,9,1,14408,命运理论 · Lean 4 形式化实现
+T34DoPushforward,L7-预测/干预/反事实,13,0,12802,`Fate/T34DoPushforward` —— **T3.4 干预分布的推前表征**（**第 222 轮**）
+T35Confounding,L7-预测/干预/反事实,7,0,6127,`Fate/T35Confounding` —— **T3.5 观测分布与干预分布的不重合**（**第 219 轮**）
+T35Rule1NoConfounding,L5-规则层与FCA,10,4,14635,`Fate/T35Rule1NoConfounding` —— **反例登记：草稿的第 242 轮 G3 命题为假**
+T35Rule1Split,L5-规则层与FCA,32,8,31218,`Fate/T35Rule1Split` —— **缺口 3：do-calculus 规则 1 的语义版本**
+T35Rule1SplitConsumer,L5-规则层与FCA,10,0,18778,`Fate/T35Rule1SplitConsumer` —— `T35Rule1Split` 的**消费方**
+T43Abduction,L7-预测/干预/反事实,56,0,29115,`Fate/T43Abduction` —— **T4.3：去掉溯因 ⟹ 反事实退化为干预**（第 243 轮重做）
+T43CounterfactualAbduction,L7-预测/干预/反事实,20,3,21443,⚠ **第 247 轮标注（J1 批量审核）：**本模块**不是概率模块****
+T44Counterfactual,L7-预测/干预/反事实,16,8,11739,⚠⚠ **第 230 轮降级声明（对抗性审核 B8 发现，已独立验证）**
+T51Trajectory,L7-预测/干预/反事实,5,1,3523,## §3 T5.1 —— **离散轨迹的存在唯一性**
+T611Full,L5-规则层与FCA,29,3,30193,T6.11 —— DG 基的「完备且不冗余」表示 / ARM 阈值下的不完备性
+T611FullConsumer,L5-规则层与FCA,10,0,8724,消费方：T611Full 的消费定理（DG 基完备/不冗余 + ARM 不完备）
+T61MapKernel,L7-预测/干预/反事实,10,3,11637,`Fate/T61MapKernel` —— **T6.1 映射形式是核形式的特例**（**第 228 轮**）
+T65QuotientOp,L7-预测/干预/反事实,5,1,7064,## §4 T6.5 —— **相容性推出商上的诱导运算 + 结合律保持**
+T68ComposeSemantics,L7-预测/干预/反事实,21,1,20919,命运理论 · Lean 4 形式化实现
+T68ComposeSemanticsConsumer,L7-预测/干预/反事实,12,3,17612,T68ComposeSemantics 的消费者 —— 把「组合语义未定」接到主链 `RuleSyntaxOps.compose`
+T810PrMaj,L13-未归类,26,4,25612,§T8.10  `Pr_maj` 不可求值 —— 依赖三参数的形式化
+TailBlockAssemble,L13-未归类,4,0,5499,§0  真正有尾块的主定理：`A` 上因子化 + 所有读集落在 `A` 内
+TailBlockBridge,L12-桥,4,0,6374,§0  主定理 D 的桥接层
+TailBlockCondIndep,L13-未归类,4,0,4385,§0  主定理 D：有尾块情形
+TailBlockFinal,L13-未归类,6,1,9007,! TailBlockFinal：**主定理 D（尾块情形）** —— 零 `sorry` 的完整证明
+TailBlockIntegration,L12-桥,1,0,1838,§0  桥的整合：两种情形与 `hfacA` 的来源
+TailBlockMassDcomp,L13-未归类,2,0,2467,§0  主定理 D 的核心：四个 `mass` 的完整分解
+TailBlockMassDecomp,L13-未归类,7,0,14996,TailBlockMassDecomp.lean      （暂存于 Fate_agent_staging/，未写入 Fate/）
+TailBlockQuadraticCounterexample,L13-未归类,4,0,10564,§0  任务「主定理 D 是假的」的**核查结论：判断有误，反例不存在**
+TailBlockReal,L13-未归类,7,0,5985,§0  真正有尾块情形的两个关键构件
+TailBlockReal2,L13-未归类,29,0,29464,TailBlockReal2.lean   （暂存版；主控验证后可改名为 Fate/TailBlockReal2.lean）
+TailBlockReal2Consumer,L13-未归类,15,0,17413,TailBlockReal2Consumer.lean
+TailBlockV4,L13-未归类,24,3,21657,- `ReadsOn f A`：`f` 只读 `A` 上的坐标。
+TailBlockV4Consumer,L13-未归类,8,0,8511,`Fate.TailBlockV4Consumer` —— 接入 `TailBlockV4` 的消费层
+TailFromDSep,L13-未归类,3,4,2999,§0  `dSep` **不能**推出主定理 D 所需的 `hTail`
+TailFromDSepFork,L13-未归类,8,4,6019,# hTail 与 dSep 的关系：机检反例
+TailFromDSepIntegration,L13-未归类,14,4,14074,Fate/TailFromDSepIntegration.lean
+TailOutExtract,L13-未归类,6,1,5005,TailOutExtract.lean
+TailTailCollapse,L13-未归类,2,0,2164,§0  ⚠ 重要发现：主定理 D 的 `hTail` 前提蕴含「无尾块」
+TailVerdict,L13-未归类,14,2,19491,§0  TailVerdict —— 「真正有尾块的 mass 分解」**判决**
+TauParametric,L13-未归类,5,1,6160,§9  τ 的**真正参数化**：消除 `α` 的惰性（修正 §7 的缺陷）
+TermSize,L13-未归类,22,3,13902,规则核心链 · **`Term` 的规模度量与线性复杂度依据**（COMPLEX-1 §5 第 6 条）
+TermSizeConsumer,L13-未归类,6,0,8463,规则核心链 · **`TermSize` 的消费者**（CHAIN-1 接线件）
+TermSizeConsumer2,L13-未归类,12,5,11292,规则核心链 · **`TermSize` 的消费者**（CHAIN-1 接线件 · v2 真连接版）
+ThetaConvergence,L2-命与运,24,5,25564,`Fate.ThetaConvergence` —— **Z3：端到端学习真正收敛到真值 θ\***
+ThetaExpressiveness,L2-命与运,18,9,12828,§0  FF3：`θ` 是「点」还是「函数」——两种实例的表达力对比
+ThetaLearningParam,L2-命与运,21,1,28148,命运理论 · Lean 4 形式化实现
+ThetaMatters,L2-命与运,25,16,34361,`Fate.ThetaMatters` —— **【Z2】θ 有作用：最小见证**
+ThetaStabilityMetric,L2-命与运,5,1,5863,§Q-1b  **稳定性的度量细化**（修正审计的一处数学错误）
+ThreeNodeFactorizes,L13-未归类,26,7,20981,`Fate/ThreeNodeFactorizes` —— **段 3 第一步：三节点图接 `Factorizes`**
+ThreeViews,L7-预测/干预/反事实,13,5,10890,§21  ⭐⭐ **桥的三种视角**：多值当资源 / 换方向 / 换商（原 `_probe_three_views`）
+TieredScheme,L7-预测/干预/反事实,8,9,8226,§29  ⭐⭐ **分档方案**：预测档 / 干预档 / 反事实档（原 `_probe_q29` 的正式化）
+TowerAudit,L13-未归类,4,0,7794,`Fate.TowerAudit` —— **塔性质诊断的独立复核 + 文献标准做法**
+TowerExactLaw,L13-未归类,7,0,7774,`Fate.TowerExactLaw` —— **塔反例的「最小反例再分析」：精确乘子定律**
+TrajGenArbitrary,L7-预测/干预/反事实,8,4,15685,命运理论 · GEN-1 排名 2：`Traj ℕ` → `Traj ι` 的**递推腿**泛化
+TrajGenDeterministic,L7-预测/干预/反事实,14,5,22591,命运理论 · 方案一：确定性递推（用 `Step` 迭代），轨迹由初值与输入唯一决定
+TrajGenMeasurable,L7-预测/干预/反事实,4,1,12390,命运理论 · 开放问题 1.2：`F_traj`（`trajGen`）的可测性 —— 条件性结果
+TrajGenMeasurableFull,L7-预测/干预/反事实,2,1,10406,命运理论 · 开放问题 1.2 的剩余缺口：`θ` 与 `x₀` 也作为变量时的可测性
+TrajGenScan,L7-预测/干预/反事实,12,3,14878,规则核心链 · COMPLEX-1 第 1 条：`trajGen` 的 O(T²) → O(T)（一次扫描版）
+TrajGenStochastic,L7-预测/干预/反事实,7,11,22234,命运理论 · 方案二：随机递推（噪声按分布采样），轨迹是随机过程
+TrajLawIsProb,L13-未归类,1,0,7263,命运理论 · 开放问题 1.1（路径空间的测度）· 有限视窗情形
+TrajPattern,L7-预测/干预/反事实,2,8,4715,§0  轨迹级规律：谓词为主，属性集为构造方式（作者确认）
+TwoDPrediction,L13-未归类,20,1,8612,§T4.2  端到端预测：`d = 2` 实例上的**一条真实数据 → 一个预测**
+TwoRoutesNote,L13-未归类,0,0,1794,§0  两条独立路线的架构说明（**不是定理，是文档登记**）
+TwoVersions,L10-裁决机制,43,3,35593,命运理论 · Lean 4 形式化实现
+TwoVersionsConsumer,L10-裁决机制,15,0,25353,命运理论 · Lean 4 形式化实现
+USeparatedMoral,L13-未归类,1,0,3670,`Fate/USeparatedMoral` —— ⭐⭐⭐⭐⭐ **`USeparated` ⟹ 可分离（三点团）**（**第 242 轮**）
+UndirectedGlobalMarkov,L13-未归类,3,0,6143,`Fate/UndirectedGlobalMarkov` —— **Lauritzen/Oxford 定理 4.1 的逐行翻译**（**第 261 轮**）
+UnifiedMainline,L1-对象与轨迹,14,0,24597,🔴 **第 265 轮 D6 降级声明（判据 D6 自动检出）**
+UnifyVerification,L10-裁决机制,0,1,2196,§96  ⭐⭐⭐ **裁决 P 落地的验证**：链式组合现在**类型正确**
+UpsilonIterConsumer,L5-规则层与FCA,4,0,14993,命运理论 · Lean 4 形式化实现
+UpsilonIteration,L5-规则层与FCA,30,4,36844,命运理论 · Lean 4 形式化实现
+UpsilonIterationConsumer,L5-规则层与FCA,7,0,22662,命运理论 · Lean 4 形式化实现
+UpsilonOperator,L5-规则层与FCA,48,12,67820,命运理论 · Lean 4 形式化实现
+UpsilonRefine,L5-规则层与FCA,6,3,3420,§0  `υ`（完善/收窄）的三重处理（作者裁决「三者并行」）
+VarsigmaScale,L13-未归类,16,4,20584,命运理论 · Lean 4 形式化实现
+VerifyFalseClaim,L1-对象与轨迹,3,1,1753,### 独立验证：被删除陈述的**反例**是否真成立
+VersionSpace,L13-未归类,18,9,14365,§VS  在线学习与规则收窄：**版本空间 / 候选消除**（Mitchell 1977/1982）
+VersionSpaceBoundary,L13-未归类,10,1,9721,§VSB  版本空间的**边界**与**终止性**：补上 `Fate.VersionSpace` 里
+View10AdmissibleReach,L12-桥,6,1,12343,Released under Apache 2.0 license as described in the file LICENSE.
+View11SplitterChain,L12-桥,8,2,17177,Released under Apache 2.0 license as described in the file LICENSE.
+View14CutReweight,L12-桥,18,1,23675,`Fate.View14CutReweight`
+View15KernelSeparation,L12-桥,14,2,19902,Released under Apache 2.0 license as described in the file LICENSE.
+View16PotentialTransport,L12-桥,13,3,24428,Released under Apache 2.0 license as described in the file LICENSE.
+View17,L12-桥,23,8,31613,`Fate.View17` —— 「图 ⟹ 概率」桥的 **第 17 种证明策略**
+View17Consumer,L12-桥,10,0,18358,Released under Apache 2.0 license as described in the file LICENSE.
+View17SectionGlue,L12-桥,17,9,24138,Released under Apache 2.0 license as described in the file LICENSE.
+View18BayesBallBlock,L12-桥,11,3,21696,`Fate/View18BayesBallBlock` ——
+View19FactorGraphSplit,L12-桥,6,3,10212,Released under Apache 2.0 license as described in the file LICENSE.
+View20GraphToProb,L7-预测/干预/反事实,8,2,17337,`Fate/View20GraphToProb` —— **视角 20：『图 ⟹ 概率』桥的第 20 种证明策略**
+View21StableBorder,L7-预测/干预/反事实,10,3,10955,# View21：稳定边界 / 暴露集（P-006 修复版）
+View2ElimIterate,L7-预测/干预/反事实,16,4,28782,Released under Apache 2.0 license as described in the file LICENSE.
+View3AtomStratification,L7-预测/干预/反事实,47,10,49928,`Fate/View3AtomStratification`
+View3FiberMassBridge,L7-预测/干预/反事实,11,4,11710,Released under Apache 2.0 license as described in the file LICENSE.
+View6ElimComplete,L7-预测/干预/反事实,10,2,17817,Released under Apache 2.0 license as described in the file LICENSE.
+View6FactorSupport,L7-预测/干预/反事实,23,9,29512,Released under Apache 2.0 license as described in the file LICENSE.
+View6FactorSupportConsumer,L7-预测/干预/反事实,9,1,8229,Released under Apache 2.0 license as described in the file LICENSE.
+View6ZoneCut,L7-预测/干预/反事实,14,4,22696,Released under Apache 2.0 license as described in the file LICENSE.
+ViewOneCounterfactual,L7-预测/干预/反事实,6,6,6346,§30  ⭐⭐ **视角一能否支撑反事实**（原 `_probe_q26` 的正式化）
+ViewTenThreeBlock,L13-未归类,10,1,7370,`Fate/ViewTenThreeBlock` —— **视角 10：三层分解策略（TBF）**
+ViewThreeCounterfactual,L7-预测/干预/反事实,7,4,7569,§31  ⭐⭐ **视角三能否支撑反事实**（原 `_probe_q28` 的正式化）
+WiringBackdoor,L7-预测/干预/反事实,31,1,37738,`Fate.WiringBackdoor` —— **【W7】后门三条线接到 `WorldModel`**（第 297 轮接线任务）
+WiringBackdoorConsumer,L7-预测/干预/反事实,15,0,21053,`Fate.WiringBackdoorConsumer` —— **【甲-批3 / P5】`Fate.WiringBackdoor` 的下游消费者**
+WiringBackdoorFixed,L7-预测/干预/反事实,24,9,30854,`Fate.WiringBackdoorFixed` —— **【V5】把真正的后门准则接到 `WorldModel`**
+WiringConvergence,L13-未归类,17,2,24705,命运理论 · Lean 4 形式化实现
+WiringDoCalcFixed,L7-预测/干预/反事实,32,3,36258,`Fate/WiringDoCalcFixed` —— **【W7】`WiringDoCalc` 的修复版**
+WiringDoCalcFixedConsumer,L7-预测/干预/反事实,28,0,23008,`Fate/WiringDoCalcFixedConsumer` —— **消费 `Fate/WiringDoCalcFixed`（W7）**
+WiringFCAAlpha,L5-规则层与FCA,23,9,23804,命运理论 · Lean 4 形式化实现
+WiringFCAAlphaConsumer,L5-规则层与FCA,25,1,22398,命运理论 · Lean 4 形式化实现
+WiringFourOpFixed,L13-未归类,22,9,19926,命运理论 · Lean 4 形式化实现
+WiringFourOperators,L13-未归类,19,9,20806,命运理论 · Lean 4 形式化实现
+WiringFrontdoor,L7-预测/干预/反事实,20,12,25570,命运理论 · Lean 4 形式化实现
+WorldModel,L9-世界模型,6,17,27700,命运理论 · Lean 4 形式化实现
+WorldModelAssembly,L9-世界模型,12,0,31106,命运理论 · Lean 4 形式化实现
+WorldModelCapstone,L9-世界模型,51,1,182903,
+WorldModelCapstoneConsumer,L9-世界模型,8,0,25702,命运理论 · Lean 4 形式化实现
+WorldModelCapstoneConsumerFixes,L9-世界模型,2,0,9509,命运理论 · Lean 4 形式化实现
+WorldModelCompleteV2,L9-世界模型,7,24,34873,命运理论 · Lean 4 形式化实现
+WorldModelCompleteV2NonDeg,L9-世界模型,20,11,36083,命运理论 · Lean 4 形式化实现
+WorldModelCompleteV2W,L9-世界模型,8,10,25229,命运理论 · Lean 4 形式化实现
+WorldModelInstance2D,L9-世界模型,2,1,1922,# P4 实例：`d ≥ 2` 且 `A` 非恒等 的**存在性**见证
+WorldModelMainTheorem,L9-世界模型,3,0,19227,命运理论 · Lean 4 形式化实现
+WorldModelNoPredict,L9-世界模型,14,0,22337,命运理论 · Lean 4 形式化实现
+WorldModelPipeline,L9-世界模型,20,3,28889,命运理论 · **BB3：世界模型六环管线（观测 → 估计 → 预测 → 残差 → 更新 → 学习）**
+WorldModelReadsTheta,L9-世界模型,19,1,27632,命运理论 · Lean 4 形式化实现
+WorldModelSynthesis,L9-世界模型,11,0,29538,命运理论 · Lean 4 形式化实现
+WorldScenario,L9-世界模型,3,8,6397,§0  世界模型的两个缺失结构：场景树 + 干预选择
+ZBlockedWiringAudit,L13-未归类,19,0,17471,`Fate.ZBlockedWiringAudit` —— 【Z6】`WiringBackdoorFixed` 的收尾核查
+ZPrimeDSepRelation,L13-未归类,13,2,17776,Released under Apache 2.0 license as described in the file LICENSE.
+ZipDownFalse,L12-桥,20,0,17679,Released under Apache 2.0 license as described in the file LICENSE.
+ZipDownFalseConsumer,L12-桥,9,0,9727,Released under Apache 2.0 license as described in the file LICENSE.
+ZipDownFalseZStarConsumer,L12-桥,12,0,18972,Released under Apache 2.0 license as described in the file LICENSE.

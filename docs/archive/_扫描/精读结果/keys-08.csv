@@ -1,0 +1,127 @@
+﻿序号,行号,原话,类型,涉及对象
+194,19,| 根目录新增 `.lean` | **0**（我的临时文件已删除，见 §6 环境异常） |,修正,临时探针 _tmpT.lean 已删除
+194,204,3. **`Fate/GlobalMarkovChainN.lean` 被并发修改**（`omit [Fintype α] in` → `set_option linter.unusedSectionVars false`，+2/−1），一度使 `lake build` 失败（`Fate.GlobalMarkovChainN` 目标报错）。,修正,Fate/GlobalMarkovChainN.lean 并发改动
+194,230,`ErrorGraph.lean` 的 namespace 真名是 **`Fate.ErrGraph`**（不是 `Fate.ErrorGraph`）。,修正,ErrorGraph.lean namespace（Fate.ErrGraph）
+194,242,⇒ `ErrorGraph` 与 `ErrorMagnitude` 均已被真实引用，验收脚本的 `external_refs=0` 计数系统性高估零引用模块。,修正,external_refs 验收脚本口径 Fate.<Mod>.\w+
+194,252,external_refs=0: 309 / 798   （修正多模式，含本轮新增模块）,修正,external_refs=0 基线数字（590/797 → 309/798）
+194,272,⚠ **诚实声明**：`309 / 798` 与任务给定的 `592 / 797` 基线差异，**不是**本轮功劳，而是**度量口径**差异。,修正,任务给定的 592/797 零引用基线
+194,296,| 铁律 8/G54：不用希腊字母 | ✅（定理名用 `sigma`/`eps` 罗马字） |,修正,G54 定理名不用希腊字母（改用 sigma/eps）
+190,183,"| 6 | `mass_prod_cover_one` | `ReadSet ψ R`, `∀v∈W, R v ⊆ S` | `mass S (∏_{v∈W}ψ v · 1) = (∏_{v∈W}ψ v x) · \|α\|^(\|V\|-\|S\|)` | **否**，`W` 任意（原 `mass_prod_cover` 只给到 `…* mass S 1`，此处闭合到基数幂） |",修正,mass_prod_cover（原只闭合到 mass S 1）
+190,191,> 初稿第 6 条曾写成 `W = ∅` 的空积特例（`mass S (1*g) = 1 * mass S g`），过于平凡，,推翻,初稿第 6 条 mass_prod_cover 的空积特例（W=∅）
+190,202,需对**提交前基线** `dcbe667` 取差：,修正,git diff --numstat 基线（改为 dcbe667）
+190,292,**9 / 10 模块从 0 变为非零。** 剩余 `MassIndepOfCompl` 自身是宿主（定义方），,修正,Mass 系 external_refs（10/10 零引用 → 9/10 非零）
+329,21,"**实测结论：之前的 30,031 是错的，不是现在涨了。**",推翻,"此前 30,031 行 / 涨 70% 的结论"
+329,32,| `Get-Content | Measure-Object -Line` | **527** ← 之前的错误来源 |,修正,行数统计口径（Get-Content | Measure-Object -Line 不计空行）
+329,34,"所以 30,031 是「去掉空行后的有效行数」，而 40,186 是当前的非空行数——**两者口径一致，实际增长约 34%**，不是 70%。",推翻,「上涨 70%」的增长率结论
+329,105,> ⚠️ **重要更正**：此前文档与审计报告称「Check 1–88」甚至「1–96」，**实测 sigcheck 只输出 Check 1–9**。,推翻,sigcheck Check 1–88 / 1–96 的说法
+329,172,**判定**：缺口 1 从「0%」变为「**在 3 节点链上、以自建有限概率为载体，已接通图与概率两侧**」。,推翻,Pearl 1.2.4 进度 0% 的结论
+329,185,「我最初的写法是 `theorem rule1_statable ... : (dSep → True) := fun _ => trivial`。**这是空洞的**……**这正是本项目反复批判的 R-024 类缺陷。** ⟹ 本轮**不这样写**。」,推翻,DoCalculusRules 的空泛写法 dSep → True（R-024 类）
+329,187,"**判定**：缺口 3 从「无语义」升为「**Rule 1/2/3 各有独立的语义实现文件（合计 1,452 行 / 52 定理）**」。",推翻,do-calculus「连陈述都没有」的结论
+329,222,根目录的 `RealChain.lean` / `RealApprox.lean` / `RealFloatFormat.lean` / `RealIEEE754.lean` 里有约 86 条误差定理（零 sorry、可编译），**但它们属于 LATTICE 项目，且不在 `Fate/` 构建闭包内**。,修正,误差定理归属（LATTICE 项目，不在 Fate/ 构建闭包内）
+329,284,| 误差界 `Lipschitz` 零命中 | **在 `Fate/` 内仍然零命中** | ✅ **仍成立** |,修正,误差界 Lipschitz 零命中口径（限于 Fate/ 内）
+16,13,### 0.1 任务书第 2 层的 `theta_two_eq_batch` **在数学上是错的，已更正**,推翻,任务书 theta_two_eq_batch（草稿等式）
+16,30,独立 Python（`Fraction` 精确算术）对 5 组随机输入全部确认：`θ_2` 恒等于,修正,theta_two_eq_batch 分母 (x_0²+x_1²) → (1+x_0²+x_1²)
+16,48,### 0.2 任务书 §7 的两个前件 `hP` / `hR` 是**可证的、因而冗余的**,推翻,任务书 §7 inv_P_succ 的前件 hP / hR
+16,140,**`h1`/`h2` 其实不需要**：`field_simp` 自己能证明 `1 + x²(...) > 0`（因为 `x² ≥ 0`、,推翻,theta_two_eq_batch 前件 hx（x 0 + x 1 ≠ 0）、h1/h2
+650,11,> **直觉是错的。`dSep X Y Z` 推不出 `dSep X Y Z'`（`Z ⊆ Z'`）；反方向也推不出。**,推翻,dSep 对条件集 Z 的单调性直觉
+650,76,"∃ X Y Z Z',  Z ⊆ Z' ∧ dSep X Y Z ∧ ¬ dSep X Y Z'",推翻,dSep_not_mono（d-分离单调性）
+650,145,「用 `Trunc` 撑大 `Z` 以同时保住 `dSep`」在数学上**不可能**，不需要任何附加假设。,推翻,BridgeExpanded 的 Z' = Trunc G (X∪Y∪Z) 路线
+650,164,⟹ **`dSep X Y Z ⇏ dSep X Y (Trunc G Z)`。**,推翻,dSep X Y Z ⟹ dSep X Y (Trunc G Z)
+650,199,**⟹ 本文件诚实的结论是**：唯一能说的正面事实就是 `B1`——,修正,D1 dSep_mono_of_noNewAncestors（降级为诚实降级版）
+650,216,其 `dSep_anti` 的**方向本身有误**,推翻,BridgeZPrimeDSep.lean 的 dSep_anti（反单调性）
+566,16,## 0.2 ⚠️ **全部不成立**,推翻,上一份报告《FCA不完整性-对照哲学原文》核心断言
+566,18,"**实测：`lean/DIVERGENCES.md`（57,454 B / 400 行）已存在，且第一类就是「体系边界」。**",推翻,「DIVERGENCES.md 未建 / 元层零覆盖」的断言
+566,22,| 边界 0/4 | ❌ **DIVERGENCES A 类 A1–A6 已登记 6 条** |,推翻,「边界 0/4、源码无痕迹」的判定
+566,128,**我上一份报告把它们当作「遗漏」是错的 —— 它们是【已登记的抉择】。**,推翻,「第一层/第三层遗漏」的判定
+566,246,> **我上一份报告的核心断言是错的 —— `DIVERGENCES.md` 早已把体系边界逐条登记，,推翻,上一份报告核心断言
+278,19,**这个口径对 `CausDAG` 的真实 API 是错的**，理由（读源码核实，非推测）：,推翻,任务书 ancClosure_isLeast 骨架（h : isAncestorClosure T ∧ v ∈ T）
+278,39,**正确载体**（严格祖先集版本）：,修正,ancClosure 最小性口径（种子改为严格父集）
+335,176,> 实测扇入审计：**6 个核心模块被其他模块 import 的次数为 0**,推翻,「模块已入库即已被使用」的读法（6 个零扇入模块）
+335,195,**⟹ 主线构建当前是红的，原因是 5 个幽灵 import，不是代码错误。**,推翻,「主线构建已验证/全绿」的既有说法
+344,18,| 1 | `T43CounterfactualAbduction` | 反例缺归一化 `/Z` | 🟡 **部分修**（缺陷未改，但已诚实划界并降级为非概率模块） |,推翻,T43CounterfactualAbduction「已修」的说法
+344,21,| 4 | `ErrBandLink` | 纯改名（三条 rfl） | 🔴 **基本未动**（仍是 rfl，但补了数值验证） |,推翻,ErrBandLink 三条 _eq 定理的内容度（仍为 rfl）
+344,229,**这段话本身有逻辑跳跃**：「只需 u 与 e」⟹「它就是反事实的」不成立——**反事实还需要 (a) 真实观测 `y`，(b) 由 `y` 反推的 `P(u|e)`**。现在两者都没有。,推翻,WorldScenario「它就是反事实的」的自述
+423,23,第 28 轮「规则不是因果的压缩而是抽象」——压缩是向下有损，抽象是向上提升，方向反了。,推翻,「规则是因果的压缩」这一命题
+423,29,另一方面也意味着**前 21 轮的巨量产出中有相当部分被后续轮次自我推翻**（工程方案被第 22 轮推翻，压缩论被第 28 轮推翻，公理化被第 32 轮推翻）。,推翻,前 21 轮产出（工程方案 / 压缩论 / 公理化）
+340,107,`T112SecondQuotient` 曾被报告为 `t112_holds_for_any_closureOperator`——**对任意闭包算子成立，与 FCA 无关**，自述「只差类型标签」。C4 审核据此**整体降级**。,推翻,T112SecondQuotient（「规则=商」的核心承重）
+340,109,`T112Exactly`（172 行）则证明「**FCA 特有命题不存在**」——意味着**「规则=商=Galois 不动点」这个主张可能没有 FCA 特有的内容**。,推翻,「规则=商=Galois 不动点」命题的 FCA 特有性
+340,244,`Fate/Strategy13Fixed.lean:L10` 有 1 处 `sorry`，且该文件**被 `Fate.lean` L562 import**，即在主线构建图内。,推翻,「主线零 sorry」的既有结论
+661,43,| 1 | `id_not_doublePolar` | ⛔ **该命题为假**，本文件给出**机器验证的反例**，见 §2 |,推翻,id_not_doublePolar（T112FCAPolar）
+661,49,`id_not_doublePolar` **不能保留为定理**。若仍需要一条「双重极不可能是恒等」的结果，,作废,id_not_doublePolar 的定理地位
+661,52,⚠ 这条定理的存在即意味着第 243 轮登记的 `id_not_doublePolar`（其否定）**为假**。,推翻,第 243 轮登记的 id_not_doublePolar 否定陈述
+661,67,**⟹ `BridgeB4` 的主定理 `lmc_implies_globalMarkov` 的证明链在此断裂，且无法修复**,推翻,BridgeB4 主定理 lmc_implies_globalMarkov
+661,70,| **R1** | `Fate/BridgeB4.lean` **编译失败**，其**核心引理 `mass_prod_compl` 为假**（`mass A p x * mass B p x = p x` 是「两个求和之积 = 单点值」，一般**不成立**）| ⭐ **本文件 §2.1 machine-checked 反例** |,推翻,BridgeB4 核心引理 mass_prod_compl
+661,97,| **(a)** | `CondIndep X Y Z'` + `Z ⊆ Z'` ⟹ `CondIndep X Y Z`？ | 🔴 **一般不成立**（有限联合律 `Fin 4` / `Bool` 上的显式反例） | ⭐⭐ `zipDown_false` |,推翻,CondIndep X Y Z' + Z ⊆ Z' ⟹ CondIndep X Y Z（zipDown_false）
+661,148,1. **`dSep ⟹ ReadBisect` 为假**（§7 `ancestor_not_bisect`），**不登记为定理**。,作废,dSep ⟹ ReadBisect（ancestor_not_bisect）
+661,193,"| **B1.5** | ⭐ **`mass_A_factorizesL_literal_false`** | **机器反例**：`BridgeB1Final` 的字面形态 `mass A p x = ∏ a : ↥A, ψ a (x↾A)`（**无归一化**）**为假** |",推翻,BridgeB1Final 字面形态 mass A p x = ∏ ψ（无归一化）
+692,20,**⭐⭐ 即：每 **293** 条声明换 **1** 条真数学命题。**,修正,真数学命题比例（293 条声明/条 → 440 条声明/条）
+692,295,### 修正 1：**`separable_implies_condMul`（#2）是**空转****,推翻,separable_implies_condMul（原列为真数学命题 #2）
+692,299,### 修正 2：**`condMul_implies_separable`（#3）是**空转****,推翻,condMul_implies_separable（原列为真数学命题 #3）
+692,306,> **实测：`demo_adjustM_true_one_zero` 实际声明 `= 79/250`（=158/500），`2/5 = 200/500`**,修正,"adjustLawM_true(1,0) 与 bias 数值（237/500 → 79/250）"
+692,308,> **⚠ **项目从 r293 到 r299 反复引用的『37/500 唯一成功样本』这个数字是假的**。」**,推翻,「37/500 唯一成功样本」这一数字
+692,314,> **「`_pending/第243轮-真实成果清单.md` **不存在**；`git log --all` 全历史也**从未有过**该文件。」**,推翻,「第243轮-真实成果清单.md 已上传」的说法
+692,327,| **4** | `tower_property_false` | ⚠ **弱真**（在自己的 `mass` 定义上，非 Pearl 塔性质）| **反例** |,修正,tower_property_false（限定为自己 mass 定义上的弱真）
+692,331,| **8** | `abduction_eq_doLaw_of_sg_indep` | 🟡 **半真**（前提 `hsg` 就是结论所读的全部结构）| **半条** |,修正,abduction_eq_doLaw_of_sg_indep（降为半条）
+692,334,**⭐⭐ 修正后的真数学命题数：**4 条严格真 + 1 条弱真 + 1 条半真 + 1 条数值反例 = **6 条**（而非 9 条）。**,推翻,「9 条真数学命题」的结论
+491,59,**命运 = 命 × 运 × 选择**,推翻,原公式「命运 = 命 × 运 × 选择」
+752,63,**`σ̂_I_map`**：逆 Gamma 先验、先验均值 = **0.05（金标准本身）** —— **这是用了真值作先验的作弊变体，仅作对照，不采纳**。,推翻,σ̂_I_map（以真值 0.05 作先验的 MAP 变体）
+752,110,说明下界公式在本设定下**不是**下界（ρ₁>0 时该式是收缩而非保守），此法在此生成器上**不适用**。,推翻,H 方法的 σ̂_lb = sqrt(Var(r)(1−ρ₁²))「下界」叫法
+752,116,"**算出（诚实边界 2）**：朴素状态空间 EM 的 (σ²,τ²) **不可辨识**",推翻,"朴素状态空间 EM 估计 (σ²,τ²)"
+752,167,朴素状态空间 EM 不可辨识**（σ² 塌到 0.007，不收敛），已实测并弃用。,作废,朴素状态空间 EM（已弃用）
+249,45,> **「四个前件都有出处（自由度消除），但只有两个实现了前件数严格减少。」**,修正,「四前件已有出处」被收紧为「仅 2 条算前件减少」
+249,73,**`§0.5` 原写**：「`|s|` 净版没有这个概念 → **无源头**」,推翻,§0.5 中「|s| 无源头」的记载
+249,84,**⟹ 修正为**：「**有语义但未绑定**」（`b77d2de`），再进一步「**已绑定**」（`0c02a24`）。,修正,|s| 的定性（无源头 → 有语义但未绑定 → 已绑定）
+249,172,**⟹ ****关键修正**：**`Rules` 早就存在**（`Frame.lean:545`：`abbrev Rules := Set (Rule C X Y)`），,推翻,「需新建 Rules 层」的判断
+141,34,| `偏移自查-R564.md` | 564 | **「裁决 A 只完成约 20%」「不要再新建模块」**；§七第 3 件指 `Dimensions` 是空表 |,修正,裁决 A 完成度（约 20%）
+141,35,| `偏移自查-R623.md` | 623 | **「轻度偏离」**；2 条 ❌（填满队列、每 3 轮自查）；核心发现 **`Dimensions` 8/8 是幻影完成**（8 公式与 8 字段零赋值）；5 条纠正指令 |,推翻,Dimensions 8/8 完成度
+141,132,**⟹ 我此前多次说「`_audit/` 31 份」——实测是 60 份。**,推翻,「_audit/ 31 份」的旧数字
+141,184,1. **要件口径以任务版为准**：`HH2-五要件`（①观测估计 ②决策稳定性 ③多分支模拟 ④干预选择最优 ⑤残差闭环），**不是「九要件」**（九要件在源码 0 处定义）,推翻,「九要件」口径
+141,261,**我最初把 4 对全归为「重复」，是判断错误。**,推翻,「4 对同主题报告是重复」的初判
+119,4,**结论一句话**：改法 C（「用 `W.rules` 驱动 `endToEndIter`」）在 `linWorld` 上**结构性不可能**，,推翻,改法 C（用 W.rules 驱动 endToEndIter）
+119,58,| ① | `Rules C X Y := Set (Rule C X Y)`；`Rule.kernel : C.Carrier → X.Carrier → Measure Y.Carrier` —— **`Rules` 类型里没有 `θ` 位** | `/root/fate-dev/Fate/Frame.lean:545`、`/root/fate-dev/Fate/Frame.lean:348` |,推翻,Rules 类型（无 θ 位）
+119,94,"| §6 | `linWorld_rules_readout_not_consistent` | ⭐⭐⭐⭐ **终版否定**：`¬ ∀ θ, 读出核 = δ_(θ·x)`（`x ≠ 0`） |",推翻,由 W.rules 读出与 linWorld 预测一致的一致性定理
+119,108,4. **任务书草稿里 `linWorld_selector_const` 是 `rfl` 级同义反复**（`x = x`），,作废,任务书草稿 linWorld_selector_const
+119,131,**这个前件集不足以证明严格 `<`**，因为 `|1-η| < 1` **允许 `|1-η| = 0`**,推翻,"endToEndIter_linWorld_monotone 原前件集（hx, hη, hθ）"
+6,104,- T7 更直接：`A ↔ B` 在 `A`、`B` **都平凡真**时成立，该「取等」不可用作文档所述的,推翻,T7 tight_iff_on_example 的「取等 / 不可再加强」
+6,186,> T4 旧 docstring 中「**非空洞实例**」四字为不实表述，**已删除**并代之以警告。,作废,T4 docstring 中「非空洞实例」的表述
+6,295,**平凡见证（`Y = empty`），不提供紧性。** 相关统计中 ⑧ 的紧性计为 **缺**。,推翻,⑧ 因果结构紧性统计（把 T4/T7 计入紧性）
+1094,7,**附带发现（须报告）**：本仓库 `Fate/Implication.lean` 里的 `IsPseudoIntent` 定义,推翻,Fate/Implication.lean 的 IsPseudoIntent 定义
+1094,65,| 「**不闭**的 $Q$」 | $Q''\ne Q$ | **太宽**：$\exists$ 不闭 $Q$ 是「野点」，错误地否决了 $P$ ⇒ 漏伪内涵 |,推翻,以「不闭」作为非递归刻画候选
+1094,68,即：非递归刻画的**正确宽松度**不是「不闭」，而是「准闭」。,修正,伪内涵非递归刻画的宽松度（不闭 → 准闭）
+1094,173,**不是** S6 的字面自指版本，也**不是**准闭刻画。,推翻,IsPseudoIntent 作为 S6 字面实现的说法
+1094,183,即：**`IsPseudoIntent` 与规格 S6 不等价**，在 $\lvert M\rvert\ge 4$ 上失败。,推翻,IsPseudoIntent ≡ 规格 S6
+1094,187,**建议（供裁定）**：用 §1 的**准闭非递归刻画**替换 `IsPseudoIntent` 的定义，,修正,IsPseudoIntent 定义替换（准闭非递归刻画）
+66,25,**没有改动** `Fate/EndToEndUnconditional.lean` 一个字符（R897 建议 3 推荐「新增简化版而非改签名」，见 §4）。,推翻,R897 建议 3（直接删 converges_some 的恒真合取项）
+66,134,**唯一一条「较弱的重述」是 §3 `linWorld_lim_seq_clean`**（它是 `.1` 投影），,修正,linWorld_lim_seq_clean（较弱的重述，非新内容）
+338,15,> **「⚠ 结论先行：三条路径【都没有破】裁决 K §六·补三 的循环。审计的判定正确。」**,推翻,乙/丙/丁 三条 σ 推出路径
+338,49,"**⟹ E8 的核心定义 `ς`（尺度化算子）至今不存在。** 这不是""难""，是""起点缺失""。",推翻,E8「已有 ς 定义」的隐含前提
+338,246,> **σ 不能从理论内部推出来。这是数学事实，不是工程未完成。**,推翻,「σ 可从理论内部推出」的路线
+197,248,这解释了为什么整改后 Block 系组内引用**仍报 0**：,推翻,「Block 系组内引用为 0 = 未接线」的判定
+197,255,或修正指标正则以识别命名空间别名。这属于指标口径问题，不是接线缺失问题。,修正,external_refs 指标口径 Fate\.<模块名>\.\w+
+206,184,- 但指标上它**仍显示 0**。这是**指标缺陷**，不是「没接」。,推翻,「View21StableBorder 零引用 = 未接线」的判定
+206,202,它**不是**一条新的 `dSep ⟹ CondMul` 桥。真正的桥仍在 `View17` / `View17Consumer` 里，,推翻,把 dSep_not_vacuous 当作新 dSep ⟹ CondMul 桥的读法
+640,82,"| **1** | **`NoDescendant` 是恒真式** | `def NoDescendant := ∀ z ux, S.fX z ux = S.fX z ux`（`BackdoorCriterion.lean:276`）<br>⚠ 作为字段进入 `BackdoorConditions` ⟹ **Pearl (ii) 零约束**<br>✅ **本会话已机械证明其为恒真式**（`G2Backdoor.noDescendant_trivial`）|",推翻,NoDescendant（backdoor 条件 Pearl (ii)）
+640,83,| **2** | **`backdoor_adjustment := h`** | `BackdoorAdjustment.lean:75`，26 字符<br>⚠ **把结论原样当假设收下**，却被 `BackdoorCriterion.lean:136` / `BackdoorFiber.lean:37` 引用为依据<br>✅ **本会话已给真版**（`backdoor_adjustment_genuine`：真的做除法 + 求和重排）|,推翻,backdoor_adjustment（:= h 的同义反复）
+640,84,| **3** | ⭐⭐⭐ **「图 ⟹ 概率」在类型层面基本不存在** | 签名含图 377 条、含概率 798 条，**同时含两者的仅 26 条（0.84%）**<br>⚠ `bridge_final`/`DAGFactorization`/`GlobalMarkovChainN`/`MarkovBridgeTheorem`/`PearlGlobalMarkov` **签名里一个图变量都没有** |,推翻,「图 ⟹ 概率」的桥（bridge_final / MarkovBridgeTheorem 等）
+640,93,| **无证明劳动合计** | **772** | **25.0%** |,推翻,"「3,130 条定理即有 3,130 条数学内容」的读法"
+640,96,**另有 107 个重名（246 条实例），如 `linScore_eq_sum` 在 `ErrorBound.lean:158` 与 `ErrorBoundChain.lean:151` 逐字相同。**,推翻,107 个重名 / 246 条重复实例（linScore_eq_sum 等）
+640,124,| **5** | **`CoreBridge` 属「签名合格、语义不足」** | 第 239 轮 | 被代理指出：`G` 只是装饰性引用 |,推翻,CoreBridge（图⟹概率签名级桥）
+287,33,指控成立：**这不是定理**，它是定义展开。,推翻,le_err_of_isFitBoundary（被当作定理，实为定义展开）
+287,62,| `isFitBoundary_of_inf_err` | ⚠ **仅限 `S` 上** | C 腿 `isFitBoundaryOn_of_inf_err`；全集版**是假的** |,推翻,isFitBoundary_of_inf_err 的全集版
+287,63,| `isFitBoundary_sigma_is_inf` | ❌ **拟议形式为假** | 「任意 σ 必等于某个**预先选定**的 `S.inf'`」不成立：σ 由 `W` 定、`S` 由人选，无约束关系。**正确形式**是 B 腿（给定 `S ∋ γ`，则 `σ = S.inf'`）|,推翻,isFitBoundary_sigma_is_inf（任意 σ 等于某 S.inf'）
+246,16,**但「σ 的具体数值等于 X」在本框架内既不可证、也不可否证** ——,推翻,「σ 的具体数值可在框架内证明」的设想
+652,9,## 0 ⚠ 最重要的前置事实：**该文件当前不能编译**,推翻,BridgeFull.lean「已证/可编译」的状态
+652,92,### 3.1 R2 `factorizes_standard_implies_routeB`（第 179 行）—— **命题为假，且是全文件唯一编译错误**,推翻,factorizes_standard_implies_routeB（R2）
+652,119,所以“补完 G1”这条路在 `Z'=Z` 口径下**数学上走不通**，不是“没证完”。,推翻,「补完 G1（DSepGivesReadClosed）」的路线
+652,140,4. `dSep` 的**第 4 子句**（`Disjoint (bbReachableVertices Z X) Y`）在所有条件版里**都没被用到**。,修正,dSep 第 4 子句的实际消费状态
+151,19,> **五处 stdout/stderr 的 UTF-8 重配置，在一次未提交的先前改动里【已经全部加好了】。**,推翻,任务书前提「五个检查器需加 UTF-8」
+151,254,| 第 7 条（前件包结论的同义反复）| 不适用（无定理）。但 §2.4 主动否决了「在 `except` 里 catch」这种**掩盖式**改法 —— 同族陷阱 |,作废,在 except 里 catch UnicodeDecodeError 的掩盖式改法
+187,109,**初稿曾冗余挂 `Cut G A`，证明根本不用它，已删除该虚增前件**（见文件内注记）。,推翻,border_eq_compl_of_stable 初稿的冗余前件 Cut G A
+187,224,**本计数器对 View 家族结构性失明**，无论接线多真，,推翻,external_refs 计数器对 View 家族（namespace≠filename）的有效性
+185,4,> 本文提到的以下模块 **在 `Fate/` 目录下不存在**，因此**本报告中依赖这些模块的结论一律作废**：,作废,Fate/ProbeR12Bridge.lean、Fate/_zzzOrigCheck.lean 及其依赖结论
+185,23,⚠ **口径修正**：任务书说「Rule 系 20 个模块」，实测 `ls Fate/Rule*.lean` 有 **26 个**模块。,修正,Rule 系模块数（20 → 26）
+492,12,明白。把“因果”从因缘果报、业力报应，改成**科学因果**：机制、条件、概率、干预、反事实。不是道德账本，而是复杂系统里的因果网络。,推翻,第 3 轮「因果五环（因缘果报/业力报应）」框架
+492,24,**命运轨迹 = f(命，运，do(选择)，随机噪声，反馈回路)**,推翻,第 3 轮公式「命运 = 因果链在命与运坐标上的投影」
+212,4,> 本文提到的以下模块 **在 `Fate/` 目录下不存在**，因此**本报告中依赖这些模块的结论一律作废**：,作废,Fate/R250ErrorBound.lean 及其依赖结论
+212,25,另有一条定理 `dsep_of_all_append_blocked` **被我写出后判断为假，已删除**并以注释如实登记,推翻,dsep_of_all_append_blocked（拼接全阻断 ⟹ 两段析取）
+212,202,首稿的 `seqLaw_compose_reassoc_subset` 需要 `mu ∈ R₁ c y` 而只有 `mu ∈ R₁ c x` ——,推翻,seqLaw_compose_reassoc_subset（首稿假证明）

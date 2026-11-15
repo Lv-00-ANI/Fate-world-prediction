@@ -1,18 +1,47 @@
 # Fate-world-prediction
 
-> **《命运》世界模型 / 预测系统的正式工程仓库。**
+> **《命运》世界模型 / 预测系统的形式化工程仓库。**
 >
 > [![Lean](https://img.shields.io/badge/Lean-4.33.0--rc1-blue)](https://leanprover.github.io/)
 > [![Modules](https://img.shields.io/badge/modules-1106-green)]()
 > [![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
+> [![sorry](https://img.shields.io/badge/sorry-0-brightgreen)]()
 >
-> **建立**：2026-11-13 · **远程**：https://github.com/Lv-00-ANI/Fate-world-prediction
+> **远程**：https://github.com/Lv-00-ANI/Fate-world-prediction
+> **构建状态**：`Build completed successfully (9765 jobs)` — 零 error、零 sorryAx
+
+---
+
+## 目录
+
+- [这是什么](#这是什么)
+- [核心设计](#核心设计)
+- [快速开始](#快速开始)
+- [仓库结构](#仓库结构)
+- [证明组织](#证明组织)
+- [文档体系](#文档体系)
+- [当前状态](#当前状态)
+- [下一步](#下一步)
+- [维护约定](#维护约定)
 
 ---
 
 ## 这是什么
 
-一个**世界模型 / 预测系统**的形式化实现。核心命题是一条链路：
+一个**世界模型 / 预测系统**的形式化实现。它把真实世界建模成结构因果模型，
+从数据中抽取规则，用规则预测状态、干预与反事实，并把结果导出成多模态视图。
+
+**核心主张**：判据不是「误差越小越好」，而是**「误差 ≈ 噪声尺度 σ」**。
+σ 不是可调的目标值——它被误差剖面的下确界**锁死**（`sigma_locked`）。
+
+**技术底座**：Lean 4 + Mathlib。构造性核（纯 CIC）之上，经典数学作为
+**可审计的假设**引入，而不是默认拥有。
+
+---
+
+## 核心设计
+
+### 主链路
 
 ```
 真实世界
@@ -33,30 +62,24 @@ Model = ⟨V, U, F, P_U⟩        ← 模型 = 结构因果模型（SCM）
 残差 ──⑥ 闭环──→ 回到模型层
 ```
 
-**判据不是「误差越小越好」，而是「误差 ≈ 噪声尺度 σ」。**
-σ 不是可以调的目标值——定理 3.2 证明它被误差剖面的下确界**锁死**。
+### 三条关键设计
 
----
-
-## 三个最反直觉的设计
-
-### ① 误差以 σ 为准绳，不是越小越好
+**① 误差以 σ 为准绳**
 
 ```
 E_W(γ) := b(γ) + v(γ)                                    误差剖面（偏差 + 方差）
 IsFitBoundary(E, σ, γ) := (E γ = σ) ∧ (∀ γ'. σ ≤ E γ')    拟合边界
 ```
 
-**满足拟合边界的 σ 必然等于剖面的下确界**（`Modeling.Sigma.sigma_is_sInf`），
+满足拟合边界的 σ 必然等于剖面的下确界（`sigma_is_sInf`），
 且任意两个满足边界的 σ 必然相等（`sigma_locked`）。
+**把误差压到低于噪声尺度，是在拟合噪声本身。**
 
-⟹ **σ 不是自由参数。** 把误差压到低于噪声尺度，是在拟合噪声本身。
-
-### ② 底座是纯 CIC，经典数学是「假设」
+**② 底座纯 CIC，经典数学是假设**
 
 ```
 ┌ 经典外壳（可选）──────────────────────────────┐
-│ propext / Classical.choice / Quot.sound       │ ← 这三条是**假设**，不是底座
+│ propext / Classical.choice / Quot.sound       │ ← 三条是**假设**，不是底座
 │ → 得到 ℝ、Measure、拓扑                        │
 ├ 构造性核（纯 CIC，无任何假设）─────────────────┤
 │ Term / Formula / Data / Judgment              │
@@ -65,32 +88,62 @@ IsFitBoundary(E, σ, γ) := (E γ = σ) ∧ (∀ γ'. σ ≤ E γ')    拟合边
 ```
 
 配套铁律 **账实相符**：`#print axioms` 必须**等于** `support.assumptions`。
-用了什么就登记什么，没登记的公理不允许出现。
 
-### ③ 模型必须按因果组织
+**③ 模型按因果组织**
 
 `Model = ⟨V, U, F, P_U⟩`（内生变量 / 外生变量 / 结构方程 / 外生律），
-**一体化完整系统，不按模态拆**；模态只是**导出投影**。
-
-**代价**：「图 ⟹ 概率」的桥成为必经之路——这是全设计最脆的地方。
+一体化完整系统，不按模态拆；模态只是导出投影。
 
 ---
 
 ## 快速开始
 
+### 环境要求
+
+| 项 | 版本 / 路径 |
+|---|---|
+| Lean | `leanprover/lean4:v4.33.0-rc1` |
+| Mathlib | 默认 `D:/mathlib/packages/mathlib`（在 `lakefile.toml` 中配置） |
+
+若 Mathlib 在别处，修改 `lakefile.toml` 的 `[[require]] path`。
+
+### 构建
+
 ```powershell
 git clone https://github.com/Lv-00-ANI/Fate-world-prediction.git
 cd Fate-world-prediction
 
-# 依赖：需要本机有 Mathlib（默认路径 D:/mathlib/packages/mathlib）
-# 若路径不同，改 lakefile.toml 里的 [[require]] path
-
 # ⚠ 必须禁用多线程，否则会撞 Mathlib 的 .olean 文件锁
 $env:LEAN_NUM_THREADS='1'
+
 lake build FateWorld
 ```
 
-**预期**：`Build completed successfully`。首次构建约 5 小时（含 Mathlib 依赖 8,659 jobs）。
+**预期输出**：
+
+```
+Build completed successfully (9765 jobs)
+```
+
+首次构建约 5 小时（含 Mathlib 依赖）。增量构建很快（缓存复用）。
+
+### 只构建某个模块
+
+```powershell
+lake build FateWorld.FateV2.Meta.ThreeKinds
+lake build FateWorld.Legacy.BackdoorWithM
+```
+
+### 检查公理依赖
+
+```powershell
+# 写一个探针文件
+@"
+import FateWorld.FateV2.Modeling.Sigma
+#print axioms FateV2.Modeling.sigma_locked
+"@ | Out-File -Encoding utf8 probe.lean
+lake env lean probe.lean
+```
 
 ---
 
@@ -98,27 +151,16 @@ lake build FateWorld
 
 ```
 Fate-world-prediction/
-├── FateWorld.lean            总入口（自动生成，import 全部 1105 个模块）
+├── README.md                  ← 本文件
+├── FateWorld.lean             ← 总入口（import 全部 1106 模块）
+├── lakefile.toml              ← 构建配置
+├── lean-toolchain             ← 工具链版本
 ├── FateWorld/
-│   ├── FateV2/               ★ 已验证实现层（254 模块）
-│   │   ├── Core/                 构造性核（纯 CIC，零公理）
-│   │   ├── Classical/            经典外壳（三条公理作假设）
-│   │   ├── Bridge/               核 ↔ 外壳的账本桥
-│   │   ├── Modeling/             第 0 层 · 数学建模（SCM / 因果图 / σ）
-│   │   ├── Model/                第 1 层 · 状态 / 时间 / 拓扑序
-│   │   ├── Rules/                第 2 层 · 规则（LawRule / FCA）
-│   │   ├── Predict/              第 3 层 · 预测（do-演算 / 后门 / 反事实）
-│   │   ├── Export/               第 4 层 · 导出（模态投影）
-│   │   ├── Error/                第 5 层 · 误差（σ / 拟合边界）
-│   │   ├── Loop/                 第 6 层 · 闭环（残差 / 回写 / 收敛）
-│   │   ├── Meta/                 横切元层
-│   │   └── Demo/                 可执行端到端演示
-│   └── Legacy/               ★ 历史代码收容层（851 模块）
-│       ├── Concrete/ Stage0/ Stage2/ _root/
-│       └── *.lean                原样迁入，仅改 import 前缀
-├── docs/                     文档层（入口 / 裁决 / 设计导读）
-├── _inventory/               清单（迁移结果 / 待修缺陷 / 空壳补全）
-└── _migration/               迁移过程记录与工具
+│   ├── FateV2/                ★ 已验证实现层（254 模块）
+│   └── Legacy/                ★ 历史收容层（851 模块）
+├── docs/                      ← 文档体系（见下）
+├── _inventory/                ← 清单（分类表 / 缺陷登记 / 空壳补全）
+└── _migration/                ← 迁移记录与规则
 ```
 
 ### 两层的关系
@@ -126,31 +168,80 @@ Fate-world-prediction/
 | 层 | 模块 | 可信度 | 用途 |
 |---|---:|---|---|
 | **`FateV2/`** | 254 | **已验证**（门禁 10 项通过） | 正式开发的基础 |
-| **`Legacy/`** | 851 | **仅保证可编译** | 历史代码收容，供查阅与升层 |
+| **`Legacy/`** | 851 | **仅保证可编译** | 历史代码收容，供查阅 |
 
-> ⚠️ **`Legacy/` 里的代码不得在未经验证的情况下被新代码引用。**
-> 它不声称任何定理正确、任何设计有效。详见 [`_migration/迁移规则.md`](_migration/迁移规则.md)。
+> ⚠ **`Legacy/` 里的代码不得在未经验证的情况下被新代码引用。**
+> 它不声称任何定理正确、任何设计有效。
+
+**实测事实**：722 个只在 `Legacy` 的模块**完全不引用** `FateV2` 的任何模块。
+⟹ 两套代码是**平行**的，不是继承关系。
 
 ---
 
-## 门禁（每批改动必须通过）
+## 证明组织
 
-```powershell
-cd 命运-v2      # 门禁脚本在上游目录，尚未迁入本仓库
-powershell -ExecutionPolicy Bypass -File _gate.ps1
-```
+全部 1106 个模块按**证明主题**编入索引：**[`docs/证明架构索引.md`](docs/证明架构索引.md)**
 
-| # | 判据 | 当前 |
-|---|---|---|
-| G1 | `lake build` 通过 | ✅ |
-| G2 | `sorry` / `admit` = 0 | ✅ |
-| G3 | 自定义 `axiom` = 0 | ✅ |
-| G4 | 核内定理 `#print axioms` = `[]` | ✅ |
-| G5 | 外壳内 `#print axioms` ≡ `support.assumptions` | ✅ |
-| G6 | 核内 `Quot` 零出现 | ✅ |
-| G7 | `Core/` 不 import `Classical/` | ✅ |
-| G8 | 每文件有迁移登记头 | ⚠️ 19 个文件缺失（已知项） |
-| G9 | 只读区未被改动 | ✅ |
+### FateV2 层（按总设计分层）
+
+| 层 | 模块 | 职责 |
+|---|---:|---|
+| `Core/` | 34 | 构造性核：IR 语法、判断、四算子、声明图、缓存、反射 |
+| `Classical/` | 3 | 经典外壳：三条公理作假设、载体入口 |
+| `Bridge/` | 3 | 核 ↔ 外壳的账本桥 |
+| `Modeling/` | 18 | 第 0 层：数学建模（SCM、因果图、σ、观测、消融） |
+| `Model/` | 12 | 第 1 层：状态、时间、拓扑序 |
+| `Rules/` | 13 | 第 2 层：规则（LawRule、FCA、算子实例） |
+| `Predict/` | 49 | 第 3 层：预测、干预、反事实、场景树 |
+| `Export/` | 5 | 第 4 层：模态投影与导出 |
+| `Error/` | 65 | 第 5 层：σ、拟合边界、判据、分辨率 |
+| `Loop/` | 33 | 第 6 层：残差、回写、收敛、世界模型总装 |
+| `Meta/` | 5 | 横切元层：三类陈述、入域、账本、闸门 |
+| `Demo/` | 11 | 可执行端到端演示 |
+| `Data/` | 1 | 数据接入 |
+
+### Legacy 层（按证明主题分类）
+
+对 722 个只在 Legacy 的模块按**文件头内容**分类（不看文件名）：
+
+| 主题 | 模块 | 定理 |
+|---|---:|---:|
+| 因果推断 | 255 | 3,436 |
+| 规则与 FCA | 153 | 2,154 |
+| 桥与接线 | 107 | 673 |
+| 误差与拟合 | 106 | 1,039 |
+| 闭环与世界模型 | 37 | 454 |
+| IR 与语法 | 15 | 156 |
+| 未分类 | 49 | 508 |
+
+**完整清单**：[`_inventory/Legacy分类.csv`](_inventory/Legacy分类.csv)
+
+---
+
+## 文档体系
+
+**入口**：[`docs/README.md`](docs/README.md)
+
+| 我想… | 读 |
+|---|---|
+| 找一个具体证明 | [`docs/证明架构索引.md`](docs/证明架构索引.md) |
+| 看作者拍板了什么 | [`docs/archive/00-裁决台账/`](docs/archive/00-裁决台账/)（24 条） |
+| 看系统总设计 | [`docs/archive/09-总设计/README.md`](docs/archive/09-总设计/README.md) |
+| 看 σ 的完整数学 | [`docs/archive/08-拟合边界/`](docs/archive/08-拟合边界/) |
+| 看未裁决的分歧 | [`docs/archive/03-冲突登记/`](docs/archive/03-冲突登记/)（9 条） |
+| 查已知缺陷 | [`_inventory/待修缺陷.csv`](_inventory/待修缺陷.csv) |
+
+### 归档完整性
+
+上游 `理论-文档/` 的 **254 个文件已逐字节迁入** `docs/archive/`：
+
+| 项 | 结果 |
+|---|---|
+| 文件数 | 254 / 254 |
+| SHA-256 一致 | **全部一致** |
+| 差异 | **0** |
+
+**文档信息零丢失。** 详见 [`docs/_归档说明.md`](docs/_归档说明.md)。
 
 ---
 
@@ -158,78 +249,59 @@ powershell -ExecutionPolicy Bypass -File _gate.ps1
 
 | 项 | 状态 |
 |---|---|
-| 模块总数 | **1106**（FateV2 256 + Legacy 850） |
+| 模块总数 | **1106**（FateV2 254 + Legacy 851 + 入口 1） |
 | 构建 | ✅ **1106 / 1106 全通过**（9765 jobs，零 error、零 sorryAx） |
 | 可执行 demo | ✅ 五层端到端能跑出数值 |
-| **空壳补全** | ✅ **15 / 15 完成**（220 个新声明） |
-| 公理测绘 | ⬜ 未做（开发期按需逐个去除） |
+| 空壳补全 | ✅ **15 / 15 完成**（220 个新声明） |
+| 文档归档 | ✅ 254 文件零差异 |
+| 证明索引 | ✅ 已建立 |
+| 公理测绘 | ⬜ 未做 |
 | 真实数据接入 | ❌ 无数据 |
 
-### 已补完的空壳（全部 15 个）
+### 已完成的新写（15 个空壳）
 
 | 模块 | 内容 | 关键定理 |
 |---|---|---|
-| `Meta/ThreeKinds` | 三类陈述判据 | **`not_support_empty_implies_proven`**：「不需要公理」≠「已证」 |
+| `Meta/ThreeKinds` | 三类陈述判据 | `not_support_empty_implies_proven`：「不需要公理」≠「已证」 |
 | `Meta/Ledger` | 假设账本 | `axioms_are_entries`：三条公理是**账本条目**，不是底座 |
-| `Meta/Gate` | 验收闸门 | `one_condition_insufficient`：D-001 双条件缺一不可 |
+| `Meta/Gate` | 验收闸门 | `one_condition_insufficient`：双条件缺一不可 |
 | `Meta/Domain` | 入域判据 | `seven_criteria` + N 组**不是**判据（类型隔离） |
 | `Modeling/Sigma` | σ 的两条腿 | **`sigma_locked`**：σ 被误差剖面下确界锁死 |
 | `Modeling/Noise` | 外生律载体 | `DiracNoise.isProb_toFin`：确定性是合法的退化分布 |
 | `Modeling/Dissolve` | 数据消融 | `dissolve_archive_none`：归档数据不进定理 |
-| `Modeling/Observation` | A14 分支 | `mode_total` + `HasSilentGap`：**「不得默认」变成类型约束** |
+| `Modeling/Observation` | A14 分支 | `mode_total`：「不得默认」变成类型约束 |
 | `Rules/RuleSet` | 规则集 | `empty_support_subset`：加规则不可能让系统变干净 |
-| `Rules/OperatorInstance` | 四算子实例 | `runOnSet_support_mono`：**管线不会减少来源** |
+| `Rules/OperatorInstance` | 四算子实例 | `runOnSet_support_mono`：管线不会减少来源 |
 | `Predict/Intervene` | do 算子 | `do_ignores_parents`：干预**切断入边** |
 | `Predict/Scenario` | 场景树与择优 | `foldl_score_ge_head` + 已知退化引用 |
 | `Error/Resolution` | 分辨率预算 | `satisfiability_needs_extra_constant`：界**不是**预算 |
-| `Classical/Shell` | 外壳代数 | `covers_mono` / `le_trans`：G5 的链条基础 |
+| `Classical/Shell` | 外壳代数 | `covers_mono` / `le_trans`：账实相符的链条基础 |
 | `Classical/Analysis` | 经典载体入口 | `carrier_axiom_cost`：用哪个载体就要登记哪三条 |
 
 ---
 
-## 怎么继续开发
-
-### 1. 先读这几份
-
-| 你想… | 读 |
-|---|---|
-| 五分钟看懂项目 | [`docs/00-入口.md`](docs/00-入口.md) |
-| 看代码怎么组织的 | [`docs/README.md`](docs/README.md) |
-| 看迁移做了什么 | [`_inventory/迁移清单.md`](_inventory/迁移清单.md) |
-| 看哪些还没实现 | [`_inventory/空壳补全登记.md`](_inventory/空壳补全登记.md) |
-| 看已知缺陷 | [`_inventory/待修缺陷.csv`](_inventory/待修缺陷.csv) |
-| 看迁移纪律 | [`_migration/迁移规则.md`](_migration/迁移规则.md) |
-
-### 2. 上游权威文档（在本仓库之外）
-
-| 主题 | 位置 |
-|---|---|
-| **作者裁决（24 条，最高权威）** | `../理论-文档/00-裁决台账/` |
-| 系统总设计 | `../理论-文档/09-总设计/README.md` |
-| σ 的完整数学 | `../理论-文档/08-拟合边界/` |
-| 未裁决的分歧（9 条） | `../理论-文档/03-冲突登记/` |
-| IR 完整设计 | `../理论-文档/07-IR设计/README.md` |
-
-### 3. 下一步优先级
+## 下一步
 
 | 优先级 | 事项 | 依据 |
 |---|---|---|
-| ~~P0~~ | ~~补完空壳~~ | ✅ **已完成（15/15）** |
-| **P0** | 迁移门禁脚本到本仓库 | 现在还要去 `命运-v2` 跑 |
-| ~~P1~~ | ~~修 `G2Backdoor`~~ | ✅ **已完成** |
-| **P1** | 公理测绘（批量 `#print axioms`） | 给开发期去除公理排优先级 |
-| **P2** | 从 `Legacy` 升层有价值的模块 | 需逐个读，不能靠文件名判断 |
+| **P0** | 公理测绘：批量 `#print axioms`，生成可信度地图 | 给开发期去除公理排优先级 |
+| **P1** | 门禁脚本迁入本仓库 | 现在还在上游目录 |
+| **P1** | `Legacy` 49 个未分类模块（508 定理）逐个定性 | 需读正文，不能靠文件名 |
+| **P2** | 从 `Legacy` 升层有价值的模块 | 需逐个验证 |
 | **P3** | 接真实数据 | 阻塞于外部（暂无数据） |
 
 ---
 
-## 三条硬边界
+## 维护约定
 
-| # | 边界 | 说明 |
-|---|---|---|
-| **1** | `../命运-素材-原始文件-不可更改/` **只读** | 一个字节不动 |
-| **2** | `../理论-文档/` **只读** | 不改不删 |
-| **3** | **不删除任何文件** | 被替换的移入 `_archive/` |
+| 约定 | 说明 |
+|---|---|
+| **构建必须单线程** | `$env:LEAN_NUM_THREADS='1'`，否则撞 Mathlib olean 锁 |
+| **`.lean` 文件必须无 BOM** | 否则 Lean 报 `1:0 expected token` |
+| **`archive/` 只读** | 上游原文不改；要订正就在 `docs/` 顶层新建文件 |
+| **数字必须带口径** | 任何「多少条/多少份」都要能复现 |
+| **不引入 `sorry` / `axiom`** | 当前全库零 `sorryAx` |
+| **不开源协议** | 按项目方要求，暂不添加 LICENSE 文件 |
 
 ---
 
@@ -237,15 +309,14 @@ powershell -ExecutionPolicy Bypass -File _gate.ps1
 
 | # | 债务 | 状态 |
 |---|---|---|
-| 1 | ~~`G2Backdoor` 引用不存在的 `Fate.R290`~~ | ✅ **已修复**（重写 §3，见 `_inventory/待修缺陷.csv`） |
-| 2 | 19 个文件缺迁移登记头（G8 未过） | 机械项 |
-| 3 | `Legacy/` 851 个模块未评估价值 | 需逐个读 |
+| 1 | ~~`G2Backdoor` 引用不存在的 `Fate.R290`~~ | ✅ **已修复**（重写 §3） |
+| 2 | 19 个文件缺迁移登记头 | 机械项 |
+| 3 | `Legacy` 851 个模块未评估价值 | 需逐个读 |
 | 4 | 门禁脚本仍在 `../命运-v2/` | 待迁入 |
-| 5 | 并发构建撞 Mathlib olean 锁 | 用 `LEAN_NUM_THREADS=1` 规避 |
+| 5 | `MainLoop` 不消费 `writeBack` 输出 | 最短闭合链最后一段仍是断的 |
 | 6 | `Formula` 无 `DecidableEq` | 互递归定义，无法自动导出 |
-| 7 | `MainLoop` 不消费 `writeBack` 输出 | 最短闭合链最后一段仍是断的 |
 
 ---
 
 *本仓库的任务是**把散乱的历史工程收敛成可继续开发的项目**——
-不是重写理论，不是新设计。所有理论判断以上游 `理论-文档/` 为准。*
+不是重写理论，不是新设计。所有理论判断以 `docs/archive/` 中的原始裁决为准。*

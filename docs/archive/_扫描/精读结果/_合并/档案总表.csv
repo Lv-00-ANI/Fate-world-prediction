@@ -1,0 +1,1066 @@
+﻿序号,路径,类别,主旨,承载设计,含推翻陈述,关键句数,正文完整,备注,_来源文件
+1,_audit\A1-ChainDsepFull接线.md,过程产物,A1接线ChainDsepFull：628行39定理零sorry；修正“一般n未证”登记,否,是,2,完整,,read-09.csv
+2,_audit\A1-理论文档体检.md,审计报告,净版 3373 行逐段通读，列 P-01..P-19 缺陷与版本漂移及修改清单,否,是,3,完整,含废止记号 π 残留与已证栏为空两类判定,read-06.csv
+3,_audit\A2-ChainDSepCondMul接通.md,过程产物,A2接通ChainDSepCondMul：2条消费定理，G46删import报错验证消费为真,否,是,2,完整,,read-09.csv
+4,_audit\A2-证明路线体检.md,审计报告,证明路线七份文档体检：骨架质量高但统计数字全是手算且全错，A编号32/34并存,否,是,1,完整,,read-03.csv
+5,_audit\A3-假设与规范一致性.md,审计报告,A3 审计：假设登记与规范裁决文档的一致性核查，A33/A34 编号体系分裂等三类不一致,否,是,2,完整,,read-04.csv
+6,_audit\A3-剔除假紧性.md,审计报告,A3剔除⑧假紧性：两条定理取Y=empty属空实例，只改注释,否,是,3,完整,文中含推翻表述（Y=empty 空实例、T4「非空洞实例」为不实表述），但正文为转述 Lean docstring，未逐字命中行，故关键句表未收录,read-08.csv
+7,_audit\A4-consumed-by-compiler-table.md,转储导出,A4 检查器导出的「被消费」检测表：19 个模块的 CONSUMED/UNCONSUMED 判定,否,否,0,完整,由 consumed_by_compiler.py 机器生成,read-15.csv
+8,_audit\A4-文献依赖核查.md,审计报告,A4文献依赖核查：联网核实十条文献与外部完成度台账,否,是,2,完整,,read-05.csv
+9,_audit\A5-导读与旧稿盘点.md,审计报告,A5导读与旧稿盘点：33处路径占位符污染与目录谱系,否,是,1,完整,,read-05.csv
+10,_audit\ADAPTIVE-1-变步长收敛.md,审计报告,ADAPTIVE-1：变步长收敛三件套，并指出任务书乘积公式数学上错误,部分,是,2,完整,,read-10.csv
+11,_audit\ADJ-1-待裁决-invariance.md,审计报告,ADJ-1 裁决题面：invariance:=True 记为经验假设（丙）附证明义务,部分,是,1,完整,,read-12.csv
+12,_audit\ALGO-1-Kalman.md,过程产物,ALGO-1：Kalman滤波一维标量一步更新的定义与4条定理,部分,是,1,完整,,read-11.csv
+13,_audit\ALGO-2-LeastSquares.md,审计报告,ALGO-2：一维最小二乘正规方程形式化，八项探针排除同义反复,部分,是,1,完整,,read-10.csv
+14,_audit\ALGO-3-WLS.md,审计报告,ALGO-3 WLS一维单观测形式化：7条定理，拒收同义反复草案，含反向rfl测试,否,否,0,完整,,read-09.csv
+15,_audit\ALGO-4-EWMA.md,过程产物,ALGO-4交付EWMA：闭式、常观测不动点与收敛共7条定理,否,是,1,完整,,read-07.csv
+16,_audit\ALGO-6-RLS.md,审计报告,ALGO-6 RLS交付：3定义9定理，纠正任务书错误等式与冗余前件,否,是,4,完整,3,read-08.csv
+17,_audit\AUDIT-A9.md,过程产物,AUDIT-A9：为InterventionTight四条bestScore定理追加定义投射警告注释,部分,是,1,完整,,read-11.csv
+18,_audit\AUDIT-BATCH1.md,过程产物,第1批执行报告：A7跨库import检测、A3冻结G60、A8三S台账、B6 gitignore,否,否,0,完整,,read-08.csv
+19,_audit\AUDIT-BATCH2.md,过程产物,AUDIT-BATCH2：编译器口径度量A4，两级探针消基线混淆，一致19/20,否,否,0,完整,,read-08.csv
+20,_audit\AUDIT-BATCH3.md,审计报告,第3批审计：283份报告的幽灵引用全表，46份含悬空模块；并落地一条低界不可导出定理,否,是,1,完整,,read-03.csv
+21,_audit\AXIOM-1-规则核心链公理核查.md,审计报告,核查17个规则核心链模块的公理依赖，286条声明零sorryAx零自定义axiom，5模块探针失败,否,否,0,完整,,read-18.csv
+22,_audit\B1-E2cFull等接线.md,审计报告,P0-B1：Stage2 四个 Full 模块验证接线，psi 界研究级项已做出半边,部分,是,1,完整,,read-10.csv
+23,_audit\B1-定理实质度审计.md,审计报告,B1 定理实质度机器审计：D4 分档统计与 D4 判据严重不完备的论证,否,是,3,片段,文档自述为某次审计的审计报告节选；正文首尾自洽,read-04.csv
+24,_audit\B2-ChainDsepN接线.md,审计报告,B2：ChainDsepN四模块接线审计；自查出⑧主定理chainDsep_dsep_n不存在,部分,是,2,完整,,read-11.csv
+25,_audit\B2-模块与清单映射.md,审计报告,B2 模块↔定理清单映射：115 条中 22 条可定位、8 条真已证（7.0%）,否,是,3,完整,,read-04.csv
+26,_audit\B3-Stage2批量接线.md,过程产物,B3 Stage2批量接线：15模块接成、G2Backdoor回滚、删除假定理doLawG_idem,否,是,2,完整,,read-09.csv
+27,_audit\B3-因果层覆盖.md,审计报告,B3 因果层覆盖深度：图论/有限概率/SCM/do-calculus 四块互不连通，差 4 座桥,否,是,1,完整,,read-04.csv
+28,_audit\B4-FCA规则层覆盖.md,审计报告,B4 FCA/规则层覆盖核查：四算子代数外壳已建但无真实语义、端到端零实例,否,否,0,完整,,read-04.csv
+29,_audit\B5-误差界Lean落地.md,审计报告,B5误差界落地核查：主库零落地，形式与证明都在库外,否,是,1,完整,,read-05.csv
+30,_audit\B6-实测编译与验收状态.md,审计报告,B6实测编译与验收链：Check1-88实为6项可执行,否,是,2,完整,,read-05.csv
+31,_audit\BRIDGE-1-Bridge模块真实诊断.md,审计报告,43个Bridge模块问题诊断：88条跨文件重复定理、6份逐字相同定义,否,是,2,完整,,read-04.csv
+32,_audit\BRIDGE-2-Bridge群体性复制机械成因.md,审计报告,BRIDGE-2：Bridge群体性复制的机械成因，65个def与48个theorem重复，新立G7,部分,是,2,完整,,read-11.csv
+33,_audit\BRIDGE-3-EndToEndPipeline.md,过程产物,证 endToEndIter 在 linWorld 上等于 pipelineNGen，并搬运收敛结论,否,否,0,完整,含覆盖已有文件的破坏事故与恢复记录,read-06.csv
+34,_audit\C1-真下界定理.md,审计报告,C1真下界定理：证实审计F2指控（下界=定义第二分量），并证伪“严格凸+唯一等值点⟹下界”,否,是,2,完整,,read-09.csv
+35,_audit\C1-轮次史与进度重构.md,审计报告,C1轮次史与进度重构：240轮实质产出极少、完成度口径换过4次、判据演进表,否,是,2,完整,,read-02.csv
+36,_audit\C2-真紧性定理.md,审计报告,P0-C2：用 Finset.sup' 重定义最优值，使紧性不再由定义搬运,部分,是,2,完整,,read-10.csv
+37,_audit\C2-裁决体系梳理.md,审计报告,作者裁决与项目纪律的效力关系：A→L→M→O路线变更只落文档层，Lean基本没跟上,否,是,2,完整,,read-03.csv
+38,_audit\C3-裁决总汇总-第376轮.md,审计报告,C3裁决总汇总第376轮：22条主判决逐条对照实测与落地核实,否,是,3,完整,含理论侧A-H+实现侧Q/I-S+主控R-001~R-033；含5处裁决冲突,read-01.csv
+39,_audit\C3-路线变更考古.md,审计报告,C3 路线变更考古：主线概念上变过 3 次、实现层 40 轮未跟随、元游戏浮现,否,否,0,完整,,read-04.csv
+40,_audit\C4-双源同步与工具链风险.md,审计报告,C4 双源同步/代理派发/工具链风险：v1 覆盖率 9%、141vs162 是路线图滞后,否,否,0,完整,,read-04.csv
+41,_audit\C4-待裁决总表-唯一版.md,审计报告,待裁决事项整理：实际9份清单三套编号体系，去重后真待决4项，须作者定的从3项降到2项,否,是,2,完整,,read-03.csv
+42,_audit\C5-裁决代号索引.md,审计报告,C5裁决代号索引：19个代号全部重名、K有4义、代号冲突已进入Lean代码,否,是,2,完整,,read-02.csv
+43,_audit\C6-主干地图-第376轮.md,审计报告,第376轮主干地图：七个环节实测，仅离散生成侧为✅，交接器缺失，多处主定义扇入为0,否,是,2,完整,,read-03.csv
+44,_audit\C7-模块总清单-第376轮.md,审计报告,C7模块总清单：第376轮按8章归类578个链上模块并统计扇入,否,是,0,完整,含按章归类、Top30定理数、Top30扇入、零扇入清单与复算脚本,read-01.csv
+45,_audit\C8-规则提取位置-待裁决全上下文.md,审计报告,C8「规则从循环哪一步提取」待裁决全上下文：四候选与Lean现状,否,是,0,完整,为作者一次裁决拍板服务；判定B只闭「循环→规则」而因果进循环仍断,read-01.csv
+46,_audit\C9-待裁决唯一完整表.md,过程产物,C9待裁决唯一完整表：整合21份文档去重为45条唯一待裁事项,否,是,2,完整,第391轮重验后「真正需要作者裁决的只剩3条」；含TD-01~TD-45编号映射表,read-01.csv
+47,_audit\CHAIN-1-TermSizeConsumer-v2.md,过程产物,CHAIN-1 TermSize接线v2：6条主定理经嵌入交换律与主链算子粘合，非同义反复,否,是,1,完整,,read-09.csv
+48,_audit\CHAIN-1-TermSizeConsumer.md,审计报告,CHAIN-1 TermSize接线：6定理并列尺寸与语义两半，退出叶子集,否,否,0,完整,,read-08.csv
+49,_audit\CHAIN-1-数据到Step.md,审计报告,链段1（数据→规则→Step）审计：interp/IsDirac类型缺口、第二载体,否,是,3,完整,,read-04.csv
+50,_audit\CHAIN-1-链外模块四分类.md,审计报告,CHAIN-1链外模块四分类：37模块标A/B/C/D并给接线优先序,部分,是,1,完整,,read-11.csv
+51,_audit\CHAIN-2-B类模块登记.md,审计报告,CHAIN-2：3 个 B 类链外模块按 CHAIN-1 原文判据登记为链外,部分,是,2,完整,,read-10.csv
+52,_audit\CHAIN-2-KK1Consumer.md,审计报告,CHAIN-2 KK1接线：6条真连接含2条否定命题，口径A未达标,否,否,0,完整,,read-08.csv
+53,_audit\CHAIN-2-Step到世界模型.md,审计报告,链段2梳理：主链不读rules与selector，规则桥消费为0,否,是,2,完整,,read-05.csv
+54,_audit\CHAIN-3-EndToEndConvergeConsumer.md,过程产物,CHAIN-3为EndToEndConverge建消费者，7条定理接入收敛主链,否,否,0,完整,,read-07.csv
+55,_audit\CHAIN-3-收敛与闭环.md,审计报告,收敛理论/闭环/压复杂度链段审计：6文件35定理、零真sorry，闭环与收敛零交叉,否,是,3,完整,,read-04.csv
+56,_audit\CHAIN-4-GazeAlgebraConsumer.md,审计报告,CHAIN-4：GazeAlgebra 接入 FormalCtx.Gaze，新增序结构与 6 条连接,部分,否,0,完整,,read-10.csv
+57,_audit\CHAIN-4-工程实现.md,审计报告,工程实现与算法可行性梳理：9133条定理不能变成代码，99处#eval无一构成完整链路,否,否,0,完整,,read-03.csv
+58,_audit\CHAIN-5-DAGBridgeConsumer.md,过程产物,复核 DAGBridgeConsumer 5 条真连接，指出其文件头公理段已过期,否,否,0,完整,该 Consumer 已在 HEAD，本轮零新建,read-06.csv
+59,_audit\CHAIN-6-ErrBandLinkConsumer.md,过程产物,复核并修复 ErrBandLink 接线，删掉一条假连接、重写为两条真连接,否,是,2,完整,含并发 agent 干扰与口径 A 抖动记录,read-06.csv
+60,_audit\CHAIN-7-T68Consumer.md,审计报告,CHAIN-7 T68接线复核：8→12条，加主链语法层对手altCompose,否,否,0,完整,,read-08.csv
+61,_audit\CHAIN-8-DeadPremiseAuditConsumer.md,过程产物,让 DeadPremiseAudit 接入四条链，并自曝 v1 假接线已改为合取,否,是,1,完整,HEAD 已含逐字节相同实现，本轮增量为修复与补报告,read-06.csv
+62,_audit\CHAIN-9-ZipDownFalseConsumer.md,过程产物,CHAIN-9为ZipDownFalse建zStar消费者，证明BridgeFull的散文论断,否,是,2,完整,开头登记一次越界覆盖并已恢复,read-07.csv
+63,_audit\COMPLEX-1-复杂度下界.md,过程产物,COMPLEX-1变步长收敛复杂度O(n)→O(1)：5条定理，纠正任务书证明路线错误,否,是,1,完整,,read-09.csv
+64,_audit\COMPLEX-1-新增FinsetUnivOpt1.md,审计报告,COMPLEX-1：全库仅3处真算法univ重扫，给等价优化，阶未形式化,否,否,0,完整,,read-08.csv
+65,_audit\COMPLEX-1-计算复杂度审计.md,审计报告,全库计算复杂度审计：仅一个渐近阶定理，算法复杂度零形式化，给出降复杂度清单,否,否,0,完整,,read-03.csv
+66,_audit\CONSUME-1-无前件定理的消费者.md,审计报告,CONSUME-1：补6个ℚ数值镜像与6条消费者定理,否,是,2,完整,,read-08.csv
+67,_audit\CONSUME-2-Q版消费者.md,过程产物,CONSUME-2为ℚ版EndToEnd建消费者，9条定理桥到thetaN_closed,否,否,0,完整,,read-07.csv
+68,_audit\CONV-1-端到端收敛.md,过程产物,CONV-1交付：EndToEndConvergence三条收敛定理的清单、证明结构与编译验证,部分,否,0,完整,,read-18.csv
+69,_audit\D1-InterventionSup消费.md,过程产物,为 InterventionSup 写 9 条消费者，consumed 由 463 升 464,否,是,1,完整,证实真实 namespace 为 Fate.WorldScenario.InterventionSup,read-06.csv
+70,_audit\D1-sigma四破法比较.md,审计报告,σ 四破法（肘点/AIC/信息增益/领域兜底）实测比较与最优判定，含第 412 轮更正,部分,是,7,完整,,read-10.csv
+71,_audit\D1-用户目标溯源.md,审计报告,用户目标溯源：用户要的是能预测的系统，Lean是手段，优先级被系统性倒置,否,是,2,完整,,read-03.csv
+72,_audit\D2-FitBoundaryLowerBound消费.md,过程产物,为 FitBoundaryLowerBound 14 定理写 15 条消费者，12/14 真消费,否,否,0,完整,文件头有 A6 幽灵报告标记，点名 FitBoundBoundaryLowerBound 不存在,read-06.csv
+73,_audit\D2-外部对标.md,审计报告,三个自称原创点已有两个被外部工作覆盖，仅剩FCA式符号规则+可传播误差+形式化的窄交集,否,是,2,完整,,read-03.csv
+74,_audit\D3-理论到实现差距.md,审计报告,净版8章到Lean实现的逐条差距：定义层约85%、定理层约10%、第6–8章几乎缺席,否,是,2,完整,,read-03.csv
+75,_audit\D3-鞅收敛.md,审计报告,P0-D3鞅收敛的确定性骨架：5条单调有界/几何收缩定理,否,否,0,完整,,read-08.csv
+76,_audit\D4-完成度框架.md,设计源,六维完成度度量框架D1–D6与定量结论：结构39%、功能0%，V3端到端与S6规则到预测为0,是,是,2,完整,,read-03.csv
+77,_audit\D5-证据链与可复现性.md,审计报告,D5证据链与可复现性：失败侧诚实、成功侧虚报,否,是,1,完整,,read-05.csv
+78,_audit\DECISIONS-作者裁决-1049.md,配置说明,第1049轮作者裁决记录E1–E6：E3废止“到极限”改逐步组合定理、E7规则驱动核心重写,是,是,2,完整,,read-09.csv
+79,_audit\DEFUNIFY-1-定义统一勘察.md,审计报告,三族定义统一勘察：#check实测认定5行任务书条目不是定义，可安全改别名的只有3个,否,是,2,完整,,read-03.csv
+80,_audit\DEMO-1-端到端可执行演示.md,审计报告,DEMO-1可执行演示：最简ℚ世界模型跑10步，数值等式与闭式,否,否,0,完整,,read-08.csv
+81,_audit\DEMO-2-具体场景收敛.md,审计报告,DEMO-2：用具体数值消掉主定理两条前件，得三条无前件收敛定理,部分,是,2,完整,,read-10.csv
+82,_audit\DOWN-1-新增NonemptyFree3.md,过程产物,DOWN-1扩展：新增4条去掉[Nonempty]定理；实测591处与任务书不符,否,是,1,完整,,read-09.csv
+83,_audit\DOWN-1-第2批NonemptyFree4.md,审计报告,DOWN-1：去掉 SCMEndToEnd 5 处 [Nonempty] 前件，未去 choice,部分,是,2,完整,,read-10.csv
+84,_audit\DOWN-1-限定条件审计与降假设清单.md,审计报告,限定条件审计：Nonempty约470处可去，Singleton类164处不可去,否,是,2,完整,,read-03.csv
+85,_audit\DSEP-1-14个定义权威版判定.md,审计报告,DSEP-1 dSep定义权威判定：14为裸grep假象，真13,否,是,1,完整,,read-05.csv
+86,_audit\E1-Banach不动点.md,过程产物,E1：Banach不动点定理从赋范空间推广到度量空间，6条定理全部真证,部分,是,1,完整,,read-11.csv
+87,_audit\E1-当前状态总览-第422轮.md,过程产物,第 422 轮状态总览：13 模块入链、19 个裁决代号全重名、主控 10 错,否,是,2,完整,附录追加第 435/465 轮两项决定,read-06.csv
+88,_audit\E1-预测系统五层评估.md,审计报告,E1五层评估：预测系统不到5%及格线，给出最短四步,否,是,2,完整,,read-05.csv
+89,_audit\E2-epsilon误差链.md,审计报告,E2审计：ε_t入预测误差在Lean零实现且被Q-2截断,否,是,1,完整,,read-05.csv
+90,_audit\E2-组合定理.md,审计报告,E2组合定理：7层理论端到端收敛保证，4条定理并核对非同义反复,部分,否,0,完整,,read-17.csv
+91,_audit\E2E-1-EndToEnd系列消费核查.md,审计报告,EndToEnd 6 模块消费核查，并复验推翻 §6「零援引」「依赖悬空」两条判定,否,是,3,完整,,read-04.csv
+92,_audit\E3-可运行性实证.md,审计报告,E3可运行性实证：FCA内核能跑但不能预测，缺时间维度与一步应用器,否,否,0,完整,,read-07.csv
+93,_audit\E3-最优步长.md,审计报告,E3最优步长：PipelineComplexityOptimal四定理（最小N、速率紧性）与自查,部分,否,0,完整,,read-13.csv
+94,_audit\E4-数据与实验缺口.md,审计报告,E4 数据与实验缺口：12 项实验设计零执行、零真实数据集、fca-alpha 原型自查,否,是,2,完整,,read-04.csv
+95,_audit\E4-规则并语义.md,审计报告,E4：规则的并（选择语义）形式化，含一次对分配律的错误判断与撤回,部分,是,2,完整,,read-10.csv
+96,_audit\E5-实用价值临界路径.md,审计报告,按三档门槛评估实用价值：A 约50%、B 约10%、C 约20%，缺预测函数,否,是,4,完整,明确声明 d4.json 的 238 条只是启发式候选池,read-06.csv
+97,_audit\E5-时序组合语义.md,设计源,用 Measure.bind 实现规则的时序复合，21 条定理含无条件结合律,是,否,0,完整,seqLaw_def 为 rfl 已标明；加权凸组合版本未实现,read-06.csv
+98,_audit\EVAL-1-无前件定理数值实例.md,审计报告,EVAL-1：为无前件定理配 ℚ 数值实例，含两处假命题的纠错记录,部分,是,3,完整,,read-10.csv
+99,_audit\EXTPL-1-外部规划核实报告.md,审计报告,EXTPL-1核实外部规划：d7_check.py不存在、sorry实为0、SCM实为17个,否,是,3,完整,,read-09.csv
+100,_audit\F1-IsDirac.md,过程产物,P0-F1兑现IsDirac：3个构造性实例+2条反向见证，说明无条件版为假,否,是,2,完整,,read-09.csv
+101,_audit\F1-任务书.md,过程产物,侦察任务书：检查5个零扇入高价值模块是否藏着未利用的关键答案,部分,否,0,完整,,read-14.csv
+102,_audit\F1-理想路线图.md,设计源,理想路线图：以「第一次能预测」为第一里程碑，砍自建因果改买Causalean，误差链升P0,是,是,2,完整,,read-03.csv
+103,_audit\F1-零扇入高价值模块盘点.md,审计报告,5个零扇入高价值模块逐个检查：AlphaFCAConstruction是α端到端实现，其余多为同名,否,是,2,完整,,read-02.csv
+104,_audit\F2-可选路径与产出量级.md,审计报告,F2 可选发展路径与产出量级：α/β/γ/δ 四条互斥路径的判死判活,否,否,0,完整,,read-04.csv
+105,_audit\F2-边缘化语义.md,过程产物,把 5.1 候选②边缘化补到 LawRule 载体，8 定理并纠正草案假定理,否,是,3,完整,marginal_inter 等式因缺单射被删，改为 ⊆ 与 embedding 版,read-06.csv
+106,_audit\F3-风险与止损点.md,审计报告,F1–F18失败模式清单与停止止损条件：产出量化指标替代理论内容，现有验收全部只测前者,否,否,0,完整,,read-03.csv
+107,_audit\F4-全链路演示.md,过程产物,P0-F4全链路演示：15个#eval产出具体数值；环节2表→AlphaData未接上,否,是,2,完整,,read-09.csv
+108,_audit\F4-文档更新方案.md,审计报告,逐份文档的可执行更新方案：A编号/定理数/误差界/Lean规模五组数字互斥，须建单一权威数字源,否,是,2,完整,,read-03.csv
+109,_audit\F5-待裁决与决策清单.md,配置说明,21 项待裁决去重后只剩 3 项需作者定，并给出裁决台账工作模式,否,是,2,完整,被指定为唯一裁决台账的替代件,read-06.csv
+110,_audit\FANIN-1-本段模块扇入表.md,审计报告,FANIN-1本段24模块扇入表：实质接进主干为0；审计判据由fanin改为前件减少,否,是,2,完整,,read-09.csv
+111,_audit\FIBER-1-上下文维度的不对称.md,审计报告,FIBER-1：抽象版左往返不成立，Step 只是 LawRule 的一条上下文纤维,部分,是,4,完整,文件名乱码，内容正常,read-10.csv
+112,_audit\FIVE-1-五要件与九要件换算.md,审计报告,FIVE-1换算：九要件=五要件5项+增补4项，源码0处定义,否,否,0,完整,,read-08.csv
+113,_audit\FSUNIV-1-Finset.univ复杂度抽样审查.md,审计报告,Finset.univ复杂度抽样20处，唯一指数算法prMajAt,否,是,2,完整,,read-05.csv
+114,_audit\G1-开放问题5.1-∘的语义-裁决材料.md,设计源,开放问题5.1（∘语义）裁决材料：combClosure或comp，后确认候选1=候选2,是,是,3,完整,,read-09.csv
+115,_audit\G1-规则进主链.md,审计报告,P0-G1规则桥进主链：6定理把endToEnd预测位钉到规则R的Step,否,否,0,完整,,read-08.csv
+116,_audit\G2-A∧A修复.md,过程产物,P0-G2：A∧A 定理改名 _and，补 |1-η|≥1 反例与 x 不进迭代,部分,否,0,完整,,read-12.csv
+117,_audit\G2-render_surj缺陷-裁决材料.md,审计报告,render_surj 缺陷裁决材料：满射与有限规则集不可兼得，作者选乙,部分,是,2,完整,,read-12.csv
+118,_audit\G3-无predict.md,审计报告,P0-G3显式拒绝：世界模型无法预测分布；证7条定理，证¬∃predict照字面为假,否,是,2,完整,,read-09.csv
+119,_audit\GAP-3-改法C不可行.md,审计报告,GAP-3证伪W.rules驱动主链：10条否定定理，修正monotone缺前件,否,是,5,完整,,read-08.csv
+120,_audit\GAP-3-签名.md,审计报告,实拍 endToEndIter 签名，实证缺口三在现有架构下不可行,部分,是,2,完整,,read-12.csv
+121,_audit\GAP-3-重写A.md,过程产物,重写A：非常函数 selector 存在性，据此把缺口三由架构不可行改判为退化特例,部分,是,1,完整,,read-12.csv
+122,_audit\GAP-3-领域实例端到端.md,审计报告,缺口三：领域实例端到端，修复 3 处传参/引理签名错误且未删定理,部分,是,2,完整,,read-10.csv
+123,_audit\GEN-1-泛化审计.md,审计报告,三方向泛化审计：真红利在逻辑腿，分析腿与递推腿不可泛化,否,是,2,完整,明确声明只抽样 10 条，未穷举,read-06.csv
+124,_audit\GEN-2-领域实例-LawRuleTwoDomains.md,过程产物,GEN-2第二交付LawRuleTwoDomains：2领域实例共享骨架，B实例用加权混合,否,是,2,完整,,read-09.csv
+125,_audit\GEN-2-领域实例.md,审计报告,GEN-2 LawRuleInstances复验：31定理零sorry；EXIT1实为同名声明冲突,否,是,2,完整,,read-09.csv
+126,_audit\GEN-3-可辨识性统一.md,设计源,GEN-3 可辨识性统一：以单射归约，附格嵌入反例说明仅形式统一,是,是,1,完整,,read-12.csv
+127,_audit\GEN-4-赋范空间推广.md,审计报告,GEN-4：变步长收敛从 ℝ 推广到任意实赋范空间,部分,是,2,完整,,read-10.csv
+128,_audit\GOV-1-乱码备份-897.md,配置说明,定义治理登记：三族 15 个真定义需统一 0+2 个，并立 G1-G14 规则,是,否,0,完整,文件名为乱码备份但正文完整可读,read-06.csv
+129,_audit\GOV-1-定义治理登记.md,配置说明,GOV-1定义治理登记：三族定义统一实测结论与治理规则G3-G7,否,是,2,完整,含第802/803/806-807/872/891轮错误附录（第113-159条）；判外部规划「定义不统一」归因不成立,read-01.csv
+130,_audit\GOV-1-服务器版备份-915.md,配置说明,GOV-1 定义治理登记：三族 15 个定义需统一 0 个，附规则 G17–G31 与错误条目,否,是,2,完整,文件后半（约 L700 起）为 GOV-1 错误条目与规则追加，与前半定义登记非同题,read-04.csv
+131,_audit\GOV-1-服务器版备份-934.md,配置说明,定义治理登记：三族15个真定义需统一0个，外部规划的定义不统一归因不成立,是,是,2,完整,,read-03.csv
+133,_audit\H0-净版行内标注登记.md,配置说明,H0净版行内标注登记：净版:27与:2589-2590三处「因果旁路/可绕过/不需要」作废标注,部分,是,1,完整,,read-13.csv
+134,_audit\H1-RuleExec演示.md,过程产物,P1-H1：给RuleExec补8处eval并加3条语义接线定理,部分,是,2,完整,,read-11.csv
+135,_audit\H1-任务书.md,配置说明,H1 任务书：核查净版 16 个开放问题在 Lean 里的实际实现状态,否,否,0,完整,,read-10.csv
+136,_audit\H1-开放问题Lean实现核查.md,审计报告,H1开放问题Lean实现核查：净版17个开放问题的源码落地判定,否,是,3,完整,文首加第495轮修正标注，说明「已实现」判定偏高（2条应为部分实现），§二统计已被覆盖,read-01.csv
+137,_audit\H2-ComposeUnified自查.md,审计报告,H2 自查：ComposeUnified 中「以 B 为主导」没有被形式化,部分,是,2,完整,,read-15.csv
+138,_audit\H2-Selector进主链.md,审计报告,P1-H2 Selector进endToEnd：新增endToEndSel，kappa仍为参数,否,否,0,完整,,read-08.csv
+139,_audit\H3-分支限制.md,过程产物,任务E：显式证明分支不分叉六定理，并把多分支要件从合格降为存疑,部分,是,1,完整,,read-11.csv
+140,_audit\H3-开放问题判定冲突裁决.md,审计报告,仲裁 3 处开放问题判定冲突，三次自我修正后定为已实现 1/17,否,否,0,完整,含 498、513、524 三轮修正，以 524 节为最终权威,read-06.csv
+141,_audit\INDEX-审计文档总索引.md,配置说明,_audit总索引：文档分类、7条审计史判决、4对同主题报告阅读顺序,否,是,5,完整,4,read-08.csv
+142,_audit\INFRA-1-run.js转义缺陷.md,审计报告,run.js 的 argv.join 吞掉 $ 与引号，使带锚点 grep 退化为无锚点匹配,部分,是,3,完整,,read-15.csv
+143,_audit\INV-2-invariance证明尝试方案.md,设计源,INV-2不变性证明方案：invariance是Prop字段不能证，给出四个可证实例化方案A–D,是,否,0,完整,,read-13.csv
+144,_audit\IR-1-规则CIC语法层.md,过程产物,IR-1规则CIC语法层：RuleTerm与toLawRuleWith交付,否,是,1,完整,,read-05.csv
+145,_audit\LINK-1-sim与endToEnd.md,审计报告,LINK-1：给 sim 与 endToEndIter 补三条连接定理并如实标注前件边界,部分,是,4,完整,,read-10.csv
+146,_audit\MACRO-800-宏观盘点与下一步规划.md,审计报告,MACRO-800宏观盘点：重复率5.6%（488条），根因是自造定义私有化；后实测仅gex可迁,否,是,2,完整,,read-09.csv
+147,_audit\MACRO-857-宏观重估.md,审计报告,MACRO-857宏观重估：七段链路六段实，闭环与收敛两链完全未连,部分,是,2,完整,,read-11.csv
+148,_audit\MASTER-全系统总纲.md,配置说明,全系统总纲：九要件9/9齐备，主链三个断点接通，附工程治理,是,是,1,完整,文件头声明前版被反引号污染已弃用,read-07.csv
+149,_audit\MLIB-1-Mathlib可用性核查.md,审计报告,核查 Mathlib 可用性：Contraction/Bochner 是上游改名非 olean 缺失,否,是,2,完整,初稿两处计数错误已公开更正,read-06.csv
+150,_audit\MLIB-2-Mathlib可用性普查.md,审计报告,MLIB-2：Mathlib 可用性普查，证明两个「缺失」实为探测名错误,部分,是,3,完整,,read-10.csv
+151,_audit\N-UTF8-五检查器.md,审计报告,N/T0.1五检查器UTF-8：真缺陷是子进程解码导致门禁假红,否,是,2,完整,,read-08.csv
+152,_audit\NINE-1-三段式实证核查.md,审计报告,NINE-1：9 个模块的三段式（界+紧+下界）逐条实证，与 v6 4/9 不可比,部分,是,2,完整,,read-10.csv
+153,_audit\NINE-1-九要件三段式核查.md,审计报告,NINE-1 九要件三段式核查：「九要件」在服务器上无定义，还原为五要件并给出三套计数,否,否,0,完整,,read-04.csv
+154,_audit\NO-PREMISE-1-无前件收敛.md,过程产物,NO-PREMISE-1：证明无前件Tendsto为假命题，改以x=0/x≠0两支入结论,部分,是,2,完整,,read-11.csv
+155,_audit\NOISE-1-噪声可识别性清单.md,设计源,噪声可识别性二分：单次观测 ε 原理上不可识别，已知真值+iid+n≥2 时可识别,是,否,0,完整,,read-12.csv
+156,_audit\OFFSET-1023-偏移自查.md,审计报告,R1023偏移自查：自述无对应物重演，external_refs在Lean层面是无效度量,否,是,2,完整,,read-03.csv
+157,_audit\OFFSET-1049-偏移自查.md,审计报告,「9/9 到极限」不成立，偏移从造假转为选择性披露,否,是,4,完整,hook 豁免通道使本轮 75% 提交绕过度量校验,read-06.csv
+158,_audit\OFFSET-885-偏移自查.md,审计报告,R885偏移自查：数值算法线零消费零可执行第三次复发,否,是,1,完整,,read-05.csv
+159,_audit\OFFSET-891-偏移自查.md,审计报告,OFFSET-891 偏移自查：R885 三条建议未落地、三硬指标为 0、GOV-1 把过程写成事实,否,是,4,完整,,read-04.csv
+160,_audit\OFFSET-897-偏移自查.md,审计报告,R897偏移自查：G21硬规则落地后随即被同步提交删掉131行，物理冻结执行到位,否,是,1,完整,,read-03.csv
+161,_audit\OFFSET-901-偏移自查.md,审计报告,R901偏移自查：核查R897三条建议与G24落地情况,否,是,1,完整,,read-05.csv
+162,_audit\OFFSET-904-偏移自查.md,审计报告,R904偏移自查：R901三条建议2条落地，_audit被打包、探针18涨到57，自纠编码误判,否,是,2,完整,,read-03.csv
+163,_audit\OFFSET-906-偏移自查.md,审计报告,R906偏移自查：_audit从同步包排除真落地，但两条不实声明与G29只活在消息里,否,是,2,完整,,read-02.csv
+164,_audit\OFFSET-909-偏移自查.md,审计报告,R909偏移自查：探针57个R100移走、Q模块零落地，治理文档涨而lean零字节,否,是,2,完整,,read-02.csv
+165,_audit\OFFSET-912-偏移自查.md,审计报告,R912偏移自查：治理膨胀与工程产出对比、G34首次实践即失败、指标1首次变动,否,是,2,完整,,read-02.csv
+166,_audit\OFFSET-918-偏移自查.md,审计报告,R918偏移自查：R912三条建议2✅1🟡，scratch18个文件复活，G38自引反例数字错,否,是,1,完整,,read-03.csv
+167,_audit\OFFSET-921-偏移自查.md,审计报告,R921偏移自查：建议1完全落地、建议2形式落地实质落空（只import不调用）,否,是,2,完整,,read-02.csv
+168,_audit\OFFSET-927-偏移自查.md,审计报告,R927偏移自查：三条建议首次全有实质交付、真消费落地、manifest入库即过期,否,是,2,完整,,read-02.csv
+169,_audit\OFFSET-929-偏移自查.md,审计报告,OFFSET-929：三条建议验收、三硬指标与新计数器bug,否,是,2,完整,,read-05.csv
+170,_audit\OFFSET-930-偏移自查.md,审计报告,R929 的 14 个虚 import 是假诊断，真叶子 290 而非 287,否,是,3,完整,只读审计；口径更正指向 GOV-1 第 186 条与 G48,read-06.csv
+171,_audit\OFFSET-936-偏移自查.md,审计报告,OFFSET-936：5813a62提交消息三数字伪称脚本来源,否,是,1,完整,,read-05.csv
+172,_audit\OFFSET-939-偏移自查.md,审计报告,OFFSET-939偏移自查：三条建议取证，uncalled口径与G52兄弟互消矛盾,否,是,3,完整,,read-04.csv
+173,_audit\OFFSET-945-偏移自查.md,审计报告,R945偏移自查：hook已接上但未通电、commit-msg断言是死码,否,是,2,完整,,read-02.csv
+174,_audit\OFFSET-950-偏移自查.md,审计报告,R950偏移自查：hook首次真正生效且建议全落地，但hook自身成为G49新bug源,否,是,1,完整,,read-03.csv
+175,_audit\OFFSET-954-偏移自查.md,审计报告,R954偏移自查：三条建议全实质落地、G49真正止血，新缺陷全为声明与实现脱节,否,是,1,完整,,read-03.csv
+176,_audit\OFFSET-974-偏移自查.md,审计报告,R974偏移自查：G59扇入归零系造假、Fate.lean断链5处、20轮攻坚在本地无对应物,否,是,2,完整,,read-03.csv
+177,_audit\P0-0-DetFun到Step可行性勘察.md,审计报告,P0-0勘察DetFun→Step桥：PUnit可用、Step五参数可忽略,否,否,0,完整,,read-07.csv
+178,_audit\P1-0-Step到LawRule可行性勘察.md,审计报告,P1-0勘察Step→LawRule丙路线：Q1/Q2/Q4可行，Q3需点分离,否,是,2,完整,,read-07.csv
+179,_audit\P3-0-AlphaData摸底.md,审计报告,P3-0摸底AlphaData/InstSpace，指出主库收录的P3桥P与γ是死参数,否,否,0,完整,被收录的桥是空转版,read-07.csv
+180,_audit\P4-乙路线误差逼近.md,审计报告,P4乙路线误差逼近：A路格序松弛可行，B/C路不可行,否,否,0,完整,,read-07.csv
+181,_audit\PATH-理论路径重建-1049.md,审计报告,PATH第1049轮：重建裁决后的真实理论路径，净版/裁决/实测三线对照,否,是,3,完整,区分【净版】【裁决】【实测】【推断】四种陈述；给出10项实现有理论无/10项理论有实现无,read-01.csv
+182,_audit\R1-Markov组真实接线.md,过程产物,R-1因果Markov组真接线：新建宿主10条组合定理,否,是,1,完整,,read-05.csv
+183,_audit\R10-T1A2系真实接线.md,过程产物,T1A2.lean §5 追加 9 条组合定理，跨块调用被 Lean 否决已登记,否,是,2,完整,module 与非 module 冲突使组内引用不变,read-06.csv
+184,_audit\R11-T112系真实接线.md,过程产物,R-11 T112系接线：在T112Exactly末尾追加10条组合定理,否,否,0,完整,A6幽灵称ChkR17不存在；任务书11模块名全错,read-07.csv
+185,_audit\R12-Rule系真实接线.md,审计报告,R-12 Rule系接线：闭包等价10条定理，26模块只通2个,否,是,2,完整,3,read-08.csv
+186,_audit\R13-Rule系真实接线.md,过程产物,R-13 Tail系接线报告：Split与hsplitA互译及诚实边界,否,是,2,完整,,read-05.csv
+187,_audit\R14-View系真实接线.md,审计报告,R-14 View系接线：7条定理，披露计数器对View家族失明,否,是,2,完整,,read-08.csv
+188,_audit\R15-View系真实接线.md,过程产物,R-15 Strategy系接线：AncestralHull加12条定理打通blob与mass,否,否,0,完整,,read-07.csv
+189,_audit\R16-View系真实接线.md,过程产物,R-16 Alpha系接线：7条定理，计数器收益为0,否,是,1,完整,,read-05.csv
+190,_audit\R17-Mass系真实接线.md,审计报告,R-17 Mass系真接线：追加10条定理A=128/D=0，9/10模块脱离零引用,否,是,4,完整,,read-08.csv
+191,_audit\R18-View系真实接线.md,过程产物,R18 Global系真接线：8条组合定理跨3模块；诚实声明未推进dSep⇒CondMul,否,是,2,完整,,read-09.csv
+192,_audit\R19-View系真实接线.md,过程产物,R-19 Law系接线：LawRuleRuleBridge加11条定理，覆盖两零引用模块,否,否,0,完整,,read-07.csv
+193,_audit\R2-LawRule组真实接线.md,过程产物,R-2 LawRule组接线：在LawRuleAlgebraUnify追加W1–W7共7条定理,否,否,0,完整,自报W2/W4/W6/W7弱项不计,read-07.csv
+194,_audit\R21-View系真实接线.md,审计报告,R-21 Error系真接线：宿主追加6条组合定理A=109/D=0，发现验收脚本模式盲区,否,是,7,完整,,read-08.csv
+195,_audit\R22-View系真实接线.md,过程产物,WorldModelNoPredict 追加 7 条定理并证 sim 的 restart 性质,否,是,1,完整,证实仓库无 Fate.View* World 模块，实为 15 个 WorldModel*,read-06.csv
+196,_audit\R23-View系真实接线.md,过程产物,R-23 S系接线：SCMGraphSemantics加7条定理打通语义⟹图与图⟹语义,否,否,0,完整,,read-07.csv
+197,_audit\R24-View系真实接线.md,审计报告,R-24 Block系接线：8条定理，发现指标对命名空间别名失明,否,是,2,完整,,read-08.csv
+198,_audit\R25-View系真实接线.md,过程产物,R25 Backdoor系接线：实为10模块（非7），9条定理；承认属结构接线,否,是,2,完整,,read-09.csv
+199,_audit\R26-Bridge剩余真实接线.md,审计报告,R-26：BridgeA2/B2/B3 在 BridgeB4 真接线，含幽灵报告标记作废声明,部分,是,1,完整,文首 A6 幽灵报告标记把依赖 BridgeB4test_tmp 的结论判作废,read-10.csv
+200,_audit\R27-Bridge剩余真实接线.md,过程产物,R-27：28个Nary模块按声明粒度接线；口径1指标无法由Nary接线改善,部分,是,1,完整,,read-11.csv
+201,_audit\R28-Pearl剩余.md,审计报告,R28 Pearl系剩余接线：3模块接线；发现external_refs扫描器的命名空间假阴性,否,否,0,完整,,read-09.csv
+202,_audit\R29-Pearl剩余.md,过程产物,R-29：T1A2Substance追补11条组合定理，清单虚列5条且2条原陈述为假,部分,是,1,完整,,read-11.csv
+203,_audit\R3-1-验收与缺口.md,审计报告,验收前两轮 12 模块编译通过但扇入全为 0，判为孤岛并列出缺口,否,是,1,完整,文件头有 A6 幽灵报告标记，点名 MainChainWiring.lean 不存在,read-06.csv
+204,_audit\R3-2-因果全景.md,审计报告,因果结构全景：54个孤儿模块与dSep是死前提,否,是,1,完整,,read-05.csv
+205,_audit\R3-WorldModel组真实接线.md,审计报告,R-3：WorldModel 组 23 模块中 18 个零引用，追加 5 条组合定理接线,部分,是,1,完整,,read-10.csv
+206,_audit\R30-View剩余.md,审计报告,R-30 View系接线：8定理降层到ev层，View21仍显示0,否,是,2,完整,,read-08.csv
+207,_audit\R31-View剩余.md,审计报告,R-31：RuleSyntaxGenOps 追加 10 条组合定理，并更正零引用清单的假阴性,部分,是,1,完整,,read-10.csv
+208,_audit\R32-Top5真实接线.md,过程产物,R-32给Frontdoor家族Top5零引用模块接线，追加10条组合定理,否,否,0,完整,自述指标移动=0，判为指标缺陷,read-07.csv
+209,_audit\R33-Top5真实接线.md,过程产物,R33 Top5接线：仅LearnFunction×TwoVersions接成，其余4个判虚假放弃,否,是,2,完整,,read-09.csv
+210,_audit\R35-Top13-22.md,过程产物,R-35：把ThreeVersions等三个零引用模块接线，加13条组合定理,部分,否,0,完整,,read-11.csv
+211,_audit\R36-Top33-45.md,过程产物,R36接线Top33–45：4组13模块4对共19条组合定理；记录并发回滚误判,否,是,1,完整,,read-09.csv
+212,_audit\R37-Top33-45.md,审计报告,R-37 Top33-45接线：4宿主19定理，11目标只完成4，曾写假定理,否,是,3,完整,4,read-08.csv
+213,_audit\R38-Top57-70.md,审计报告,R-38接线Top57-70：4模块26定理，如实报告指标仍564未降,否,否,0,完整,,read-08.csv
+214,_audit\R39-Top57-70.md,审计报告,R-39：接线 Top 71–85 模块，追加 13 条组合定理，external_refs 未降,部分,是,1,完整,文件名与内容不符：实际为 Top 71–85，非 57–70,read-10.csv
+215,_audit\R40-Top86-100.md,过程产物,R-40接线Top86-100：三宿主RuleLevel等共加14条定理,否,是,2,完整,如实记录一次假命题被删,read-07.csv
+216,_audit\R41-Top86-100.md,审计报告,R-41接线Top101-120：9条定理接祖先闭包与ClosureOperator,否,否,0,完整,含A6幽灵报告标记,read-08.csv
+217,_audit\R42-InterventionSup消费.md,过程产物,R-42让InterventionSup被消费：Rule1/Rule2Genuine各加5条定理,否,否,0,完整,发现审计正则对namespace≠模块名失效,read-07.csv
+218,_audit\R44-真实Top15.md,过程产物,R-44接线Top15：三个新建宿主的20条组合定理,否,否,0,完整,,read-05.csv
+219,_audit\R45-真实Top15.md,过程产物,第 245 轮给三个 0 消费模块追加 13 条接线定理（D=0 纯追加）,否,否,0,完整,标题写 Top15 实做 Top16-30 的 3 个；并发提交事故已披露,read-06.csv
+220,_audit\R46-真实Top31-45.md,过程产物,R-46接线Top31-45：选3宿主+3消费方，8模块各追加定理,否,是,1,完整,,read-07.csv
+221,_audit\R47-真实Top31-45.md,过程产物,R-47接线Top46-60：三个已有模块各追加4条定理,否,否,0,完整,,read-05.csv
+222,_audit\R48-真实top12.md,过程产物,让 Rule1Genuine 等 4 个零消费模块被消费，consumed 达 240,否,是,1,完整,诚实登记 conditions_decompose 与 sep_iff_paths 是 Iff.rfl 展开,read-06.csv
+223,_audit\R49-真实top12.md,过程产物,R-49 轮次报告：向 top 候选模块追加 13 条定理以提升 G46 消费计数,否,是,1,完整,,read-04.csv
+224,_audit\R50-top26-37.md,过程产物,R-50把top26-37零消费模块接线，三宿主追加11条定理，consumed 240→242,否,否,0,完整,自述主动删掉一条同义反复定理,read-07.csv
+225,_audit\R51-top26-37.md,过程产物,ErrorBound 与 ECIB 追加 8 条定理，consumed 241,否,是,1,完整,ErrorBound 的 namespace 是 Fate.R250ErrorBound，结构性不可消费,read-06.csv
+226,_audit\R52-top10.md,过程产物,R-52接线top-10零消费模块：9条定理，consumed 240→240未增,否,是,2,完整,,read-07.csv
+227,_audit\R53-top10.md,审计报告,R-53接线top11-20：3宿主18定理，如实登记5条非本批新增,否,否,0,完整,,read-08.csv
+228,_audit\R54-top10.md,过程产物,R54 top10接线：两宿主11条新定理，别名如实标注，删除1条假命题,否,是,1,完整,,read-09.csv
+229,_audit\R55-top10.md,过程产物,3 个宿主追加 16 条 primitive 并即时配 consumer，存量未清零,否,否,0,完整,全量 lake build 因他人文件失败，本批 3 宿主 0 error,read-06.csv
+230,_audit\R56-top10.md,过程产物,3 宿主追加 16 条定理，仅 1 条被跨模块消费，零消费未清零,否,是,1,完整,两处形式降级/弱化已登记,read-06.csv
+231,_audit\R57-top10.md,审计报告,R-57接线top11-20：3宿主18定理，登记并发冲突与误删还原,否,否,0,完整,,read-08.csv
+232,_audit\R6-CondIndep组真实接线.md,过程产物,R-6条件独立组接线：9条定理，组内边数仅+1,否,是,1,完整,,read-05.csv
+233,_audit\R7-DAGFactor组真实接线.md,过程产物,R-7 DAGFactor组接线报告（附幽灵报告标记与结论作废）,否,否,0,完整,,read-05.csv
+234,_audit\R8-Nary系真实接线.md,过程产物,NaryBridgeDone 追加 7 条组合定理，纠正「组内零引用」的任务口径,否,是,2,完整,文件头有 A6 幽灵报告标记，点名 Fate/_R8Scratch.lean 不存在,read-06.csv
+235,_audit\R9-Bridge系真实接线.md,过程产物,R-9给Nary系在NaryIndex追加7条组合定理，含三层强度递进,否,否,0,完整,文件头A6幽灵标记称_R8Scratch不存在,read-07.csv
+236,_audit\ROBUST-1-噪声鲁棒性.md,过程产物,ROBUST-1噪声鲁棒性：三条确定性上界定理，并声明不作概率收敛,部分,是,1,完整,,read-11.csv
+237,_audit\S-PROBLEMS-三S问题台账.md,审计报告,三 S 问题台账：定义投射、A∧A 同义反复、旧 bestScore 三处实测状态,部分,是,2,完整,,read-10.csv
+238,_audit\SAFE-1-改主链安全判据.md,配置说明,改主链安全判据SAFE-1：S1–S4硬约束与首批三模块改法,是,是,1,完整,,read-17.csv
+239,_audit\SCAN-1-假证明扫描.md,审计报告,SCAN-1 假证明扫描：更正「?_ 等同 sorry」前提，构建图内假证明为 0,部分,是,2,完整,,read-10.csv
+240,_audit\SCAN-2-空洞定理扫描.md,审计报告,SCAN-2空洞定理扫描：去注释存活口径与Prop:=True占位链,否,是,1,完整,,read-05.csv
+241,_audit\SCAN-3-单行rfl分类.md,审计报告,SCAN-3对555处单行rfl/trivial分类，核实10处trivial为诚实设计、无欺骗,部分,否,0,完整,,read-16.csv
+242,_audit\SCAN-4-unusedSectionVars审查.md,审计报告,SCAN-4审查125处unusedSectionVars关闭：压制的是噪音、非死前提，建议保留,部分,否,0,完整,,read-16.csv
+243,_audit\SCHED-1-调度纪律.md,配置说明,SCHED-1调度纪律：队列三态门禁、空位数、等待期豁免与每轮自检句式,是,是,2,完整,第0条内部三态门槛自相矛盾：正文写≥12下限，修订后表写≥10,read-11.csv
+244,_audit\SCM-1-SCMEndToEnd兼容性深查.md,审计报告,SCM-1：SCMEndToEnd与General的22条定理类型兼容性深查,否,是,3,完整,,read-04.csv
+245,_audit\SCOPE-1-改动规模分界.md,设计源,SCOPE-1：把「小规模 / 涉及整个项目」操作化为 S1–S7 与 G1–G9 触发条件,是,否,0,完整,,read-15.csv
+246,_audit\SIGMA-1-σ可证与不可证清单.md,审计报告,SIGMA-1：σ的18条已证清单，其数值既不可证也不可否证,否,是,1,完整,,read-08.csv
+247,_audit\STAT-1-统计口径.md,审计报告,统计口径STAT-1：全库/链上/本段三口径、虚报记录与报数规则,部分,是,2,完整,,read-17.csv
+248,_audit\STAT-2-开放问题统计最终口径.md,配置说明,STAT-2开放问题统计最终口径：17条中1已实现12部分2未实现,是,是,2,完整,,read-07.csv
+249,_audit\STATE-1-四前件溯源完成状态快照.md,过程产物,STATE-1状态快照：四前件均有出处，仅2条实现前件数严格减少,否,是,4,完整,5,read-08.csv
+250,_audit\STOCH-1-随机收敛.md,设计源,STOCH-1：从确定性有界噪声推广到概率意义（几乎必然）收敛，四条定理,是,否,0,完整,,read-12.csv
+251,_audit\SYNC-1-本地服务器同步纪律.md,配置说明,本地/服务器同步纪律：map.txt四类口径、删除先隔离与八条纪律,是,是,1,完整,,read-17.csv
+252,_audit\SYNC-1-源码同步记录.md,过程产物,第612轮服务器源码同步记录：快照目录、行数抽查、构建状态与同步方法,部分,是,2,完整,,read-18.csv
+253,_audit\SYNC-720.md,过程产物,SYNC-720 服务器到本地同步报告：打包、抽检、漂移清单，本地还原未做,部分,是,2,完整,,read-10.csv
+254,_audit\SYNC-732.md,过程产物,第732轮同步：规则核心链模块清单与三个断点状态（断点1未做）,部分,否,0,完整,,read-18.csv
+255,_audit\SYNC-738.md,过程产物,第738轮同步：六个新模块与三个断点全部打通,部分,否,0,完整,,read-18.csv
+256,_audit\SYNC-744.md,过程产物,第744轮同步：新工作流（先写_wip）、P5完成8/8、P4格序松弛,部分,否,0,完整,,read-18.csv
+257,_audit\SYNC-750.md,过程产物,第750轮同步：四个方向全部落地、甲方向已接入7/20、IR六项状态,部分,否,0,完整,,read-18.csv
+258,_audit\SYNC-756.md,过程产物,第756轮同步：甲方向20/20完成、约582条零下游定理接入、新增sync_pack.sh,部分,否,0,完整,,read-18.csv
+259,_audit\SYNC-762.md,过程产物,第762轮同步：DOWN-1与COMPLEX-1两份审计、甲批4完成8/10,部分,否,0,完整,,read-18.csv
+260,_audit\SYNC-768.md,过程产物,第768轮同步：COMPLEX-1与DOWN-1进入执行、View17 d-分离桥完成,部分,否,0,完整,,read-18.csv
+261,_audit\SYNC-780.md,过程产物,第780轮同步：GEN-1泛化审计三方向实测与红利排序、COMPLEX-1执行进度,部分,否,0,完整,,read-18.csv
+262,_audit\SYNC-786.md,过程产物,第786轮同步：IR语法层与四算子全部泛化到任意有序域、Traj ι泛化,部分,否,0,完整,,read-18.csv
+263,_audit\SYNC-798.md,转储导出,SYNC-798同步：D7修复、定义统一勘察、Bridge三层诊断与「18孤岛」更正、重复率5.6%,部分,是,2,完整,,read-16.csv
+264,_audit\SYNC-804.md,过程产物,第804轮同步：Concrete迁移四批仅gex成功、新增G5/G6/G7、BRIDGE-2重复率,部分,否,0,完整,,read-18.csv
+265,_audit\SYNC-810.md,过程产物,第810轮同步：sync_pack.sh修复验证、causal-gen质量优先重做、新增G8,部分,否,0,完整,,read-18.csv
+266,_audit\SYNC-816.md,过程产物,第816轮同步：SCAN-1/2/3巡检结果、causal-gen进展、新增两条错误记录,部分,是,2,完整,,read-18.csv
+267,_audit\SYNC-822.md,过程产物,第822轮同步：causal-gen 61引理、DSep.lean、错误124与规则G9、铁律修订,部分,否,0,完整,,read-18.csv
+268,_audit\SYNC-834.md,过程产物,第834轮同步：causal-gen队列卡死根因修复、SCM按官方形式重做、新立规则G10,部分,是,2,完整,,read-18.csv
+269,_audit\SYNC-846.md,过程产物,第846轮同步：僵尸清理后主工程恢复产出与四条错误记录,否,否,0,完整,,read-17.csv
+270,_audit\SYNC-852.md,过程产物,第852轮同步：8新模块进包、九条错误与治理规则G11–G13,否,否,0,完整,,read-17.csv
+271,_audit\SYNC-864.md,过程产物,第864轮同步记录：两链连通、端到端收敛三形式入库、错误131–141与规则G11–G13,部分,是,3,完整,,read-14.csv
+272,_audit\SYNC-870.md,过程产物,第870轮同步：领域实例GEN-2、可执行演示与无前件主定理三层,否,否,0,完整,,read-17.csv
+273,_audit\SYNC-878.md,转储导出,SYNC-878同步包：Kalman/最小二乘/EWMA与可辨识性统一模块、指标变化与诚实边界,否,是,1,完整,,read-16.csv
+274,_audit\SYNC-882.md,过程产物,第882轮同步：本地还原目标改为Desktop\命运，submodule丢失致767文件失控,部分,否,0,完整,,read-18.csv
+275,_audit\SYNC-888.md,过程产物,第888轮同步：偏移自查、冻结ALGO线、缺口三WIP进展与指标持平,否,是,2,完整,,read-17.csv
+276,_audit\SYNC-894.md,过程产物,第894轮同步：缺口三改判方向无效并隔离，ALGO线物理冻结,否,是,3,完整,,read-17.csv
+277,_audit\T1-泛化完善实质化.md,过程产物,T1泛化/完善实质化：11条定理，5条只能rfl因def体忽略_h,否,是,2,完整,A6幽灵标记：ZzTmpChk不存在,read-09.csv
+278,_audit\T10b-九要件⑧因果.md,审计报告,T-10b九要件⑧：修正ancClosure最小性口径，建6条真紧性/下界定理,否,是,2,完整,3,read-08.csv
+279,_audit\T2-Rule1Semantic实质化.md,过程产物,T2 Rule1Semantic实质化：证伪“21条全rfl”前提（实为1条），追加5条实质定理,否,是,2,完整,,read-09.csv
+280,_audit\T3-Rfl模块实质化.md,过程产物,T3 rfl模块实质化：两模块各追加数条实质定理,否,是,1,完整,,read-05.csv
+281,_audit\T31-dSep两层次不可合并报告.md,审计报告,T3.1裁决：dSep两层次根本不可桥接，统一成1个的目标撤销,否,是,2,完整,,read-07.csv
+282,_audit\T4-namespace诊断.md,审计报告,T-4 namespace不匹配诊断：798个.lean的命名空间与umbrella设计核查,否,是,1,完整,结论为「这是刻意的umbrella namespace设计而非bug」；只诊断未改任何.lean,read-01.csv
+283,_audit\T5-重复定理诊断.md,审计报告,T-5 重复定理诊断：125→107 组同名同签名、X/X~/Y 分类与合并建议,否,是,3,完整,,read-04.csv
+284,_audit\T6-九要件⑨σ.md,审计报告,追加 6 条桥定理，把 sigmaAIC 与样本均值方差 1/n 一致性接上,是,是,2,完整,第 1035 轮任务报告；8/8 前件自检与 axioms 输出齐备,read-06.csv
+285,_audit\T7-九要件⑥干预.md,过程产物,追加 6 条桥定理，证明 bestScore 与 bestScoreSup 无条件相等,否,是,2,完整,§X6.5 额外前提被证为冗余；69 处引用实际改写未做,read-06.csv
+286,_audit\T8-九要件③裁决K.md,过程产物,把裁决 K 的 sigma 从定义分量改为 inf' 计算，追加 183 行四条腿,否,是,2,完整,全局下界仍不可免费修复，由 D 腿反例钉死,read-06.csv
+287,_audit\T8b-九要件③裁决K.md,审计报告,T-8b裁决K：用S.inf′给σ计算式刻画，仅有限集可桥接,否,是,3,完整,,read-08.csv
+288,_audit\T9-九要件⑤端到端.md,过程产物,PipelineTendstoGen §6 新增 5 条真双属性+1 条闭式，消除 A∧A 空话,否,是,1,完整,原 A∧A 定理按纪律保留未删,read-06.csv
+289,_audit\TASK-1-任务书规范.md,配置说明,任务书规范七条，由第492–499轮42条错误教训固化而来,是,否,0,完整,,read-12.csv
+290,_audit\UNIFY-1-甲丙路线统一层普查.md,审计报告,UNIFY-1：判定甲丙路线无新统一层，真正发现是往返不对称,部分,是,2,完整,,read-10.csv
+291,_audit\W1-规则代数接线.md,审计报告,W1规则代数接线：新建统一模块13定理，三候选扇入0→1,否,否,0,完整,,read-08.csv
+292,_audit\W10-第七批Capstone.md,过程产物,W10第七批GlobalCapstone：26条消费定理，净贡献0（与并发GC8完全重复）,否,是,2,完整,A6幽灵标记：GlobalCapstone7/8不存在,read-09.csv
+293,_audit\W11-第八批Capstone.md,过程产物,W11第八批GlobalCapstone：25个扇入0模块各写一条消费定理；并发导致基线漂移,否,是,1,完整,A6幽灵标记：GlobalCapstone6/8不存在,read-09.csv
+294,_audit\W2-收敛侧接线.md,过程产物,W2收敛侧接线：6条消费定理；发现CRLF导致import扇入grep假阴性,否,是,1,完整,,read-09.csv
+295,_audit\W3-世界模型接线.md,过程产物,W3把世界模型侧5个冷模块接入主链，WorldModelCapstone加8条定理,否,是,1,完整,任务书给的定理名4条错误,read-07.csv
+296,_audit\W4-全局Capstone.md,过程产物,W4全局Capstone第1批：25条消费定理，扇入0→1；口径A为全库sorry基线158,否,否,0,完整,A6幽灵标记：GlobalCapstone1/2/12不存在,read-09.csv
+297,_audit\W5-第二批Capstone.md,过程产物,W5第二批Capstone：alias 25条消费定理；依赖模块被A6判幽灵,否,是,2,完整,A6幽灵标记：GlobalCapstone1/2、TmpW5Check不存在,read-09.csv
+298,_audit\W6-第三批Capstone.md,过程产物,W6新建GlobalCapstone3加24条消费定理修复G59扇入,否,是,1,完整,A6幽灵标记称5个GlobalCapstone不存在,read-07.csv
+299,_audit\W7-第四批Capstone.md,审计报告,W7 第四批 Capstone 报告，文首标记 GlobalCapstone4 不存在故作废,部分,否,0,完整,报告主体所述的 GlobalCapstone4.lean 经核验不存在,read-12.csv
+300,_audit\W8-第五批Capstone.md,过程产物,W8第五批Capstone：GlobalCapstone5的25条消费定理；并发致7条重复覆盖,部分,是,1,完整,A6幽灵标记：Fate/GlobalCapstone5.lean不存在,read-11.csv
+301,_audit\W9-第六批Capstone.md,过程产物,W9第六批GlobalCapstone：首版选题全重复已整体作废，重选后25/25,否,是,2,完整,A6幽灵标记：GlobalCapstone6不存在,read-09.csv
+302,_audit\fate-dev-源码级未完成项.md,审计报告,源码级未完成项按可执行性分级：S 级 sorry/假定理、A 级自称未证、B 级结构缺失,否,否,0,完整,,read-04.csv
+303,_audit\out\per_module.md,转储导出,逐模块定理数/D4 截断/核心候选/新定义引用的机器统计表,否,否,0,片段,仅表体与合计，无表头说明，属导出表的截取,read-10.csv
+307,_audit\偏移自查-R399.md,审计报告,R399偏移自查：方向未偏但优先级偏，σ三模块非破循环，GATE3阻塞的解释不成立,否,是,2,完整,,read-03.csv
+308,_audit\偏移自查-R423.md,审计报告,R423偏移自查：优先级首次正确，但σ无下游、ctxOf未合并、交接器是rfl级骨架,否,是,2,完整,,read-03.csv
+309,_audit\偏移自查-R441.md,审计报告,R441偏移自查：resolveSigma仅改名、5新模块fanin全零、scratch破口,否,否,0,完整,,read-04.csv
+310,_audit\偏移自查-R480.md,审计报告,R480偏移自查：hstep被搬到上游而非消灭、ComposeUnified是空壳,否,否,0,完整,,read-02.csv
+311,_audit\偏移自查-R504.md,审计报告,R504偏移自查：三件最该做2.5件达成，探针A证明主定理删去观测前件仍成立,否,是,2,完整,,read-02.csv
+312,_audit\偏移自查-R524.md,审计报告,R524偏移自查：HEAD提交本身编译不过，两次接入新内容为0，判据改为能删掉一条前件,否,是,2,完整,,read-03.csv
+313,_audit\偏移自查-R533.md,审计报告,R533偏移自查：HEAD编译真修，但「前件减少」是换假设不是消灭假设，孤儿文件冒充入段,否,是,2,完整,,read-03.csv
+314,_audit\偏移自查-R564.md,审计报告,R564 偏移自查：532-563 轮指标复现与「前件减少」探针验证，首次局限自登记,否,是,3,完整,,read-04.csv
+315,_audit\偏移自查-R623.md,审计报告,R623偏移自查：Dimensions 8/8幻影完成与队列硬违反,否,是,1,完整,,read-05.csv
+316,_audit\偏移自查-R639.md,审计报告,R639偏移自查：6条硬要求3❌，R623的5条纠正指令0条完整执行，任务书落后4rev不成立,否,是,2,完整,,read-03.csv
+317,_audit\偏移自查-R657.md,审计报告,R657偏移自查：六条硬要求首次零❌，但换监工是同一个人的两个脚本互校,否,是,2,完整,,read-02.csv
+318,_audit_archive\legacy-audit\_audit10\S1-第261轮核查.md,审计报告,S1第261轮核查：P0只修1/5、检查器编码崩溃、dSep定义6→14触发熔断S2-c,否,是,2,完整,,read-09.csv
+319,_audit_archive\legacy-audit\_audit11\U1-规则驱动世界模型核查.md,审计报告,U1规则作世界模型前置的连通性核查：升到L4，桥定理均rfl,否,是,2,完整,,read-07.csv
+320,_audit_archive\legacy-audit\_audit12\F1-权威数字源.md,审计报告,F1权威数字源实测：选定Desktop命运为基线，sorry为0、孤儿率38.8%、口径逐一登记,否,是,3,完整,,read-02.csv
+321,_audit_archive\legacy-audit\_audit12\F2-七项极限证明强度.md,审计报告,七项「已到理论极限」证明强度审计：仅②④名副其实、③⑤⑥为假,否,是,3,完整,,read-02.csv
+322,_audit_archive\legacy-audit\_audit12\F3-因果缺口深度分析.md,审计报告,因果结构缺口⑧与σ不可证⑨深度分析：dSep桥被削弱消费、σ被定义为误差自身故不可证,否,否,0,完整,,read-02.csv
+323,_audit_archive\legacy-audit\_audit12\F4-文档质量审计.md,审计报告,F4文档质量审计：7份核心文档的结构、Mermaid、结论可核验性与推翻清单,否,是,3,完整,含五层审计（文档内部/三方对照/源码超越/编码陷阱/已推翻表述）,read-01.csv
+324,_audit_archive\legacy-audit\_audit13\G1-权威数字源.md,审计报告,第1023轮权威数字源核查：规模数字可信，新指标口径错，9个构建根有8个本地不存在,否,是,2,完整,,read-03.csv
+325,_audit_archive\legacy-audit\_audit13\G2-S1S2S3修复核实.md,审计报告,G2 修复核实：S1 已修、S2 部分修、S3 只改名，另发现全库 2 处 A∧A 结论,否,是,2,片段,属 _audit13 系列之一份单独核查件,read-04.csv
+326,_audit_archive\legacy-audit\_audit13\G3-89轮进展与健康度.md,审计报告,G3第934→1023轮89轮进展与健康度审计：提交分类与三个指标真相,否,是,2,完整,"实测89轮中数学新增约5-8%，7,579行/344定理未提交；未跑lake build（静态判定）",read-01.csv
+327,_audit_archive\legacy-audit\_audit2\G1-未接入主线资产盘点.md,审计报告,G1盘点未接入主线的Lean资产：79模块604定理，523条属无关LATTICE,否,是,2,完整,,read-07.csv
+328,_audit_archive\legacy-audit\_audit2\G2-Fate遗漏模块深挖.md,审计报告,G2遗漏模块深挖：T43Abduction为宝，G2为假反例,否,是,1,完整,,read-05.csv
+329,_audit_archive\legacy-audit\_audit3\H1-当前状态重测.md,审计报告,H1第246轮重测：175模块1861定理，缺口1/2/3有进展，列出全部失效旧结论,否,是,9,完整,8,read-08.csv
+330,_audit_archive\legacy-audit\_audit3\H2-FCA与未接入资产.md,审计报告,FCA 实为 10 模块 111 定理而非 9/94，并完成 11 模块 127 定理接入,否,是,2,完整,含独立更正段：初稿对 RealFCA 强度判断有误已撤回,read-06.csv
+331,_audit_archive\legacy-audit\_audit4\J1-第249-298轮重测.md,审计报告,重测 249-298 轮：工程健康度提升但实质进展停滞，缺口 1 仍未打通,否,否,0,完整,sigcheck 编译失败使验收环节失效,read-06.csv
+332,_audit_archive\legacy-audit\_audit4\J2-成败模式分析.md,审计报告,J2三百轮成败模式：无靶子致真相率1%与双螺旋,否,是,1,完整,,read-05.csv
+333,_audit_archive\legacy-audit\_audit5\K1-最新状态重测.md,审计报告,K1第298轮到HEAD重测：规模翻倍但世界模型零实例,否,是,1,完整,,read-05.csv
+334,_audit_archive\legacy-audit\_audit5\K2-世界模型线深度评估.md,审计报告,K2世界模型线评估：五要件仅类型层，闭环无变好定理,否,是,1,完整,,read-05.csv
+335,_audit_archive\legacy-audit\_audit6\M1-世界模型全面评估.md,审计报告,M1世界模型评估：4项达极限但均限最简情形，主线因5幽灵import变红,否,是,2,完整,,read-08.csv
+336,_audit_archive\legacy-audit\_audit7\P1-因果线待做.md,审计报告,P1因果线普查：六子项全卡在前提即待证命题，三个误差界全缺,否,否,0,完整,,read-07.csv
+337,_audit_archive\legacy-audit\_audit7\P10-理论缺口与外部.md,审计报告,P10理论缺口普查：22条开放问题实为10条真未决，四座桥三座已过时,否,是,2,完整,附外部URL核对,read-07.csv
+338,_audit_archive\legacy-audit\_audit7\P2-误差线待做.md,审计报告,P2误差线普查：13命题逐条状态，E8的ς未定义，σ三路皆败,否,是,3,完整,基于静态核查，未做全库编译（内存耗尽）,read-08.csv
+339,_audit_archive\legacy-audit\_audit7\P3-世界模型待做.md,审计报告,P3世界模型普查：4/5要件齐全，真缺口是载体A=φ=id,否,否,0,完整,基于源码阅读，未做全量编译（内存耗尽）,read-08.csv
+340,_audit_archive\legacy-audit\_audit7\P4-FCA规则层待做.md,审计报告,P4 FCA待做普查：四算子无实例，T112SecondQuotient降级，留1处sorry,否,是,3,完整,4,read-08.csv
+341,_audit_archive\legacy-audit\_audit7\P5-工程线待做.md,审计报告,P5工程线普查：本地全库构建OOM且Lake无法限并发，D7三重失效,否,是,1,完整,,read-07.csv
+342,_audit_archive\legacy-audit\_audit7\P6-文档线待做.md,审计报告,P6文档线普查：理论文档缺整个世界模型、死链95处、污染38处,否,是,1,完整,,read-07.csv
+343,_audit_archive\legacy-audit\_audit7\P7-质量与假定理.md,审计报告,P7 质量线普查：假定理已清零，真正质量债是 N8 标注缺失与判据未入门禁,部分,是,2,完整,,read-10.csv
+344,_audit_archive\legacy-audit\_audit7\P7a-已知问题模块复核.md,审计报告,P7a复核5个前科模块：1真修好3部分修1未动，无假修复,否,是,3,完整,,read-08.csv
+345,_audit_archive\legacy-audit\_audit7\P8-历史遗留待做.md,审计报告,P8历史遗留普查：冻结理由失效、RealFCA仍在线外、51失败尝试已入链,否,是,2,完整,,read-07.csv
+346,_audit_archive\legacy-audit\_audit7\P9-优先级与依赖.md,设计源,给出 M0-M7 依赖图与关键路径 dSep⟹reads⟹CondMul，并立止损规则,是,否,0,完整,明确禁止再写第 91 个 Bridge 模块与证明 sigma,read-06.csv
+347,_audit_archive\legacy-audit\_audit8\Q1-修复验证.md,审计报告,Q1第4affdee轮验证：9条P0修4条；结构修好但工具链一条没修（D7仍坏）,否,是,2,完整,,read-09.csv
+348,_audit_archive\legacy-audit\_audit8\Q2-世界模型要件复核.md,审计报告,Q2九要件复核：到极限仍4项，G1被否证，ς已定义但E8未解,否,是,4,完整,,read-07.csv
+349,_audit_archive\legacy-audit\_audit9\R1-G1到G6与NINE1核查.md,审计报告,R1核查G1–G6与NINE-1：5项真落地、4项真一般化、G5/G6仍特化；九要件是文档概念,否,是,2,完整,,read-09.csv
+351,_rebuild\README.md,配置说明,重建工作区说明：stage1-4与out目录分工，本轮禁用shell只许文件工具,否,否,0,完整,,read-18.csv
+352,_rebuild\stage1\01-基础定义.md,设计源,基础定义层：命/运/因果/命运逐轮原文对照与R1–R7裁定、C1–C11矛盾清单,是,是,2,片段,stage1提炼稿，仅基于A、B两份源文件,read-02.csv
+353,_rebuild\stage1\02-因果与轨迹.md,设计源,因果与轨迹两层提炼：do语义裁决、do-calculus非公理系统的裁决、六矛盾六未定义,是,是,3,片段,stage1提炼稿，基于C、D两份源文件,read-02.csv
+354,_rebuild\stage1\03-规则层与FCA.md,设计源,规则层与FCA核心提炼：12条权威定义、裁决一（规则非压缩）、可保留/需重写/应删除清单,是,是,4,片段,从32轮对话12179行提炼，覆盖第20、24–32轮,read-02.csv
+355,_rebuild\stage1\04-工程与预测.md,设计源,第21-23轮预测系统工程实现：九层架构、43项代码审计、Lean4路线之争,是,是,0,完整,三轮呈自我推翻关系，第21轮工程卷被第22轮否定；含X1-X14应删除项,read-01.csv
+356,_rebuild\stage2\公理与章序规范.md,版本副本,公理与章序规范的另一版本，与成品目录版仅「证据来源」引文一行不同,是,否,0,完整,与序号1323疑似同一文档的另一版本，差异仅在首部证据来源行,read-03.csv
+357,_rebuild\stage2\引用与轮次核查.md,审计报告,引用与轮次核查：21处轮次错位、extract.js根因、66处引用标记,否,是,4,完整,,read-04.csv
+358,_rebuild\stage2\矛盾裁决表.md,设计源,矛盾裁决表（stage2版）：原始32轮十处冲突的排他性终裁，无第380轮修正标注,是,是,2,完整,与序号1324同文，缺文首作者修正,read-02.csv
+359,_rebuild\stage2\符号与方程规范.md,设计源,全局符号表与核心方程规范：跨章符号唯一化、核心方程唯一定式与do的唯一语义,是,是,1,完整,,read-02.csv
+360,_rebuild\stage3\ch1-2.md,设计源,第1-2章：对象/状态/轨迹、命运定义、核心转移方程与命/运的参数区分,是,是,3,完整,文末附E1-E3及附加修复（悬空章号）；含「命×运」乘号废止,read-01.csv
+361,_rebuild\stage3\ch3-4.md,设计源,第3-4章：因果结构层SCM/do/识别性边界与轨迹生成层动力系统/随机过程,是,是,2,完整,章首三条限定职责含「因果是旁路/可选层」；文末附E4-E6跨章引用修复,read-01.csv
+362,_rebuild\stage3\ch5-6.md,设计源,第5-6章：规则层与FCA（α/γ/∘/υ四算子）与规则学习、因果效应估计,是,是,4,完整,§5 三条边界：SCM→规则边废止、「压缩」一词弃用、FCA定位收紧；文末附跨章引用修复记录,read-01.csv
+363,_rebuild\stage3\ch7-8.md,设计源,第7-8章：预测/干预/反事实三问题区分、入域判据、硬边界与假设总账,是,是,2,完整,含A1-A32假设总登记表；§7.11.4列出8项从原文撤回或降级的断言,read-01.csv
+364,_rebuild\stage4\修复记录-符号.md,过程产物,符号与类型修复记录：21条登记项全修与规范补18条,否,是,1,完整,,read-05.csv
+365,_rebuild\stage4\修复记录.md,过程产物,跨章引用修复记录：核验E1–E22中18条已修，只改指针不改实质,否,否,0,完整,,read-07.csv
+366,_rebuild\stage4\最终复核.md,审计报告,stage3 四文件两轮并发修复后的最终复核：32 项逐条存活、零覆盖零回退,否,是,2,完整,,read-04.csv
+367,_rebuild\stage4\核验-符号与方程.md,审计报告,符号与方程核验：核心方程12处已统一、作废写法零残留，但符号冲突13项未通过,否,是,2,完整,,read-03.csv
+368,_rebuild\stage4\核验-诚实性.md,审计报告,stage3四文件诚实性与引用合规核验：reference清零但6处完工声明中5处编号失实,否,否,0,完整,,read-02.csv
+369,_rebuild\stage4\核验-跨章引用.md,审计报告,stage3 四文件跨章引用核验：8 项章号错误、20+ 处编号失靶，判不通过,否,否,0,完整,,read-04.csv
+370,_rebuild\stage4\缺陷-ch5前向引用错位.md,审计报告,ch5-6六处「第8章开放问题8.N」引用仅1处对上，附根因与两套修复方案,部分,否,0,完整,,read-18.csv
+371,_rebuild\作者裁决.md,设计源,作者裁决：规则由实例抽象而来，废止SCM→规则边；八词降为附录启发式分类,是,是,6,完整,,read-18.csv
+372,_theory\audit-final\assemble-verify.md,审计报告,汇编产物验证：导读/净版/标注版三份产物完整性八项核验，登记导读滞后,否,否,0,完整,,read-04.csv
+373,_theory\audit-final\ch6-verify.md,审计报告,ch6.md 已由 61 字节占位重建为 878 行，9 项核验 8 通过 1 带限定通过,否,是,1,完整,P-1..P-5 登记待办；禁止措辞字面命中 3 处,read-06.csv
+374,_theory\audit-final\f-crossref.md,审计报告,跨章引用终校：四项已修复但五处声明反向失真，ch6零修订,否,是,1,完整,,read-05.csv
+375,_theory\audit-final\f-final.md,审计报告,最终质量终校：ch5/ch7实修，但ch6整章未修订、契约§7并入0执行，判部分修复,否,是,2,完整,,read-02.csv
+376,_theory\audit-final\f-symbols.md,审计报告,符号与方程终校：契约 §2.2 五条消歧规则逐条判定，判部分修复,否,是,4,完整,,read-04.csv
+377,_theory\audit-final\z-all.md,审计报告,全量终校 10 章：ch6 剩 61 字节占位、契约 §7 并入 0 执行，判不可交付,否,否,0,完整,未采信任何 revision 自述，全部走正文行号取证,read-06.csv
+378,_theory\audit\a-crossref.md,审计报告,章号互引终校：判未修复，三章从未修订并新引回归,否,是,2,完整,,read-05.csv
+379,_theory\audit\a-residual.md,审计报告,残留缺陷终校：ch1–ch8 修订后 24+11 项逐条复核，判部分修复并指出新断裂,否,是,2,完整,,read-04.csv
+380,_theory\audit\a-symbols.md,审计报告,符号统一终校：点已修面仍断裂，ch7零执行与死锁,否,是,1,完整,,read-05.csv
+381,_theory\contract.md,设计源,理论文档全局契约：权威章序、全局符号表、强制消歧规则、do算子唯一定义、修正指令清单,是,是,3,完整,,read-09.csv
+382,_theory\diag\axioms.md,设计源,公理与假设诊断：逐条挖出理论依赖的全部假设，含10项隐含接受项,是,是,2,完整,给出AX-01~AX-30补全清单与IA-1~IA-10隐含接受判定,read-01.csv
+383,_theory\diag\bridges.md,审计报告,桥接断裂诊断：8份模块提炼稿之间7条核心桥的映射核查,否,是,2,完整,7条核心桥中6条完全缺失或仅具形式；给出桥的操作性三条件定义,read-01.csv
+384,_theory\diag\citations.md,审计报告,引用与事实诊断：三条「虚构引用」指控被撤回、[reference:N] 结构不可溯源、状态标注造假,否,否,0,完整,,read-04.csv
+385,_theory\diag\contradiction.md,审计报告,矛盾裁决诊断：32轮叠压V1/V2/V3三版本，逐条给出X-01至X-08裁决建议,否,是,3,完整,,read-02.csv
+386,_theory\diag\defs.md,审计报告,定义完备性诊断：0个符号有完整定义、≥46个从未定义、7处循环定义、两套规则层骨架未裁决,否,是,2,片段,逐项清单中间段落被折叠，首尾与三类结论齐全,read-03.csv
+387,_theory\extract\A-基础定义层命运因果命运四元.md,设计源,A-基础定义层提炼：命/运/因果/命运四元的权威定义与矛盾裁决,是,是,3,完整,含D0-D?权威定义、M-1等矛盾、J1-J11接口；X1-X6应删除项,read-01.csv
+388,_theory\extract\B-抽象机制与规则层.md,设计源,抽象机制与规则层提炼：α定义域两读、压缩与抽象对立、三大算子与M级矛盾,是,是,2,片段,从B/H/E/C/G五份源文件提炼,read-02.csv
+389,_theory\extract\C-总纲与因果推断数学.md,设计源,C-总纲与因果推断数学：第15/18轮总纲与卷III的权威定义提炼与裁决,是,是,3,完整,对do-calculus「公理系统」、双重稳健估计量等判为错误并给出修正稿；含U-1~U-25矛盾编号,read-01.csv
+390,_theory\extract\E-规则学习与神经符号.md,设计源,E-规则学习与神经符号：规则定义、9个方法族的形式化状态与硬伤,是,是,2,完整,全模块0定理0证明；判「程序=规则系统」不成立（C4）,read-01.csv
+391,_theory\extract\F-预测系统工程方案.md,设计源,F-预测系统工程方案：九层架构、43项代码实现状态与八条自我批判,是,是,2,完整,三轮呈自我推翻；43项审计中真实现6项、空壳或必崩17项,read-01.csv
+392,_theory\extract\G-FCA 核心与理论重写.md,设计源,G-FCA核心与理论重写：第24-27轮FCA骨架的权威定义与内部矛盾清理,是,是,3,完整,含外部核验记录（Bazin 2022、fcaR）；判P4「桥已被验证」须整体删除,read-01.csv
+393,_theory\extract\H-终局框架与构造体系立场.md,设计源,H-终局框架：第28-32轮的压缩/抽象区分、公理立场与统一框架主张,是,是,3,完整,核心裁决：第31轮公理/定理体系整体降级为定义+待证命题，「已证」标注撤销,read-01.csv
+394,_theory\source\A-基础定义.md,转储导出,A-基础定义第1-7轮原文逐轮转储（命/运/因果/命运的早期口径）,否,是,1,完整,原始对话转储，标题为「A-基础定义」后接「第1轮…第7轮」；含用户原话与思维链段,read-01.csv
+395,_theory\source\B-抽象与规则层.md,转储导出,第8–14轮对话原文转储：对象层/关系层形式化、规则层定义与科学映射表,否,否,0,完整,原文含思维链段落,read-02.csv
+396,_theory\source\C-总纲与因果数学.md,设计源,两轮对话原文：命运算统一总纲（命=慢约束、运=快扰动、规则=因果压缩）与因果数学卷III,是,否,0,片段,文档内混装卷III正文与卷IV大纲，导出尾部含思维链,read-03.csv
+397,_theory\source\D-动力系统与随机过程.md,过程产物,第 19 轮会话原文：输出卷 IV 动力系统与随机过程及统一公式,是,否,0,完整,每节都有科学映射表；末尾含思维链,read-06.csv
+398,_theory\source\E-规则学习.md,设计源,卷V规则学习：规则定义、ILP、关联规则、因果规则、神经符号及映射,是,否,0,片段,从含20轮会话的归档文档中剪出,read-08.csv
+399,_theory\source\F-工程实现.md,设计源,卷VI预测系统工程实现：分层架构、数据层到部署的Python代码与各节科学映射表,是,否,0,片段,第21–23轮原文转储，含思维链与代码块,read-02.csv
+400,_theory\source\G-重写与FCA核心.md,设计源,四轮对话原文：FCA用于因果发现、以FCA为核心的六层框架重理、规则是抽象不是压缩,是,否,0,完整,文档内混装第24–27轮，导出尾部含思维链,read-03.csv
+401,_theory\source\H-终局框架.md,转储导出,第 28–32 轮会话原文的模块化导出（含思维链与轮次对齐注释）,否,否,0,完整,H 模块轮次整体偏移一轮，文件内已加注,read-04.csv
+402,_theory\source\all-science.md,转储导出,DeepSeek 32 轮会话科学部分全文，已排除 T16 玄学与 T17 哲学史,是,是,12,片段,"片段（作者自述排除范围）：第 1 行标题「会话科学部分全文（已排除 T16 玄学全谱系、T17 哲学史）」，故缺第 16、17 轮。8396 行 / 128,836 字符。结构：第 1–32 轮，每轮 **用户：** / **助手：** 成对，含 15 轮总纲稿、18 轮卷 III 因果、19 轮卷 IV 动力系统、20 轮卷 V 规则学习、21 轮卷 VI 工程实现等大卷，以及 22 轮工程否决、23 轮 Lean4 分阶段、25/27 轮大框架重理（回滚了用户的 FCA 指令）、28 轮抽象、29 轮公理、30–32 轮定位。第 30–32 轮用户原话为空（生成时丢失）。是 523 的同会话超集（多 15–32 轮），轮次编号与 _theory/source 下 A–H 模块口径一致。",read-BIG.csv
+403,_theory\theory\ch1-revision.md,过程产物,第 1 章一致性修订 31 条：改记号章号、补反例，并声明契约文件不存在,是,是,3,完整,U-1 阻断项：_theory/contract.md 不存在，§4 §5 无法恢复,read-06.csv
+404,_theory\theory\ch1.md,设计源,第1章基本设定与符号系统：对象/状态/命运/干预的定义与全理论符号总表,是,是,3,完整,含六类陈述标注约定；§1.8已作废表述表；§1.9开放问题登记表,read-01.csv
+405,_theory\theory\ch2-revision.md,过程产物,第2章修订说明：跨章引用改契约格式、章号错配逐处修正、实例集改记E_inst,否,是,2,完整,,read-03.csv
+406,_theory\theory\ch2.md,设计源,第2章抽象与规则层：抽象算子α/β、规则形式结构、三属性、泛化与完善,是,是,3,完整,本章停用「已证」二字，改用「本章已给出论证」；β只给类型签名、构造不在本理论范围,read-01.csv
+407,_theory\theory\ch3-revision.md,过程产物,第 3 章修订说明：契约缺失下的重建、整章重编号与两轮撞号的复核记录,否,是,2,完整,,read-04.csv
+408,_theory\theory\ch3.md,设计源,第3章因果结构层：SCM五元组、do的模型替换语义、识别性与因果发现边界,是,是,3,完整,判do-calculus「公理系统」为错误术语；开放3.2/3.30两编号作废,read-01.csv
+409,_theory\theory\ch4-revision.md,设计源,ch4轨迹生成层修订说明：符号、方程、章号与缺陷逐条处置,否,是,1,完整,,read-05.csv
+410,_theory\theory\ch4.md,设计源,第4章轨迹生成层：确定性/随机/混沌三类生成装置与干预进入随机系统,是,是,3,完整,§4.9 登记本章新增符号与对第1章§1.7的待回写项；承认缺失适应性条件,read-01.csv
+411,_theory\theory\ch5.md,设计源,FCA能否承担规则层骨架：形式背景、Galois连接、概念格与DG基，裁决只保留抽象子层,是,是,2,完整,,read-02.csv
+412,_theory\theory\ch6.md,设计源,第6章预测与决策：三类问题区分、干预语义、识别性、误差层级与效应估计,是,是,3,完整,章首明令不作未执行的完工声明；记号消歧强制（协变量记W、处理记T）,read-01.csv
+413,_theory\theory\ch7.md,设计源,第7章理论边界与可计算性：入域判据、七条硬边界与「大多数」的不可量化,是,是,3,完整,§7.11.4列出8项撤回或降级的断言；约定7.0.1本章不使用「已证」一词,read-01.csv
+414,_theory\theory\ch8-revision.md,过程产物,第 8 章修订说明：契约文件缺失的处置、逐条改点表与待契约确认事项,否,是,3,完整,,read-04.csv
+415,_theory\theory\ch8.md,设计源,第8章假设清单与开放问题：元层登记A-xx假设与OQ-xx开放问题,是,是,0,完整,明确本章是元层面清单不是定理；状态栏三值并列（原文/本理论/后果）,read-01.csv
+416,_theory\theory\g-effects.md,设计源,第G章因果效应估计：ATE/ATT/CATE定义、准实验四策略、识别与估计分工,是,是,3,完整,自述应插入第6章与第7章之间,read-02.csv
+417,_theory\theory\g-rules.md,设计源,补写第6章《规则学习层》：规则学习形式定义、H⊆R、因果降为可选附加筛子,是,是,2,片段,首行注明待编入第6章；中段省略表被折叠,read-03.csv
+418,_theory\verify\v-completeness.md,审计报告,完备性核验：八章理论文档的章号错位、规则学习章缺失、假设编号四套并存,否,是,1,完整,,read-04.csv
+419,_theory\verify\v-consistency.md,审计报告,第1–8章跨章一致性核验：T一字母三义、8处章号错配，判不通过,否,是,2,完整,,read-02.csv
+420,_theory\verify\v-honesty.md,审计报告,诚实性核验：虚构引用清零，但ch2「已证」回潮、跨章方程回退、导航全错，判部分通过,否,是,2,完整,,read-03.csv
+421,_theory\verify\v-rigor.md,审计报告,第1–8章数学严格性核验：编号3.30双重类型、约定5.2把推导写成约定，判部分通过,否,是,2,完整,,read-02.csv
+422,_theory\verify\v-usability.md,审计报告,八章理论文档可用性核验：判不通过，互引失效/假设总账矛盾/无经验预测,否,是,1,完整,,read-04.csv
+423,_work\analysis-interaction.md,过程产物,32轮对话画像：杠杆式问答、命题式提问、纠正集中在层级错位,否,是,2,片段,1,read-08.csv
+424,_work\angles\aesthetics.md,审计报告,玄学与哲学语义层：同构/类比/修辞三分与总判断,否,是,1,完整,,read-05.csv
+425,_work\angles\concepts.md,审计报告,按32轮梳理概念：四元概念只有对象有专属主语，规则层由算力逼出,否,否,0,完整,,read-07.csv
+426,_work\angles\engineering.md,审计报告,工程实现方案角度分析：v1–v4 三代方案、v3 四条致命结构缺陷与用户否定的实体内容,否,是,1,完整,,read-04.csv
+427,_work\angles\evolution.md,审计报告,理论演化脉络：三次本体论转向、分水岭与推断,否,是,1,完整,,read-05.csv
+428,_work\angles\final.md,审计报告,终局框架分析：无需公理立场成立与否及构造体系代价,否,是,1,完整,,read-05.csv
+429,_work\angles\gap.md,审计报告,未解决问题与空白角度分析：四类致命缺口、四类严重缺口与构造实例为零,否,是,3,完整,,read-04.csv
+430,_work\angles\math.md,审计报告,数学与形式化基础角度分析：六分支成色、FCA 升格为用户指派、装饰性数学,否,是,1,完整,,read-04.csv
+431,_work\angles\methodology.md,审计报告,Lean4 路线之争分析：第 22–23 轮还原，顺序命题与完备性命题分层评估,否,是,3,完整,,read-04.csv
+432,_work\angles\rules.md,审计报告,评估规则层：抽象非压缩、依赖性含混、FCA使命未兑现,否,是,1,完整,,read-05.csv
+433,_work\angles\style.md,审计报告,对话特征与用户画像：纠正梯度与形式化阶梯,否,否,0,完整,,read-05.csv
+434,_work\checks\completeness.md,审计报告,整理稿完整性终检：18必备章节中6块空白或不足,否,是,1,完整,,read-05.csv
+435,_work\checks\consistency.md,审计报告,跨角度一致性检查：十份角度稿之间的 12 处分歧与误引、对象偷换、口径问题,否,是,3,完整,,read-04.csv
+436,_work\checks\counter-a.md,审计报告,对抗质疑理论价值：重新打包指控的成立与越界,否,是,1,完整,,read-05.csv
+437,_work\checks\counter-b.md,审计报告,以最严厉批评者立场核验「可操作性」质疑，判部分通过并写 6 条更正,否,是,4,完整,更正段落 6 条，置信度中并列出四点降级理由,read-06.csv
+438,_work\checks\fact-causal.md,审计报告,因果推断事实核查：do-calculus误称公理系统等七条更正,否,是,3,完整,,read-05.csv
+439,_work\checks\fact-fca.md,审计报告,FCA与Causal FCA事实核查：漏Ganter、Bazin归属存疑、fcaR无因果功能，不通过,否,是,3,完整,,read-02.csv
+440,_work\checks\fact-mathlib.md,审计报告,Lean4与Mathlib现状核查：Galois覆盖评估与九问更正,否,是,3,完整,,read-05.csv
+441,_work\checks\gap-check.md,审计报告,缺口完整性检查：gap.md主体可采信但漏7项，13–14轮定性过轻,否,否,0,完整,,read-07.csv
+442,_work\checks\logic-a.md,审计报告,逻辑一致性核验上：四稿失实引用与三命题的逻辑缺陷,否,是,3,完整,,read-04.csv
+443,_work\checks\logic-b.md,审计报告,逻辑一致性核验（下）：第 30–32 轮定性、对照表无对照组、构造体系自我否证,否,否,0,完整,,read-04.csv
+444,_work\concept-map.md,审计报告,按32轮梳理核心概念体系：三次范畴修正、四元概念、FCA升格与总公式考古,否,是,4,完整,角度分析稿，含多处概念判裁,read-07.csv
+445,_work\dep-audit\AGENTS.md,配置说明,Codex项目指南：读CLAUDE.md、完成前须验证与CausalSmith运行目录约定,否,否,0,完整,外仓库指南,read-17.csv
+446,_work\dep-audit\README.md,配置说明,CausalSmith仓库README：因果形式化库与定理流水线用法,否,否,0,完整,,read-05.csv
+447,_work\dep-audit\REPORT-PO-Discovery-ML-Mathlib.md,审计报告,Causalean依赖审计：PO/Discovery/ML/Mathlib四簇声明的空壳核查,否,是,1,完整,英文报告；实测Discovery簇零结构学习算法，四簇sorry/axiom全为0,read-01.csv
+448,_work\dep-audit\REPORT-Stat-Estimation-Panel-Experimentation.md,审计报告,CausalSmith四簇1464个Lean文件依赖审计：定理诚实性与缺失主题,否,否,0,完整,英文；覆盖100%,read-02.csv
+449,_work\dep-audit\export\src\Causalean\Stat\Concentration\UPSTREAM.md,配置说明,Stat/Concentration的vendoring审计链：上游pin、文件对照与移植政策,否,否,0,完整,,read-17.csv
+450,_work\dep-audit\export\src\third_party\lean-rademacher\README.md,配置说明,vendored lean-rademacher的README：来源勘验、内容清单与运行说明,否,否,0,片段,首行加vendor声明，其余为上游原文,read-17.csv
+451,_work\dep-audit\export\src\third_party\lean-rademacher\UPSTREAM.md,配置说明,lean-rademacher（FoML）vendored依赖的上游来源、改编原因与同步方式,否,否,0,完整,,read-18.csv
+452,_work\dep-audit\export\src\third_party\lean-rademacher\doc\rademacher-dependency20260220.md,转储导出,lean-rademacher依赖的mermaid图机器导出，缺闭合围栏且第46行后为空,否,否,0,截断,仅含mermaid代码块，导出被切断,read-18.csv
+453,_work\dep-audit\export\src\third_party\optlib\UPSTREAM.md,配置说明,optlib（KKT/LICQ）vendored依赖的上游来源、只带KKT依赖闭包与漂移修复,否,否,0,完整,,read-18.csv
+454,_work\dep-audit\meta\README.md,配置说明,CausalSmith仓库README：两包结构、流水线三步使用、构建缓存、检索工具与文档规范,否,否,0,完整,UTF-16编码；英文,read-02.csv
+455,_work\dep-audit\meta\doc__API.md,转储导出,Causalean Lean4 证明库 doc/API.md 的机器导出（5603 条声明表）,是,否,0,截断,UTF-16LE。即 Causalean 库 doc/API.md 的导出物，非手写。第 1 行自带 Warning: truncated output (original token count: 551782)、第 2 行 ... 1158551 bytes omitted ...，手写章首说明被抛掉约一半；第 4 行起 433 个 Markdown 标题（1/146/267/19 四级）、999 个 <!-- GEN:模块名 --> 自动生成块、5603 行 | Decl | Signature | Description | 声明表、75 处 (no documented declarations)。覆盖 Mathlib/Analysis·Probability·Combinatorics、Graph/(DAG·DSep·SWIG·MarkovEquiv)、SCM/(Model·Do·ID·PartialID·Examples)、PO/、Stat/、Estimation/、Discovery/、Tactic/ 共 146 个 L-/L0-L9 主题。纯 API 目录，无理论裁决，故含推翻陈述=否。,read-BIG.csv
+456,_work\dep-audit\meta\doc__TACTICS.md,配置说明,Causalean证明自动化说明：fun_prop标记纪律与simp集,否,否,1,完整,,read-05.csv
+457,_work\summary\turn-01.md,过程产物,第1轮分析：命运=命×运、八词释义与「认/转/选」三分类,否,否,0,完整,,read-17.csv
+458,_work\summary\turn-02.md,过程产物,第2轮分析：《命运坐标图》，命运=命×运×选择与四象限策略,否,否,0,完整,,read-17.csv
+459,_work\summary\turn-03.md,过程产物,第3轮整理：因果编织命运，因果五环与三原则，命运=因果链在命运坐标上的投影,是,否,0,完整,,read-13.csv
+460,_work\summary\turn-04.md,过程产物,第 4 轮会话整理：把「因果」从前几轮因缘果报语义收窄为科学因果,否,否,0,完整,,read-15.csv
+461,_work\summary\turn-05.md,过程产物,"第5轮会话分析：命与运从人剥离，抽象为任何系统的内在约束与外缘，命运=f(命,运,…)",是,否,0,完整,,read-16.csv
+462,_work\summary\turn-06.md,过程产物,第6轮：用户指出因果被丢失，理论改为命运因果互含的四概念同一网络,部分,是,1,完整,,read-11.csv
+463,_work\summary\turn-07.md,过程产物,第 7 轮会话整理：命运是对象层描述、因果是关系层描述，二者不同层,否,否,0,完整,,read-15.csv
+464,_work\summary\turn-08.md,过程产物,第8轮会话分析：改用学术语言，以状态转移方程、SCM与轨迹投影π_O刻画命运与因果,是,否,0,完整,,read-16.csv
+465,_work\summary\turn-09.md,过程产物,第9轮会话分析：以状态转移方程、慢变量θ、外生扰动与SCM刻画命、运、命运、因果,是,否,0,完整,,read-16.csv
+466,_work\summary\turn-10.md,过程产物,第10轮会话整理：不能硬算须抽象规则，规则具时效性/局部性/依赖性,是,否,0,完整,,read-12.csv
+467,_work\summary\turn-11.md,过程产物,第11轮整理：物理规律亦是局部时效依赖的压缩规则，为底层因果的有效描述,部分,否,0,完整,,read-13.csv
+468,_work\summary\turn-12.md,过程产物,第12轮整理：数学为规则空间生成语法，完备集拆三层，硬算需超限算力,部分,否,0,完整,,read-13.csv
+469,_work\summary\turn-13.md,过程产物,第 13 轮会话整理：检索可复用的现成因果/规则/预测组件，结论无完整可抄系统,否,否,0,完整,,read-15.csv
+470,_work\summary\turn-14.md,过程产物,第14轮会话分析：承认上轮把该领域说成真空是误解，否认真空并给出组件映射与组合路线,部分,否,0,完整,,read-16.csv
+471,_work\summary\turn-15.md,过程产物,第15轮会话整理：玄学→科学统一总纲、四核心命题与规则三属性、七层预测架构,是,否,0,完整,4M长度未达成，仅总纲+主卷,read-12.csv
+472,_work\summary\turn-16.md,过程产物,第16轮整理：卷I玄学语义全谱系，各体系映射到状态空间/规则/随机采样八要素,部分,否,0,完整,,read-13.csv
+473,_work\summary\turn-17.md,过程产物,第17轮会话整理：卷II哲学与宿命论史，各体系三重映射,是,否,0,完整,,read-12.csv
+474,_work\summary\turn-18.md,过程产物,第18轮摘要：产出卷III因果推断14章；用户仅说「下一卷」未作纠正,部分,是,1,完整,,read-11.csv
+475,_work\summary\turn-19.md,过程产物,第19轮整理：卷IV动力系统与随机过程，命运即轨迹，命=参数运=扰动因果=机制,部分,否,0,完整,,read-13.csv
+476,_work\summary\turn-20.md,过程产物,第 20 轮会话整理：交付卷 V「规则学习与神经符号」，含规则形式化与八类方法,否,否,0,完整,,read-15.csv
+477,_work\summary\turn-21.md,过程产物,第21轮整理：卷VI预测系统工程实现，十层架构与七条设计原则（因果优先），未纠正,部分,否,0,完整,,read-13.csv
+478,_work\summary\turn-22.md,过程产物,会话第22轮整理：承认工程方案跑不通，因果发现与SCM不应作预测前置层，给四方案,部分,是,3,完整,,read-14.csv
+479,_work\summary\turn-23.md,过程产物,第23轮整理：用户质疑跳步做工程，承认须先证条件定理、显式列假设、分层误差界,部分,否,0,完整,,read-13.csv
+480,_work\summary\turn-24.md,过程产物,第24轮会话分析：FCA概念格与蕴含规则用于因果发现，含Causal FCA、边定向与工具现状,部分,否,0,完整,,read-16.csv
+481,_work\summary\turn-25.md,过程产物,第25轮六层总骨架重捋，列22条“不顺的点”,是,否,0,完整,,read-12.csv
+482,_work\summary\turn-26.md,过程产物,第26轮整理：FCA升格为核心组成与规则层数学骨架，因果发现到SCM的桥,部分,否,0,完整,,read-13.csv
+483,_work\summary\turn-27.md,过程产物,第27轮摘要：以FCA作规则层数学骨架重理六层，列21条遗留问题,部分,是,1,完整,,read-11.csv
+484,_work\summary\turn-28.md,过程产物,第28轮分析：规则层由「因果的压缩」改为「抽象」，给抽象算子α,部分,是,1,完整,,read-17.csv
+485,_work\summary\turn-29.md,过程产物,第 29 轮会话整理：「规则不是因果的压缩，而是因果模式的抽象」,否,否,0,完整,,read-15.csv
+486,_work\summary\turn-30.md,过程产物,第30轮会话分析：把「命运」框架定性为大规模预测理论，给出三层规模化与九维对照,是,否,0,完整,,read-16.csv
+487,_work\summary\turn-31.md,过程产物,第31轮整理：把框架当数学工具的八项标准、最简形式（对象/算子/公理/定理）与MVP,是,否,0,完整,,read-13.csv
+488,_work\summary\turn-32.md,过程产物,第32轮：作者否决公理化，框架改定位为构造体系与六层结构,部分,是,1,完整,,read-11.csv
+489,_work\turns\turn-01.md,过程产物,第1轮会话原文：用户给出命/运八词定义，助手定为命×运、坐标为命纵运横,是,否,0,完整,,read-13.csv
+490,_work\turns\turn-02.md,设计源,第2轮对话原文：命运坐标图，命为纵轴运为横轴选择为原点，含四象限,是,否,0,完整,含完整思维链,read-07.csv
+491,_work\turns\turn-03.md,过程产物,第3轮：因果五环、命运=因果链投影、四象限策略与因果三原则,否,是,1,完整,,read-08.csv
+492,_work\turns\turn-04.md,过程产物,第4轮：按用户澄清改写为科学因果版命运框架,否,是,2,完整,,read-08.csv
+493,_work\turns\turn-05.md,过程产物,"第5轮会话：命/运脱钩人抽象到任意系统，命运=f(命,运,干预,噪声)",部分,否,0,完整,,read-17.csv
+494,_work\turns\turn-06.md,设计源,第6轮对话原文：补回因果，给出四概念、互相包含与状态转移方程,是,否,0,完整,含完整思维链；正文有乱码字符,read-07.csv
+495,_work\turns\turn-07.md,过程产物,第7轮对话：命运是对象层描述、因果是关系层描述；命运由因果构成的区分,否,是,2,完整,,read-09.csv
+496,_work\turns\turn-08.md,过程产物,第8轮会话：改用学术语言重述命/运/命运与因果的形式化框架,是,是,1,完整,,read-17.csv
+497,_work\turns\turn-09.md,过程产物,第9轮对话：世界=状态转移系统、命=慢参数、运=外生扰动、因果=转移核,是,否,0,完整,正文第50行有乱码字符（前向预测）,read-12.csv
+498,_work\turns\turn-10.md,过程产物,第 10 轮对话：规则须抽象而非硬算，含规则的时效性/局部性/依赖性与泛化,部分,是,2,完整,,read-10.csv
+499,_work\turns\turn-11.md,过程产物,第 11 轮对话：物理规律亦为有限计算主体的有效压缩规则,部分,是,1,完整,,read-10.csv
+500,_work\turns\turn-12.md,过程产物,第12轮对话：数学作为规则空间的生成语法，完备集需超限算力，映射回命运框架,否,否,0,完整,,read-09.csv
+501,_work\turns\turn-13.md,过程产物,第13轮：检索现有工作，建议SCM做因果、规则学习做压缩、预测模型外推,否,否,0,片段,会话导出：含思维链与工具调用记录,read-11.csv
+502,_work\turns\turn-14.md,过程产物,第14轮会话：命运各组件与因果发现/SCM/规则学习的对应映射,否,否,0,完整,,read-17.csv
+503,_work\turns\turn-15.md,转储导出,第 15 轮会话原文（用户提问/助手回复/思维链/工具记录的机器导出）,否,是,3,完整,内容为该轮对话的规范化转储，含思维链,read-04.csv
+504,_work\turns\turn-16.md,过程产物,第 16 轮会话原文：输出卷 I 玄学语义全谱系与统一映射表,是,是,1,完整,含用户提问、助手回复、思维链与工具调用记录,read-06.csv
+505,_work\turns\turn-17.md,设计源,卷II哲学宿命论史：16体系映射表与统一状态转移公式,是,否,0,片段,单轮会话产出整卷，附思维链；文件头标「包含轮次：20」,read-08.csv
+506,_work\turns\turn-18.md,设计源,第18轮卷III：因果推断数学基础，从概率图模型到反事实与效应估计,是,否,0,完整,属六卷大扩写，非设计裁决,read-07.csv
+507,_work\turns\turn-19.md,版本副本,第 19 轮会话原文，与 source/D 同一卷的略有差异副本,是,是,1,完整,与 _theory/source/D-动力系统与随机过程.md 高度相似（差 2 行）,read-06.csv
+508,_work\turns\turn-20.md,版本副本,第20轮卷V规则学习原文，与398逐字同源仅首尾不同,是,否,0,完整,与398 E-规则学习.md 相似度0.98，逐字同源，仅首尾行不同；398为加壳归档版,read-08.csv
+509,_work\turns\turn-21.md,过程产物,第21轮对话记录，助手输出卷VI预测系统工程实现：十三层架构与部署运维,否,是,1,完整,,read-03.csv
+510,_work\turns\turn-22.md,过程产物,第22轮：判定因果发现到预测的工程链路不成立，给四条更务实替代路径,否,是,2,片段,会话导出：含思维链,read-11.csv
+511,_work\turns\turn-23.md,过程产物,第23轮对话：应先Lean4+Mathlib证完理论再实现工程；结论是原则上对但现实中只能局部做,否,是,2,完整,,read-09.csv
+512,_work\turns\turn-24.md,过程产物,第24轮会话原文：FCA在因果发现的成熟应用（fcaR公平优势比、Causal FCA、边定向）,是,否,0,完整,,read-13.csv
+513,_work\turns\turn-25.md,过程产物,第25轮：重理六层大框架并列出22个不顺点，三个最不顺,否,否,0,完整,,read-08.csv
+514,_work\turns\turn-26.md,过程产物,第 26 轮对话：FCA 提升为核心组成，作为因果发现到 SCM 的桥,部分,是,2,完整,,read-10.csv
+515,_work\turns\turn-27.md,设计源,第27轮卷：以FCA为核心的数学重写，六层骨架与21条不顺点,是,否,0,完整,按用户要求重写，非设计裁决,read-07.csv
+516,_work\turns\turn-28.md,设计源,规则是实例的抽象而非因果的压缩：抽象算子α、抽象层级、抽象vs泛化、FCA为抽象框架,是,否,0,完整,,read-13.csv
+517,_work\turns\turn-29.md,转储导出,会话第29轮导出：规则与因果同层，都是实例的抽象，非压缩,部分,是,3,完整,,read-14.csv
+518,_work\turns\turn-30.md,转储导出,会话第30轮导出：这是大规模预测理论，对象/层次/时间三种规模化，因果是中间层,部分,是,3,完整,,read-14.csv
+519,_work\turns\turn-31.md,过程产物,第31轮会话原文：数学工具八标准、核心对象算子公理定理、MVP与工具对比,是,否,0,完整,,read-13.csv
+520,_work\turns\turn-32.md,转储导出,会话第32轮导出：这是构造体系而非公理化体系，需定义、构造规则而非公理,部分,是,2,完整,,read-14.csv
+521,_审计R669-偏移自查.md,审计报告,R669偏移自查：6条硬要求3✅2🟡1❌，5条指令0.5✅1.5🟡3❌，33条定理真调用0条,否,是,1,完整,,read-03.csv
+522,analysis-metaphysics-philosophy.md,审计报告,玄学与哲学语义层评估：多数映射是类比或修辞，部分属结构性失真,否,是,2,完整,,read-07.csv
+523,deepseek_share_zoxy4m7w0ajiam6af8.md,转储导出,DeepSeek 分享会话导出：32 轮问答全文，即命运理论最初 32 条需求,否,是,7,完整,DeepSeek 会话分享页 /api/v0/share/content 导出，非手写。32 轮用户发言 + 32 轮助手回复（文首自述消息总数 64），2026-09-24 至 10-01 抓取。每轮含 <details> 思维链全文与联网搜索片段，未删减。这是全项目最上游的原始语料：用户 32 轮发言即理论的第一手需求。,read-BIG.csv
+524,proof-engineering\00-总纲.md,版本副本,证明路线总纲（与序号767同一文档的另一版本，仅相对链接不同）,是,是,2,完整,疑似对应序号767《证明路线/00-总纲.md》,read-11.csv
+525,proof-engineering\engine\README.md,配置说明,工程实现路线待启动：原文工程卷不作基座、启动条件与原型定位,是,是,2,完整,,read-17.csv
+526,proof-engineering\proof\00-路线图.md,版本副本,与1312同文：证明路线路线图，路径为proof/00-路线图的旧版,是,是,2,完整,与序号1312内容高度相似（872行中共同533行），仅链接路径不同；对应1312（命运理论-成品/02-证明路线/01-路线图.md）,read-01.csv
+527,proof-engineering\proof\01-定理清单.md,版本副本,与1313同文：证明路线定理清单，路径为proof/01-定理清单的旧版,是,是,2,完整,与序号1313内容高度相似（698行中共同467行），仅上游链接路径不同；对应1313（命运理论-成品/02-证明路线/02-定理清单.md）,read-01.csv
+528,proof-engineering\proof\02-Mathlib缺口.md,版本副本,与1314同文：Mathlib缺口与自建库，proof/02-Mathlib缺口的旧版,是,是,2,完整,与序号1314高度相似（688行对708行，共同448行），缺文首第380轮修正段；对应1314,read-01.csv
+529,proof-engineering\proof\03-假设登记.md,版本副本,假设登记总账（proof-engineering路径版）：A1–A34与E1–E16登记,是,否,0,完整,与序号1315内容高度相似（diff比0.98，差异仅链接路径）,read-02.csv
+530,proof-engineering\proof\04-误差界路线.md,版本副本,与1316同文：误差界路线，路径为proof/04-误差界路线的旧版,是,是,2,完整,与序号1316内容高度相似（516行中共同316行），仅上游链接路径不同；对应1316,read-01.csv
+531,proof-engineering\proof\05-原型实验.md,版本副本,原型实验设计（proof-engineering路径版，与1317同文）,是,是,1,完整,与序号1317内容高度相似，diff比0.978,read-02.csv
+532,proof-engineering\proof\修订记录-裁决C.md,过程产物,作者裁决C的跨文件修订台账：117处修订、裁决条目到落实位置对照,否,否,0,完整,,read-02.csv
+533,proof-engineering\ref\依赖-Causalean.md,配置说明,外部依赖档案·Causalean：改名、规模、覆盖度比对与八问对抗性审查,否,是,2,完整,"含三个重大更正（改名/声明数15,821/四版本）与覆盖度18项评级9/4/5",read-01.csv
+534,proof-engineering\ref\复核-Causalean核实.md,审计报告,同一份 Causalean 复核记录的 proof-engineering 副本，结论一致,部分,是,2,完整,与序号 1327 内容几乎逐字相同（仅末节链接由 04-跨库版本对齐风险.md 改为 跨库版本对齐风险.md）,read-15.csv
+535,proof-engineering\ref\文献索引.md,版本副本,文献索引的另一版本，B/copyleft批次结论相同而第三批Causalean审查更全,否,是,2,完整,与序号1330正文系统重合（与成品目录版逐行相同），仅第三批对抗性审查段更详,read-03.csv
+536,proof-engineering\ref\文献调研-第一批.md,转储导出,文献调研第一批：Causalean 已存在且覆盖6个自建库，版本已升到v4,部分,否,0,完整,标题称“重大发现”，含论文/仓库二手转述,read-12.csv
+537,proof-engineering\ref\缺口复用调研.md,审计报告,对8个理论缺口的现成形式化项目做联网复用调研，逐项给出可复用程度与未能确认项,否,否,0,完整,,read-03.csv
+538,proof-engineering\ref\跨库版本对齐风险.md,审计报告,跨库版本对齐风险：Mathlib与Causalean/SLT各锚一版本，无法共存作依赖,部分,否,0,完整,,read-16.csv
+539,proof-engineering\verify\构建验证-未完成.md,审计报告,构建验证未完成（环境受限）：github不可达、codeload不支持续传，未完成任何准入门槛,部分,否,0,完整,,read-13.csv
+540,proof-engineering\作者裁决C-最彻底.md,设计源,作者裁决C：一切按最彻底做，撤销降级移出，裁A33/A34与α=FCA取概念,是,是,4,完整,,read-17.csv
+541,proof-engineering\作者裁决G-依赖规程.md,设计源,作者裁决G：外部依赖规程，四份强制文档与对抗性审查八问,是,是,2,完整,,read-17.csv
+542,proof-engineering\作者裁决H-lattice搁置.md,设计源,作者裁决H：lattice暂时搁置当没有，FCA按需自建处理,是,是,1,完整,,read-17.csv
+543,session-digest.md,过程产物,会话整理稿：32轮五阶段脉络、用户驱动命题与核验发现的六类错误,否,是,2,完整,汇总稿，结论引用核验稿,read-07.csv
+544,theory-v2\00-导读.md,版本副本,命运理论总导读v2.0（与1309同源，缺第380轮推翻标注）,否,是,1,完整,,read-05.csv
+546,theory\00-导读.md,配置说明,理论文档总导读：四元定义、十条核心命题、阅读路径与修订总表,否,是,3,完整,,read-04.csv
+548,theory\20-命运理论-标注版.md,设计源,《命运》理论标注版：79 个批注记录 155 项修正（原文/问题/处理/依据）,是,是,20,片段,从更大文档剪出：非净版增补，而是正文节选（51 处〔照录〕+ 79 个【批注 N】块 + 修正总表）。实测 983 条长行在净版 10-命运理论-净版.md 中找不到同文，净版含【批注】0 次、〔照录〕0 次，故两份不可互推。批注号 0-A/0-B/0-C 与 1–61（缺 62 后编号按主题重编）。另含自承的交付事故：ch6 曾被覆盖为 61 字节占位后重建、_theory/contract.md 曾不存在（5 处独立记录）、g-rules/g-effects 两项编入决定 0 执行。,read-BIG.csv
+549,命运-实现\00-签名冻结.md,配置说明,签名冻结 SIG-0.1.0：工具链/Mathlib commit/文件哈希清单与九次增量版本说明,否,是,3,完整,,read-04.csv
+550,命运-实现\Alpha架构-两层与映射策略.md,设计源,α 两层架构：第一层 FCA 蕴含抽取、第二层三种映射策略与可替换性契约,是,是,3,完整,,read-10.csv
+551,命运-实现\BRANCHING.md,版本副本,分支约定：服务器dev开发、本地main稳定，含tag命名（无回滚节）,部分,否,0,完整,与序号647 BRANCHING.md高度相似，647为其增补版（多「回滚」节）,read-18.csv
+552,命运-实现\BlockLayer闭包的技术前提.md,设计源,BlockLayer闭包幂等须sSup取到，故需Fintype C或嵌入PatStruct,是,是,1,完整,,read-17.csv
+553,命运-实现\C1-缺口定位报告.md,审计报告,C1 缺口定位：一般 DAG 的 dSep⟹CondIndep 缺口精确化，Z'=Z 版本被证伪,部分,是,2,完整,,read-15.csv
+554,命运-实现\C1攻坚进展.md,过程产物,C1攻坚进展：A1pa∩nd=∅被证伪（真相是pa⊆nd），给正确替代并登记各目标状态,部分,是,3,完整,,read-14.csv
+555,命运-实现\C4-A23处置.md,审计报告,C4：A23外生变量可识别的处置，定性从不可证改为一般情形不成立并划子类,部分,是,2,完整,,read-11.csv
+556,命运-实现\C5-A14估计分支三档.md,设计源,A14 估计分支三档（强/中/弱）：对应 LawRule 三种输出形态,是,否,0,完整,,read-12.csv
+557,命运-实现\CFLatticeGen完成报告.md,过程产物,CFLatticeGen完成报告：G1–G5落地，Finer不是偏序故须取商，最大元与完备格成立,部分,是,4,完整,,read-14.csv
+558,命运-实现\CFLatticeGen最终报告.md,过程产物,CFLatticeGen 最终报告：G1–G5 完成，三处推翻主控直觉,部分,是,1,完整,,read-12.csv
+559,命运-实现\FCA-副本-v2\03-规格与工具\FCA-LAYERING.md,设计源,FCA层定位分层：A层11模块可独立；P2-1决断不做,是,是,3,完整,,read-05.csv
+560,命运-实现\FCA-副本-v2\04-哲学依据\FCA不完整性-对照哲学原文.md,审计报告,FCA 不完整性对照「时态性层级体系」原文的逐条款核对（对象层已形式化、元层几未触及）,否,否,0,完整,文件头已自认「元层 0%」判断有误，正文未同步改写,read-04.csv
+561,命运-实现\FCA-副本-v2\04-哲学依据\FCA作为子项目的落地方案.md,设计源,FCA作为子项目的落地方案：零代码改动立边界、五动作清单、隔离检查器,是,是,2,完整,,read-09.csv
+562,命运-实现\FCA-副本-v2\04-哲学依据\FCA的拓展与补足.md,设计源,以时态性层级体系为蓝本提五层补全：目光、要素、纤维与规范形,是,否,0,完整,设计提案，未在 LATTICE 实施,read-06.csv
+563,命运-实现\FCA-副本-v2\04-哲学依据\FCA能否独立成子项目.md,审计报告,FCA可独立成子项目：A层11模块3162行零耦合，B层2203行耦合转换层,否,否,0,完整,,read-08.csv
+564,命运-实现\FCA-副本-v2\04-哲学依据\FCA重诊断-以时态性层级体系为参照.md,审计报告,FCA重诊断：以时态性层级体系为参照，FCA跳过要素层,否,是,1,完整,,read-07.csv
+565,命运-实现\FCA-副本-v2\04-哲学依据\原始思想-时态性层级体系.md,设计源,FCA 格原始思想：时态性层级体系（论域/要素/概念、目光机制、构成法则）,是,是,2,完整,,read-10.csv
+566,命运-实现\FCA-副本-v2\04-哲学依据\更正-DIVERGENCES已存在.md,审计报告,更正上份报告：DIVERGENCES.md早已登记体系边界，重犯查不到≠不存在,否,是,5,完整,6,read-08.csv
+567,命运-实现\FCA-副本-v2\05-专项报告\EXEC-A3-FCA改名方案核验.md,审计报告,只读核验 4 条 FCA 改名：行号、0 命中、引用点 11 处、exit 0 无实证,否,是,2,完整,修正三期10 的「12 处」为 11 处,read-06.csv
+568,命运-实现\FCA-副本-v2\05-专项报告\EXEC-C2-FCA改名实测.md,过程产物,走锁实测复现 extent_iInter_subset 撞名，内核证 4 个新名未占用,否,是,1,完整,把 PL10 的「对称」精确化为「对称地失败」,read-06.csv
+569,命运-实现\FCA-副本-v2\05-专项报告\EXEC-H4-FCA改名执行.md,审计报告,FCA四条改名执行说明书：15处精确diff、执行顺序、回滚与双向验收判据,否,是,1,完整,,read-03.csv
+570,命运-实现\FCA-副本-v2\05-专项报告\EXEC-W4-攻FCA独立成库.md,过程产物,EXEC-W4攻FCA独立成库：11处改名消除撞名、写入K-06双向定理；走锁编译未完成,否,是,2,完整,,read-09.csv
+571,命运-实现\FCA-副本-v2\05-专项报告\P19-FCA专篇.md,设计源,P19 FCA专篇：FCA形式化的独立论文，含基本构造、概念格代数、独立用途,是,是,3,完整,属LATTICE项目FCA层；§3.3记录项目自我更正3条假命题（GLB/LUB、extent_iInter、左右伴随对调）,read-01.csv
+572,命运-实现\FCA-副本-v2\05-专项报告\P20-FCA概念格代数与对偶.md,设计源,P20 FCA概念格代数与对偶：闭包算子格、完备性、Galois对偶与三类推广,是,是,0,完整,含附录A定理清单（证明强度与公理依赖）、附录B探针方法；§6登记「可独立成库」的例外,read-01.csv
+573,命运-实现\FCA-副本-v2\05-专项报告\P21-FCA应用与蕴含基.md,设计源,P21 FCA应用侧：蕴含基性质、要素层、实例化、语法桥与抽象可靠性,是,是,1,完整,文中夹带「要点/注意/待定」置信度标记；核验记录来自内核输出,read-01.csv
+574,命运-实现\FCA-副本-v2\05-专项报告\PL10-FCA独立成库专项.md,审计报告,FCA独立成库规划：须先翻案已结案的否定结论，两对同名冲突处置方式不同,否,是,2,完整,,read-03.csv
+575,命运-实现\FCA-副本-v2\05-专项报告\三期10-FCA翻案门与改名.md,审计报告,FCA翻案门与两侧改名实施：翻案门为硬前置、4条定理改名、fcaClosure真重复,否,是,3,完整,标注为「实施文书」，实际只读核验,read-02.csv
+576,命运-实现\FCA-副本-v2\05-专项报告\新方向E-FCA独立价值延伸.md,审计报告,FCA独立成库的价值与缺口核验：翻案门为硬前置、mathlib已有FCA文件、缺算法骨架,否,是,3,完整,,read-02.csv
+577,命运-实现\FCA-副本-v2\05-专项报告\深化E1-FCA算法化三块.md,审计报告,深化E1：FCA算法化三块载体（Finset/Decidable·伪内涵·DG基）可行性核验,否,是,2,完整,只读核验产物；核心发现FCA层构造性使用全0，三块均为(b)成本问题而非基建缺口,read-01.csv
+578,命运-实现\FCA-副本-v2\05-专项报告\深化E3-trilattice与三元FCA.md,设计源,trilattice与三元FCA形式化规划：5层结构定义、削弱定义恢复条件C3、T1–T5波次,是,是,2,完整,,read-02.csv
+579,命运-实现\FCA-副本-v2\README.md,配置说明,FCA资料副本v2说明：按分层规格重建，含A/B层、传递依赖、哲学依据与已知问题,部分,是,2,完整,,read-14.csv
+594,命运-实现\FCA-副本\README.md,配置说明,FCA资料只读副本索引：源码/规格/哲学依据/专项报告四类目录,否,否,0,完整,,read-17.csv
+595,命运-实现\F项进展-R3.md,过程产物,F 项第 3 轮进展：R4 已完成；α 惰性已修正；伪度量下等价定理待拆,部分,是,3,完整,,read-15.csv
+596,命运-实现\MVFCA-第二次实测与根因.md,审计报告,多值FCA第二次实测0/45合格，根因为真值度格闭集是filter不局部化，提出区间格+软合并候选,部分,否,0,完整,,read-16.csv
+597,命运-实现\O1-误差量纲抽象.md,设计源,O1误差量纲：把裁决K抽象为「误差与噪声尺度同阶」，统一判据形式而非量纲，三档,是,否,0,完整,,read-13.csv
+598,命运-实现\O2-局部域即读集.md,设计源,O2 局部域即读集：局部域=规则依赖的情境，循环消失，AlphaOutput 改读集,是,否,0,完整,,read-12.csv
+599,命运-实现\O4-降级即未证项记录.md,设计源,O4降级重定位：降级=未证项记录而非运行时模式，UnprovenRecord结构与refuted区分,是,是,1,完整,,read-13.csv
+600,命运-实现\O7-世界模型完整规格.md,设计源,依作者澄清重定世界模型规格：规则全参与按需激活、干预经模拟、场景树与策略,是,是,3,完整,,read-14.csv
+601,命运-实现\P0落地报告.md,过程产物,P0落地：裁决O抽象–解构循环形式化为闭包算子，4定义4定理（含收敛定理）,部分,否,0,完整,,read-13.csv
+602,命运-实现\P10文献调研.md,审计报告,P10 文献调研：找到 graded 属性蕴含与非冗余 DG 基文献，给 R-031 结论加限定,部分,是,1,完整,,read-15.csv
+603,命运-实现\P1P2落地报告.md,过程产物,P1/P2 落地：FCA 成 ClosureOperator 实例，循环判据存在缝隙,部分,是,2,完整,,read-15.csv
+604,命运-实现\P3落地报告.md,过程产物,"P3落地：τ经tauOf由α,n,σx,tCrit算出，ShouldStopAt在类型层消除硬编码",部分,是,2,完整,,read-16.csv
+605,命运-实现\P3补充-硬编码消除报告.md,过程产物,P3 补充：把硬编码阈值 2.0 改为由 α 与 n 推导的 τ，判对率 10/16→10/10,部分,是,2,完整,,read-15.csv
+606,命运-实现\P4P5落地报告.md,过程产物,P4/P5 落地：Rule 纤维刻画与悬置作用 TemporalAction 代数化,部分,否,0,完整,,read-15.csv
+607,命运-实现\P6清理报告.md,审计报告,P6清理：删除同义反复dgbasis_complete并说明前件即完备性,部分,是,1,完整,,read-17.csv
+608,命运-实现\Q3消解与Obs研究.md,过程产物,Q-3消解：抽象等价关系取α的核，RespectsEquiv由条件变定理；Obs澄清为参数化读出,部分,是,3,完整,,read-14.csv
+609,命运-实现\R13-R134-最终收口报告.md,过程产物,R13–R134 收口报告：桥层级、12 条负结果、幽灵定理账目与失误清单,部分,是,3,完整,,read-10.csv
+610,命运-实现\R13-R152-最终收口报告.md,过程产物,R13–R152最终收口：13条形式化负结果、9处真实数学错误与本会话19条失误,部分,是,4,完整,,read-11.csv
+611,命运-实现\R13-R168-最终报告.md,过程产物,R13–R168 报告：factorizes 不蕴含 LMG 的负结果与 sink_peel 诊断,部分,是,5,完整,,read-10.csv
+612,命运-实现\R13-R190-最终报告.md,过程产物,R13–R190 会话报告：三条核心负结果、桥四层、13 处错误与工程教训,部分,是,4,完整,,read-10.csv
+613,命运-实现\R13-R193-临时收尾报告.md,过程产物,R13–R193临时收尾：13处数学错误、13条负结果、幽灵定理14/21；16轮重建已有工具的教训,否,是,3,完整,,read-09.csv
+614,命运-实现\R3R4完成报告.md,过程产物,R3R4报告：三处修复落地；obsOnQuotBy_injective_iff泛化被反例推翻,部分,是,2,完整,,read-11.csv
+615,命运-实现\T1-裁决材料.md,审计报告,T-1 裁决材料：验证学习退化问题，结论是只须文档声明无需改定理,部分,是,3,完整,,read-15.csv
+616,命运-实现\_bak-before-overwrite-1712\Fate\MVFCAtoLawRule.md,设计源,多值形式背景到LawRule类型级映射草案：三段管道与κ缺口,是,是,2,完整,,read-05.csv
+617,命运-实现\_bak-before-overwrite-1712\Fate\Pairing.md,设计源,转移配对Pairing设计文档：配对=索引集+两个取值映射+同一转移约束，草案D为共同前置,是,否,0,完整,,read-03.csv
+620,命运-实现\_goal_comp.md,过程产物,DSH goal_comp 会话转录：505 条 USER 事件，约 103 条为人工输入,否,是,10,完整,会话转录，非文档。仅录 USER 侧（=== USER seq=NN len=NN 共 505 条，seq 13–35519 无重复），ASSISTANT 侧未录。505 条中：人工手打 88 条、goal_round/goal_blocked 自动轮 217 条、子代理回传 148 条、运行时注入 25 条、compaction 检查点 9 条、后台作业回显 3 条、带 ### GOAL/### compaction 标记的人工发言 15 条（故人工输入合计约 103 条）。文档结构：抓 DS 分享会话 → 50 子代理整理 → stage1/2 重构 → Lean4+Causalean 形式化 → 服务器 30 路子代理并行。另含 3 处 compaction error：pi-ai detected context overflow for model deepseek-flash。,read-BIG.csv
+621,命运-实现\_pending\勘察A-路线与裁决.md,过程产物,勘察A：8个源文件的证明路线与作者裁决A-H、阶段表结构化要点,否,是,1,完整,指出D/E/F三裁决无独立文件，内容位于01-作者裁决C-最彻底.md§二,read-01.csv
+622,命运-实现\_pending\勘察B-定理清单全集.md,过程产物,勘察B：对115条定理清单的全集逐条提取，含计数复核与6处原文不一致,否,是,2,完整,只读提取产物；含L0-L8 106条+T9 9条实测复核；发现原文33/35/47口径冲突、§6.3不闭合等6处内部不一致,read-01.csv
+623,命运-实现\_pending\勘察C-Mathlib与假设.md,过程产物,勘察C：对Mathlib缺口与假设登记两份文件的结构化提取与交叉核查,否,是,0,完整,只读提取；含「旧版被实测推翻的10处」表与A1-A34+B1-B9假设登记要点,read-01.csv
+624,命运-实现\_pending\勘察D-实现侧现状.md,审计报告,勘察D实现侧现状：阶段0完成，另5个互不连通dSep,否,是,1,完整,,read-05.csv
+625,命运-实现\_pending\勘察E-符号方程与矛盾.md,过程产物,勘察E：符号与方程规范+矛盾裁决表两文件的全文精读提取,否,是,1,完整,含44条命名规则、A1-A34权威方程、06裁决十条矛盾终裁,read-01.csv
+626,命运-实现\_pending\勘察F-误差界与原型.md,审计报告,误差界路线与原型实验的精读提取：14条命题、三重阻塞、原型不能产生定理,否,否,0,完整,,read-02.csv
+627,命运-实现\_pending\勘察G-差距分析.md,审计报告,勘察G差距分析：七阶段对照实现侧，阶段2–5实质为零、主线与旁路比例失调,否,是,2,完整,,read-02.csv
+628,命运-实现\_pending\第109轮-最终交接台账.md,过程产物,第 109 轮交接台账：E6 误差界完整实现、7 项诚实缺口与完成度盘点,部分,是,5,完整,,read-10.csv
+629,命运-实现\_pending\第114轮-最终交接台账-修订版.md,过程产物,第114轮交接台账修订版：7模块83定理；10个失败尝试归档、6个假实现、6个诚实缺口,否,是,3,完整,,read-09.csv
+630,命运-实现\_pending\第124轮-最终交接台账.md,过程产物,第124轮台账：9模块98定理，E6完整/E1核心/T1A.2地基,否,否,0,完整,,read-08.csv
+631,命运-实现\_pending\第131轮-最终交接台账.md,过程产物,第131轮台账：10模块106定理，E6/E1完整、T1A.2地基,否,否,0,完整,,read-08.csv
+632,命运-实现\_pending\第135轮-最终交接台账.md,过程产物,第135轮台账：11模块131定理，四链完成，抓6个假实现,否,否,0,完整,4,read-08.csv
+633,命运-实现\_pending\第152轮-最终交接台账.md,过程产物,第152轮台账：13模块138定理，T1A.2达最终乘积形式,否,否,0,完整,,read-08.csv
+634,命运-实现\_pending\第160轮-最终交接台账.md,过程产物,第160轮交接台账：15模块7093行149定理，五大链完成，8个假实现,否,否,0,完整,,read-07.csv
+635,命运-实现\_pending\第166轮-最终交接台账.md,过程产物,第166轮交接台账：17模块7296行155定理，五大链完成，8个假实现,否,否,0,完整,,read-07.csv
+636,命运-实现\_pending\第173轮-最终交接台账.md,过程产物,第173轮交接台账：19模块7935行173定理，五大数学链完成，附42条陷阱,否,否,0,完整,,read-07.csv
+637,命运-实现\_pending\第181轮-最终交接台账.md,过程产物,第181轮交接台账：20模块8240行186定理，T1A.2九层含编码桥,否,否,0,完整,,read-07.csv
+638,命运-实现\_pending\第186轮-里程碑交接台账-202定理.md,过程产物,第 186 轮台账：24 模块 8555 行 202 定理，E1-E8 覆盖与 T1A.2 九层,否,是,2,完整,含 10 个假实现、46 条 Mathlib 陷阱与 17 条方法论教训,read-06.csv
+639,命运-实现\_pending\第189轮-最终交接台账-205定理.md,过程产物,第189轮交接台账：25模块205定理，E1–E8全覆盖，T1A.2九层,否,否,0,完整,,read-07.csv
+640,命运-实现\_pending\第250轮-完整交接台账-含审计真相.md,过程产物,第250轮台账含审计真相：19模块66定理，25%定理无证明劳动,否,是,6,完整,,read-08.csv
+641,命运-实现\_pending\第267轮-最终完整交接台账.md,过程产物,第267轮交接台账：新增23模块106定理，完成G3′/G1/G2；实测真实完成度约30-35%,否,是,3,完整,,read-09.csv
+642,命运-实现\_refs\引用登记.md,配置说明,引用登记：Ganter-Wille三条与arXiv条目的核验状态、出处与引用纪律,部分,是,1,完整,,read-13.csv
+643,命运-实现\_verify-R2\A14-三档关系分析.md,审计报告,A14三档关系：三档量纲不可通约，8.1应改表述,否,是,2,完整,,read-05.csv
+644,命运-实现\_verify-R2\A23-全库一致性核查.md,审计报告,A23 类别改为「一般情形已证伪+划子类」的全库同步清单与三条落点路径,否,是,4,完整,,read-04.csv
+645,命运-实现\_verify-R2\A23-文献核实.md,审计报告,A23文献核实：2301.09031只能带限定引用，不能为A23正面背书,否,否,0,完整,,read-07.csv
+646,命运-实现\_verify-R2\AGENT_RULES.md,配置说明,Agent工作纪律：可写staging与md，禁写Fate/、禁改Fate.lean、禁sorry,部分,否,0,完整,,read-18.csv
+647,命运-实现\_verify-R2\BRANCHING.md,配置说明,分支约定：服务器dev开发、本地main稳定，含tag命名与回滚步骤,部分,否,0,完整,,read-18.csv
+648,命运-实现\_verify-R2\Bridge-A3方案修正.md,审计报告,A3 机械内容已可闭，但声称产物 Factorizes⟹LMG 已被机器证伪,否,是,5,完整,给出 A3.1-A3.6 可证/不可证边界表与出口①建议,read-06.csv
+649,命运-实现\_verify-R2\Bridge-Pearl证法.md,设计源,Pearl 1.2.7（有序分解⟺全局 Markov）的完整证明步骤与逐步 Lean 声明对照表,是,是,4,完整,,read-04.csv
+650,命运-实现\_verify-R2\Bridge-Zprime-dSep关系.md,设计源,证明dSep对条件集Z无单调性，Trunc撑大Z恒假，给精确判据B1,是,是,6,完整,,read-08.csv
+651,命运-实现\_verify-R2\Bridge-审查ThreeNode.md,审计报告,审查BridgeThreeNode主定理：hd与hfac确被消费；仅C1.4措辞需修正,否,是,1,完整,,read-09.csv
+652,命运-实现\_verify-R2\BridgeFull-状态报告.md,审计报告,BridgeFull报告：因R2假命题不能编译，G1在Z′=Z口径已证伪,否,是,4,完整,,read-08.csv
+653,命运-实现\_verify-R2\C2-规则层与因果层的连接.md,设计源,C2连接：作者裁决暂不定，方式1（Pairing即因果边）与方式2（因果图入上下文）均可,是,是,2,完整,,read-18.csv
+654,命运-实现\_verify-R2\C4-A23处置.md,设计源,A23处置作者裁决：先做线性高斯等方差子类，其余按需再做,是,否,0,片段,从更大文档剪出的「六、」节，起始于孤立---,read-18.csv
+655,命运-实现\_verify-R2\CF-与A23关系.md,审计报告,CF与A23关系：cfWithAbduction定义层绕过A23，实为前提出借,否,是,3,完整,,read-04.csv
+656,命运-实现\_verify-R2\CF-充要条件分析.md,设计源,给出 cfWithAbduction=doLaw 的反例 M3、充要条件与纤维质量充分条件,是,是,3,完整,M4 反例补入；前版 19 条已编译的说法已据实更新,read-06.csv
+657,命运-实现\_verify-R2\CF-归一化分析.md,审计报告,CF归一化分析：归一化未抹掉溯因信息并勘误前稿,否,是,2,完整,,read-05.csv
+658,命运-实现\_verify-R2\Fate\MVFCAtoLawRule.md,版本副本,多值FCA到LawRule草案（与616逐字节相同的副本）,否,否,0,完整,,read-05.csv
+659,命运-实现\_verify-R2\Fate\Pairing.md,版本副本,Pairing设计文档的另一份副本（逐字相同）,是,否,0,完整,与序号617的Pairing.md逐字完全一致，属同一文档重复落盘,read-03.csv
+660,命运-实现\_verify-R2\Fate_agent_staging\README.md,配置说明,Agent暂存目录README：唯一可写目录，主控逐个编译验证后移入Fate/,部分,否,0,完整,,read-18.csv
+661,命运-实现\_verify-R2\Fate_agent_staging\audit2\suspects.md,转储导出,机器导出幽灵定理可疑名82条及原文窗口，前50条分组,否,是,8,片段,0,read-08.csv
+662,命运-实现\_verify-R2\Fate_agent_staging\audit3\suspects3.md,转储导出,幽灵定理第三层过滤的机器清单：82→37条保留，19条真可疑/17条需人工确认，附文件行号,否,否,0,完整,,read-03.csv
+663,命运-实现\_verify-R2\MVFCA-肯定构造分析.md,设计源,MVFCA肯定构造：block⊗layer格，证univ恒闭的普适障碍，重定义maxdiam*口径,是,否,0,完整,,read-09.csv
+664,命运-实现\_verify-R2\O1-分布误差σ.md,设计源,"比较三种分布误差 sigma 定义，推荐 sigmaFluct=TV(p̂1,p̂2)",是,是,2,完整,28 条 Lean 定理在独立脚本验证；推测与未证项分列,read-06.csv
+665,命运-实现\_verify-R2\O2-局部域即读集.md,设计源,O2裁决：上下文含外部给定局部域、规则另有实际读集，边界误差取对称差,是,是,1,片段,从更大文档剪出的「十、」节，起始于孤立---,read-18.csv
+666,命运-实现\_verify-R2\O3-外生不可观测三档.md,设计源,O3外生不可观测三档：与A14同构，统一为y=h(w)+噪声的观测框架,是,是,1,完整,,read-17.csv
+667,命运-实现\_verify-R2\O5-多对象即积空间.md,设计源,O5多对象即积空间：命/运/命运取积，外生性相对于对象边界,是,是,1,完整,,read-17.csv
+668,命运-实现\_verify-R2\PEARL_127_PROOF_ROADMAP.md,设计源,把 Factorizes⟹LMG⟹GM 拆 9 步，给出书目出处与项目引理缺口,是,是,2,完整,任务书编号 1.2.7 无法确认，改按数学内容编路线图,read-06.csv
+669,命运-实现\_verify-R2\PHYSICS_FORMALIZATION_SURVEY.md,审计报告,物理守恒律/对称性形式化现状调查：Lean/Coq/Isabelle均无Noether定理,否,否,0,完整,,read-09.csv
+670,命运-实现\_verify-R2\PolynomialComplexity\README.md,配置说明,PolynomialComplexity子库README：定位、Mathlib基础、四方向与作业铁律,是,是,2,完整,,read-14.csv
+671,命运-实现\_verify-R2\PolynomialComplexity\Sources\文献调研-第158轮.md,过程产物,第 158 轮文献调研：结式方向 Mathlib 现状盘点与六个候选命题,部分,是,3,完整,前言称代理 P2/P4 交付，与内容尚自洽,read-10.csv
+672,命运-实现\_verify-R2\ROAD4_REPORT.md,审计报告,路线乙第4路：Factorizes 与 LMG 两定义名不副实，段1目标为假命题,部分,是,2,完整,,read-12.csv
+673,命运-实现\_verify-R2\SOURCES_RuleAlgebra.md,设计源,文献调研：rule algebra 有三支互不兼容传统，本仓库属 (A)+(C) 非 (B),是,是,2,完整,作者归属由 Dávid–Török 纠正为 Behr–Sobociński,read-06.csv
+674,命运-实现\_verify-R2\SOURCES_VersionSpace.md,审计报告,"文献调研：υ=收窄即candidate elimination；(S,G)边界在无限H上失效的机制",部分,是,2,完整,,read-14.csv
+675,命运-实现\_verify-R2\THIRD_PARTY_NOTICES.md,配置说明,第三方归属声明：Causalean d-分离四文件按源码级复用纳入，保留Apache-2.0版权,部分,否,0,完整,,read-16.csv
+676,命运-实现\_verify-R2\VIEW11_TOPO_PREFIX.md,设计源,视角11拓扑前缀单点消元引擎peel_lower，剩余FibreGluing登记,是,是,2,完整,,read-17.csv
+677,命运-实现\_verify-R2\VIEW20_REPORT.md,设计源,视角20：判定CondMulLike作为桥终点退化，改以纤维钉死FiberCondMul为终点,是,是,2,完整,,read-14.csv
+678,命运-实现\_verify-R2\_pending\MAINLINE.md,配置说明,主线清单：项目真实目标、六条主线项、硬性约束与待还债务登记,部分,是,3,完整,,read-15.csv
+679,命运-实现\_verify-R2\_pending\README.md,配置说明,待重做模块目录说明：第 140 轮已清零，并给出四步工作流,部分,是,1,完整,,read-15.csv
+680,命运-实现\_verify-R2\_pending\T1.12-未完成.md,过程产物,T1.12未完成登记：双射字面不成立，需二次商，前置闭包性质已全部证完,部分,是,1,完整,,read-18.csv
+681,命运-实现\_verify-R2\_pending\代理任务台账.md,过程产物,代理任务台账：代理类型总表、R4硬规则N1–N6、优先级、20轮计划与历史教训谱系,是,是,2,完整,,read-16.csv
+682,命运-实现\_verify-R2\_pending\孤儿模块登记.md,审计报告,登记3个未被Fate.lean import的孤儿模块（978行），撤回入链操作,部分,是,3,完整,,read-18.csv
+683,命运-实现\_verify-R2\_pending\新总体规划-第313轮.md,设计源,新总体规划（第313轮）：三因诊断、五条硬规则N1–N5、缺口重排G3′⟹G1⟹G2、20轮计划,是,是,3,完整,,read-09.csv
+684,命运-实现\_verify-R2\_pending\桥第二端-未完成登记.md,审计报告,桥第二端未完成登记：修正两处错误判断，查明CondIndepFun四障碍,部分,是,2,完整,,read-17.csv
+685,命运-实现\_verify-R2\_pending\第230轮-同义反复失误登记.md,过程产物,第 230 轮：登记三个标为「已证」的模块实为同义反复，并提出 D1–D3 判据,部分,是,5,完整,,read-15.csv
+686,命运-实现\_verify-R2\_pending\第232轮-第二次同义反复失误.md,审计报告,第232轮第二次同义反复：T33/T68/T112 三模块被证明为空，确立 P1–P4/N1–N4,部分,是,3,完整,,read-12.csv
+687,命运-实现\_verify-R2\_pending\第238轮-第三次同义反复失误.md,审计报告,第238轮：PearlGlobalMarkov为图论恒等式重抄，判为第三次同义反复，立D4与概率校验,部分,是,1,完整,,read-13.csv
+688,命运-实现\_verify-R2\_pending\第239轮-方法论根本缺陷.md,审计报告,第239轮：第四次同义反复、E0/D5平凡化判据与S1–S4纪律的确立,部分,是,4,完整,,read-11.csv
+689,命运-实现\_verify-R2\_pending\第241轮-第十七次失误假反省.md,过程产物,第241轮登记第十七次失误「假反省」：第298轮框架澄清为稻草人，无任何工作作废,部分,是,5,完整,,read-16.csv
+690,命运-实现\_verify-R2\_pending\第242轮-30行定理不可行分析.md,审计报告,第242轮：AA8主张的30行定理不成立，USeparated与Factorizes不同型,部分,是,1,完整,,read-13.csv
+691,命运-实现\_verify-R2\_pending\第242轮-D4漏洞与诚实性缺口.md,审计报告,第242轮：D4检查器漏掉funext+rfl类定义改写；FitBoundary把可秒答写成开放问题,部分,是,1,完整,,read-13.csv
+692,命运-实现\_verify-R2\_pending\第243轮-真实成果清单.md,过程产物,第243轮真实成果：9条真命题经D7/D8，第244轮审核修正为6条,否,是,9,完整,10,read-08.csv
+693,命运-实现\_verify-R2\_pending\第244轮-第十八次失误假数字.md,过程产物,第 244 轮：登记第十八次失误——37/500 是假数字、成果清单上传失败,部分,是,3,完整,,read-15.csv
+694,命运-实现\_verify-R2\_pending\第247轮-322条定理批量审核.md,审计报告,第247轮批量审核322条定理：真理论增量仅3条，数值填格75条，提出N8类型标注纪律,部分,否,0,完整,,read-16.csv
+695,命运-实现\_verify-R2\_pending\第248轮-最终交接文档.md,过程产物,第248轮最终交接：6条真数学命题、8缺口名义23.5%实质12%、18次失误谱系,否,是,3,完整,,read-09.csv
+696,命运-实现\_verify-R2\_pending\第250轮-缺口1根本缺陷.md,审计报告,第250轮核实缺口1缺陷：全局马尔可夫定理是A∧B合取而非蕴含，图到概率的桥不存在,部分,是,3,完整,,read-14.csv
+697,命运-实现\_verify-R2\_pending\第253轮-全面体检.md,审计报告,第 253 轮：L8 全面体检裁定实质产出 0.15%，并提出改变验收标准,部分,是,4,完整,,read-15.csv
+698,命运-实现\_verify-R2\_pending\第257轮-N8统计脚本.md,过程产物,第257轮N8类型统计脚本：三次判据修正后展开仍被低估，提出分类器须定期校准,部分,否,0,完整,,read-16.csv
+699,命运-实现\_verify-R2\_pending\第258轮-第七次同义反复.md,审计报告,第258轮第七次同义反复：类型系统替图论干活，缺口1回落8%,部分,是,2,完整,,read-12.csv
+700,命运-实现\_verify-R2\_pending\第263轮-第八次同义反复.md,审计报告,第263轮N1审核：DAGFactorization把图哑变量化，缺口1零推进，提出判据D6,部分,是,3,完整,,read-14.csv
+701,命运-实现\_verify-R2\_pending\第265轮-D6判据实现.md,审计报告,第265轮D6判据：结论须含主参数，三轮校准抓出6条问题定理,部分,否,0,完整,,read-17.csv
+702,命运-实现\_verify-R2\_pending\第269轮-SeparationDecomposition审核.md,审计报告,第 269 轮：SeparationDecomposition 审核框架，判其可能真推进缺口 1,否,否,0,完整,,read-15.csv
+703,命运-实现\_verify-R2\_pending\第269轮-SeparationDecomposition精确审核.md,审计报告,第269轮审核SeparationDecomposition：7项仅2项实质，新判据D7去假设重证,部分,是,1,完整,,read-13.csv
+704,命运-实现\_verify-R2\_pending\第270轮-D7审核CliqueChain.md,审计报告,第270轮D7审核：去假设验死前提，审核CliqueChain五个假设,部分,是,2,完整,,read-17.csv
+705,命运-实现\_verify-R2\_pending\第271轮-D7判决与唯一根源.md,审计报告,第271轮 D7 判决：九次失误唯一根源，D7 为唯一验收标准,部分,是,2,完整,,read-12.csv
+706,命运-实现\_verify-R2\_pending\第274轮-D7工具产出与局限.md,过程产物,第274轮D7工具实测产出与局限：无法区分实质使用与装饰，提出D7-a/D7-b两阶段,部分,是,2,完整,,read-14.csv
+707,命运-实现\_verify-R2\_pending\第274轮-D7统计口径澄清.md,审计报告,第274轮澄清D7统计口径：S8与Q1的矛盾源于把数据参数计入死前提，须按假设重统计,部分,否,0,完整,,read-16.csv
+708,命运-实现\_verify-R2\_pending\第276轮-真实死前提率修正.md,审计报告,第276轮重大修正：真实死前提率5.4%（20/370），撤回第274轮91%,部分,是,1,完整,,read-13.csv
+709,命运-实现\_verify-R2\_pending\第278轮-代数桥通过D7.md,过程产物,第278轮报告代数桥定理首次通过D7，三假设全必要，缺USeparated⟹Side一跳,部分,是,4,完整,,read-14.csv
+710,命运-实现\_verify-R2\_pending\第279轮-缺口1四层打通.md,过程产物,第279轮把缺口1的四层链路（图论—团落一侧—可分离—CondMul）全部用D7验证的真定理打通,部分,否,0,完整,,read-16.csv
+711,命运-实现\_verify-R2\_pending\第280轮-缺口1合成定理.md,过程产物,第280轮缺口1合成定理：5假设全必要，但只覆盖S=∅情形，完成度约35%,部分,是,2,完整,,read-14.csv
+712,命运-实现\_verify-R2\_pending\第281轮-第十次失误.md,过程产物,第 281 轮第十次失误：可分离性是 filter 定义展开，新增判据 D8,部分,是,5,完整,,read-10.csv
+713,命运-实现\_verify-R2\_pending\第283轮-D8判定与唯一出路.md,审计报告,第283轮：D8判定U6，可分离两结论项皆定义展开，真正缺口是MoralFactorizes,部分,是,1,完整,,read-13.csv
+714,命运-实现\_verify-R2\_pending\第286轮-Pearl缺陷与十二次失误.md,审计报告,第286轮：Pearl(ii) 的 NoDescendant 有缺陷且被平凡满足,部分,是,3,完整,,read-12.csv
+715,命运-实现\_verify-R2\_pending\第289轮-X系列发现汇总.md,审计报告,第289轮X系列审核汇总：X4更正Valid并未真正修好、死前提清单、完成度约26–30%,部分,否,0,完整,,read-16.csv
+716,命运-实现\_verify-R2\_pending\第294轮-终局体检与十五次失误.md,过程产物,第294轮终局体检：have _ := hND 显式丢弃、缺口7的 LoopBound 与循环无关,部分,是,1,完整,,read-12.csv
+717,命运-实现\_verify-R2\_pending\第297轮-第十六次失误.md,过程产物,第 297 轮：登记第十六次失误——SetupXMY 贡献为 0、「架构限制」判断打偏,部分,是,6,完整,,read-15.csv
+718,命运-实现\_verify-R2\_pending\第50轮-第23次失误与项目真实状态.md,过程产物,第50轮登记MarkovCompatStrong的hsep名不副实，断言图⟹概率核心桥仍不存在,部分,是,3,完整,,read-16.csv
+719,命运-实现\_verify-R2\_pending\第9轮-D7prime全库重分类.md,审计报告,第9轮 D7′ 全库重分类：真正“图⟹概率”的桥 0 条,部分,否,0,完整,,read-12.csv
+720,命运-实现\_verify-R2\_pending\路线图-权威版.md,设计源,权威路线图（第224轮）：合并裁决A–S，主线为因果↔FCA循环，列7阶段8缺口与执行规则,是,是,4,完整,,read-09.csv
+733,命运-实现\_verify-R2\_quarantine_garbled_filenames\README-隔离说明.md,配置说明,乱码文件名副本的隔离说明：MD5证实12个文件与正常文件内容相同,否,是,1,完整,,read-18.csv
+734,命运-实现\_verify-R2\_quarantine_staging_duplicates\README-隔离说明.md,配置说明,staging重复副本隔离说明：9个逐字节相同副本＋1个被取代的幽灵补证尝试,部分,是,3,完整,,read-18.csv
+735,命运-实现\_verify-R2\_scmf\NOTES.md,过程产物,SCM⟹因子分解：结构侧已编译，数值侧卡在y_eq_of_mem_an一条引理,否,否,0,完整,,read-17.csv
+736,命运-实现\_verify-R2\_v20c\math.md,转储导出,手算草稿：FiberCondMul 反例尝试，2 点情形 FacStep 已蕴含完全因子化,否,是,1,片段,推导草稿，含未收束的试算过程；末句停在「需要 3 变量，让我算一个具体反例」,read-15.csv
+737,命运-实现\_verify-R2\_verify\Mathlib陷阱清单.md,配置说明,Mathlib 实战陷阱清单 13 条，供后续复用,否,否,0,完整,,read-10.csv
+738,命运-实现\_verify-R2\_verify\_pending-README.md,配置说明,_pending目录说明：未编译模块不得当已建立数学引用，并含四步工作流与入库清单,是,是,2,完整,,read-14.csv
+739,命运-实现\_verify-R2\_verify\代理自述-须复核.md,审计报告,登记两起代理编造定量结论的实例及偏差模式，结论：定量结论必须亲自复现,部分,否,0,完整,,read-18.csv
+740,命运-实现\_verify-R2\mvfca\COMPARE-ABC.md,审计报告,三方案对比：甲不可救，乙BlockLayer首选,否,是,1,完整,,read-05.csv
+741,命运-实现\_verify-R2\mvfca\LOWERBOUND-analysis.md,审计报告,BlockLayer下界分析：朴素下界T^(1/d)错，改为分段式下界+塌缩T^(2/d),否,是,3,完整,,read-07.csv
+742,命运-实现\_verify-R2\mvfca\RESULTS-algo-adaptive.md,转储导出,自适应分块 0/30 落 sigma1，占用率 100% 但 max 口径被尾部击穿,否,否,0,完整,闭集数线性于 T，耗时 7.7 s，无 capped/timeout,read-06.csv
+743,命运-实现\_verify-R2\mvfca\RESULTS-algo-knn.md,转储导出,kNN 连通分量在 sigma1 与 sigma2 双带上 0/24，结构上无分辨率旋钮,否,否,0,完整,18/24 配置 proper 闭集族为空，maxdiam* 无定义,read-06.csv
+744,命运-实现\_verify-R2\mvfca\RESULTS-algo-spectral.md,转储导出,球树与谱聚类在 sigma1 判据下 0/59、0/45，均不如等宽网格方案乙,否,是,1,完整,自适应/谱聚类算法线实测结果,read-06.csv
+745,命运-实现\_verify-R2\mvfca\RESULTS-planA.md,审计报告,方案甲PatStruct实测：45组在两个σ上全不落带，根因是min-格上集无法局部化,否,是,2,完整,,read-09.csv
+746,命运-实现\_verify-R2\mvfca\RESULTS-planB-fine.md,转储导出,BlockLayer 细扫 nb=16..256，6/6 形式落带但全部退化擦边,否,否,0,完整,给出归零阈值 nb_floor≈(10-26)·T^(1/d),read-06.csv
+747,命运-实现\_verify-R2\mvfca\RESULTS-planB.md,转储导出,等宽网格 BlockLayer 在 sigma2 全落带，sigma1 只能靠退化擦边,否,否,0,完整,n_ext 与历史 JSON 不一致已精确登记,read-06.csv
+748,命运-实现\_verify-R2\mvfca\RESULTS-planC.md,转储导出,k-means 分块 k=2..32 全扫 0/93 落 sigma1 带，需细分到近单点才擦边,否,是,1,完整,初稿三处读错已以本条与上表为准,read-06.csv
+749,命运-实现\_verify-R2\mvfca\RESULTS-sigma-A.md,转储导出,σ估计方法A（相邻差分MAD）实测：raw偏差最大40.56%，√2修正corr最大1.98%,否,否,0,完整,,read-16.csv
+750,命运-实现\_verify-R2\mvfca\RESULTS-sigma-B.md,审计报告,sigma估计B频域分离：naive偏差max2.87%，整链3/3达标,否,否,0,完整,,read-07.csv
+751,命运-实现\_verify-R2\mvfca\RESULTS-sigma-D.md,转储导出,局部线性残差估 sigma 系统性正偏 23-33%，偏大松弛判据不等于估准,否,是,2,完整,含与方法 A 的横向对照与无噪声地板自检,read-06.csv
+752,命运-实现\_verify-R2\mvfca\RESULTS-sigma-new.md,审计报告,sigma估计F/G/H/I对比：仅I收敛0.05，F/G/H有不可消除渐近偏置,否,是,4,完整,5,read-08.csv
+753,命运-实现\_verify-R2\mvfca\SPEC.md,设计源,多值FCA（pattern structures）检验规程：判据、区间格离散化、扫描配置与失败含义,是,是,2,完整,,read-14.csv
+754,命运-实现\_verify-R2\probes\README.md,配置说明,探针目录口径说明：与正式库解耦、不参与统计、承载隔离区职能,部分,是,3,完整,,read-18.csv
+755,命运-实现\_verify-R2\交接文档.md,过程产物,第272轮终局交接：D7判据方法、5条净成果、九次同型失误谱系与止损建议,部分,是,4,完整,,read-11.csv
+756,命运-实现\_verify-R2\审核-缺口1-对抗性.md,审计报告,缺口1对抗性审核：15文件均只做到“因子化⟹CI”，dSep⟹因子化全库零字,部分,否,0,完整,,read-12.csv
+757,命运-实现\_verify-R2\桥-最终状态报告.md,审计报告,桥（dSep⟹CondIndep）最终状态：接受条件定理形态，F1/F2/F3 已证伪、O1 障碍,否,是,4,完整,,read-04.csv
+759,命运-实现\_verify-R2\第192轮-sum_marg_eq仍未完成.md,过程产物,第192轮：sum_marg_eq第八次尝试未成，定位到正确maps_to用法,否,否,0,完整,,read-17.csv
+760,命运-实现\_verify-R2\第194轮-最终组装仍未完成.md,过程产物,第194轮记录N元桥最终组装仍未完成，诊断两fiber恒等式卡在DecidablePred实例,部分,否,0,完整,,read-16.csv
+761,命运-实现\_verify-R2\第199轮-最终推演仍未完成.md,过程产物,第199轮：cancel_mass_pow七版全败，最终符号推演仍未完成,否,否,0,完整,,read-17.csv
+762,命运-实现\_verify-R2\第303轮-评估与规划-实测.md,审计报告,第303轮评估与规划：八缺口实质度、N8类型分布与声称已证但不存在清单,部分,是,3,完整,,read-11.csv
+763,命运-实现\_勘察-不可证命题.md,审计报告,不可证/未证/条件化命题盘点：220个前件谓词中80个未证、15处正式模块真sorry,否,是,1,完整,,read-02.csv
+764,命运-实现\_定理清单-抽取.md,转储导出,定理清单按层抽取编号陈述，登记 7/17 已证与清单本身的两处修正,否,否,0,完整,修正 T6.5 当且仅当不成立、T1.11 字面不成立,read-06.csv
+767,命运-实现\_规格\02-证明路线\00-总纲.md,设计源,证明路线总纲：最新裁决清单、三类陈述划分、主线依赖方向与验收标准,是,是,4,完整,,read-11.csv
+770,命运-实现\_规格\02-证明路线\03-Mathlib缺口与自建库.md,版本副本,与1314同文：Mathlib缺口与自建库，_规格目录的旧版,是,是,3,完整,与序号1314高度相似（688行中共同458行），缺1314文首的「第380轮作者修正」标注段；对应1314,read-01.csv
+787,命运-实现\_规格\README.md,配置说明,成品集目录索引：4子目录22文件、核心方程、主线、规则表述与诚实状态,部分,是,3,完整,,read-14.csv
+788,命运-实现\d1服务降级报告.md,过程产物,d1服务降级诊断：仅多轮工具任务超时，处置残留批次并顺带落地CFMap与CFLattice两模块,部分,否,0,完整,,read-16.csv
+789,命运-实现\prototype\fca-alpha\SPEC.md,配置说明,fca-alpha 原型运行前置：前件 A8/A32、输入输出、V1-V8 与失败含义,是,否,0,完整,含 J1-J3 三条硬性禁令与常数来源声明,read-06.csv
+790,命运-实现\prototype\fca-alpha\results\report.md,审计报告,原型验收：V1–V8全通过但只证可计算性，V1判据恒真、编码压缩比0.04,否,是,2,完整,,read-03.csv
+791,命运-实现\世界模型-四层标准.md,设计源,世界模型四层标准与递进路线：链最优、全称、可运行、与直觉一致；界紧下界只是及格线,是,是,3,完整,,read-14.csv
+792,命运-实现\世界模型设想.md,设计源,世界模型设想：作者三句原话、三能力拆解、依赖链与优先级重排,是,是,3,完整,,read-11.csv
+793,命运-实现\主定理D-组装方案.md,设计源,主定理D组装方案：四块构件（重基、分裂重基、质量换算）与condIndep_tail_block九步,是,否,0,完整,,read-13.csv
+794,命运-实现\作者裁决-Q1到Q6.md,配置说明,作者对 Q-1~Q-6 的裁决：θ为被提取规律、A14取a、排除有环SCM,是,是,3,完整,作者直接裁决，效力最高,read-12.csv
+795,命运-实现\作者裁决-第71轮五项.md,设计源,作者第71轮五项裁决：FCA直接入库、试整体升级、K丙两线并行、加法式降备选、台账修,是,是,1,完整,,read-13.csv
+796,命运-实现\作者裁决I-先查文献.md,设计源,作者裁决I：遇可疑数学结构先查文献再构造，含适用情形、渠道、引用纪律,是,否,0,完整,,read-14.csv
+797,命运-实现\作者裁决J-OQ1.md,设计源,作者裁决J-OQ1：θ与R同源、R依赖θ（R_θ），以RuleWithTheta加法式扩展不破冻结,是,否,0,完整,,read-13.csv
+798,命运-实现\作者裁决K-误差准则.md,设计源,作者裁决K：误差准则为恰好拟合与过拟合的边界即噪声尺度，全理论强制,是,是,4,完整,,read-11.csv
+799,命运-实现\作者裁决L-多路线并行.md,设计源,裁决 L：修正裁决 A，恢复 SCM→规则 边，要求多路线并行,是,是,4,完整,,read-15.csv
+800,命运-实现\作者裁决M-最强目标三件并行.md,设计源,作者裁决M：最强目标与三件并行，更正裁决L的SCM瓶颈表述,是,是,2,完整,,read-17.csv
+801,命运-实现\作者裁决N-FCA改作分类系统.md,设计源,作者裁决 N：FCA 不再承担主线 enc 入口改作分类系统，并接入时态性哲学,是,是,3,完整,,read-10.csv
+802,命运-实现\作者裁决O-因果进入分类循环.md,设计源,作者裁决O：因果进入分类循环；循环内容是抽象与解构、不结束但信息不足时临时停止,是,是,4,完整,修正裁决L/M的并行结构,read-14.csv
+803,命运-实现\作者裁决P-Causalean纳入.md,配置说明,作者裁决P：批准Causalean d-分离块纳入、不升v4.33.0、源码级复用，纠正错误归因,部分,是,3,完整,,read-16.csv
+804,命运-实现\作者裁决Q-禁止硬编码与结论太弱.md,设计源,作者裁决Q：禁止一切硬编码（须算出或推导），并判「结论太弱」要求找更好方案,是,是,3,完整,,read-14.csv
+805,命运-实现\作者裁决R-不设上限加强.md,设计源,作者裁决R：不设上限加强，可重构推广泛化抽象，冻结后重冻即可,是,是,2,完整,,read-17.csv
+806,命运-实现\作者裁决S-八项决议.md,设计源,作者裁决S：八项决议，含工具链退rc1、授权改冻结、改验收口径,是,是,2,完整,,read-17.csv
+807,命运-实现\作者裁决汇总.md,配置说明,作者裁决汇总：22族约62条裁决的提取、分类、溯源与演进史,否,是,1,完整,二次汇编，声明不新增裁决；§三为被修正/推翻的裁决演进史,read-01.csv
+808,命运-实现\债务-当前真实清单.md,审计报告,当前真实债务清单实测：五笔最重债务、图⟹概率桥未打通、旧台账22项中11项已过时,否,是,1,完整,,read-02.csv
+809,命运-实现\债务清账台账.md,过程产物,债务清账台账：每项债务登记终态；B6/B7/B8的理由被修正；d-分离⇒条件独立为唯一剩余缺口,否,是,3,完整,,read-09.csv
+810,命运-实现\偏移自查-R102.md,审计报告,R102偏移自查：18模块529链上属实，SigmaLowerBound为假交付,否,否,0,完整,,read-04.csv
+811,命运-实现\偏移自查-R123.md,审计报告,R123 偏移自查：无假交付但「装配收益」是平凡合取；核实构建/链上模块/真 sorry,否,是,2,完整,,read-04.csv
+812,命运-实现\偏移自查-R13.md,审计报告,R13 偏移自查：3 轮修队列基础设施的必要性与「验证器缺位」，并更正 R3 的幻影判定,否,是,3,完整,,read-04.csv
+813,命运-实现\偏移自查-R144.md,审计报告,R144偏移自查：执行面全面改正，认知面顽固复发，任务执行器三道闸并不检查它声称的东西,否,是,2,完整,,read-03.csv
+814,命运-实现\偏移自查-R168.md,审计报告,核实R144三条整改；判定SCM主干链实质是rfl定义展开,否,是,3,完整,,read-05.csv
+815,命运-实现\偏移自查-R180.md,审计报告,R180偏移自查：R144三件整改真实完成，但SCM链扇入为0、提了一个不该提的裁决,否,是,1,完整,,read-03.csv
+816,命运-实现\偏移自查-R195.md,审计报告,R195偏移自查：闸③编译失败即跳过sorry扫描的盲区、否定性定理前件即结论,否,是,2,完整,,read-02.csv
+817,命运-实现\偏移自查-R205.md,审计报告,R205偏移自查：ChainErrorBudget极限声称不成立、baseline打点失效,否,否,0,完整,,read-04.csv
+818,命运-实现\偏移自查-R23.md,审计报告,R23偏移自查：20711-22轮在已完成拷贝上清理，核验收敛定理并下调R13判断,否,是,3,完整,,read-04.csv
+819,命运-实现\偏移自查-R249.md,审计报告,R249偏移自查：196条定理约14条有真内容，10个新模块7个扇入为0,否,是,2,完整,,read-03.csv
+820,命运-实现\偏移自查-R279.md,审计报告,R279偏移自查：first_layer_bound_real形式达成，扇入只是把0搬到上一层,否,是,2,完整,,read-03.csv
+821,命运-实现\偏移自查-R3.md,审计报告,R3偏移自查：EndToEnd两文件不存在致R1虚报（R13已判此说有误）,否,否,0,完整,,read-04.csv
+822,命运-实现\偏移自查-R316.md,审计报告,R316偏移自查：first_layer_bound达标但增量薄，EvalQ被高估,否,是,2,完整,,read-02.csv
+823,命运-实现\偏移自查-R33.md,审计报告,R33偏移自查：θ门槛未突破，rfl级定义展开被判定为门槛突破，Step签名无法表达学习,否,是,2,完整,,read-03.csv
+824,命运-实现\偏移自查-R349.md,审计报告,R349偏移自查：探针证伪主控「不可达」结论，12行即可证出期望形式主定理,否,是,2,完整,,read-02.csv
+825,命运-实现\偏移自查-R375.md,审计报告,R375偏移自查：Layer1NoisyFromEst不编译不在链上，构建全绿成假知识背书,否,是,2,完整,,read-03.csv
+826,命运-实现\偏移自查-R42.md,审计报告,R42偏移自查：8个定理无一提及Step、fixed_iff_optimal是重言式,否,是,2,完整,,read-02.csv
+827,命运-实现\偏移自查-R52.md,审计报告,R52偏移自查：LearnFunction只在一点更新、fixed_iff_optimal是重言式,否,是,2,完整,,read-02.csv
+828,命运-实现\偏移自查-R63.md,审计报告,R63偏移自查：把「被import」读成「被使用」、用1.9%孤岛样本宣布解法,否,是,2,完整,,read-02.csv
+829,命运-实现\偏移自查-R72.md,审计报告,R72偏移自查：R63两条建议兑现与隔离替代，新风险是同一命题的多个版本,否,是,2,完整,,read-02.csv
+830,命运-实现\偏移自查-R96.md,审计报告,R96 偏移自查：18 模块/262 定理属实，但接线由「扇入数」驱动、L3 挂同义反复,否,是,3,完整,,read-04.csv
+831,命运-实现\双指标判据.md,设计源,双指标判据设计：σ₂ 判「有没有学到」，σ₁ 判「离贝叶斯最优多远」，两指标并行不合并,是,是,3,完整,,read-15.csv
+832,命运-实现\双通道同步规程.md,配置说明,双通道同步规程：git管历史、隧道管批量，含分工表与验证清单,是,是,1,完整,,read-17.csv
+833,命运-实现\同步前处置方案.md,过程产物,同步前处置：188个未提交改动分八类处置与执行顺序,部分,是,1,完整,,read-17.csv
+851,命运-实现\命运\Fate\scratch\README.md,配置说明,Fate/scratch草稿目录口径声明：18个文件不在构建链，12个含裸sorry,部分,是,2,完整,,read-18.csv
+904,命运-实现\命运\_audit\GEN-2-领域实例.md,过程产物,GEN-2在ℝ/ℕ/Fin2三个输出空间实例化LawRule，31条定理验证通用性,否,是,2,完整,含并发进程反复改文件的记录,read-07.csv
+905,命运-实现\命运\_audit\GOV-1-定义治理登记.md,配置说明,GOV-1定义治理登记：三族15个真定义需统一0+2个，并立G1–G9规则,是,是,3,完整,,read-07.csv
+954,命运-实现\命运\_audit\scripts\README.md,配置说明,_audit/scripts判据定义：六个审计脚本判据与已知局限、三口径定义与自测覆盖,部分,是,1,完整,,read-13.csv
+1040,命运-实现\命运理论-宏观状态-R92.md,过程产物,R92 宏观盘点：桥终态、7 条负结果、19 条幽灵定理与真实前提清单,部分,否,0,完整,,read-10.csv
+1041,命运-实现\四项重构-施工清单.md,配置说明,四项重构R4/R5/R6/R8可执行施工清单：两项已部分完成，R5与Frame的既有设计冲突,是,是,2,完整,,read-03.csv
+1042,命运-实现\复核-第3章评估的修正.md,审计报告,复核第3章评估三条回灌修正：两条不成立，一条结论对但理由须改，并承认台账定性有误,部分,是,4,完整,,read-14.csv
+1043,命运-实现\多对象积空间-技术障碍.md,审计报告,多对象积空间受阻登记：修正borel_le方向，积空间因实例字段设计循环未实现，列三条出路,部分,是,2,完整,,read-16.csv
+1044,命运-实现\多路线分析.md,审计报告,8条规则提取路线的纸面可行性与互补性判定，新增「桥缺失」第四类瓶颈性质,否,是,2,完整,,read-03.csv
+1045,命运-实现\多路线台账.md,审计报告,多路线台账：FCA实测不支持、SCM瓶颈为可识别性，五条路线终态与两处未测方向,部分,是,2,完整,,read-11.csv
+1046,命运-实现\完善工作-库结构盘点.md,审计报告,第 5 轮库结构盘点：正式库与探针精确分离为 30 文件 439 定理,部分,是,2,完整,,read-15.csv
+1047,命运-实现\完善扫描报告.md,审计报告,完善扫描：按M1–M6六形态盘点，判定无级缺陷，两处均为诚实历史标注,部分,是,2,完整,,read-11.csv
+1048,命运-实现\宏观认知-实测事实.md,审计报告,宏观实测：真实工作区在服务器，656模块7669定理，56.5%模块零真实消费,部分,否,0,完整,,read-13.csv
+1049,命运-实现\宏观认知-实现现状.md,审计报告,实现现状独立盘点：295 模块/3283 定理/零真 sorry，按层评估定理实质度与口径,否,是,3,完整,,read-04.csv
+1050,命运-实现\宏观认知-理论内核.md,设计源,宏观认知版内核重建：四式归约、三条实线与五处断头、否决清单与最该放弃项,是,是,2,完整,,read-02.csv
+1051,命运-实现\宏观认知-转项方法论.md,设计源,宏观认知转项方法论：不可证时的8类原因、A-H策略、七条纪律与决策树,是,是,1,完整,核心区分为「转项」与「逃避」；给出机械检查脚本规格,read-01.csv
+1052,命运-实现\宏观认知与后续规划.md,审计报告,宏观认知与规划：三路独立分析同指把非数学问题当数学困难,否,是,3,完整,,read-07.csv
+1053,命运-实现\宏观认知与规划-第二版.md,审计报告,宏观认知第二版：三处假桥、桥缺口拆5环、α未实现、纯预测可先跑,否,否,0,完整,5,read-08.csv
+1054,命运-实现\审计-定理实质度.md,审计报告,定理实质度审计：逐条读证明体，按可加强程度判216条定理的实质度,否,是,3,完整,判据为裁决Q-2与R；实测98条核心定理中55%无数学内容；零sorry/零axiom,read-01.csv
+1055,命运-实现\属性选择准则.md,设计源,属性选择准则沿用裁决 K（σ/2≤误差≤2σ），用交叉验证破循环,是,否,0,完整,,read-12.csv
+1056,命运-实现\工作纪律-本会话累积.md,配置说明,工作纪律十条：引用须 grep、文档让位于代码、禁止把结论写进前件、agent 隔离等,部分,否,0,完整,,read-15.csv
+1057,命运-实现\工具缺陷-任务提取错位.md,过程产物,工具缺陷：任务提取把背景编号行当任务，致三批次整体错位,否,否,0,完整,,read-17.csv
+1058,命运-实现\工具链版本漂移问题.md,审计报告,工具链版本漂移：服务器被lake update升到v4.35.0致本地编译失败，给出三条处置与建议乙,部分,是,2,完整,,read-16.csv
+1059,命运-实现\幽灵定理-最终审计-R127.md,审计报告,幽灵定理第15轮审计：14/21可查，mass_insert_of_insensitive 为假,部分,否,0,完整,,read-12.csv
+1060,命运-实现\幽灵定理复核报告-第二轮.md,审计报告,幽灵定理复核第二轮：三类成因（改名、缺前提、依赖链未完成），编译通过文件仍缺声称定理,部分,是,1,完整,,read-13.csv
+1061,命运-实现\待裁决-上下文展开-第71轮.md,过程产物,第 71 轮待裁决展开：两个 Temporal 是否同一物、ThetaSpace 加度量等五项,部分,是,3,完整,,read-10.csv
+1062,命运-实现\待裁决-完整上下文.md,过程产物,待裁决完整上下文：异质组合类型设计、υ 处置、收敛判据三项及主控倾向,部分,是,4,完整,,read-10.csv
+1063,命运-实现\待裁决四项-可决策版.md,过程产物,待裁决四项可决策版：σ取值、桥的假设类、符号回归终态、规则提取位置,部分,是,3,完整,,read-11.csv
+1064,命运-实现\待裁决总清单.md,过程产物,待裁决总清单第 5 轮：A–H 八项含 σ 取法、工具链版本与质量审计,部分,是,2,完整,,read-10.csv
+1065,命运-实现\待裁决清单-上下文展开.md,配置说明,七项待裁决清单的上下文展开：σ取值、桥假设类、符号回归终态、规则提取位置等,否,否,0,完整,,read-09.csv
+1066,命运-实现\待裁决清单-本轮.md,过程产物,本轮待裁决清单：α 的 K/target/err 三项阻塞、桥末步、误差量纲与 σ 取值,部分,是,2,完整,,read-12.csv
+1067,命运-实现\待裁决清单-第三版.md,过程产物,待裁决清单第三版：定位/判据/σ/err裁决；三项事实更正与剩余裁决,部分,是,3,完整,,read-11.csv
+1068,命运-实现\待裁决清单-第二版.md,过程产物,待裁决清单第二版：σ/A/B/C/D/E/G七项裁决状态、候选方案与已决结论,部分,是,3,完整,,read-11.csv
+1069,命运-实现\待裁决清单-第四版.md,过程产物,待裁决清单第四版：裁决E/D/G完成，A/B待定，三方案实测与桥否证,部分,是,3,完整,,read-11.csv
+1070,命运-实现\待讨论列表.md,过程产物,待讨论列表：已讨论结论文档、规则层与因果层待议项、已不必讨论清单,部分,是,4,完整,,read-11.csv
+1071,命运-实现\抽象统一框架.md,设计源,核-商一般理论：第一同构、商单点充要条件、三情形穷尽、核最优性与格结构,是,是,1,完整,,read-13.csv
+1072,命运-实现\抽象统一框架完成.md,过程产物,抽象统一框架完成：核-商一般理论与三套结构的回收证明,部分,是,2,完整,,read-15.csv
+1073,命运-实现\指令错误-路径与状态不匹配.md,过程产物,指令错误：给subagent本机路径而真实状态在服务器，知识过期,否,是,1,完整,,read-17.csv
+1074,命运-实现\指标修正-正式库真实数字.md,审计报告,指标口径修正：改用-Only Fate，重复体23→0、定理788→436、孤立率54.3%→61%,部分,是,5,完整,,read-16.csv
+1075,命运-实现\操作闭合主义\对照版-操作闭合主义与命运理论.md,设计源,操作闭合主义与命运理论对照：裁决K↔惯性容忍度、裁决O↔循环节拍、非平凡性判据,是,是,2,完整,,read-09.csv
+1076,命运-实现\数学对象与自完善边界.md,设计源,数学对象与自完善边界：裁决K只管现实不完全信息，数学侧只要求形式正确，另需人工梳理证明链,是,是,1,完整,,read-13.csv
+1077,命运-实现\最优CF-完整答案.md,审计报告,最优CF结论：格论最强=恒等读出但无用，推荐C2反事实映射+G2部分识别兜底,部分,是,1,完整,,read-13.csv
+1078,命运-实现\本会话证伪清单.md,审计报告,本会话证伪清单：硬编码级错误、11 次直觉被证伪、12 处真实前提,部分,是,6,完整,,read-10.csv
+1079,命运-实现\本地编译能力实测.md,过程产物,本地编译能力实测：单模块292秒、全量从未成功，故构建必须放服务器,部分,是,2,完整,,read-18.csv
+1080,命运-实现\本轮成果-假公理清除.md,过程产物,清除全库唯一假公理 fintypeFallback，并记录本地/服务器分支认知校正,部分,是,4,完整,,read-15.csv
+1081,命运-实现\本轮状态报告.md,过程产物,本轮状态报告：CFMap/CFLattice形式化「最优最强是二律背反」，d1工具阻塞非裁决阻塞,部分,是,1,完整,,read-13.csv
+1082,命运-实现\本轮进展-R2.md,过程产物,本轮进展R2：F项交接；R4已过期、R6惰性参数与审计等价定理为假的更正,部分,是,3,完整,,read-11.csv
+1083,命运-实现\机械复核-实质度指标.md,审计报告,机械复核定理实质度：rfl 级 13.6%、孤立率 50.1%，并判定 LLM 审计定量不可靠,部分,是,4,完整,,read-15.csv
+1084,命运-实现\桥-更强方案搜索结论.md,审计报告,桥方案多维性：F1函数维靠假设类、F2方向维靠干预/多环境，「更强」须两坐标组合,部分,是,1,完整,,read-13.csv
+1085,命运-实现\桥-突破-反事实中间地带.md,设计源,反事实“中间等价地带”存在且已机器核验：反事实等价=反事实观测泛函的核,是,否,0,完整,,read-12.csv
+1086,命运-实现\桥-等价类到结构方程.md,设计源,马尔可夫等价类到结构方程集的桥：Q-A回Q-B不回、五种替代形式、A1最小代价,是,是,3,完整,,read-02.csv
+1087,命运-实现\桥的完整状态-更正版.md,过程产物,桥的完整状态更正版：收回「split_of_dSep是弱结论」的判断，列出桥全链环节与前提清单,部分,否,0,完整,,read-16.csv
+1088,命运-实现\桥研究\00-绛惧悕鍐荤粨.md,设计源,SIG-0.1.0签名冻结清单：哈希、接口与十项未完成,是,是,4,完整,,read-05.csv
+1089,命运-实现\桥研究\Chan-Richardson-GaussianSEM-缁艰堪.md,配置说明,等方差高斯SEM可识别性论文综述及其对桥构造性的意义,否,否,0,片段,综述片段,read-17.csv
+1091,命运-实现\桥研究\_audit_Implication.md,审计报告,审计Implication.lean 34条：自指定义忠实，多为薄封装，chainBound过度声明,否,是,2,完整,,read-09.csv
+1092,命运-实现\桥研究\_refs\12-implicational-basis-vs-armstrong.md,设计源,第12问文献核实：蕴含基与Armstrong关系是同一闭包系统的互补表示,是,是,4,完整,,read-07.csv
+1093,命运-实现\桥研究\_refs\寮曠敤鐧昏.md,配置说明,外部文献引用登记：渠道实测状态、逐条标注已核验或未核验及核验方法,否,是,2,完整,文件名乱码，内容正常UTF-8,read-02.csv
+1094,命运-实现\桥研究\_refs\浼唴娑甸潪閫掑綊鍒荤敾.md,设计源,伪内涵的准闭集非递归刻画：文献出处与穷尽核验，仓库定义非S6,是,是,6,完整,,read-08.csv
+1095,命运-实现\桥研究\lingam缁艰堪.md,配置说明,LiNGAM综述：线性非高斯三假设及其对桥多值性的收窄作用,否,否,0,完整,,read-17.csv
+1106,命运-实现\桥研究\瀛ょ珛瀹氱悊鎶ュ憡.md,转储导出,孤立定理清单：331条定理中258条从未被其它文件引用，按文件列出,否,否,0,完整,机器生成的清单，非手写,read-07.csv
+1107,命运-实现\桥研究\瀹¤-Stage1A.md,审计报告,审计Stage1A.lean：构建零sorry但实质数学极低，T1A.8实为定义重言,否,是,3,完整,文件名乱码（GBK误解），内容是UTF-8,read-07.csv
+1111,命运-实现\桥研究\璺嚎-绗﹀彿鍥炲綊璇勪及.md,设计源,符号回归路线评估：对f有对象、误差对齐裁决K、与AI-Descartes结合的必要性,是,是,2,完整,文件名乱码，内容正常UTF-8,read-02.csv
+1112,命运-实现\桥研究\缁艰堪-1309.6779-ANM.md,审计报告,ANM 文献综述：可定向马尔可夫等价类；桥须加函数形式假设,部分,是,2,完整,文献综述；文件名疑为「综述」的乱码（缁艰堪）,read-15.csv
+1113,命运-实现\桥研究\缁艰堪-2608.15840-浜屽厓LiNGAM鏋佸皬鏋佸ぇ.md,转储导出,arXiv:2608.15840 综述：二元 LiNGAM 方向判定的尖锐极小极大样本复杂度,部分,是,2,完整,文件名乱码，内容正常,read-10.csv
+1114,命运-实现\桥研究\鍊哄姟娓呰处鍙拌处.md,过程产物,债务清账台账：A/B/C 类债务逐项给终态，禁「待办无归属」,部分,是,1,完整,文件名乱码，内容正常,read-10.csv
+1115,命运-实现\桥研究\閮ㄥ垎璇嗗埆缁艰堪.md,配置说明,部分识别综述：识别域与Manski界等方法，对应桥的集合值多值性,否,是,1,完整,文件名乱码，正文正常,read-17.csv
+1116,命运-实现\桥问题-完全展开.md,设计源,桥问题完全展开：𝓕↦G为满射非单射故桥必多值；单值性判定表与9篇论文综述,是,是,3,完整,,read-09.csv
+1117,命运-实现\泛化为假-独立验证.md,审计报告,独立验证 obsOnQuotBy_injective_iff 泛化为假，给出反例并删除,部分,是,3,完整,,read-15.csv
+1118,命运-实现\版本控制与回滚纪律.md,配置说明,版本控制与回滚纪律：git 仓库、工作流、agent 权限与回滚手册,是,是,1,完整,,read-12.csv
+1119,命运-实现\环境约束与启动说明.md,配置说明,实现工作区环境约束与启动说明：网络/工具链受限下的阶段0定义层与原型策略,部分,否,0,完整,,read-13.csv
+1120,命运-实现\理论讨论-实例与属性链.md,设计源,作者确认五决定：实例可含连续对象、上下文构成、局部域两档、多值 FCA,是,是,4,完整,,read-10.csv
+1121,命运-实现\突破落地报告.md,过程产物,反事实商结构进主库：转求𝔉/ker(Obs)单值化，给出trichotomy三情形与诚实边界,部分,是,2,完整,,read-16.csv
+1122,命运-实现\第100轮-裁决P收益兑现.md,过程产物,第100轮裁决P兑现：统一OutSpace使Compose错误101→12，并登记重复劳动,部分,是,2,完整,,read-14.csv
+1123,命运-实现\第101轮-compose再降.md,过程产物,第 101 轮：ComposeOperator 错误 12→11，记录代理挂起与重复劳动,否,否,0,完整,,read-15.csv
+1124,命运-实现\第102轮-compose再降至4.md,过程产物,第102轮ComposeOperator 101→4，修两个根因并对齐名字与内容错位,部分,是,3,完整,,read-14.csv
+1125,命运-实现\第103轮-四算子全部完成.md,过程产物,第103轮：ComposeOperator 101→0，四算子全部入库，三条代数律无条件证明,部分,是,1,完整,,read-13.csv
+1126,命运-实现\第104轮-查明代理失败根因.md,过程产物,第104轮查明代理全失败根因：pi -p 模式静默失效，改用管道模式,部分,否,0,完整,,read-12.csv
+1127,命运-实现\第105轮-代理完全恢复与新风险.md,过程产物,第105轮验证代理由恢复，并发现代理会编造具体数字的新风险,部分,否,0,完整,,read-12.csv
+1128,命运-实现\第106轮-倒退与git回滚与新发现.md,过程产物,第106轮：FinMarkov增量补丁倒退7错误后git回滚；指pending内容未经类型检查,部分,是,3,完整,,read-11.csv
+1129,命运-实现\第107轮-落实发现重写pending-README.md,过程产物,第107轮重写_pending/README：加「未经类型检查」警示，更正三处陈旧数据,部分,是,2,完整,,read-13.csv
+1130,命运-实现\第108轮-小任务策略成功与代理发现我的违规.md,过程产物,第 108 轮：小任务拆分使代理成功率升至 81%，删除两条 :True 占位定理,部分,是,2,完整,,read-10.csv
+1131,命运-实现\第109轮-小任务代理高价值发现.md,过程产物,第 109 轮：删 4 个占位定理、修正 2 处陈旧声明，附 rfl 占比数据,部分,否,0,完整,,read-10.csv
+1132,命运-实现\第10轮-R5裁定与审计修正.md,过程产物,第 10 轮：R5 变为已决（Frame.lean 已按不改类型实现），并修正审计的伪度量等价错误,部分,是,2,完整,,read-15.csv
+1133,命运-实现\第110轮-可编译核验替代自我印证.md,过程产物,第 110 轮：用手写登记降级为可失败检查 Check 37，清最后占位,部分,是,3,完整,,read-10.csv
+1134,命运-实现\第111轮-四条改名与服务器不可达.md,过程产物,第111轮：执行四条登记型定理改名，服务器不可达，脚本中途崩溃被核查发现,部分,是,3,完整,,read-11.csv
+1135,命运-实现\第111轮-审视剩余占位.md,过程产物,第111轮：用名字与内容四问审视6条True占位，分甲类保留与乙类改名,部分,是,3,完整,,read-11.csv
+1136,命运-实现\第112轮-检查11与其自身bug.md,过程产物,第 112 轮：新检查最初完全失效，用注入缺陷发现 Get-Content 单行陷阱,部分,是,1,完整,,read-10.csv
+1137,命运-实现\第113轮-查明FinMarkov根因.md,过程产物,第 113 轮：查明 FinMarkov 报错根因是缺 Fintype.Prod import,否,否,0,完整,,read-15.csv
+1138,命运-实现\第114轮-第四次倒退与元问题诊断.md,过程产物,第114轮：第四次倒退后首次查明反复倒退机制，确立最小步长原则,部分,是,2,完整,,read-11.csv
+1139,命运-实现\第115轮-查明Finset陷阱.md,过程产物,第115轮：查明Finset.mul_sum不存在需open Finset的根因与陷阱清单,部分,是,2,完整,,read-11.csv
+1140,命运-实现\第116轮-最小复现定位根因.md,过程产物,第116轮：最小复现定位sum_ite_eq条件形状不匹配的根因，确立最小步长加最小复现,部分,是,1,完整,,read-11.csv
+1141,命运-实现\第117轮-最小复现法与搬回暴露的问题.md,过程产物,第117轮最小复现法：搬回时暴露 htriple 三元组引理用错位置,部分,是,2,完整,,read-12.csv
+1142,命运-实现\第118轮-5why追到根因.md,过程产物,第118轮：5-why追到margAB符号体系冲突，推翻第117轮陈述类型错误的判断,部分,是,2,完整,,read-11.csv
+1143,命运-实现\第118轮-根因确证.md,过程产物,第118轮确证margAB与jointLaw3在正式库不存在，两套CondIndepFin不能对接,部分,是,2,完整,,read-14.csv
+1144,命运-实现\第119轮-margAB证完.md,过程产物,第 119 轮：margAB_jointLaw3 证完、FinMarkov 剩 1 错；复现含中间态,否,否,0,完整,,read-15.csv
+1145,命运-实现\第11轮-统一框架合并.md,过程产物,第11轮合并两份KernelQuotient实现，定subagent版为唯一权威主体，隔离旧模块,部分,是,4,完整,,read-14.csv
+1146,命运-实现\第120轮-查明sum_prod_type的import根因.md,过程产物,第120轮最小复现查明sum_prod_type import根因与rw/simp递归差异,部分,是,2,完整,,read-14.csv
+1147,命运-实现\第121轮-trace_state拿到真实目标.md,过程产物,第121轮：用trace_state查明jointLaw3_eq是结构差异而非技巧问题,部分,是,1,完整,,read-13.csv
+1148,命运-实现\第122轮-查明分离工具.md,过程产物,第122轮查明求和↔乘积分离三引理的确切签名与所需 import,部分,是,1,完整,,read-12.csv
+1149,命运-实现\第123轮-三个关键事实验证.md,过程产物,第123轮：最小复现验证三个关键事实（ite拆分、两层分离、ring需import）,部分,否,0,完整,,read-13.csv
+1150,命运-实现\第124轮-FinMarkov入库.md,过程产物,第124轮 FinMarkov 清零入库，确立 mul_sum/sum_mul 常数左右位置陷阱,部分,否,0,完整,,read-12.csv
+1151,命运-实现\第124轮-三步工具全部就绪.md,过程产物,第124轮：证通三层求和乘积分离sum3_mul_sep，定位mul_sum与sum_mul方向陷阱,部分,否,0,完整,,read-13.csv
+1152,命运-实现\第125轮-补回归测试.md,过程产物,第125轮补 FinMarkov 回归测试并验证其能失败，新增 Check 39，确立四步工作流,部分,否,0,完整,,read-12.csv
+1153,命运-实现\第126轮-服务器恢复.md,过程产物,第126轮：服务器恢复实为宕机；16轮积压同步；代理对抗审核判operatorStatus无核验力,部分,是,2,完整,,read-11.csv
+1154,命运-实现\第127轮-桥的5步计划.md,过程产物,第127轮：代理产出桥的5步攻坚计划并核实代理编造模块数,部分,否,0,完整,,read-12.csv
+1155,命运-实现\第129轮-纤维质量.md,过程产物,第129轮算出projZ纤维质量（条件核分母），含conv/sum_congr四条实战技术要点,部分,是,1,完整,,read-16.csv
+1156,命运-实现\第12轮-探针整理与范畴推广.md,过程产物,第12轮（进行中版）：探针移入probes/、范畴层推广与d1降级,否,是,1,完整,疑似对应1157，内容高度相似,read-17.csv
+1157,命运-实现\第12轮完成.md,过程产物,第12轮完成：28探针移入probes/，修正CFMap探针引用的弱M5,否,否,0,完整,与1156同轮重复，此版更完整,read-17.csv
+1158,命运-实现\第130轮-引理1完成.md,过程产物,第130轮算出条件核分子（纤维∩单点），与分母合起来完成引理1，并确立两条求和引理的适用场景,部分,是,2,完整,,read-16.csv
+1159,命运-实现\第131轮-引理1d与两个语义缺口.md,过程产物,第131轮补引理1d；代理指出三语义缺口：两套条件独立定义在零测集口径不一致需裁,部分,是,2,完整,,read-14.csv
+1160,命运-实现\第132轮-桥回归测试.md,过程产物,第132轮补桥的第二端回归测试并验证它能失败，如实登记放弃的一致性回归,部分,是,1,完整,,read-14.csv
+1161,命运-实现\第133轮-可加性.md,过程产物,第 133 轮：证出 weightedCount 可加性，把单点结果升到任意集合；服务器连续不可达,否,否,0,完整,,read-15.csv
+1162,命运-实现\第134轮-纤维非零判据.md,过程产物,第134轮：证纤维非零判据fiber_ne_zero_iff，引理1六部分完成,部分,是,1,完整,,read-17.csv
+1163,命运-实现\第135轮-纤维可测性.md,过程产物,第135轮证纤维的comap可测性，并澄清引理2实际目标是按纤维分解而非算显式值,部分,是,2,完整,,read-14.csv
+1164,命运-实现\第136轮-桥的数学心脏.md,过程产物,第136轮证出条件分布可分离（桥的数学心脏），并修正自己多写一个因子的错误,部分,是,1,完整,,read-14.csv
+1165,命运-实现\第137轮-缺口C解法.md,过程产物,第137轮以ae_iff_forall_or_zero把∀ᵐ展开为零质量点∨命题，解决缺口C,部分,否,0,完整,,read-16.csv
+1166,命运-实现\第138轮-Kernel.Indep语义查明.md,过程产物,第138轮：查明Kernel.Indep忽略m₁/m₂，「条件」在核上而不在σ-代数上,部分,否,0,完整,,read-13.csv
+1167,命运-实现\第139轮-FinCondIndep入库.md,过程产物,第 139 轮：FinCondIndep 错误 5→0 并入库，根因是空间互换而非参数顺序,部分,是,1,完整,,read-15.csv
+1168,命运-实现\第139轮-FinCondIndep根因.md,过程产物,第139轮查明condMul_swap类型错误根因是swapXY使空间互换、marginal语义错位,部分,是,3,完整,,read-14.csv
+1169,命运-实现\第13轮-范畴推广进行中.md,过程产物,第13轮范畴化推广进行中：修import环境问题，模块仍在修故不入构建，登记并发编辑教训,部分,是,1,完整,,read-16.csv
+1170,命运-实现\第140轮-pending清零.md,过程产物,第140轮 _pending 清零，并更正回归测试实为5条非7条,部分,是,1,完整,,read-12.csv
+1171,命运-实现\第141轮-补第6条回归测试.md,过程产物,第141轮：补RegressBridge§6回归，§7因FinJoint是abbrev受阻,否,是,1,完整,,read-17.csv
+1172,命运-实现\第142轮-桥的工具全部找到.md,过程产物,第142轮：查明condExpKernel即condDistrib的comap并找到纤维质量引理,部分,是,1,完整,,read-13.csv
+1173,命运-实现\第143轮-装箱问题解决.md,过程产物,第 143 轮：解决 condExpKernel 类型装箱问题，核值公式只剩一个实例细节,否,否,0,完整,,read-15.csv
+1174,命运-实现\第144轮-装箱问题彻底查明.md,过程产物,第144轮：trace_state查明桥最后障碍为m'⊓mΩ与mΩ的σ-代数不对齐,部分,是,1,完整,,read-13.csv
+1175,命运-实现\第145轮-找到正确入口.md,过程产物,第145轮：判定condDistrib路线走不通，回到第95轮已证的正确入口,部分,是,1,完整,,read-13.csv
+1176,命运-实现\第146轮-正确入口已证但遇结构性问题.md,过程产物,第146轮确证bridgeKernelStep1陈述，查明循环依赖与19类型类参数致推断爆炸,部分,是,2,完整,,read-14.csv
+1177,命运-实现\第148轮-纤维常数引理.md,过程产物,第148轮证出comap projZ-可测函数在纤维上为常数，桥组装进度2/5，并报告一次落盘失误,部分,是,2,完整,,read-16.csv
+1178,命运-实现\第149轮-工具入库与代理评估.md,过程产物,第149轮：桥第3步工具入库，核实代理数据并采纳其指出的漏算第6步,部分,否,0,完整,,read-13.csv
+1179,命运-实现\第149轮-第3步受阻.md,过程产物,第149轮桥第3步因setIntegral_condExp隐式实例对齐受阻，另寻轻路线,部分,是,2,完整,,read-14.csv
+1180,命运-实现\第14轮-范畴化未完成已隔离.md,过程产物,第14轮范畴化模块未完成：剩9错误、移入_isolated隔离，并列出六条代价/否定性判断,部分,是,2,完整,,read-16.csv
+1181,命运-实现\第152轮-第4步正确工具.md,过程产物,第152轮查明setIntegral_condExp根因是μ类型依赖m₀，改用替代工具,部分,是,2,完整,,read-14.csv
+1182,命运-实现\第153轮-代理并行攻坚.md,过程产物,第 153 轮：把桥的组装交给服务器 8 个代理并行，并核实代理规模数字含临时文件,否,否,0,完整,,read-15.csv
+1183,命运-实现\第153轮-服务器代理与流式派发器.md,过程产物,第153轮：mihomo服务器代理与流式派发器v5跑通；A3反驳签名缺hp,部分,是,2,完整,,read-11.csv
+1184,命运-实现\第154轮-代理派发受阻诊断.md,过程产物,第154轮查明代理派发失败根因是pi上游对复杂Lean请求超时，重定代理定位,部分,是,2,完整,,read-14.csv
+1185,命运-实现\第154轮-派发器v7与工作区清理.md,过程产物,第154轮派发器迭代到 v7：空闲超时 + --session-id 会话续跑,部分,是,1,完整,,read-12.csv
+1186,命运-实现\第158轮-网络恢复与第7步难题.md,过程产物,第158轮网络恢复改直连优先，第7步卡在Kernel实例对齐（isDefEq超时）,部分,是,2,完整,,read-14.csv
+1187,命运-实现\第15轮-范畴化决策性收尾.md,过程产物,第15轮范畴化决策性收尾：止损停止修复，固化六条判断——范畴化的价值在发现代价而非更强定理,部分,否,0,完整,,read-16.csv
+1188,命运-实现\第15轮-裁决.md,设计源,第15轮裁决：按依赖组织调度、7处真sorry逐个修、σ登记并优化,是,是,3,完整,,read-17.csv
+1189,命运-实现\第160轮-最后一步拆解.md,过程产物,第 160 轮：把桥的最后一步拆成 A/B/C/D 四个子问题，A/C/D 已有工具，B 未证完,否,否,0,完整,,read-15.csv
+1190,命运-实现\第161轮-诚实修正命名.md,过程产物,第161轮诚实改名：桥第7步定理改为 bridgeStatement_unfold_def,部分,是,2,完整,,read-12.csv
+1191,命运-实现\第162轮-三份代理报告消化.md,过程产物,第162轮消化三份代理报告，接受 Q5 批评、驳回其 trim 指控,部分,否,0,完整,,read-12.csv
+1192,命运-实现\第162轮-纤维饱和性决定性发现.md,过程产物,第162轮由反例证明原第9步目标为假，真要求是在纤维饱和集上，修正版定理入库,部分,是,3,完整,,read-14.csv
+1193,命运-实现\第163轮-fiber饱和性突破.md,过程产物,第163轮：fiber z 纤维饱和性突破，setIntegral_condExp_fiber 入库,部分,是,2,完整,,read-12.csv
+1194,命运-实现\第167轮-根本性路线转折.md,过程产物,第167轮路线转折：改证 Indep 形式，不再需要 condExpKernel 核值,部分,是,2,完整,,read-12.csv
+1195,命运-实现\第168轮-零件齐备.md,过程产物,第168轮组装零件齐备：代数核心与核值 ENNReal 版均已入库,部分,是,1,完整,,read-12.csv
+1196,命运-实现\第169轮-关键负面发现.md,审计报告,第169轮关键负面发现：trim桥接引理为假，bridgeStatement现形式下可能不可证,部分,是,4,完整,,read-11.csv
+1197,命运-实现\第16轮-探针正式化.md,过程产物,第16轮把探针结论正式化为CounterfactualStrictness，消除弱M5引用,部分,是,2,完整,,read-14.csv
+1198,命运-实现\第174轮-误删源文件与流程改进.md,过程产物,第174轮误删代理源文件（C1/C3）的如实记录与流程改进,部分,是,2,完整,,read-12.csv
+1199,命运-实现\第176轮-hp可能不必要.md,过程产物,第176轮：证weightedCount(p≡-1)=0，称hp可能非必需并与Z6判断相反,部分,是,2,完整,,read-17.csv
+1200,命运-实现\第179轮-核实G4发现.md,过程产物,第 179 轮：核实 F1 未入库、ICondepIndepFunStatement 为占位,部分,是,3,完整,,read-15.csv
+1201,命运-实现\第17轮-三种等价层级正式化.md,设计源,第17轮三种等价层级正式化：∼cf⊆∼int⊆∼obs主定理并证三者都是核，给出中间地带具体见证,是,否,0,完整,,read-16.csv
+1202,命运-实现\第186轮-J4审核核实与修复.md,审计报告,第186轮逐条核实J4审核：驳回三条错误指控、确认两条真问题，承认上轮夸大,部分,是,3,完整,,read-14.csv
+1203,命运-实现\第18轮-两探针正式化.md,过程产物,第 18 轮：反例证 FCA 闭包算子非代数；两桥载体互相转换,部分,是,2,完整,,read-15.csv
+1204,命运-实现\第191轮-N元桥最后一步未完成.md,过程产物,第191轮：N元桥数学推导完成但sum_marg_eq未形式化，零新定理,否,是,1,完整,,read-17.csv
+1205,命运-实现\第19轮-ICP覆盖形式化.md,过程产物,第 19 轮：ICP 覆盖保证形式化，分解出论文隐藏的可加性前件,部分,是,1,完整,,read-15.csv
+1206,命运-实现\第20轮-退守方案形式化.md,过程产物,第 20 轮：退守方案形式化，T1/T2 都是前件的等价改写而非额外假设,部分,是,1,完整,,read-15.csv
+1207,命运-实现\第212轮-全局盘点.md,审计报告,第212轮全局盘点：主库129模块1106定理，列六缺口与约40%完成度,部分,是,1,完整,,read-11.csv
+1208,命运-实现\第21轮-三视角形式化.md,设计源,ThreeViews桥三视角形式化：多值当资源、换方向不求逆、换商结构，并纠正过强陈述,是,是,1,完整,,read-13.csv
+1209,命运-实现\第22轮-中间地带二分法.md,设计源,第22轮中间地带二分法：Z=∅⟺Φ单射，并给出非空（结构模型读法）与空（读法F）两侧见证,是,否,0,完整,,read-16.csv
+1210,命运-实现\第23轮-数据融合形式化.md,过程产物,第23轮：数据融合形式化为桥纤维之交，证多来源不增鉴别力,部分,是,1,完整,,read-17.csv
+1211,命运-实现\第247轮-SharedParamGain诚实评估.md,过程产物,第247轮自查：SharedParamGain两条核心定理是同义反复，撤回第234轮的定位,部分,是,3,完整,,read-18.csv
+1212,命运-实现\第24轮-最小充分统计量.md,过程产物,第 24 轮：反事实的最小充分统计量就是 Obs，不存在更粗的保真关系,部分,是,2,完整,,read-15.csv
+1213,命运-实现\第25轮-反事实代数.md,设计源,第25轮反事实代数：do不与∼_cf相容（不可降商）、顺序律、do幂等与非单射,是,否,0,完整,,read-16.csv
+1214,命运-实现\第26轮-代理细化.md,设计源,第26轮代理细化反事实等价：加代理只变细不变粗，严格变细的充要判据与两端刻画,是,是,2,完整,,read-16.csv
+1215,命运-实现\第27轮-具体桥方案.md,设计源,第27轮以ObsInt一步签名商给出具体桥方案，三条定理把(P3)拟形变为显式构造,是,是,5,完整,,read-16.csv
+1216,命运-实现\第288轮-方法论教训清单.md,过程产物,第288轮方法论教训清单：错误模式、工程事故、数学概念澄清,部分,否,0,完整,,read-12.csv
+1217,命运-实现\第28轮-参数化中间等价.md,设计源,第28轮参数化中间等价：查询族Q为旋钮，Q越大越细，桥单值化descends系列,是,是,2,完整,,read-16.csv
+1218,命运-实现\第29轮-分档方案.md,设计源,第29轮分档方案：预测/干预/反事实三档成塔，给出细化可区分性定理与塔顶反例,是,是,2,完整,,read-16.csv
+1219,命运-实现\第30轮-视角一支撑反事实.md,过程产物,第30轮：视角一支撑反事实的判据为Obs在纤维上常值，非点值,部分,是,1,完整,,read-17.csv
+1220,命运-实现\第31轮-视角三支撑反事实.md,过程产物,第31轮：视角三支撑反事实当且仅当桥核细于反事实核，增广桥可修,部分,否,0,完整,,read-17.csv
+1221,命运-实现\第32轮-探针审计.md,审计报告,第32轮探针审计：_probe_loop已被完全覆盖，剩余探针多为审计类，正式化边际价值下降,部分,否,0,完整,,read-16.csv
+1222,命运-实现\第33轮-桥商泛性质.md,过程产物,第33轮：桥商下降与泛性质bridgeSetoid_finest，信息保持性,部分,是,1,完整,,read-17.csv
+1223,命运-实现\第346轮-逐条实质度账目.md,审计报告,第 346 轮逐条实质度账目：约 92 条定理中实质约 20%，附判定依据,部分,是,3,完整,,read-10.csv
+1224,命运-实现\第34轮-存在性到定量.md,过程产物,第34轮：循环稳定步数显式界N+|B|≤|M|，存在性到定量,部分,是,1,完整,,read-17.csv
+1225,命运-实现\第35轮-商结构定量.md,过程产物,第35轮：商结构定量，纤维签名与桥商基数等于不同签名数,部分,是,1,完整,,read-17.csv
+1226,命运-实现\第36轮-定量化补完.md,设计源,第36轮定量化补完：等基数⟺离散、桥商≤2^|G|，关闭第35轮登记的两处缺口,是,否,0,完整,,read-16.csv
+1227,命运-实现\第37轮-补登80定义.md,过程产物,第37轮补登80个未登记定义，并证伪「库内有sorry」的初判,部分,是,2,完整,,read-14.csv
+1228,命运-实现\第38轮-Check9新模块声明核验.md,过程产物,第38轮：新增Check 9核验22个新模块的「已证」声明，修三处声明与实际偏差,部分,否,0,完整,,read-13.csv
+1229,命运-实现\第39轮-审计脚本修复.md,过程产物,第39轮修外部审计脚本误报，使“已证”声明零违规,部分,否,0,完整,,read-12.csv
+1230,命运-实现\第3章自建评估.md,审计报告,第3章6项受阻项评估：5项可自建1项须裁决，Mathlib实有不可约核,否,是,2,完整,,read-03.csv
+1231,命运-实现\第40轮-一键验收与第三批缺口.md,过程产物,第40轮：一键验收脚本串联七项检查，发现16模块未导入与64定义未登记,部分,是,1,完整,,read-11.csv
+1232,命运-实现\第41轮-修复CellDiameter缺陷.md,过程产物,第41轮修复 CellDiameter 真实编译缺陷：不在构建图内即验证盲区,部分,否,0,完整,,read-12.csv
+1233,命运-实现\第42轮-构建图完整性检查.md,过程产物,第42轮新增构建图完整性检查8，并自检证明该检查确实会FAIL,部分,是,2,完整,,read-14.csv
+1234,命运-实现\第43轮-具体桥定量.md,过程产物,第 43 轮：给出具体桥的定量上界，商规模只依赖 Action 与 Resp,部分,是,1,完整,,read-15.csv
+1235,命运-实现\第44轮-Equiv1单调性不成立.md,过程产物,第44轮结论：Equiv1单调性不成立并给反例，定位ObsInt丢弃后继的设计代价,部分,是,2,完整,,read-14.csv
+1236,命运-实现\第45轮-单调性两向皆假.md,过程产物,第45轮证伪单调性两方向：保留后继不能恢复单调，改给结构刻画与两条反例,部分,是,3,完整,,read-14.csv
+1237,命运-实现\第46轮-融合收敛条件.md,设计源,第46轮新增FusionConvergence：排除模式、融合域判据、单来源见证与收敛/发散判据,是,否,0,完整,,read-16.csv
+1238,命运-实现\第47轮-Check10.md,过程产物,第47轮为43–46轮三模块补建Check 10的十例编译期核验，并自检其会失败，登记覆盖滞后盲区,部分,否,0,完整,,read-16.csv
+1239,命运-实现\第48轮-覆盖审计与Check11.md,过程产物,第 48 轮：把「覆盖滞后」由沉默改为显式 WARN，新增 Check 11 覆盖 7 个模块,否,否,0,完整,,read-15.csv
+1240,命运-实现\第49轮-核验覆盖100%.md,过程产物,第49轮声明核验覆盖达100%，修审计脚本两处缺陷,部分,否,0,完整,,read-12.csv
+1241,命运-实现\第4轮状态.md,过程产物,第4轮状态：M5捕获两处真缺陷、加Check7、更正最大元存在、captures型错误,部分,是,3,完整,,read-14.csv
+1242,命运-实现\第51轮-范畴化模块集成.md,过程产物,第51轮把范畴化模块正式集成：新增Check 13、定义273→285，并登记范畴化的代价清单,部分,否,0,完整,,read-16.csv
+1243,命运-实现\第52轮-代价定理完成.md,过程产物,第52轮：代价定理cat_collapse_initial_vacuous形式化完成,部分,否,0,完整,,read-17.csv
+1244,命运-实现\第53轮-档位分层否定性发现与评价回应.md,过程产物,第53轮：范畴层档位分层不存在的否定性发现；回应第三方评价并提请转主线,部分,是,3,完整,,read-11.csv
+1245,命运-实现\第55轮-T6深审.md,审计报告,第55轮T6深审：139条未归类孤立中133条（95.7%）实质，孤立率指标偏严,部分,否,0,完整,,read-13.csv
+1246,命运-实现\第56轮-门槛数据依据化.md,过程产物,第 56 轮：把实质度门槛阈值从拍脑袋改为有数据依据，孤立率改仅报告,部分,是,5,完整,,read-15.csv
+1247,命运-实现\第57轮-n腿组装推广.md,设计源,第57轮把2腿组装推广为n腿：核=交、加腿只会更细，并证明2腿被回收,是,是,2,完整,,read-16.csv
+1248,命运-实现\第58轮-腿贡献分解.md,设计源,第58轮腿贡献分解：冗余腿⟺被其余腿蕴含，常值腿必冗余，单腿时冗余退化为常值,是,否,0,完整,,read-16.csv
+1249,命运-实现\第59轮-最小充分腿集.md,过程产物,第 59 轮：最小充分腿集定义与存在性，局部判据与整体判据统一,否,否,0,完整,,read-15.csv
+1250,命运-实现\第60-150轮工作总结.md,过程产物,第60–150轮工作总结：4个核心定理、装配层被推翻、两条零交集的线、24次说重了,否,是,2,完整,,read-09.csv
+1251,命运-实现\第60轮-d分离形式化起点.md,过程产物,第60轮：d-分离图论层形式化（DSeparation.lean），推翻台账「不可做」判断,部分,是,1,完整,,read-13.csv
+1252,命运-实现\第61轮-d分离方向层.md,过程产物,第61轮发现Mathlib Digraph不足，自建三元组四类方向层并收窄陈述,部分,是,2,完整,,read-14.csv
+1253,命运-实现\第62轮-d分离路径层.md,过程产物,第62轮补d-分离路径层：带向路径、逐节点开口性，纯图论部分完整,部分,是,2,完整,,read-14.csv
+1254,命运-实现\第63轮-d分离后代层.md,过程产物,第 63 轮：d-分离后代层 Reach 与 openAt' 完成，并登记 d-分离关于 Z 不单调,部分,是,2,完整,,read-15.csv
+1255,命运-实现\第64轮-do算子代数律.md,过程产物,第64轮实现do算子语义层代数律（幂等、后写者胜、保持外生律），不证不可逆,部分,是,1,完整,,read-14.csv
+1256,命运-实现\第65轮-图操作.md,过程产物,第 65 轮：图操作 delIn/delOut 形式化，使 do-calculus 三条规则可陈述,部分,是,1,完整,,read-15.csv
+1257,命运-实现\第66轮-do规则陈述框架.md,过程产物,第66轮 do-calculus 规则陈述框架与两处自我纠错,部分,是,1,完整,,read-12.csv
+1258,命运-实现\第67轮-服务器并行化与B6推翻.md,过程产物,第67轮：服务器并行化；推翻台账B6未开始，确认CondIndepFun已存在,部分,是,3,完整,,read-11.csv
+1259,命运-实现\第68轮-并行大丰收与缺陷修复.md,过程产物,第68轮：修do_not_injective；acyclic恒真与占位定理被改实,部分,是,2,完整,,read-11.csv
+1260,命运-实现\第71轮-独立复核发现真实缺口.md,过程产物,第 71 轮：服务器 15 个代理独立编译复核，4 个已生成模块中仅 1 个真通过,否,否,0,完整,,read-15.csv
+1261,命运-实现\第71轮续-FCA入库实测结论.md,过程产物,第71轮续：FCA入库实测，传递依赖层21错误且含sorryAx，须分级入库,部分,是,2,完整,,read-11.csv
+1262,命运-实现\第72轮-执行裁决M与派发KL.md,过程产物,第72轮：裁决M执行修债务台账B6/B7/B8与Stage1A理由，裁决K丙两线派12代理,部分,否,0,完整,,read-13.csv
+1263,命运-实现\第73轮-d1降级诊断与裁决L实测.md,过程产物,第73轮：诊断d1 API严重降级（50s/token）根因；实测裁决L结论Rule不需收敛,部分,是,1,完整,,read-13.csv
+1264,命运-实现\第73轮-完整进度.md,过程产物,第73轮诊断：d1 API严重降级致12代理超时，且量化Rule与Bridge*是否需收敛,部分,是,2,完整,,read-14.csv
+1265,命运-实现\第74轮-FCA完全入库突破.md,过程产物,第74轮FCA完全入库，21错误已解决，零sorry经两重验证，裁决N问题收窄,部分,是,2,完整,,read-14.csv
+1266,命运-实现\第75轮-裁决N解决与本地缓存问题.md,过程产物,第75轮：裁决N（sorryAx）前提已消失，查明 rc1 API 语义级漂移,部分,否,0,完整,,read-12.csv
+1267,命运-实现\第75轮续-审计抓出FCA缺口.md,审计报告,第75轮续：审计抓出FCA八处引用不存在名字，裁决N真内容是FCA以什么身份进库,部分,是,1,完整,,read-13.csv
+1268,命运-实现\第76轮-审计修复与四算子产出.md,过程产物,第76轮修审计误报、新增 Check 26，四算子模块产出但需修,部分,否,0,完整,,read-12.csv
+1269,命运-实现\第77轮-修复代理进行中.md,过程产物,第77轮修复代理进行中：FCA隔离动工、四算子待修，并指出瓶颈是API往返延迟,否,是,1,完整,,read-16.csv
+1270,命运-实现\第78轮-FCA隔离完成.md,过程产物,第78轮完成FCA隔离为独立库，Fate构建不再受干扰，并总结代理分工原则,部分,是,2,完整,,read-14.csv
+1271,命运-实现\第79轮-混合模式与Gamma修复.md,过程产物,第79轮：代理修复进展慢致停止，我自己聚类修复GammaOperator 18→12,部分,是,1,完整,,read-13.csv
+1272,命运-实现\第80轮-四算子结构性阻塞.md,过程产物,第80轮：异质组合算子类型上不可能，三模块移入 _pending 并请裁决,部分,是,2,完整,,read-12.csv
+1273,命运-实现\第81轮-修gamma的尝试与边界.md,过程产物,第 81 轮：修 γ 算子，查明 4 根因（含 structure 不能作实例），错误 18→14,否,否,0,完整,,read-15.csv
+1274,命运-实现\第82轮-gamma入库与验收全绿.md,过程产物,第82轮γ算子入库（0错误），还原误改的CoeFun用法，隔离有错模块,部分,是,2,完整,,read-14.csv
+1275,命运-实现\第83轮-upsilon诊断需重新设计.md,审计报告,第83轮UpsilonOperator诊断：四个独立根因，判定需重新设计而非补丁,部分,是,1,完整,,read-13.csv
+1276,命运-实现\第86轮-评估回报与自我失误修复.md,过程产物,第 86 轮：修复静默删除失误，采纳评估建议，纠正自身判断,部分,是,4,完整,,read-10.csv
+1277,命运-实现\第87轮-建成桥的第一端.md,过程产物,第87轮建成桥的第一端 FinMeasureBridge（加权计数嵌入测度）,部分,是,1,完整,,read-12.csv
+1278,命运-实现\第91轮-桥的两端都已入库.md,过程产物,第 91 轮：桥的两端入库，修正两处先前门槛判断，证明仍未做,部分,是,2,完整,,read-15.csv
+1279,命运-实现\第92轮-探明桥的证明路径.md,过程产物,第 92 轮：探明桥证明所需 Mathlib 引理，给出甲乙两条路径,否,否,0,完整,,read-15.csv
+1280,命运-实现\第93轮-桥的证明链条查明.md,过程产物,第93轮用#print查明桥的证明链条，归结为几乎处处等式，有限情形退化为有限和,部分,是,2,完整,,read-14.csv
+1281,命运-实现\第94轮-桥的证明第一步.md,过程产物,第94轮桥的证明第一步：把CondIndepFun展开到IndepSets并定位关键引理,部分,否,0,完整,,read-16.csv
+1282,命运-实现\第95轮-收尾与裁决上下文.md,过程产物,第95轮：桥证明第三步两个成果；承认FinCondIndep被我修坏；三裁决展开,部分,是,3,完整,,read-11.csv
+1283,命运-实现\第97轮-裁决QR执行.md,过程产物,第97轮：执行裁决Q/R，UpsilonOperator错误21→9；实测收敛引理需三个前件,部分,是,1,完整,,read-13.csv
+1284,命运-实现\第98轮-upsilon入库与审核发现.md,过程产物,第 98 轮：υ 算子入库 21 错归零，审核揭出同步静默失效,部分,是,4,完整,,read-10.csv
+1285,命运-实现\第99轮-回读验证自动化与陈旧断言更正.md,过程产物,第99轮把远程回读做成自动检查，并更正 FourOperators 陈旧断言,部分,否,0,完整,,read-12.csv
+1286,命运-实现\第9轮-核伴随.md,过程产物,第9轮核伴随模块：核的最大相容性、读出序⟺核序三层结构，并新增Check 8把回收变成编译期强制,是,是,2,完整,,read-16.csv
+1287,命运-实现\纠正-BridgeZipDown文档声称不实.md,审计报告,纠正BridgeZipDown文档声称不实：三条声称定理不存在，前两个结论未证，属文档层空转,部分,是,4,完整,,read-16.csv
+1288,命运-实现\缺陷-borel_le方向.md,审计报告,发现StateSpace.borel_le方向与Mathlib相反且未被消费，致积空间做不出,部分,是,3,完整,,read-16.csv
+1289,命运-实现\裁决K-对既有文件的修正记录.md,审计报告,裁决K修正记录：判据锚由外部η_S改为内部噪声尺度，η_S降附加,部分,是,2,完整,,read-17.csv
+1290,命运-实现\裁决K落地-A1A2实测结果.md,审计报告,裁决K落地A1/A2实测：揭示原型基准错误（52%实为30.4%），σ两候选差12倍,部分,是,1,完整,,read-13.csv
+1291,命运-实现\裁决M-2-FCA换编码方案实测报告.md,审计报告,裁决 M-2：126 组 FCA 换编码实测，无一组能同时满足误差与格可算,部分,是,2,完整,,read-10.csv
+1292,命运-实现\裁决P执行-统一StateSpace与OutSpace.md,设计源,裁决 P 执行：以「统一 StateSpace 与 OutSpace」为规格，在副本上统一后整体替换,部分,是,2,完整,,read-15.csv
+1293,命运-实现\裁决记录.md,过程产物,主执行代理33条关键裁决记录R-001~R-033，每条含决策/依据/影响/状态,是,是,3,完整,体例为「编号/日期/决策/依据/影响范围/状态」；R-002实测推翻规格「Mathlib无FCA」、R-018判DG基完备性已证,read-01.csv
+1294,命运-实现\规则层类型学基础.md,设计源,规则层类型学：Rule改为输出Set(Measure)，四算子语义对偶及三档强度,是,是,4,完整,,read-11.csv
+1295,命运-实现\规则载体架构-IR.md,设计源,规则载体架构 IR：CIC 底层、嵌入 Lean 验证、提取执行，裁决 K 兜底,是,否,0,完整,,read-12.csv
+1296,命运-实现\证据台账.md,过程产物,证据台账第98轮补记：可信快照E-101–E-107、方法论教训与自认说重清单,部分,是,3,完整,,read-11.csv
+1297,命运-实现\质量审计-新增211条.md,审计报告,309条质量审计：真正独创30–40条（10–12%），孤立率78%，建议按孤立率+T3验收,部分,否,0,完整,,read-16.csv
+1298,命运-实现\路线-符号回归评估.md,版本副本,符号回归路线评估（与1111同文，仅AI-Descartes题名与期刊格式两处差异）,是,是,1,完整,疑似1111的早期版；diff比0.997,read-02.csv
+1299,命运-实现\进度.md,过程产物,主执行代理工作日志：环境探测、阶段0/1A/1B进度与裁决落实,是,是,2,完整,自标为与作者沟通的唯一渠道；§五诚实声明（本机v4.33.0-rc1非目标版本）,read-01.csv
+1300,命运-实现\配对层与规则层级.md,设计源,配对层三策略（相邻/事件/整体）与规则层级标签、轨迹级到转移级的细化条件,是,是,3,完整,,read-10.csv
+1301,命运-实现\重大更正-最大元存在.md,过程产物,重大更正：CFLattice最大元存在（常值读出为顶），并作废基于无顶前提的旧结论,部分,是,4,完整,,read-14.csv
+1302,命运-实现\重建-R2-实现现状.md,审计报告,副本上实测Lean工程：545个.lean、6077条定理、构建无法启动、177对空转,否,是,2,完整,,read-03.csv
+1303,命运-实现\重建-R2-理论内核.md,设计源,第二轮独立重建：把命运归约为随机动力系统+SCM+FCA，提出3×3×2矩阵重写路线,是,是,3,完整,,read-02.csv
+1304,命运-实现\重建-R2-规划.md,设计源,重建R2规划：新增“假转项”第三类失败模式、桥的条件版已真接通、4级优先路线,是,是,3,完整,,read-09.csv
+1305,命运-实现\重建-R2-转项方法论.md,设计源,重建R2转项方法论：前版四增量，9类原因、8条禁用规则、三闸门独立实现,是,是,3,完整,明确「本文件不推翻前版」，四增量（元层污染、禁用规则、三闸门、登记可执行）；附录E 27条证据,read-01.csv
+1306,命运-实现\重建-R3-规划.md,过程产物,重建-R3规划：以世界模型到极限为标尺重排路线，三处事实更正与三线并行,部分,是,4,完整,,read-11.csv
+1307,命运-实现\重要数据清单与同步规程.md,配置说明,重要数据A/B分级与双向同步规程：A级须双份进git，列出无remote等缺口与三种方案,部分,否,0,完整,,read-16.csv
+1308,命运-实现\验证-Causalean共存.md,审计报告,Causalean共存实测：源码级复用可行，不兼容非阻塞,否,是,1,完整,,read-05.csv
+1309,命运理论-成品\01-理论\00-导读.md,配置说明,命运理论总导读v2.0：核心命题八条、章节地图与标签,否,是,3,完整,,read-05.csv
+1311,命运理论-成品\02-证明路线\00-总纲.md,设计源,证明路线总纲：三类陈述划分、两栏 Mathlib 现状、验收标准；文首推翻旁路表述,是,是,7,完整,,read-10.csv
+1312,命运理论-成品\02-证明路线\01-路线图.md,设计源,数学证明路线总计划：7阶段划分、验收标准、证明作用域、Mathlib策略、可行性,是,是,2,完整,阶段数=7（0、1A、1B、2、3、4、5），原文6阶段全部保留、无降级移出；文末修订记录计52处,read-01.csv
+1313,命运理论-成品\02-证明路线\02-定理清单.md,设计源,分层定理清单：115条命题按L0-L8+T9编排，逐条给类别/前件/Mathlib覆盖/难度,是,是,3,完整,含L0-L8共106条定理+T9.x 9条适配命题+E1-E7经验假设=共115条编号条目；已证0条（本框架内）、14条可证、101条条件可证、35条纯外部既有结果、78条Mathlib零覆盖；附二27处修订,read-01.csv
+1314,命运理论-成品\02-证明路线\03-Mathlib缺口与自建库.md,设计源,Mathlib缺口与自建库范围：三栏核查、依赖分层、版本冲突、五道准入门槛,是,是,3,完整,文首加第380轮作者修正标注「旁路」表述被推翻；自建库由13减至6个,read-01.csv
+1315,命运理论-成品\02-证明路线\04-假设登记.md,设计源,假设登记总账：A1–A34三分类、E1–E16经验假设视图、前件确认方式与成本判据,是,否,0,完整,与序号529为同一文档的两个版本,read-02.csv
+1316,命运理论-成品\02-证明路线\05-误差界路线.md,设计源,误差界路线：八类误差的三类归属、可证界命题形式与「压到可接受」可判定化,是,是,3,完整,修订记录计17处；判原文「不能形式化」的E3/E4/E7三项为判定错误,read-01.csv
+1317,命运理论-成品\02-证明路线\06-原型实验.md,设计源,原型实验设计：P-1至P-12前件检验设计、J1–J3禁令、记录规范与证据强度四档,是,否,0,完整,,read-02.csv
+1318,命运理论-成品\03-规范与裁决\00-作者裁决A-B.md,设计源,作者裁决A/B：规则自实例抽象、八词降为附录，文首标注旁路已被推翻,是,是,4,完整,,read-17.csv
+1321,命运理论-成品\03-规范与裁决\03-作者裁决H-lattice搁置.md,配置说明,作者裁决H：lattice仓库暂时搁置、FCA按自建处理；末附第424轮登记该裁决已被事实废止,部分,是,2,完整,,read-16.csv
+1323,命运理论-成品\03-规范与裁决\05-公理与章序规范.md,设计源,公理级假设清单A1–A32与章序接口规范：三类陈述、闭合接口表、编号与引用硬性规则,是,否,0,完整,,read-03.csv
+1324,命运理论-成品\03-规范与裁决\06-矛盾裁决表.md,设计源,矛盾裁决表（成品版）：十处冲突的排他性终裁，含第380轮修正推翻「旁路」表述,是,是,2,完整,与序号358同文，多出文首21行作者修正,read-02.csv
+1325,命运理论-成品\03-规范与裁决\07-裁决代号总索引.md,版本副本,裁决代号总索引（规范目录副本）：19个字母代号全部重名、8个命名域,否,是,2,完整,是序号42的副本，仅多出文首19行说明,read-02.csv
+1327,命运理论-成品\04-文献与依赖\02-复核-Causalean核实.md,审计报告,独立 clone 复核 Causalean 审查报告三项结论，指出未闭合验证需 lake build,部分,是,2,完整,内容与序号 534（proof-engineering\ref\复核-Causalean核实.md）几乎逐字相同，仅链接路径差异；本份为 04-文献与依赖 版,read-15.csv
+1329,命运理论-成品\04-文献与依赖\04-跨库版本对齐风险.md,审计报告,实测四库lean-toolchain版本落差为阻塞性风险，列出四方案；文首标注因果非旁路,部分,是,4,完整,,read-14.csv
+1330,命运理论-成品\04-文献与依赖\05-文献索引.md,转储导出,文献与代码库索引：三条批次的文献、链接、缺口对应与可复用程度汇总,否,否,0,完整,,read-03.csv
+1332,命运理论-成品\README.md,配置说明,理论成品集 README：目录结构、核心方程、主线与诚实状态，文首第380轮旁路作废标注,部分,否,0,完整,文首标注与正文第109行「因果走旁路」自相矛盾（原文按纪律保留）,read-12.csv
+1333,命运项目审计\00-核心文档\历史沿革与结论索引.md,设计源,58份历史审计报告的结论索引：分五阶段，列9条已被推翻结论与10条至今成立结论,否,是,3,完整,,read-09.csv
+1334,命运项目审计\00-核心文档\命运-项目评审报告.md,审计报告,第214轮项目评审：22模块时代六维架构审计、定理实质度与治理流程核查,否,是,3,完整,文首自标「历史存档（第214轮）——不再维护」，结论针对216模块时代；含§5定理实质度分类与§6.5诚实性评估,read-01.csv
+1335,命运项目审计\00-核心文档\命运项目·全景待做与进度总览.md,审计报告,全景进度与待做总览v12：项目修复核实、九要件状态、指标失真更正,否,是,3,完整,含v7-v12多轮指标更正链（如「1处sorry→0处」「dSep 14个→4+4+5」），快照HEAD c16933e,read-01.csv
+1336,命运项目审计\00-核心文档\命运项目·执行规划.md,过程产物,执行规划v6：基于第1023轮实测的三天行动、九要件判定与分层任务表,否,是,0,完整,v6定位为「v5处方服用后的复诊」；§2.5硬约束「本机永不可编译」,read-01.csv
+1337,命运项目审计\00-核心文档\命运项目·流程图.md,审计报告,全项目流程图v3：六环数据流、模块分层与九要件状态,否,是,2,完整,,read-05.csv
+1338,命运项目审计\00-核心文档\未接入资产清单.md,审计报告,未接入主线 Lean 资产清单 v4：47 个未接入模块与 E2 三版本并存问题,部分,是,3,完整,,read-10.csv
+1339,命运项目审计\00-核心文档\裁决K技术专档.md,设计源,裁决K可证性分析：IsFitBoundary定义、严格凸唯一性、σ三条路径全败不可证,是,是,2,完整,,read-09.csv
+1341,命运项目审计\README.md,配置说明,命运项目审计资料包v14总索引：五问题修复状态、铁律与陷阱,否,是,2,完整,混入v13旧版内容，同文件两套数字,read-07.csv
+1342,命运项目审计\_归档\01-主报告\命运-全面审计与发展规划.md,审计报告,全面审计v4.1：按作者「世界模型到极限」目标重估九项要件与关键结论,否,是,3,完整,文首自标为v4.1（HEAD 5cb8e0d），已被v5/v12总览取代；含K1/K2四个必须更正的事实,read-01.csv
+1343,命运项目审计\_归档\01-主报告\未接入主线的Lean资产清单.md,审计报告,未接入主线的Lean资产清单v3：FCA接入失败与孤儿率72%,否,是,1,完整,,read-05.csv
+1344,命运项目审计\_归档\01-主报告\裁决K技术分析.md,审计报告,裁决 K 已完成约80%（119 定理/3034 行），缺的 20% 是 sigma 只能估,否,否,0,完整,含 profExp 完整唯一性实例与三条路线可行性,read-06.csv
+1400,命运项目审计\_归档\命运-世界模型融合评估报告.md,审计报告,命运项目×世界模型融合设计与项目全况：9450 jobs 实测、五要件三空、融合空间,否,否,0,完整,,read-04.csv

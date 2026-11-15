@@ -1,0 +1,61 @@
+﻿序号,路径,类别,主旨,承载设计,含推翻陈述,关键句数,正文完整,备注
+284,_audit\T6-九要件⑨σ.md,审计报告,追加 6 条桥定理，把 sigmaAIC 与样本均值方差 1/n 一致性接上,是,是,2,完整,第 1035 轮任务报告；8/8 前件自检与 axioms 输出齐备
+170,_audit\OFFSET-930-偏移自查.md,审计报告,R929 的 14 个虚 import 是假诊断，真叶子 290 而非 287,否,是,3,完整,只读审计；口径更正指向 GOV-1 第 186 条与 G48
+2,_audit\A1-理论文档体检.md,审计报告,净版 3373 行逐段通读，列 P-01..P-19 缺陷与版本漂移及修改清单,否,是,3,完整,含废止记号 π 残留与已证栏为空两类判定
+219,_audit\R45-真实Top15.md,过程产物,第 245 轮给三个 0 消费模块追加 13 条接线定理（D=0 纯追加）,否,否,0,完整,标题写 Top15 实做 Top16-30 的 3 个；并发提交事故已披露
+109,_audit\F5-待裁决与决策清单.md,配置说明,21 项待裁决去重后只剩 3 项需作者定，并给出裁决台账工作模式,否,是,2,完整,被指定为唯一裁决台账的替代件
+234,_audit\R8-Nary系真实接线.md,过程产物,NaryBridgeDone 追加 7 条组合定理，纠正「组内零引用」的任务口径,否,是,2,完整,文件头有 A6 幽灵报告标记，点名 Fate/_R8Scratch.lean 不存在
+567,命运-实现\FCA-副本-v2\05-专项报告\EXEC-A3-FCA改名方案核验.md,审计报告,只读核验 4 条 FCA 改名：行号、0 命中、引用点 11 处、exit 0 无实证,否,是,2,完整,修正三期10 的「12 处」为 11 处
+744,命运-实现\_verify-R2\mvfca\RESULTS-algo-spectral.md,转储导出,球树与谱聚类在 sigma1 判据下 0/59、0/45，均不如等宽网格方案乙,否,是,1,完整,自适应/谱聚类算法线实测结果
+330,_audit_archive\legacy-audit\_audit3\H2-FCA与未接入资产.md,审计报告,FCA 实为 10 模块 111 定理而非 9/94，并完成 11 模块 127 定理接入,否,是,2,完整,含独立更正段：初稿对 RealFCA 强度判断有误已撤回
+69,_audit\D1-InterventionSup消费.md,过程产物,为 InterventionSup 写 9 条消费者，consumed 由 463 升 464,否,是,1,完整,证实真实 namespace 为 Fate.WorldScenario.InterventionSup
+288,_audit\T9-九要件⑤端到端.md,过程产物,PipelineTendstoGen §6 新增 5 条真双属性+1 条闭式，消除 A∧A 空话,否,是,1,完整,原 A∧A 定理按纪律保留未删
+373,_theory\audit-final\ch6-verify.md,审计报告,ch6.md 已由 61 字节占位重建为 878 行，9 项核验 8 通过 1 带限定通过,否,是,1,完整,P-1..P-5 登记待办；禁止措辞字面命中 3 处
+751,命运-实现\_verify-R2\mvfca\RESULTS-sigma-D.md,转储导出,局部线性残差估 sigma 系统性正偏 23-33%，偏大松弛判据不等于估准,否,是,2,完整,含与方法 A 的横向对照与无噪声地板自检
+504,_work\turns\turn-16.md,过程产物,第 16 轮会话原文：输出卷 I 玄学语义全谱系与统一映射表,是,是,1,完整,含用户提问、助手回复、思维链与工具调用记录
+742,命运-实现\_verify-R2\mvfca\RESULTS-algo-adaptive.md,转储导出,自适应分块 0/30 落 sigma1，占用率 100% 但 max 口径被尾部击穿,否,否,0,完整,闭集数线性于 T，耗时 7.7 s，无 capped/timeout
+72,_audit\D2-FitBoundaryLowerBound消费.md,过程产物,为 FitBoundaryLowerBound 14 定理写 15 条消费者，12/14 真消费,否,否,0,完整,文件头有 A6 幽灵报告标记，点名 FitBoundBoundaryLowerBound 不存在
+656,命运-实现\_verify-R2\CF-充要条件分析.md,设计源,给出 cfWithAbduction=doLaw 的反例 M3、充要条件与纤维质量充分条件,是,是,3,完整,M4 反例补入；前版 19 条已编译的说法已据实更新
+437,_work\checks\counter-b.md,审计报告,以最严厉批评者立场核验「可操作性」质疑，判部分通过并写 6 条更正,否,是,4,完整,更正段落 6 条，置信度中并列出四点降级理由
+96,_audit\E5-实用价值临界路径.md,审计报告,按三档门槛评估实用价值：A 约50%、B 约10%、C 约20%，缺预测函数,否,是,4,完整,明确声明 d4.json 的 238 条只是启发式候选池
+222,_audit\R48-真实top12.md,过程产物,让 Rule1Genuine 等 4 个零消费模块被消费，consumed 达 240,否,是,1,完整,诚实登记 conditions_decompose 与 sep_iff_paths 是 Iff.rfl 展开
+377,_theory\audit-final\z-all.md,审计报告,全量终校 10 章：ch6 剩 61 字节占位、契约 §7 并入 0 执行，判不可交付,否,否,0,完整,未采信任何 revision 自述，全部走正文行号取证
+764,命运-实现\_定理清单-抽取.md,转储导出,定理清单按层抽取编号陈述，登记 7/17 已证与清单本身的两处修正,否,否,0,完整,修正 T6.5 当且仅当不成立、T1.11 字面不成立
+183,_audit\R10-T1A2系真实接线.md,过程产物,T1A2.lean §5 追加 9 条组合定理，跨块调用被 Lean 否决已登记,否,是,2,完整,module 与非 module 冲突使组内引用不变
+285,_audit\T7-九要件⑥干预.md,过程产物,追加 6 条桥定理，证明 bestScore 与 bestScoreSup 无条件相等,否,是,2,完整,§X6.5 额外前提被证为冗余；69 处引用实际改写未做
+789,命运-实现\prototype\fca-alpha\SPEC.md,配置说明,fca-alpha 原型运行前置：前件 A8/A32、输入输出、V1-V8 与失败含义,是,否,0,完整,含 J1-J3 三条硬性禁令与常数来源声明
+225,_audit\R51-top26-37.md,过程产物,ErrorBound 与 ECIB 追加 8 条定理，consumed 241,否,是,1,完整,ErrorBound 的 namespace 是 Fate.R250ErrorBound，结构性不可消费
+1344,命运项目审计\_归档\01-主报告\裁决K技术分析.md,审计报告,裁决 K 已完成约80%（119 定理/3034 行），缺的 20% 是 sigma 只能估,否,否,0,完整,含 profExp 完整唯一性实例与三条路线可行性
+331,_audit_archive\legacy-audit\_audit4\J1-第249-298轮重测.md,审计报告,重测 249-298 轮：工程健康度提升但实质进展停滞，缺口 1 仍未打通,否,否,0,完整,sigcheck 编译失败使验收环节失效
+203,_audit\R3-1-验收与缺口.md,审计报告,验收前两轮 12 模块编译通过但扇入全为 0，判为孤岛并列出缺口,否,是,1,完整,文件头有 A6 幽灵报告标记，点名 MainChainWiring.lean 不存在
+97,_audit\E5-时序组合语义.md,设计源,用 Measure.bind 实现规则的时序复合，21 条定理含无条件结合律,是,否,0,完整,seqLaw_def 为 rfl 已标明；加权凸组合版本未实现
+105,_audit\F2-边缘化语义.md,过程产物,把 5.1 候选②边缘化补到 LawRule 载体，8 定理并纠正草案假定理,否,是,3,完整,marginal_inter 等式因缺单射被删，改为 ⊆ 与 embedding 版
+648,命运-实现\_verify-R2\Bridge-A3方案修正.md,审计报告,A3 机械内容已可闭，但声称产物 Factorizes⟹LMG 已被机器证伪,否,是,5,完整,给出 A3.1-A3.6 可证/不可证边界表与出口①建议
+568,命运-实现\FCA-副本-v2\05-专项报告\EXEC-C2-FCA改名实测.md,过程产物,走锁实测复现 extent_iInter_subset 撞名，内核证 4 个新名未占用,否,是,1,完整,把 PL10 的「对称」精确化为「对称地失败」
+397,_theory\source\D-动力系统与随机过程.md,过程产物,第 19 轮会话原文：输出卷 IV 动力系统与随机过程及统一公式,是,否,0,完整,每节都有科学映射表；末尾含思维链
+157,_audit\OFFSET-1049-偏移自查.md,审计报告,「9/9 到极限」不成立，偏移从造假转为选择性披露,否,是,4,完整,hook 豁免通道使本轮 75% 提交绕过度量校验
+507,_work\turns\turn-19.md,版本副本,第 19 轮会话原文，与 source/D 同一卷的略有差异副本,是,是,1,完整,与 _theory/source/D-动力系统与随机过程.md 高度相似（差 2 行）
+58,_audit\CHAIN-5-DAGBridgeConsumer.md,过程产物,复核 DAGBridgeConsumer 5 条真连接，指出其文件头公理段已过期,否,否,0,完整,该 Consumer 已在 HEAD，本轮零新建
+286,_audit\T8-九要件③裁决K.md,过程产物,把裁决 K 的 sigma 从定义分量改为 inf' 计算，追加 183 行四条腿,否,是,2,完整,全局下界仍不可免费修复，由 D 腿反例钉死
+195,_audit\R22-View系真实接线.md,过程产物,WorldModelNoPredict 追加 7 条定理并证 sim 的 restart 性质,否,是,1,完整,证实仓库无 Fate.View* World 模块，实为 15 个 WorldModel*
+229,_audit\R55-top10.md,过程产物,3 个宿主追加 16 条 primitive 并即时配 consumer，存量未清零,否,否,0,完整,全量 lake build 因他人文件失败，本批 3 宿主 0 error
+140,_audit\H3-开放问题判定冲突裁决.md,审计报告,仲裁 3 处开放问题判定冲突，三次自我修正后定为已实现 1/17,否,否,0,完整,含 498、513、524 三轮修正，以 524 节为最终权威
+748,命运-实现\_verify-R2\mvfca\RESULTS-planC.md,转储导出,k-means 分块 k=2..32 全扫 0/93 落 sigma1 带，需细分到近单点才擦边,否,是,1,完整,初稿三处读错已以本条与上表为准
+230,_audit\R56-top10.md,过程产物,3 宿主追加 16 条定理，仅 1 条被跨模块消费，零消费未清零,否,是,1,完整,两处形式降级/弱化已登记
+668,命运-实现\_verify-R2\PEARL_127_PROOF_ROADMAP.md,设计源,把 Factorizes⟹LMG⟹GM 拆 9 步，给出书目出处与项目引理缺口,是,是,2,完整,任务书编号 1.2.7 无法确认，改按数学内容编路线图
+33,_audit\BRIDGE-3-EndToEndPipeline.md,过程产物,证 endToEndIter 在 linWorld 上等于 pipelineNGen，并搬运收敛结论,否,否,0,完整,含覆盖已有文件的破坏事故与恢复记录
+346,_audit_archive\legacy-audit\_audit7\P9-优先级与依赖.md,设计源,给出 M0-M7 依赖图与关键路径 dSep⟹reads⟹CondMul，并立止损规则,是,否,0,完整,明确禁止再写第 91 个 Bridge 模块与证明 sigma
+664,命运-实现\_verify-R2\O1-分布误差σ.md,设计源,"比较三种分布误差 sigma 定义，推荐 sigmaFluct=TV(p̂1,p̂2)",是,是,2,完整,28 条 Lean 定理在独立脚本验证；推测与未证项分列
+743,命运-实现\_verify-R2\mvfca\RESULTS-algo-knn.md,转储导出,kNN 连通分量在 sigma1 与 sigma2 双带上 0/24，结构上无分辨率旋钮,否,否,0,完整,18/24 配置 proper 闭集族为空，maxdiam* 无定义
+128,_audit\GOV-1-乱码备份-897.md,配置说明,定义治理登记：三族 15 个真定义需统一 0+2 个，并立 G1-G14 规则,是,否,0,完整,文件名为乱码备份但正文完整可读
+747,命运-实现\_verify-R2\mvfca\RESULTS-planB.md,转储导出,等宽网格 BlockLayer 在 sigma2 全落带，sigma1 只能靠退化擦边,否,否,0,完整,n_ext 与历史 JSON 不一致已精确登记
+562,命运-实现\FCA-副本-v2\04-哲学依据\FCA的拓展与补足.md,设计源,以时态性层级体系为蓝本提五层补全：目光、要素、纤维与规范形,是,否,0,完整,设计提案，未在 LATTICE 实施
+673,命运-实现\_verify-R2\SOURCES_RuleAlgebra.md,设计源,文献调研：rule algebra 有三支互不兼容传统，本仓库属 (A)+(C) 非 (B),是,是,2,完整,作者归属由 Dávid–Török 纠正为 Behr–Sobociński
+59,_audit\CHAIN-6-ErrBandLinkConsumer.md,过程产物,复核并修复 ErrBandLink 接线，删掉一条假连接、重写为两条真连接,否,是,2,完整,含并发 agent 干扰与口径 A 抖动记录
+87,_audit\E1-当前状态总览-第422轮.md,过程产物,第 422 轮状态总览：13 模块入链、19 个裁决代号全重名、主控 10 错,否,是,2,完整,附录追加第 435/465 轮两项决定
+638,命运-实现\_pending\第186轮-里程碑交接台账-202定理.md,过程产物,第 186 轮台账：24 模块 8555 行 202 定理，E1-E8 覆盖与 T1A.2 九层,否,是,2,完整,含 10 个假实现、46 条 Mathlib 陷阱与 17 条方法论教训
+61,_audit\CHAIN-8-DeadPremiseAuditConsumer.md,过程产物,让 DeadPremiseAudit 接入四条链，并自曝 v1 假接线已改为合取,否,是,1,完整,HEAD 已含逐字节相同实现，本轮增量为修复与补报告
+746,命运-实现\_verify-R2\mvfca\RESULTS-planB-fine.md,转储导出,BlockLayer 细扫 nb=16..256，6/6 形式落带但全部退化擦边,否,否,0,完整,给出归零阈值 nb_floor≈(10-26)·T^(1/d)
+403,_theory\theory\ch1-revision.md,过程产物,第 1 章一致性修订 31 条：改记号章号、补反例，并声明契约文件不存在,是,是,3,完整,U-1 阻断项：_theory/contract.md 不存在，§4 §5 无法恢复
+149,_audit\MLIB-1-Mathlib可用性核查.md,审计报告,核查 Mathlib 可用性：Contraction/Bochner 是上游改名非 olean 缺失,否,是,2,完整,初稿两处计数错误已公开更正
+123,_audit\GEN-1-泛化审计.md,审计报告,三方向泛化审计：真红利在逻辑腿，分析腿与递推腿不可泛化,否,是,2,完整,明确声明只抽样 10 条，未穷举
