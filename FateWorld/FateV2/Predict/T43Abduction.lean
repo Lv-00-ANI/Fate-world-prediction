@@ -95,7 +95,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace T43
 
-open PearlHierarchy SCMSemantics Finset
+open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics Finset
 
 /-! ## §1 两条**反事实算法**（定义） -/
 

@@ -1,0 +1,1759 @@
+{
+ "map": {
+  "Fate.AdjustmentUnified": "FateV2.Predict.AdjustmentUnified",
+  "KNNComponents": "FateV2.Rules.KNNComponents",
+  "KNNComponents.IsConnectedPartition": "FateV2.Rules.KNNComponents.IsConnectedPartition",
+  "Fate.AssemblyMeta": "FateV2.Meta.AssemblyMeta",
+  "Fate.AttrAcceptable": "FateV2.Error.AttrAcceptable",
+  "Fate.AudUniv2": "FateV2.Error.AudUniv2",
+  "Fate.Backdoor": "FateV2.Predict.Backdoor",
+  "Fate.R259": "FateV2.Predict.R259",
+  "Fate.R259.BackdoorSetup": "FateV2.Predict.R259.BackdoorSetup",
+  "Fate.R259.Demo": "FateV2.Predict.R259.Demo",
+  "Fate.R259.BadOpen": "FateV2.Predict.R259.BadOpen",
+  "Fate.R229": "FateV2.Predict.R229",
+  "Fate.R277": "FateV2.Predict.R277",
+  "Fate.R277.BackdoorSetup": "FateV2.Predict.R277.BackdoorSetup",
+  "Fate.BackdoorSepAlgSep": "FateV2.Predict.BackdoorSepAlgSep",
+  "Fate.BackdoorSepAlgSep.Counterexample": "FateV2.Predict.BackdoorSepAlgSep.Counterexample",
+  "Fate.BackdoorSepNumeric": "FateV2.Predict.BackdoorSepNumeric",
+  "Fate.BanachFixedPoint": "FateV2.Loop.BanachFixedPoint",
+  "BlockLayerLowerBound": "FateV2.Error.BlockLayerLowerBound",
+  "Fate.BoundWriteBack": "FateV2.Loop.BoundWriteBack",
+  "Fate.CFMap": "FateV2.Modeling.CFMap",
+  "Fate.CapstoneDriftFromObs": "FateV2.Loop.CapstoneDriftFromObs",
+  "Causalean.Graph": "FateV2.Modeling.Graph",
+  "Causalean.Graph.DAG": "FateV2.Modeling.Graph.DAG",
+  "Causalean.Graph.DAG.BayesBallRegression": "FateV2.Modeling.Graph.DAG.BayesBallRegression",
+  "Fate.CausalDescendant": "FateV2.Predict.CausalDescendant",
+  "Fate.CausalDirection": "FateV2.Predict.CausalDirection",
+  "Fate.CausalDirection.CausalGraph": "FateV2.Predict.CausalDirection.CausalGraph",
+  "Fate.CausalEffect": "FateV2.Predict.CausalEffect",
+  "Fate.CausalPath": "FateV2.Predict.CausalPath",
+  "Fate.CausalRouteDo": "FateV2.Predict.CausalRouteDo",
+  "Fate.ChainBudgetBound": "FateV2.Error.ChainBudgetBound",
+  "Fate.ChainErrorBudget": "FateV2.Error.ChainErrorBudget",
+  "Fate.ChainErrorBudget.ChainBudget": "FateV2.Error.ChainErrorBudget.ChainBudget",
+  "Fate.ChainErrorBudgetGrounded": "FateV2.Error.ChainErrorBudgetGrounded",
+  "Fate.FormalCtx": "FateV2.Rules.FormalCtx",
+  "Fate.ClosedLoopNoisy": "FateV2.Loop.ClosedLoopNoisy",
+  "Fate.ContinuousEvalQ": "FateV2.Error.ContinuousEvalQ",
+  "Fate.ConvergeToOptimalV2": "FateV2.Loop.ConvergeToOptimalV2",
+  "Fate.ConvergenceOptimal": "FateV2.Loop.ConvergenceOptimal",
+  "Fate.Counterfactual": "FateV2.Predict.Counterfactual",
+  "Fate.DSeparation": "FateV2.Predict.DSeparation",
+  "Fate.DeadPremiseAudit": "FateV2.Meta.DeadPremiseAudit",
+  "Fate.DeadPremiseAudit.MiniBackdoorSetup": "FateV2.Meta.DeadPremiseAudit.MiniBackdoorSetup",
+  "Fate.DoCalculus": "FateV2.Predict.DoCalculus",
+  "Fate.EndToEnd": "FateV2.Loop.EndToEnd",
+  "Fate.EndToEndBoundFixed": "FateV2.Loop.EndToEndBoundFixed",
+  "Fate.EndToEndError": "FateV2.Error.EndToEndError",
+  "Fate.EndToEndSelectorWiring": "FateV2.Loop.EndToEndSelectorWiring",
+  "Fate.ErrBandLink": "FateV2.Error.ErrBandLink",
+  "Fate.ErrBandLinkConsumer": "FateV2.Error.ErrBandLinkConsumer",
+  "Fate.ErrBandLinkConsumer.R49": "FateV2.Error.ErrBandLinkConsumer.R49",
+  "Fate.ErrDefinitions": "FateV2.Error.ErrDefinitions",
+  "Fate.ErrorBand": "FateV2.Error.ErrorBand",
+  "Fate.R250ErrorBound": "FateV2.Error.R250ErrorBound",
+  "Fate.R253ErrorBound": "FateV2.Error.R253ErrorBound",
+  "Fate.ErrorBoundChainConsumer": "FateV2.Error.ErrorBoundChainConsumer",
+  "Fate.Stage2.ErrorBoundE1": "FateV2.Error.Stage2.ErrorBoundE1",
+  "Fate.Stage2.ErrorBoundE2": "FateV2.Error.Stage2.ErrorBoundE2",
+  "Fate.Stage2.ErrorBoundE3": "FateV2.Error.Stage2.ErrorBoundE3",
+  "Fate.Stage2.ErrorBoundE4": "FateV2.Error.Stage2.ErrorBoundE4",
+  "Fate.Stage2.ErrorBoundE5": "FateV2.Error.Stage2.ErrorBoundE5",
+  "Fate.Stage0.ErrorBoundE6": "FateV2.Error.Stage0.ErrorBoundE6",
+  "Fate.Stage0.ErrorBoundE6.IsContractionIn": "FateV2.Error.Stage0.ErrorBoundE6.IsContractionIn",
+  "Fate.Stage0.ErrorBoundE6.FloatingPointModel": "FateV2.Error.Stage0.ErrorBoundE6.FloatingPointModel",
+  "Fate.Stage2.ErrorBoundE78": "FateV2.Error.Stage2.ErrorBoundE78",
+  "Fate.ErrorCriterion": "FateV2.Error.ErrorCriterion",
+  "Fate.ErrorCriterionImpliesBound": "FateV2.Error.ErrorCriterionImpliesBound",
+  "Fate.ErrorCriterionUnified": "FateV2.Error.ErrorCriterionUnified",
+  "Fate.ErrorDimUnified": "FateV2.Error.ErrorDimUnified",
+  "Fate.ErrGraph": "FateV2.Error.ErrGraph",
+  "Fate.ErrorMagnitude": "FateV2.Error.ErrorMagnitude",
+  "Fate.Stage2": "FateV2.Error.Stage2",
+  "Fate.EtaMaxFromData": "FateV2.Error.EtaMaxFromData",
+  "Fate.FinCondIndep": "FateV2.Predict.FinCondIndep",
+  "Fate.FinCondIndepSymm": "FateV2.Error.FinCondIndepSymm",
+  "Fate.FinJoint": "FateV2.Predict.FinJoint",
+  "Fate.FinMarkov": "FateV2.Predict.FinMarkov",
+  "Fate.FinMarkov.FracSCM": "FateV2.Predict.FinMarkov.FracSCM",
+  "Fate.FiniteCondIndep": "FateV2.Modeling.FiniteCondIndep",
+  "Fate.R238E3": "FateV2.Error.Core",
+  "Fate.R238E3.ErrProfileWeak": "FateV2.Error.Core.ErrProfileWeak",
+  "Fate.R238E3.ErrProfile": "FateV2.Error.Core.ErrProfile",
+  "Fate.FitBoundaryLowerBound": "FateV2.Error.FitBoundaryLowerBound",
+  "Fate.FitBoundaryLowerBoundConsumer": "FateV2.Error.FitBoundaryLowerBoundConsumer",
+  "Fate.Frontdoor": "FateV2.Predict.Frontdoor",
+  "Fate.R242": "FateV2.Predict.R242",
+  "Fate.R253": "FateV2.Predict.R253",
+  "Fate.R254": "FateV2.Predict.R254",
+  "Fate.R255": "FateV2.Predict.R255",
+  "Fate.R255.FrontdoorSetup": "FateV2.Predict.R255.FrontdoorSetup",
+  "Fate.R255.R32": "FateV2.Predict.R255.R32",
+  "Fate.R255.R49": "FateV2.Predict.R255.R49",
+  "Fate.Fusion": "FateV2.Rules.Fusion",
+  "Fate.GaussMarkovScalar": "FateV2.Error.GaussMarkovScalar",
+  "Fate.GaussMarkovScalarSymm": "FateV2.Error.GaussMarkovScalarSymm",
+  "Fate.GaussMarkovVector": "FateV2.Error.GaussMarkovVector",
+  "Fate.GazeAlgebra": "FateV2.Meta.GazeAlgebra",
+  "Fate.GazeAlgebra.G": "FateV2.Meta.GazeAlgebra.G",
+  "Fate.ICPCoverage": "FateV2.Meta.ICPCoverage",
+  "Fate.LawRuleInstances": "FateV2.Rules.LawRuleInstances",
+  "Fate.InterventionSelection": "FateV2.Predict.InterventionSelection",
+  "Fate.KernelQuotientTheory": "FateV2.Modeling.KernelQuotientTheory",
+  "Fate.LawRule": "FateV2.Rules.LawRule",
+  "Fate.LawRuleToTraj": "FateV2.Rules.LawRuleToTraj",
+  "Fate.LipschitzFromFinite": "FateV2.Error.LipschitzFromFinite",
+  "MVFCA4": "FateV2.Rules.MVFCA4",
+  "MVFCA4.PatStruct": "FateV2.Rules.MVFCA4.PatStruct",
+  "Fate.MainLoop": "FateV2.Loop.MainLoop",
+  "Fate.MainLoopSupport": "FateV2.Error.MainLoopSupport",
+  "Fate.MainlineTheorems": "FateV2.Rules.MainlineTheorems",
+  "Fate.MoralGraphMarkov": "FateV2.Modeling.MoralGraphMarkov",
+  "Fate.ObsEstSharp": "FateV2.Error.ObsEstSharp",
+  "ObsEstSharp": "ObsEstSharp",
+  "Fate.RA14Strong": "FateV2.Modeling.RA14Strong",
+  "Fate.ObsEstimationWeak": "FateV2.Modeling.ObsEstimationWeak",
+  "Fate.ObsEstimationWeak.ObsModel": "FateV2.Modeling.ObsEstimationWeak.ObsModel",
+  "Fate.OptimalEta": "FateV2.Loop.OptimalEta",
+  "Fate.OptimalityChain": "FateV2.Loop.OptimalityChain",
+  "Fate.OptimalityGapTheory": "FateV2.Error.OptimalityGapTheory",
+  "Fate.OptimalityPattern": "FateV2.Error.OptimalityPattern",
+  "Fate.GaussMarkovInstance": "FateV2.Error.GaussMarkovInstance",
+  "Fate.OptimalEtaInstance": "FateV2.Error.OptimalEtaInstance",
+  "Fate.ParamSCM": "FateV2.Predict.ParamSCM",
+  "Fate.ParamSCMConsumer": "FateV2.Loop.ParamSCMConsumer",
+  "Fate.P213B1": "FateV2.Predict.P213B1",
+  "Fate.PearlCondIndepBridge": "FateV2.Predict.PearlCondIndepBridge",
+  "Fate.Fork213": "FateV2.Predict.Fork213",
+  "Fate.PearlHierarchy": "FateV2.Modeling.PearlHierarchy",
+  "Fate.PearlHierarchy.SCM": "FateV2.Modeling.PearlHierarchy.SCM",
+  "Fate.PipelineLipschitz": "FateV2.Error.PipelineLipschitz",
+  "Fate.WorldScenario": "FateV2.Predict.WorldScenario",
+  "Lattice": "FateV2.Rules.Lattice",
+  "Fate.ResidualLoop": "FateV2.Loop.ResidualLoop",
+  "Fate.ResidualReduces": "FateV2.Loop.ResidualReduces",
+  "Fate.RetreatPlan": "FateV2.Predict.RetreatPlan",
+  "Fate.RuleActivation": "FateV2.Rules.RuleActivation",
+  "Fate.RuleMainChainConsumer": "FateV2.Loop.RuleMainChainConsumer",
+  "Fate.SCMGraph": "FateV2.Modeling.SCMGraph",
+  "Fate.SCMGraph.SV": "FateV2.Modeling.SCMGraph.SV",
+  "Fate.SCMSemantics": "FateV2.Modeling.SCMSemantics",
+  "Fate.ScenarioBranchLimit": "FateV2.Loop.ScenarioBranchLimit",
+  "Fate.ScenarioConvergence": "FateV2.Loop.ScenarioConvergence",
+  "Fate.ScenarioSharp": "FateV2.Loop.ScenarioSharp",
+  "Fate.ScoreBound": "FateV2.Error.ScoreBound",
+  "Fate.ScoreK": "FateV2.Error.ScoreK",
+  "Fate.SeparableCondMul": "FateV2.Predict.SeparableCondMul",
+  "Fate.SetLemmas": "FateV2.Core.SetLemmas",
+  "Fate.SigmaDataDependence": "FateV2.Error.SigmaDataDependence",
+  "Fate.SigmaEstimation": "FateV2.Error.SigmaEstimation",
+  "Fate.SigmaFromAIC": "FateV2.Error.SigmaFromAIC",
+  "Fate.SigmaFromDomain": "FateV2.Error.SigmaFromDomain",
+  "Fate.SigmaFromDomain.SigmaSource": "FateV2.Error.SigmaFromDomain.SigmaSource",
+  "Fate.SigmaFromInfoGain": "FateV2.Error.SigmaFromInfoGain",
+  "Fate.SigmaGammaFromData": "FateV2.Error.SigmaGammaFromData",
+  "Fate.SigmaLandscape": "FateV2.Error.SigmaLandscape",
+  "Fate.SigmaUnified": "FateV2.Error.SigmaUnified",
+  "Fate.SteadyErrEstimate": "FateV2.Error.SteadyErrEstimate",
+  "Fate.R_SupportBound": "FateV2.Error.R_SupportBound",
+  "Fate.R_SupportBound.SuppProfile": "FateV2.Error.R_SupportBound.SuppProfile",
+  "Fate.T04": "FateV2.Meta.T04",
+  "Fate.T111": "FateV2.Rules.T111",
+  "Fate.T1Verify": "FateV2.Loop.T1Verify",
+  "Fate.T314": "FateV2.Predict.T314",
+  "Fate.T34": "FateV2.Predict.T34",
+  "Fate.T35": "FateV2.Predict.T35",
+  "Fate.T43": "FateV2.Predict.T43",
+  "Fate.T44": "FateV2.Predict.T44",
+  "Fate.T44.SCM": "FateV2.Predict.T44.SCM",
+  "Fate.T61": "FateV2.Modeling.T61",
+  "Fate.R230B4": "FateV2.Meta.R230B4",
+  "Fate.PrMaj": "FateV2.Meta.PrMaj",
+  "Fate.TauParametric": "FateV2.Loop.TauParametric",
+  "Fate.ThetaConvergence": "FateV2.Loop.ThetaConvergence",
+  "Fate.ThetaLearningParam": "FateV2.Loop.ThetaLearningParam",
+  "Fate.TrajGenDeterministic": "FateV2.Model.TrajGenDeterministic",
+  "Fate.WiringBackdoorFixed": "FateV2.Predict.WiringBackdoorFixed",
+  "Fate.WiringConvergence": "FateV2.Loop.WiringConvergence",
+  "Fate.WiringFrontdoor": "FateV2.Predict.WiringFrontdoor",
+  "Fate.WorldModelAssembly": "FateV2.Loop.WorldModelAssembly",
+  "Fate.WorldModelCapstone": "FateV2.Loop.WorldModelCapstone",
+  "Fate.WorldModelReadsTheta": "FateV2.Loop.WorldModelReadsTheta",
+  "Fate.WorldModelSynthesis": "FateV2.Loop.WorldModelSynthesis"
+ },
+ "details": [
+  {
+   "模块": "AdjustmentUnified",
+   "Legacy ns": "Fate.AdjustmentUnified",
+   "FateV2 ns": "FateV2.Predict.AdjustmentUnified"
+  },
+  {
+   "模块": "AlgoKNNComponents",
+   "Legacy ns": "KNNComponents",
+   "FateV2 ns": "FateV2.Rules.KNNComponents"
+  },
+  {
+   "模块": "AlgoKNNComponents",
+   "Legacy ns": "KNNComponents.IsConnectedPartition",
+   "FateV2 ns": "FateV2.Rules.KNNComponents.IsConnectedPartition"
+  },
+  {
+   "模块": "AssemblyMeta",
+   "Legacy ns": "Fate.AssemblyMeta",
+   "FateV2 ns": "FateV2.Meta.AssemblyMeta"
+  },
+  {
+   "模块": "AttrAcceptable",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "AttrAcceptable",
+   "Legacy ns": "Fate.AttrAcceptable",
+   "FateV2 ns": "FateV2.Error.AttrAcceptable"
+  },
+  {
+   "模块": "AudUnivLayer2",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "AudUnivLayer2",
+   "Legacy ns": "Fate.AudUniv2",
+   "FateV2 ns": "FateV2.Error.AudUniv2"
+  },
+  {
+   "模块": "BackdoorAdjustment",
+   "Legacy ns": "Fate.Backdoor",
+   "FateV2 ns": "FateV2.Predict.Backdoor"
+  },
+  {
+   "模块": "BackdoorCriterion",
+   "Legacy ns": "Fate.R259",
+   "FateV2 ns": "FateV2.Predict.R259"
+  },
+  {
+   "模块": "BackdoorCriterion",
+   "Legacy ns": "Fate.R259.BackdoorSetup",
+   "FateV2 ns": "FateV2.Predict.R259.BackdoorSetup"
+  },
+  {
+   "模块": "BackdoorCriterion",
+   "Legacy ns": "Fate.R259.Demo",
+   "FateV2 ns": "FateV2.Predict.R259.Demo"
+  },
+  {
+   "模块": "BackdoorCriterion",
+   "Legacy ns": "Fate.R259.BadOpen",
+   "FateV2 ns": "FateV2.Predict.R259.BadOpen"
+  },
+  {
+   "模块": "BackdoorCriterion",
+   "Legacy ns": "GraphCheck",
+   "FateV2 ns": "GraphCheck"
+  },
+  {
+   "模块": "BackdoorFiber",
+   "Legacy ns": "Fate.R229",
+   "FateV2 ns": "FateV2.Predict.R229"
+  },
+  {
+   "模块": "BackdoorGenuine",
+   "Legacy ns": "Fate.R277",
+   "FateV2 ns": "FateV2.Predict.R277"
+  },
+  {
+   "模块": "BackdoorGenuine",
+   "Legacy ns": "Fate.R277.BackdoorSetup",
+   "FateV2 ns": "FateV2.Predict.R277.BackdoorSetup"
+  },
+  {
+   "模块": "BackdoorSepAlgSep",
+   "Legacy ns": "Fate.BackdoorSepAlgSep",
+   "FateV2 ns": "FateV2.Predict.BackdoorSepAlgSep"
+  },
+  {
+   "模块": "BackdoorSepAlgSep",
+   "Legacy ns": "Fate.BackdoorSepAlgSep.Counterexample",
+   "FateV2 ns": "FateV2.Predict.BackdoorSepAlgSep.Counterexample"
+  },
+  {
+   "模块": "BackdoorSepNumeric",
+   "Legacy ns": "Fate.BackdoorSepNumeric",
+   "FateV2 ns": "FateV2.Predict.BackdoorSepNumeric"
+  },
+  {
+   "模块": "BanachFixedPoint",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "BanachFixedPoint",
+   "Legacy ns": "Fate.BanachFixedPoint",
+   "FateV2 ns": "FateV2.Loop.BanachFixedPoint"
+  },
+  {
+   "模块": "Basic",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "BlockLayerLowerBound",
+   "Legacy ns": "BlockLayerLowerBound",
+   "FateV2 ns": "FateV2.Error.BlockLayerLowerBound"
+  },
+  {
+   "模块": "BoundWriteBack",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "BoundWriteBack",
+   "Legacy ns": "Fate.BoundWriteBack",
+   "FateV2 ns": "FateV2.Loop.BoundWriteBack"
+  },
+  {
+   "模块": "CFMap",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "CFMap",
+   "Legacy ns": "Fate.CFMap",
+   "FateV2 ns": "FateV2.Modeling.CFMap"
+  },
+  {
+   "模块": "CapstoneDriftFromObs",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "CapstoneDriftFromObs",
+   "Legacy ns": "Fate.CapstoneDriftFromObs",
+   "FateV2 ns": "FateV2.Loop.CapstoneDriftFromObs"
+  },
+  {
+   "模块": "CausActivePath",
+   "Legacy ns": "Causalean.Graph",
+   "FateV2 ns": "FateV2.Modeling.Graph"
+  },
+  {
+   "模块": "CausActivePath",
+   "Legacy ns": "Causalean.Graph.DAG",
+   "FateV2 ns": "FateV2.Modeling.Graph.DAG"
+  },
+  {
+   "模块": "CausBayesBall",
+   "Legacy ns": "Causalean.Graph",
+   "FateV2 ns": "FateV2.Modeling.Graph"
+  },
+  {
+   "模块": "CausBayesBall",
+   "Legacy ns": "Causalean.Graph.DAG",
+   "FateV2 ns": "FateV2.Modeling.Graph.DAG"
+  },
+  {
+   "模块": "CausBayesBall",
+   "Legacy ns": "Causalean.Graph.DAG.BayesBallRegression",
+   "FateV2 ns": "FateV2.Modeling.Graph.DAG.BayesBallRegression"
+  },
+  {
+   "模块": "CausDAG",
+   "Legacy ns": "Causalean.Graph",
+   "FateV2 ns": "FateV2.Modeling.Graph"
+  },
+  {
+   "模块": "CausDAG",
+   "Legacy ns": "Causalean.Graph.DAG",
+   "FateV2 ns": "FateV2.Modeling.Graph.DAG"
+  },
+  {
+   "模块": "CausSeparation",
+   "Legacy ns": "Causalean.Graph",
+   "FateV2 ns": "FateV2.Modeling.Graph"
+  },
+  {
+   "模块": "CausSeparation",
+   "Legacy ns": "Causalean.Graph.DAG",
+   "FateV2 ns": "FateV2.Modeling.Graph.DAG"
+  },
+  {
+   "模块": "CausalDescendant",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "CausalDescendant",
+   "Legacy ns": "Fate.CausalDescendant",
+   "FateV2 ns": "FateV2.Predict.CausalDescendant"
+  },
+  {
+   "模块": "CausalDirection",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "CausalDirection",
+   "Legacy ns": "Fate.CausalDirection",
+   "FateV2 ns": "FateV2.Predict.CausalDirection"
+  },
+  {
+   "模块": "CausalDirection",
+   "Legacy ns": "Fate.CausalDirection.CausalGraph",
+   "FateV2 ns": "FateV2.Predict.CausalDirection.CausalGraph"
+  },
+  {
+   "模块": "CausalEffect",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "CausalEffect",
+   "Legacy ns": "Fate.CausalEffect",
+   "FateV2 ns": "FateV2.Predict.CausalEffect"
+  },
+  {
+   "模块": "CausalPath",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "CausalPath",
+   "Legacy ns": "Fate.CausalPath",
+   "FateV2 ns": "FateV2.Predict.CausalPath"
+  },
+  {
+   "模块": "CausalRouteDo",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "CausalRouteDo",
+   "Legacy ns": "Fate.CausalRouteDo",
+   "FateV2 ns": "FateV2.Predict.CausalRouteDo"
+  },
+  {
+   "模块": "ChainBudgetBound",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ChainBudgetBound",
+   "Legacy ns": "Fate.ChainBudgetBound",
+   "FateV2 ns": "FateV2.Error.ChainBudgetBound"
+  },
+  {
+   "模块": "ChainErrorBudget",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ChainErrorBudget",
+   "Legacy ns": "Fate.ChainErrorBudget",
+   "FateV2 ns": "FateV2.Error.ChainErrorBudget"
+  },
+  {
+   "模块": "ChainErrorBudget",
+   "Legacy ns": "Fate.ChainErrorBudget.ChainBudget",
+   "FateV2 ns": "FateV2.Error.ChainErrorBudget.ChainBudget"
+  },
+  {
+   "模块": "ChainErrorBudgetGrounded",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ChainErrorBudgetGrounded",
+   "Legacy ns": "Fate.ChainErrorBudgetGrounded",
+   "FateV2 ns": "FateV2.Error.ChainErrorBudgetGrounded"
+  },
+  {
+   "模块": "Classification",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "Classification",
+   "Legacy ns": "Fate.FormalCtx",
+   "FateV2 ns": "FateV2.Rules.FormalCtx"
+  },
+  {
+   "模块": "ClosedLoopNoisy",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ClosedLoopNoisy",
+   "Legacy ns": "Fate.ClosedLoopNoisy",
+   "FateV2 ns": "FateV2.Loop.ClosedLoopNoisy"
+  },
+  {
+   "模块": "Completeness",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Export"
+  },
+  {
+   "模块": "Completeness",
+   "Legacy ns": "Fate.FormalCtx",
+   "FateV2 ns": "FateV2.Export.ExportResult"
+  },
+  {
+   "模块": "ContinuousEvalQ",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ContinuousEvalQ",
+   "Legacy ns": "Fate.ContinuousEvalQ",
+   "FateV2 ns": "FateV2.Error.ContinuousEvalQ"
+  },
+  {
+   "模块": "ConvergeToOptimalV2",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ConvergeToOptimalV2",
+   "Legacy ns": "Fate.ConvergeToOptimalV2",
+   "FateV2 ns": "FateV2.Loop.ConvergeToOptimalV2"
+  },
+  {
+   "模块": "ConvergenceOptimal",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ConvergenceOptimal",
+   "Legacy ns": "Fate.ConvergenceOptimal",
+   "FateV2 ns": "FateV2.Loop.ConvergenceOptimal"
+  },
+  {
+   "模块": "Counterfactual",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "Counterfactual",
+   "Legacy ns": "Fate.Counterfactual",
+   "FateV2 ns": "FateV2.Predict.Counterfactual"
+  },
+  {
+   "模块": "DSeparation",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "DSeparation",
+   "Legacy ns": "Fate.DSeparation",
+   "FateV2 ns": "FateV2.Predict.DSeparation"
+  },
+  {
+   "模块": "DeadPremiseAudit",
+   "Legacy ns": "Fate.DeadPremiseAudit",
+   "FateV2 ns": "FateV2.Meta.DeadPremiseAudit"
+  },
+  {
+   "模块": "DeadPremiseAudit",
+   "Legacy ns": "Fate.DeadPremiseAudit.MiniBackdoorSetup",
+   "FateV2 ns": "FateV2.Meta.DeadPremiseAudit.MiniBackdoorSetup"
+  },
+  {
+   "模块": "DetFunToStepDraft",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "DoCalculus",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "DoCalculus",
+   "Legacy ns": "Fate.DoCalculus",
+   "FateV2 ns": "FateV2.Predict.DoCalculus"
+  },
+  {
+   "模块": "EndToEnd",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "EndToEnd",
+   "Legacy ns": "Fate.EndToEnd",
+   "FateV2 ns": "FateV2.Loop.EndToEnd"
+  },
+  {
+   "模块": "EndToEndBoundFixed",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "EndToEndBoundFixed",
+   "Legacy ns": "Fate.EndToEndBoundFixed",
+   "FateV2 ns": "FateV2.Loop.EndToEndBoundFixed"
+  },
+  {
+   "模块": "EndToEndError",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "EndToEndError",
+   "Legacy ns": "Fate.EndToEndError",
+   "FateV2 ns": "FateV2.Error.EndToEndError"
+  },
+  {
+   "模块": "EndToEndSelectorWiring",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "EndToEndSelectorWiring",
+   "Legacy ns": "Fate.EndToEndSelectorWiring",
+   "FateV2 ns": "FateV2.Loop.EndToEndSelectorWiring"
+  },
+  {
+   "模块": "ErrBandLink",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrBandLink",
+   "Legacy ns": "Fate.ErrBandLink",
+   "FateV2 ns": "FateV2.Error.ErrBandLink"
+  },
+  {
+   "模块": "ErrBandLinkConsumer",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrBandLinkConsumer",
+   "Legacy ns": "Fate.ErrBandLinkConsumer",
+   "FateV2 ns": "FateV2.Error.ErrBandLinkConsumer"
+  },
+  {
+   "模块": "ErrBandLinkConsumer",
+   "Legacy ns": "Fate.ErrBandLinkConsumer.R49",
+   "FateV2 ns": "FateV2.Error.ErrBandLinkConsumer.R49"
+  },
+  {
+   "模块": "ErrDefinitions",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrDefinitions",
+   "Legacy ns": "Fate.ErrDefinitions",
+   "FateV2 ns": "FateV2.Error.ErrDefinitions"
+  },
+  {
+   "模块": "ErrorBand",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorBand",
+   "Legacy ns": "Fate.ErrorBand",
+   "FateV2 ns": "FateV2.Error.ErrorBand"
+  },
+  {
+   "模块": "ErrorBound",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorBound",
+   "Legacy ns": "Fate.R250ErrorBound",
+   "FateV2 ns": "FateV2.Error.R250ErrorBound"
+  },
+  {
+   "模块": "ErrorBoundChain",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorBoundChain",
+   "Legacy ns": "Fate.R253ErrorBound",
+   "FateV2 ns": "FateV2.Error.R253ErrorBound"
+  },
+  {
+   "模块": "ErrorBoundChainConsumer",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorBoundChainConsumer",
+   "Legacy ns": "Fate.ErrorBoundChainConsumer",
+   "FateV2 ns": "FateV2.Error.ErrorBoundChainConsumer"
+  },
+  {
+   "模块": "ErrorBoundE1",
+   "Legacy ns": "Fate.Stage2.ErrorBoundE1",
+   "FateV2 ns": "FateV2.Error.Stage2.ErrorBoundE1"
+  },
+  {
+   "模块": "ErrorBoundE2",
+   "Legacy ns": "Fate.Stage2.ErrorBoundE2",
+   "FateV2 ns": "FateV2.Error.Stage2.ErrorBoundE2"
+  },
+  {
+   "模块": "ErrorBoundE3",
+   "Legacy ns": "Fate.Stage2.ErrorBoundE3",
+   "FateV2 ns": "FateV2.Error.Stage2.ErrorBoundE3"
+  },
+  {
+   "模块": "ErrorBoundE4",
+   "Legacy ns": "Fate.Stage2.ErrorBoundE4",
+   "FateV2 ns": "FateV2.Error.Stage2.ErrorBoundE4"
+  },
+  {
+   "模块": "ErrorBoundE5",
+   "Legacy ns": "Fate.Stage2.ErrorBoundE5",
+   "FateV2 ns": "FateV2.Error.Stage2.ErrorBoundE5"
+  },
+  {
+   "模块": "ErrorBoundE6",
+   "Legacy ns": "Fate.Stage0.ErrorBoundE6",
+   "FateV2 ns": "FateV2.Error.Stage0.ErrorBoundE6"
+  },
+  {
+   "模块": "ErrorBoundE6",
+   "Legacy ns": "Fate.Stage0.ErrorBoundE6.IsContractionIn",
+   "FateV2 ns": "FateV2.Error.Stage0.ErrorBoundE6.IsContractionIn"
+  },
+  {
+   "模块": "ErrorBoundE6",
+   "Legacy ns": "Fate.Stage0.ErrorBoundE6.FloatingPointModel",
+   "FateV2 ns": "FateV2.Error.Stage0.ErrorBoundE6.FloatingPointModel"
+  },
+  {
+   "模块": "ErrorBoundE78",
+   "Legacy ns": "Fate.Stage2.ErrorBoundE78",
+   "FateV2 ns": "FateV2.Error.Stage2.ErrorBoundE78"
+  },
+  {
+   "模块": "ErrorCriterion",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorCriterion",
+   "Legacy ns": "Fate.ErrorCriterion",
+   "FateV2 ns": "FateV2.Error.ErrorCriterion"
+  },
+  {
+   "模块": "ErrorCriterionImpliesBound",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorCriterionImpliesBound",
+   "Legacy ns": "Fate.ErrorCriterionImpliesBound",
+   "FateV2 ns": "FateV2.Error.ErrorCriterionImpliesBound"
+  },
+  {
+   "模块": "ErrorCriterionUnified",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorCriterionUnified",
+   "Legacy ns": "Fate.ErrorCriterionUnified",
+   "FateV2 ns": "FateV2.Error.ErrorCriterionUnified"
+  },
+  {
+   "模块": "ErrorDimUnified",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorDimUnified",
+   "Legacy ns": "Fate.ErrorDimUnified",
+   "FateV2 ns": "FateV2.Error.ErrorDimUnified"
+  },
+  {
+   "模块": "ErrorGraph",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorGraph",
+   "Legacy ns": "Fate.ErrGraph",
+   "FateV2 ns": "FateV2.Error.ErrGraph"
+  },
+  {
+   "模块": "ErrorMagnitude",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ErrorMagnitude",
+   "Legacy ns": "Fate.ErrorMagnitude",
+   "FateV2 ns": "FateV2.Error.ErrorMagnitude"
+  },
+  {
+   "模块": "ErrorQuadruple",
+   "Legacy ns": "Fate.Stage2",
+   "FateV2 ns": "FateV2.Error.Stage2"
+  },
+  {
+   "模块": "EtaMaxFromData",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "EtaMaxFromData",
+   "Legacy ns": "Fate.EtaMaxFromData",
+   "FateV2 ns": "FateV2.Error.EtaMaxFromData"
+  },
+  {
+   "模块": "FCA",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "FCA",
+   "Legacy ns": "Fate.FormalCtx",
+   "FateV2 ns": "FateV2.Rules.FormalCtx"
+  },
+  {
+   "模块": "FinCondIndep",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "FinCondIndep",
+   "Legacy ns": "Fate.FinCondIndep",
+   "FateV2 ns": "FateV2.Predict.FinCondIndep"
+  },
+  {
+   "模块": "FinCondIndepSymm",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "FinCondIndepSymm",
+   "Legacy ns": "Fate.FinCondIndepSymm",
+   "FateV2 ns": "FateV2.Error.FinCondIndepSymm"
+  },
+  {
+   "模块": "FinJoint",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "FinJoint",
+   "Legacy ns": "Fate.FinJoint",
+   "FateV2 ns": "FateV2.Predict.FinJoint"
+  },
+  {
+   "模块": "FinMarkov",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "FinMarkov",
+   "Legacy ns": "Fate.FinMarkov",
+   "FateV2 ns": "FateV2.Predict.FinMarkov"
+  },
+  {
+   "模块": "FinMarkov",
+   "Legacy ns": "Fate.FinMarkov.FracSCM",
+   "FateV2 ns": "FateV2.Predict.FinMarkov.FracSCM"
+  },
+  {
+   "模块": "FiniteCondIndep",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "FiniteCondIndep",
+   "Legacy ns": "Fate.FiniteCondIndep",
+   "FateV2 ns": "FateV2.Modeling.FiniteCondIndep"
+  },
+  {
+   "模块": "FitBoundary",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "FitBoundary",
+   "Legacy ns": "Fate.R238E3",
+   "FateV2 ns": "FateV2.Error.Core"
+  },
+  {
+   "模块": "FitBoundary",
+   "Legacy ns": "Fate.R238E3.ErrProfileWeak",
+   "FateV2 ns": "FateV2.Error.Core.ErrProfileWeak"
+  },
+  {
+   "模块": "FitBoundary",
+   "Legacy ns": "Fate.R238E3.ErrProfile",
+   "FateV2 ns": "FateV2.Error.Core.ErrProfile"
+  },
+  {
+   "模块": "FitBoundaryLowerBound",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "FitBoundaryLowerBound",
+   "Legacy ns": "Fate.FitBoundaryLowerBound",
+   "FateV2 ns": "FateV2.Error.FitBoundaryLowerBound"
+  },
+  {
+   "模块": "FitBoundaryLowerBoundConsumer",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "FitBoundaryLowerBoundConsumer",
+   "Legacy ns": "Fate.FitBoundaryLowerBoundConsumer",
+   "FateV2 ns": "FateV2.Error.FitBoundaryLowerBoundConsumer"
+  },
+  {
+   "模块": "Frame",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Model"
+  },
+  {
+   "模块": "Frontdoor",
+   "Legacy ns": "Fate.Frontdoor",
+   "FateV2 ns": "FateV2.Predict.Frontdoor"
+  },
+  {
+   "模块": "FrontdoorChainProof",
+   "Legacy ns": "Fate.R242",
+   "FateV2 ns": "FateV2.Predict.R242"
+  },
+  {
+   "模块": "FrontdoorCounterexample",
+   "Legacy ns": "Fate.R253",
+   "FateV2 ns": "FateV2.Predict.R253"
+  },
+  {
+   "模块": "FrontdoorCounterexample2",
+   "Legacy ns": "Fate.R254",
+   "FateV2 ns": "FateV2.Predict.R254"
+  },
+  {
+   "模块": "FrontdoorCriterion",
+   "Legacy ns": "Fate.R255",
+   "FateV2 ns": "FateV2.Predict.R255"
+  },
+  {
+   "模块": "FrontdoorCriterion",
+   "Legacy ns": "Fate.R255.FrontdoorSetup",
+   "FateV2 ns": "FateV2.Predict.R255.FrontdoorSetup"
+  },
+  {
+   "模块": "FrontdoorCriterion",
+   "Legacy ns": "Fate.R255.R32",
+   "FateV2 ns": "FateV2.Predict.R255.R32"
+  },
+  {
+   "模块": "FrontdoorCriterion",
+   "Legacy ns": "Fate.R255.R49",
+   "FateV2 ns": "FateV2.Predict.R255.R49"
+  },
+  {
+   "模块": "Fusion",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "Fusion",
+   "Legacy ns": "Fate.Fusion",
+   "FateV2 ns": "FateV2.Rules.Fusion"
+  },
+  {
+   "模块": "GaussMarkovScalar",
+   "Legacy ns": "Fate.GaussMarkovScalar",
+   "FateV2 ns": "FateV2.Error.GaussMarkovScalar"
+  },
+  {
+   "模块": "GaussMarkovScalarSymm",
+   "Legacy ns": "Fate.GaussMarkovScalarSymm",
+   "FateV2 ns": "FateV2.Error.GaussMarkovScalarSymm"
+  },
+  {
+   "模块": "GaussMarkovVector",
+   "Legacy ns": "Fate.GaussMarkovVector",
+   "FateV2 ns": "FateV2.Error.GaussMarkovVector"
+  },
+  {
+   "模块": "GazeAlgebra",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Meta"
+  },
+  {
+   "模块": "GazeAlgebra",
+   "Legacy ns": "Fate.GazeAlgebra",
+   "FateV2 ns": "FateV2.Meta.GazeAlgebra"
+  },
+  {
+   "模块": "GazeAlgebra",
+   "Legacy ns": "Fate.GazeAlgebra.G",
+   "FateV2 ns": "FateV2.Meta.GazeAlgebra.G"
+  },
+  {
+   "模块": "ICPCoverage",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Meta"
+  },
+  {
+   "模块": "ICPCoverage",
+   "Legacy ns": "Fate.ICPCoverage",
+   "FateV2 ns": "FateV2.Meta.ICPCoverage"
+  },
+  {
+   "模块": "Implication",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "Implication",
+   "Legacy ns": "Fate.FormalCtx",
+   "FateV2 ns": "FateV2.Rules.FormalCtx"
+  },
+  {
+   "模块": "InstIsDirac",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "InstIsDirac",
+   "Legacy ns": "Fate.LawRuleInstances",
+   "FateV2 ns": "FateV2.Rules.LawRuleInstances"
+  },
+  {
+   "模块": "InterventionSelection",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "InterventionSelection",
+   "Legacy ns": "Fate.InterventionSelection",
+   "FateV2 ns": "FateV2.Predict.InterventionSelection"
+  },
+  {
+   "模块": "KernelQuotient",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "KernelQuotient",
+   "Legacy ns": "Fate.KernelQuotientTheory",
+   "FateV2 ns": "FateV2.Modeling.KernelQuotientTheory"
+  },
+  {
+   "模块": "LawDetToStepGen",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "LawRule",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "LawRule",
+   "Legacy ns": "Fate.LawRule",
+   "FateV2 ns": "FateV2.Rules.LawRule"
+  },
+  {
+   "模块": "LawRuleInstances",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "LawRuleInstances",
+   "Legacy ns": "Fate.LawRuleInstances",
+   "FateV2 ns": "FateV2.Rules.LawRuleInstances"
+  },
+  {
+   "模块": "LawRuleLattice",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "LawRuleLattice",
+   "Legacy ns": "Fate.LawRule",
+   "FateV2 ns": "FateV2.Rules.LawRule"
+  },
+  {
+   "模块": "LawRuleToTraj",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "LawRuleToTraj",
+   "Legacy ns": "Fate.LawRuleToTraj",
+   "FateV2 ns": "FateV2.Rules.LawRuleToTraj"
+  },
+  {
+   "模块": "LipschitzFromFinite",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "LipschitzFromFinite",
+   "Legacy ns": "Fate.LipschitzFromFinite",
+   "FateV2 ns": "FateV2.Error.LipschitzFromFinite"
+  },
+  {
+   "模块": "MVFCAPositive",
+   "Legacy ns": "MVFCA4",
+   "FateV2 ns": "FateV2.Rules.MVFCA4"
+  },
+  {
+   "模块": "MVFCAPositive",
+   "Legacy ns": "MVFCA4.PatStruct",
+   "FateV2 ns": "FateV2.Rules.MVFCA4.PatStruct"
+  },
+  {
+   "模块": "MainLoop",
+   "Legacy ns": "Fate.MainLoop",
+   "FateV2 ns": "FateV2.Loop.MainLoop"
+  },
+  {
+   "模块": "MainLoopSupportBridge",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "MainLoopSupportBridge",
+   "Legacy ns": "Fate.MainLoopSupport",
+   "FateV2 ns": "FateV2.Error.MainLoopSupport"
+  },
+  {
+   "模块": "MainlineTheorems",
+   "Legacy ns": "Fate.MainlineTheorems",
+   "FateV2 ns": "FateV2.Rules.MainlineTheorems"
+  },
+  {
+   "模块": "MoralGraphMarkov",
+   "Legacy ns": "Fate.MoralGraphMarkov",
+   "FateV2 ns": "FateV2.Modeling.MoralGraphMarkov"
+  },
+  {
+   "模块": "ObsEstSharp",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ObsEstSharp",
+   "Legacy ns": "Fate.ObsEstSharp",
+   "FateV2 ns": "FateV2.Error.ObsEstSharp"
+  },
+  {
+   "模块": "ObsEstSharp",
+   "Legacy ns": "ObsEstSharp",
+   "FateV2 ns": "ObsEstSharp"
+  },
+  {
+   "模块": "ObsEstimationStrong",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "ObsEstimationStrong",
+   "Legacy ns": "Fate.RA14Strong",
+   "FateV2 ns": "FateV2.Modeling.RA14Strong"
+  },
+  {
+   "模块": "ObsEstimationWeak",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "ObsEstimationWeak",
+   "Legacy ns": "Fate.ObsEstimationWeak",
+   "FateV2 ns": "FateV2.Modeling.ObsEstimationWeak"
+  },
+  {
+   "模块": "ObsEstimationWeak",
+   "Legacy ns": "Fate.ObsEstimationWeak.ObsModel",
+   "FateV2 ns": "FateV2.Modeling.ObsEstimationWeak.ObsModel"
+  },
+  {
+   "模块": "OptimalEta",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "OptimalEta",
+   "Legacy ns": "Fate.OptimalEta",
+   "FateV2 ns": "FateV2.Loop.OptimalEta"
+  },
+  {
+   "模块": "OptimalityChain",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "OptimalityChain",
+   "Legacy ns": "Fate.OptimalityChain",
+   "FateV2 ns": "FateV2.Loop.OptimalityChain"
+  },
+  {
+   "模块": "OptimalityGapTheory",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "OptimalityGapTheory",
+   "Legacy ns": "Fate.OptimalityGapTheory",
+   "FateV2 ns": "FateV2.Error.OptimalityGapTheory"
+  },
+  {
+   "模块": "OptimalityPattern",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "OptimalityPattern",
+   "Legacy ns": "Fate.OptimalityPattern",
+   "FateV2 ns": "FateV2.Error.OptimalityPattern"
+  },
+  {
+   "模块": "OptimalityPattern",
+   "Legacy ns": "Fate.GaussMarkovInstance",
+   "FateV2 ns": "FateV2.Error.GaussMarkovInstance"
+  },
+  {
+   "模块": "OptimalityPattern",
+   "Legacy ns": "Fate.OptimalEtaInstance",
+   "FateV2 ns": "FateV2.Error.OptimalEtaInstance"
+  },
+  {
+   "模块": "ParamSCM",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "ParamSCM",
+   "Legacy ns": "Fate.ParamSCM",
+   "FateV2 ns": "FateV2.Predict.ParamSCM"
+  },
+  {
+   "模块": "ParamSCMConsumer",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ParamSCMConsumer",
+   "Legacy ns": "Fate.ParamSCMConsumer",
+   "FateV2 ns": "FateV2.Loop.ParamSCMConsumer"
+  },
+  {
+   "模块": "PearlChain",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "PearlChain",
+   "Legacy ns": "Fate.P213B1",
+   "FateV2 ns": "FateV2.Predict.P213B1"
+  },
+  {
+   "模块": "PearlCondIndepBridge",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "PearlCondIndepBridge",
+   "Legacy ns": "Fate.PearlCondIndepBridge",
+   "FateV2 ns": "FateV2.Predict.PearlCondIndepBridge"
+  },
+  {
+   "模块": "PearlFork",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "PearlFork",
+   "Legacy ns": "Fate.Fork213",
+   "FateV2 ns": "FateV2.Predict.Fork213"
+  },
+  {
+   "模块": "PearlHierarchy",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "PearlHierarchy",
+   "Legacy ns": "Fate.PearlHierarchy",
+   "FateV2 ns": "FateV2.Modeling.PearlHierarchy"
+  },
+  {
+   "模块": "PearlHierarchy",
+   "Legacy ns": "Fate.PearlHierarchy.SCM",
+   "FateV2 ns": "FateV2.Modeling.PearlHierarchy.SCM"
+  },
+  {
+   "模块": "PipelineLipschitz",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "PipelineLipschitz",
+   "Legacy ns": "Fate.PipelineLipschitz",
+   "FateV2 ns": "FateV2.Error.PipelineLipschitz"
+  },
+  {
+   "模块": "PolicyAlgorithm",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "PolicyAlgorithm",
+   "Legacy ns": "Fate.WorldScenario",
+   "FateV2 ns": "FateV2.Predict.WorldScenario"
+  },
+  {
+   "模块": "RealFCA",
+   "Legacy ns": "Lattice",
+   "FateV2 ns": "FateV2.Rules.Lattice"
+  },
+  {
+   "模块": "RealUpDown",
+   "Legacy ns": "Lattice",
+   "FateV2 ns": "FateV2.Rules.Lattice"
+  },
+  {
+   "模块": "ResidualLoop",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ResidualLoop",
+   "Legacy ns": "Fate.ResidualLoop",
+   "FateV2 ns": "FateV2.Loop.ResidualLoop"
+  },
+  {
+   "模块": "ResidualReduces",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ResidualReduces",
+   "Legacy ns": "Fate.ResidualReduces",
+   "FateV2 ns": "FateV2.Loop.ResidualReduces"
+  },
+  {
+   "模块": "RetreatPlan",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "RetreatPlan",
+   "Legacy ns": "Fate.RetreatPlan",
+   "FateV2 ns": "FateV2.Predict.RetreatPlan"
+  },
+  {
+   "模块": "RuleActivation",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Rules"
+  },
+  {
+   "模块": "RuleActivation",
+   "Legacy ns": "Fate.RuleActivation",
+   "FateV2 ns": "FateV2.Rules.RuleActivation"
+  },
+  {
+   "模块": "RuleDrivesEndToEnd",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "RuleMainChainConsumer",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "RuleMainChainConsumer",
+   "Legacy ns": "Fate.RuleMainChainConsumer",
+   "FateV2 ns": "FateV2.Loop.RuleMainChainConsumer"
+  },
+  {
+   "模块": "RuleSimConsistency",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "SCMGraph",
+   "Legacy ns": "Fate.SCMGraph",
+   "FateV2 ns": "FateV2.Modeling.SCMGraph"
+  },
+  {
+   "模块": "SCMGraph",
+   "Legacy ns": "Fate.SCMGraph.SV",
+   "FateV2 ns": "FateV2.Modeling.SCMGraph.SV"
+  },
+  {
+   "模块": "SCMSemantics",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Modeling"
+  },
+  {
+   "模块": "SCMSemantics",
+   "Legacy ns": "Fate.SCMSemantics",
+   "FateV2 ns": "FateV2.Modeling.SCMSemantics"
+  },
+  {
+   "模块": "ScenarioBranchLimit",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ScenarioBranchLimit",
+   "Legacy ns": "Fate.ScenarioBranchLimit",
+   "FateV2 ns": "FateV2.Loop.ScenarioBranchLimit"
+  },
+  {
+   "模块": "ScenarioConvergence",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ScenarioConvergence",
+   "Legacy ns": "Fate.ScenarioConvergence",
+   "FateV2 ns": "FateV2.Loop.ScenarioConvergence"
+  },
+  {
+   "模块": "ScenarioSharp",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ScenarioSharp",
+   "Legacy ns": "Fate.ScenarioSharp",
+   "FateV2 ns": "FateV2.Loop.ScenarioSharp"
+  },
+  {
+   "模块": "ScoreBound",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ScoreBound",
+   "Legacy ns": "Fate.ScoreBound",
+   "FateV2 ns": "FateV2.Error.ScoreBound"
+  },
+  {
+   "模块": "ScoreK",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "ScoreK",
+   "Legacy ns": "Fate.ScoreK",
+   "FateV2 ns": "FateV2.Error.ScoreK"
+  },
+  {
+   "模块": "SeparableCondMul",
+   "Legacy ns": "Fate.SeparableCondMul",
+   "FateV2 ns": "FateV2.Predict.SeparableCondMul"
+  },
+  {
+   "模块": "SetLemmas",
+   "Legacy ns": "Fate.SetLemmas",
+   "FateV2 ns": "FateV2.Core.SetLemmas"
+  },
+  {
+   "模块": "SigmaDataDependence",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "SigmaDataDependence",
+   "Legacy ns": "Fate.SigmaDataDependence",
+   "FateV2 ns": "FateV2.Error.SigmaDataDependence"
+  },
+  {
+   "模块": "SigmaEstimation",
+   "Legacy ns": "Fate.SigmaEstimation",
+   "FateV2 ns": "FateV2.Error.SigmaEstimation"
+  },
+  {
+   "模块": "SigmaFromAIC",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "SigmaFromAIC",
+   "Legacy ns": "Fate.SigmaFromAIC",
+   "FateV2 ns": "FateV2.Error.SigmaFromAIC"
+  },
+  {
+   "模块": "SigmaFromDomain",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "SigmaFromDomain",
+   "Legacy ns": "Fate.SigmaFromDomain",
+   "FateV2 ns": "FateV2.Error.SigmaFromDomain"
+  },
+  {
+   "模块": "SigmaFromDomain",
+   "Legacy ns": "Fate.SigmaFromDomain.SigmaSource",
+   "FateV2 ns": "FateV2.Error.SigmaFromDomain.SigmaSource"
+  },
+  {
+   "模块": "SigmaFromInfoGain",
+   "Legacy ns": "Fate.SigmaFromInfoGain",
+   "FateV2 ns": "FateV2.Error.SigmaFromInfoGain"
+  },
+  {
+   "模块": "SigmaGammaFromData",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "SigmaGammaFromData",
+   "Legacy ns": "Fate.SigmaGammaFromData",
+   "FateV2 ns": "FateV2.Error.SigmaGammaFromData"
+  },
+  {
+   "模块": "SigmaLandscape",
+   "Legacy ns": "Fate.SigmaLandscape",
+   "FateV2 ns": "FateV2.Error.SigmaLandscape"
+  },
+  {
+   "模块": "SigmaUnified",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "SigmaUnified",
+   "Legacy ns": "Fate.SigmaUnified",
+   "FateV2 ns": "FateV2.Error.SigmaUnified"
+  },
+  {
+   "模块": "SteadyErrEstimate",
+   "Legacy ns": "Fate.SteadyErrEstimate",
+   "FateV2 ns": "FateV2.Error.SteadyErrEstimate"
+  },
+  {
+   "模块": "SupportBound",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Error"
+  },
+  {
+   "模块": "SupportBound",
+   "Legacy ns": "Fate.R_SupportBound",
+   "FateV2 ns": "FateV2.Error.R_SupportBound"
+  },
+  {
+   "模块": "SupportBound",
+   "Legacy ns": "Fate.R_SupportBound.SuppProfile",
+   "FateV2 ns": "FateV2.Error.R_SupportBound.SuppProfile"
+  },
+  {
+   "模块": "T04NotationFidelity",
+   "Legacy ns": "Fate.T04",
+   "FateV2 ns": "FateV2.Meta.T04"
+  },
+  {
+   "模块": "T111QuotientPred",
+   "Legacy ns": "Fate.T111",
+   "FateV2 ns": "FateV2.Rules.T111"
+  },
+  {
+   "模块": "T1Verify",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "T1Verify",
+   "Legacy ns": "Fate.T1Verify",
+   "FateV2 ns": "FateV2.Loop.T1Verify"
+  },
+  {
+   "模块": "T314Identifiability",
+   "Legacy ns": "Fate.T314",
+   "FateV2 ns": "FateV2.Predict.T314"
+  },
+  {
+   "模块": "T34DoPushforward",
+   "Legacy ns": "Fate.T34",
+   "FateV2 ns": "FateV2.Predict.T34"
+  },
+  {
+   "模块": "T35Confounding",
+   "Legacy ns": "Fate.T35",
+   "FateV2 ns": "FateV2.Predict.T35"
+  },
+  {
+   "模块": "T43Abduction",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "T43Abduction",
+   "Legacy ns": "Fate.T43",
+   "FateV2 ns": "FateV2.Predict.T43"
+  },
+  {
+   "模块": "T44Counterfactual",
+   "Legacy ns": "Fate.T44",
+   "FateV2 ns": "FateV2.Predict.T44"
+  },
+  {
+   "模块": "T44Counterfactual",
+   "Legacy ns": "Fate.T44.SCM",
+   "FateV2 ns": "FateV2.Predict.T44.SCM"
+  },
+  {
+   "模块": "T51Trajectory",
+   "Legacy ns": "Fate.MainlineTheorems",
+   "FateV2 ns": "FateV2.Model.MainlineTheorems"
+  },
+  {
+   "模块": "T61MapKernel",
+   "Legacy ns": "Fate.T61",
+   "FateV2 ns": "FateV2.Modeling.T61"
+  },
+  {
+   "模块": "T65QuotientOp",
+   "Legacy ns": "Fate.MainlineTheorems",
+   "FateV2 ns": "FateV2.Meta.MainlineTheorems"
+  },
+  {
+   "模块": "T68ComposeSemantics",
+   "Legacy ns": "Fate.R230B4",
+   "FateV2 ns": "FateV2.Meta.R230B4"
+  },
+  {
+   "模块": "T810PrMaj",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Meta"
+  },
+  {
+   "模块": "T810PrMaj",
+   "Legacy ns": "Fate.PrMaj",
+   "FateV2 ns": "FateV2.Meta.PrMaj"
+  },
+  {
+   "模块": "TauParametric",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "TauParametric",
+   "Legacy ns": "Fate.TauParametric",
+   "FateV2 ns": "FateV2.Loop.TauParametric"
+  },
+  {
+   "模块": "ThetaConvergence",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ThetaConvergence",
+   "Legacy ns": "Fate.ThetaConvergence",
+   "FateV2 ns": "FateV2.Loop.ThetaConvergence"
+  },
+  {
+   "模块": "ThetaLearningParam",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "ThetaLearningParam",
+   "Legacy ns": "Fate.ThetaLearningParam",
+   "FateV2 ns": "FateV2.Loop.ThetaLearningParam"
+  },
+  {
+   "模块": "TrajGenDeterministic",
+   "Legacy ns": "Fate.TrajGenDeterministic",
+   "FateV2 ns": "FateV2.Model.TrajGenDeterministic"
+  },
+  {
+   "模块": "WiringBackdoorFixed",
+   "Legacy ns": "Fate.WiringBackdoorFixed",
+   "FateV2 ns": "FateV2.Predict.WiringBackdoorFixed"
+  },
+  {
+   "模块": "WiringConvergence",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "WiringConvergence",
+   "Legacy ns": "Fate.WiringConvergence",
+   "FateV2 ns": "FateV2.Loop.WiringConvergence"
+  },
+  {
+   "模块": "WiringFrontdoor",
+   "Legacy ns": "Fate.WiringFrontdoor",
+   "FateV2 ns": "FateV2.Predict.WiringFrontdoor"
+  },
+  {
+   "模块": "WorldModel",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "WorldModelAssembly",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "WorldModelAssembly",
+   "Legacy ns": "Fate.WorldModelAssembly",
+   "FateV2 ns": "FateV2.Loop.WorldModelAssembly"
+  },
+  {
+   "模块": "WorldModelCapstone",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "WorldModelCapstone",
+   "Legacy ns": "Fate.WorldModelCapstone",
+   "FateV2 ns": "FateV2.Loop.WorldModelCapstone"
+  },
+  {
+   "模块": "WorldModelNoPredict",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "WorldModelReadsTheta",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "WorldModelReadsTheta",
+   "Legacy ns": "Fate.WorldModelReadsTheta",
+   "FateV2 ns": "FateV2.Loop.WorldModelReadsTheta"
+  },
+  {
+   "模块": "WorldModelSynthesis",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Loop"
+  },
+  {
+   "模块": "WorldModelSynthesis",
+   "Legacy ns": "Fate.WorldModelSynthesis",
+   "FateV2 ns": "FateV2.Loop.WorldModelSynthesis"
+  },
+  {
+   "模块": "WorldScenario",
+   "Legacy ns": "Fate",
+   "FateV2 ns": "FateV2.Predict"
+  },
+  {
+   "模块": "WorldScenario",
+   "Legacy ns": "Fate.WorldScenario",
+   "FateV2 ns": "FateV2.Predict.WorldScenario"
+  }
+ ]
+}
