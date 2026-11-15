@@ -134,11 +134,19 @@ def port_one(name, domain, verify=True):
     text = IMPORT_RE.sub(lambda m: m.group(1) + v2m[m.group(2)], text)
 
     # 规则 2：命名空间
+    #
+    # ⚠ 实测陷阱：文件里可能有**多处** namespace 写法
+    #     namespace Fate              (顶层)
+    #     namespace Fate.WorldScenario.Tight   (后面又开一个复合的)
+    # 只改第一处会留下 `namespace Fate.WorldScenario.Tight` 未改，
+    # 导致引用解析不到。⟹ 必须**全文**替换 `Fate.` 前缀。
     m_bare = re.search(r'^namespace Fate\s*$', text, re.M)
     m_comp = re.search(r'^namespace Fate\.(\S+)\s*$', text, re.M)
     if m_bare:
         text = re.sub(r'^namespace Fate\s*$', f'namespace FateV2.{domain}', text, count=1, flags=re.M)
         text = re.sub(r'^end Fate\s*$', f'end FateV2.{domain}', text, count=1, flags=re.M)
+        # 正文里其他 `namespace Fate.Xxx` / `end Fate.Xxx` 也要跟前缀改
+        text = re.sub(r'^(namespace|end) Fate\.', rf'\1 FateV2.{domain}.', text, flags=re.M)
     elif m_comp:
         sub = m_comp.group(1)
         text = text.replace(f'Fate.{sub}', f'FateV2.{domain}.{sub}')
@@ -155,6 +163,74 @@ def port_one(name, domain, verify=True):
     # 规则 3：open 改写 ⭐
     text = rewrite_opens(text, nsmap)
 
+    # 规则 4：补 open 依赖所在的**域** ⭐⭐
+    #
+    # 为什么需要：Legacy 里多个模块共享 `namespace Fate` 这一层级，例如
+    #     Fate > WiringConvergence      (WiringConvergence.lean)
+    #     Fate > TwoVersions            (TwoVersions.lean)
+    # 因为都在 Fate 下，TwoVersions 里可以直接写 `WiringConvergence.stepMap`。
+    #
+    # 迁到 FateV2 后，各模块被分到不同域（FateV2.Loop / FateV2.Predict…），
+    # 这种**隐含可见性**丢失，必须显式 `open` 依赖所在的域。
+    #
+    # 实测反例：TwoVersions（Predict 域）引用 WiringConvergence.stepMap，
+    # 而 WiringConvergence 在 Loop 域 ⟹ 需 `open FateV2.Loop`。
+    dep_domains = set()
+    for d in info['leg_deps']:
+        full = v2m[d]                       # FateWorld.FateV2.Loop.WiringConvergence
+        parts = full.split('.')
+        if len(parts) >= 4:
+            dep_domains.add(f'FateV2.{parts[2]}')
+    dep_domains.discard(f'FateV2.{domain}')  # 不 open 自己所在的域
+    dep_opens = '\n'.join(f'open {d}' for d in sorted(dep_domains))
+
+    # 规则 5：补 open **同域的兄弟命名空间** ⭐⭐⭐
+    #
+    # 规则 4 排除了「自己所在的域」，但同域内还有兄弟模块。例如：
+    #     FateV2.Predict.InterventionTight   引用 InterventionSelection.Good
+    #     FateV2.Predict.InterventionSelection
+    # 两者同属 Predict 域。原文件在 `namespace Fate` 下能直接看见，
+    # 迁移后必须 `open InterventionSelection`（短名，不带域前缀）。
+    #
+    # ⚠ 陷阱：**不能用模块名当命名空间名**。
+    # 实测：`PolicyAlgorithm.lean` 里的 namespace 其实叫 `WorldScenario`，
+    # 按模块名 open `PolicyAlgorithm` 会报 `unknown namespace`。
+    # ⟹ 必须读文件里的真实 namespace。
+    def real_ns(module_name):
+        """读 FateV2 模块文件，返回它在 FateV2.<域> 下的第一层子命名空间（若无则 None）。"""
+        path = v2m.get(module_name)
+        if not path:
+            return None
+        rel = path[len('FateWorld.'):].replace('.', os.sep) + '.lean'
+        fp = os.path.join(ROOT, rel)
+        if not os.path.exists(fp):
+            return None
+        with open(fp, encoding='utf-8') as f:
+            src = f.read()
+        stack = []
+        for line in src.split('\n'):
+            m = re.match(r'^\s*namespace\s+(\S+)', line)
+            if m:
+                stack.append(m.group(1))
+                full = '.'.join(stack)
+                # 只关心 FateV2.<域>.<子> 的第一层
+                prefix = f'FateV2.{domain}.'
+                if full.startswith(prefix) and full.count('.') == 2:
+                    return full[len(prefix):]
+                continue
+            if re.match(r'^\s*end\s+\S+\s*$', line) and stack:
+                stack.pop()
+        return None
+
+    sibling_opens = []
+    for d in info['leg_deps']:
+        parts = v2m[d].split('.')
+        if len(parts) >= 4 and parts[2] == domain:
+            ns = real_ns(d)
+            if ns:
+                sibling_opens.append(ns)
+    sibling_line = f'open {" ".join(sorted(set(sibling_opens)))}' if sibling_opens else ''
+
     header = f'''/-!
   # {domain} · {name}
 
@@ -162,6 +238,8 @@ def port_one(name, domain, verify=True):
   - 来源：`FateWorld/Legacy/{name}.lean`
   - 动作：B 适配（import 重定向 + 命名空间 + open 改写）
   - 依赖重定向：{', '.join(info['leg_deps']) or '无'}
+  - 补充 open 域：{', '.join(sorted(dep_domains)) or '无'}
+  - 补充 open 兄弟：{', '.join(sorted(set(sibling_opens))) or '无'}
   - 改动：**仅 import / 命名空间 / open**。定义、定理、证明体逐字保留。
   - 状态：已迁移
 -/
@@ -173,6 +251,12 @@ def port_one(name, domain, verify=True):
     if idx < 0:
         idx = 0
     out = text[:idx] + header + text[idx:]
+
+    extra = '\n'.join(x for x in (dep_opens, sibling_line) if x)
+    if extra:
+        out = re.sub(rf'^(namespace FateV2\.{re.escape(domain)}\S*)$',
+                     lambda m: m.group(1) + '\n\n' + extra,
+                     out, count=1, flags=re.M)
 
     dst_dir = os.path.join(V2, domain)
     os.makedirs(dst_dir, exist_ok=True)
