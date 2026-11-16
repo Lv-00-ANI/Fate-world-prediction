@@ -34,6 +34,27 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第十五批 ——
+    'DAGFactorization': 'Predict', 'RuleActivationClosureOp': 'Rules',
+    'SetupXMYDemoLaw': 'Predict', 'BridgeKernel': 'Modeling',
+    'SCMWorldModelEvalNum': 'Loop', 'CliqueSideSeparable': 'Predict',
+    'SCMEndToEndConsumer': 'Loop', 'CausalCtxUnified': 'Predict',
+    'LawRuleCondMulConsumer': 'Predict', 'GlobalMarkovChainNConsumer': 'Predict',
+    'EndToEndUnconditional': 'Loop', 'NonemptyFree4': 'Predict',
+    'SCMEndToEndGeneral': 'Loop', 'Pairing': 'Model', 'NonemptyFree': 'Predict',
+    'MarkovBridgeReal': 'Predict',
+    # —— 第十四批（清空候选池）——
+    'ChainDsepFull': 'Predict', 'BackdoorXMY': 'Predict',
+    'CliqueChain': 'Predict', 'SetupXMYDemo': 'Predict',
+    'CausalClassificationBridge': 'Predict',
+    'MarkovBridgeTheorem': 'Predict', 'Adjacency': 'Rules',
+    'RuleReadSet': 'Rules', 'LawRuleCondMul': 'Predict',
+    'MinimalLegSet': 'Predict',
+    'SCMEndToEnd': 'Loop', 'TwoDPrediction': 'Loop', 'FillGapStrong': 'Loop',
+    'EndToEndPipelineTendsto': 'Loop',
+    'PipelineAdaptiveEtaMartingale': 'Loop',
+    'ErrorBoundE2d': 'Error', 'ErrorBoundE2f': 'Error',
+    'BridgeProofStep3': 'Modeling',
     # —— 第十三批 ——
     'WiringBackdoorConsumer': 'Predict',
     'BackdoorGraphicalGeneral': 'Predict', 'LegContribution': 'Predict',
