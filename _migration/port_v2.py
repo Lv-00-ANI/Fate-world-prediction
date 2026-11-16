@@ -44,7 +44,13 @@ NSMAP = os.path.join(ROOT, '_migration', 'ns_map.json')
 # 恰好同名，不可重定向（dupcheck.py 实测）
 COLLISIONS = {'Basic', 'Completeness', 'DetFunToStepDraft'}
 
-IMPORT_RE = re.compile(r'^(\s*(?:(?:module|public|private|meta)\s+)*import\s+)FateWorld\.Legacy\.(\w+)\s*$', re.M)
+# ⚠ (\w+) 抓不到 `_root.CausSeparation` 这种带点的路径。
+# 实测反例：FourNodeSeparation import `FateWorld.Legacy._root.CausSeparation`，
+# 正则只匹配到 `_root`，v2m 里没有 `_root` ⟹ 不重定向 ⟹ 引用旧路径 ⟹
+# unknown namespace FateV2.Modeling.Graph。
+IMPORT_RE = re.compile(
+    r'^(\s*(?:(?:module|public|private|meta)\s+)*import\s+)'
+    r'FateWorld\.Legacy\.([A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*)\s*$', re.M)
 THM_RE = re.compile(r'^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*(?:theorem|lemma)\s+', re.M)
 OPEN_RE = re.compile(r'^(\s*open\s+)(.+)$')
 
@@ -139,6 +145,15 @@ def load_type_index():
         return json.load(f)
 
 
+def resolve_v2(v2m, d):
+    """把 Legacy 的 import 名解析为 FateV2 全模块路径。
+    支持带前缀的形式（如 `_root.CausSeparation` → `CausSeparation`）。"""
+    if d in v2m:
+        return v2m[d]
+    last = d.split('.')[-1]
+    return v2m.get(last)
+
+
 def load_nsmap():
     """合并两个映射源：
        1. ns_map.json       （nsmap.py：同模块配对，183 条）
@@ -182,8 +197,13 @@ def analyze(name):
         text = f.read()
     leg_deps = [m.group(2) for m in IMPORT_RE.finditer(text)]
     v2m = v2_index()
-    unresolved = [d for d in leg_deps if d not in v2m]
-    blocked = [d for d in leg_deps if d in COLLISIONS]
+
+    def _resolvable(d):
+        """与规则 1 的查找逻辑保持一致：先原样，再取最后一段。"""
+        return d in v2m or d.split('.')[-1] in v2m
+
+    unresolved = [d for d in leg_deps if not _resolvable(d)]
+    blocked = [d for d in leg_deps if d.split('.')[-1] in COLLISIONS]
     return {'name': name, 'src': src, 'leg_deps': leg_deps,
             'unresolved': unresolved, 'blocked': blocked,
             'theorems': len(THM_RE.findall(text))}
@@ -230,7 +250,22 @@ def port_one(name, domain, verify=True):
         text = f.read()
 
     # 规则 1：import 重定向
-    text = IMPORT_RE.sub(lambda m: m.group(1) + v2m[m.group(2)], text)
+    #
+    # ⚠ 两级查找：
+    #   (a) 原样查 v2m（模块短名，如 `CausSeparation`）
+    #   (b) 若带路径前缀（如 `_root.CausSeparation`），取最后一段再查
+    # 实测反例：FourNodeSeparation import `FateWorld.Legacy._root.CausSeparation`，
+    # v2m 里没有 `_root.CausSeparation` 这个键，直接查会 KeyError。
+    def _reimport(m):
+        mod = m.group(2)
+        target = v2m.get(mod)
+        if target is None:
+            target = v2m.get(mod.split('.')[-1])
+        if target is None:
+            return m.group(0)          # 查不到就原样保留（后续由 unresolved 检查拦截）
+        return m.group(1) + target
+
+    text = IMPORT_RE.sub(_reimport, text)
 
     # 规则 2：命名空间
     #
@@ -254,10 +289,15 @@ def port_one(name, domain, verify=True):
         if not mb:
             return {'module': name, 'ok': False, 'why': '找不到 namespace'}
         bare = mb.group(1)
+        # ⚠ 必须**全部**改写，不能只改第一处。
+        # 一个文件可能多次 `namespace X` / `end X` 开合同一命名空间。
+        # 实测反例：FourNodeSeparation 有两处 `namespace FourNode`（95 行、462 行），
+        # 只改第一处 ⟹ 第二段落在裸 `FourNode` 里，
+        # 那段引用的 mixed4DAG / chain4DAG / N 全部 `Unknown identifier`。
         text = re.sub(r'^namespace ' + re.escape(bare) + r'\s*$',
-                      f'namespace FateV2.{domain}.{bare}', text, count=1, flags=re.M)
+                      f'namespace FateV2.{domain}.{bare}', text, flags=re.M)
         text = re.sub(r'^end ' + re.escape(bare) + r'\s*$',
-                      f'end FateV2.{domain}.{bare}', text, count=1, flags=re.M)
+                      f'end FateV2.{domain}.{bare}', text, flags=re.M)
 
     # 规则 3：open 改写 ⭐
     text = rewrite_opens(text, nsmap)
@@ -296,7 +336,20 @@ def port_one(name, domain, verify=True):
                 if ns_exists(f'FateV2.{d}'):
                     return f'FateV2.{d}.{name}'
             return full
-        return re.sub(r'(?<![\w.`])Fate\.[A-Za-z_]\w*', repl, s)
+        result = re.sub(r'(?<![\w.`])Fate\.[A-Za-z_]\w*', repl, s)
+
+        # ⚠ 还要处理 `Causalean.*` 前缀。
+        # Legacy 里有一套独立的图论基础设施 `Causalean.Graph` / `Causalean.Graph.DAG`，
+        # 迁到 FateV2 后是 `FateV2.Modeling.Graph`（见 Modeling/CausSeparation.lean:54）。
+        # 实测反例：FourNodeSeparation 里 `Causalean.Graph.DAG.bbZAncestors` 未改写
+        # ⟹ Unknown identifier。
+        result = re.sub(r'(?<![\w.`])Causalean\.Graph\.DAG\.',
+                        'FateV2.Modeling.Graph.DAG.', result)
+        result = re.sub(r'(?<![\w.`])Causalean\.Graph\.',
+                        'FateV2.Modeling.Graph.', result)
+        result = re.sub(r'(?<![\w.`])Causalean\.',
+                        'FateV2.Modeling.', result)
+        return result
 
     text = fix_qualified(text)
 
@@ -314,7 +367,7 @@ def port_one(name, domain, verify=True):
     # 而 WiringConvergence 在 Loop 域 ⟹ 需 `open FateV2.Loop`。
     dep_domains = set()
     for d in info['leg_deps']:
-        full = v2m[d]                       # FateWorld.FateV2.Loop.WiringConvergence
+        full = resolve_v2(v2m, d)           # FateWorld.FateV2.Loop.WiringConvergence
         parts = full.split('.')
         if len(parts) >= 4:
             dep_domains.add(f'FateV2.{parts[2]}')
@@ -429,7 +482,10 @@ def port_one(name, domain, verify=True):
 
     sibling_opens = []
     for d in info['leg_deps']:
-        parts = v2m[d].split('.')
+        _full = resolve_v2(v2m, d)
+        if not _full:
+            continue
+        parts = _full.split('.')
         if len(parts) >= 4 and parts[2] == domain:
             ns = real_ns(d)
             if ns:
