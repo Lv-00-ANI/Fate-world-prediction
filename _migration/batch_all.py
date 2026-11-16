@@ -34,6 +34,36 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第三批（按依赖归属）——
+    'RuleSyntaxExt': 'Rules', 'RuleSyntaxGen': 'Rules',
+    'LawRulePointDecidability': 'Rules', 'LawRulePointExtract': 'Rules',
+    'SCMLawBridge': 'Rules',                # 依赖 LawRule
+    'LearnFunctionUnified': 'Loop',         # 依赖 LearnFunction
+    'EvalRealProof': 'Loop',                # 依赖 EvalReal
+    'ConvergenceContrast': 'Loop',          # 依赖 WiringConvergence
+    'PipelineTendstoGen': 'Loop',           # 依赖 WorldModelPipeline
+    'DoLawWorldModel': 'Loop',              # 依赖 WorldModel/T34/T35
+    'SCMWorldModel': 'Loop',                # 依赖 WorldModel
+    'InterventionSup': 'Predict',           # 依赖 InterventionTight
+    'View17SectionGlue': 'Predict',
+    'OptimalityThirdInstance': 'Error',     # 依赖 FitBoundary（误差层）
+    'FinMeasureBridge': 'Modeling',         # 依赖 FiniteCondIndep
+    # —— 第二批判定（按依赖归属）——
+    'RuleSyntaxOps': 'Rules',              # 依赖 RuleSyntax
+    'FunThetaWorldModel': 'Loop',          # 依赖 EndToEnd（闭环）
+    'EvalClosedLoop': 'Loop',              # 依赖 WiringConvergence
+    'EvalReal': 'Loop',                    # 依赖 EndToEnd
+    'AssemblyGainShared': 'Meta',          # 依赖 AssemblyMeta
+    'CorrectsProperties': 'Loop',          # 依赖 BoundWriteBack / ConvergeToOptimal*
+    'ResidualReducesInj': 'Loop',          # 依赖 ResidualReduces
+    'InterventionGeneral': 'Predict',      # 依赖 InterventionTight
+    'SCMKernel': 'Modeling',               # 依赖 SCMSemantics / CausDAG
+    'ThetaExpressiveness': 'Modeling',     # 依赖 Frame
+    'T1A2': 'Predict',                     # 依赖 CausDAG
+    'ZBlockedWiringAudit': 'Predict',      # 依赖 WiringBackdoor*
+    'CfPartialIdentConsumer': 'Predict',   # 依赖 CfPartialIdent
+    'CondMI': 'Predict',                   # 依赖 FinCondIndep
+    'BridgeB3': 'Predict',                 # 依赖 CausSeparation
     # —— Predict（因果推断 / d-分离 / 干预 / 可辨识性）——
     'GraphToProbView17': 'Predict', 'View17': 'Predict',
     'CausalClassificationBridge': 'Predict', 'DAGBridge': 'Predict',
