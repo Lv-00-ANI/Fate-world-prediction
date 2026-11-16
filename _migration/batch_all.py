@@ -34,6 +34,39 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第五批 ——
+    'TermSize': 'Rules',                       # RuleExec
+    'LawRuleSatisfiability': 'Rules',           # LawRuleLattice
+    'LawRuleTwoDomains': 'Rules',
+    'Compactness': 'Rules',                     # Implication
+    'GazeAlgebraConsumer': 'Rules',             # Classification/GazeAlgebra
+    'LawRulePointDecidabilityConsumer': 'Rules',
+    'T68ComposeSemanticsConsumer': 'Rules',
+    'T21FiniteSearchConsumer': 'Predict',
+    'SCMIdentifiability': 'Loop',               # SCMResidual/ParamSCM
+    'GapIsFalse': 'Loop',                       # EndToEnd
+    'AdjudicationKUnified': 'Error',            # H5AdjudicationK/FitBoundary
+    'TrajGenScan': 'Model',                     # TrajGenDeterministic/Frame
+    'ActInputDecomp': 'Model',                  # Frame
+    'CausalEventFormal': 'Predict',
+    'BridgeZPrimeDSep': 'Predict',
+    # —— 第四批（按依赖归属）——
+    'SCMResidual': 'Loop',                  # SCMWorldModel/EndToEnd/BoundWriteBack
+    'TwoVersionsConsumer': 'Loop',          # TwoVersions/LearnFunction
+    'EvalDemo': 'Loop',                     # WorldModel/TrajGenDeterministic
+    'KK1NoiseAsymmetryConsumer': 'Loop',    # ThetaConvergence/PipelineTendstoGen
+    'RuleSyntaxGenOps': 'Rules',            # RuleSyntaxGen/RuleSyntaxExt
+    'RuleExec': 'Rules',                    # RuleSyntax*
+    'LawRuleUnion': 'Rules',                # LawRule/LawRuleLattice
+    'SCMLawBridgeAdvance': 'Rules',         # SCMLawBridge/LawRuleToTraj
+    'FCAGenuine': 'Rules',                  # FCA
+    'ScottContinuity': 'Rules',             # FCA/Implication
+    'H3LowerBound': 'Error',                # ObsEstimationStrong
+    'H5AdjudicationK': 'Error',             # FitBoundary
+    'Ancestral': 'Predict', 'KahnTopo': 'Predict',
+    'PearlJointLaw': 'Predict', 'FinsetUnivOpt1': 'Predict',
+    'MarkovFaithfulness': 'Predict', 'RegressFinMarkov': 'Predict',
+    'ThreeViews': 'Predict', 'ZPrimeDSepRelation': 'Predict',
     # —— 第三批（按依赖归属）——
     'RuleSyntaxExt': 'Rules', 'RuleSyntaxGen': 'Rules',
     'LawRulePointDecidability': 'Rules', 'LawRulePointExtract': 'Rules',
