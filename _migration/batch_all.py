@@ -34,6 +34,33 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第八批 ——
+    'CFLatticeGen': 'Predict',
+    'Rule1Semantic': 'Predict',
+    'LawRuleAlgebraUnify': 'Predict',      # 依赖 LawRuleSatisfiabilityConsumer(已移Predict)
+    'LawRuleRuleBridge': 'Rules',
+    'T112FCAConnection': 'Rules', 'MVFCAClosure': 'Rules',
+    'TermSizeConsumer': 'Rules',
+    'PearlLawRuleBridgeConsumer': 'Predict',
+    'Layer1NoisyChain': 'Error', 'ChainErrorBudgetBound': 'Error',
+    'R44SigmaAssembly': 'Error',
+    'T33DoGraphConsumer': 'Predict',
+    'CounterfactualStrictness': 'Predict',
+    'DoSemanticsBridge': 'Predict',
+    'GapFalse': 'Loop',
+    'CorrectsPropertiesConsumer': 'Loop',
+    'EndToEndConvergeConsumer': 'Loop',
+    'DemoConcrete': 'Loop',
+    'PipelineAdaptiveEtaNormed': 'Loop',
+    'ConvergeToOptimalStrong': 'Loop',
+    'CfUnconditionalVertex': 'Loop',
+    'MarginSizeIrrelevant': 'Loop',
+    'MiddleZoneDichotomy': 'Predict',
+    'DSepMarkov': 'Predict',
+    'GraphToProbView17Consumer': 'Predict',
+    'PearlMarkov': 'Predict',
+    'ScenarioSharpForTree': 'Predict', 'ScenarioSharpWiring': 'Predict',
+    'SCMIdentifiabilityCorrect': 'Modeling', 'SCMUnificationA': 'Modeling',
     # —— 第七批 ——
     'T33DoGraph': 'Predict', 'ParentMap': 'Predict',
     'DoCalculusRules': 'Predict', 'T1A2Encode': 'Predict',
