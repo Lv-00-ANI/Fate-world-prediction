@@ -49,6 +49,41 @@ THM_RE = re.compile(r'^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncompu
 OPEN_RE = re.compile(r'^(\s*open\s+)(.+)$')
 
 
+def ns_exists(ns):
+    """检查 ns 是否真的在 FateV2 里被声明为 namespace（防止 open 一个不存在的名字）。"""
+    global _NS_CACHE
+    try:
+        _NS_CACHE
+    except NameError:
+        _NS_CACHE = None
+    if _NS_CACHE is None:
+        _NS_CACHE = set()
+        for dp, _, fs in os.walk(V2):
+            for fn in fs:
+                if not fn.endswith('.lean'):
+                    continue
+                with open(os.path.join(dp, fn), encoding='utf-8') as fh:
+                    stack = []
+                    for line in fh:
+                        m = re.match(r'^\s*namespace\s+(\S+)', line)
+                        if m:
+                            stack.append(m.group(1))
+                            _NS_CACHE.add('.'.join(stack))
+                            continue
+                        if re.match(r'^\s*end\s+\S+\s*$', line) and stack:
+                            stack.pop()
+    return ns in _NS_CACHE
+
+
+def load_type_index():
+    """读 type_index.json（由 typeindex.py 生成）。"""
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'type_index.json')
+    if not os.path.exists(p):
+        return {}
+    with open(p, encoding='utf-8') as f:
+        return json.load(f)
+
+
 def load_nsmap():
     if os.path.exists(NSMAP):
         with open(NSMAP, encoding='utf-8') as f:
@@ -204,6 +239,56 @@ def port_one(name, domain, verify=True):
         if len(parts) >= 4:
             dep_domains.add(f'FateV2.{parts[2]}')
     dep_domains.discard(f'FateV2.{domain}')  # 不 open 自己所在的域
+
+    # 规则 7：补 open **正文用到的类型/定义所在的域** ⭐⭐⭐⭐
+    #
+    # 为什么需要：Legacy 模块大量依赖 `namespace Fate` 的**扁平可见性**。
+    # 写 `StateSpace` / `CtxSpace` 时，靠的是它们都在 `Fate` 前缀下
+    # （即使是**间接 import** 进来的，也能拿到名字）。
+    #
+    # 迁移后这些名字散落到不同域，即使没有直接 import 那个模块，
+    # 也必须显式 open 对应域，否则报：
+    #     Invalid field notation: Field projection operates on types of
+    #     the form `C ...` where C is a constant
+    #
+    # 实测反例：RuleLevel 只用同域的 LawRule，但它正文里的
+    # CtxSpace（Model 域）+ StateSpace（Modeling 域）+ OutSpace（Model 域）
+    # 都解析不到 —— 规则 4/5 都覆盖不到，因为这两个模块不在 leg_deps 里。
+    #
+    # 做法：扫正文出现的标识符，查 type_index 得到它所在的域，补 open。
+    try:
+        tindex = load_type_index()
+    except Exception:
+        tindex = {}
+
+    if tindex:
+        # ⚠ 只扫「正文代码区」，必须排除四类噪声：
+        #   (a) import 行 —— 否则 `import Mathlib.Data.Real.Basic` 里的 Data 会被误认
+        #   (b) 块注释 /- ... -/
+        #   (c) 行注释 --
+        #   (d) 字符串字面量
+        # 实测反例：StatAlpha 因 import 行的 `Data` 命中 Core.Syntax.Data，
+        # 生出 `open FateV2.Core`，而 FateV2.Core 不是命名空间 ⟹ unknown namespace。
+        code = re.sub(r'/-.*?-/', ' ', text, flags=re.S)
+        code = re.sub(r'--[^\n]*', ' ', code)
+        code = re.sub(r'"(?:[^"\\]|\\.)*"', ' ', code)
+        code = re.sub(r'^\s*(?:(?:module|public|private|meta)\s+)*import\s+\S+',
+                      ' ', code, flags=re.M)
+        used_ids = set(re.findall(r'(?<![\w.\'])([A-Z][A-Za-z0-9_]{2,})', code))
+        # ⚠ 排除**本文件自己定义**的名字。
+        # 实测反例：StatAlpha 自己 `abbrev Data`，但索引里 Data 归到 Core.Syntax，
+        # 于是误生 `open FateV2.Core` ⟹ unknown namespace（本文件并未 import Core）。
+        own_defs = set(re.findall(
+            r'(?m)^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*'
+            r'(?:structure|inductive|class|def|abbrev|opaque)\s+([A-Z][A-Za-z0-9_\']*)',
+            text))
+        for ident in used_ids - own_defs:
+            rec = tindex.get(ident)
+            if rec:
+                d = rec['domain']
+                if d != domain and ns_exists(f'FateV2.{d}'):
+                    dep_domains.add(f'FateV2.{d}')
+
     dep_opens = '\n'.join(f'open {d}' for d in sorted(dep_domains))
 
     # 规则 5：补 open **同域的兄弟命名空间** ⭐⭐⭐

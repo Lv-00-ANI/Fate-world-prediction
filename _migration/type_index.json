@@ -1,0 +1,1017 @@
+{
+"AnalysisClaim": {
+"domain": "Bridge",
+"module": "Bridge.AnalysisBridge",
+"ns": "FateV2.Bridge"
+},
+"Entry": {
+"domain": "Bridge",
+"module": "Bridge.SupportBridge",
+"ns": "FateV2.Bridge"
+},
+"Carrier": {
+"domain": "Classical",
+"module": "Classical.Analysis",
+"ns": "FateV2.Classical"
+},
+"Shell": {
+"domain": "Classical",
+"module": "Classical.Assumptions",
+"ns": "FateV2.Classical"
+},
+"TermExt": {
+"domain": "Core",
+"module": "Core.Binder",
+"ns": "FateV2.Core"
+},
+"Body": {
+"domain": "Core",
+"module": "Core.Cache",
+"ns": "FateV2.Core"
+},
+"DeclEntry": {
+"domain": "Core",
+"module": "Core.Cache",
+"ns": "FateV2.Core"
+},
+"Change": {
+"domain": "Core",
+"module": "Core.Cache",
+"ns": "FateV2.Core"
+},
+"DeclKind": {
+"domain": "Core",
+"module": "Core.Decl",
+"ns": "FateV2.Core"
+},
+"BodyKind": {
+"domain": "Core",
+"module": "Core.Decl",
+"ns": "FateV2.Core"
+},
+"DeclVisibility": {
+"domain": "Core",
+"module": "Core.Decl",
+"ns": "FateV2.Core"
+},
+"Decl": {
+"domain": "Core",
+"module": "Core.Decl",
+"ns": "FateV2.Core"
+},
+"Module": {
+"domain": "Core",
+"module": "Core.Decl",
+"ns": "FateV2.Core"
+},
+"Support": {
+"domain": "Core",
+"module": "Core.Judgment",
+"ns": "FateV2.Core"
+},
+"Status": {
+"domain": "Core",
+"module": "Core.Judgment",
+"ns": "FateV2.Core"
+},
+"Judgment": {
+"domain": "Core",
+"module": "Core.Judgment",
+"ns": "FateV2.Core"
+},
+"JudgmentCodec": {
+"domain": "Core",
+"module": "Core.Judgment",
+"ns": "FateV2.Core"
+},
+"Univ": {
+"domain": "Core",
+"module": "Core.LawRuleIR",
+"ns": "FateV2.Core"
+},
+"LitAtom": {
+"domain": "Core",
+"module": "Core.LawRuleIR",
+"ns": "FateV2.Core"
+},
+"LawRef": {
+"domain": "Core",
+"module": "Core.LawRuleIR",
+"ns": "FateV2.Core"
+},
+"AllowedWitness": {
+"domain": "Core",
+"module": "Core.LawRuleIR",
+"ns": "FateV2.Core"
+},
+"LawFam": {
+"domain": "Core",
+"module": "Core.LawRuleIR",
+"ns": "FateV2.Core"
+},
+"LawCtx": {
+"domain": "Core",
+"module": "Core.LawRuleIR",
+"ns": "FateV2.Core"
+},
+"MonoConv": {
+"domain": "Core",
+"module": "Core.MonoConv",
+"ns": ""
+},
+"BotApproach": {
+"domain": "Core",
+"module": "Core.MonoConv",
+"ns": "FateV2.Core.MonoConv"
+},
+"GammaPolicy": {
+"domain": "Core",
+"module": "Core.Ops",
+"ns": "FateV2.Core"
+},
+"UpsilonPolicy": {
+"domain": "Core",
+"module": "Core.Ops",
+"ns": "FateV2.Core"
+},
+"AlphaPolicy": {
+"domain": "Core",
+"module": "Core.Ops",
+"ns": "FateV2.Core"
+},
+"Sig": {
+"domain": "Core",
+"module": "Core.Registry",
+"ns": "FateV2.Core"
+},
+"EvalCtx": {
+"domain": "Core",
+"module": "Core.Registry",
+"ns": "FateV2.Core"
+},
+"TimeIndex": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": "Fate.Stage0"
+},
+"ActionSpace": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": "Fate.Stage0"
+},
+"ContinuousForm": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": "Fate"
+},
+"LipschitzData": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": ""
+},
+"SDERegularity": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": ""
+},
+"DiscreteRegularity": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": ""
+},
+"WellFoundedDeps": {
+"domain": "Core",
+"module": "Core.Stage0Core",
+"ns": ""
+},
+"Term": {
+"domain": "Core",
+"module": "Core.Syntax",
+"ns": "FateV2.Core"
+},
+"Formula": {
+"domain": "Core",
+"module": "Core.Syntax",
+"ns": "FateV2.Core"
+},
+"Data": {
+"domain": "Core",
+"module": "Core.Syntax",
+"ns": "FateV2.Core"
+},
+"FinitelyCarried": {
+"domain": "Core",
+"module": "Core.Unified",
+"ns": "FateV2.Core.Unified"
+},
+"AbstractVerdictAxioms": {
+"domain": "Core",
+"module": "Core.VerdictAlgebra",
+"ns": "FateV2.Core"
+},
+"ColType": {
+"domain": "Data",
+"module": "Data.Ingest",
+"ns": "FateV2.DataIngest"
+},
+"DataSpec": {
+"domain": "Data",
+"module": "Data.Ingest",
+"ns": "FateV2.DataIngest"
+},
+"DataV": {
+"domain": "Data",
+"module": "Data.Ingest",
+"ns": "FateV2.DataIngest"
+},
+"ExportVal": {
+"domain": "Demo",
+"module": "Demo.ExecutableExport",
+"ns": ""
+},
+"Step": {
+"domain": "Demo",
+"module": "Demo.ExecutableGraph",
+"ns": ""
+},
+"Ctx": {
+"domain": "Demo",
+"module": "Demo.ExecutableGraph",
+"ns": ""
+},
+"Model": {
+"domain": "Demo",
+"module": "Demo.ExecutableSCM",
+"ns": ""
+},
+"E1000": {
+"domain": "Demo",
+"module": "Demo.IntScaled.DemoInt",
+"ns": "FateV2.Demo.IntScaled"
+},
+"Law": {
+"domain": "Demo",
+"module": "Demo.IntScaled.DemoInt",
+"ns": "FateV2.Demo.IntScaled"
+},
+"ModalityI": {
+"domain": "Demo",
+"module": "Demo.IntScaled.DemoInt",
+"ns": "FateV2.Demo.IntScaled"
+},
+"Fixed": {
+"domain": "Demo",
+"module": "Demo.IntScaled.Scaling",
+"ns": "FateV2.Demo.IntScaled"
+},
+"BandAxioms": {
+"domain": "Error",
+"module": "Error.AcceptsGeneral",
+"ns": ""
+},
+"BVTradeoff": {
+"domain": "Error",
+"module": "Error.AICDataPath",
+"ns": "FateV2.ErrorN"
+},
+"ChainBudget": {
+"domain": "Error",
+"module": "Error.ChainErrorBudget",
+"ns": "FateV2.Error.ChainErrorBudget"
+},
+"Qty": {
+"domain": "Error",
+"module": "Error.Dimensions",
+"ns": "FateV2.Error.Dimensions"
+},
+"DimProfile": {
+"domain": "Error",
+"module": "Error.Dimensions",
+"ns": "FateV2.Error.Dimensions"
+},
+"LayerErr": {
+"domain": "Error",
+"module": "Error.EndToEndError",
+"ns": ""
+},
+"LayeredSystem": {
+"domain": "Error",
+"module": "Error.EndToEndError",
+"ns": "FateV2.Error.EndToEndError"
+},
+"IsContractionIn": {
+"domain": "Error",
+"module": "Error.ErrorBoundE6",
+"ns": "FateV2.Error.Stage0.ErrorBoundE6"
+},
+"ClosenessModel": {
+"domain": "Error",
+"module": "Error.ErrorBoundE6",
+"ns": "FateV2.Error.Stage0.ErrorBoundE6"
+},
+"FloatingPointModel": {
+"domain": "Error",
+"module": "Error.ErrorBoundE6",
+"ns": "FateV2.Error.Stage0.ErrorBoundE6"
+},
+"ErrLayer": {
+"domain": "Error",
+"module": "Error.ErrorGraph",
+"ns": "FateV2.Error.ErrGraph"
+},
+"E2E": {
+"domain": "Error",
+"module": "Error.ErrorGraph",
+"ns": "FateV2.Error.ErrGraph"
+},
+"ErrorGraph": {
+"domain": "Error",
+"module": "Error.ErrorGraph",
+"ns": "FateV2.Error.ErrGraph"
+},
+"ErrKind": {
+"domain": "Error",
+"module": "Error.ErrorMagnitude",
+"ns": "FateV2.Error.ErrorMagnitude"
+},
+"Magnitude": {
+"domain": "Error",
+"module": "Error.ErrorMagnitude",
+"ns": "FateV2.Error.ErrorMagnitude"
+},
+"MagTriple": {
+"domain": "Error",
+"module": "Error.ErrorMagnitude",
+"ns": "FateV2.Error.ErrorMagnitude"
+},
+"ErrorQuadruple": {
+"domain": "Error",
+"module": "Error.ErrorQuadruple",
+"ns": "FateV2.Error.Stage2"
+},
+"WellFormed": {
+"domain": "Error",
+"module": "Error.ErrorQuadruple",
+"ns": "FateV2.Error.Stage2"
+},
+"ErrorDimension": {
+"domain": "Error",
+"module": "Error.ErrorQuadruple",
+"ns": "FateV2.Error.Stage2"
+},
+"UsesDimension": {
+"domain": "Error",
+"module": "Error.ErrorQuadruple",
+"ns": "FateV2.Error.Stage2"
+},
+"EItem": {
+"domain": "Error",
+"module": "Error.ErrorQuadruple",
+"ns": "FateV2.Error.Stage2"
+},
+"ErrProfileN": {
+"domain": "Error",
+"module": "Error.ErrProfileN",
+"ns": "FateV2.ErrorN"
+},
+"ErrProfileWeak": {
+"domain": "Error",
+"module": "Error.FitBoundary",
+"ns": "FateV2.Error.Core"
+},
+"ErrProfile": {
+"domain": "Error",
+"module": "Error.FitBoundary",
+"ns": "FateV2.Error.Core"
+},
+"FiniteSeparatedSpace": {
+"domain": "Error",
+"module": "Error.LipschitzFromFinite",
+"ns": "FateV2.Error.LipschitzFromFinite"
+},
+"WidthCell": {
+"domain": "Error",
+"module": "Error.LipschitzTransfer",
+"ns": "FateV2.Error.LipschitzTransfer"
+},
+"Loss": {
+"domain": "Error",
+"module": "Error.Loss",
+"ns": "FateV2.ErrorN"
+},
+"Dict": {
+"domain": "Error",
+"module": "Error.MainLoopSupportBridge",
+"ns": "FateV2.Error.MainLoopSupport"
+},
+"OptimalityPattern": {
+"domain": "Error",
+"module": "Error.OptimalityPattern",
+"ns": "FateV2.Error"
+},
+"AlphaMeasurement": {
+"domain": "Error",
+"module": "Error.Resolution",
+"ns": ""
+},
+"SigmaSource": {
+"domain": "Error",
+"module": "Error.SigmaFromDomain",
+"ns": "FateV2.Error.SigmaFromDomain"
+},
+"SuppProfile": {
+"domain": "Error",
+"module": "Error.SupportBound",
+"ns": "FateV2.Error.R_SupportBound"
+},
+"Stub3": {
+"domain": "Error",
+"module": "Error.VerdictGeneral",
+"ns": "FateV2.ErrorN"
+},
+"VerdictAxioms": {
+"domain": "Error",
+"module": "Error.VerdictGeneral",
+"ns": "FateV2.ErrorN"
+},
+"ModalityG": {
+"domain": "Export",
+"module": "Export.Carrier",
+"ns": "FateV2.Export"
+},
+"CouplingGraph": {
+"domain": "Export",
+"module": "Export.Coupling",
+"ns": "FateV2.Export"
+},
+"ErrEnv": {
+"domain": "Export",
+"module": "Export.Coupling",
+"ns": "FateV2.Export"
+},
+"Modality": {
+"domain": "Export",
+"module": "Export.Modality",
+"ns": "FateV2.Export"
+},
+"Scope": {
+"domain": "Export",
+"module": "Export.Modality",
+"ns": "FateV2.Export"
+},
+"ExportResult": {
+"domain": "Export",
+"module": "Export.Modality",
+"ns": "FateV2.Export"
+},
+"LipschitzWithConst": {
+"domain": "Loop",
+"module": "Loop.ClosedLoopGeneral",
+"ns": "FateV2.Loop.ClosedLoopGeneral"
+},
+"LoopState": {
+"domain": "Loop",
+"module": "Loop.MainLoop",
+"ns": "FateV2.Loop.MainLoop"
+},
+"ClosedLoopWorld": {
+"domain": "Loop",
+"module": "Loop.WorldModelCapstone",
+"ns": "FateV2.Loop.WorldModelCapstone"
+},
+"Reaction": {
+"domain": "Meta",
+"module": "Meta.Context",
+"ns": "FateV2.Meta"
+},
+"MiniBackdoorSetup": {
+"domain": "Meta",
+"module": "Meta.DeadPremiseAudit",
+"ns": "FateV2.Meta.DeadPremiseAudit"
+},
+"AuditVerdict": {
+"domain": "Meta",
+"module": "Meta.DeadPremiseAudit",
+"ns": "FateV2.Meta.DeadPremiseAudit"
+},
+"CriterionA": {
+"domain": "Meta",
+"module": "Meta.Domain",
+"ns": "FateV2.Meta"
+},
+"CriterionB": {
+"domain": "Meta",
+"module": "Meta.Domain",
+"ns": "FateV2.Meta"
+},
+"UndecidableMarker": {
+"domain": "Meta",
+"module": "Meta.Domain",
+"ns": "FateV2.Meta"
+},
+"AdmitResult": {
+"domain": "Meta",
+"module": "Meta.Domain",
+"ns": "FateV2.Meta"
+},
+"Gate": {
+"domain": "Meta",
+"module": "Meta.Gate",
+"ns": "FateV2.Meta"
+},
+"G": {
+"domain": "Meta",
+"module": "Meta.GazeAlgebra",
+"ns": "FateV2.Meta.GazeAlgebra"
+},
+"SymLE": {
+"domain": "Meta",
+"module": "Meta.GazeAlgebra",
+"ns": "FateV2.Meta.GazeAlgebra"
+},
+"Prob": {
+"domain": "Meta",
+"module": "Meta.ICPCoverage",
+"ns": "FateV2.Meta.ICPCoverage"
+},
+"EntryKind": {
+"domain": "Meta",
+"module": "Meta.Ledger",
+"ns": "FateV2.Meta"
+},
+"Ledger": {
+"domain": "Meta",
+"module": "Meta.Ledger",
+"ns": "FateV2.Meta"
+},
+"System": {
+"domain": "Meta",
+"module": "Meta.T04NotationFidelity",
+"ns": "FateV2.Meta.T04"
+},
+"ComposeAxioms": {
+"domain": "Meta",
+"module": "Meta.T68ComposeSemantics",
+"ns": "FateV2.Meta.R230B4"
+},
+"Kind": {
+"domain": "Meta",
+"module": "Meta.ThreeKinds",
+"ns": "FateV2.Meta"
+},
+"Frame": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"ObservationRegime": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"CtxSpace": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"LocalDomain": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"Rule": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"RuleWithTheta": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"InstSpace": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"ThetaIsExtracted": {
+"domain": "Model",
+"module": "Model.Frame",
+"ns": "FateV2.Model"
+},
+"Graph": {
+"domain": "Model",
+"module": "Model.Order",
+"ns": "FateV2.Model"
+},
+"Reachable": {
+"domain": "Model",
+"module": "Model.Order",
+"ns": "FateV2.Model"
+},
+"Slice": {
+"domain": "Model",
+"module": "Model.Time",
+"ns": "FateV2.Model"
+},
+"Obj": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"StateSpace": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"TimeKind": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"Tmax": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"InitialState": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"ThetaSpace": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"InputSpace": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"NoiseSpace": {
+"domain": "Modeling",
+"module": "Modeling.Basic",
+"ns": "FateV2.Modeling"
+},
+"BBDir": {
+"domain": "Modeling",
+"module": "Modeling.CausBayesBall",
+"ns": "FateV2.Modeling.Graph.DAG"
+},
+"DAG": {
+"domain": "Modeling",
+"module": "Modeling.CausDAG",
+"ns": "FateV2.Modeling.Graph"
+},
+"isAncestor": {
+"domain": "Modeling",
+"module": "Modeling.CausDAG",
+"ns": "FateV2.Modeling.Graph.DAG"
+},
+"SynthV": {
+"domain": "Modeling",
+"module": "Modeling.Construct",
+"ns": "FateV2.Modeling"
+},
+"SynthE": {
+"domain": "Modeling",
+"module": "Modeling.Construct",
+"ns": "FateV2.Modeling"
+},
+"SynthParams": {
+"domain": "Modeling",
+"module": "Modeling.Construct",
+"ns": "FateV2.Modeling"
+},
+"DiscLaw": {
+"domain": "Modeling",
+"module": "Modeling.Construct",
+"ns": "FateV2.Modeling"
+},
+"ConstructionRecord": {
+"domain": "Modeling",
+"module": "Modeling.Construction",
+"ns": "FateV2.Modeling"
+},
+"LitX": {
+"domain": "Modeling",
+"module": "Modeling.Construction",
+"ns": "FateV2.Modeling"
+},
+"WellSorted": {
+"domain": "Modeling",
+"module": "Modeling.Construction",
+"ns": "FateV2.Modeling"
+},
+"Grain": {
+"domain": "Modeling",
+"module": "Modeling.Construction",
+"ns": "FateV2.Modeling"
+},
+"ConstructionProfile": {
+"domain": "Modeling",
+"module": "Modeling.Construction",
+"ns": "FateV2.Modeling"
+},
+"SigmaSplit": {
+"domain": "Modeling",
+"module": "Modeling.Construction",
+"ns": "FateV2.Modeling.ConstructionProfile"
+},
+"Fate": {
+"domain": "Modeling",
+"module": "Modeling.Dissolve",
+"ns": "FateV2.Modeling"
+},
+"FinNoise": {
+"domain": "Modeling",
+"module": "Modeling.Noise",
+"ns": "FateV2.Modeling"
+},
+"DiracNoise": {
+"domain": "Modeling",
+"module": "Modeling.Noise",
+"ns": "FateV2.Modeling"
+},
+"ObsMode": {
+"domain": "Modeling",
+"module": "Modeling.Observation",
+"ns": "FateV2.Modeling"
+},
+"Observation": {
+"domain": "Modeling",
+"module": "Modeling.Observation",
+"ns": "FateV2.Modeling"
+},
+"ObsModel": {
+"domain": "Modeling",
+"module": "Modeling.ObsEstimationWeak",
+"ns": "FateV2.Modeling.ObsEstimationWeak"
+},
+"SCM": {
+"domain": "Modeling",
+"module": "Modeling.PearlHierarchy",
+"ns": "FateV2.Modeling.PearlHierarchy"
+},
+"SV": {
+"domain": "Modeling",
+"module": "Modeling.SCMGraph",
+"ns": "FateV2.Modeling.SCMGraph"
+},
+"BackdoorSetup": {
+"domain": "Predict",
+"module": "Predict.BackdoorCriterion",
+"ns": "FateV2.Predict.R259"
+},
+"BackdoorConditions": {
+"domain": "Predict",
+"module": "Predict.BackdoorCriterion",
+"ns": "FateV2.Predict.R259"
+},
+"Vert": {
+"domain": "Predict",
+"module": "Predict.BackdoorGenuine",
+"ns": "FateV2.Predict.R277"
+},
+"IsDescendant": {
+"domain": "Predict",
+"module": "Predict.BackdoorGenuine",
+"ns": "FateV2.Predict.R277"
+},
+"ZBlockedSetup": {
+"domain": "Predict",
+"module": "Predict.BackdoorGenuine",
+"ns": "FateV2.Predict.R277"
+},
+"ZVert": {
+"domain": "Predict",
+"module": "Predict.BackdoorGenuine",
+"ns": "FateV2.Predict.R277"
+},
+"Reach": {
+"domain": "Predict",
+"module": "Predict.CausalDescendant",
+"ns": "FateV2.Predict.CausalDescendant"
+},
+"CausalGraph": {
+"domain": "Predict",
+"module": "Predict.CausalDirection",
+"ns": "FateV2.Predict.CausalDirection"
+},
+"TripleType": {
+"domain": "Predict",
+"module": "Predict.CausalDirection",
+"ns": "FateV2.Predict.CausalDirection"
+},
+"ParamSCM": {
+"domain": "Predict",
+"module": "Predict.CausalEffect",
+"ns": "FateV2.Predict.CausalEffect"
+},
+"DStep": {
+"domain": "Predict",
+"module": "Predict.CausalPath",
+"ns": "FateV2.Predict.CausalPath"
+},
+"DWalk": {
+"domain": "Predict",
+"module": "Predict.CausalPath",
+"ns": "FateV2.Predict.CausalPath"
+},
+"IsEq": {
+"domain": "Predict",
+"module": "Predict.DistributionInvariants",
+"ns": "FateV2.Predict"
+},
+"FinJointGap": {
+"domain": "Predict",
+"module": "Predict.FinJoint",
+"ns": "FateV2.Predict.FinJoint"
+},
+"FracSCM": {
+"domain": "Predict",
+"module": "Predict.FinMarkov",
+"ns": "FateV2.Predict.FinMarkov"
+},
+"FinMarkovGap": {
+"domain": "Predict",
+"module": "Predict.FinMarkov",
+"ns": "FateV2.Predict.FinMarkov"
+},
+"FrontdoorSetup": {
+"domain": "Predict",
+"module": "Predict.FrontdoorCriterion",
+"ns": "FateV2.Predict.R255"
+},
+"FrontdoorConditions": {
+"domain": "Predict",
+"module": "Predict.FrontdoorCriterion",
+"ns": "FateV2.Predict.R255"
+},
+"SingleDo": {
+"domain": "Predict",
+"module": "Predict.Intervene",
+"ns": "FateV2.Predict"
+},
+"Intervention": {
+"domain": "Predict",
+"module": "Predict.Intervene",
+"ns": "FateV2.Predict"
+},
+"TripleTag": {
+"domain": "Predict",
+"module": "Predict.PearlCondIndepBridge",
+"ns": "FateV2.Predict.PearlCondIndepBridge"
+},
+"PushFamily": {
+"domain": "Predict",
+"module": "Predict.Predict",
+"ns": "FateV2.Predict"
+},
+"ZTwo": {
+"domain": "Predict",
+"module": "Predict.PushCorrectness",
+"ns": "FateV2.Predict"
+},
+"ValidPush": {
+"domain": "Predict",
+"module": "Predict.PushCorrectness",
+"ns": "FateV2.Predict"
+},
+"TwoPt": {
+"domain": "Predict",
+"module": "Predict.PushMerge",
+"ns": "FateV2.Predict"
+},
+"WorldModel": {
+"domain": "Predict",
+"module": "Predict.RuleDrivesEndToEnd",
+"ns": ""
+},
+"WorldRules": {
+"domain": "Predict",
+"module": "Predict.RuleSimConsistency",
+"ns": ""
+},
+"WorldSimulator": {
+"domain": "Predict",
+"module": "Predict.RuleSimConsistency",
+"ns": ""
+},
+"Scenario": {
+"domain": "Predict",
+"module": "Predict.Scenario",
+"ns": "FateV2.Predict"
+},
+"Tree": {
+"domain": "Predict",
+"module": "Predict.Scenario",
+"ns": "FateV2.Predict"
+},
+"ModelFamily": {
+"domain": "Predict",
+"module": "Predict.T314Identifiability",
+"ns": "FateV2.Predict.T314"
+},
+"ConfoundedWorldModel": {
+"domain": "Predict",
+"module": "Predict.WiringFrontdoor",
+"ns": "FateV2.Predict.WiringFrontdoor"
+},
+"WorldState": {
+"domain": "Predict",
+"module": "Predict.WorldModel",
+"ns": "FateV2.Predict"
+},
+"WorldRulesθ": {
+"domain": "Predict",
+"module": "Predict.WorldModel",
+"ns": "FateV2.Predict"
+},
+"Selector": {
+"domain": "Predict",
+"module": "Predict.WorldModel",
+"ns": "FateV2.Predict"
+},
+"Policy": {
+"domain": "Predict",
+"module": "Predict.WorldScenario",
+"ns": ""
+},
+"IsConnectedPartition": {
+"domain": "Rules",
+"module": "Rules.AlgoKNNComponents",
+"ns": "FateV2.Rules.KNNComponents"
+},
+"Gaze": {
+"domain": "Rules",
+"module": "Rules.Classification",
+"ns": "FateV2.Rules.FormalCtx"
+},
+"Temporal": {
+"domain": "Rules",
+"module": "Rules.Classification",
+"ns": "FateV2.Rules.FormalCtx"
+},
+"TemporalAction": {
+"domain": "Rules",
+"module": "Rules.Classification",
+"ns": "FateV2.Rules.FormalCtx"
+},
+"CycleStructure": {
+"domain": "Rules",
+"module": "Rules.Classification",
+"ns": "FateV2.Rules"
+},
+"FormalCtx": {
+"domain": "Rules",
+"module": "Rules.FCA",
+"ns": "FateV2.Rules"
+},
+"FiniteAttrs": {
+"domain": "Rules",
+"module": "Rules.Implication",
+"ns": "FateV2.Rules.FormalCtx"
+},
+"PatStruct": {
+"domain": "Rules",
+"module": "Rules.MVFCAPositive",
+"ns": "FateV2.Rules.MVFCA4"
+},
+"BlockLayer": {
+"domain": "Rules",
+"module": "Rules.MVFCAPositive",
+"ns": "FateV2.Rules.MVFCA4.PatStruct"
+},
+"InvPair": {
+"domain": "Rules",
+"module": "Rules.RebaseAbstract",
+"ns": "FateV2.Rules.RebaseAbstract"
+},
+"Activation": {
+"domain": "Rules",
+"module": "Rules.RuleActivation",
+"ns": "FateV2.Rules.RuleActivation"
+},
+"RuleTag": {
+"domain": "Rules",
+"module": "Rules.RuleLevel",
+"ns": "FateV2.Rules"
+},
+"TrajPattern": {
+"domain": "Rules",
+"module": "Rules.RuleLevel",
+"ns": "FateV2.Rules"
+},
+"RuleBody": {
+"domain": "Rules",
+"module": "Rules.RuleLevel",
+"ns": "FateV2.Rules"
+},
+"RuleSet": {
+"domain": "Rules",
+"module": "Rules.RuleSet",
+"ns": "FateV2.Rules"
+}
+}
