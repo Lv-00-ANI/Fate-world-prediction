@@ -2,7 +2,7 @@ import Mathlib.Data.Set.Basic
 import FateWorld.FateV2.Model.Frame
 import FateWorld.FateV2.Predict.Counterfactual
 /-!
-  # Model · FrameBridge
+  # Predict · FrameBridge
 
   ## 迁移登记
   - 来源：`FateWorld/Legacy/FrameBridge.lean`
@@ -47,7 +47,7 @@ import FateWorld.FateV2.Predict.Counterfactual
   **⚠ 无硬编码**（依作者裁决 Q-1）。
   =========================================================================== -/
 
-namespace FateV2.Model
+namespace FateV2.Predict
 
 open FateV2.Modeling
 open FateV2.Predict
@@ -165,4 +165,4 @@ theorem bridge_multivalued_witness {CF : Type*} (Obs : Step F → CF)
 
 end FrameBridge
 
-end FateV2.Model
+end FateV2.Predict
