@@ -79,12 +79,20 @@ def _reachable_domains(text, v2m, self_domain):
     """从文件的 import 语句出发，沿 FateV2 模块依赖做 BFS，
     返回可达的所有**域**名集合。
 
-    用途：规则 7 补 open 前的校验 —— 只能 open 已 import 到的域。"""
+    用途：规则 7 补 open 前的校验 —— 只能 open 已 import 到的域。
+
+    ⚠ 注意：这里**不能用** IMPORT_RE —— 那个正则只匹配 `FateWorld.Legacy.`，
+    在 FateV2 文件上抓不到任何 import，导致 reachable 严重低估。
+    实测后果：LearnFunction 只算出 {Loop, Predict}，漏掉 EndToEnd 里
+    实际 import 的 Modeling ⟹ StateSpace / ThetaSpace 解析失败。
+    """
+    any_import = re.compile(
+        r'^\s*(?:(?:module|public|private|meta)\s+)*import\s+'
+        r'FateWorld\.(?:FateV2|Legacy)\.([A-Za-z0-9_.]+)', re.M)
+
     seed = []
-    for m in IMPORT_RE.finditer(text):
-        mod = m.group(2)
-        if mod in v2m:
-            seed.append(mod)
+    for m in any_import.finditer(text):
+        seed.append(m.group(1).split('.')[-1])
     seen_mod = set(seed)
     domains = set()
     if self_domain:
@@ -105,8 +113,8 @@ def _reachable_domains(text, v2m, self_domain):
             continue
         with open(fp, encoding='utf-8') as fh:
             src = fh.read()
-        for m in IMPORT_RE.finditer(src):
-            nxt = m.group(2)
+        for m in any_import.finditer(src):
+            nxt = m.group(1).split('.')[-1]
             if nxt in v2m and nxt not in seen_mod:
                 seen_mod.add(nxt)
                 stack.append(nxt)
@@ -132,10 +140,19 @@ def load_type_index():
 
 
 def load_nsmap():
+    """合并两个映射源：
+       1. ns_map.json       （nsmap.py：同模块配对，183 条）
+       2. ns_map_full.json  （nsmap_full.py：含命名空间级配对）
+    后者覆盖更全，遇到冲突时以**后加载**的为准。"""
+    out = {}
     if os.path.exists(NSMAP):
         with open(NSMAP, encoding='utf-8') as f:
-            return json.load(f)['map']
-    return {}
+            out.update(json.load(f)['map'])
+    full = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ns_map_full.json')
+    if os.path.exists(full):
+        with open(full, encoding='utf-8') as f:
+            out.update(json.load(f))
+    return out
 
 
 def v2_index():
