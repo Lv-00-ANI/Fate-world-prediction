@@ -12,8 +12,7 @@ import Mathlib.Tactic
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   σ 的数值依赖外部数据（对应论文 §10）
 

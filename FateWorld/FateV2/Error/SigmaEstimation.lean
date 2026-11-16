@@ -19,8 +19,7 @@ import FateWorld.FateV2.Error.SigmaFromAIC
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
 命运理论 · **V4：把 σ 不可证这件事转成可证的东西**
 =================================================================

@@ -11,8 +11,7 @@ import FateWorld.FateV2.Error.FitBoundaryLowerBound
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   下界模块的消费接口（对应论文 §7）
 

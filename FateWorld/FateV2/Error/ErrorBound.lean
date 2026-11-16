@@ -15,8 +15,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   误差到决策：分类稳定性的定量条件（对应论文 §8.4）
 
@@ -599,7 +598,7 @@ end Euclidean
   因为它在**判据之外**（它是判据的**理由**，不是判据本身）。
   =========================================================================== -/
 
-/-- **主定理 A 不依赖 `FateV2.Loop.ShouldStop`**：本定理的前提里没有它。
+/-- **主定理 A 不依赖 `FateV2.Modeling.ShouldStop`**：本定理的前提里没有它。
 
 **这一行是**诚实声明**：若本定理依赖 `ShouldStop`，
 则它和 `FitBoundary.lean` §6.3 的分离定理会矛盾。 -/

@@ -11,8 +11,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   参数无关判据：最小点刻画（对应论文 §3.3）
 

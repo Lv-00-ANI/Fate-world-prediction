@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 import Mathlib.Analysis.Convex.SpecificFunctions.Deriv
 import Mathlib.Topology.Order.IntermediateValue
 import Mathlib.Analysis.Convex.Function
-import FateWorld.FateV2.Loop.CoreBasics
+import FateWorld.FateV2.Modeling.CoreBasics
 
 /-!
   ## 迁移登记
@@ -15,8 +15,7 @@ import FateWorld.FateV2.Loop.CoreBasics
   - 状态：已编译未验证
 -/
 
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   恰当拟合边界（对应论文 §3–§6）
 
@@ -733,25 +732,25 @@ $\rho := |\mathrm{gradForce}|/\mathrm{histInertia}$ 与 $\tau$，
 **证明**：两个量都是 `d` 的**一次齐次**函数
 （前者是差的商、后者是差的绝对值），标量乘可提出。 -/
 theorem ratio_invariant_under_scale (d : ℕ → ℝ) {k : ℝ} (hk : 0 < k) (n : ℕ) :
-    |FateV2.Loop.gradForce (fun i => k * d i) n| / FateV2.Loop.histInertia (fun i => k * d i) n
-      = |FateV2.Loop.gradForce d n| / FateV2.Loop.histInertia d n := by
-  have hkey : ∀ m : ℕ, FateV2.Loop.gradForce (fun i => k * d i) m = k * FateV2.Loop.gradForce d m := by
+    |FateV2.Modeling.gradForce (fun i => k * d i) n| / FateV2.Modeling.histInertia (fun i => k * d i) n
+      = |FateV2.Modeling.gradForce d n| / FateV2.Modeling.histInertia d n := by
+  have hkey : ∀ m : ℕ, FateV2.Modeling.gradForce (fun i => k * d i) m = k * FateV2.Modeling.gradForce d m := by
     intro m
-    unfold FateV2.Loop.gradForce
+    unfold FateV2.Modeling.gradForce
     by_cases hm : m = 0
     · subst hm; simp
     · simp only [hm, ↓reduceIte]
       rw [show k * d m - k * d 0 = k * (d m - d 0) by ring, mul_div_assoc]
-  have hkey2 : ∀ m : ℕ, FateV2.Loop.histInertia (fun i => k * d i) m = k * FateV2.Loop.histInertia d m := by
+  have hkey2 : ∀ m : ℕ, FateV2.Modeling.histInertia (fun i => k * d i) m = k * FateV2.Modeling.histInertia d m := by
     intro m
-    unfold FateV2.Loop.histInertia
+    unfold FateV2.Modeling.histInertia
     by_cases hm : m = 0
     · subst hm; simp
     · simp only [hm, ↓reduceIte]
       rw [show k * d m - k * d 0 = k * (d m - d 0) by ring, abs_mul, abs_of_pos hk]
   rw [hkey2 n, hkey n, abs_mul, abs_of_pos hk]
-  rcases eq_or_ne (k * FateV2.Loop.histInertia d n) 0 with h0 | h0
-  · have hz : FateV2.Loop.histInertia d n = 0 := by
+  rcases eq_or_ne (k * FateV2.Modeling.histInertia d n) 0 with h0 | h0
+  · have hz : FateV2.Modeling.histInertia d n = 0 := by
       rcases mul_eq_zero.mp h0 with h | h
       · exact absurd h hk.ne'
       · exact h
@@ -768,10 +767,10 @@ $$\mathrm{ShouldStop}(k\cdot d,\, n,\, \tau)\iff
 **但** §6.3 说明这种「不看绝对尺度」**恰是**它**不能**判定边界的**原因**。 -/
 theorem shouldStop_scale_invariant (d : ℕ → ℝ) {k : ℝ} (hk : 0 < k) (n : ℕ)
     (τ : ℝ) :
-    FateV2.Loop.ShouldStop (fun i => k * d i) n τ ↔ FateV2.Loop.ShouldStop d n τ := by
-  unfold FateV2.Loop.ShouldStop
-  have hI : FateV2.Loop.histInertia (fun i => k * d i) n = 0 ↔ FateV2.Loop.histInertia d n = 0 := by
-    unfold FateV2.Loop.histInertia
+    FateV2.Modeling.ShouldStop (fun i => k * d i) n τ ↔ FateV2.Modeling.ShouldStop d n τ := by
+  unfold FateV2.Modeling.ShouldStop
+  have hI : FateV2.Modeling.histInertia (fun i => k * d i) n = 0 ↔ FateV2.Modeling.histInertia d n = 0 := by
+    unfold FateV2.Modeling.histInertia
     by_cases hn : n = 0
     · subst hn; simp
     · simp only [hn, ↓reduceIte]
@@ -817,25 +816,25 @@ theorem shouldStop_scale_invariant (d : ℕ → ℝ) {k : ℝ} (hk : 0 < k) (n :
 （因 `d ≡ 0`，且 `n = 0` 时 `histInertia = 0`）；边界由 §5.1。 -/
 theorem shouldStop_cannot_decide_boundary :
     ∃ (W : ErrProfileWeak) (σ₁ σ₂ : ℝ) (d : ℕ → ℝ) (n : ℕ) (τ : ℝ),
-      FateV2.Loop.ShouldStop d n τ ∧ HasFitBoundary W σ₂ ∧ ¬ HasFitBoundary W σ₁ := by
+      FateV2.Modeling.ShouldStop d n τ ∧ HasFitBoundary W σ₂ ∧ ¬ HasFitBoundary W σ₁ := by
   refine ⟨profConstOne, 0, 1, fun _ => 0, 0, 0, ?_,
     profConstOne_boundary_depends_on_sigma.2,
     profConstOne_boundary_depends_on_sigma.1⟩
-  unfold FateV2.Loop.ShouldStop
-  exact Or.inl (by simp [FateV2.Loop.histInertia])
+  unfold FateV2.Modeling.ShouldStop
+  exact Or.inl (by simp [FateV2.Modeling.histInertia])
 
 /-- **该分离对**任意** τ 都成立**（非取巧：根源不是 τ 的值）。
 
 形式化：对**任意** τ，上面的分离场景仍然成立。 -/
 theorem shouldStop_cannot_decide_boundary_any_tau :
     ∀ τ : ℝ, ∃ (W : ErrProfileWeak) (σ₁ σ₂ : ℝ) (d : ℕ → ℝ) (n : ℕ),
-      FateV2.Loop.ShouldStop d n τ ∧ HasFitBoundary W σ₂ ∧ ¬ HasFitBoundary W σ₁ := by
+      FateV2.Modeling.ShouldStop d n τ ∧ HasFitBoundary W σ₂ ∧ ¬ HasFitBoundary W σ₁ := by
   intro τ
   refine ⟨profConstOne, 0, 1, fun _ => 0, 0, ?_,
     profConstOne_boundary_depends_on_sigma.2,
     profConstOne_boundary_depends_on_sigma.1⟩
-  unfold FateV2.Loop.ShouldStop
-  exact Or.inl (by simp [FateV2.Loop.histInertia])
+  unfold FateV2.Modeling.ShouldStop
+  exact Or.inl (by simp [FateV2.Modeling.histInertia])
 
 /-- **`tauOf` 的具体取值也救不了**（把 §6.3 落到 `tauOf` 上）。
 
@@ -849,15 +848,15 @@ theorem shouldStop_cannot_decide_boundary_any_tau :
 （即本文件的 `IsFitBoundary`）。 -/
 theorem tauOf_cannot_decide_boundary (α : ℝ) (n : ℕ) (σx tCrit : ℝ) :
     ∃ (W : ErrProfileWeak) (σ₁ σ₂ : ℝ) (d : ℕ → ℝ),
-      FateV2.Loop.ShouldStop d n (FateV2.Loop.tauOf α n σx tCrit) ∧
+      FateV2.Modeling.ShouldStop d n (FateV2.Modeling.tauOf α n σx tCrit) ∧
         HasFitBoundary W σ₂ ∧ ¬ HasFitBoundary W σ₁ := by
   refine ⟨profConstOne, 0, 1, fun _ => 0,
     ?_, profConstOne_boundary_depends_on_sigma.2,
     profConstOne_boundary_depends_on_sigma.1⟩
   -- `d ≡ 0` 时 `histInertia d n = 0` 对**任意** n 成立（含此处的 `n`）
-  unfold FateV2.Loop.ShouldStop
+  unfold FateV2.Modeling.ShouldStop
   refine Or.inl ?_
-  unfold FateV2.Loop.histInertia
+  unfold FateV2.Modeling.histInertia
   by_cases hn : n = 0
   · simp [hn]
   · simp only [hn, ↓reduceIte]; simp

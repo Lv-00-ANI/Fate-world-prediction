@@ -12,8 +12,7 @@ import Mathlib.Tactic
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   σ 解析器的接口契约（对应论文 §10）
 

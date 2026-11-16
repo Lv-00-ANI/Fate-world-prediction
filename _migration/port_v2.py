@@ -163,6 +163,28 @@ def port_one(name, domain, verify=True):
     # 规则 3：open 改写 ⭐
     text = rewrite_opens(text, nsmap)
 
+    # 规则 6：正文里的**全限定引用**改写 ⭐⭐⭐
+    #
+    # 为什么需要：文件正文可能直接写全限定名，例如
+    #     rw [Fate.ConvergenceOptimal.abs_one_sub_eq_c 1]
+    #     have h := Fate.WiringConvergence.stepMap ...
+    # 这些既不在 namespace/end 行，也不在 open 行，规则 2 与 3 都覆盖不到。
+    #
+    # 实测反例：ConvergeToOptimalND 迁移后 `Lean exited with code 1`
+    # 但**没有任何 error 行**（错误来自项层面的未知常量，不在语法层报告）。
+    #
+    # 处理方式：按 nsmap 把 `Fate.X` 前缀替换为 `FateV2.<域>.X`。
+    # 只替换能在映射表里查到的（避免误改注释里的历史叙述）。
+    def fix_qualified(s):
+        def repl(m):
+            full = m.group(0)                 # 例 Fate.ConvergenceOptimal
+            if full in nsmap:
+                return nsmap[full]
+            return full
+        return re.sub(r'(?<![\w.`])Fate\.[A-Za-z_]\w*', repl, s)
+
+    text = fix_qualified(text)
+
     # 规则 4：补 open 依赖所在的**域** ⭐⭐
     #
     # 为什么需要：Legacy 里多个模块共享 `namespace Fate` 这一层级，例如

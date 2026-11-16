@@ -16,8 +16,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   边界定理的同义反复检查与补强（对应论文 §5）
 

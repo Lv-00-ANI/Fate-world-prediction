@@ -15,8 +15,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   命运理论 · **σ 估计的破法丁**：σ 作领域参数传入 + 未给时肘点兜底
 

@@ -11,8 +11,7 @@ import FateWorld.FateV2.Error.ErrorBound
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
 # `ScoreBound.lean` — 把 `s` 绑定到打分器 `linScore w x`（如实登记）
 

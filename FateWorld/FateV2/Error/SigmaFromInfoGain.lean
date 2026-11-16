@@ -16,8 +16,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
 命运理论 · **σ 估计 · 破法丙** —— 加密分辨率的信息增益判据
 ================================================================================

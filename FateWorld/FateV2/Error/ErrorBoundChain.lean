@@ -18,8 +18,7 @@ import FateWorld.FateV2.Modeling.ObsEstimationWeak
 
 open FateV2.Modeling
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   命运理论 · **阶段 2：误差界** —— 缺口 4 的**真内容**
   **第 253 轮 · L4 修复版**（源：`FateV2.Error/ErrorBound.lean`，第 252 轮从服务器找回的 594 行稿）
@@ -448,7 +447,7 @@ end Euclidean
   §6  与既有 `tauOf` / `ShouldStop` 的**接口**（顺带澄清）
   =========================================================================== -/
 
-/-- **主定理 A 不依赖 `FateV2.Loop.ShouldStop`**（前提里没有它）。 -/
+/-- **主定理 A 不依赖 `FateV2.Modeling.ShouldStop`**（前提里没有它）。 -/
 example {s δ ε : ℝ} (hm : 0 < |s|) (hδ : |δ| ≤ ε) (h2 : 2 * ε < |s|) :
     sgn (s + δ) = sgn s :=
   error_bound_gives_correct_classification hm hδ h2

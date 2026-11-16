@@ -12,8 +12,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   σ 的约束从何而来：判据对 σ 施加了什么（对应论文 §10）
 

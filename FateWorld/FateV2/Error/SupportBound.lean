@@ -15,8 +15,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   数据支持度与泛化上界（对应论文 §8）
 

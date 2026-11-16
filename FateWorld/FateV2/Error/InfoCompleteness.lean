@@ -12,8 +12,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   信息完整度与最优的唯一性（对应论文 §5.3）
 

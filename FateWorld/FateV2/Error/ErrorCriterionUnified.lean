@@ -17,8 +17,7 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 open FateV2.Error
 open FateV2.Predict
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   判据的统一口径与桥接（对应论文 §8.2）
 

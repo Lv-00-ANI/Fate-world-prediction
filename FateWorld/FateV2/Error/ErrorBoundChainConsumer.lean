@@ -12,7 +12,7 @@ import FateWorld.FateV2.Error.ChainErrorBudget
 -/
 
 open FateV2.Error
-open FateV2.Loop
+open FateV2.Modeling
 open FateV2.Predict
 open FateV2.Modeling
 open FateV2.Model

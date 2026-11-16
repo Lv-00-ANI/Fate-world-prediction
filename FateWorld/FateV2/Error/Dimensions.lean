@@ -12,8 +12,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   量纲：把「σ 与 ε 同量纲」做成类型层约束（对应论文 §12.1）
 

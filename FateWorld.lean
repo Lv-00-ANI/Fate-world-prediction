@@ -130,7 +130,7 @@ import FateWorld.FateV2.Loop.ClosedLoopNoisy
 import FateWorld.FateV2.Loop.Convergence
 import FateWorld.FateV2.Loop.ConvergenceOptimal
 import FateWorld.FateV2.Loop.ConvergeToOptimalV2
-import FateWorld.FateV2.Loop.CoreBasics
+import FateWorld.FateV2.Modeling.CoreBasics
 import FateWorld.FateV2.Loop.EndToEnd
 import FateWorld.FateV2.Loop.EndToEndBoundFixed
 import FateWorld.FateV2.Loop.EndToEndSelectorWiring

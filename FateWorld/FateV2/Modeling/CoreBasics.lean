@@ -6,8 +6,13 @@ import Mathlib.Analysis.SpecialFunctions.Sqrt
   - 动作：B（适配）
   - 对应环节：—
   - 依赖裁决：D-008
-  - 改动：namespace/引用 ProperFit→FateV2.Loop（正文 2 处，含 0 条 import）；其余正文未改
+  - 改动：namespace/引用 ProperFit→FateV2.Loop；其余正文未改
   - 状态：已编译未验证
+  - **层位修正（本轮）**：`FateV2.Loop` → `FateV2.Modeling`。
+    理由：本模块只含 5 个纯算术定义（gradForce / histInertia / ShouldStop /
+    ShouldContinue / tauOf），无定理，却被 Error(4) / Loop(1) / Rules(1) 三层共用。
+    放在 Loop（第 6 层）导致 Error(第 5 层) 为取 5 个定义而反向依赖第 6 层。
+    下沉到 Modeling（第 0 层）后，所有层对它的依赖都是正向。
 -/
 
 /-
@@ -33,7 +38,7 @@ import Mathlib.Analysis.SpecialFunctions.Sqrt
 -/
 
 
-namespace FateV2.Loop
+namespace FateV2.Modeling
 
 /-! ### §1  偏差序列的两个量（逐字取自 `Classification` §7） -/
 
@@ -67,4 +72,4 @@ def ShouldContinue (d : ℕ → ℝ) (n : ℕ) (τ : ℝ) : Prop :=
 noncomputable def tauOf (α : ℝ) (n : ℕ) (σx : ℝ) (tCrit : ℝ) : ℝ :=
   tCrit / (σx * Real.sqrt n)
 
-end FateV2.Loop
+end FateV2.Modeling

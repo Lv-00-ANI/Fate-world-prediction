@@ -11,8 +11,7 @@ import FateWorld.FateV2.Error.FitBoundary
 -/
 
 open FateV2.Error
-open FateV2.Loop
-
+open FateV2.Modeling
 /-
   下界分量的独立地位（对应论文 §7）
 
