@@ -287,17 +287,32 @@ def port_one(name, domain, verify=True):
     else:
         mb = re.search(r'^namespace (\S+)\s*$', text, re.M)
         if not mb:
-            return {'module': name, 'ok': False, 'why': '找不到 namespace'}
-        bare = mb.group(1)
-        # ⚠ 必须**全部**改写，不能只改第一处。
-        # 一个文件可能多次 `namespace X` / `end X` 开合同一命名空间。
-        # 实测反例：FourNodeSeparation 有两处 `namespace FourNode`（95 行、462 行），
-        # 只改第一处 ⟹ 第二段落在裸 `FourNode` 里，
-        # 那段引用的 mixed4DAG / chain4DAG / N 全部 `Unknown identifier`。
-        text = re.sub(r'^namespace ' + re.escape(bare) + r'\s*$',
-                      f'namespace FateV2.{domain}.{bare}', text, flags=re.M)
-        text = re.sub(r'^end ' + re.escape(bare) + r'\s*$',
-                      f'end FateV2.{domain}.{bare}', text, flags=re.M)
+            # ⚠ 规则 8：文件**没有 namespace**（定理定义在顶层）。
+            # 这在 Lean 里合法（顶层定义落在全局命名空间），但迁移后
+            # 所有定义会污染全局空间，且无法参与命名空间路径引用。
+            # 实测反例：R44SigmaAssembly 的 6 条定理全在顶层，
+            # 原先报「找不到 namespace」被直接跳过。
+            # 处理：整体包进 namespace FateV2.<域>.<模块名>。
+            body_start = None
+            for m in re.finditer(r'(?m)^\s*(?:theorem|lemma|def|abbrev|structure|inductive|class|instance|noncomputable)\b', text):
+                body_start = m.start()
+                break
+            if body_start is None:
+                return {'module': name, 'ok': False, 'why': '无 namespace 且无定义'}
+            head, body = text[:body_start], text[body_start:]
+            text = (head.rstrip() + f'\n\nnamespace FateV2.{domain}.{name}\n\n'
+                    + body.rstrip() + f'\n\nend FateV2.{domain}.{name}\n')
+        else:
+            bare = mb.group(1)
+            # ⚠ 必须**全部**改写，不能只改第一处。
+            # 一个文件可能多次 `namespace X` / `end X` 开合同一命名空间。
+            # 实测反例：FourNodeSeparation 有两处 `namespace FourNode`（95 行、462 行），
+            # 只改第一处 ⟹ 第二段落在裸 `FourNode` 里，
+            # 那段引用的 mixed4DAG / chain4DAG / N 全部 `Unknown identifier`。
+            text = re.sub(r'^namespace ' + re.escape(bare) + r'\s*$',
+                          f'namespace FateV2.{domain}.{bare}', text, flags=re.M)
+            text = re.sub(r'^end ' + re.escape(bare) + r'\s*$',
+                          f'end FateV2.{domain}.{bare}', text, flags=re.M)
 
     # 规则 3：open 改写 ⭐
     text = rewrite_opens(text, nsmap)

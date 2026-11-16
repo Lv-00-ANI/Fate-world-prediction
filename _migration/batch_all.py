@@ -34,6 +34,21 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第九批 ——
+    'T112SecondQuotient': 'Rules', 'T112UnaryClosure': 'Rules',
+    'UpsilonRefine': 'Rules',
+    'T35Rule1Split': 'Predict', 'Rule23Semantic': 'Predict',
+    'ObservationUnified': 'Predict', 'MinimalSufficient': 'Predict',
+    'PearlMarkovCrossFrameworks': 'Predict', 'PearlPathCompose': 'Predict',
+    'AlphaMVFCA': 'Predict', 'CausalOnWorldModel': 'Predict',
+    'ViewOneCounterfactual': 'Predict', 'CtxStructureSurvey': 'Model',
+    'DSepCondNonMonotone': 'Predict', 'DoLawFin2': 'Predict',
+    'G1True': 'Predict', 'T1VerifyStrong': 'Loop',
+    'ClosedLoopWiring': 'Loop', 'ConvergeToOptimalDemoConsumer': 'Loop',
+    'PipelineAdaptiveEtaComplexity': 'Loop',
+    'FirstLayerCapstone': 'Error', 'ChainErrorBudgetPredN': 'Error',
+    'ErrorBoundE1Euler': 'Error', 'ObsErrorRandom': 'Error',
+    'ObsEstimationWeakConsumer': 'Error',
     # —— 第八批 ——
     'CFLatticeGen': 'Predict',
     'Rule1Semantic': 'Predict',
