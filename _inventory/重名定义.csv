@@ -1,0 +1,337 @@
+﻿名字,出现次数,各处位置（域/模块）
+Term,16,Core/Core.Rec; Core/Core.Rec; Core/Core.Rec; Core/Core.Rec; Core/Core.Rec; Core/Core.Rec
+Temporal,14,Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification
+TermExt,12,Core/Core.Binder; Core/Core.Binder; Core/Core.Binder; Core/Core.Binder; Core/Core.Binder; Core/Core.Binder
+WorldModel,12,Predict/Predict.RuleDrivesEndToEnd; Predict/Predict.WorldModel; Predict/Predict.WorldModel; Predict/Predict.WorldModel; Predict/Predict.WorldModel; Predict/Predict.WorldModel
+E2E,9,Error/Error.ErrorGraph; Error/Error.ErrorGraph; Error/Error.ErrorGraph; Error/Error.ErrorGraph; Error/Error.ErrorGraph; Error/Error.ErrorGraph
+Data,8,Core/Core.Rec; Core/Core.Rec; Core/Core.Subst; Core/Core.Subst; Core/Core.Syntax; Core/Core.Syntax
+Rule,8,Model/Model.Frame; Model/Model.Frame; Model/Model.Frame; Model/Model.Frame; Model/Model.Frame; Predict/Predict.RuleSimConsistency
+Slice,8,Model/Model.Time; Model/Model.Time; Model/Model.Time; Model/Model.Time; Model/Model.Time; Model/Model.Time
+margXZ,8,Error/Error.FinCondIndepSymm; Modeling/Modeling.FiniteCondIndep; Predict/Predict.BackdoorCriterion; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint; Predict/Predict.FrontdoorCounterexample
+MagTriple,6,Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude
+margZ,6,Error/Error.FinCondIndepSymm; Modeling/Modeling.FiniteCondIndep; Predict/Predict.BackdoorCriterion; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint; Predict/Predict.PearlFork
+TemporalAction,6,Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification; Rules/Rules.Classification
+empty,5,Core/Core.Decl; Core/Core.Judgment; Core/Core.Registry; Meta/Meta.Ledger; Rules/Rules.RuleSet
+Formula,5,Core/Core.Rec; Core/Core.Rec; Core/Core.Subst; Core/Core.Syntax; Core/Core.Syntax
+step,5,Core/Core.Closure; Core/Core.Stage0Core; Loop/Loop.MainLoop; Loop/Loop.MainLoop; Loop/Loop.MainLoop
+_root_,5,Error/Error.BridgeNW; Error/Error.BridgeNW; Error/Error.BridgeNW; Error/Error.BridgeNW; Predict/Predict.FinMarkov
+Magnitude,5,Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude; Error/Error.ErrorMagnitude
+Loss,5,Error/Error.Loss; Error/Error.Loss; Error/Error.Loss; Error/Error.Loss; Error/Error.Loss
+Scope,5,Export/Export.Modality; Export/Export.Modality; Export/Export.Modality; Export/Export.Modality; Export/Export.Modality
+DetRule,5,Model/Model.Frame; Model/Model.Frame; Model/Model.Frame; Model/Model.Frame; Model/Model.Frame
+Trajectory,5,Core/Core.Stage0Core; Model/Model.Time; Model/Model.Time; Model/Model.Time; Model/Model.Time
+ConstructionRecord,5,Modeling/Modeling.Construction; Modeling/Modeling.Construction; Modeling/Modeling.Construction; Modeling/Modeling.Construction; Modeling/Modeling.Construction
+FinJoint,5,Error/Error.FinCondIndepSymm; Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint; Predict/Predict.PearlFork
+margYZ,5,Error/Error.FinCondIndepSymm; Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint; Predict/Predict.PearlFork
+RuleBody,5,Rules/Rules.RuleLevel; Rules/Rules.RuleLevel; Rules/Rules.RuleLevel; Rules/Rules.RuleLevel; Rules/Rules.RuleLevel
+closure,4,Core/Core.DeclGraph; Demo/Demo.EdgeCases; Demo/Demo.ExecutableGraph; Rules/Rules.RuleActivation
+LayerErr,4,Error/Error.EndToEndError; Error/Error.EndToEndError; Error/Error.ErrorGraph; Error/Error.ErrorGraph
+ErrorGraph,4,Error/Error.ErrorGraph; Error/Error.ErrorGraph; Error/Error.ErrorGraph; Error/Error.ErrorGraph
+Registry,4,Core/Core.Registry; Export/Export.Modality; Export/Export.Modality; Export/Export.Modality
+joint,4,Meta/Meta.AssemblyMeta; Meta/Meta.AssemblyMeta; Predict/Predict.FrontdoorCounterexample; Predict/Predict.FrontdoorCriterion
+comp,4,Demo/Demo.ExecutableGraph; Meta/Meta.Context; Predict/Predict.Intervene; Rules/Rules.RebaseAbstract
+G,4,Meta/Meta.GazeAlgebra; Meta/Meta.GazeAlgebra; Meta/Meta.GazeAlgebra; Meta/Meta.GazeAlgebra
+Model,4,Demo/Demo.ExecutableSCM; Modeling/Modeling.KernelQuotient; Modeling/Modeling.SCM; Predict/Predict.Counterfactual
+ObsModel,4,Modeling/Modeling.ObsEstimationWeak; Modeling/Modeling.ObsEstimationWeak; Modeling/Modeling.ObsEstimationWeak; Modeling/Modeling.ObsEstimationWeak
+doLaw,4,Modeling/Modeling.SCMSemantics; Predict/Predict.BackdoorCriterion; Predict/Predict.FrontdoorCounterexample; Predict/Predict.FrontdoorCriterion
+SCM,4,Modeling/Modeling.PearlHierarchy; Predict/Predict.ParamSCM; Predict/Predict.T44Counterfactual; Predict/Predict.T44Counterfactual
+Scenario,4,Predict/Predict.Scenario; Predict/Predict.WorldScenario; Predict/Predict.WorldScenario; Predict/Predict.WorldScenario
+InOneBlock,4,Rules/Rules.MVFCAPositive; Rules/Rules.MVFCAPositive; Rules/Rules.MVFCAPositive; Rules/Rules.MVFCAPositive
+Carrier,3,Classical/Classical.Analysis; Classical/Classical.Analysis; Export/Export.Carrier
+nd_head,3,Core/Core.Cardinality; Core/Core.Cardinality; Core/Core.Unified
+invalidate,3,Core/Core.DeclGraph; Core/Core.InvalidateMixed; Demo/Demo.ExecutableGraph
+compose,3,Bridge/Bridge.LawRuleBridge; Core/Core.Judgment; Rules/Rules.LawRule
+LawRule,3,Bridge/Bridge.LawRuleBridge; Core/Core.LawRuleIR; Rules/Rules.LawRule
+BotApproach,3,Core/Core.MonoConv; Core/Core.MonoConv; Core/Core.MonoConv
+InputSpace,3,Core/Core.Stage0Core; Core/Core.Stage0Core; Modeling/Modeling.Basic
+WellFoundedDeps,3,Core/Core.Stage0Core; Core/Core.Stage0Core; Core/Core.Stage0Core
+keysOf,3,Core/Core.RevClosure; Demo/Demo.EdgeCases; Demo/Demo.ExecutableGraph
+s0,3,Core/Core.LawRuleIR; Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+mul,3,Demo/Demo.IntScaled.Scaling; Error/Error.Dimensions; Error/Error.Dimensions
+linScore,3,Error/Error.ErrorBound; Error/Error.ErrorBoundChain; Error/Error.ScoreBound
+margin,3,Error/Error.ErrorBound; Error/Error.ErrorBoundChain; Error/Error.ScoreBound
+error_bound_gives_correct_classification_margin,3,Error/Error.ErrorBound; Error/Error.ErrorBoundChain; Error/Error.ScoreBound
+lower,3,Error/Error.AttrAcceptable; Error/Error.ErrorCriterion; Rules/Rules.FormalContext
+upper,3,Error/Error.AttrAcceptable; Error/Error.ErrorCriterion; Rules/Rules.FormalContext
+Criterion,3,Core/Core.VerdictAlgebra; Error/Error.ErrorDimUnified; Predict/Predict.WorldModel
+err,3,Error/Error.ErrProfileN; Error/Error.FitBoundary; Error/Error.FitBoundary
+err_nonneg,3,Error/Error.ErrProfileN; Error/Error.FitBoundary; Error/Error.FitBoundary
+ErrProfileWeak,3,Error/Error.FitBoundary; Error/Error.FitBoundary; Error/Error.FitBoundary
+ErrProfile,3,Error/Error.FitBoundary; Error/Error.FitBoundary; Error/Error.FitBoundary
+Entry,3,Bridge/Bridge.SupportBridge; Export/Export.Carrier; Meta/Meta.Ledger
+get,3,Export/Export.Carrier; Export/Export.Carrier; Model/Model.State
+CouplingGraph,3,Export/Export.Coupling; Export/Export.Coupling; Export/Export.Coupling
+ErrEnv,3,Export/Export.Coupling; Export/Export.Coupling; Export/Export.Coupling
+State,3,Core/Core.Stage0Core; Loop/Loop.ConvergeToOptimalND; Model/Model.State
+residual,3,Demo/Demo.IntScaled.DemoInt; Loop/Loop.Residual; Loop/Loop.ResidualLoop
+writeBack,3,Demo/Demo.IntScaled.DemoInt; Loop/Loop.ResidualLoop; Loop/Loop.WriteBack
+ClosedLoopWorld,3,Loop/Loop.WorldModelCapstone; Loop/Loop.WorldModelCapstone; Loop/Loop.WorldModelCapstone
+Step,3,Demo/Demo.ExecutableGraph; Meta/Meta.Context; Model/Model.Frame
+AuditVerdict,3,Meta/Meta.DeadPremiseAudit; Meta/Meta.DeadPremiseAudit; Meta/Meta.DeadPremiseAudit
+WellFormed,3,Error/Error.ErrorQuadruple; Meta/Meta.Ledger; Modeling/Modeling.Noise
+exists_topo_order_fin,3,Model/Model.TopoExists; Model/Model.TopoExists; Model/Model.TopoGeneral
+exists_topo_order_of_cover,3,Model/Model.TopoAssembly; Model/Model.TopoFinal; Model/Model.TopoFinal
+shift,3,Core/Core.MonoConv; Model/Model.TrajGenDeterministic; Rules/Rules.StatAlpha
+tauOf,3,Loop/Loop.TauParametric; Modeling/Modeling.CoreBasics; Rules/Rules.Classification
+CondIndepFin,3,Error/Error.FinCondIndepSymm; Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinMarkov
+cfSetoid,3,Modeling/Modeling.CFMap; Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+NoDescendant,3,Meta/Meta.DeadPremiseAudit; Predict/Predict.BackdoorCriterion; Predict/Predict.BackdoorGenuine
+MiddleZone,3,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual; Predict/Predict.RetreatPlan
+swapXY,3,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint
+swapXY_swapXY,3,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint
+margXZ_swapXY,3,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint
+margYZ_swapXY,3,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinCondIndep; Predict/Predict.FinJoint
+margX,3,Predict/Predict.BackdoorCriterion; Predict/Predict.FrontdoorCounterexample; Predict/Predict.FrontdoorCriterion
+sum_mul_const,3,Predict/Predict.FinCondIndep; Predict/Predict.PearlCondIndepBridge; Predict/Predict.PearlFork
+const_mul_sum,3,Predict/Predict.FinCondIndep; Predict/Predict.PearlCondIndepBridge; Predict/Predict.PearlFork
+sumN,3,Demo/Demo.EdgeCases; Predict/Predict.PredictZero; Predict/Predict.PushMerge
+sumN_nil,3,Demo/Demo.EdgeCases; Predict/Predict.PredictZero; Predict/Predict.PushMerge
+sumN_cons,3,Demo/Demo.EdgeCases; Predict/Predict.PredictZero; Predict/Predict.PushMerge
+M,3,Demo/Demo.SyntheticRun; Predict/Predict.T35Confounding; Predict/Predict.T43Abduction
+M₂,3,Predict/Predict.T43Abduction; Predict/Predict.T44Counterfactual; Predict/Predict.T44Counterfactual
+Selector,3,Predict/Predict.WorldModel; Predict/Predict.WorldModel; Predict/Predict.WorldModel
+Policy,3,Predict/Predict.WorldScenario; Predict/Predict.WorldScenario; Predict/Predict.WorldScenario
+refine,3,Predict/Predict.Correctness; Rules/Rules.LawRule; Rules/Rules.LawRule
+IsPointDet,3,Rules/Rules.LawRule; Rules/Rules.LawRule; Rules/Rules.LawRule
+IsDirac,3,Rules/Rules.LawRuleToTraj; Rules/Rules.LawRuleToTraj; Rules/Rules.LawRuleToTraj
+intent,3,Rules/Rules.FormalContext; Rules/Rules.RealFCA; Rules/Rules.RealFCA
+RuleSet,3,Rules/Rules.RuleSet; Rules/Rules.RuleSet; Rules/Rules.RuleSet
+cacheKey,2,Core/Core.Cache; Core/Core.Cache
+find,2,Core/Core.Closure; Core/Core.Closure
+deps_mem_of_dependsOn,2,Core/Core.ClosureAll; Core/Core.InvalidateClosure
+union,2,Classical/Classical.Shell; Core/Core.Judgment
+LitAtom,2,Core/Core.LawRuleIR; Core/Core.LawRuleIR
+LawFam,2,Core/Core.LawRuleIR; Core/Core.LawRuleIR
+MonoConv,2,Core/Core.MonoConv; Core/Core.MonoConv
+invalidate_subset_revClosure,2,Core/Core.RevClosure; Core/Core.RevClosure
+TimeIndex,2,Core/Core.Stage0Core; Core/Core.Stage0Core
+nd_tail,2,Core/Core.Cardinality; Core/Core.Unified
+discLawFromColumn_valid,2,Data/Data.Ingest; Data/Data.Ingest
+dataToPrediction,2,Data/Data.Ingest; Data/Data.Ingest
+eqI,2,Data/Data.Ingest; Demo/Demo.EdgeCases
+eqI_isEq,2,Data/Data.Ingest; Demo/Demo.EdgeCases
+demoModel,2,Data/Data.Ingest; Demo/Demo.ExecutableExport
+dependents,2,Core/Core.DeclGraph; Demo/Demo.ExecutableGraph
+pred₁,2,Demo/Demo.SyntheticRun; Demo/Demo.SyntheticRunMerge
+E1000,2,Demo/Demo.IntScaled.DemoInt; Demo/Demo.IntScaled.DemoInt
+e₁,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_state,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_obs,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+stepState,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+pointPred,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+pointPred_val,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+predMean,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+pointPred_ne_mean,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+modState,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+modObs,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+modAvg,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+reg,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_registry_card,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+sigma,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+epsTol,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_err,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_abs_err,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_K_side,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_gap,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_gap_exceeds_tol,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_verdict_fails,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+eta,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+pointPred',2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_err_after,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_abs_err_after,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_writeBack_shrinks,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_shrink_ratio,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+run_end_to_end,2,Demo/Demo.SyntheticRun; Demo/Demo.IntScaled.DemoInt
+Fixed,2,Demo/Demo.ExecutableRun; Demo/Demo.IntScaled.Scaling
+chain_end_to_end_from_links,2,Error/Error.ChainBudgetBound; Error/Error.ChainErrorBudget
+mul_comm,2,Demo/Demo.IntScaled.Scaling; Error/Error.Dimensions
+add,2,Demo/Demo.IntScaled.Scaling; Error/Error.Dimensions
+sub,2,Demo/Demo.IntScaled.Scaling; Error/Error.Dimensions
+le,2,Classical/Classical.Shell; Error/Error.Dimensions
+HasPropagationLaw,2,Error/Error.EndToEndError; Error/Error.EndToEndError
+sgn,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+sgn_of_pos,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+sgn_of_neg,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+sgn_of_zero,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+sgn_congr_of_pos_of_pos,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+sgn_congr_of_neg_of_neg,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+linScore_eq_sum,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+margin_nonneg,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+margin_decides,2,Error/Error.ErrorBoundChain; Error/Error.ErrorBoundChain
+error_bound_gives_correct_classification,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+perturbation_affects_decision,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+boundary_of_tight_bound,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+learning_bound_general,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+classifier_function_eq,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+young,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+cauchy_schwarz_abs,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+concrete_transfer_example,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+error_bound_independent_of_tauOf,2,Error/Error.ErrorBound; Error/Error.ErrorBoundChain
+mono_eps,2,Error/Error.AttrAcceptable; Error/Error.ErrorCriterion
+interval_nonempty,2,Error/Error.AttrAcceptable; Error/Error.ErrorCriterion
+set_nonempty,2,Error/Error.AttrAcceptable; Error/Error.ErrorCriterion
+self_acceptable,2,Error/Error.AttrAcceptable; Error/Error.ErrorCriterion
+bandLoss_nonneg,2,Error/Error.ErrBandLink; Error/Error.ErrorCriterionUnified
+ErrLayer,2,Error/Error.ErrorGraph; Error/Error.ErrorGraph
+E2Statement,2,Error/Error.ErrorQuadruple; Error/Error.ErrorQuadruple
+E4Statement,2,Error/Error.ErrorQuadruple; Error/Error.ErrorQuadruple
+E8Statement,2,Error/Error.ErrorQuadruple; Error/Error.ErrorQuadruple
+ErrProfileN,2,Error/Error.BridgeNW; Error/Error.ErrProfileN
+isFitBoundaryOn_decidable,2,Error/Error.FitBoundaryLowerBound; Error/Error.FitBoundaryLowerBound
+gridIndex,2,Error/Error.BridgeNW; Error/Error.GridGeometry
+Dict,2,Error/Error.MainLoopSupportBridge; Error/Error.MainLoopSupportBridge
+IsOptimalGap,2,Error/Error.EndToEndError; Error/Error.OptimalityGapTheory
+varOf,2,Error/Error.GaussMarkovScalar; Error/Error.SigmaEstimation
+variance_coord_pi,2,Error/Error.GaussMarkovScalar; Error/Error.SigmaEstimation
+variance_meanOf,2,Core/Core.SampleBounds; Error/Error.SigmaEstimation
+sigmaEst_nonneg,2,Error/Error.ChainBudgetBound; Error/Error.SigmaGammaFromData
+resolveSigma_provider_nonneg,2,Error/Error.SigmaProvider; Error/Error.SigmaUnified
+Stub3,2,Error/Error.VerdictGeneral; Error/Error.VerdictGeneral
+IsWeakBoundary,2,Error/Error.FitBoundaryLowerBound; Error/Error.VerdictGeneral
+mem_of_filter,2,Core/Core.DeclGraph; Export/Export.Carrier
+exportAll,2,Demo/Demo.IntScaled.DemoInt; Export/Export.Export
+ExportVal,2,Demo/Demo.ExecutableExport; Export/Export.Modality
+Modality,2,Export/Export.Export; Export/Export.Modality
+count,2,Demo/Demo.EdgeCases; Export/Export.Modality
+errN,2,Error/Error.AICDataPath; Loop/Loop.ClosedLoopGeneral
+corrects_id,2,Loop/Loop.BoundWriteBack; Loop/Loop.ConvergeToOptimalND
+err_iter_le,2,Loop/Loop.ClosedLoopGeneral; Loop/Loop.ConvergeToOptimalND
+fixed_iff_optimal,2,Loop/Loop.ConvergeToOptimalND; Loop/Loop.ConvergeToOptimalV2
+errAt,2,Error/Error.AICDataPath; Loop/Loop.OptimalStop
+ratio,2,Error/Error.LipschitzFromFinite; Loop/Loop.OptimalStop
+residual_eq_zero_iff,2,Loop/Loop.Residual; Loop/Loop.ResidualLoop
+writeBack_reduces_error,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+writeBack_reduces_dist,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+no_reduction_when_exact,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+writeBack_reduces_error_one,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+eta_zero_no_decrease,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+eta_two_no_decrease,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+no_decrease_outside_window,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+reduces_iff_window,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+abs_one_sub_lt_one_iff,2,Loop/Loop.BoundWriteBack; Loop/Loop.ResidualReduces
+iterMap_eq_iterate,2,Loop/Loop.ClosedLoopNoisy; Loop/Loop.ScenarioConvergence
+stepFun,2,Loop/Loop.LearnFunction; Loop/Loop.ScenarioConvergence
+observe_id,2,Loop/Loop.LearnFunction; Loop/Loop.ThetaConvergence
+concrete_setup,2,Loop/Loop.ThetaConvergence; Loop/Loop.ThetaLearningParam
+concrete_rate,2,Loop/Loop.ThetaLearningParam; Loop/Loop.WiringConvergence
+ctxU,2,Loop/Loop.ThetaConvergence; Loop/Loop.WorldModelReadsTheta
+Ctx,2,Demo/Demo.ExecutableGraph; Meta/Meta.Context
+TautologicallyTrue,2,Meta/Meta.DeadPremiseAudit; Meta/Meta.DeadPremiseAudit
+noDescendant_is_dead_premise,2,Meta/Meta.DeadPremiseAudit; Meta/Meta.DeadPremiseAudit
+neg,2,Demo/Demo.IntScaled.Scaling; Meta/Meta.GazeAlgebra
+swap,2,Error/Error.FinCondIndepSymm; Meta/Meta.GazeAlgebra
+ids,2,Export/Export.Modality; Meta/Meta.Ledger
+lookup,2,Core/Core.Registry; Meta/Meta.Ledger
+covers,2,Classical/Classical.Assumptions; Meta/Meta.Ledger
+covers_empty,2,Classical/Classical.Shell; Meta/Meta.Ledger
+RuleWithTheta,2,Model/Model.Frame; Model/Model.Frame
+Acyclic,2,Core/Core.DeclGraph; Model/Model.Order
+SourceExists,2,Model/Model.Order; Model/Model.OrderSource
+of_not_not_of_decidable,2,Core/Core.Closure; Model/Model.OrderSource
+cons_ne_nil,2,Export/Export.Coupling; Model/Model.OrderSource
+chain,2,Model/Model.Order; Model/Model.OrderSource
+length_le_of_nodup_fin,2,Model/Model.Pigeon; Model/Model.Pigeon
+idxOf,2,Core/Core.Unified; Model/Model.TopoExists
+add_one_add,2,Core/Core.Unified; Model/Model.TopoFinal
+exists_eq_add_succ_of_lt,2,Core/Core.Unified; Model/Model.TopoFinal
+not_all_parent_in,2,Model/Model.TopoFinal; Model/Model.TopoFinal
+mem_tail_of_ne,2,Core/Core.Unified; Model/Model.TopoGeneral
+TimeIdx,2,Modeling/Modeling.Basic; Modeling/Modeling.Basic
+ActionSpace,2,Core/Core.Stage0Core; Modeling/Modeling.Basic
+SynthE,2,Modeling/Modeling.Construct; Modeling/Modeling.Construct
+DiscLaw,2,Modeling/Modeling.Construct; Modeling/Modeling.Construct
+Kind,2,Meta/Meta.ThreeKinds; Modeling/Modeling.Construction
+Grain,2,Modeling/Modeling.Construction; Modeling/Modeling.Construction
+classify,2,Meta/Meta.Context; Modeling/Modeling.Dissolve
+condIndepFin_swap,2,Error/Error.FinCondIndepSymm; Modeling/Modeling.FiniteCondIndep
+toFin,2,Core/Core.Unified; Modeling/Modeling.Noise
+observe,2,Loop/Loop.EndToEnd; Modeling/Modeling.Observation
+estimator_error_bound,2,Error/Error.ObsEstSharp; Modeling/Modeling.ObsEstimationStrong
+Graph,2,Model/Model.Order; Modeling/Modeling.SCM
+rank,2,Meta/Meta.ThreeKinds; Modeling/Modeling.SCMGraph
+IsFitBoundary,2,Error/Error.FitBoundary; Modeling/Modeling.Sigma
+backdoor_adjustment,2,Predict/Predict.BackdoorAdjustment; Predict/Predict.BackdoorFiber
+BackdoorConditions,2,Predict/Predict.BackdoorCriterion; Predict/Predict.BackdoorGenuine
+irrefl,2,Modeling/Modeling.CausDAG; Predict/Predict.CausalDirection
+asymm,2,Modeling/Modeling.CausDAG; Predict/Predict.CausalDirection
+IsCollider,2,Modeling/Modeling.CausActivePath; Predict/Predict.CausalDirection
+doProb,2,Predict/Predict.CausalEffect; Predict/Predict.CausalRouteDo
+cfQuotient,2,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+obsOnQuot,2,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+Collapse,2,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+Faithful,2,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+collapse_quot_subsingleton,2,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+trichotomy,2,Modeling/Modeling.KernelQuotient; Predict/Predict.Counterfactual
+WF,2,Data/Data.Ingest; Predict/Predict.DistributionInvariants
+DSeparated,2,Predict/Predict.CausalPath; Predict/Predict.DSeparation
+sum_margXZ,2,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinJoint
+sum_margYZ,2,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinJoint
+sum_margZ,2,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinJoint
+margZ_swapXY,2,Modeling/Modeling.FiniteCondIndep; Predict/Predict.FinJoint
+ind,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+ind_of,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+ind_of_not,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+w,2,Modeling/Modeling.CausBayesBall; Predict/Predict.FrontdoorCounterexample
+obsLaw,2,Predict/Predict.BackdoorCriterion; Predict/Predict.FrontdoorCounterexample
+dJoint,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+dDo,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_f_f_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_f_f_t,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_f_t_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_f_t_t,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_t_f_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_t_f_t,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_t_t_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_joint_t_t_t,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_do_f_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_do_f_t,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_do_t_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_do_t_t,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+dMargXZ,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+d_margXZ_f_f,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.FrontdoorCounterexample
+PosX,2,Predict/Predict.BackdoorCriterion; Predict/Predict.FrontdoorCriterion
+demoObs,2,Demo/Demo.ExecutableRun; Predict/Predict.FrontdoorCriterion
+gain,2,Error/Error.SteadyErrEstimate; Predict/Predict.InterventionSelection
+bestScore,2,Predict/Predict.InterventionTight; Predict/Predict.InterventionTight
+ParamSCM,2,Predict/Predict.CausalEffect; Predict/Predict.ParamSCM
+counterexample,2,Core/Core.NodupLemmas; Predict/Predict.PearlChain
+badP,2,Predict/Predict.PearlChain; Predict/Predict.PearlCondIndepBridge
+CondMul,2,Predict/Predict.FinCondIndep; Predict/Predict.PearlFork
+CondRatio,2,Predict/Predict.FinCondIndep; Predict/Predict.PearlFork
+dsep_set_iff_pairwise,2,Predict/Predict.PearlGlobalMarkov; Predict/Predict.PearlGlobalMarkov
+dopen_imp_dopen',2,Predict/Predict.PearlGlobalMarkov; Predict/Predict.PearlGlobalMarkov
+dsep_iff_all_blocked,2,Predict/Predict.PearlPathDecomp; Predict/Predict.PearlPathDecomp
+discPushFamily,2,Predict/Predict.Predict; Predict/Predict.PushFamilyMerge
+tSelf,2,Demo/Demo.ExecutableRun; Predict/Predict.PushFamilyMerge
+tNat,2,Demo/Demo.ExecutableRun; Predict/Predict.PushFamilyMerge
+Q,2,Predict/Predict.FrontdoorChainProof; Predict/Predict.PushFamilyMerge
+discPushFamilyM,2,Predict/Predict.PushFamilyMerge; Predict/Predict.PushFamilyMerge
+rawMap,2,Predict/Predict.Predict; Predict/Predict.PushMerge
+succ_ne_zero',2,Predict/Predict.PredictZero; Predict/Predict.PushMerge
+pushMerge,2,Predict/Predict.Predict; Predict/Predict.PushMerge
+endToEndIter,2,Loop/Loop.EndToEnd; Predict/Predict.RuleDrivesEndToEnd
+predFrom,2,Loop/Loop.EndToEnd; Predict/Predict.RuleDrivesEndToEnd
+separable_implies_condMul,2,Predict/Predict.PearlCondIndepBridge; Predict/Predict.SeparableCondMul
+IsClique,2,Predict/Predict.SeparationDecomposition; Predict/Predict.SeparationDecomposition
+M₁,2,Predict/Predict.T44Counterfactual; Predict/Predict.T44Counterfactual
+Aid,2,Loop/Loop.ConvergeToOptimalND; Predict/Predict.TwoVersions
+phid,2,Loop/Loop.ConvergeToOptimalND; Predict/Predict.TwoVersions
+WorldRules,2,Predict/Predict.RuleSimConsistency; Predict/Predict.WorldModel
+WorldSimulator,2,Predict/Predict.RuleSimConsistency; Predict/Predict.WorldModel
+ScenarioTree,2,Predict/Predict.WorldScenario; Predict/Predict.WorldScenario
+gradForce,2,Modeling/Modeling.CoreBasics; Rules/Rules.Classification
+histInertia,2,Modeling/Modeling.CoreBasics; Rules/Rules.Classification
+ShouldStop,2,Modeling/Modeling.CoreBasics; Rules/Rules.Classification
+ShouldContinue,2,Modeling/Modeling.CoreBasics; Rules/Rules.Classification
+FiniteAttrs,2,Rules/Rules.Implication; Rules/Rules.Implication
+IsPoint,2,Rules/Rules.LawRule; Rules/Rules.LawRule
+compose_assoc,2,Core/Core.OpsAlgebra; Rules/Rules.LawRule
+generalize,2,Rules/Rules.LawRule; Rules/Rules.LawRule
+RichCtx,2,Rules/Rules.LawRuleToTraj; Rules/Rules.LawRuleToTraj
+Compatible,2,Modeling/Modeling.KernelQuotient; Rules/Rules.MainlineTheorems
+extent,2,Rules/Rules.RealFCA; Rules/Rules.RealFCA
+RuleEnc,2,Rules/Rules.RuleLevel; Rules/Rules.RuleLevel
+support,2,Predict/Predict.PushMerge; Rules/Rules.RuleSet
+insert,2,Meta/Meta.Ledger; Rules/Rules.RuleSet
+Observation,2,Modeling/Modeling.Observation; Rules/Rules.VersionSpace
+fromData,2,Rules/Rules.RuleActivation; Rules/Rules.VersionSpace

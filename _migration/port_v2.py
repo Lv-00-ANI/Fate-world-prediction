@@ -75,6 +75,53 @@ def ns_exists(ns):
     return ns in _NS_CACHE
 
 
+def _reachable_domains(text, v2m, self_domain):
+    """从文件的 import 语句出发，沿 FateV2 模块依赖做 BFS，
+    返回可达的所有**域**名集合。
+
+    用途：规则 7 补 open 前的校验 —— 只能 open 已 import 到的域。"""
+    seed = []
+    for m in IMPORT_RE.finditer(text):
+        mod = m.group(2)
+        if mod in v2m:
+            seed.append(mod)
+    seen_mod = set(seed)
+    domains = set()
+    if self_domain:
+        domains.add(self_domain)
+    stack = list(seed)
+    v2root = os.path.join(ROOT, 'FateWorld')
+    while stack:
+        mod = stack.pop()
+        full = v2m.get(mod)
+        if not full:
+            continue
+        rel = full[len('FateWorld.'):].replace('.', os.sep) + '.lean'
+        fp = os.path.join(v2root, rel)
+        parts = full.split('.')
+        if len(parts) >= 4:
+            domains.add(parts[2])
+        if not os.path.exists(fp):
+            continue
+        with open(fp, encoding='utf-8') as fh:
+            src = fh.read()
+        for m in IMPORT_RE.finditer(src):
+            nxt = m.group(2)
+            if nxt in v2m and nxt not in seen_mod:
+                seen_mod.add(nxt)
+                stack.append(nxt)
+    return domains
+
+
+def load_all_index():
+    """读 all_index.json（由 allindex.py 生成，含 def/theorem）。"""
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'all_index.json')
+    if not os.path.exists(p):
+        return {}
+    with open(p, encoding='utf-8') as f:
+        return json.load(f)
+
+
 def load_type_index():
     """读 type_index.json（由 typeindex.py 生成）。"""
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'type_index.json')
@@ -208,13 +255,29 @@ def port_one(name, domain, verify=True):
     # 实测反例：ConvergeToOptimalND 迁移后 `Lean exited with code 1`
     # 但**没有任何 error 行**（错误来自项层面的未知常量，不在语法层报告）。
     #
-    # 处理方式：按 nsmap 把 `Fate.X` 前缀替换为 `FateV2.<域>.X`。
-    # 只替换能在映射表里查到的（避免误改注释里的历史叙述）。
+    # 处理方式：
+    #   (a) 先查 nsmap（Legacy ns → FateV2 ns，来自模块配对）
+    #   (b) 查不到时查 typeindex（类型/定义名 → 所在域）
+    #
+    # ⚠ 实测补丁：原先只查 nsmap，且只匹配单段 `Fate.X`。
+    # LearnFunction 里的 `Fate.Rules`（Rules 是 Model/Frame 里的 def）
+    # 查不到，残留后报 `Unknown identifier Fate.Rules`。
+    # ⟹ 加第二条通路：用 typeindex 定位任意 `Fate.<名字>` 的定义域。
+    try:
+        _aidx = load_all_index()
+    except Exception:
+        _aidx = {}
+
     def fix_qualified(s):
         def repl(m):
-            full = m.group(0)                 # 例 Fate.ConvergenceOptimal
+            full = m.group(0)                 # 例 Fate.ConvergenceOptimal / Fate.Rules
             if full in nsmap:
                 return nsmap[full]
+            name = full[5:]                   # 去掉 "Fate."
+            if name in _aidx:
+                d = _aidx[name]['domain']
+                if ns_exists(f'FateV2.{d}'):
+                    return f'FateV2.{d}.{name}'
             return full
         return re.sub(r'(?<![\w.`])Fate\.[A-Za-z_]\w*', repl, s)
 
@@ -282,11 +345,29 @@ def port_one(name, domain, verify=True):
             r'(?m)^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*'
             r'(?:structure|inductive|class|def|abbrev|opaque)\s+([A-Z][A-Za-z0-9_\']*)',
             text))
-        for ident in used_ids - own_defs:
+
+        # ⚠ 关键校验：只 open **当前文件已经（直接或间接）import 到**的域。
+        # 否则 open 一个没 import 的域会报 `unknown namespace`。
+        # 实测反例：LearnFunction 只 import 了 Loop/Predict 三个模块，
+        # 但正文里的 `Classical.choose` 命中索引 → 误生 open FateV2.Classical
+        # → unknown namespace（本文件从未 import Classical 域）。
+        #
+        # 判据：用依赖闭包。直接从 import 语句出发，沿 FateV2 模块依赖 BFS，
+        # 收集可达的所有域。
+        reachable = _reachable_domains(text, v2m, domain)
+
+        # 排除 Lean/Mathlib 的通用命名，它们不是 FateV2 的类型
+        LEAN_NS = {'Classical', 'Data', 'Set', 'Filter', 'Finset', 'Nat', 'Int',
+                   'Real', 'List', 'Option', 'Function', 'Monoid', 'Group',
+                   'Order', 'MeasureTheory', 'Topology', 'ProbabilityTheory',
+                   'ENNReal', 'NNReal', 'Matrix', 'Polynomial', 'Complex',
+                   'CategoryTheory', 'Equiv', 'Submodule', 'Bornology'}
+
+        for ident in used_ids - own_defs - LEAN_NS:
             rec = tindex.get(ident)
             if rec:
                 d = rec['domain']
-                if d != domain and ns_exists(f'FateV2.{d}'):
+                if d != domain and d in reachable and ns_exists(f'FateV2.{d}'):
                     dep_domains.add(f'FateV2.{d}')
 
     dep_opens = '\n'.join(f'open {d}' for d in sorted(dep_domains))
