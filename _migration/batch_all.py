@@ -34,6 +34,46 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第七批 ——
+    'T33DoGraph': 'Predict', 'ParentMap': 'Predict',
+    'DoCalculusRules': 'Predict', 'T1A2Encode': 'Predict',
+    'FactorizesCondMul': 'Predict', 'InterventionSharpWiring': 'Predict',
+    'PathWitnessDep': 'Predict', 'CausalClosureTight': 'Predict',
+    'CFLattice': 'Predict', 'ConcreteBridge': 'Predict',
+    'LawRuleMarginal': 'Rules', 'StatAlphaConsumer': 'Rules',
+    'FusionConvergence': 'Rules', 'TieredScheme': 'Predict',
+    'EndToEndConverge': 'Loop', 'PipelineAdaptiveEta': 'Loop',
+    'ScratchAssemblyLearns': 'Loop', 'SimEndToEndLink': 'Loop',
+    'CapstoneLipschitzLink': 'Loop', 'WorldModelCapstoneConsumer': 'Loop',
+    'CausalDrivesGazeV2': 'Loop', 'ContinuousEval': 'Loop',
+    'FirstLayerExpected': 'Error', 'FirstLayerExpectation': 'Error',
+    'ShellEscrow': 'Error',
+    # —— 第六批 ——
+    'DetTrajScan': 'Model',                  # TrajGen*/Frame
+    'TermSizeConsumer2': 'Rules',            # TermSize/RuleSyntaxOps
+    'InstanceChain': 'Rules',                # LawRule
+    'LawRuleSatisfiabilityConsumer': 'Rules',
+    'LawRuleIdentifiability': 'Rules',
+    'SynClosureBounded': 'Rules',            # Implication
+    'SynClosureSemiNaive': 'Rules',
+    'VersionSpaceBoundary': 'Rules',         # VersionSpace
+    'CausalFCAAdjacency': 'Predict',
+    'T1DegeneracyVerifyConsumer': 'Predict',
+    'GraphOps': 'Predict',                   # DoCalculus/CausalDirection
+    'T21DSepWellDefined': 'Predict',
+    'T35Rule1NoConfounding': 'Predict',
+    'View17Consumer': 'Predict',
+    'T1A2Theta': 'Predict',                  # FinJoint/FinCondIndep
+    'FactorizesToCondMul': 'Predict',
+    'InterventionSharp': 'Predict',
+    'InterventionSupConsumer': 'Predict',
+    'ParametricEquiv': 'Predict',
+    'EndToEndBounds': 'Loop',                # EndToEnd
+    'ErrIterGeneral': 'Loop',                # WiringConvergence
+    'EstimateErrorBound': 'Error',           # ChainBudgetBound/FirstLayerBound
+    'FinFactorization': 'Modeling',          # FiniteCondIndep
+    'RegressBridge': 'Modeling',             # FinMeasureBridge
+    'SCMGraphSemantics': 'Modeling',         # SCMSemantics/SCMGraph
     # —— 第五批 ——
     'TermSize': 'Rules',                       # RuleExec
     'LawRuleSatisfiability': 'Rules',           # LawRuleLattice
