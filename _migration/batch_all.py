@@ -34,6 +34,26 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第三十八批 ——
+    'SplitFromDSepComplete': 'Predict', 'BridgeGeneralize': 'Predict',
+    'TailBlockV4Consumer': 'Predict', 'TailFromDSep': 'Predict',
+    'MassADecompFinal': 'Predict', 'SubFibCard': 'Predict',
+    'BridgeDSepGeneral': 'Predict', 'NaryBridgeFinal': 'Modeling',
+    # —— 第三十七批 ——
+    'TailBlockV4': 'Predict', 'CondIndepCondMulBridge': 'Modeling',
+    'SplitFromDAG': 'Predict', 'RebaseSplit': 'Predict',
+    'TailFromDSepFork': 'Predict', 'TailBlockFinal': 'Predict',
+    'BridgeIntegrated': 'Predict', 'LMGcCondIndepEquiv': 'Predict',
+    'ArrowEquivA': 'Modeling', 'BlockCIOfBlockSplitFinal': 'Predict',
+    'NaryConnect3': 'Modeling', 'TailTailCollapse': 'Predict',
+    # —— 第三十六批（链尾释放）——
+    'CondIndepGeneralNZ': 'Modeling', 'FactorizesToHyper': 'Predict',
+    'NaryLink': 'Modeling',
+    # —— 第三十五批 ——
+    'CondIndepEmptyZ': 'Modeling', 'NaryCancel': 'Modeling',
+    # —— 第三十四批 ——
+    'View16PotentialTransport': 'Predict', 'MainTheoremCFinal': 'Predict',
+    'BalanceFactorPart': 'Predict', 'NaryProduct': 'Modeling',
     # —— 第三十三批 ——
     'BalanceComponents': 'Modeling', 'NaryMassLink': 'Modeling',
     # —— 第三十二批 ——
