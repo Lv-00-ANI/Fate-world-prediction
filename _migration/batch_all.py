@@ -34,6 +34,28 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第二十四批 ——
+    'UpsilonIteration': 'Rules', 'EvaluationSystems': 'Rules',
+    'WiringFCAAlpha': 'Rules', 'WiringFourOpFixed': 'Rules',
+    'WiringFourOperators': 'Rules', 'FourOperators': 'Rules',
+    'GaloisEmbedding': 'Rules', 'LabelAudit': 'Rules',
+    'InstSpaceToLawRule': 'Rules', 'StepToLawGenFiber': 'Rules',
+    'RoundtripAsymmetry': 'Rules', 'AlphaKernelAudit': 'Rules',
+    'TailVerdict': 'Predict', 'TailBlockMassDecomp': 'Predict',
+    'FactorizesNotImpliesLMG': 'Predict',
+    'KernelQuotientRecovery': 'Modeling', 'NaryConnect': 'Modeling',
+    'NonemptyFree3': 'Predict',
+    # —— 第二十三批 ——
+    'UpsilonOperator': 'Rules', 'GammaOperator': 'Rules',
+    'AlphaConcreteInstance': 'Rules', 'Adjunction': 'Rules',
+    'VarsigmaScale': 'Rules', 'AlphaStatistical': 'Rules',
+    'AlphaKernel': 'Rules', 'Stage1A': 'Rules',
+    'CellDiameter': 'Rules', 'StepToLaw': 'Rules',
+    'RuleEntersWorldModel': 'Loop', 'InvarianceContentful': 'Meta',
+    'CompNotCommutative': 'Rules',
+    'PathDepIsDerived': 'Model', 'TrajLawIsProb': 'Model',
+    'TailBlockReal': 'Predict', 'NaryFinal': 'Modeling',
+    'ColliderDAGValues': 'Predict',
     # —— 第二十二批（Basic 误判修正后释放）——
     'Alpha': 'Rules', 'Adjunction': 'Rules',
     'AlphaConcreteInstance': 'Rules', 'ConceptLatticeComplete': 'Rules',
