@@ -54,7 +54,23 @@ NSMAP = os.path.join(ROOT, '_migration', 'ns_map.json')
 # 按定义名复核后，真正「恰好同名」的只剩：
 #   Completeness  Legacy 8 定义 / FateV2 5 定义 / 共同 0
 #                 （Legacy 是 FCA 概念格完备性，FateV2 是导出层完备性）
-COLLISIONS = {'Completeness'}
+# ⚠ 最终结论：**空集**。
+#
+# 原先登记了三个「恰好同名」模块，全部是 dupcheck.py 的误判：
+#
+#   Basic             Jaccard 0.0（两边都是 0 定理的纯定义文件）
+#                     按定义名复核对：两边各 13 个，共同 12 个 ⟹ 同一模块
+#   DetFunToStepDraft Jaccard 0.0（同上）
+#                     按定义名复核：两边各 4 个，共同 4 个   ⟹ 同一模块
+#   Completeness      Jaccard 0.0（与 FateV2/Export/Completeness 比较）
+#                     但 FateV2 里有**三份** Completeness：
+#                       Rules/Completeness   ← 这才是 Legacy 版迁移产物（39/39 全同）
+#                       Export/Completeness  ← 无关的另一模块（0/39 重合）
+#                     dupcheck 按 basename 配对时取了 os.walk 先遇到的 Export 版，
+#                     于是把它误判成「恰好同名」。
+#
+# ⟹ 三个都不是冲突。全部放行。
+COLLISIONS = set()
 
 # ⚠ (\w+) 抓不到 `_root.CausSeparation` 这种带点的路径。
 # 实测反例：FourNodeSeparation import `FateWorld.Legacy._root.CausSeparation`，

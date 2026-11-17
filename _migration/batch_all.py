@@ -34,6 +34,21 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第二十七批（Completeness 误判清除后释放）——
+    'AlphaFCAConstruction': 'Rules', 'Satisfiability': 'Rules',
+    'Minimality': 'Rules', 'T611Full': 'Rules',
+    'AlphaDataConsumed': 'Rules',
+    'ComposeDefault': 'Rules', 'ComposeEmbedding': 'Rules',
+    'LoopBound': 'Error', 'NaryBridgeMulti': 'Modeling',
+    # —— 第二十六批 ——
+    'AdaptiveEtaConsumer': 'Loop', 'AlphaFourOpConsumer': 'Rules',
+    'ComposeUnified': 'Rules', 'NaryBridge': 'Modeling',
+    # —— 第二十五批 ——
+    'AlphaFourOp': 'Rules', 'WiringFCAAlphaConsumer': 'Rules',
+    'RuleRelaxation': 'Rules', 'EvaluationSystemsConsumer': 'Rules',
+    'UpsilonIterationConsumer': 'Rules', 'ComposeSemantics': 'Rules',
+    'UpsilonIterConsumer': 'Rules',
+    'EndToEndWithRulesNegative': 'Loop', 'NaryConnect2': 'Modeling',
     # —— 第二十四批 ——
     'UpsilonIteration': 'Rules', 'EvaluationSystems': 'Rules',
     'WiringFCAAlpha': 'Rules', 'WiringFourOpFixed': 'Rules',
