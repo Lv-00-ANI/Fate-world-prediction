@@ -71,14 +71,37 @@ def main():
     rows = []
     for name in sorted(set(leg) & set(v2)):
         lrel, lt, lns = leg[name][0]
-        vrel, vt, vns = v2[name][0]
-        union = lt | vt
-        inter = lt & vt
-        jac = len(inter) / len(union) if union else 0.0
+
+        # ⚠ 关键：FateV2 里同名文件可能有**多份**（不同子目录）。
+        # 必须与**每一份**比较，取重合度最高的那个，不能取 [0]。
+        #
+        # 实测反例：Completeness 在 FateV2 里有三份
+        #   Rules/Completeness   ← Legacy 版的真正迁移产物（39/39 定义全同）
+        #   Export/Completeness  ← 无关的另一模块（0/39 重合）
+        # os.walk 先遇到 Export 版，取 [0] 就把它判成「恰好同名」，
+        # 结果 Completeness 被永久拦截，连带 AlphaFCAConstruction(49 定理) 等
+        # 一整批无法迁入。
+        #
+        # 另外：对「纯定义文件」（0 定理），用定理名算 Jaccard 必然为 0，
+        # 也是假阴性来源（Basic / DetFunToStepDraft 都栽在这里）。
+        # ⟹ 有定理时按定理名比，无定理时按定义名比。
+        best = None
+        for cand in v2[name]:
+            vrel, vt, vns = cand
+            union = lt | vt
+            inter = lt & vt
+            jac = len(inter) / len(union) if union else 0.0
+            if best is None or jac > best[0]:
+                best = (jac, vrel, vt, vns, len(inter))
+        jac, vrel, vt, vns, ninter = best
+
         if jac >= 0.8:
             verdict = '同一模块'
         elif jac >= 0.2:
             verdict = '部分重叠'
+        elif not lt and not vt:
+            # 两边都没定理（纯定义文件）⟹ 定理名无从比较，改按定义名。
+            verdict = '纯定义·需按定义名复核'
         else:
             verdict = '恰好同名'
         rows.append({
@@ -87,7 +110,7 @@ def main():
             'FateV2路径': vrel,
             'Legacy定理': len(lt),
             'FateV2定理': len(vt),
-            '共享': len(inter),
+            '共享': ninter,
             'Jaccard': round(jac, 3),
             '判定': verdict,
             'Legacy命名空间': lns,
