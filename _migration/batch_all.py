@@ -34,6 +34,21 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第二十一批 ——
+    'GraphToProbView7': 'Predict', 'ZipDownFalse': 'Predict',
+    'Strategy13Filler': 'Predict', 'T1A2Fin': 'Predict',
+    'ColliderPValues': 'Predict', 'MassProCover': 'Predict',
+    'NaryKernel': 'Modeling',
+    # —— 第二十批 ——
+    'CondIndepIntersection': 'Modeling', 'NaryTrim': 'Modeling',
+    'BridgeMinZPrime': 'Predict', 'BridgeZipA': 'Predict',
+    'BridgeZipDown': 'Predict', 'BridgeA3': 'Predict',
+    'View2ElimIterate': 'Predict', 'NonemptyFree2': 'Predict',
+    'View3FiberMassBridge': 'Predict', 'BridgeA1Prime': 'Predict',
+    'BridgeB4': 'Predict', 'RouteC': 'Predict',
+    'View10AdmissibleReach': 'Predict', 'ProdSplitSides': 'Predict',
+    'Strategy13TypedSplit': 'Predict', 'TailBlockQuadraticCounterexample': 'Predict',
+    'T1A2Prob': 'Predict', 'BridgeA4Fixed': 'Predict',
     # —— 第十九批 ——
     'NKernelValue': 'Modeling', 'CondIndepContraction': 'Modeling',
     'MainlineIntegration': 'Modeling',
