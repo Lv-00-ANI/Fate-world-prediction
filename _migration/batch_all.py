@@ -34,6 +34,23 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第四十二批 ——
+    'TailBlockReal2': 'Predict', 'TailFromDSepIntegration': 'Predict',
+    'NaryIndex': 'Modeling', 'TailBlockAssemble': 'Predict',
+    'BlockCIFactorization': 'Predict', 'BlockCIUltimate': 'Predict',
+    'MassMultSBridge': 'Predict',
+    # —— 第四十一批 ——
+    'MultSUnify': 'Modeling', 'TailBlockBridge': 'Predict',
+    'NaryGeneric': 'Modeling', 'BlockCIGeneralC': 'Predict',
+    # —— 第四十批 ——
+    'MassBoundaryValues': 'Predict', 'TailBlockCondIndep': 'Predict',
+    'MassAEqCorrected': 'Predict', 'MassFactorOfReads': 'Predict',
+    'NaryPointwise': 'Modeling',
+    # —— 第三十九批 ——
+    'BridgeGeneralizeTight': 'Predict', 'BridgeGeneralizeWiring': 'Predict',
+    'DAGBridgeConsumer': 'Predict', 'NaryBridgeDone': 'Modeling',
+    'MassInsertCorrected': 'Predict', 'BlockCIOfBlockSplit': 'Predict',
+    'NaryClose': 'Modeling', 'TailBlockMassDcomp': 'Predict',
     # —— 第三十八批 ——
     'SplitFromDSepComplete': 'Predict', 'BridgeGeneralize': 'Predict',
     'TailBlockV4Consumer': 'Predict', 'TailFromDSep': 'Predict',
