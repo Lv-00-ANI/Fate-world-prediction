@@ -34,6 +34,26 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第三十三批 ——
+    'BalanceComponents': 'Modeling', 'NaryMassLink': 'Modeling',
+    # —— 第三十二批 ——
+    'BridgeMinZPrimeConsumer': 'Predict', 'ZipDownFalseZStarConsumer': 'Predict',
+    'BridgeZipAConsumer': 'Predict', 'ZipDownFalseConsumer': 'Predict',
+    'BridgeDirectConsumer': 'Predict', 'BridgeExpandedT7': 'Predict',
+    'R44CutBridge': 'Loop', 'R44SubstanceBridge': 'Loop',
+    'SumMulSepFull': 'Modeling', 'NaryAssembly': 'Modeling',
+    # —— 第三十一批 ——
+    'BridgeDirect': 'Predict', 'BridgeExpanded': 'Predict',
+    'BridgeFullFixed': 'Predict', 'BridgeFull': 'Predict',
+    'MVFCAFinset': 'Rules', 'StrongSignature': 'Rules',
+    'SumMulSep': 'Modeling', 'NaryFiberDecomp': 'Modeling',
+    # —— 第三十批（纯定义模块筛选修正后）——
+    'FcaToRuleTerm': 'Rules', 'FcaRuleEntersWorldModel': 'Predict',
+    'RuleReadSetWiringConsumer': 'Rules',
+    'ConcreteBridgeQuant': 'Predict', 'WorldModelCompleteV2W': 'Loop',
+    'NaryMargSum': 'Modeling', 'SumSeparation': 'Modeling',
+    'ThreeNode': 'Modeling', 'UnifyVerification': 'Meta',
+    '_T1A2_Gap': 'Predict',
     # —— 第二十九批 ——
     'RuleReadSetWiring': 'Rules', 'WorldModelCompleteV2NonDeg': 'Loop',
     'AlphaDataToLawRule': 'Rules', 'AlphaAndStochasticWiringConsumer': 'Rules',
@@ -429,7 +449,7 @@ def candidates():
             if n in v2m:
                 continue
             info = port_v2.analyze(n)
-            if info and not info['unresolved'] and not info['blocked'] and info['theorems'] > 0:
+            if info and not info['unresolved'] and not info['blocked'] and (info['theorems'] > 0 or info.get('defs', 0) > 0):
                 rows.append(info)
     rows.sort(key=lambda r: -r['theorems'])
     return rows

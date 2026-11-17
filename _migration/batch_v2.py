@@ -26,7 +26,7 @@ if __name__ == '__main__':
             n = f[:-5]
             if n in v2m: continue
             info = analyze(n)
-            if info and not info['unresolved'] and not info['blocked'] and info['theorems'] > 0:
+            if info and not info['unresolved'] and not info['blocked'] and (info['theorems'] > 0 or info.get('defs', 0) > 0):
                 rows.append(info)
     rows.sort(key=lambda r: -r['theorems'])
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else len(rows)

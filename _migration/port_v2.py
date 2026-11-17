@@ -232,9 +232,25 @@ def analyze(name):
 
     unresolved = [d for d in leg_deps if not _resolvable(d)]
     blocked = [d for d in leg_deps if d.split('.')[-1] in COLLISIONS]
+
+    # ⚠ 「有定理」不足以判断模块是否有内容。
+    # 纯定义模块（structure/def/abbrev，0 定理）同样是有效模块，
+    # 而且常常是**依赖链的根**。
+    #
+    # 实测反例：SumSeparation 93 行、0 定理、2 个 def，
+    # 却是 6 层依赖链的根：
+    #   SumSeparation → SumMulSep → SumMulSepFull → BalanceComponents
+    #   → MainTheoremCFinal → CondIndepEmptyZ → CondIndepGeneralNZ（12 个模块依赖）
+    # 因为候选筛选要求 theorems > 0，它被永久排除，整条链卡死。
+    n_defs = len(re.findall(
+        r'(?m)^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*'
+        r'(?:structure|inductive|class|def|abbrev|opaque|instance)\s+[A-Za-z_]',
+        text))
+
     return {'name': name, 'src': src, 'leg_deps': leg_deps,
             'unresolved': unresolved, 'blocked': blocked,
-            'theorems': len(THM_RE.findall(text))}
+            'theorems': len(THM_RE.findall(text)),
+            'defs': n_defs}
 
 
 def rewrite_opens(text, nsmap):
@@ -613,7 +629,7 @@ def main():
                 if n in v2m:
                     continue
                 info = analyze(n)
-                if info and not info['unresolved'] and not info['blocked'] and info['theorems'] > 0:
+                if info and not info['unresolved'] and not info['blocked'] and (info['theorems'] > 0 or info.get('defs', 0) > 0):
                     rows.append(info)
         rows.sort(key=lambda r: -r['theorems'])
         print(f'可迁（三重规则完整）：{len(rows)}')
