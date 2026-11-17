@@ -41,8 +41,20 @@ LEGACY = os.path.join(ROOT, 'FateWorld', 'Legacy')
 V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 NSMAP = os.path.join(ROOT, '_migration', 'ns_map.json')
 
-# 恰好同名，不可重定向（dupcheck.py 实测）
-COLLISIONS = {'Basic', 'Completeness', 'DetFunToStepDraft'}
+# 恰好同名，不可重定向。
+#
+# ⚠ dupcheck.py 用**定理名**算 Jaccard，对「纯定义文件」会假阴性：
+#   Basic              Legacy 0 定理 / FateV2 0 定理 → Jaccard 0.0
+#   DetFunToStepDraft  Legacy 0 定理 / FateV2 0 定理 → Jaccard 0.0
+# 但按**定义名**比对：
+#   Basic              两边各 13 个定义，共同 12 个（仅 FateOf / TrajAlias 不同名）
+#   DetFunToStepDraft  两边各 4 个定义，共同 4 个
+# ⟹ 这两个是同一模块，不应拦截。
+#
+# 按定义名复核后，真正「恰好同名」的只剩：
+#   Completeness  Legacy 8 定义 / FateV2 5 定义 / 共同 0
+#                 （Legacy 是 FCA 概念格完备性，FateV2 是导出层完备性）
+COLLISIONS = {'Completeness'}
 
 # ⚠ (\w+) 抓不到 `_root.CausSeparation` 这种带点的路径。
 # 实测反例：FourNodeSeparation import `FateWorld.Legacy._root.CausSeparation`，

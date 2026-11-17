@@ -34,6 +34,17 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第二十二批（Basic 误判修正后释放）——
+    'Alpha': 'Rules', 'Adjunction': 'Rules',
+    'AlphaConcreteInstance': 'Rules', 'ConceptLatticeComplete': 'Rules',
+    'ComposeOperator': 'Rules',
+    'T1MultiDim': 'Predict', 'ThetaMatters': 'Loop',
+    'PathDependence': 'Predict', 'Adjudication': 'Meta',
+    'GhostBoundaries': 'Predict', 'TrajGenArbitrary': 'Model',
+    'RuleEvaluation': 'Rules', 'TrajGenStochastic': 'Model',
+    'TailOutExtract': 'Predict', 'DetFunToStep': 'Model',
+    'MainTheoremC': 'Predict', 'NaryKernel2': 'Modeling',
+    'NotLMGColliderP': 'Predict', 'StepToLawDraft': 'Rules',
     # —— 第二十一批 ——
     'GraphToProbView7': 'Predict', 'ZipDownFalse': 'Predict',
     'Strategy13Filler': 'Predict', 'T1A2Fin': 'Predict',
