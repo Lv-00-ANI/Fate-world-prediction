@@ -34,6 +34,29 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第十七批 ——
+    'ChainGenuineGap1': 'Predict', 'CondIndepN': 'Modeling',
+    'MarkovEquivalence': 'Predict', 'T1A1Graphs': 'Predict',
+    'FactorRecursionRouteB': 'Predict', 'MarkovToSeparableGen': 'Predict',
+    'BridgeB2': 'Modeling', 'FactorMarkov': 'Predict',
+    'MarkovGroupWiring': 'Predict', 'BridgeEquiv': 'Modeling',
+    'SeparatedCondMul': 'Predict', 'USeparatedMoral': 'Predict',
+    'EndToEndQConsumer': 'Loop', 'EndToEndUnconditionalEval': 'Loop',
+    'View6FactorSupportConsumer': 'Predict', 'MainChainConsumer': 'Loop',
+    # —— 第十六批 ——
+    'CondMassTower': 'Predict', 'View6FactorSupport': 'Predict',
+    'DAGFactorizationGeneral': 'Predict', 'BridgeStrategy4CoordSlice': 'Predict',
+    'ChainMarkovExplicitAntecedent': 'Predict',
+    'SetupXMYDemoLawConsumer': 'Predict', 'View6ZoneCut': 'Predict',
+    'View6ElimComplete': 'Predict', 'SetupXMYDemoLawConsumer2': 'Predict',
+    'T1A1': 'Predict', 'MarkovBridgeTopo': 'Predict',
+    'SeparatedImpliesSide': 'Predict', 'MarkovToSeparable': 'Predict',
+    'RuleActivationClosureOpConsumer': 'Rules',
+    'DeadPremiseAuditConsumer': 'Meta',
+    'GapTrimWeightedCount': 'Modeling', 'BridgeFinal': 'Modeling',
+    'RegressStep9Fiber': 'Modeling',
+    'SCMWorldModelEval': 'Loop', 'SCMEndToEndGeneralQ': 'Loop',
+    'EndToEndUnconditionalConsumer': 'Loop', 'EndToEndUnconditionalQ': 'Loop',
     # —— 第十五批 ——
     'DAGFactorization': 'Predict', 'RuleActivationClosureOp': 'Rules',
     'SetupXMYDemoLaw': 'Predict', 'BridgeKernel': 'Modeling',
