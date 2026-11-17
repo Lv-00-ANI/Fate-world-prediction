@@ -34,6 +34,11 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第二十九批 ——
+    'RuleReadSetWiring': 'Rules', 'WorldModelCompleteV2NonDeg': 'Loop',
+    'AlphaDataToLawRule': 'Rules', 'AlphaAndStochasticWiringConsumer': 'Rules',
+    'T611FullConsumer': 'Rules', 'AlphaDataConsumed': 'Rules',
+    'QuantCompletion': 'Predict', 'NaryFinalBridge': 'Modeling',
     # —— 第二十八批 ——
     'T611Full': 'Rules', 'AlphaAndStochasticWiring': 'Rules',
     'AlphaDataConsumed': 'Rules', 'AlphaDataToPartition': 'Rules',
