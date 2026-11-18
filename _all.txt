@@ -1,0 +1,904 @@
+﻿⚠ [4/6] Replayed FateWorld.FateV2.Classical.Assumptions
+warning: FateWorld/FateV2/Classical/Assumptions.lean:125:38: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3026/3028] Replayed FateWorld.FateV2.Classical.Analysis
+warning: FateWorld/FateV2/Classical/Analysis.lean:107:5: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3058/3103] Replayed FateWorld.FateV2.Core.Binder
+warning: FateWorld/FateV2/Core/Binder.lean:166:4: Variable name `k` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _k
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Binder.lean:166:13: Variable name `t` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _t
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3061/3103] Replayed FateWorld.FateV2.Model.OrderSource
+warning: FateWorld/FateV2/Model/OrderSource.lean:587:46: Variable name `g` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _g
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3064/3104] Replayed FateWorld.FateV2.Core.Cache
+warning: FateWorld/FateV2/Core/Cache.lean:102:60: Variable name `current` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _current
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Cache.lean:146:5: Variable name `e₁` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _e₁
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Cache.lean:146:8: Variable name `e₂` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _e₂
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Cache.lean:146:34: Variable name `c₁` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _c₁
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Cache.lean:146:37: Variable name `c₂` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _c₂
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3065/3104] Replayed FateWorld.FateV2.Core.Closure
+warning: FateWorld/FateV2/Core/Closure.lean:227:6: Variable name `roots` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _roots
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Closure.lean:227:12: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Closure.lean:232:6: Variable name `roots` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _roots
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/Closure.lean:232:12: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [3068/3104] Replayed FateWorld.FateV2.Core.NodupLemmas
+info: FateWorld/FateV2/Core/NodupLemmas.lean:169:0: 'FateV2.Core.counterexample' does not depend on any axioms
+info: FateWorld/FateV2/Core/NodupLemmas.lean:170:0: 'FateV2.Core.nodup_two_mem_is_false' does not depend on any axioms
+info: FateWorld/FateV2/Core/NodupLemmas.lean:171:0: 'FateV2.Core.nodup_cons_not_mem' does not depend on any axioms
+info: FateWorld/FateV2/Core/NodupLemmas.lean:172:0: 'FateV2.Core.nodup_two_positions' does not depend on any axioms
+⚠ [3073/3107] Replayed FateWorld.FateV2.Core.ClosureMono
+warning: FateWorld/FateV2/Core/ClosureMono.lean:72:9: Variable name `as` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _as
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureMono.lean:72:13: Variable name `ys` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ys
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureMono.lean:173:23: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3075/3107] Replayed FateWorld.FateV2.Model.TopoGeneral
+warning: FateWorld/FateV2/Model/TopoGeneral.lean:466:6: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Model/TopoGeneral.lean:489:5: Variable name `heq` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _heq
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3081/3109] Replayed FateWorld.FateV2.Core.ClosureAll
+warning: FateWorld/FateV2/Core/ClosureAll.lean:337:6: Variable name `roots` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _roots
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureAll.lean:337:12: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureAll.lean:342:6: Variable name `roots` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _roots
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureAll.lean:342:12: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureAll.lean:427:5: Variable name `hd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/ClosureAll.lean:427:18: Variable name `hdep` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hdep
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3082/3109] Replayed FateWorld.FateV2.Core.ClosureFix
+warning: FateWorld/FateV2/Core/ClosureFix.lean:158:6: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3083/3109] Replayed FateWorld.FateV2.Core.Core
+warning: FateWorld/FateV2/Core/Core.lean:147:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ObjStateMergedConvention`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:156:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.State`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:185:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.TimeIndex.discrete`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:183:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.TimeIndex`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:187:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.TimeIndex.continuous`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:211:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.TimeIndex.IsValid`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:218:8: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.isValid_discrete`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:224:8: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.isValid_continuous`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:234:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteTrajectory`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:243:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ContTime`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:250:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ContTrajectory`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:290:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.Theta`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:337:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.NoiseLaw`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:370:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ActionSpace`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:382:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ActionSpace.measure_le_borel`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:370:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ActionSpace.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:374:3: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ActionSpace.topo`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:376:3: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ActionSpace.meas`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:372:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ActionSpace.A`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:401:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.Action`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:426:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.InputSpace.decompose`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:439:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.InputSpace.assemble`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:458:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.InitialLaw`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:500:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.StepFamily`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:514:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.step`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:538:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.Trajectory`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:562:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DriftFamily`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:575:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiffusionFamily`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:597:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ContinuousForm.sigma`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:593:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ContinuousForm.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:593:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ContinuousForm`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:595:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ContinuousForm.mu`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:657:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:662:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.sigma`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:660:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.mu`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:668:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.lipschitz_mu`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:657:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:671:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.lipschitz_sigma`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:664:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.L_mu`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:666:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.LipschitzData.L_sigma`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:701:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity.growth_sigma`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:692:12: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity.toLipschitzData`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:698:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity.growth_mu`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:696:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity.C_sigma`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:689:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:689:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:694:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.SDERegularity.C_mu`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:732:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:735:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.mX`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:772:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.f_measurable`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:743:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.f`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:739:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.mE`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:732:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:737:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.mU`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:745:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.law`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:741:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DiscreteRegularity.mΘ`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:817:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:817:10: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:821:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps.rank`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:823:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps.parent_lt`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:819:2: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps.parents`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:832:8: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps.self_not_mem_parents`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:840:8: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.WellFoundedDeps.rank_descends`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:865:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ModelType`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:911:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.Do`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:936:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.doOp`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:957:7: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.DoIsOperator`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:970:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.NoCoercionDoToAction`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:1016:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.piO_placeholder`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:1028:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.Xlocal_placeholder`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:1038:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.Ctx_placeholder`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:1049:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.NoiseCarrier_placeholder`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/Core.lean:1060:4: The namespace `Core` is duplicated in the declaration `FateV2.Core.Stage0.Core.ModelCarrier_placeholder`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+ℹ [3088/3109] Replayed FateWorld.FateV2.Core.Unified
+info: FateWorld/FateV2/Core/Unified.lean:494:0: 'FateV2.Core.Unified.add_one_add' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:495:0: 'FateV2.Core.Unified.exists_eq_add_succ_of_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:496:0: 'FateV2.Core.Unified.length_take_le' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:497:0: 'FateV2.Core.Unified.mem_of_mem_take' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:498:0: 'FateV2.Core.Unified.mem_take_mono' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:499:0: 'FateV2.Core.Unified.mem_append_l' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:500:0: 'FateV2.Core.Unified.mem_append_r' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:501:0: 'FateV2.Core.Unified.not_mem_append_of' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:502:0: 'FateV2.Core.Unified.nd_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:503:0: 'FateV2.Core.Unified.nd_tail' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:504:0: 'FateV2.Core.Unified.mem_append_single' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:505:0: 'FateV2.Core.Unified.nodup_append_single' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:506:0: 'FateV2.Core.Unified.mapFin' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:507:0: 'FateV2.Core.Unified.mem_mapFin' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:508:0: 'FateV2.Core.Unified.mem_mapFin_of_mem' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:509:0: 'FateV2.Core.Unified.nodup_mapFin' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:510:0: 'FateV2.Core.Unified.mem_enumFin' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:511:0: 'FateV2.Core.Unified.mem_tail_of_ne' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:512:0: 'FateV2.Core.Unified.eq_false_of_eq' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:513:0: 'FateV2.Core.Unified.idxOf' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:514:0: 'FateV2.Core.Unified.toFin' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:515:0: 'FateV2.Core.Unified.idxOf_cons' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:516:0: 'FateV2.Core.Unified.idxOf_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:517:0: 'FateV2.Core.Unified.idxOf_tail' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:518:0: 'FateV2.Core.Unified.idxOf_ne_none' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:519:0: 'FateV2.Core.Unified.carrier_pos_of_inhabited' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:520:0: 'FateV2.Core.Unified.FinitelyCarried' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:521:0: 'FateV2.Core.Unified.carriedOfCover' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:522:0: 'FateV2.Core.Unified.cover_mapFin_self' does not depend on any axioms
+info: FateWorld/FateV2/Core/Unified.lean:523:0: 'FateV2.Core.Unified.carriedOfNameTable' does not depend on any axioms
+ℹ [3096/3111] Replayed FateWorld.FateV2.Core.ClosureStableFinal
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:409:0: 'FateV2.Core.add_assoc'' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:410:0: 'FateV2.Core.one_add' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:411:0: 'FateV2.Core.add_one_swap' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:412:0: 'FateV2.Core.inb' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:413:0: 'FateV2.Core.mem_inb_of_mem' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:414:0: 'FateV2.Core.mem_of_mem_inb' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:415:0: 'FateV2.Core.ne_of_decide_false' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:416:0: 'FateV2.Core.DeclGraph.mem_cons_split' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:417:0: 'FateV2.Core.DeclGraph.mem_of_ne_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:418:0: 'FateV2.Core.DeclGraph.take_succ_of_mem' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:419:0: 'FateV2.Core.DeclGraph.mem_take_add' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:420:0: 'FateV2.Core.DeclGraph.take_mono_len' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:421:0: 'FateV2.Core.DeclGraph.find_some_or_none' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:422:0: 'FateV2.Core.DeclGraph.step_mem_elim' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:423:0: 'FateV2.Core.DeclGraph.posRoots' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:424:0: 'FateV2.Core.DeclGraph.lenRoots' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:425:0: 'FateV2.Core.DeclGraph.posRoots_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:426:0: 'FateV2.Core.DeclGraph.posRoots_tail' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:427:0: 'FateV2.Core.DeclGraph.lenRoots_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:428:0: 'FateV2.Core.DeclGraph.lenRoots_tail' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:429:0: 'FateV2.Core.DeclGraph.lenRoots_eq' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:430:0: 'FateV2.Core.DeclGraph.posRoots_le_lenRoots' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:431:0: 'FateV2.Core.DeclGraph.mem_take_posRoots' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:432:0: 'FateV2.Core.DeclGraph.mem_take_lenRoots' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:433:0: 'FateV2.Core.DeclGraph.preDeps' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:434:0: 'FateV2.Core.DeclGraph.preKeys' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:435:0: 'FateV2.Core.DeclGraph.preDeps_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:436:0: 'FateV2.Core.DeclGraph.preDeps_tail' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:437:0: 'FateV2.Core.DeclGraph.preKeys_head' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:438:0: 'FateV2.Core.DeclGraph.preKeys_tail' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:439:0: 'FateV2.Core.DeclGraph.preDeps_le' does not depend on any axioms
+info: FateWorld/FateV2/Core/ClosureStableFinal.lean:440:0: 'FateV2.Core.DeclGraph.preKeys_le' does not depend on any axioms
+⚠ [3097/3111] Replayed FateWorld.FateV2.Core.SampleBounds
+warning: FateWorld/FateV2/Core/SampleBounds.lean:171:5: Variable name `k` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _k
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: FateWorld/FateV2/Core/SampleBounds.lean:258:0: 'reduceSelf_test' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:259:0: 'FateV2.Core.SampleBounds.ediv_step' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:260:0: 'FateV2.Core.SampleBounds.ediv_zero_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:261:0: 'FateV2.Core.SampleBounds.ediv_le_self' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:262:0: 'FateV2.Core.SampleBounds.lt_succ_of_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:263:0: 'FateV2.Core.SampleBounds.lt_of_succ_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:264:0: 'FateV2.Core.SampleBounds.succ_le_of_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:265:0: 'FateV2.Core.SampleBounds.lt_of_one_le' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:266:0: 'FateV2.Core.SampleBounds.ediv_le_ediv' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:267:0: 'FateV2.Core.SampleBounds.ediv_zero_of_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:268:0: 'FateV2.Core.SampleBounds.exists_ediv_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/SampleBounds.lean:269:0: 'FateV2.Core.SampleBounds.ediv_le_ediv_succ' does not depend on any axioms
+⚠ [3102/3111] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+⚠ [3103/3113] Replayed FateWorld.FateV2.Core.MonoConv
+warning: FateWorld/FateV2/Core/MonoConv.lean:1:0: Use the following replacements:
+- `BddAbove` for `Set.Bounded (· ≤ ·)`
+- `BddBelow` for `Set.Bounded (· ≥ ·)`
+- `IsCofinal` for `Set.Unbounded (· < ·)` in a linear order
+- `IsCoinitial` for `Set.Unbounded (· > ·)` in a linear order
+'Mathlib.Order.Bounded' has been deprecated: please replace this import by
+
+import Mathlib.Order.RelClasses
+import Mathlib.Order.Interval.Set.Basic
+import Mathlib.Order.Bounds.Defs
+warning: FateWorld/FateV2/Core/MonoConv.lean:239:10: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:243:2: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.antitone`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:239:10: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:245:2: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.reach`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:241:2: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.f`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:264:8: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.approach`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:279:4: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.shift`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:292:8: The namespace `MonoConv` is duplicated in the declaration `FateV2.Core.MonoConv.MonoConv.bot_le_apply`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Core/MonoConv.lean:409:38: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: FateWorld/FateV2/Core/MonoConv.lean:574:0: 'FateV2.Core.MonoConv.nat_zero_le' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:575:0: 'FateV2.Core.MonoConv.nat_le_of_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:576:0: 'FateV2.Core.MonoConv.nat_le_of_not_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:577:0: 'FateV2.Core.MonoConv.nat_witness_point' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:578:0: 'FateV2.Core.MonoConv.nat_witness_ne_zero' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:579:0: 'FateV2.Core.MonoConv.ldiv_step' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:580:0: 'FateV2.Core.MonoConv.ldiv_zero_of_lt' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:581:0: 'FateV2.Core.MonoConv.ldiv_le_self' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:582:0: 'FateV2.Core.MonoConv.le_add_mul' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:583:0: 'FateV2.Core.MonoConv.le_mul_succ' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:584:0: 'FateV2.Core.MonoConv.lt_add_two' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:585:0: 'FateV2.Core.MonoConv.witness_bound' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:586:0: 'FateV2.Core.MonoConv.scaled_approach' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:587:0: 'FateV2.Core.MonoConv.natZero_zero' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:588:0: 'FateV2.Core.MonoConv.natZero_antitone' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:589:0: 'FateV2.Core.MonoConv.zero_add_one' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:590:0: 'FateV2.Core.MonoConv.mf_zero' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:591:0: 'FateV2.Core.MonoConv.mf_succ' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:592:0: 'FateV2.Core.MonoConv.const_fails_reach' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:593:0: 'FateV2.Core.MonoConv.bounded_fails_antitone' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:594:0: 'FateV2.Core.MonoConv.core_bound' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:595:0: 'FateV2.Core.MonoConv.ldiv_zero_at' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:596:0: 'FateV2.Core.MonoConv.natScaled_reach' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:597:0: 'FateV2.Core.MonoConv.no_bot_impossible' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:598:0: 'FateV2.Core.MonoConv.MonoConv.approach' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:599:0: 'FateV2.Core.MonoConv.MonoConv.bot_le_apply' does not depend on any axioms
+info: FateWorld/FateV2/Core/MonoConv.lean:600:0: 'FateV2.Core.MonoConv.BotApproach.approach' does not depend on any axioms
+⚠ [3107/3114] Replayed FateWorld.FateV2.Bridge.LawRuleBridge
+warning: FateWorld/FateV2/Bridge/LawRuleBridge.lean:85:34: Variable name `sem` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _sem
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3112/3118] Replayed FateWorld.FateV2.Rules.Classification
+warning: FateWorld/FateV2/Rules/Classification.lean:1460:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3113/3118] Replayed FateWorld.FateV2.Core.Pointwise
+warning: FateWorld/FateV2/Core/Pointwise.lean:389:5: Variable name `M` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _M
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8720/10487] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8732/10487] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8735/10487] Replayed FateWorld.FateV2.Predict.FinCondIndep
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:199:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_condRatio`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:270:8: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.swapXY_swapXY`:
+  [Fintype α]
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:287:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margXZ_swapXY`:
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:295:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margYZ_swapXY`:
+  [Fintype α]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:321:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_sym`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:339:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margZ_swapXY_def`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:436:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMul_of_factorization`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [8736/10487] Replayed FateWorld.FateV2.Predict.FinJoint
+warning: FateWorld/FateV2/Predict/FinJoint.lean:101:7: The namespace `FinJoint` is duplicated in the declaration `FateV2.Predict.FinJoint.FinJoint`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+⚠ [8740/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE3
+warning: FateWorld/FateV2/Error/ErrorBoundE3.lean:43:41: Variable name `hL` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hL
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBoundE3.lean:67:41: Variable name `hL` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hL
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: FateWorld/FateV2/Error/ErrorBoundE3.lean:88:0: 'FateV2.Error.Stage2.ErrorBoundE3.risk_lipschitz_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE3.lean:89:0: 'FateV2.Error.Stage2.ErrorBoundE3.risk_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE3.lean:90:0: 'FateV2.Error.Stage2.ErrorBoundE3.risk_model_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE3.lean:91:0: 'FateV2.Error.Stage2.ErrorBoundE3.risk_error_separable' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8741/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE4
+info: FateWorld/FateV2/Error/ErrorBoundE4.lean:76:0: 'FateV2.Error.Stage2.ErrorBoundE4.structural_error_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE4.lean:77:0: 'FateV2.Error.Stage2.ErrorBoundE4.structural_error_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE4.lean:78:0: 'FateV2.Error.Stage2.ErrorBoundE4.structural_error_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE4.lean:79:0: 'FateV2.Error.Stage2.ErrorBoundE4.structural_error_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8742/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE5
+warning: FateWorld/FateV2/Error/ErrorBoundE5.lean:56:27: Variable name `hL` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hL
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: FateWorld/FateV2/Error/ErrorBoundE5.lean:91:0: 'FateV2.Error.Stage2.ErrorBoundE5.weight_diff_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE5.lean:92:0: 'FateV2.Error.Stage2.ErrorBoundE5.weighted_sum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE5.lean:93:0: 'FateV2.Error.Stage2.ErrorBoundE5.distribution_shift_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8743/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE6
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:628:0: 'FateV2.Error.Stage0.ErrorBoundE6.IsContractionIn.one_sub_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:629:0: 'FateV2.Error.Stage0.ErrorBoundE6.IsContractionIn.k_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:630:0: 'FateV2.Error.Stage0.ErrorBoundE6.IsContractionIn.pow_le_one'' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:631:0: 'FateV2.Error.Stage0.ErrorBoundE6.le_mul_of_le_of_one_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:632:0: 'FateV2.Error.Stage0.ErrorBoundE6.le_zero_of_mul_le_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:633:0: 'FateV2.Error.Stage0.ErrorBoundE6.sub_le_of_abs_sub_le_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:634:0: 'FateV2.Error.Stage0.ErrorBoundE6.contraction_iterate_lipschitz' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:635:0: 'FateV2.Error.Stage0.ErrorBoundE6.iterate_fixed_point' depends on axioms: [propext, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:636:0: 'FateV2.Error.Stage0.ErrorBoundE6.contraction_iterate_to_fixed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:637:0: 'FateV2.Error.Stage0.ErrorBoundE6.contraction_apriori_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:638:0: 'FateV2.Error.Stage0.ErrorBoundE6.contraction_fixedpoint_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:641:0: 'FateV2.Error.Stage0.ErrorBoundE6.geom_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:642:0: 'FateV2.Error.Stage0.ErrorBoundE6.geom_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:643:0: 'FateV2.Error.Stage0.ErrorBoundE6.geom_sum_shrink_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:644:0: 'FateV2.Error.Stage0.ErrorBoundE6.perturbed_iterate_bound_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:645:0: 'FateV2.Error.Stage0.ErrorBoundE6.perturbed_iterate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:646:0: 'FateV2.Error.Stage0.ErrorBoundE6.perturbed_iterate_bound_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:647:0: 'FateV2.Error.Stage0.ErrorBoundE6.FloatingPointModel.abs_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:648:0: 'FateV2.Error.Stage0.ErrorBoundE6.lipschitz_norm_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:649:0: 'FateV2.Error.Stage0.ErrorBoundE6.floating_iterate_error_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE6.lean:650:0: 'FateV2.Error.Stage0.ErrorBoundE6.floating_iterate_error_bound_two_k' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8744/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE78
+warning: FateWorld/FateV2/Error/ErrorBoundE78.lean:47:59: Variable name `hL` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hL
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBoundE78.lean:48:29: Variable name `hδ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hδ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: FateWorld/FateV2/Error/ErrorBoundE78.lean:84:0: 'FateV2.Error.Stage2.ErrorBoundE78.prod_lipschitz_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE78.lean:85:0: 'FateV2.Error.Stage2.ErrorBoundE78.counterfactual_prod_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE78.lean:86:0: 'FateV2.Error.Stage2.ErrorBoundE78.encoding_diam_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE78.lean:87:0: 'FateV2.Error.Stage2.ErrorBoundE78.encoding_exact_at_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8747/10487] Replayed FateWorld.FateV2.Error.GaussMarkovScalarSymm
+info: FateWorld/FateV2/Error/GaussMarkovScalarSymm.lean:223:0: 'FateV2.Error.GaussMarkovScalarSymm.rao_blackwell_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/GaussMarkovScalarSymm.lean:224:0: 'FateV2.Error.GaussMarkovScalarSymm.condExp_unbiased' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/GaussMarkovScalarSymm.lean:225:0: 'FateV2.Error.GaussMarkovScalarSymm.rao_blackwell_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/GaussMarkovScalarSymm.lean:226:0: 'FateV2.Error.GaussMarkovScalarSymm.variance_const_fun' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/GaussMarkovScalarSymm.lean:227:0: 'FateV2.Error.GaussMarkovScalarSymm.symmetric_bound_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8750/10487] Replayed FateWorld.FateV2.Loop.MainLoop
+warning: FateWorld/FateV2/Loop/MainLoop.lean:146:56: Variable name `hk` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hk
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8751/10487] Replayed FateWorld.FateV2.Error.MonoConvReal
+info: FateWorld/FateV2/Error/MonoConvReal.lean:151:0: 'FateV2.Error.MonoConvReal.bound_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/MonoConvReal.lean:152:0: 'FateV2.Error.MonoConvReal.bound_limit_of_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/MonoConvReal.lean:153:0: 'FateV2.Error.MonoConvReal.bound_limit_of_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8752/10487] Replayed FateWorld.FateV2.Error.ObsEstSharp
+warning: FateWorld/FateV2/Error/ObsEstSharp.lean:244:41: Variable name `hLI` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hLI
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ObsEstSharp.lean:267:25: Variable name `hLI` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hLI
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8758/10487] Replayed FateWorld.FateV2.Loop.TauParametric
+warning: FateWorld/FateV2/Loop/TauParametric.lean:96:9: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Loop/TauParametric.lean:96:48: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8760/10487] Replayed FateWorld.FateV2.Model.TopoAssembly
+warning: FateWorld/FateV2/Model/TopoAssembly.lean:172:25: Variable name `eq` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _eq
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Model/TopoAssembly.lean:271:5: Variable name `hnd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hnd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8761/10487] Replayed FateWorld.FateV2.Modeling.Dissolve
+warning: FateWorld/FateV2/Modeling/Dissolve.lean:95:8: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8763/10487] Replayed FateWorld.FateV2.Modeling.Observation
+warning: FateWorld/FateV2/Modeling/Observation.lean:101:5: Variable name `hm` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hm
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Modeling/Observation.lean:101:32: Variable name `he` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _he
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8764/10487] Replayed FateWorld.FateV2.Predict.Intervene
+warning: FateWorld/FateV2/Predict/Intervene.lean:139:18: This simp argument is unused:
+  Option.getD_some
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/Intervene.lean:141:18: This simp argument is unused:
+  Option.getD_some
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/Intervene.lean:228:10: This simp argument is unused:
+  M
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [i]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8765/10487] Replayed FateWorld.FateV2.Rules.RuleSet
+warning: FateWorld/FateV2/Rules/RuleSet.lean:112:24: This simp argument is unused:
+  Support.empty
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [empty, support] at hx
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [8766/10487] Replayed FateWorld.FateV2.Rules.RebaseAbstract
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:142:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_base' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:143:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_gaze' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:200:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_pushfwd' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:215:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_injective' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:227:0: 'FateV2.Rules.RebaseAbstract.InvPair.pushfwd_base' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:228:0: 'FateV2.Rules.RebaseAbstract.InvPair.pushfwd_gaze' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:229:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_gaze_eq' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:263:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_comp' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:269:0: 'FateV2.Rules.RebaseAbstract.InvPair.pushfwd_comp' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:314:0: 'FateV2.Rules.RebaseAbstract.InvPair.pushAction' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:344:0: 'FateV2.Rules.RebaseAbstract.InvPair.ofEquiv' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:354:0: 'FateV2.Rules.RebaseAbstract.InvPair.toEquiv' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:364:0: 'FateV2.Rules.RebaseAbstract.InvPair.toEquiv_ofEquiv' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:374:0: 'FateV2.Rules.RebaseAbstract.InvPair.ofEquiv_toEquiv' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:385:0: 'FateV2.Rules.RebaseAbstract.InvPair.rebase_apply_abstract' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:409:0: 'FateV2.Rules.RebaseAbstract.rebase_eq_rebaseInvPair' does not depend on any axioms
+info: FateWorld/FateV2/Rules/RebaseAbstract.lean:428:0: 'FateV2.Rules.RebaseAbstract.rebase_apply_via_abstract' depends on axioms: [Quot.sound]
+⚠ [8770/10487] Replayed FateWorld.Legacy._root.CausDAG
+warning: FateWorld/Legacy/_root/CausDAG.lean:230:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8797/10487] Replayed FateWorld.FateV2.Modeling.T61MapKernel
+warning: FateWorld/FateV2/Modeling/T61MapKernel.lean:123:28: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [diracKernel]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8798/10487] Replayed FateWorld.FateV2.Predict.FrameBridge
+warning: FateWorld/FateV2/Predict/FrameBridge.lean:154:33: Variable name `hne` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hne
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8801/10487] Replayed FateWorld.FateV2.Predict.InterventionSharp
+warning: FateWorld/FateV2/Predict/InterventionSharp.lean:164:44: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Predict/InterventionSharp.lean:201:44: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Predict/InterventionSharp.lean:262:44: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [8805/10487] Building FateWorld.FateV2.Predict.MacroShiftsMicro (3.1s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Predict\MacroShiftsMicro.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\MacroShiftsMicro.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\MacroShiftsMicro.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\MacroShiftsMicro.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\MacroShiftsMicro.setup.json --json
+error: FateWorld/FateV2/Predict/MacroShiftsMicro.lean:86:0: invalid 'import' command, it must be used in the beginning of the file
+error: Lean exited with code 1
