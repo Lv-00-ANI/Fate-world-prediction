@@ -44,7 +44,7 @@
 | §4.3 反例 | `ceM` `ceM_edge` `ce_not_doGraph` `ce_doIn_holds` |
 | §5 对接 | `doInGraph_eq_delIn_adj` `doGraph_eq_delOut_adj` `doMap_shared_structure` |
 
-（全部位于 `Fate.R230` 命名空间内，`VecSCM.*` 在其中；本文件 `open Fate.R230`。）
+（全部位于 `FateV2.Predict.R230` 命名空间内，`VecSCM.*` 在其中；本文件 `open FateV2.Predict.R230`。）
 
 ---------------------------------------------------------------------------
 ⚠⚠ 同义反复自检（纪律 7：逐条核对「前件是否已把结论包进去」）
@@ -77,7 +77,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace T33DoGraphConsumer
 
-open Fate.R230
+open FateV2.Predict.R230
 
 universe u
 

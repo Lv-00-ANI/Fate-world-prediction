@@ -2,8 +2,8 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.EndToEndConvergeConsumer`
-任务：**【叶子接线 3】** 把 `Fate.EndToEndConverge`（22 定理，零消费者）
+模块：`FateV2.Loop.EndToEndConvergeConsumer`
+任务：**【叶子接线 3】** 把 `FateV2.Loop.EndToEndConverge`（22 定理，零消费者）
 接入主链的收敛链 `Fate.PipelineTendstoGen`（`pipelineNGen` / `gstep` / 收敛）。
 
 ===========================================================================
@@ -70,7 +70,7 @@ open FateV2.Modeling
 namespace EndToEndConvergeConsumer
 
 open FateV2.Loop.BoundWriteBack
-open Fate.EndToEndConverge
+open FateV2.Loop.EndToEndConverge
 open PipelineTendstoGen
 open Filter
 open scoped Topology
@@ -271,7 +271,7 @@ theorem pipelineStar_is_endToEnd_fixed (F η x : ℝ) (hxF : x * F = 1) (n : ℕ
 /-
 自检 1：**零 `sorry` / 零 `admit` / 零 `axiom` / 零 `?_`**。✅（两遍 `lake env lean` EXIT=0）
 
-自检 2：**不修改任何已有模块**。✅ 只 `import Fate.EndToEndConverge`、`Fate.PipelineTendstoGen`。
+自检 2：**不修改任何已有模块**。✅ 只 `import FateV2.Loop.EndToEndConverge`、`Fate.PipelineTendstoGen`。
 
 自检 3：**非同义反复**。逐条核查前件：
 - T1/T2a/T2b：前件 `x * F = 1`（结构条件，把 `φ` 与 `A` 焊成活逆）。

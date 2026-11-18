@@ -67,7 +67,7 @@ namespace View16
 open Finset
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization (mass unpin pa mem_pa)
-open Fate.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
+open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 universe u
 
@@ -277,12 +277,12 @@ theorem fibre_card_identity [Nonempty α] {A B Z : Finset V} (x : V → α)
     mass (A ∪ B ∪ Z) (fun _ => (1 : ℝ)) x * mass Z (fun _ => (1 : ℝ)) x
       = mass (A ∪ Z) (fun _ => (1 : ℝ)) x * mass (B ∪ Z) (fun _ => (1 : ℝ)) x := by
   -- 纤维和 `mass S 1 x` 就是 `S`-纤维的基数；由两两不交，`(A∪B∪Z)⊔Z` 与 `(A∪Z)⊔(B∪Z)` 计数相同
-  rw [Fate.GraphToProbView7.mass_one_card, Fate.GraphToProbView7.mass_one_card,
-      Fate.GraphToProbView7.mass_one_card, Fate.GraphToProbView7.mass_one_card]
+  rw [FateV2.Predict.GraphToProbView7.mass_one_card, FateV2.Predict.GraphToProbView7.mass_one_card,
+      FateV2.Predict.GraphToProbView7.mass_one_card, FateV2.Predict.GraphToProbView7.mass_one_card]
   -- 化为 |α|^(a) * |α|^(b) = |α|^(c) * |α|^(d)，其中 a+b = c+d（card_balance）
   rw [← pow_add, ← pow_add]
   -- 现在只需指数相等
-  have hbal := Fate.GraphToProbView7.card_balance A B Z hAB hAZ hBZ
+  have hbal := FateV2.Predict.GraphToProbView7.card_balance A B Z hAB hAZ hBZ
   congr 1
   -- 指数：|V| - #(A∪B∪Z) + (|V| - #Z) = |V| - #(A∪Z) + (|V| - #(B∪Z))
   -- 由 card_balance: #(A∪B∪Z) + #Z = #(A∪Z) + #(B∪Z)

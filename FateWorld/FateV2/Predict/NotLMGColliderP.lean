@@ -42,26 +42,26 @@ open FateV2.Modeling
 -- LMG 在 v = 0 处断言：p x * mass ∅ = mass {0} * mass ∅
 -- 代入：0 * 4 = 2 * 4 ⟹ 0 = 8 ⟹ 假
 theorem not_lmg_colliderP_chain :
-    ¬ Fate.FactorRecursionRouteB.LMG (Fate.ThreeNodeFactorizes.colliderP (α := Bool))
-        Fate.ThreeNodeFactorizes.chainDAG := by
+    ¬ FateV2.Predict.FactorRecursionRouteB.LMG (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
+        FateV2.Predict.ThreeNodeFactorizes.chainDAG := by
   intro h
   -- nd(0) 与 pa(0)
-  have hnd : FateV2.Modeling.Graph.DAG.nonDescendants Fate.ThreeNodeFactorizes.chainDAG
+  have hnd : FateV2.Modeling.Graph.DAG.nonDescendants FateV2.Predict.ThreeNodeFactorizes.chainDAG
       (0 : Fin 3) = ∅ := by decide
-  have hpa : Fate.DAGFactorization.pa Fate.ThreeNodeFactorizes.chainDAG (0 : Fin 3) = ∅ := by
+  have hpa : Fate.DAGFactorization.pa FateV2.Predict.ThreeNodeFactorizes.chainDAG (0 : Fin 3) = ∅ := by
     decide
   set x : Fin 3 → Bool := fun v => if v = 0 then false else if v = 2 then true else false with hx
   have key := h (0 : Fin 3) x
   simp only [hnd, hpa, Finset.union_empty] at key
   rw [Finset.insert_empty] at key
   -- key : p x * mass ∅ = mass {0} * mass ∅
-  rw [show Fate.ThreeNodeFactorizes.colliderP (α := Bool) x = 0 from
+  rw [show FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool) x = 0 from
       Fate.BridgeA4Fixed2.colliderP_x_zero,
     show Fate.DAGFactorization.mass (∅ : Finset (Fin 3))
-        (Fate.ThreeNodeFactorizes.colliderP (α := Bool)) x = 4 from
+        (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) x = 4 from
       Fate.BridgeA4Fixed2.mass_empty_colliderP,
     show Fate.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
-        (Fate.ThreeNodeFactorizes.colliderP (α := Bool)) x = 2 from
+        (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) x = 2 from
       Fate.BridgeA4Fixed2.mass_single_zero_colliderP] at key
   norm_num at key
 

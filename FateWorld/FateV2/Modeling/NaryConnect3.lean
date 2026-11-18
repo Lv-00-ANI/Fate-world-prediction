@@ -93,7 +93,7 @@ omit [MeasurableSpace γ] in
 omit [DecidableEq γ] in
 /-- ⭐⭐⭐ **(b)**: the single-coordinate numerator equals the marginal sum. -/
 theorem coordSet_real_eq_marg_sum
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (p : ((∀ j, fam j) × γ) → ℝ)
     (hp : ∀ w, 0 ≤ p w)
     (hlink : ∀ xs z, pN xs z = p (xs, z))
@@ -103,7 +103,7 @@ theorem coordSet_real_eq_marg_sum
     [_dec2 : DecidablePred (· ∈ (coordSet i ((Sf : Set (fam i)))
       : Set ((∀ j, fam j) × γ)))] :
     (weightedCountN p).real (coordSet i ((Sf : Set (fam i))) ∩ fiberN z)
-      = ∑ a ∈ Sf, Fate.GenC3.marg pN i a z := by
+      = ∑ a ∈ Sf, FateV2.Modeling.GenC3.marg pN i a z := by
   have hslices : ∀ w : (∀ j, fam j), ∀ z' : γ, z' ≠ z →
       (w, z') ∉ (coordSet i ((Sf : Set (fam i))) ∩ fiberN z) := by
     intro w z' hz' hmem

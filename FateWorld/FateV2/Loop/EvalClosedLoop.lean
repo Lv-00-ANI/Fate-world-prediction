@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.EvalClosedLoop`
+模块：`FateV2.Loop.EvalClosedLoop`
 任务：**【Y4】端到端最小可运行示例**（X7 重做，降低难度）。
 
 ===========================================================================
@@ -410,24 +410,24 @@ theorem errR_halves (n : ℕ) : errR (iterR (n + 1) theta0R) = (1 / 2) * errR (i
 
 /-! ### §7.1 公理核验（每一条定理只依赖 Lean 的三条标准公理） -/
 
-#print axioms Fate.EvalClosedLoop.iterQ_eq_iterate
-#print axioms Fate.EvalClosedLoop.corrects_predId
-#print axioms Fate.EvalClosedLoop.eta_window
-#print axioms Fate.EvalClosedLoop.halfQ_cast
-#print axioms Fate.EvalClosedLoop.stepQ_cast_stepR
-#print axioms Fate.EvalClosedLoop.iterQ_cast
-#print axioms Fate.EvalClosedLoop.errQ_cast
-#print axioms Fate.EvalClosedLoop.errR_tendsto_zero
-#print axioms Fate.EvalClosedLoop.errQ_tendsto_zero
-#print axioms Fate.EvalClosedLoop.errR_eventually_lt
-#print axioms Fate.EvalClosedLoop.iterQ_closed_form
-#print axioms Fate.EvalClosedLoop.iterQ_theta0
-#print axioms Fate.EvalClosedLoop.errR_rate
-#print axioms Fate.EvalClosedLoop.errR_mono
-#print axioms Fate.EvalClosedLoop.errR_strict_mono
-#print axioms Fate.EvalClosedLoop.closed_loop_instance
-#print axioms Fate.EvalClosedLoop.errR_pos
-#print axioms Fate.EvalClosedLoop.errR_halves
+#print axioms FateV2.Loop.EvalClosedLoop.iterQ_eq_iterate
+#print axioms FateV2.Loop.EvalClosedLoop.corrects_predId
+#print axioms FateV2.Loop.EvalClosedLoop.eta_window
+#print axioms FateV2.Loop.EvalClosedLoop.halfQ_cast
+#print axioms FateV2.Loop.EvalClosedLoop.stepQ_cast_stepR
+#print axioms FateV2.Loop.EvalClosedLoop.iterQ_cast
+#print axioms FateV2.Loop.EvalClosedLoop.errQ_cast
+#print axioms FateV2.Loop.EvalClosedLoop.errR_tendsto_zero
+#print axioms FateV2.Loop.EvalClosedLoop.errQ_tendsto_zero
+#print axioms FateV2.Loop.EvalClosedLoop.errR_eventually_lt
+#print axioms FateV2.Loop.EvalClosedLoop.iterQ_closed_form
+#print axioms FateV2.Loop.EvalClosedLoop.iterQ_theta0
+#print axioms FateV2.Loop.EvalClosedLoop.errR_rate
+#print axioms FateV2.Loop.EvalClosedLoop.errR_mono
+#print axioms FateV2.Loop.EvalClosedLoop.errR_strict_mono
+#print axioms FateV2.Loop.EvalClosedLoop.closed_loop_instance
+#print axioms FateV2.Loop.EvalClosedLoop.errR_pos
+#print axioms FateV2.Loop.EvalClosedLoop.errR_halves
 
 end EvalClosedLoop
 

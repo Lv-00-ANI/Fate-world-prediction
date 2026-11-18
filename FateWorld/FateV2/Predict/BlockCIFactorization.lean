@@ -21,7 +21,7 @@ import FateWorld.FateV2.Modeling.CondIndepGeneralNZ
   ```lean
   namespace FateV2.Predict.C5h
 
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -53,7 +53,7 @@ namespace FateV2.Predict.C5h
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -62,8 +62,8 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 theorem blockCI_of_factorization {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ)
     (hZX : Z ⊆ X)
@@ -77,7 +77,7 @@ theorem blockCI_of_factorization {ψ : V → (V → α) → ℝ} {p : (V → α)
     -- hcover : X ∪ Y ∪ Z = univ，且 (X ∪ Y) ∪ Z 就是 X ∪ Y ∪ Z（结合律）
     rw [← hunion, hcover]
   -- CondIndep p X Y Z
-  have hci := Fate.GraphToProbView7.condIndep_general ψ p hfac hread hsplit hXY hXZ hYZ hcover
+  have hci := FateV2.Predict.GraphToProbView7.condIndep_general ψ p hfac hread hsplit hXY hXZ hYZ hcover
   -- 用 BlockCIGeneralC
   exact Fate.C5g.blockCI_of_condIndep hXYuni hZX hci
 

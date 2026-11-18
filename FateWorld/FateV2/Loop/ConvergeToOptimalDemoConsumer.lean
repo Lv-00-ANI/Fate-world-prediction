@@ -2,8 +2,8 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ConvergeToOptimalDemoConsumer`
-任务：**【甲-批2 / P5】消费 `Fate.ConvergeToOptimalDemo`** ——
+模块：`FateV2.Loop.ConvergeToOptimalDemoConsumer`
+任务：**【甲-批2 / P5】消费 `FateV2.Loop.ConvergeToOptimalDemo`** ——
 把 Demo 的「1 维版本 2」结论接到**一般维数骨架**、**版本 1 的误差收敛**、
 以及**不动点 ⟺ 最优** 三条逻辑链上。
 
@@ -56,14 +56,14 @@
   是**独立前件**，不是结论的改写。
 * 零 `sorry` / `admit` / `axiom`。
 
-依赖：`Fate.ConvergeToOptimalDemo`、`Fate.WiringConvergence`（`Aid`/`Aid_injective`
+依赖：`FateV2.Loop.ConvergeToOptimalDemo`、`Fate.WiringConvergence`（`Aid`/`Aid_injective`
 来自 Demo；`errA` 来自 `BoundWriteBack`，经 `WiringConvergence` 已 `open`）。
 -/
 
 import FateWorld.FateV2.Loop.ConvergeToOptimalDemo
 open Filter
 open FateV2.Loop.BoundWriteBack
-open Fate.ConvergeToOptimalDemo
+open FateV2.Loop.ConvergeToOptimalDemo
 
 namespace FateV2.Loop
 

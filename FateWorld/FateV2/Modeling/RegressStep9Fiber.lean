@@ -80,22 +80,22 @@ theorem test_setIntegral_condExp_fixed [Fintype α] [Fintype β] [Fintype γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (t T : Set ((α × β) × γ)) (ht : MeasurableSet t)
     (hT : MeasurableSet[MeasurableSpace.comap
-      (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] T) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ∫ w in T, (Fate.FinMeasureBridge.weightedCount p)[t.indicator fun _ => (1:ℝ)
-        | MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] w
-        ∂(Fate.FinMeasureBridge.weightedCount p)
-      = ∫ w in T, t.indicator (fun _ => (1:ℝ)) w ∂(Fate.FinMeasureBridge.weightedCount p) := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
+      (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] T) :
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ∫ w in T, (FateV2.Modeling.FinMeasureBridge.weightedCount p)[t.indicator fun _ => (1:ℝ)
+        | MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] w
+        ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      = ∫ w in T, t.indicator (fun _ => (1:ℝ)) w ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p) := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   exact setIntegral_condExp
-    (m := MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
+    (m := MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
     (m₀ := inferInstance)
-    (μ := Fate.FinMeasureBridge.weightedCount p)
+    (μ := FateV2.Modeling.FinMeasureBridge.weightedCount p)
     (f := t.indicator fun _ => (1:ℝ)) (s := T)
-    (hm := MeasurableSpace.comap_le_iff_le_map.mpr Fate.FinCondIndepMeasure.measurable_projZ)
-    (hf := (integrable_const (μ := Fate.FinMeasureBridge.weightedCount p) (1:ℝ)).indicator ht)
+    (hm := MeasurableSpace.comap_le_iff_le_map.mpr FateV2.Modeling.FinCondIndepMeasure.measurable_projZ)
+    (hf := (integrable_const (μ := FateV2.Modeling.FinMeasureBridge.weightedCount p) (1:ℝ)).indicator ht)
     (hs := hT)
 
 /-! ## 1. 反例的组件（全部已证，无 sorry） -/
@@ -106,10 +106,10 @@ namespace FateV2.Modeling.Step9R1
 noncomputable def pBool : FateV2.Modeling.FiniteCondIndep.FinJoint Bool Unit Unit := fun _ => (1:ℝ)/2
 
 /-- `weightedCount pBool = 2⁻¹·δ_{true} + 2⁻¹·δ_{false}`。 -/
-theorem pBool_wc_eq : (Fate.FinMeasureBridge.weightedCount pBool)
+theorem pBool_wc_eq : (FateV2.Modeling.FinMeasureBridge.weightedCount pBool)
     = (2:ENNReal)⁻¹ • Measure.dirac ((true,()),())
       + (2:ENNReal)⁻¹ • Measure.dirac ((false,()),()) := by
-  simp only [Fate.FinMeasureBridge.weightedCount, pBool]
+  simp only [FateV2.Modeling.FinMeasureBridge.weightedCount, pBool]
   rw [Fintype.sum_bool]
   have h12 : ENNReal.ofReal (1/2 : ℝ) = (2:ENNReal)⁻¹ := by
     rw [show ((2:ENNReal)) = ENNReal.ofReal (2:ℝ) by norm_num]
@@ -122,7 +122,7 @@ theorem pBool_wc_eq : (Fate.FinMeasureBridge.weightedCount pBool)
 
 /-- ⭐ **关键结构事实**：`γ = Unit` 时 `projZ` 是常函数，故 `comap projZ = ⊥`。 -/
 theorem comap_projZ_unit_eq_bot :
-    (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (Bool × Unit) × Unit → Unit)
+    (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (Bool × Unit) × Unit → Unit)
       inferInstance) = ⊥ := by
   refine le_antisymm ?_ bot_le
   intro s hs
@@ -139,7 +139,7 @@ theorem comap_projZ_unit_eq_bot :
 
 /-- `weightedCount pBool` 是概率测度。 -/
 theorem pBool_isProbabilityMeasure :
-    IsProbabilityMeasure (Fate.FinMeasureBridge.weightedCount pBool) := by
+    IsProbabilityMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount pBool) := by
   constructor
   rw [pBool_wc_eq]
   rw [Measure.add_apply, Measure.smul_apply, Measure.smul_apply]
@@ -149,7 +149,7 @@ theorem pBool_isProbabilityMeasure :
 
 /-- 单点质量。 -/
 theorem pBool_singleton_true :
-    (Fate.FinMeasureBridge.weightedCount pBool) {((true,()),())} = (2:ENNReal)⁻¹ := by
+    (FateV2.Modeling.FinMeasureBridge.weightedCount pBool) {((true,()),())} = (2:ENNReal)⁻¹ := by
   rw [pBool_wc_eq]; simp [Measure.add_apply, Measure.smul_apply, smul_eq_mul]
 
 /-- ⭐⭐⭐ **题目原命题蕴涵 `False`**（故原命题**为假**）。
@@ -160,14 +160,14 @@ theorem pBool_singleton_true :
 theorem claim_implies_false
     (hclaim : ∀ (t T : Set ((Bool × Unit) × Unit)) (_ : MeasurableSet t)
         (_ : MeasurableSet T),
-      letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount pBool) :=
-        Fate.FinMeasureBridge.weightedCount_isFiniteMeasure pBool
-      ∫ w in T, (Fate.FinMeasureBridge.weightedCount pBool)[t.indicator fun _ => (1:ℝ)
+      letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount pBool) :=
+        FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure pBool
+      ∫ w in T, (FateV2.Modeling.FinMeasureBridge.weightedCount pBool)[t.indicator fun _ => (1:ℝ)
           | MeasurableSpace.comap
-            (Fate.FinCondIndepMeasure.projZ : (Bool × Unit) × Unit → Unit) inferInstance] w
-          ∂(Fate.FinMeasureBridge.weightedCount pBool)
+            (FateV2.Modeling.FinCondIndepMeasure.projZ : (Bool × Unit) × Unit → Unit) inferInstance] w
+          ∂(FateV2.Modeling.FinMeasureBridge.weightedCount pBool)
         = ∫ w in T, t.indicator (fun _ => (1:ℝ)) w
-          ∂(Fate.FinMeasureBridge.weightedCount pBool)) : False := by
+          ∂(FateV2.Modeling.FinMeasureBridge.weightedCount pBool)) : False := by
   have hmeas : MeasurableSet ({((true,()),())} : Set ((Bool × Unit) × Unit)) :=
     MeasurableSet.singleton _
   have hkey := hclaim {((true,()),())} {((true,()),())} hmeas hmeas

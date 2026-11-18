@@ -223,7 +223,7 @@ theorem no_toRule_of_not_isPoint (R : LawRule C X Y) (h : ¬ IsPoint R) :
 
   本节的每条定理都在**至少两个模块**之间建立非平凡联系 —— 不重述已有结论：
   1. `toRule_kernel_dirac_iff_extractable`：
-     `IsPoint` 上「`toRule` 抽出的核逐点是 Dirac」⟺ `Fate.LawRulePointExtract.IsDetExtractable`。
+     `IsPoint` 上「`toRule` 抽出的核逐点是 Dirac」⟺ `FateV2.Rules.LawRulePointExtract.IsDetExtractable`。
   2. `toRule_roundtrip_kernel`：`Rule ⟶ LawRule ⟶ Rule` 的核在往返后不变。
   3. `constRule_in_range_iff`：`LawRulePointDecidability.constRule` 落在
      `Rule.toLaw` 的像里 ⟺ 其基集是单点集。
@@ -248,7 +248,7 @@ variable {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
 theorem toRule_kernel_dirac_iff_extractable (R : LawRule C X Y) (h : IsPoint R) :
     (∃ f : C.Carrier → X.Carrier → Y.Carrier,
         ∀ c x, (toRule R h).kernel c x = Measure.dirac (f c x))
-      ↔ Fate.LawRulePointExtract.IsDetExtractable R := by
+      ↔ FateV2.Rules.LawRulePointExtract.IsDetExtractable R := by
   constructor
   · rintro ⟨f, hf⟩
     refine ⟨f, ?_⟩

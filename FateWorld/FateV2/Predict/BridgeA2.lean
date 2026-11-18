@@ -191,8 +191,8 @@ example (G : FateV2.Modeling.Graph.DAG V) (v : V) : v ∉ Fate.DAGFactorization.
 **说明**：`ParentMap.pa` 返回 `Set V`，故用 `¬ v ∈ pa G v` 表述。 -/
 theorem not_mem_pa_of_CausalGraph {W : Type u}
     (G : CausalDirection.CausalGraph W) (v : W) :
-    v ∉ Fate.ParentMap.pa G v := by
-  rw [Fate.ParentMap.mem_pa]
+    v ∉ FateV2.Predict.ParentMap.pa G v := by
+  rw [FateV2.Predict.ParentMap.mem_pa]
   exact G.irrefl v
 
 /-! ===========================================================================
@@ -264,7 +264,7 @@ theorem not_mem_pa_self_for_w {G : FateV2.Modeling.Graph.DAG V} {v w : V}
   与 `not_mem_pa_self_for_w`（二者都是 A2 的真下游）。 -/
 theorem pa_inter_nd_eq_pa (G : FateV2.Modeling.Graph.DAG V) (v : V) :
     Fate.DAGFactorization.pa G v ∩ G.nonDescendants v = Fate.DAGFactorization.pa G v :=
-  Finset.inter_eq_left.mpr (Fate.FactorRecursionRouteB.pa_subset_nonDescendants G v)
+  Finset.inter_eq_left.mpr (FateV2.Predict.FactorRecursionRouteB.pa_subset_nonDescendants G v)
 
 /-- **A2 与「`insert v (pa v)` 基数」的关系**：
 `|insert v (pa v)| = |pa v| + 1`（由 A2，`v` 是新增元素）。 -/

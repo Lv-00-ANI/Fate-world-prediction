@@ -116,8 +116,8 @@ theorem three_mem_parents_zero : (3 : Fin 4) ∈ forkDAG.parents 0 :=
 
 /-- 反例中 `3 ∈ readSetOf G 0`。 -/
 theorem three_mem_readSet_zero :
-    (3 : Fin 4) ∈ Fate.FactorizesToHyper.readSetOf forkDAG 0 :=
-  Fate.FactorizesToHyper.mem_readSetOf.mpr (Or.inr three_mem_parents_zero)
+    (3 : Fin 4) ∈ FateV2.Predict.FactorizesToHyper.readSetOf forkDAG 0 :=
+  FateV2.Predict.FactorizesToHyper.mem_readSetOf.mpr (Or.inr three_mem_parents_zero)
 
 /-- 反例中 `3 ∉ {0, 1, 2}`。 -/
 theorem three_not_mem :
@@ -126,14 +126,14 @@ theorem three_not_mem :
 
 /-- 反例中 `3 ∈ readSetOf G 3`（自身）。 -/
 theorem three_mem_readSet_three :
-    (3 : Fin 4) ∈ Fate.FactorizesToHyper.readSetOf forkDAG 3 :=
-  Fate.FactorizesToHyper.mem_readSetOf.mpr (Or.inl rfl)
+    (3 : Fin 4) ∈ FateV2.Predict.FactorizesToHyper.readSetOf forkDAG 3 :=
+  FateV2.Predict.FactorizesToHyper.mem_readSetOf.mpr (Or.inl rfl)
 
 /-- ⭐ **`hTail` 的结论在反例上失败**：`readSetOf G 3 ⊄ {2}`。
 
 `readSetOf G 3 = {3} ∪ pa(3) = {3}`，而 `3 ∉ {2}`。 -/
 theorem forkDAG_not_hTail :
-    ¬ Fate.FactorizesToHyper.readSetOf forkDAG (3 : Fin 4) ⊆ ({2} : Finset (Fin 4)) := by
+    ¬ FateV2.Predict.FactorizesToHyper.readSetOf forkDAG (3 : Fin 4) ⊆ ({2} : Finset (Fin 4)) := by
   intro hsub
   exact absurd (hsub three_mem_readSet_three) (by decide)
 
@@ -149,9 +149,9 @@ theorem forkDAG_not_hTail :
 theorem hTail_from_dSep_false :
     ¬ (∀ (G : FateV2.Modeling.Graph.DAG (Fin 4)) (X Y Z : Finset (Fin 4)),
         G.dSep X Y Z → ∀ v : Fin 4, v ∉ X ∪ Y ∪ Z →
-          Fate.FactorizesToHyper.readSetOf G v ⊆ Z) := by
+          FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z) := by
   intro h
-  have hsub : Fate.FactorizesToHyper.readSetOf forkDAG (3 : Fin 4)
+  have hsub : FateV2.Predict.FactorizesToHyper.readSetOf forkDAG (3 : Fin 4)
       ⊆ ({2} : Finset (Fin 4)) := by
     refine h forkDAG {0} {1} {2} forkDAG_dSep 3 ?_
     rw [show ({0} : Finset (Fin 4)) ∪ {1} ∪ {2} = {0, 1, 2} by decide]

@@ -45,14 +45,14 @@ theorem mass_self_insert {A : Finset V} {g : (V → α) → ℝ}
     (x : V → α) :
     Fate.DAGFactorization.mass A g x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card))
-        * g (Fate.GraphToProbView7.extEnd A x (fun u : ↥A => x u.1)) := by
-  rw [Fate.GraphToProbView7.mass_eq_card_mul_massA (A := A) (S := A)
+        * g (FateV2.Predict.GraphToProbView7.extEnd A x (fun u : ↥A => x u.1)) := by
+  rw [FateV2.Predict.GraphToProbView7.mass_eq_card_mul_massA (A := A) (S := A)
     (Finset.Subset.refl _) hg x x]
   congr 1
   rw [Finset.sum_eq_single (fun u : ↥A => x u.1)]
-  · simp [Fate.GraphToProbView7.sub]
+  · simp [FateV2.Predict.GraphToProbView7.sub]
   · intro b _ hb
-    simp only [Fate.GraphToProbView7.sub, Finset.mem_filter, Finset.mem_univ, true_and]
+    simp only [FateV2.Predict.GraphToProbView7.sub, Finset.mem_filter, Finset.mem_univ, true_and]
     have : ∃ u : ↥A, b u ≠ x u.1 := by
       by_contra h; push Not at h; exact hb (funext h)
     obtain ⟨u, hu⟩ := this
@@ -73,17 +73,17 @@ theorem mass_insert_corrected {h : V} {S : Finset V} (sh : h ∉ S)
   rw [mass_self_insert hgS x, mass_self_insert hgI x]
   -- 需证：|α|^(|V|-|S|) * g(extEnd S ...) = |α| * (|α|^(|V|-|insert h S|) * g(extEnd (insert h S) ...))
   have hcard : (insert h S).card = S.card + 1 := Finset.card_insert_of_notMem sh
-  have hg_eq : g (Fate.GraphToProbView7.extEnd S x (fun u : ↥S => x u.1))
-      = g (Fate.GraphToProbView7.extEnd (insert h S) x (fun u : ↥(insert h S) => x u.1)) := by
+  have hg_eq : g (FateV2.Predict.GraphToProbView7.extEnd S x (fun u : ↥S => x u.1))
+      = g (FateV2.Predict.GraphToProbView7.extEnd (insert h S) x (fun u : ↥(insert h S) => x u.1)) := by
     apply hins
     intro u hu
-    have e1 : Fate.GraphToProbView7.extEnd S x (fun u : ↥S => x u.1) u
+    have e1 : FateV2.Predict.GraphToProbView7.extEnd S x (fun u : ↥S => x u.1) u
         = (fun u : ↥S => x u.1) ⟨u, hu⟩ :=
-      Fate.GraphToProbView7.extEnd_of_mem S x (fun u : ↥S => x u.1) u hu
-    have e2 : Fate.GraphToProbView7.extEnd (insert h S) x
+      FateV2.Predict.GraphToProbView7.extEnd_of_mem S x (fun u : ↥S => x u.1) u hu
+    have e2 : FateV2.Predict.GraphToProbView7.extEnd (insert h S) x
         (fun u : ↥(insert h S) => x u.1) u
         = (fun u : ↥(insert h S) => x u.1) ⟨u, Finset.mem_insert_of_mem hu⟩ :=
-      Fate.GraphToProbView7.extEnd_of_mem (insert h S) x
+      FateV2.Predict.GraphToProbView7.extEnd_of_mem (insert h S) x
         (fun u : ↥(insert h S) => x u.1) u (Finset.mem_insert_of_mem hu)
     rw [e1, e2]
   rw [hg_eq, hcard]

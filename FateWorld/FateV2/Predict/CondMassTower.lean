@@ -61,7 +61,7 @@ open FateV2.Error
 open FateV2.Modeling
 namespace CondMassTower
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]
@@ -255,10 +255,10 @@ end FateV2.Predict
   `condMass_tower_add` 的前提**成立**，可真的应用并数值验证（§4.2）。
   =========================================================================== -/
 
-namespace Fate
+namespace FateV2.Predict
 namespace CondMassTower
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]
@@ -404,7 +404,7 @@ theorem condMass_eq_one_of_subset {S T : Finset V} {p : (V → α) → ℝ} {y :
 end CondMassTower
 namespace CondMassTower
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]

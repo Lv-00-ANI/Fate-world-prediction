@@ -39,7 +39,7 @@ $$\mathrm{isPrefix}\,S \;\Longrightarrow\; \forall v\in S,\ \mathrm{pa}_G(v)\sub
 
 $$\mathrm{isPrefix}\,S \;\Longrightarrow\; \mathrm{mass}\,S\,p\,x = \prod_{v\in S} f\,v\,x .$$
 
-**直接由原引擎 `Fate.Strategy11.peel_lower` 给出**（按 `S = lowerSet k` 展开）。
+**直接由原引擎 `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` 给出**（按 `S = lowerSet k` 展开）。
 本文件不改动引擎，只**换个用法**。
 
 ### 块 C：**纤维钉死**的乘积重排（`prod_pinned`，本文件的新核心）
@@ -116,11 +116,11 @@ LHS = 0，RHS = 1。
   `topoOrder` 前缀）。任意 `dSep`（非前缀分离集）**未**闭合 —— 这是**已知开放**。
   但与原文的差别是：本文件的**终点是真命题**（有 `hfac` 保真），
   原文的 S9 终点是**假命题**（§6 反例），且**退化**（VIEW20）。
-* `Factorizes p G ⟹ (∃f, LocalTo ∧ p = ∏ f)` 已在 `Fate.FactorMarkov.Factorizes`
+* `Factorizes p G ⟹ (∃f, LocalTo ∧ p = ∏ f)` 已在 `FateV2.Predict.FactorMarkov.Factorizes`
   定义中给出；本文件把它作为**显式前提的拆解**（`hloc`/`hfac`），
   **不**声称已由 `Factorizes` 自动展开（那只是 `∃` 消去 + `rintro`）。
 * `FactorNorm` 仍是**显式额外假设**（不归一载体上必须）；与
-  `Fate.FactorMarkov` 一致。
+  `FateV2.Predict.FactorMarkov` 一致。
 * **D1 是退化终点**（等价 `CondMulLike`），本文件仍给出它，是为了**回收**
   引擎的既有价值，**不**把它当成桥的终点。**桥的终点是 E1。**
 
@@ -141,7 +141,7 @@ namespace FateV2.Predict.Strategy11Fiber
 
 open FateV2.Modeling
 
-open Fate.DAGFactorization Fate.FactorMarkov
+open Fate.DAGFactorization FateV2.Predict.FactorMarkov
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -170,7 +170,7 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 
 /-- ⭐ **A1：拓扑前缀**。`S` 是某个 `lowerSet k` 时就叫前缀（= 祖先闭集的「切片」形态）。-/
 def isPrefix (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) : Prop :=
-  ∃ k : ℕ, S = Fate.Strategy11.lowerSet G k
+  ∃ k : ℕ, S = FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k
 
 /-- ⭐⭐ **A2：前缀对取父封闭（真用 `G.edge` + `topoOrder`）**。
 
@@ -183,7 +183,7 @@ theorem isPrefix_parent_closed {S : Finset V} (h : isPrefix G S) :
     ∀ v ∈ S, G.parents v ⊆ S := by
   obtain ⟨k, rfl⟩ := h
   intro v hv u hu
-  rw [Fate.Strategy11.mem_lowerSet] at hv ⊢
+  rw [FateV2.Predict.NonemptyFree2.Strategy11.mem_lowerSet] at hv ⊢
   exact lt_trans (G.topoOrder_lt u v (G.mem_parents.mp hu)) hv
 
 /-! ===========================================================================
@@ -199,7 +199,7 @@ theorem mass_prefix {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     [Nonempty V] (hnorm : FactorNorm f) {S : Finset V} (hS : isPrefix G S) :
     ∀ x, mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
-  exact Fate.Strategy11.peel_lower hloc hfac hnorm k
+  exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower hloc hfac hnorm k
 
 /-! ===========================================================================
   §3 **块 C：纤维钉死的乘积重排**（本文件的新核心；纯代数 + 父闭性）

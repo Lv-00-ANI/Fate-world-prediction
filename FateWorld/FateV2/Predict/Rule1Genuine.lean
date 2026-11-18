@@ -1114,7 +1114,7 @@ end MbadProof
 
 namespace Graph
 
-open Fate.GraphOps
+open FateV2.Predict.GraphOps
 open FateV2.Predict.CausalDirection
 open FateV2.Predict.CausalDescendant
 

@@ -150,7 +150,7 @@ theorem bridgeKernelValue_mul_fiberN
     have h' : ∀ᵐ a ∂(weightedCountN p),
         ((condExpKernel (Ω := (∀ i, fam i) × γ) (weightedCountN p)
           (MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance)) a).real t = ce a := hstep1
-    have hz := Fate.FinMeasureBridge.ae_iff_forall_or_zero (weightedCountN p)
+    have hz := FateV2.Modeling.FinMeasureBridge.ae_iff_forall_or_zero (weightedCountN p)
       (fun a => ((condExpKernel (Ω := (∀ i, fam i) × γ) (weightedCountN p)
         (MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance)) a).real t = ce a)
     rw [hz] at h'

@@ -106,7 +106,7 @@ theorem bridgeKernelStep1N
       (weightedCountN p)[s.indicator fun _ => 1
         | MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance] := by
   letI : IsFiniteMeasure (weightedCountN p) := weightedCountN_isFiniteMeasure p
-  exact Fate.BridgeProofStep3.condExpKernel_real_apply
+  exact FateV2.Modeling.BridgeProofStep3.condExpKernel_real_apply
     (inferInstance : MeasurableSpace ((∀ i, fam i) × γ))
     (weightedCountN p)
     (MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance)

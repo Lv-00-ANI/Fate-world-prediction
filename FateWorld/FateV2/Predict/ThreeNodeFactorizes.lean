@@ -21,7 +21,7 @@ import Mathlib.Tactic
   ## 任务（第 7 路）
 
   把三节点情形（链 / 分叉 / 撞子）与路线乙的因子分解
-  `Fate.FactorRecursionRouteB.Factorizes` **接起来**，
+  `FateV2.Predict.FactorRecursionRouteB.Factorizes` **接起来**，
   得到**具体图上的** `CondMul`。
 
   **⚠ 纪律**：
@@ -68,7 +68,7 @@ namespace ThreeNodeFactorizes
 
 open Finset
 open Fate.DAGFactorization
-open Fate.FactorRecursionRouteB (Factorizes)
+open FateV2.Predict.FactorRecursionRouteB (Factorizes)
 open FateV2.Predict.FinCondIndep (FinJoint CondMul)
 
 universe u

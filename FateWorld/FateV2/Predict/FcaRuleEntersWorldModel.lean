@@ -187,8 +187,8 @@ theorem dgToRichLaw_context_free {E : InstSpace} {M : Type*} {L : Type*}
 （允许集是 `{δ_y}`）。本定理**不**说 `liftRule` 是 `IsDirac`。 -/
 theorem liftRule_richCtx_isPoint {E : InstSpace}
     (a : E.Carrier → Rule (RichCtx F) F.X F.X) (e : E.Carrier) :
-    IsPoint (Fate.InstSpaceToLawRule.liftRule a e) :=
-  Fate.InstSpaceToLawRule.liftRule_isPoint a e
+    IsPoint (FateV2.Rules.InstSpaceToLawRule.liftRule a e) :=
+  FateV2.Rules.InstSpaceToLawRule.liftRule_isPoint a e
 
 /-! ===========================================================================
     §3  路 B（修正版）：`IsPoint` → `IsDirac` 的**真实**升级条件
@@ -337,7 +337,7 @@ theorem fca_rule_traj_succ {E : InstSpace} {M : Type*} {L : Type*}
 /-- ⭐⭐⭐⭐⭐ **【FCA 规则经 P0 桥驱动的世界模型轨迹（消费具名定理版）】**
 
 把 `R := dgToRichLaw D K c₀ attr interp` 代入 P0 的
-`Fate.RuleEntersWorldModel.trajGen_rule_eq_trajOfRichLaw`。
+`FateV2.Loop.RuleEntersWorldModel.trajGen_rule_eq_trajOfRichLaw`。
 
 **⚠ 非循环**：前件只有 `hDirac`；结论是两条独立定义的轨迹相等。
 **⚠ 与 §5 的关系**：两者是**同一命题**（都 `rfl`），本定理的额外价值在于
@@ -357,7 +357,7 @@ theorem fca_rule_drives_world_model_via_P0 {E : InstSpace} {M : Type*} {L : Type
         θ x₀ u ε a
       = trajOfRichLaw (@dgToRichLaw F instX E M L _ D K c₀ attr interp) hDirac
           θ x₀ u ε a :=
-  Fate.RuleEntersWorldModel.trajGen_rule_eq_trajOfRichLaw (F := F) instX _ hDirac
+  FateV2.Loop.RuleEntersWorldModel.trajGen_rule_eq_trajOfRichLaw (F := F) instX _ hDirac
     θ x₀ u ε a
 
 end

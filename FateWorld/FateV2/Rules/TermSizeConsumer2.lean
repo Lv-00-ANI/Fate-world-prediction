@@ -20,7 +20,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
 
   `Fate.TermSize` 给出可执行语法项 `Exec.Term`（`ℚ` / `EnvQ`）的规模度量
   `Term.size` 及 22 条结构性定理，但它是**叶子模块**（零消费者）。
-  本模块把它接入主链 `Fate.RuleSyntaxOps` 的四个算子。
+  本模块把它接入主链 `FateV2.Rules.RuleSyntaxOps` 的四个算子。
 
   ## 核心连接方式（为什么这是「真连接」，且强于 v1）
 
@@ -84,7 +84,7 @@ namespace RuleSyntax
 namespace Exec
 namespace TermSizeConsumer2
 
-open Fate.RuleSyntaxOps
+open FateV2.Rules.RuleSyntaxOps
 
 /-! ## §0  可执行镜像算子的定义 -/
 

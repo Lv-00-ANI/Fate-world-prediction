@@ -90,7 +90,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -151,26 +151,26 @@ theorem extIn_of_mem (A : Finset V) (x : V → α) (wA : ↥A → α) (v : V) (h
 
 /-- ⭐ `P_out = ∏ v ∈ outSet A, ψ v` 在 `merge` 上等于在 `extOut` 上（只读 `outSet A`）。 -/
 theorem Pout_eq {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (x : V → α) (wA : ↥A → α) (wt : ↥(outSet A) → α) :
     (∏ v ∈ outSet A, ψ v (merge A wA wt)) = (∏ v ∈ outSet A, ψ v (extOut A x wt)) := by
   refine pout_reads_out hread hOut (merge A wA wt) (extOut A x wt) fun u hu => ?_
   have huA : u ∉ A := by
-    unfold Fate.View19.outSet at hu
+    unfold FateV2.Predict.View19.outSet at hu
     exact (Finset.mem_filter.mp hu).2
   have e1 : merge A wA wt u
-      = wt ⟨u, by unfold Fate.View19.outSet; exact Finset.mem_filter.mpr ⟨Finset.mem_univ u, huA⟩⟩ :=
+      = wt ⟨u, by unfold FateV2.Predict.View19.outSet; exact Finset.mem_filter.mpr ⟨Finset.mem_univ u, huA⟩⟩ :=
     merge_mem_out (A := A) (wA := wA) (wt := wt) ⟨u, hu⟩
   have e2 : extOut A x wt u
-      = wt ⟨u, by unfold Fate.View19.outSet; exact Finset.mem_filter.mpr ⟨Finset.mem_univ u, huA⟩⟩ := by
+      = wt ⟨u, by unfold FateV2.Predict.View19.outSet; exact Finset.mem_filter.mpr ⟨Finset.mem_univ u, huA⟩⟩ := by
     simp only [extOut, dif_neg huA]
   rw [e1, e2]
 
 /-- ⭐ `P_A = ∏ v ∈ A, ψ v` 在 `merge` 上等于在 `extIn` 上
 （需 `A` 内读集落在 `A` 内：`∀ v ∈ A, R v ⊆ A`）。 -/
 theorem PA_eq_extIn {A : Finset V} {x : V → α} {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hInA : ∀ v ∈ A, R v ⊆ A)
     (wA : ↥A → α) (wt : ↥(outSet A) → α) :
     (∏ v ∈ A, ψ v (merge A wA wt)) = (∏ v ∈ A, ψ v (extIn A x wA)) := by
@@ -214,7 +214,7 @@ mass S p x
 theorem mass_eq_PA_sum_decomp {A S : Finset V} (hSA : S ⊆ A)
     {ψ : V → (V → α) → ℝ} {R : V → Finset V} {p : (V → α) → ℝ}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (x : V → α) :
     Fate.DAGFactorization.mass S p x
@@ -265,7 +265,7 @@ mass S p x * N  =  mass S (∏ v ∈ A, ψ v) x * (∑ wt, ∏ v ∈ outSet A, �
 theorem mass_eq_PA_mul_Pout_mul_card {A S : Finset V} (hSA : S ⊆ A)
     {ψ : V → (V → α) → ℝ} {R : V → Finset V} {p : (V → α) → ℝ}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hInA : ∀ v ∈ A, R v ⊆ A)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (x : V → α) :

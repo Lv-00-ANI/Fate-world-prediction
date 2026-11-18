@@ -115,7 +115,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -265,7 +265,7 @@ theorem mass_separable_A {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V �
       = (∏ v ∈ A, ψ v x)
         * (∑ t : ({u : V // u ∉ A} → α), ∏ v ∈ outSet A, ψ v (glue A x t)) := by
   classical
-  rw [Fate.View19.mass_eq_sum_glue A (fun w => ∏ v, ψ v w) x]
+  rw [FateV2.Predict.View19.mass_eq_sum_glue A (fun w => ∏ v, ψ v w) x]
   have hstep : ∀ t : ({u : V // u ∉ A} → α),
       (∏ v, ψ v (glue A x t))
         = (∏ v ∈ A, ψ v x) * (∏ v ∈ outSet A, ψ v (glue A x t)) := by

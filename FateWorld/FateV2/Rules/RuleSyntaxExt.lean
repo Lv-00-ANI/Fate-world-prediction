@@ -18,8 +18,8 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
 
   ## 本模块做什么
 
-  乙-1 的 `Fate.RuleSyntax.RuleTerm` 覆盖：变量 / 等式 / 不等式 / 算术 / 复合；
-  乙-2 第 1 件 `Fate.RuleSyntaxOps` 在其上给出四算子 `α / γ / υ / ∘`。
+  乙-1 的 `FateV2.Rules.RuleSyntax.RuleTerm` 覆盖：变量 / 等式 / 不等式 / 算术 / 复合；
+  乙-2 第 1 件 `FateV2.Rules.RuleSyntaxOps` 在其上给出四算子 `α / γ / υ / ∘`。
 
   `_audit/IR-1-规则CIC语法层.md` 的对照表登记了三项**未覆盖**要素：
 
@@ -102,7 +102,7 @@ open FateV2.Model
 open FateV2.Modeling
 namespace RuleSyntaxExt
 
-open Fate.RuleSyntax
+open FateV2.Rules.RuleSyntax
 /- `LawRule` 活在下游命名空间 `Fate.LawRule` 内（与 `RuleSyntax.lean:51` 一致）。 -/
 open FateV2.Rules.LawRule
 

@@ -173,8 +173,7 @@ end FateV2.Rules
   故其前件只有 `dep`、`init`、`suppressed` 三个自由参数 —— **不预设结论**。
   =========================================================================== -/
 
-namespace Fate
-
+namespace FateV2.Rules
 namespace RuleActivation
 
 universe u
@@ -286,8 +285,7 @@ theorem readSet_closure_subset_closure_of_dep_weaker {dep dep' : R → R → Pro
 
 end RuleActivation
 
-end Fate
-
+end FateV2.Rules
 /-! ### §3.6 全限定路径别名（供跨模块检索） -/
 
 namespace RuleReadSetBridge
@@ -298,7 +296,7 @@ namespace RuleReadSetBridge
 **⟹ 命题内容与 §3.1 完全相同，不含新数学；仅为接线可检出性而设的显式别名。** -/
 theorem closure_eq_readSet_closure' (dep : R → R → Prop) (I S : Set R) :
     FateV2.Rules.RuleActivation.closure (⟨dep, I, S⟩ : FateV2.Rules.RuleActivation.Activation R)
-      = Fate.RuleReadSet.Activation.closure dep I :=
+      = FateV2.Rules.RuleReadSet.Activation.closure dep I :=
   FateV2.Rules.RuleActivation.closure_eq_readSet_closure dep I S
 
 /-- **依赖链见证的全限定别名**（⋂₀ 闭包成员 ⟹ 存在 `init` 出发的 `dep` 链）。 -/
@@ -350,8 +348,7 @@ end RuleReadSetBridge
     且 R5 的左侧（`closedSets` 成员）与右侧（祖先闭包等于自身）**定义不同**。
   =========================================================================== -/
 
-namespace Fate
-
+namespace FateV2.Rules
 namespace RuleActivation
 
 universe v
@@ -435,4 +432,4 @@ theorem mem_closedSets_iff_ancestralSet_eq {G : CausalDirection.CausalGraph V} (
 
 end RuleActivation
 
-end Fate
+end FateV2.Rules

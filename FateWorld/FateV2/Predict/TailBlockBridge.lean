@@ -33,7 +33,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -57,7 +57,7 @@ theorem sum_eq_massA {A S : Finset V} (hSA : S ⊆ A) {ψ : V → (V → α) →
 /-- mass S p x = Pout(x) * (massA * c) -/
 theorem mass_eq_Pout_massA {A S Z : Finset V} (hSA : S ⊆ A) (hZS : Z ⊆ S)
     {ψ : V → (V → α) → ℝ} {R : V → Finset V} {p : (V → α) → ℝ}
-    (hfac : ∀ w, p w = ∏ v, ψ v w) (hread : Fate.View19.ReadSet ψ R)
+    (hfac : ∀ w, p w = ∏ v, ψ v w) (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v ⊆ Z)
     (hPA : ∀ w w', (∀ u ∈ A, w u = w' u) → (∏ v ∈ A, ψ v w) = (∏ v ∈ A, ψ v w'))
     (x : V → α) :
@@ -96,11 +96,11 @@ theorem sub_union_eq_sub_A {A X Y Z : Finset V} (hX : X ⊆ A) (hY : Y ⊆ A) (h
 theorem condIndep_tail_block {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ Z)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   classical
   intro x
   set A := X ∪ Y ∪ Z with hA

@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.EndToEndBoundFixed
 
 /-! ===========================================================================
   §0  `FillGapStrong` —— 把 `endToEnd_distance_to_optimum` 的 `hfix` 前件
-      换成**可验证**的 `hpred` 前件（第 59 轮，承 `Fate.FillGap`）
+      换成**可验证**的 `hpred` 前件（第 59 轮，承 `FateV2.Loop.FillGap`）
 
   ## 0.1 背景（审计的纠正）
 
@@ -125,7 +125,7 @@ noncomputable section
 
 **⚠ 本引理**不需要** `η ≠ 0`、不需要 `φ` 单射、不需要 `NoZeroDivisors`**：
 `endToEnd_fixed` 是**定义性**的（残差为零 ⟹ 写回为零），
-这比 `Fate.FillGap.fixed_of_predicts_exactly`（需单射）**更宽**，
+这比 `FateV2.Loop.FillGap.fixed_of_predicts_exactly`（需单射）**更宽**，
 故本文件主定理走这条路。 -/
 theorem endToEnd_eq_self_of_hpred (W : WorldModel) [AddCommGroup W.frame.X.Carrier]
     [Ring W.frame.Θ.Carrier]
@@ -140,10 +140,10 @@ theorem endToEnd_eq_self_of_hpred (W : WorldModel) [AddCommGroup W.frame.X.Carri
 
 /-- ⭐⭐ **【桥 2】`η ≠ 0` 且 `φ` 单射时：`hpred` ⟺ 不动点。**
 
-`⟸` 用 `Fate.FillGap.fixed_of_predicts_exactly`；
-`⟹` 用 `Fate.FillGap.fixed_iff_phi_resid_zero`（不动 ⟹ 残差经 `φ` 为零）+ 单射。
+`⟸` 用 `FateV2.Loop.FillGap.fixed_of_predicts_exactly`；
+`⟹` 用 `FateV2.Loop.FillGap.fixed_iff_phi_resid_zero`（不动 ⟹ 残差经 `φ` 为零）+ 单射。
 
-**⚠ 与主定理的语境差异**：`Fate.FillGap` 的两条核心定理需要 `Ring` + `NoZeroDivisors`，
+**⚠ 与主定理的语境差异**：`FateV2.Loop.FillGap` 的两条核心定理需要 `Ring` + `NoZeroDivisors`，
 与主定理用的 `SeminormedRing` 不并存（instance diamond，见 `EndToEndBoundFixed` §3.4 同款说明），
 故本引理在 `Ring` 语境下**单独**陈述，**不**用于主定理 —— 主定理只需单向（桥 1）。 -/
 theorem hpred_iff_fixed (W : WorldModel) [AddCommGroup W.frame.X.Carrier]
@@ -158,12 +158,12 @@ theorem hpred_iff_fixed (W : WorldModel) [AddCommGroup W.frame.X.Carrier]
       ↔ FateV2.Loop.EndToEnd.predFrom W θ u ε a x = FateV2.Loop.EndToEnd.observe h y := by
   constructor
   · intro hfix
-    rw [Fate.FillGap.fixed_iff_phi_resid_zero W h η φ y θ u ε a x hη] at hfix
+    rw [FateV2.Loop.FillGap.fixed_iff_phi_resid_zero W h η φ y θ u ε a x hη] at hfix
     have hz : FateV2.Loop.EndToEnd.observe h y - FateV2.Loop.EndToEnd.predFrom W θ u ε a x = 0 :=
       hφ (by rw [hfix, map_zero])
     exact (sub_eq_zero.mp hz).symm
   · intro hpred
-    exact Fate.FillGap.fixed_of_predicts_exactly W h η φ hφ y θ u ε a x hη hpred
+    exact FateV2.Loop.FillGap.fixed_of_predicts_exactly W h η φ hφ y θ u ε a x hη hpred
 
 /-! ===========================================================================
     §2  ⭐⭐⭐ **主结论**：`hfix` → `hpred`

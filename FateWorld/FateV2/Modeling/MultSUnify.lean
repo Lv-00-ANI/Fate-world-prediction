@@ -44,7 +44,7 @@ import FateWorld.FateV2.Predict.TowerExactLaw
 namespace FateV2.Modeling.C6c
 
 open FateV2.Predict
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 
@@ -55,7 +55,7 @@ theorem multS_eq_card_pow (S : Finset V) (x : V → α) :
   rw [Finset.sum_boole]
   have h1 : (Finset.univ.filter (fun w : V → α => ∀ u ∈ S, w u = x u)).card
       = Fintype.card α ^ (Fintype.card V - S.card) := by
-    rw [← Fate.GraphToProbView7.card_subtype_fib S x]
+    rw [← FateV2.Predict.GraphToProbView7.card_subtype_fib S x]
     exact (Fintype.card_subtype (fun w : V → α => ∀ u ∈ S, w u = x u)).symm
   rw [h1]
   push_cast

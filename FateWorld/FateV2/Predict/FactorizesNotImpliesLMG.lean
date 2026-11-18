@@ -46,15 +46,15 @@ open FateV2.Modeling
 -- 取 x 满足 x0 = x2（全 false）
 -- 验证三个值
 theorem p_x_one :
-    Fate.ThreeNodeFactorizes.colliderP (α := Bool)
+    FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)
       (fun _ : Fin 3 => false) = 1 := by
-  unfold Fate.ThreeNodeFactorizes.colliderP; rfl
+  unfold FateV2.Predict.ThreeNodeFactorizes.colliderP; rfl
 
 theorem mass_two_all_false :
     Fate.DAGFactorization.mass ({2} : Finset (Fin 3))
-      (Fate.ThreeNodeFactorizes.colliderP (α := Bool))
+      (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
       (fun _ : Fin 3 => false) = 2 := by
-  have h1 : ∀ w : Fin 3 → Bool, Fate.ThreeNodeFactorizes.colliderP (α := Bool) w
+  have h1 : ∀ w : Fin 3 → Bool, FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool) w
       = if w 0 = w 2 then (1 : ℝ) else 0 := fun w => rfl
   simp only [Fate.DAGFactorization.mass, h1, Finset.mem_singleton, forall_eq]
   -- 目标已是 if x 2 = false then ..., 无需化简
@@ -69,9 +69,9 @@ theorem mass_two_all_false :
 
 theorem mass_pair_all_false :
     Fate.DAGFactorization.mass ({0, 2} : Finset (Fin 3))
-      (Fate.ThreeNodeFactorizes.colliderP (α := Bool))
+      (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
       (fun _ : Fin 3 => false) = 2 := by
-  have h1 : ∀ w : Fin 3 → Bool, Fate.ThreeNodeFactorizes.colliderP (α := Bool) w
+  have h1 : ∀ w : Fin 3 → Bool, FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool) w
       = if w 0 = w 2 then (1 : ℝ) else 0 := fun w => rfl
   simp only [Fate.DAGFactorization.mass, h1]
   have key : ∀ w : Fin 3 → Bool,
@@ -93,19 +93,19 @@ theorem mass_pair_all_false :
 -- 在 v = 0 处：pa(0) = ∅、nd(0) = {2}，LMG 断言 p x * mass {2} = mass {0,2} * mass {2}
 -- 代入 1 * 2 = 2 * 2 ⟹ 2 = 4 ⟹ 假
 theorem not_lmg_colliderP_colliderDAG :
-    ¬ Fate.FactorRecursionRouteB.LMG (Fate.ThreeNodeFactorizes.colliderP (α := Bool))
-        Fate.ThreeNodeFactorizes.colliderDAG := by
+    ¬ FateV2.Predict.FactorRecursionRouteB.LMG (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
+        FateV2.Predict.ThreeNodeFactorizes.colliderDAG := by
   intro h
-  have hnd : Fate.ThreeNodeFactorizes.colliderDAG.nonDescendants (0 : Fin 3)
+  have hnd : FateV2.Predict.ThreeNodeFactorizes.colliderDAG.nonDescendants (0 : Fin 3)
       = ({2} : Finset (Fin 3)) := by decide
-  have hpa : Fate.DAGFactorization.pa Fate.ThreeNodeFactorizes.colliderDAG (0 : Fin 3) = ∅ := by
+  have hpa : Fate.DAGFactorization.pa FateV2.Predict.ThreeNodeFactorizes.colliderDAG (0 : Fin 3) = ∅ := by
     decide
   have key := h (0 : Fin 3) (fun _ : Fin 3 => false)
   simp only [hnd, hpa, Finset.union_empty] at key
   rw [p_x_one,
     mass_two_all_false,
     show Fate.DAGFactorization.mass (insert (0 : Fin 3) ({2} : Finset (Fin 3)))
-        (Fate.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false)
+        (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false)
         = 2 from by
       rw [show (insert (0 : Fin 3) ({2} : Finset (Fin 3))) = ({0, 2} : Finset (Fin 3)) from by decide]
       exact mass_pair_all_false] at key
@@ -117,13 +117,13 @@ theorem not_lmg_colliderP_colliderDAG :
 --       却不满足 LMG（上一条）
 theorem factorizes_not_implies_LMG :
     ¬ (∀ {G : FateV2.Modeling.Graph.DAG (Fin 3)},
-        Fate.FactorRecursionRouteB.Factorizes
-          (Fate.ThreeNodeFactorizes.colliderP (α := Bool)) G →
-        Fate.FactorRecursionRouteB.LMG
-          (Fate.ThreeNodeFactorizes.colliderP (α := Bool)) G) := by
+        FateV2.Predict.FactorRecursionRouteB.Factorizes
+          (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) G →
+        FateV2.Predict.FactorRecursionRouteB.LMG
+          (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) G) := by
   intro h
   exact not_lmg_colliderP_colliderDAG
-    (h (G := Fate.ThreeNodeFactorizes.colliderDAG)
-       (Fate.ThreeNodeFactorizes.colliderP_factorizes Bool))
+    (h (G := FateV2.Predict.ThreeNodeFactorizes.colliderDAG)
+       (FateV2.Predict.ThreeNodeFactorizes.colliderP_factorizes Bool))
 
 end FateV2.Predict.Witness

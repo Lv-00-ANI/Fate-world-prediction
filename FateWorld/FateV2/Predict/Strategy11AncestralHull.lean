@@ -70,7 +70,7 @@ open FateV2.Modeling
 
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -277,23 +277,23 @@ theorem condIndep_of_ancClosed {p : (V → α) → ℝ} {f : V → (V → α) �
   intro x
   rw [mass_ancClosed hloc hfac hnorm hXYZ x, mass_ancClosed hloc hfac hnorm hXZ x,
       mass_ancClosed hloc hfac hnorm hYZ x, mass_ancClosed hloc hfac hnorm hZ x]
-  exact Fate.View20.prod_split3 (fun v => f v x) X Y Z hXY hXZ' hYZ'
+  exact FateV2.Predict.View20.prod_split3 (fun v => f v x) X Y Z hXY hXZ' hYZ'
 
 /-- ⭐ **祖先闭 ⟹ 父闭**：`lowerSet`（拓扑前缀）都是父闭的。
 
 ⟹ 前作 `Strategy11FiberPinned.prefix_dSep_condIndep` 的**全部假设**都是本文件
 `condIndep_of_ancClosed` 假设的**特例**，故本文件的终点**严格更强**。 -/
 theorem lowerSet_ancClosed (k : ℕ) :
-    AncClosed G (Fate.Strategy11.lowerSet G k) := by
+    AncClosed G (FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) := by
   intro v hv
-  rw [Fate.Strategy11.mem_lowerSet] at hv
+  rw [FateV2.Predict.NonemptyFree2.Strategy11.mem_lowerSet] at hv
   intro u hu
-  rw [Fate.Strategy11.mem_lowerSet]
+  rw [FateV2.Predict.NonemptyFree2.Strategy11.mem_lowerSet]
   exact lt_trans (G.topoOrder_lt u v (G.mem_parents.mp hu)) hv
 
 /-- ⭐ 更一般：**前缀（`∃ k, S = lowerSet k`）都是父闭的**。 -/
 theorem isPrefix_ancClosed {S : Finset V}
-    (h : ∃ k, S = Fate.Strategy11.lowerSet G k) : AncClosed G S := by
+    (h : ∃ k, S = FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) : AncClosed G S := by
   obtain ⟨k, rfl⟩ := h
   exact lowerSet_ancClosed k
 
@@ -442,7 +442,7 @@ theorem hullSeparable_not_strictly_stronger_than_disjoint (v : V) :
   * `blob` / `subset_blob` / `mem_blob` / `blob_ancClosed`（本文件 §1）
   * `mass_ancClosed` / `condIndep_of_ancClosed` / `lowerSet_ancClosed`
     / `ancClosed_mem_ancestor`（本文件 §2–§4）
-  * `Fate.Strategy11.lowerSet` / `lowerSet_ancClosed`（本文件 §3；
+  * `FateV2.Predict.NonemptyFree2.Strategy11.lowerSet` / `lowerSet_ancClosed`（本文件 §3；
     与 `Strategy11FiberPinned` A1 的 `isPrefix` 是**同一个谓词**，仅命名不同）
 
   ## 非平凡性核查（防同义反复）
@@ -517,7 +517,7 @@ theorem mass_blob {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
 **展开后的同一谓词**陈述，结论用本文件的 `lowerSet_ancClosed`（§3）。 -/
 
 theorem isPrefix_ancClosed_of_exists {S : Finset V}
-    (h : ∃ k : ℕ, S = Fate.Strategy11.lowerSet G k) : AncClosed G S := by
+    (h : ∃ k : ℕ, S = FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) : AncClosed G S := by
   obtain ⟨k, rfl⟩ := h
   exact lowerSet_ancClosed k
 
@@ -553,12 +553,12 @@ theorem blob_subset_self_of_ancClosed {A : Finset V} (hA : AncClosed G A) :
   §9  R-15（续）：**跨模块**接线 —— `Strategy11TopoPrefix` × `Strategy11AncestralHull`
 
   §8 的接口全在**本文件内部**（`blob` ↔ `mass_ancClosed`）。本节补上真正的
-  **跨模块**接线：`Strategy11AncestralHull` 通过已有 `import Fate.Strategy11TopoPrefix`
+  **跨模块**接线：`Strategy11AncestralHull` 通过已有 `import FateV2.Predict.NonemptyFree2.Strategy11TopoPrefix`
   消费对方的两条独立引擎。
 
   ## 为什么这是「真接线」而不是重复
 
-  * `Fate.Strategy11.peel_lower`（`Strategy11TopoPrefix`）用**下行归纳**
+  * `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower`（`Strategy11TopoPrefix`）用**下行归纳**
     （从 `k = topN` 往下降，每次剥一个拓扑层）。
   * `mass_ancClosed`（本文件 §2）用**强归纳 on `|Aᶜ|`**（每次剥 `Aᶜ` 的最低点）。
   * 两条引擎**证明结构完全不同**，都输出 `mass S p x = ∏_{v∈S} f v x`。
@@ -577,9 +577,9 @@ theorem blob_subset_self_of_ancClosed {A : Finset V} (hA : AncClosed G A) :
 theorem mass_lowerSet_via_ancClosed [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x) (hnorm : FactorNorm f)
     (k : ℕ) (x : V → α) :
-    mass (Fate.Strategy11.lowerSet G k) p x
-      = ∏ v ∈ Fate.Strategy11.lowerSet G k, f v x :=
-  Fate.Strategy11.peel_lower hloc hfac hnorm k x
+    mass (FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) p x
+      = ∏ v ∈ FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k, f v x :=
+  FateV2.Predict.NonemptyFree2.Strategy11.peel_lower hloc hfac hnorm k x
 
 /-! ### §9.2  ⭐ 两条独立引擎一致：`peel_lower`（下行）× `mass_ancClosed`（强归纳）
 
@@ -587,7 +587,7 @@ theorem mass_lowerSet_via_ancClosed [Nonempty V] {p : (V → α) → ℝ} {f : V
 本定理把「同一个数」用**两条不同引擎**各算一遍并证明结果相同。 -/
 
 theorem lowerSet_blob_eq (k : ℕ) :
-    blob G (Fate.Strategy11.lowerSet G k) = Fate.Strategy11.lowerSet G k :=
+    blob G (FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) = FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k :=
   Finset.Subset.antisymm
     (blob_subset_of_ancClosed (lowerSet_ancClosed k) (Finset.Subset.refl _))
     (subset_blob _)
@@ -595,8 +595,8 @@ theorem lowerSet_blob_eq (k : ℕ) :
 theorem two_engines_agree [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x) (hnorm : FactorNorm f)
     (k : ℕ) (x : V → α) :
-    mass (Fate.Strategy11.lowerSet G k) p x
-      = mass (blob G (Fate.Strategy11.lowerSet G k)) p x := by
+    mass (FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) p x
+      = mass (blob G (FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k)) p x := by
   rw [lowerSet_blob_eq]
 
 /-! ### §9.3  前缀上的前缀仍是前缀：`lowerSet` 与 `topN` 的边界情形
@@ -605,9 +605,9 @@ theorem two_engines_agree [Nonempty V] {p : (V → α) → ℝ} {f : V → (V �
 （`mass_univ`，`rfl` 级），与 `hfac` 直接给出乘积 —— 另一条独立校验。 -/
 
 theorem mass_lowerSet_of_topN_le [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hfac : ∀ x, p x = ∏ v, f v x) {k : ℕ} (hk : Fate.Strategy11.topN G ≤ k)
+    (hfac : ∀ x, p x = ∏ v, f v x) {k : ℕ} (hk : FateV2.Predict.NonemptyFree2.Strategy11.topN G ≤ k)
     (x : V → α) :
-    mass (Fate.Strategy11.lowerSet G k) p x = ∏ v, f v x := by
-  rw [Fate.Strategy11.lowerSet_of_topN_le hk, mass_univ, hfac x]
+    mass (FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k) p x = ∏ v, f v x := by
+  rw [FateV2.Predict.NonemptyFree2.Strategy11.lowerSet_of_topN_le hk, mass_univ, hfac x]
 
 end FateV2.Predict.Strategy11Hull

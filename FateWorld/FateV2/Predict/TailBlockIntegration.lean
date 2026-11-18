@@ -43,7 +43,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 

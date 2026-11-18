@@ -41,7 +41,7 @@ import FateWorld.FateV2.Loop.EndToEndUnconditionalQ
 
   ## 2  ⚠ 诚实边界（必读，含一次设计纠错）
 
-  * **§1 的 `thetaNQ` 来自 `Fate.EndToEndUnconditionalQ`（复用，不重定义）**，
+  * **§1 的 `thetaNQ` 来自 `FateV2.Loop.EndToEndUnconditionalQ`（复用，不重定义）**，
     本文件只**新增**不同参数组合的 `#eval`，**不重复**该文件已有的 6 个。
   * **§2 的设计纠错（如实记录）**：我最初想用 `fstepQ η 0 θ = θ` 镜像 `x = 0` 支，
     **这是错的** —— `fstepQ η θ* θ = (1-η)θ + ηθ*`，只有 `η = 0` 或 `θ = 0`
@@ -83,7 +83,7 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace EndToEndUnconditionalEval
 
-open Fate.EndToEndUnconditionalQ (fstepQ thetaNQ)
+open FateV2.Loop.EndToEndUnconditionalQ (fstepQ thetaNQ)
 
 /-! ===========================================================================
   §1  `thetaNQ` 的**新增**边界结论（对应非退化支 `x ≠ 0`）

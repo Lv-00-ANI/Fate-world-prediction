@@ -47,7 +47,7 @@ import FateWorld.FateV2.Predict.FactorizesToHyper
 namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 universe u
 
 set_option warn.classDefReducibility false
@@ -85,12 +85,12 @@ theorem ceDAG_dSep : ceDAG.dSep {0} {1} {2} := by decide
 -- 检验 hTail 失败：v = 3 ∉ A = {0,1,2}
 theorem ceDAG_hTail_false :
     ¬ (∀ v : Fin 4, v ∉ ({0,1,2} : Finset (Fin 4)) →
-        Fate.FactorizesToHyper.readSetOf ceDAG v ⊆ ({2} : Finset (Fin 4))) := by
+        FateV2.Predict.FactorizesToHyper.readSetOf ceDAG v ⊆ ({2} : Finset (Fin 4))) := by
   intro h
   have h3 : (3 : Fin 4) ∉ ({0,1,2} : Finset (Fin 4)) := by decide
   have hsub := h 3 h3
-  have hmem : (3 : Fin 4) ∈ Fate.FactorizesToHyper.readSetOf ceDAG 3 := by
-    unfold Fate.FactorizesToHyper.readSetOf
+  have hmem : (3 : Fin 4) ∈ FateV2.Predict.FactorizesToHyper.readSetOf ceDAG 3 := by
+    unfold FateV2.Predict.FactorizesToHyper.readSetOf
     simp
   have := hsub hmem
   exact absurd this (by decide)

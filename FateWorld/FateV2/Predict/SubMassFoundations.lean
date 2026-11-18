@@ -68,7 +68,7 @@ theorem mass_const (S : Finset V) (c : ℝ) (x : V → α) :
     rw [Finset.mul_sum]
     refine Finset.sum_congr rfl fun w _ => ?_
     by_cases hh : ∀ u ∈ S, w u = x u <;> simp [hh]
-  rw [hc, Fate.GraphToProbView7.mass_one_card]
+  rw [hc, FateV2.Predict.GraphToProbView7.mass_one_card]
   ring
 
 -- mass_indep_outside（已证）

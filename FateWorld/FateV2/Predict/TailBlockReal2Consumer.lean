@@ -51,7 +51,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -106,11 +106,11 @@ theorem union_swap_XYZ (X Y Z : Finset V) :
 theorem condIndep_tail_block_real_symm [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ X ∪ Y ∪ Z → R v \ {v} ⊆ outSet (X ∪ Y ∪ Z))
     (hsplitA : ∀ v, v ∈ X ∪ Y ∪ Z → R v ⊆ X ∪ Z ∨ R v ⊆ Y ∪ Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p Y X Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p Y X Z := by
   refine condIndep_tail_block_real hfac hread ?_ ?_ (Disjoint.symm hXY) hYZ hXZ
   · -- `hOut`：`v ∉ Y ∪ X ∪ Z` 时，由 `union_swap_XYZ` 得 `v ∉ X ∪ Y ∪ Z`
     intro v hv
@@ -134,11 +134,11 @@ theorem condIndep_tail_block_real_symm [Nonempty α] {ψ : V → (V → α) → 
 theorem condIndep_tail_block_real_strong [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOutS : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ outSet (X ∪ Y ∪ Z))
     (hsplitA : ∀ v, v ∈ X ∪ Y ∪ Z → R v ⊆ X ∪ Z ∨ R v ⊆ Y ∪ Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_block_real hfac hread
     (fun v hv => Finset.Subset.trans Finset.sdiff_subset (hOutS v hv))
     hsplitA hXY hXZ hYZ
@@ -154,11 +154,11 @@ theorem condIndep_tail_block_real_strong [Nonempty α] {ψ : V → (V → α) �
 theorem condIndep_tail_block_real_univ [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hcover : X ∪ Y ∪ Z = (Finset.univ : Finset V))
     (hsplitA : ∀ v, v ∈ X ∪ Y ∪ Z → R v ⊆ X ∪ Z ∨ R v ⊆ Y ∪ Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   refine condIndep_tail_block_real hfac hread ?_ hsplitA hXY hXZ hYZ
   intro v hv
   rw [hcover] at hv
@@ -175,11 +175,11 @@ theorem condIndep_tail_block_real_univ [Nonempty α] {ψ : V → (V → α) → 
 theorem condIndep_tail_block_real_one_side [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ X ∪ Y ∪ Z → R v \ {v} ⊆ outSet (X ∪ Y ∪ Z))
     (hsplitL : ∀ v, v ∈ X ∪ Y ∪ Z → R v ⊆ X ∪ Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_block_real hfac hread hOut
     (fun v hv => Or.inl (hsplitL v hv)) hXY hXZ hYZ
 
@@ -192,7 +192,7 @@ end FateV2.Predict.GraphToProbView7
 
   本轮盘点：`Fate/Tail*.lean` 共 19 个模块。按**命名空间口径**
   （`grep "Fate\.TailX\.\w+"`）全族外部引用 **0 次**；但这是假象 ——
-  Tail 系大量声明落在**共享命名空间** `FateV2.Predict.GraphToProbView7` / `Fate.View19`
+  Tail 系大量声明落在**共享命名空间** `FateV2.Predict.GraphToProbView7` / `FateV2.Predict.View19`
   里，故 `grep "Fate\.TailBlockBridge\.\w+"` 恒为 0，而
   `TailFromDSepIntegration` 事实上在消费 `condIndep_tail_block`。
   （双模式核验见报告 §1。）
@@ -318,7 +318,7 @@ theorem condIndep_tail_block_real_of_split [Nonempty α]
     (hOut : ∀ v, v ∉ X ∪ Y ∪ Z → R v \ {v} ⊆ View19.outSet (X ∪ Y ∪ Z))
     (hsplit : View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_block_real hfac hread hOut (split_implies_hsplitA hsplit)
     hXY hXZ hYZ
 
@@ -331,7 +331,7 @@ theorem condIndep_tail_block_strong_split [Nonempty α]
     (hOutS : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ View19.outSet (X ∪ Y ∪ Z))
     (hsplit : View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_block_real_strong hfac hread hOutS (split_implies_hsplitA hsplit)
     hXY hXZ hYZ
 
@@ -346,7 +346,7 @@ theorem condIndep_tail_block_univ_split [Nonempty α]
     (hcover : X ∪ Y ∪ Z = (Finset.univ : Finset V))
     (hsplit : View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_block_real_univ hfac hread hcover (split_implies_hsplitA hsplit)
     hXY hXZ hYZ
 
@@ -367,7 +367,7 @@ theorem condIndep_both_orientations_strong [Nonempty α]
     (hOutS : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ View19.outSet (X ∪ Y ∪ Z))
     (hsplit : View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z ∧ Fate.FactorMarkov.CondIndep p Y X Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z ∧ FateV2.Predict.FactorMarkov.CondIndep p Y X Z :=
   ⟨condIndep_tail_block_strong_split hfac hread hOutS hsplit hXY hXZ hYZ,
    condIndep_tail_block_real_symm hfac hread
      (fun v hv => by

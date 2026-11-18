@@ -606,12 +606,12 @@ theorem linWorld_limsup_from_P {P : Measure ℝ} [IsProbabilityMeasure P]
     (hr : r = |1 - η|) (hr1 : r < 1)
     (x' : ℕ → ℝ) (hdrift : ∀ k, ‖x' k - x' (k + 1)‖ ≤ noiseDrift P n) :
     limsup (fun N : ℕ =>
-        ‖Fate.AssemblyLearnsScratch.mulCLM x
-          (noisyIter (Fate.AssemblyLearnsScratch.mulCLM x)
-            (Fate.AssemblyLearnsScratch.invLM x) η x' N θ) - x' N‖) atTop
+        ‖FateV2.Loop.AssemblyLearnsScratch.mulCLM x
+          (noisyIter (FateV2.Loop.AssemblyLearnsScratch.mulCLM x)
+            (FateV2.Loop.AssemblyLearnsScratch.invLM x) η x' N θ) - x' N‖) atTop
       ≤ ChainBudgetBound.sigmaSteady η (noiseDrift P n) :=
   layer1_limsup_from_P hP n hn _ _ η hr hr1
-    (Fate.AssemblyLearnsScratch.corrects_mulCLM_invLM x hx) x' θ hdrift
+    (FateV2.Loop.AssemblyLearnsScratch.corrects_mulCLM_invLM x hx) x' θ hdrift
 
 end LinWorldInstance
 

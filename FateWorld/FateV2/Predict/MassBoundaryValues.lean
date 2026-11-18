@@ -56,7 +56,7 @@ theorem b_empty (p : (V → α) → ℝ) (x : V → α) : mass ∅ p x = ∑ w, 
 -- 3. mass S 1 x = |α|^(|V| - |S|)   （S = univ 时 = 1）
 theorem b_one (S : Finset V) (x : V → α) :
     mass S (fun _ => (1 : ℝ)) x = ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) :=
-  Fate.GraphToProbView7.mass_one_card S x
+  FateV2.Predict.GraphToProbView7.mass_one_card S x
 
 -- 4. mass univ 1 x = 1
 theorem b_one_univ (x : V → α) : mass univ (fun _ => (1 : ℝ)) x = 1 := by

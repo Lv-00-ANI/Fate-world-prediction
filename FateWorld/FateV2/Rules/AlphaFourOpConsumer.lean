@@ -273,7 +273,7 @@ theorem enc_image_alpha_fixed (e : Inst2.Carrier) :
         K3.takeConcept (enc3.toAttrs (embed2 e)) := by
   have hc : K3.IsClosedAttr (K3.takeConcept (enc3.toAttrs (embed2 e))) :=
     FateV2.Rules.FormalCtx.takeConcept_isClosed (K := K3) _
-  exact ⟨hc, (Fate.AlphaInstance.WiringFixed.alpha_upsilon_same_fixed_set.1 _).mp hc⟩
+  exact ⟨hc, (FateV2.Rules.AlphaInstance.WiringFixed.alpha_upsilon_same_fixed_set.1 _).mp hc⟩
 
 /-- ⭐⭐ **编码值上的 α 取值 + ∘ 吸收同时成立**。
 
@@ -289,11 +289,11 @@ theorem enc_one_alpha_and_comb :
       combClosure (toAttrs3 (1 : ℝ)) BAB = BAB := by
   constructor
   · show K3.takeConcept (toAttrs3 (1 : ℝ)) = BAB
-    rw [toAttrs3_one, Fate.AlphaInstance.takeConcept_eq_ab]
+    rw [toAttrs3_one, FateV2.Rules.AlphaInstance.takeConcept_eq_ab]
   · show K3.closureOp (toAttrs3 (1 : ℝ) ∪ BAB) = BAB
     rw [toAttrs3_one, Set.union_self]
     show K3.takeConcept BAB = BAB
-    exact Fate.AlphaInstance.takeConcept_eq_ab
+    exact FateV2.Rules.AlphaInstance.takeConcept_eq_ab
 
 /-- ⭐⭐ **商上的 α 值落在四算子的不动点集内**（`Fate.Alpha` 的商 ⟶ 四算子）。
 
@@ -308,8 +308,8 @@ theorem quotient_alpha_is_four_op_fixed (q : Quotient eqv2) :
     K3.alphaOnQuotient enc3 embed2 eqv2 enc3_respects q = BA ∧
       alphaK BA = BA ∧
       alphaK BA = alphaK (alphaK BA) := by
-  refine ⟨Fate.AlphaInstance.alphaOnQuotient_instance q,
-    Fate.AlphaInstance.takeConcept_eq_a, ?_⟩
+  refine ⟨FateV2.Rules.AlphaInstance.alphaOnQuotient_instance q,
+    FateV2.Rules.AlphaInstance.takeConcept_eq_a, ?_⟩
   show K3.takeConcept BA = K3.takeConcept (K3.takeConcept BA)
   rw [takeConcept_eq_a]
   exact takeConcept_eq_a.symm
@@ -324,9 +324,9 @@ theorem quotient_alpha_is_four_op_fixed (q : Quotient eqv2) :
 （结论不在其中）；结论是**具体集合等式**，需两次独立调用。 -/
 theorem enc_one_chain_collapses (st : Step) (rest : List Step) :
     runChain (st :: rest) (toAttrs3 (1 : ℝ)) = BAB := by
-  rw [Fate.AlphaInstance.WiringFixed.alpha_chain_collapses]
+  rw [FateV2.Rules.AlphaInstance.WiringFixed.alpha_chain_collapses]
   show K3.takeConcept (toAttrs3 (1 : ℝ)) = BAB
-  rw [toAttrs3_one, Fate.AlphaInstance.takeConcept_eq_ab]
+  rw [toAttrs3_one, FateV2.Rules.AlphaInstance.takeConcept_eq_ab]
 
 /-- ⭐⭐ **编码值上的蕴含判定为真**（`Models` ⟷ α 包含 + 真值）。
 
@@ -343,12 +343,12 @@ theorem enc_one_models_and_subset :
       (alphaK BA ⊆ alphaK (toAttrs3 (1 : ℝ))) := by
   have hkey : alphaK BA ⊆ alphaK (toAttrs3 (1 : ℝ)) := by
     show K3.takeConcept BA ⊆ K3.takeConcept (toAttrs3 (1 : ℝ))
-    rw [toAttrs3_one, Fate.AlphaInstance.takeConcept_eq_a,
-      Fate.AlphaInstance.takeConcept_eq_ab]
+    rw [toAttrs3_one, FateV2.Rules.AlphaInstance.takeConcept_eq_a,
+      FateV2.Rules.AlphaInstance.takeConcept_eq_ab]
     intro m hm
     rw [show m = (0 : M2) from by simpa using hm]
     simp [BAB]
-  exact ⟨Fate.AlphaInstance.WiringFixed.alphaK_models_iff, hkey⟩
+  exact ⟨FateV2.Rules.AlphaInstance.WiringFixed.alphaK_models_iff, hkey⟩
 
 /-- ⭐ **编码值上的 γ 侧三角幂等**（从 `alpha_four_operator_summary` 取出第 3 项）。
 
@@ -362,8 +362,8 @@ $$\alpha\,\gamma\,\alpha\,(\text{enc-attrs}) = \alpha\,(\text{enc-attrs})$$
 theorem enc_one_gamma_triple_idem :
     K3.alphaFCA (K3.gammaFCA (K3.alphaFCA (toAttrs3 (1 : ℝ)))) =
       K3.alphaFCA (toAttrs3 (1 : ℝ)) :=
-  (Fate.AlphaInstance.WiringFixed.alpha_four_operator_summary (Fate.AlphaInstance.toAttrs3 (1 : ℝ))
-    (∅ : Set K3.MFCA) (Fate.AlphaInstance.toAttrs3 (1 : ℝ))).2.2.1
+  (FateV2.Rules.AlphaInstance.WiringFixed.alpha_four_operator_summary (FateV2.Rules.AlphaInstance.toAttrs3 (1 : ℝ))
+    (∅ : Set K3.MFCA) (FateV2.Rules.AlphaInstance.toAttrs3 (1 : ℝ))).2.2.1
 
 end WiringFixed
 end AlphaInstance

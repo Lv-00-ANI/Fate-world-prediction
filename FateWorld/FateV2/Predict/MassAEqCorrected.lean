@@ -45,7 +45,7 @@ import FateWorld.FateV2.Predict.TailOutExtract
 namespace FateV2.Predict.C6b
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 

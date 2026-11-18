@@ -49,7 +49,7 @@ theorem not_mem_nonDesc_self (G : FateV2.Modeling.Graph.DAG V) (v : V) : v ∉ G
 
 /-- **V10-G3**：`pa v ⊆ nd v`（引用已证的 G1 判定）。 -/
 theorem pa_subset_nonDesc (G : FateV2.Modeling.Graph.DAG V) (v : V) : pa G v ⊆ G.nonDescendants v :=
-  Fate.FactorRecursionRouteB.pa_subset_nonDescendants G v
+  FateV2.Predict.FactorRecursionRouteB.pa_subset_nonDescendants G v
 
 /-- **V10-G4**：`v ∉ pa v`。 -/
 theorem not_mem_pa_self' (G : FateV2.Modeling.Graph.DAG V) (v : V) : v ∉ pa G v := not_mem_pa_self G v

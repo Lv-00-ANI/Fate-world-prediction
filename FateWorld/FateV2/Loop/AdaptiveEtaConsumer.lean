@@ -38,7 +38,7 @@ import FateWorld.FateV2.Loop.EndToEndUnconditionalEval
   ## 诚实边界
 
   - 零 `?_` / `sorry` / `axiom` / `native_decide`
-  - 定理体真的引用了 `Fate.PipelineAdaptiveEta.thetaN_adaptive_tendsto`
+  - 定理体真的引用了 `FateV2.Loop.PipelineAdaptiveEta.thetaN_adaptive_tendsto`
   =========================================================================== -/
 
 namespace FateV2.Loop
@@ -54,13 +54,13 @@ namespace AdaptiveEtaConsumer
 
 证明：直接 `apply` 该定理，三个前件用 `norm_num` 消去。
 
-**⚠ 这条定理体里出现了 `Fate.PipelineAdaptiveEta.thetaN_adaptive_tendsto`，
+**⚠ 这条定理体里出现了 `FateV2.Loop.PipelineAdaptiveEta.thetaN_adaptive_tendsto`，
 所以 `PipelineAdaptiveEta` 是**真消费**（不是仅 import）。** -/
 theorem adaptive_half_tendsto (θstar θ₀ : ℝ) :
     Filter.Tendsto
-      (fun n => Nat.rec θ₀ (fun k ih => Fate.PipelineAdaptiveEta.fstepN (fun _ => 1 / 2) θstar k ih) n)
+      (fun n => Nat.rec θ₀ (fun k ih => FateV2.Loop.PipelineAdaptiveEta.fstepN (fun _ => 1 / 2) θstar k ih) n)
       Filter.atTop (nhds θstar) := by
-  apply Fate.PipelineAdaptiveEta.thetaN_adaptive_tendsto (fun _ => 1 / 2) θstar θ₀ (1 / 2)
+  apply FateV2.Loop.PipelineAdaptiveEta.thetaN_adaptive_tendsto (fun _ => 1 / 2) θstar θ₀ (1 / 2)
   · norm_num
   · norm_num
   · intro k
@@ -69,9 +69,9 @@ theorem adaptive_half_tendsto (θstar θ₀ : ℝ) :
 /-- ⭐⭐ **【`eta = 1/4` 时的变步长收敛】**（第二个实例，`c = 3/4`） -/
 theorem adaptive_quarter_tendsto (θstar θ₀ : ℝ) :
     Filter.Tendsto
-      (fun n => Nat.rec θ₀ (fun k ih => Fate.PipelineAdaptiveEta.fstepN (fun _ => 1 / 4) θstar k ih) n)
+      (fun n => Nat.rec θ₀ (fun k ih => FateV2.Loop.PipelineAdaptiveEta.fstepN (fun _ => 1 / 4) θstar k ih) n)
       Filter.atTop (nhds θstar) := by
-  apply Fate.PipelineAdaptiveEta.thetaN_adaptive_tendsto (fun _ => 1 / 4) θstar θ₀ (3 / 4)
+  apply FateV2.Loop.PipelineAdaptiveEta.thetaN_adaptive_tendsto (fun _ => 1 / 4) θstar θ₀ (3 / 4)
   · norm_num
   · norm_num
   · intro k
@@ -111,21 +111,21 @@ def adaptiveIterQ (eta : ℕ → ℚ) (thetaStar theta0 : ℚ) : ℕ → ℚ
 变步长 `eta ≡ 0` 时，`fstepN` 迭代等于恒等。
 
 **⚠ 这条定理体里同时出现了**
-`Fate.EndToEndUnconditionalEval.iterZero_const` 和 `Fate.PipelineAdaptiveEta.fstepN`，
+`FateV2.Loop.EndToEndUnconditionalEval.iterZero_const` 和 `FateV2.Loop.PipelineAdaptiveEta.fstepN`，
 所以两个模块都被**真消费**（不是仅 import）。** -/
 theorem eval_rateQ_half_consumed :
-    Fate.EndToEndUnconditionalEval.rateQ (1 / 2) = 1 / 2 :=
-  Fate.EndToEndUnconditionalEval.rateQ_half
+    FateV2.Loop.EndToEndUnconditionalEval.rateQ (1 / 2) = 1 / 2 :=
+  FateV2.Loop.EndToEndUnconditionalEval.rateQ_half
 
 /-- ⭐⭐ **【`rateQ (1/4) = 3/4`（真消费）】** -/
 theorem eval_rateQ_quarter_consumed :
-    Fate.EndToEndUnconditionalEval.rateQ (1 / 4) = 3 / 4 :=
-  Fate.EndToEndUnconditionalEval.rateQ_quarter
+    FateV2.Loop.EndToEndUnconditionalEval.rateQ (1 / 4) = 3 / 4 :=
+  FateV2.Loop.EndToEndUnconditionalEval.rateQ_quarter
 
 /-- ⭐ **【`fstepQ 1 θ* θ₀ = θ*`（真消费）】** -/
 theorem eval_fstepQ_eta_one_consumed (θstar θ₀ : ℚ) :
-    Fate.EndToEndUnconditionalQ.fstepQ 1 θstar θ₀ = θstar :=
-  Fate.EndToEndUnconditionalEval.fstepQ_eta_one θstar θ₀
+    FateV2.Loop.EndToEndUnconditionalQ.fstepQ 1 θstar θ₀ = θstar :=
+  FateV2.Loop.EndToEndUnconditionalEval.fstepQ_eta_one θstar θ₀
 
 /-! ## 真消费 `EndToEndWithRulesNegative`（R921 建议 3 的第三个模块） -/
 
@@ -133,13 +133,13 @@ theorem eval_fstepQ_eta_one_consumed (θstar θ₀ : ℚ) :
 
 这是 `EndToEndWithRulesNegative.oneRule_kernel_apply` 的直接引用。
 
-**⚠ 定理体里出现了 `Fate.EndToEndWithRulesNegative.oneRule_kernel_apply`，
+**⚠ 定理体里出现了 `FateV2.Loop.EndToEndWithRulesNegative.oneRule_kernel_apply`，
 所以 `EndToEndWithRulesNegative` 被**真消费**（不是仅 import）。** -/
 theorem oneRule_kernel_is_dirac (c : FateV2.Loop.ThetaConvergence.linWorld.ctx.Carrier)
     (x : FateV2.Loop.ThetaConvergence.linWorld.frame.X.Carrier) :
     (FateV2.Loop.ThetaConvergence.oneRule.kernel c x : MeasureTheory.Measure FateV2.Loop.ThetaConvergence.linWorld.frame.X.Carrier)
       = MeasureTheory.Measure.dirac x :=
-  Fate.EndToEndWithRulesNegative.oneRule_kernel_apply c x
+  FateV2.Loop.EndToEndWithRulesNegative.oneRule_kernel_apply c x
 
 /-- ⭐ **【`linWorld` 的 kernel 忽略 θ（真消费）】** -/
 theorem linWorld_kernel_ignores_theta_consumed
@@ -157,28 +157,28 @@ theorem linWorld_kernel_ignores_theta_consumed
 这是 `EndToEndSelectorNotConstant.exists_selector_not_constant` 的直接引用：
 某个 selector 的 `select` 在 `x = true` 与 `x = false` 处返回值不同。
 
-**⚠ 定理体里出现了 `Fate.EndToEndSelectorNotConstant.exists_selector_not_constant`，
+**⚠ 定理体里出现了 `FateV2.Loop.EndToEndSelectorNotConstant.exists_selector_not_constant`，
 所以 `EndToEndSelectorNotConstant` 被**真消费**。** -/
 theorem selector_depends_on_x :
-    ∃ S : FateV2.Predict.Selector Fate.EndToEndSelectorNotConstant.cUnit Fate.EndToEndSelectorNotConstant.sBool Fate.EndToEndSelectorNotConstant.oBool,
-      ∃ (R : FateV2.Model.Rules Fate.EndToEndSelectorNotConstant.cUnit Fate.EndToEndSelectorNotConstant.sBool Fate.EndToEndSelectorNotConstant.oBool)
-        (c : Fate.EndToEndSelectorNotConstant.cUnit.Carrier),
+    ∃ S : FateV2.Predict.Selector FateV2.Loop.EndToEndSelectorNotConstant.cUnit FateV2.Loop.EndToEndSelectorNotConstant.sBool FateV2.Loop.EndToEndSelectorNotConstant.oBool,
+      ∃ (R : FateV2.Model.Rules FateV2.Loop.EndToEndSelectorNotConstant.cUnit FateV2.Loop.EndToEndSelectorNotConstant.sBool FateV2.Loop.EndToEndSelectorNotConstant.oBool)
+        (c : FateV2.Loop.EndToEndSelectorNotConstant.cUnit.Carrier),
       S.select R c true ≠ S.select R c false :=
-  Fate.EndToEndSelectorNotConstant.exists_selector_not_constant
+  FateV2.Loop.EndToEndSelectorNotConstant.exists_selector_not_constant
 
 /-! ## 真消费 `EndToEndQConsumer`（R921 建议 3 的第五个模块） -/
 
 /-- ⭐⭐ **【ℚ 版 fstep 的 cast（本模块直接引用）】** -/
 theorem fstepQ_cast_consumed (η θstar θ : ℚ) :
-    ((Fate.EndToEndUnconditionalQ.fstepQ η θstar θ : ℚ) : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.fstepQ η θstar θ : ℚ) : ℝ)
       = FateV2.Loop.ThetaConvergence.fstep (η : ℝ) (θstar : ℝ) (θ : ℝ) :=
-  Fate.EndToEndQConsumer.fstepQ_cast η θstar θ
+  FateV2.Loop.EndToEndQConsumer.fstepQ_cast η θstar θ
 
 /-- ⭐ **【ℚ 版闭式（本模块直接引用）】** -/
 theorem thetaNQ_cast_closed_consumed (η θstar θ₀ : ℚ) (n : ℕ) :
-    ((Fate.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n - θstar : ℚ) : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n - θstar : ℚ) : ℝ)
       = (1 - (η : ℝ))^n * ((θ₀ : ℝ) - (θstar : ℝ)) :=
-  Fate.EndToEndQConsumer.thetaNQ_cast_closed η θstar θ₀ n
+  FateV2.Loop.EndToEndQConsumer.thetaNQ_cast_closed η θstar θ₀ n
 
 
 /-! ## 真消费 3 个 Pipeline 推广模块（R936 问题 2 修复） -/
@@ -188,22 +188,22 @@ theorem pair_tendsto_consumed (η : ℕ → ℝ) (θstar θ₀ : ℝ × ℝ) (c 
     (hc0 : 0 ≤ c) (hc : c < 1) (hη : ∀ k, |1 - η k| ≤ c) :
     Filter.Tendsto (fun n => (Nat.rec θ₀ (fun k ih => ih + η k • (θstar - ih)) n))
       Filter.atTop (nhds θstar) :=
-  Fate.PipelineAdaptiveEtaNormed.adaptive_tendsto_pair η θstar θ₀ c hc0 hc hη
+  FateV2.Loop.PipelineAdaptiveEtaNormed.adaptive_tendsto_pair η θstar θ₀ c hc0 hc hη
 
 /-- ⭐⭐⭐ **【O(1) 误差判据（真消费 Complexity）】** -/
 theorem norm_le_consumed {E : Type*} [SeminormedAddCommGroup E] [NormedSpace ℝ E]
     (η : ℕ → ℝ) (θstar θ₀ : E) (c ε : ℝ) (hc0 : 0 ≤ c)
     (hη : ∀ k, |1 - η k| ≤ c) (n : ℕ)
     (h : c ^ n * ‖θ₀ - θstar‖ ≤ ε) :
-    ‖Nat.rec θ₀ (fun k ih => Fate.PipelineAdaptiveEtaNormed.fstepV η θstar k ih) n - θstar‖ ≤ ε :=
-  Fate.PipelineAdaptiveEtaComplexity.norm_le_of_pow_le η θstar θ₀ c ε hc0 hη n h
+    ‖Nat.rec θ₀ (fun k ih => FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV η θstar k ih) n - θstar‖ ≤ ε :=
+  FateV2.Loop.PipelineAdaptiveEtaComplexity.norm_le_of_pow_le η θstar θ₀ c ε hc0 hη n h
 
 /-- ⭐ **【噪声鲁棒的 limsup 界（真消费 Robust）】** -/
 theorem limsup_consumed {E : Type*} [SeminormedAddCommGroup E] [NormedSpace ℝ E]
     (c M : ℝ) (hc0 : 0 ≤ c) (hc : c < 1)
     (e : ℕ → E) (h : ∀ n, ‖e n‖ ≤ c ^ n * ‖e 0‖ + M / (1 - c)) :
     ∀ ε > 0, ∀ᶠ n in Filter.atTop, ‖e n‖ < M / (1 - c) + ε :=
-  Fate.PipelineAdaptiveEtaRobust.limsup_le c M hc0 hc e h
+  FateV2.Loop.PipelineAdaptiveEtaRobust.limsup_le c M hc0 hc e h
 
 
 
@@ -214,15 +214,15 @@ theorem measure_zero_consumed {Om : Type*} [MeasurableSpace Om]
     (mu : MeasureTheory.Measure Om) (Bad : Set Om)
     (h : forall d : ENNReal, 0 < d -> mu Bad <= d) :
     mu Bad = 0 :=
-  Fate.PipelineAdaptiveEtaStochastic.measure_zero_of_le_all mu Bad h
+  FateV2.Loop.PipelineAdaptiveEtaStochastic.measure_zero_of_le_all mu Bad h
 
 /-! ## 消费第 8 层（Banach 不动点）与组合定理（第 962 轮，G59 扇入修复）
 
 本节**真消费**三个此前扇入为 0 的收敛侧模块：
 
 * `Fate.BanachFixedPoint`（度量空间上的 Banach 不动点，第 8 层）；
-* `Fate.PipelineEndToEndCapstone`（端到端组合定理）；
-* `Fate.PipelineComplexityOptimal`（最优步长 / 最小 `N`）。
+* `FateV2.Loop.PipelineEndToEndCapstone`（端到端组合定理）；
+* `FateV2.Loop.PipelineComplexityOptimal`（最优步长 / 最小 `N`）。
 
 每条都是对源定理的**直接应用**（无 `sorry`，不新增假设）。 -/
 
@@ -266,7 +266,7 @@ theorem capstone_consumed
     ∃ N : ℕ, (c ^ N * ‖theta0 - thetaStar‖ < eps) ∧
       ∀ n : ℕ, N ≤ n →
         ‖Nat.rec theta0 (fun k ih => ih + eta k • (thetaStar - ih)) n - thetaStar‖ < eps :=
-  Fate.PipelineEndToEndCapstone.end_to_end_convergence_guarantee
+  FateV2.Loop.PipelineEndToEndCapstone.end_to_end_convergence_guarantee
     eta thetaStar theta0 c hc0 hc1 heta eps heps
 
 /-- ⭐⭐⭐⭐ **【噪声端到端（真消费 Capstone，有限步形式）】**
@@ -278,19 +278,19 @@ theorem capstone_noisy_finite_consumed
     (c M eps : ℝ) (hc0 : 0 ≤ c) (hc1 : c < 1) (hM : 0 ≤ M) (heps : 0 < eps)
     (e : ℕ → E) (hrec : ∀ n, ‖e (n + 1)‖ ≤ c * ‖e n‖ + M) :
     ∃ N : ℕ, ‖e N‖ < M / (1 - c) + eps :=
-  Fate.PipelineEndToEndCapstone.end_to_end_noisy_finite_steps c M eps hc0 hc1 hM heps e hrec
+  FateV2.Loop.PipelineEndToEndCapstone.end_to_end_noisy_finite_steps c M eps hc0 hc1 hM heps e hrec
 
 /-- ⭐⭐ **【c^n 可任意小（真消费 ComplexityOptimal）】** -/
 theorem pow_lt_consumed (c eps : ℝ) (hc0 : 0 ≤ c) (hc1 : c < 1) (heps : 0 < eps) :
     ∃ N : ℕ, c ^ N < eps :=
-  Fate.PipelineComplexityOptimal.pow_lt_of_lt_one c eps hc0 hc1 heps
+  FateV2.Loop.PipelineComplexityOptimal.pow_lt_of_lt_one c eps hc0 hc1 heps
 
 /-- ⭐⭐⭐ **【最优步长：最小 N 存在（真消费 ComplexityOptimal）】**
 
 存在 `N` 使 `c^N < eps` **且最小**：任何达标的 `m` 都 `≥ N`。 -/
 theorem optimal_step_consumed (c eps : ℝ) (hc0 : 0 ≤ c) (hc1 : c < 1) (heps : 0 < eps) :
     ∃ N : ℕ, c ^ N < eps ∧ ∀ m : ℕ, c ^ m < eps → N ≤ m :=
-  Fate.PipelineComplexityOptimal.exists_minimal_N c eps hc0 hc1 heps
+  FateV2.Loop.PipelineComplexityOptimal.exists_minimal_N c eps hc0 hc1 heps
 
 end AdaptiveEtaConsumer
 end FateV2.Loop

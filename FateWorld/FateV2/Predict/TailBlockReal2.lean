@@ -48,7 +48,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -169,7 +169,7 @@ end FateV2.Predict.GraphToProbView7
 
 namespace FateV2.Predict.GraphToProbView7
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -308,7 +308,7 @@ end FateV2.Predict.GraphToProbView7
 
 namespace FateV2.Predict.GraphToProbView7
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -367,7 +367,7 @@ theorem split_rebaseA {R : V → Finset V} {X Y Z A : Finset V}
     (hX : X ⊆ A) (hY : Y ⊆ A) (hZ : Z ⊆ A)
     (hR : ∀ v : ↥A, R v.1 ⊆ A)
     (hsplitA : ∀ v : ↥A, R v.1 ⊆ X ∪ Z ∨ R v.1 ⊆ Y ∪ Z) :
-    Fate.View19.Split (fun v : ↥A => sub A (R v.1) (hR v))
+    FateV2.Predict.View19.Split (fun v : ↥A => sub A (R v.1) (hR v))
       (sub A X hX) (sub A Y hY) (sub A Z hZ) := by
   intro v
   rcases hsplitA v with h | h
@@ -388,7 +388,7 @@ end FateV2.Predict.GraphToProbView7
 
 namespace FateV2.Predict.GraphToProbView7
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -401,12 +401,12 @@ variable [Nonempty α]
 /-- ⭐⭐ **`↥A` 上的 `CondIndep`（弱化版：只在 `A` 内要求 `Split`）**。 -/
 theorem condIndep_on_A_weak {ψ : V → (V → α) → ℝ} {R : V → Finset V} {X Y Z A : Finset V}
     (hX : X ⊆ A) (hY : Y ⊆ A) (hZ : Z ⊆ A) (hcover : X ∪ Y ∪ Z = A)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hAll : ∀ v, v ∈ A → R v ⊆ A)
     (hsplitA : ∀ v : ↥A, R v.1 ⊆ X ∪ Z ∨ R v.1 ⊆ Y ∪ Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (ω₀ : V → α) :
-    Fate.FactorMarkov.CondIndep
+    FateV2.Predict.FactorMarkov.CondIndep
       (fun w : ↥A → α => ∏ v : ↥A, ψ v.1 (extEnd A ω₀ w))
       (sub A X hX) (sub A Y hY) (sub A Z hZ) := by
   classical
@@ -414,10 +414,10 @@ theorem condIndep_on_A_weak {ψ : V → (V → α) → ℝ} {R : V → Finset V}
   set pA : (↥A → α) → ℝ := fun w => ∏ v : ↥A, ψA v w with hpA
   set RA : ↥A → Finset ↥A := fun v => sub A (R v.1) (hAll v.1 v.2) with hRA
   have hfacA : ∀ w : ↥A → α, pA w = ∏ v, ψA v w := fun w => rfl
-  have hreadA : Fate.View19.ReadSet ψA RA := by
+  have hreadA : FateV2.Predict.View19.ReadSet ψA RA := by
     intro v x y hxy
     exact readSet_rebase hread A ω₀ (fun v : ↥A => hAll v.1 v.2) v x y hxy
-  have hsplitA' : Fate.View19.Split RA (sub A X hX) (sub A Y hY) (sub A Z hZ) :=
+  have hsplitA' : FateV2.Predict.View19.Split RA (sub A X hX) (sub A Y hY) (sub A Z hZ) :=
     split_rebaseA hX hY hZ (fun v : ↥A => hAll v.1 v.2) hsplitA
   have hdisj_XY : Disjoint (sub A X hX) (sub A Y hY) := disjoint_attach hX hY hXY
   have hdisj_XZ : Disjoint (sub A X hX) (sub A Z hZ) := disjoint_attach hX hZ hXZ
@@ -439,11 +439,11 @@ theorem condIndep_on_A_weak {ψ : V → (V → α) → ℝ} {R : V → Finset V}
 theorem condIndep_tail_block_real {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ X ∪ Y ∪ Z → R v \ {v} ⊆ outSet (X ∪ Y ∪ Z))
     (hsplitA : ∀ v, v ∈ X ∪ Y ∪ Z → R v ⊆ X ∪ Z ∨ R v ⊆ Y ∪ Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   classical
   intro x
   set A := X ∪ Y ∪ Z with hA
@@ -512,7 +512,7 @@ end FateV2.Predict.GraphToProbView7
 
 namespace FateV2.Predict.GraphToProbView7
 
-open Finset FateV2.Error Fate.View19 TailBlockV4
+open Finset FateV2.Error FateV2.Predict.View19 TailBlockV4
 
 universe u
 
@@ -552,7 +552,7 @@ end FateV2.Predict.GraphToProbView7
 
 namespace FateV2.Predict.GraphToProbView7
 
-open Finset FateV2.Error Fate.View19 TailBlockV4
+open Finset FateV2.Error FateV2.Predict.View19 TailBlockV4
 
 universe u
 

@@ -60,8 +60,8 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace TwoDPrediction
 
-open Fate.WorldModelInstance2D
-open Fate.ConvergeToOptimalIter
+open FateV2.Loop.WorldModelInstance2D
+open FateV2.Loop.ConvergeToOptimalIter
 open FateV2.Loop.BoundWriteBack
 
 /-! ### §1 有界版 `swap2` 与 `Corrects` -/

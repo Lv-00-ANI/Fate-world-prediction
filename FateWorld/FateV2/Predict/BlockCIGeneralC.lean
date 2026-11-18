@@ -64,7 +64,7 @@ namespace FateV2.Predict.C5g
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -72,7 +72,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 theorem blockCI_of_condIndep {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph.DAG V}
     {A B C : Finset V} (hAB : A ∪ B = Finset.univ) (hCA : C ⊆ A)
-    (hci : Fate.FactorMarkov.CondIndep p A B C) :
+    (hci : FateV2.Predict.FactorMarkov.CondIndep p A B C) :
     BlockCI_Gap p G A B C := by
   intro x
   have hz := hci x

@@ -21,7 +21,7 @@ open MeasureTheory ProbabilityTheory
   §B3  ⭐⭐⭐⭐⭐ **桥的最终定理**（第 170 轮 A4 洞察的直接组装）
 
   ```
-  FateV2.Modeling.FiniteCondIndep.CondIndepFin p  →  Fate.FinCondIndepMeasure.bridgeStatement p
+  FateV2.Modeling.FiniteCondIndep.CondIndepFin p  →  FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p
   ```
 
   ## 本轮（A4）的关键洞察
@@ -65,7 +65,7 @@ variable {α β γ : Type}
   [MeasurableSingletonClass ((α × β) × γ)]
   [Countable α] [Countable β] [Countable γ]
 
-open Fate.FinMeasureBridge
+open FateV2.Modeling.FinMeasureBridge
 
 /-! ## §1 ⭐⭐⭐⭐ `trim` 在单点上的值 = 纤维质量（**自含证明**）
 
@@ -77,7 +77,7 @@ omit [Fintype α] [Fintype β] [Fintype γ] [DecidableEq α] [DecidableEq β] [D
 /-- **`fiber c` 是 `comap projZ`-可测的**（`{c}` 的原像）。 -/
 theorem fiber_measurable_comap (c : γ) :
     MeasurableSet[MeasurableSpace.comap
-      (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance]
+      (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance]
       (fiber c) := by
   rw [fiber]
   exact MeasurableSpace.measurableSet_comap.mpr
@@ -91,10 +91,10 @@ theorem trim_singleton_eq_fiber (μ : Measure ((α × β) × γ))
         (FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))) {a}
       = μ (fiber a.2) := by
   obtain hm : MeasurableSpace.comap
-        (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance
+        (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance
       ≤ (inferInstance : MeasurableSpace ((α × β) × γ)) :=
     MeasurableSpace.comap_le_iff_le_map.mpr
-      (Fate.FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))
+      (FateV2.Modeling.FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))
   refine le_antisymm ?_ ?_
   · calc (μ.trim hm) {a}
         ≤ (μ.trim hm) (fiber a.2) := by
@@ -107,22 +107,22 @@ theorem trim_singleton_eq_fiber (μ : Measure ((α × β) × γ))
   · -- 下界：`(μ.trim hm) {a} = OuterMeasure.trim μ.toOuterMeasure {a}`，再取 `⨅`
     have hkey : (μ.trim hm) {a} = @OuterMeasure.trim ((α × β) × γ)
         (MeasurableSpace.comap
-          (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
+          (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
         μ.toOuterMeasure {a} := by
       have h1 := toOuterMeasure_trim_eq_trim_toOuterMeasure μ hm
       have h2 : (@Measure.toOuterMeasure _ (MeasurableSpace.comap
-            (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
+            (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
           (μ.trim hm)) {a} = (μ.trim hm) {a} := rfl
       rw [← h2, h1]
     have hexp : @OuterMeasure.trim ((α × β) × γ)
         (MeasurableSpace.comap
-          (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
+          (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
         μ.toOuterMeasure {a}
         = ⨅ (t : Set ((α × β) × γ)), ⨅ (_ : {a} ⊆ t),
             ⨅ (_ : MeasurableSet[MeasurableSpace.comap
-              (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] t), μ t :=
+              (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] t), μ t :=
       @OuterMeasure.trim_eq_iInf _ (MeasurableSpace.comap
-        (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) μ.toOuterMeasure {a}
+        (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) μ.toOuterMeasure {a}
     rw [hkey, hexp]
     refine le_iInf fun t => le_iInf fun hsub => le_iInf fun ht => ?_
     -- `t` 是 `comap projZ`-可测且含 `a` ⟹ `fiber a.2 ⊆ t`（由 `comap_projZ_mem_fiber`）
@@ -178,21 +178,21 @@ theorem condExpKernel_fiber_eq (p : FateV2.Modeling.FiniteCondIndep.FinJoint α 
     (x x' : α) (y y' : β) (z : γ) :
     letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
     condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ)) ((x, y), z)
     = condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ)) ((x', y'), z) := by
   letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
-  let m' := MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+  let m' := MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
     (inferInstance : MeasurableSpace γ)
   have h : ((x, y), z) ∈ @measurableAtom ((α × β) × γ) m' ((x', y'), z) := by
     simp only [measurableAtom, Set.mem_iInter]
     intro s hs hms
-    have hz : (Fate.FinCondIndepMeasure.projZ ((x, y), z))
-        = (Fate.FinCondIndepMeasure.projZ ((x', y'), z)) := rfl
+    have hz : (FateV2.Modeling.FinCondIndepMeasure.projZ ((x, y), z))
+        = (FateV2.Modeling.FinCondIndepMeasure.projZ ((x', y'), z)) := rfl
     obtain ⟨T, hT, rfl⟩ := MeasurableSpace.measurableSet_comap.mp hms
-    show Fate.FinCondIndepMeasure.projZ ((x, y), z) ∈ T
+    show FateV2.Modeling.FinCondIndepMeasure.projZ ((x, y), z) ∈ T
     rw [hz]; exact hs
   exact Kernel.apply_congr_of_mem_measurableAtom _ h
 
@@ -211,7 +211,7 @@ theorem kernelValue_fiber_ratio (p : FateV2.Modeling.FiniteCondIndep.FinJoint α
     [DecidablePred (· ∈ t)] [DecidablePred (· ∈ (t ∩ fiber a.2))] :
     letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
     ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t
       = (∑ x : α, ∑ y : β, (if ((x, y), a.2) ∈ t then p ((x, y), a.2) else 0))
         / (∑ x : α, ∑ y : β, p ((x, y), a.2)) := by
   letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
@@ -229,7 +229,7 @@ theorem kernelValue_fiber_ratio (p : FateV2.Modeling.FiniteCondIndep.FinJoint α
     exact ⟨hFenn, measure_ne_top _ _⟩
   -- 商形式（在 `((x₀,y₀),za)` 处）
   have hratio : ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
         ((x₀, y₀), za)).real t
       = (weightedCount p).real (t ∩ fiber za) / (weightedCount p).real (fiber za) := by
     rw [eq_div_iff hFr]
@@ -478,20 +478,20 @@ theorem kernelValue_product_of_fiber_ne
     (hF : (weightedCount p) (fiber a.2) ≠ 0) :
     letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
     ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-        ((Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1
-          ∩ (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2)
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+        ((FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1
+          ∩ (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2)
       = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-          ((Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1)
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+          ((FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1)
         * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-          ((Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2) := by
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+          ((FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2) := by
   classical
   letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
   obtain ⟨⟨xa, ya⟩, za⟩ := a
-  set t1 : Set ((α × β) × γ) := (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1 with ht1
-  set t2 : Set ((α × β) × γ) := (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2 with ht2
+  set t1 : Set ((α × β) × γ) := (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1 with ht1
+  set t2 : Set ((α × β) × γ) := (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2 with ht2
   have ht1' : t1 = {w : (α × β) × γ | w.1.1 ∈ S1} := rfl
   have ht2' : t2 = {w : (α × β) × γ | w.1.2 ∈ S2} := rfl
   -- 可测性
@@ -537,13 +537,13 @@ theorem kernelValue_product_of_fiber_ne
     · rw [if_neg (fun h => hc (hmem.mp h)), if_neg hc]
   -- ℝ 层面的乘积等式
   have hreal : ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
         ((xa, ya), za)).real (t1 ∩ t2)
       = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
         ((xa, ya), za)).real t1
         * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
         ((xa, ya), za)).real t2 := by
     have hM : (∑ x : α, ∑ y : β, p ((x, y), za)) ≠ 0 := hz
     -- 把 `condIndepFin_sum_factorize` 的「加权和」化为二重和
@@ -578,7 +578,7 @@ theorem kernelValue_product_of_fiber_ne
       field_simp
       linarith
     calc ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((xa, ya), za)).real (t1 ∩ t2)
         = (∑ x : α, ∑ y : β, (if ((x, y), za) ∈ t1 ∩ t2 then p ((x, y), za) else 0))
             / (∑ x : α, ∑ y : β, p ((x, y), za)) := r3
@@ -589,10 +589,10 @@ theorem kernelValue_product_of_fiber_ne
           * ((∑ x : α, ∑ y : β, (if y ∈ S2 then p ((x, y), za) else 0))
             / (∑ x : α, ∑ y : β, p ((x, y), za))) := keyeq
       _ = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((xa, ya), za)).real t1
           * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((xa, ya), za)).real t2 := by rw [r1, r2, hn2, hn3]
   -- 回到 `ENNReal`
   refine (ENNReal.toReal_eq_toReal_iff' (measure_ne_top _ _) ?_).mp ?_
@@ -608,7 +608,7 @@ theorem condIndepFin_to_bridge
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (hp : ∀ w, 0 ≤ p w)
     (hcond : FateV2.Modeling.FiniteCondIndep.CondIndepFin p) :
-    Fate.FinCondIndepMeasure.bridgeStatement p := by
+    FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p := by
   classical
   letI : IsFiniteMeasure (weightedCount p) := weightedCount_isFiniteMeasure p
   refine (bridgeStatement_unfold_def (α := α) (β := β) (γ := γ) p).mpr ?_
@@ -619,45 +619,45 @@ theorem condIndepFin_to_bridge
   rw [← hS1eq, ← hS2eq]
   -- `∀ᵐ` 对 `trim` 精确展开（`ae_iff_forall_or_zero` 直接对 `μ.trim hm'` 用）
   -- ⚠ 显式给出 `m'` 与 `mΩ`（否则 `trim` 的类型类参数被推断成 `Prod.instMeasurableSpace`）
-  let hm' : MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+  let hm' : MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
       (inferInstance : MeasurableSpace γ) ≤ (inferInstance : MeasurableSpace ((α × β) × γ)) :=
     MeasurableSpace.comap_le_iff_le_map.mpr
-      (Fate.FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))
+      (FateV2.Modeling.FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))
   show (∀ᵐ a ∂(@Measure.trim ((α × β) × γ)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm'),
       ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-          ((Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1
-            ∩ (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2)
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+          ((FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1
+            ∩ (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2)
         = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-            ((Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1)
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+            ((FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1)
           * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-            ((Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2))
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+            ((FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2))
   refine (@ae_iff_forall_or_zero ((α × β) × γ)
-    (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+    (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
       (inferInstance : MeasurableSpace γ)) _
     (@Measure.trim ((α × β) × γ)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm')
     (fun a => ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-        ((Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1
-          ∩ (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2)
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+        ((FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1
+          ∩ (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2)
       = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-          ((Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1)
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+          ((FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1)
         * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
-          ((Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2))).mpr ?_
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a)
+          ((FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' S2))).mpr ?_
   intro a
   -- `trim {a} = μ (fiber a.2)`：把 `trim` 的零测判据换成纤维质量
   have htrim : (@Measure.trim ((α × β) × γ)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm') {a}
       = (weightedCount p) (fiber a.2) :=
@@ -689,13 +689,12 @@ theorem condIndepFin_to_bridge_top {α β γ : Type}
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (hp : ∀ w, 0 ≤ p w)
     (hcond : FateV2.Modeling.FiniteCondIndep.CondIndepFin p) :
-    Fate.FinCondIndepMeasure.bridgeStatement p :=
-  Fate.FinalB3.condIndepFin_to_bridge p hp hcond
+    FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p :=
+  FateV2.Modeling.FinalB3.condIndepFin_to_bridge p hp hcond
 
 end TopLevel
 
-namespace Fate
-
+namespace FateV2.Modeling
 namespace FinalB3
 
 variable {α β γ : Type}
@@ -711,9 +710,9 @@ theorem bridge_final
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (hp : ∀ w, 0 ≤ p w)
     (hcond : FateV2.Modeling.FiniteCondIndep.CondIndepFin p) :
-    Fate.FinCondIndepMeasure.bridgeStatement p :=
+    FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p :=
   condIndepFin_to_bridge p hp hcond
 
 end FinalB3
 
-end Fate
+end FateV2.Modeling

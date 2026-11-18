@@ -153,18 +153,18 @@ theorem err_iter_tendsto_zero_via_sq {E F : Type} [NormedAddCommGroup E] [Normed
 
 /-- ⭐ **【`adaptive_norm_le` 的通用引理版】**
 
-与 `Fate.PipelineAdaptiveEtaNormed.adaptive_norm_le` 陈述相同，
+与 `FateV2.Loop.PipelineAdaptiveEtaNormed.adaptive_norm_le` 陈述相同，
 证明走同一条 `geom_squeeze_zero` 骨架 ——
 **与 `err_iter_tendsto_zero_via_sq` 共用同一个 §1**，
 直观展示「同构」究竟发生在哪一层。 -/
 theorem adaptive_tendsto_via_sq {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (η : ℕ → ℝ) (θstar θ₀ : E) (c : ℝ) (hc0 : 0 ≤ c) (hc : c < 1)
     (hη : ∀ k, |1 - η k| ≤ c) :
-    Tendsto (fun n => Nat.rec θ₀ (fun k ih => Fate.PipelineAdaptiveEtaNormed.fstepV η θstar k ih) n)
+    Tendsto (fun n => Nat.rec θ₀ (fun k ih => FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV η θstar k ih) n)
       atTop (nhds θstar) := by
   rw [tendsto_iff_norm_sub_tendsto_zero]
   exact geom_squeeze_zero (fun _ => norm_nonneg _)
-    (fun n => Fate.PipelineAdaptiveEtaNormed.adaptive_norm_le η θstar θ₀ c hc0 hη n) hc0 hc
+    (fun n => FateV2.Loop.PipelineAdaptiveEtaNormed.adaptive_norm_le η θstar θ₀ c hc0 hη n) hc0 hc
 
 /-! ===========================================================================
     §3  ⭐ 桥接条件（把闭环迭代真的化成 `fstepV` 递推）
@@ -192,8 +192,8 @@ theorem nlStep_eq_fstepV_of_bridge {E F : Type} [NormedAddCommGroup E] [NormedSp
     [NormedAddCommGroup F] [NormedSpace ℝ F]
     (A : E → F) (φ : F → E) (η : ℝ) (x' : F) (θstar : E)
     (hb : StepIsLinearContraction A φ x' θstar) (θ : E) :
-    nlStep A φ η x' θ = Fate.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 θ := by
-  rw [show Fate.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 θ
+    nlStep A φ η x' θ = FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 θ := by
+  rw [show FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 θ
         = θ + η • (θstar - θ) from rfl]
   simp only [nlStep, hb θ]
 
@@ -210,11 +210,11 @@ theorem nlStep_eq_fstepV_of_bridge {E F : Type} [NormedAddCommGroup E] [NormedSp
 theorem bridge_of_nlStep_eq_fstepV {E F : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
     (A : E → F) (φ : F → E) (η : ℝ) (hη : η ≠ 0) (x' : F) (θstar : E)
-    (hb : ∀ θ : E, nlStep A φ η x' θ = Fate.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 θ) :
+    (hb : ∀ θ : E, nlStep A φ η x' θ = FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 θ) :
     StepIsLinearContraction A φ x' θstar := by
   intro u
   have h := hb u
-  rw [show Fate.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 u
+  rw [show FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar 0 u
         = u + η • (θstar - u) from rfl] at h
   simp only [nlStep] at h
   have h2 : η • φ (x' - A u) = η • (θstar - u) := add_left_cancel h
@@ -237,7 +237,7 @@ theorem nlIter_eq_natrec_of_bridge {E F : Type} [NormedAddCommGroup E] [NormedSp
     (A : E → F) (φ : F → E) (η : ℝ) (x' : F) (θstar : E)
     (hb : StepIsLinearContraction A φ x' θstar) (θ : E) :
     ∀ n : ℕ, nlIter A φ η x' n θ
-      = Nat.rec θ (fun k ih => Fate.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar k ih) n
+      = Nat.rec θ (fun k ih => FateV2.Loop.PipelineAdaptiveEtaNormed.fstepV (fun _ => η) θstar k ih) n
   | 0 => rfl
   | n + 1 => by
     show nlStep A φ η x' (nlIter A φ η x' n θ) = _
@@ -264,7 +264,7 @@ theorem nlIter_tendsto_via_adaptive {E F : Type} [NormedAddCommGroup E] [NormedS
     (hb : StepIsLinearContraction A φ x' θstar)
     (hη0 : 0 ≤ |1 - η|) (hη1 : |1 - η| < 1) :
     Tendsto (fun n : ℕ => nlIter A φ η x' n θ) atTop (nhds θstar) := by
-  have h := Fate.PipelineAdaptiveEtaNormed.adaptive_tendsto_normed
+  have h := FateV2.Loop.PipelineAdaptiveEtaNormed.adaptive_tendsto_normed
     (E := E) (fun _ => η) θstar θ |1 - η| hη0 hη1 (fun _ => le_refl _)
   simpa only [nlIter_eq_natrec_of_bridge A φ η x' θstar hb θ] using h
 

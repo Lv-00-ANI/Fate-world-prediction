@@ -165,8 +165,8 @@ theorem chainDAG_not_mem : (2 : Fin 3) ∉ ({0} ∪ {1} ∪ (∅ : Finset (Fin 3
 
 /-- 反例中 `pa(2) = {0}`，故 `readSetOf G 2` 含 `0`。 -/
 theorem chainDAG_mem_readSet :
-    (0 : Fin 3) ∈ Fate.FactorizesToHyper.readSetOf chainDAG 2 := by
-  rw [Fate.FactorizesToHyper.mem_readSetOf]
+    (0 : Fin 3) ∈ FateV2.Predict.FactorizesToHyper.readSetOf chainDAG 2 := by
+  rw [FateV2.Predict.FactorizesToHyper.mem_readSetOf]
   refine Or.inr ?_
   rw [FateV2.Modeling.Graph.DAG.mem_parents]
   show chainEdge 0 2
@@ -182,9 +182,9 @@ theorem chainDAG_mem_readSet :
 theorem dSep_not_implies_hTail_fin3 :
     ¬ (∀ (G : FateV2.Modeling.Graph.DAG (Fin 3)) (X Y Z : Finset (Fin 3)),
         G.dSep X Y Z →
-        ∀ v, v ∉ X ∪ Y ∪ Z → Fate.FactorizesToHyper.readSetOf G v ⊆ Z) := by
+        ∀ v, v ∉ X ∪ Y ∪ Z → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z) := by
   intro h
-  have htail : Fate.FactorizesToHyper.readSetOf chainDAG 2 ⊆ (∅ : Finset (Fin 3)) :=
+  have htail : FateV2.Predict.FactorizesToHyper.readSetOf chainDAG 2 ⊆ (∅ : Finset (Fin 3)) :=
     h chainDAG {0} {1} ∅ chainDAG_dSep 2 chainDAG_not_mem
   exact Finset.notMem_empty 0 (htail chainDAG_mem_readSet)
 
@@ -193,11 +193,11 @@ theorem hTail_from_dSep_false :
     ¬ (∀ (V : Type) [DecidableEq V] [Fintype V]
         (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V),
         G.dSep X Y Z →
-        ∀ v, v ∉ X ∪ Y ∪ Z → Fate.FactorizesToHyper.readSetOf G v ⊆ Z) := by
+        ∀ v, v ∉ X ∪ Y ∪ Z → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z) := by
   intro h
   have h' : ∀ (G : FateV2.Modeling.Graph.DAG (Fin 3)) (X Y Z : Finset (Fin 3)),
       G.dSep X Y Z →
-      ∀ v, v ∉ X ∪ Y ∪ Z → Fate.FactorizesToHyper.readSetOf G v ⊆ Z :=
+      ∀ v, v ∉ X ∪ Y ∪ Z → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z :=
     h (Fin 3)
   exact dSep_not_implies_hTail_fin3 h'
 
@@ -215,13 +215,13 @@ theorem hTail_of_cover {R : V → Finset V} {X Y Z : Finset V}
 /-- `hTail`（`R = readSetOf G`）⟹ 覆盖：`readSetOf G v ∋ v`，故
 `v ∉ A ⟹ v ∈ Z ⊆ A`，矛盾。 -/
 theorem cover_of_hTail_readSetOf (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
-    (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → Fate.FactorizesToHyper.readSetOf G v ⊆ Z) :
+    (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z) :
     X ∪ Y ∪ Z = Finset.univ := by
   have hsub : Finset.univ ⊆ X ∪ Y ∪ Z := by
     intro v _
     by_contra hv
-    have h1 : v ∈ Fate.FactorizesToHyper.readSetOf G v :=
-      (Fate.FactorizesToHyper.mem_readSetOf).mpr (Or.inl rfl)
+    have h1 : v ∈ FateV2.Predict.FactorizesToHyper.readSetOf G v :=
+      (FateV2.Predict.FactorizesToHyper.mem_readSetOf).mpr (Or.inl rfl)
     have h2 : v ∈ Z := hTail v hv h1
     exact hv (Finset.mem_union.mpr (Or.inr h2))
   exact Finset.Subset.antisymm (Finset.subset_univ _) hsub
@@ -230,13 +230,13 @@ theorem cover_of_hTail_readSetOf (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Fins
 
 **`hTail` 不是尾块条件，而是「无尾块」的同义反复。** -/
 theorem hTail_readSetOf_iff_cover (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V) :
-    (∀ v, v ∉ X ∪ Y ∪ Z → Fate.FactorizesToHyper.readSetOf G v ⊆ Z)
+    (∀ v, v ∉ X ∪ Y ∪ Z → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z)
       ↔ X ∪ Y ∪ Z = Finset.univ :=
   ⟨cover_of_hTail_readSetOf G X Y Z, hTail_of_cover⟩
 
 /-- 推论：`hTail` 一旦可满足，就**没有**尾块顶点。 -/
 theorem no_tail_of_hTail_readSetOf (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
-    (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → Fate.FactorizesToHyper.readSetOf G v ⊆ Z) :
+    (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z) :
     ∀ v : V, v ∈ X ∪ Y ∪ Z := by
   intro v
   rw [cover_of_hTail_readSetOf G X Y Z hTail]
@@ -294,15 +294,15 @@ theorem condIndep_tail_block_of_dSep_cover
     {X Y Z : Finset V} {G : FateV2.Modeling.Graph.DAG V}
     {ψ : V → (V → α) → ℝ} {R : V → Finset V} {p : (V → α) → ℝ}
     (hfac : ∀ w, p w = ∏ v : V, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hdsep : G.dSep X Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   have hXY : Disjoint X Y := hdsep.1
   have hXZ : Disjoint X Z := hdsep.2.1
   have hYZ : Disjoint Y Z := hdsep.2.2.1
-  exact Fate.GraphToProbView7.condIndep_tail_block hfac hread
+  exact FateV2.Predict.GraphToProbView7.condIndep_tail_block hfac hread
     (hTail_of_cover hcover) hsplit hXY hXZ hYZ
 
 end Integration
@@ -315,13 +315,13 @@ end Integration
 两个结论必须同时成立 —— 机检确认。 -/
 theorem cover_bridge_consistency
     {α : Type u} [Fintype α] [DecidableEq α] [Nonempty α]
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V) {X Y Z : Finset V}
-    (hfac : Fate.FactorMarkov.Factorizes p G)
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V) {X Y Z : Finset V}
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z ∧
-      Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z :=
-  ⟨Fate.BridgeDSepGeneral.condIndep_of_factorizes_dSep_general p G hfac hdsep hcover,
-    Fate.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover⟩
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z ∧
+      FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z :=
+  ⟨FateV2.Predict.BridgeDSepGeneral.condIndep_of_factorizes_dSep_general p G hfac hdsep hcover,
+    FateV2.Predict.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover⟩
 
 end TailFromDSepIntegration
 

@@ -2,14 +2,14 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaDataConsumed`
+模块：`FateV2.Rules.AlphaDataConsumed`
 阶段：**把 `AlphaFCAConstruction` 的 α 定理真正「消费」到
 `WorldModelCompleteV2.alpha` 字段上（三条桥 + 两条附属）**
 
 ---------------------------------------------------------------------------
 本文件补什么（一句话）
 ---------------------------------------------------------------------------
-`Fate.WorldModelCompleteV2` 的 `alpha` 字段**类型本来就是** `Fate.AlphaData`
+`Fate.WorldModelCompleteV2` 的 `alpha` 字段**类型本来就是** `FateV2.Rules.AlphaData`
 （原文件 `:164`：`alpha : AlphaData.{0} input PUnit`）。
 **类型早已接上**，缺的是「**用** `AlphaData` 的定理」：
 `grep -n '\.alpha\|\.obs' Fate/WorldModelCompleteV2.lean` 在其定理区**零命中**。
@@ -151,9 +151,9 @@ set_option linter.checkUnivs false
         此处仅保留一条编译期确认，防止名字漂移）
     =========================================================================== -/
 
-#check @Fate.AlphaData.alpha_snd_eq_thIter
-#check @Fate.AlphaData.alpha_snd_isClosed
-#check @Fate.AlphaData.alpha_respects_obs
+#check @FateV2.Rules.AlphaData.alpha_snd_eq_thIter
+#check @FateV2.Rules.AlphaData.alpha_snd_isClosed
+#check @FateV2.Rules.AlphaData.alpha_respects_obs
 #check @Fate.WorldModelCompleteV2.alpha
 
 /-! ===========================================================================

@@ -79,10 +79,10 @@ variable {fam : ι → Type*} [∀ i, Fintype (fam i)] [∀ i, DecidableEq (fam 
 which is exactly the shape of `CondIndepFin`
 (`q ((x,y),z) * margZ q z = margXZ q x z * margYZ q y z`). -/
 theorem condIndepN_fin2_shape
-    (p : Fate.GenC3.NJoint (ι := ι) fam γ) (hcard : Fintype.card ι = 2) :
-    Fate.GenC3.CondIndepN p
-      ↔ ∀ xs z, p xs z * Fate.GenC3.NMass p z = ∏ i, Fate.GenC3.marg p i (xs i) z := by
-  rw [Fate.GenC3.condIndepN_iff]
+    (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ) (hcard : Fintype.card ι = 2) :
+    FateV2.Modeling.GenC3.CondIndepN p
+      ↔ ∀ xs z, p xs z * FateV2.Modeling.GenC3.NMass p z = ∏ i, FateV2.Modeling.GenC3.marg p i (xs i) z := by
+  rw [FateV2.Modeling.GenC3.condIndepN_iff]
   constructor
   · intro h xs z
     have h2 := h xs z

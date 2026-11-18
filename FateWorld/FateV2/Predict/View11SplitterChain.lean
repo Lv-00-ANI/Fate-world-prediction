@@ -17,7 +17,7 @@
 
 **本文件全程只用不含嵌套的 `mass` 工具**：`mass_insert_sum`（放开一坐标求和）、
 `mass_congr`（边缘只依赖被固定坐标）、`mass_mul`（分离律）以及
-`Fate.Strategy11.peel_lower`（前缀引擎，其内部也只做**单层**求和）。**无塔。**
+`FateV2.Predict.NonemptyFree2.Strategy11.peel_lower`（前缀引擎，其内部也只做**单层**求和）。**无塔。**
 
 ## 1 视角 11 的数学构造（与库存里两种既有「视角 11」**都不同**）
 
@@ -129,7 +129,7 @@ open Finset
 open FateV2.Modeling.Graph
 open FateV2.Modeling.Graph.DAG
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 
 universe u
 
@@ -156,7 +156,7 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 
 /-- **`isPrefix`**：`S` 是 `topoOrder` 的前缀（某个 `k` 的 `lowerSet`）。 -/
 def isPrefix (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) : Prop :=
-  ∃ k : ℕ, S = Fate.Strategy11.lowerSet G k
+  ∃ k : ℕ, S = FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k
 
 /-- **P1 `isPrefix_parent_closed`**：前缀对「取父」封闭。
 
@@ -166,12 +166,12 @@ theorem isPrefix_parent_closed {S : Finset V} (hS : isPrefix G S) :
     ∀ v ∈ S, G.parents v ⊆ S := by
   obtain ⟨k, rfl⟩ := hS
   intro v hv u hu
-  rw [Fate.Strategy11.mem_lowerSet] at hv ⊢
+  rw [FateV2.Predict.NonemptyFree2.Strategy11.mem_lowerSet] at hv ⊢
   exact lt_trans (G.topoOrder_lt u v (G.mem_parents.mp hu)) hv
 
 /-- **P2 `mass_prefix`**：前缀上的 `mass` = 局部因子之积。
 
-**直接复用引擎** `Fate.Strategy11.peel_lower`（其证明内部只用**单层**
+**直接复用引擎** `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower`（其证明内部只用**单层**
 `mass_insert_sum'`，**无塔**）。本文件不重证、不改动引擎。 -/
 theorem mass_prefix {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
@@ -179,7 +179,7 @@ theorem mass_prefix {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     {S : Finset V} (hS : isPrefix G S) :
     ∀ x, mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
-  exact Fate.Strategy11.peel_lower hloc hfac hnorm k
+  exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower hloc hfac hnorm k
 
 /-! ===========================================================================
   §2 **分离器（splitter）：定义 + 两条真引理（G2、G4）**

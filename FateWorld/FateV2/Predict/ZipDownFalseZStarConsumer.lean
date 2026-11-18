@@ -126,7 +126,7 @@ namespace FateV2.Predict.ZipDownFalseZStarConsumer
 open FateV2.Modeling
 
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 
 set_option linter.unusedSimpArgs false
 

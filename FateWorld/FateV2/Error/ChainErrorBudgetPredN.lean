@@ -63,7 +63,7 @@
 
 ## 依赖
 
-* `Fate.ChainErrorBudgetBound`（`optEstimate`、`estGap`、`learnErr`、`steadyTerm`、
+* `FateV2.Error.ChainErrorBudgetBound`（`optEstimate`、`estGap`、`learnErr`、`steadyTerm`、
   `chain_est_budget`、`learnErr_closed`、`learnErr_nonneg`、`steadyTerm_nonneg`）
 * `Fate.ThetaConvergence`（`thetaN`、`thetaN_closed`、`linWorld`）
 * `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`）
@@ -92,9 +92,9 @@ namespace ChainErrorBudgetPredN
 open FateV2.Error.GaussMarkovScalar
 open FateV2.Loop.BoundWriteBack
 open FateV2.Loop.ClosedLoopNoisy
-open Fate.ChainErrorBudgetBound
+open FateV2.Error.ChainErrorBudgetBound
 open FateV2.Loop.ThetaConvergence
-open Fate.AssemblyLearnsScratch
+open FateV2.Loop.AssemblyLearnsScratch
 open FateV2.Loop.OptimalEta
 
 open MeasureTheory ProbabilityTheory

@@ -102,8 +102,8 @@ open FateV2.Modeling
 namespace RuleSyntax
 namespace GenOps
 
-open Fate.RuleSyntax
-open Fate.RuleSyntax.Gen
+open FateV2.Rules.RuleSyntax
+open FateV2.Rules.RuleSyntax.Gen
 
 /-! ### §0  记号 -/
 
@@ -302,7 +302,7 @@ theorem holds_iterK_prob_iff (p : ℚ) (t : ExtTermK K) (e : EnvK K) :
 /-! ### §7  与 `ℝ` 版扩展语义的一致性 -/
 
 /-- **`ℝ` 版嵌入**：`ExtTermK ℝ → RuleSyntaxExt.ExtTerm`（构造子一一对应）。 -/
-def ExtTermK.toExtTerm : ExtTermK ℝ → _root_.Fate.RuleSyntaxExt.ExtTerm
+def ExtTermK.toExtTerm : ExtTermK ℝ → _root_.FateV2.Rules.RuleSyntaxExt.ExtTerm
   | .base t => .base t.toRuleTerm
   | .prob p t => .prob p t.toExtTerm
   | .deriv t => .deriv t.toExtTerm
@@ -314,24 +314,24 @@ theorem ExtTermK.toExtTerm_holds (t : ExtTermK ℝ) (e : EnvK ℝ) :
   induction t with
   | base u =>
       rw [ExtTermK.toExtTerm, ExtTermK.holds_base]
-      simp only [_root_.Fate.RuleSyntaxExt.holds_base]
+      simp only [_root_.FateV2.Rules.RuleSyntaxExt.holds_base]
       exact TermK.toRuleTerm_holds u e
   | prob p u ih =>
       rw [ExtTermK.toExtTerm, ExtTermK.holds_prob]
-      simp only [_root_.Fate.RuleSyntaxExt.holds_prob]
+      simp only [_root_.FateV2.Rules.RuleSyntaxExt.holds_prob]
       exact ih
   | deriv u ih =>
       rw [ExtTermK.toExtTerm, ExtTermK.holds_deriv]
-      simp only [_root_.Fate.RuleSyntaxExt.holds_deriv]
+      simp only [_root_.FateV2.Rules.RuleSyntaxExt.holds_deriv]
       exact ih
   | iter n u ih =>
       induction n with
       | zero =>
           rw [ExtTermK.toExtTerm]
-          simp only [_root_.Fate.RuleSyntaxExt.holds_iter_zero, ExtTermK.holds_iter_zero]
+          simp only [_root_.FateV2.Rules.RuleSyntaxExt.holds_iter_zero, ExtTermK.holds_iter_zero]
       | succ k ihk =>
           rw [ExtTermK.toExtTerm, ExtTermK.holds_iter_succ]
-          simp only [_root_.Fate.RuleSyntaxExt.holds_iter_succ]
+          simp only [_root_.FateV2.Rules.RuleSyntaxExt.holds_iter_succ]
           exact and_congr ih ihk
 
 /-! ### §8  可执行镜像（`ℚ`） -/

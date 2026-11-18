@@ -75,7 +75,7 @@ open FateV2.Modeling
 
 open Finset FateV2.Modeling.Graph
 open Fate.DAGFactorization (mass unpin)
-open Fate.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
+open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 universe u
 

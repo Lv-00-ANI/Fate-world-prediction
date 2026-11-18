@@ -46,7 +46,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -59,7 +59,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 theorem mass_dcomp_tail {A S Z : Finset V} (hSA : S ⊆ A) (hZS : Z ⊆ S)
     {ψ : V → (V → α) → ℝ} {R : V → Finset V} {p : (V → α) → ℝ}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v ⊆ Z)
     (hPA : ∀ w w', (∀ u ∈ A, w u = w' u) → (∏ v ∈ A, ψ v w) = (∏ v ∈ A, ψ v w'))
     (x : V → α) :

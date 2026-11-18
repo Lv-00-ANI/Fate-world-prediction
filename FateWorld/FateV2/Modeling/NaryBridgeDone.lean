@@ -104,7 +104,7 @@ omit [Nonempty ι] in
 （测度层 → 代数层）串联而得。 -/
 theorem kernel_coord_mul_eq_marg_sum
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hlink : ∀ xs z, pN xs z = p (xs, z))
     (hproj : ∀ i, Measurable (fun w : (∀ j, fam j) × γ => w.1 i))
     (hsnd : Measurable (fun w : (∀ j, fam j) × γ => w.2))
@@ -117,7 +117,7 @@ theorem kernel_coord_mul_eq_marg_sum
         (MeasurableSpace.comap (fun w : (∀ j, fam j) × γ => w.2) inferInstance)) a).real
           (coordSet (fam := fam) (γ := γ) i ((Sf i : Set (fam i))))
         * ((weightedCountN p).real (fiberN a.2))
-      = ∑ x ∈ Sf i, Fate.GenC3.marg pN i x a.2 := by
+      = ∑ x ∈ Sf i, FateV2.Modeling.GenC3.marg pN i x a.2 := by
   letI : IsFiniteMeasure (weightedCountN p) := weightedCountN_isFiniteMeasure p
   intro i
   have h1 := kernelValue_coordSet_mul (fam := fam) (γ := γ) p i ((Sf i : Set (fam i)))
@@ -140,9 +140,9 @@ theorem kernel_coord_mul_eq_marg_sum
 `fiberN_real_eq_sum'` + `NMass_eq_sum`（`M = NMass pN a.2`）串联而得。 -/
 theorem kernel_iInter_mul_eq_prod_marg_sum
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hpN : ∀ xs z, pN xs z = p (xs, z))
-    (hcond : Fate.GenC3.CondIndepN pN)
+    (hcond : FateV2.Modeling.GenC3.CondIndepN pN)
     (hproj : ∀ i, Measurable (fun w : (∀ j, fam j) × γ => w.1 i))
     (hsnd : Measurable (fun w : (∀ j, fam j) × γ => w.2))
     (Sf : ∀ i, Finset (fam i))
@@ -153,12 +153,12 @@ theorem kernel_iInter_mul_eq_prod_marg_sum
       (MeasurableSpace.comap (fun w : (∀ j, fam j) × γ => w.2) inferInstance)) a).real
         (⋂ i, coordSet (fam := fam) (γ := γ) i ((Sf i : Set (fam i))))
       * ((weightedCountN p).real (fiberN a.2)) ^ Fintype.card ι
-      = ∏ i, ∑ x ∈ Sf i, Fate.GenC3.marg pN i x a.2 := by
+      = ∏ i, ∑ x ∈ Sf i, FateV2.Modeling.GenC3.marg pN i x a.2 := by
   letI : IsFiniteMeasure (weightedCountN p) := weightedCountN_isFiniteMeasure p
   set M : ℝ := (weightedCountN p).real (fiberN a.2) with hMdef
   set A : ℝ := ∑ xs : (∀ j, fam j),
       (if ∀ i, xs i ∈ Sf i then p (xs, a.2) else 0) with hAdef
-  set B : ℝ := ∏ i, ∑ x ∈ Sf i, Fate.GenC3.marg pN i x a.2 with hBdef
+  set B : ℝ := ∏ i, ∑ x ∈ Sf i, FateV2.Modeling.GenC3.marg pN i x a.2 with hBdef
   -- (1) 核值 × `M` = `μ(t ∩ fiberN)`
   have h1 := kernelValue_iInter_coordSet_mul (fam := fam) (γ := γ) p
     (fun i => (Sf i : Set (fam i))) (fun i => Finset.measurableSet (Sf i)) hproj hsnd a hμa
@@ -172,7 +172,7 @@ theorem kernel_iInter_mul_eq_prod_marg_sum
     rw [hbase, hAdef]
   -- (3) `M = NMass pN a.2`
   haveI : DecidablePred (· ∈ (fiberN a.2 : Set ((∀ j, fam j) × γ))) := fiberNDecPred a.2
-  have h3 : M = Fate.GenC3.NMass pN a.2 := by
+  have h3 : M = FateV2.Modeling.GenC3.NMass pN a.2 := by
     rw [hMdef, fiberN_real_eq_sum' p hp a.2, FateV2.Modeling.GenN.NMass_eq_sum]
     exact Finset.sum_congr rfl (fun xs _ => (hpN xs a.2).symm)
   -- (4) 代数因子化 `A * M^(n-1) = B`
@@ -198,7 +198,7 @@ theorem kernel_iInter_mul_eq_prod_marg_sum
   have hκM' : κ * M = A := hκM
   calc κ * M ^ Fintype.card ι
       = κ * (M ^ (Fintype.card ι - 1) * M) := by
-        rw [Fate.GenC3.pow_card_pred_mul hcard M]
+        rw [FateV2.Modeling.GenC3.pow_card_pred_mul hcard M]
     _ = (κ * M) * M ^ (Fintype.card ι - 1) := by ring
     _ = A * M ^ (Fintype.card ι - 1) := by rw [hκM']
     _ = B := h4
@@ -220,9 +220,9 @@ theorem kernel_iInter_mul_eq_prod_marg_sum
 `b i := ∑ a ∈ Sf i, marg pN i a a.2`、`M := μ.real (fiberN a.2)`。 -/
 theorem nary_bridge_final_one_line
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hpN : ∀ xs z, pN xs z = p (xs, z))
-    (hcond : Fate.GenC3.CondIndepN pN)
+    (hcond : FateV2.Modeling.GenC3.CondIndepN pN)
     (hproj : ∀ i, Measurable (fun w : (∀ j, fam j) × γ => w.1 i))
     (hsnd : Measurable (fun w : (∀ j, fam j) × γ => w.2))
     (Sf : ∀ i, Finset (fam i))
@@ -244,7 +244,7 @@ theorem nary_bridge_final_one_line
     (fun i => ((condExpKernel (Ω := (∀ j, fam j) × γ) (weightedCountN p)
       (MeasurableSpace.comap (fun w : (∀ j, fam j) × γ => w.2) inferInstance)) a).real
         (coordSet (fam := fam) (γ := γ) i ((Sf i : Set (fam i)))))
-    (fun i => ∑ x ∈ Sf i, Fate.GenC3.marg pN i x a.2)
+    (fun i => ∑ x ∈ Sf i, FateV2.Modeling.GenC3.marg pN i x a.2)
     ((weightedCountN p).real (fiberN a.2))
     hM
     (fun i => kernel_coord_mul_eq_marg_sum p hp pN hpN hproj hsnd Sf a hμa i)
@@ -257,9 +257,9 @@ theorem nary_bridge_final_one_line
 但把「各坐标条件边缘和」显式化 —— 这就是桥的**可计算**形式。 -/
 theorem nary_bridge_final_div
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hpN : ∀ xs z, pN xs z = p (xs, z))
-    (hcond : Fate.GenC3.CondIndepN pN)
+    (hcond : FateV2.Modeling.GenC3.CondIndepN pN)
     (hproj : ∀ i, Measurable (fun w : (∀ j, fam j) × γ => w.1 i))
     (hsnd : Measurable (fun w : (∀ j, fam j) × γ => w.2))
     (Sf : ∀ i, Finset (fam i))
@@ -270,7 +270,7 @@ theorem nary_bridge_final_div
     ((condExpKernel (Ω := (∀ j, fam j) × γ) (weightedCountN p)
       (MeasurableSpace.comap (fun w : (∀ j, fam j) × γ => w.2) inferInstance)) a).real
         (⋂ i, coordSet (fam := fam) (γ := γ) i ((Sf i : Set (fam i))))
-      = (∏ i, ∑ x ∈ Sf i, Fate.GenC3.marg pN i x a.2)
+      = (∏ i, ∑ x ∈ Sf i, FateV2.Modeling.GenC3.marg pN i x a.2)
           / ((weightedCountN p).real (fiberN a.2)) ^ Fintype.card ι := by
   letI : IsFiniteMeasure (weightedCountN p) := weightedCountN_isFiniteMeasure p
   have hkey := kernel_iInter_mul_eq_prod_marg_sum p hp pN hpN hcond hproj hsnd Sf a hμa

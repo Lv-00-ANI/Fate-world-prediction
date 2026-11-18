@@ -45,7 +45,7 @@ namespace FateV2.Predict.C5f
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -53,7 +53,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 theorem blockCI_of_condIndep_zero {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph.DAG V}
     {A B : Finset V} (hAB : A ∪ B = Finset.univ)
-    (hci : Fate.FactorMarkov.CondIndep p A B ∅) :
+    (hci : FateV2.Predict.FactorMarkov.CondIndep p A B ∅) :
     BlockCI_Gap p G A B ∅ := by
   intro x
   have hz := hci x
@@ -65,8 +65,8 @@ theorem blockCI_of_condIndep_zero {p : (V → α) → ℝ} {G : FateV2.Modeling.
 theorem blockCI_of_block_split {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {A B : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R A B ∅)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R A B ∅)
     (hAB : A ∪ B = Finset.univ) (hdisj : Disjoint A B)
     (G : FateV2.Modeling.Graph.DAG V) :
     BlockCI_Gap p G A B ∅ := by
@@ -76,6 +76,6 @@ theorem blockCI_of_block_split {ψ : V → (V → α) → ℝ} {p : (V → α) �
   have hYZ : Disjoint B ∅ := Finset.disjoint_left.mpr (fun x _ hx0 => absurd hx0 (Finset.notMem_empty x))
   have hcover : A ∪ B ∪ ∅ = Finset.univ := by
     rw [Finset.union_empty, hAB]
-  exact Fate.GraphToProbView7.condIndep_general ψ p hfac hread hsplit hdisj hXZ hYZ hcover
+  exact FateV2.Predict.GraphToProbView7.condIndep_general ψ p hfac hread hsplit hdisj hXZ hYZ hcover
 
 end FateV2.Predict.C5f

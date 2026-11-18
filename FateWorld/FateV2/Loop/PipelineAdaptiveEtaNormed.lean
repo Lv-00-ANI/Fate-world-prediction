@@ -13,7 +13,7 @@ import FateWorld.FateV2.Loop.PipelineAdaptiveEta
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineAdaptiveEtaNormed` —— **变步长收敛从 ℝ 推广到赋范空间**
+  `FateV2.Loop.PipelineAdaptiveEtaNormed` —— **变步长收敛从 ℝ 推广到赋范空间**
 
   ## 0  本文件补什么
 
@@ -110,7 +110,7 @@ theorem adaptive_norm_le {E : Type*} [SeminormedAddCommGroup E] [NormedSpace ℝ
       ≤ c ^ n * ‖θ₀ - θstar‖ := by
   rw [adaptive_closed_normed, norm_smul, Real.norm_eq_abs]
   exact mul_le_mul_of_nonneg_right
-    (Fate.PipelineAdaptiveEta.prod_abs_le_pow η c hη n) (norm_nonneg _)
+    (FateV2.Loop.PipelineAdaptiveEta.prod_abs_le_pow η c hη n) (norm_nonneg _)
 
 /-! ## §2  主定理：赋范空间上的变步长收敛 -/
 
@@ -121,7 +121,7 @@ theorem adaptive_norm_le {E : Type*} [SeminormedAddCommGroup E] [NormedSpace ℝ
 
 $$\lim_{n\to\infty} \left\| \theta_n - \theta^* \right\| = 0.$$
 
-这是 `Fate.PipelineAdaptiveEta.thetaN_adaptive_tendsto` 从 `ℝ` 到**任意赋范空间**的推广
+这是 `FateV2.Loop.PipelineAdaptiveEta.thetaN_adaptive_tendsto` 从 `ℝ` 到**任意赋范空间**的推广
 （取 `E = ℝ`、`• = *` 即退化回标量定理）。
 
 **证明**：闭式 + `|∏(1-η_k)| ≤ c^n` + `c^n → 0` + 乘常数 + 范数刻画收敛。 -/

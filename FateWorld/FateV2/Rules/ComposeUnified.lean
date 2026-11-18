@@ -42,7 +42,7 @@
 
 **§2 B 族实例（主导）**
 * `instCommutativeCompositeAttrSet :
-    CommutativeComposite (Set Fate.AlphaInstance.K3.MFCA)` ——
+    CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA)` ——
   `comp := combClosure`（等价于 `closureOp (A ∪ B)`），
   由 `ComposeSemantics.combClosure_commutable` 提供交换性。
   （**用 `instance` 直接构造，无需退回 `def`**；见 (f)。）
@@ -105,8 +105,8 @@
 ---------------------------------------------------------------------------
 `combClosure` 与 `MeasurableRule.comp` 的**载体不同**：
 
-* `combClosure`：`Set Fate.AlphaInstance.K3.MFCA → Set Fate.AlphaInstance.K3.MFCA
-  → Set Fate.AlphaInstance.K3.MFCA`（属性集合）
+* `combClosure`：`Set FateV2.Rules.AlphaInstance.K3.MFCA → Set FateV2.Rules.AlphaInstance.K3.MFCA
+  → Set FateV2.Rules.AlphaInstance.K3.MFCA`（属性集合）
 * `MeasurableRule.comp`：`MeasurableRule C Y Z → MeasurableRule C X Y →
   MeasurableRule C X Z`（条件分布核）
 
@@ -132,7 +132,7 @@
 ---------------------------------------------------------------------------
 本文件**零 `sorry`、零 `admit`、零 `axiom`**。
 所用引理全部为 Mathlib 已有定理或**已入链**模块
-（`Fate.ComposeSemantics`、`Fate.CompNotCommutative`、`Fate.WiringFourOpFixed`、
+（`FateV2.Rules.ComposeSemantics`、`Fate.CompNotCommutative`、`Fate.WiringFourOpFixed`、
 `Fate.ComposeOperator`）中的定理。
 -/
 
@@ -194,7 +194,7 @@ class DirectedComposite (α : Type u) extends Composite α
     §2  B 族实例（主导）：`combClosure` on `Set K3.MFCA`
     =========================================================================== -/
 
-/-- **B 族实例**：`combClosure` 使 `Set Fate.AlphaInstance.K3.MFCA` 成为一个
+/-- **B 族实例**：`combClosure` 使 `Set FateV2.Rules.AlphaInstance.K3.MFCA` 成为一个
 **可交换复合**（`CommutativeComposite`）。
 
 `comp := combClosure`（`= closureOp (A ∪ B)`，见 `WiringFourOpFixed:152`）；
@@ -211,17 +211,17 @@ class DirectedComposite (α : Type u) extends Composite α
     现在**显式写出 `priority := 1000`**（Lean 的隐式默认值），使「2000 压过 1000」这个
     竞争**有真实的、写在代码里的双方**。 -/
 instance (priority := 1000) instCommutativeCompositeAttrSet :
-    CommutativeComposite (Set Fate.AlphaInstance.K3.MFCA) where
-  comp := Fate.AlphaInstance.WiringFixed.combClosure
-  comp_comm := Fate.ComposeSemantics.combClosure_commutable
+    CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA) where
+  comp := FateV2.Rules.AlphaInstance.WiringFixed.combClosure
+  comp_comm := FateV2.Rules.ComposeSemantics.combClosure_commutable
 
 /-- 该实例的 `comp` **逐字等于** `combClosure`（定义相等）。 -/
 theorem combClosure_comp_eq :
-    (Composite.comp (α := Set Fate.AlphaInstance.K3.MFCA))
-      = Fate.AlphaInstance.WiringFixed.combClosure := rfl
+    (Composite.comp (α := Set FateV2.Rules.AlphaInstance.K3.MFCA))
+      = FateV2.Rules.AlphaInstance.WiringFixed.combClosure := rfl
 
 /-- ⭐ **B 族 `comp` 可交换**（不经类型类解析的显式重述，便于下游直接引用）。 -/
-theorem B_is_commutative (A B : Set Fate.AlphaInstance.K3.MFCA) :
+theorem B_is_commutative (A B : Set FateV2.Rules.AlphaInstance.K3.MFCA) :
     Composite.comp A B = Composite.comp B A :=
   CommutativeComposite.comp_comm A B
 
@@ -288,11 +288,11 @@ theorem A_not_commutative :
 而函数复合**有**不交换的实例 ⟹ B 的交换性是 A **不具备**的，
 故 B 是「更强的、默认的」那一族。 -/
 theorem B_dominates :
-    (∀ A B : Set Fate.AlphaInstance.K3.MFCA,
-        Fate.AlphaInstance.WiringFixed.combClosure A B
-          = Fate.AlphaInstance.WiringFixed.combClosure B A)
+    (∀ A B : Set FateV2.Rules.AlphaInstance.K3.MFCA,
+        FateV2.Rules.AlphaInstance.WiringFixed.combClosure A B
+          = FateV2.Rules.AlphaInstance.WiringFixed.combClosure B A)
       ∧ (∃ f g : Fin 2 → Fin 2, f ∘ g ≠ g ∘ f) :=
-  Fate.ComposeSemantics.two_semantics_incompatible
+  FateV2.Rules.ComposeSemantics.two_semantics_incompatible
 
 /-- ⭐⭐ **融合结构**：同一抽象 `Composite` 下有两个实例，
 **B 可交换、A 不可交换**，且**载体不同**。
@@ -307,11 +307,11 @@ theorem B_dominates :
 
 **这【不是】同义反复**：结论中「不交换」那一支来自
 `CompNotCommutative.comp_not_commutative`（一个非平凡的数值反例），
-前件仅为 `Fate.AlphaInstance.K3` 与 `CX`/`SS2` 的**类型存在性**，
+前件仅为 `FateV2.Rules.AlphaInstance.K3` 与 `CX`/`SS2` 的**类型存在性**，
 **没有把结论（可交换/不可交换）放进前件**。 -/
 theorem fusion_structure :
     -- (1) B 侧：存在可交换复合
-    (Nonempty (CommutativeComposite (Set Fate.AlphaInstance.K3.MFCA)))
+    (Nonempty (CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA)))
     -- (2) A 侧：存在复合，且它不交换
     ∧ (Nonempty (DirectedComposite
           (MeasurableRule Fate.CompNotCommutative.CX
@@ -333,8 +333,8 @@ theorem fusion_structure :
 B 与 A 共享 `Composite` 这一个抽象，并且各自实例化。
 （**不**断言「A 是 B 的实例」；见文件头 (d).1。） -/
 theorem two_instances_under_one_abstraction :
-    Nonempty (Composite (Set Fate.AlphaInstance.K3.MFCA))
-      ∧ Nonempty (CommutativeComposite (Set Fate.AlphaInstance.K3.MFCA))
+    Nonempty (Composite (Set FateV2.Rules.AlphaInstance.K3.MFCA))
+      ∧ Nonempty (CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA))
       ∧ Nonempty (DirectedComposite
           (MeasurableRule Fate.CompNotCommutative.CX
             Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2)) :=

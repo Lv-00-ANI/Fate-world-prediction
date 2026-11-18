@@ -62,8 +62,8 @@ open FateV2.Modeling
 open Finset
 open FateV2.Error
 open Fate.DAGFactorization
-open Fate.FactorMarkov
-open Fate.View19
+open FateV2.Predict.FactorMarkov
+open FateV2.Predict.View19
 
 universe u
 
@@ -73,7 +73,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 /-- ⭐⭐ **`Split R X Y ∅` 给出每个 `R v` 落在 `X` 或 `Y` 内**。 -/
 theorem split_emptyZ_covers {R : V → Finset V} {X Y : Finset V}
-    (hsplit : Fate.View19.Split R X Y (∅ : Finset V)) : ∀ v, R v ⊆ X ∨ R v ⊆ Y := by
+    (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V)) : ∀ v, R v ⊆ X ∨ R v ⊆ Y := by
   intro v
   rcases hsplit v with h | h
   · exact Or.inl (by simpa using h)
@@ -81,7 +81,7 @@ theorem split_emptyZ_covers {R : V → Finset V} {X Y : Finset V}
 
 /-- ⭐ **`Z = ∅` 时全部因子被 `X∪Y` 覆盖**。 -/
 theorem split_emptyZ_covers_union {R : V → Finset V} {X Y : Finset V}
-    (hsplit : Fate.View19.Split R X Y (∅ : Finset V)) : ∀ v, R v ⊆ X ∪ Y := by
+    (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V)) : ∀ v, R v ⊆ X ∪ Y := by
   intro v
   rcases split_emptyZ_covers hsplit v with h | h
   · intro u hu; exact Finset.mem_union.mpr (Or.inl (h hu))
@@ -94,8 +94,8 @@ namespace FateV2.Predict.GraphToProbView7
 open Finset
 open FateV2.Error
 open Fate.DAGFactorization
-open Fate.FactorMarkov
-open Fate.View19
+open FateV2.Predict.FactorMarkov
+open FateV2.Predict.View19
 
 universe u
 
@@ -106,7 +106,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 /-- ⭐ **`mass (X∪Y) p` 的全部因子提出**（`Split` 保证两半都在 `X∪Y` 内）。 -/
 theorem mass_XY_expand (ψ : V → (V → α) → ℝ) {R : V → Finset V}
     (hread : ReadSet ψ R) {X Y : Finset V}
-    (hsplit : Fate.View19.Split R X Y (∅ : Finset V)) (x : V → α) :
+    (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V)) (x : V → α) :
     mass (X ∪ Y) (fun w => (∏ v, ψ v w) * (1 : ℝ)) x
       = (∏ v, ψ v x)
         * ((Fintype.card α : ℝ) ^ (Fintype.card V - (X ∪ Y).card)) := by
@@ -132,7 +132,7 @@ theorem mass_empty_expand (f g : (V → α) → ℝ) {X Y : Finset V}
 
 /-- ⭐⭐ **`mass Y p` 的展开**（与 `mass_X_expand` 同构）。 -/
 theorem mass_Y_expand (ψ : V → (V → α) → ℝ) {R : V → Finset V} (hread : ReadSet ψ R)
-    {X Y : Finset V} (hsplit : Fate.View19.Split R X Y (∅ : Finset V))
+    {X Y : Finset V} (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V))
     (g : (V → α) → ℝ) (x : V → α)
     (hg : ∀ w w', (∀ u ∈ Y, w u = w' u) → g w = g w') :
     mass Y (fun w => (∏ v, ψ v w) * g w) x

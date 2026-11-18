@@ -134,8 +134,8 @@ theorem r44_reweight_endpoints
     {V : Type} [DecidableEq V] [Fintype V]
     {alpha : Type} [Fintype alpha] [DecidableEq alpha]
     (G : FateV2.Modeling.Graph.DAG V) {q : V → (V → alpha) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G q)
-    (p : Fate.FactorMarkov.Joint V alpha) (hfac : ∀ x, p x = ∏ v, q v x)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G q)
+    (p : FateV2.Predict.FactorMarkov.Joint V alpha) (hfac : ∀ x, p x = ∏ v, q v x)
     (S : Finset V) (x : V → alpha) :
     Fate.DAGFactorization.mass S p x
         = Fate.DAGFactorization.mass S (fun w => ∏ v, q v w) x

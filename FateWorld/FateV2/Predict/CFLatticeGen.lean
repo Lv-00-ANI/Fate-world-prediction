@@ -49,11 +49,11 @@ import Mathlib.Order.GaloisConnection.Basic
   加宽载体只会**更细**，而常值读出的核是 `⊤`（已到顶）。
   详见 §9.2 `isTop_iff_obs_constant` 与 §9.5。
 
-  **⚠ 关于 import 的说明**：本文件**直接 `import Fate.CFLattice`**，
+  **⚠ 关于 import 的说明**：本文件**直接 `import FateV2.Predict.CFLattice`**，
   故 §9.1–§9.5 的推广**就是**对原版 `Readout` / `Finer` 的推广，无需任何搬运论证。
 
   `Readout` / `Finer` / `identityReadout` 及原版三条基本定理经 `export`
-  提到 `Fate.CFLatticeGen` 顶层，便于本文件与下游引用。
+  提到 `FateV2.Predict.CFLatticeGen` 顶层，便于本文件与下游引用。
   =========================================================================== -/
 
 set_option autoImplicit false
@@ -70,14 +70,14 @@ variable {SCM : Type u}
 /-! ===========================================================================
   §9.0  基础层：直接**复用**原版 `Readout` / `Finer` / `identityReadout`
   ===========================================================================
-  本文件 `import Fate.CFLattice`，故这里**不再重述**任何定义 ——
+  本文件 `import FateV2.Predict.CFLattice`，故这里**不再重述**任何定义 ——
   §9.1–§9.5 的推广是**直接**对原版对象的推广，不存在「搬运」问题。
 
-  `Readout` / `Finer` 经 `export` 提到 `Fate.CFLatticeGen` 顶层，
+  `Readout` / `Finer` 经 `export` 提到 `FateV2.Predict.CFLatticeGen` 顶层，
   使本文件其余部分与下游模块的引用更短。
   --------------------------------------------------------------------------- -/
 
-export Fate.CFLattice (Readout Finer identityReadout finer_refl finer_trans
+export FateV2.Predict.CFLattice (Readout Finer identityReadout finer_refl finer_trans
   identity_is_finest)
 
 /-! ===========================================================================
@@ -260,7 +260,7 @@ theorem finer_not_isPartialOrder :
   have heq : (⟨Bool, id⟩ : Readout.{0, 0} Bool) = ⟨Bool, not⟩ :=
     h.2.antisymm _ _ hle hge
   have hObs : id = not :=
-    eq_of_heq ((Fate.CFLattice.Readout.mk.injEq Bool id Bool not).mp heq |>.2)
+    eq_of_heq ((FateV2.Predict.CFLattice.Readout.mk.injEq Bool id Bool not).mp heq |>.2)
   have hpt : id true = not true := congrFun hObs true
   exact Bool.noConfusion hpt
 

@@ -51,8 +51,8 @@ variable {γ : Type*}
 
 omit [∀ i, DecidableEq (fam i)] in
 /-- ⭐⭐⭐ **`NMass p z` is the sum of `p` over the slice** (definitional). -/
-theorem NMass_eq_sum (p : Fate.GenC3.NJoint (ι := ι) fam γ) (z : γ) :
-    Fate.GenC3.NMass p z = ∑ xs : (∀ j, fam j), p xs z :=
+theorem NMass_eq_sum (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ) (z : γ) :
+    FateV2.Modeling.GenC3.NMass p z = ∑ xs : (∀ j, fam j), p xs z :=
   rfl
 
 end NMass

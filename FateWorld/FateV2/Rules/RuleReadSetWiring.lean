@@ -467,7 +467,7 @@ theorem closure_eq_self_of_wmc {F : Frame} [MeasurableSpace F.X.Carrier]
 ⟹ 存在 `r ∈ rules`。这说明「`rules` 不是空集」是 WMC 的**结构性事实**，
 可以承载至少一条规则。 -/
 theorem wmc_rules_nonempty {F : Frame} [MeasurableSpace F.X.Carrier]
-    [Fate.RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X]
+    [FateV2.Rules.RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X]
     (W : WorldModelCompleteV2 F) :
     (W.rules : Set (Rule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X)).Nonempty :=
   ⟨W.rules_determine_step.1, W.rules_determine_step.2.1⟩
@@ -476,7 +476,7 @@ theorem wmc_rules_nonempty {F : Frame} [MeasurableSpace F.X.Carrier]
 
 这是 `wmc_rules_nonempty` 的构造性读法：从非空性取一个元素作为**唯一**索引的解码。 -/
 theorem exists_dec_of_wmc {F : Frame} [MeasurableSpace F.X.Carrier]
-    [Fate.RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X]
+    [FateV2.Rules.RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X]
     (W : WorldModelCompleteV2 F) :
     ∃ dec : PUnit → Rule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X, dec ⟨⟩ ∈ W.rules := by
   obtain ⟨r, hr⟩ := wmc_rules_nonempty W

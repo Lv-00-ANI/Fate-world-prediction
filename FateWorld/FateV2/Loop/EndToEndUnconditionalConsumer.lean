@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndUnconditionalConsumer` —— `EndToEndUnconditional` 的**真实消费者**
+  `FateV2.Loop.EndToEndUnconditionalConsumer` —— `EndToEndUnconditional` 的**真实消费者**
 
   ## 0  为什么需要这个文件（R897 建议 2）
 
@@ -97,7 +97,7 @@ theorem linWorld_at_zero_tendsto (η θstar θ₀ : ℝ) :
         (θstar * 0) PUnit.unit PUnit.unit PUnit.unit 0 n θ₀)
       = fun _ => θ₀ := by
     funext n
-    exact Fate.EndToEndUnconditional.endToEndIter_linWorld_at_zero η θstar θ₀ n
+    exact FateV2.Loop.EndToEndUnconditional.endToEndIter_linWorld_at_zero η θstar θ₀ n
   rw [h]
   exact tendsto_const_nhds
 
@@ -131,7 +131,7 @@ theorem linWorld_limit_explicit (η θstar x θ₀ : ℝ) (hη : |1 - η| < 1) :
         (θstar * x) PUnit.unit PUnit.unit PUnit.unit x n θ₀)
       atTop (nhds (if x = 0 then θ₀ else θstar)) := by
   have h :=
-    Fate.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
+    FateV2.Loop.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
       η θstar x θ₀ hη
   by_cases hx : x = 0
   · rw [if_pos hx]
@@ -169,7 +169,7 @@ theorem linWorld_lim_seq_clean (η θstar x θ₀ : ℝ) (hη : |1 - η| < 1) :
           (((1 / x : ℝ)) • (LinearMap.id : ℝ →ₗ[ℝ] ℝ) : ℝ →+ ℝ)
           (θstar * x) PUnit.unit PUnit.unit PUnit.unit x n θ₀)
         atTop (nhds L) :=
-  (Fate.EndToEndUnconditional.endToEndIter_linWorld_converges_some
+  (FateV2.Loop.EndToEndUnconditional.endToEndIter_linWorld_converges_some
     η θstar x θ₀ hη).1
 
 /-! ===========================================================================
@@ -199,11 +199,11 @@ theorem linWorld_unique_limit (η θstar x θ₀ : ℝ) (hx : x ≠ 0)
           (θstar * x) PUnit.unit PUnit.unit PUnit.unit x n θ₀)
         atTop (nhds L) := by
   refine ⟨θstar, ?_, ?_⟩
-  · exact (Fate.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
+  · exact (FateV2.Loop.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
       η θstar x θ₀ hη).2 hx
   · intro L hL
     exact tendsto_nhds_unique hL
-      ((Fate.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
+      ((FateV2.Loop.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
         η θstar x θ₀ hη).2 hx)
 
 /-! ===========================================================================

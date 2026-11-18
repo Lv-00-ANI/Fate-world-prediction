@@ -1,9 +1,9 @@
 /-
-命运理论 · 【C2】数值与理论一致性（对 `Fate.EvalReal` 的 `#eval` 结果各写定理）
+命运理论 · 【C2】数值与理论一致性（对 `FateV2.Loop.EvalReal` 的 `#eval` 结果各写定理）
 =====================================================================
 
-模块：`Fate.EvalRealProof`（在 `Fate/` 下验证过两遍后再交）
-上游：`Fate.EvalReal`（`eWorldModel` / `predCalc` / `residCalc` / `wbCalc` / `e2eCalc`
+模块：`FateV2.Loop.EvalRealProof`（在 `Fate/` 下验证过两遍后再交）
+上游：`FateV2.Loop.EvalReal`（`eWorldModel` / `predCalc` / `residCalc` / `wbCalc` / `e2eCalc`
 　　　/ `runE2E` / `in1..in4` / `e2eCalc_closed_form` 等，**一字未改**）。
 
 ---------------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace EvalRealProof
 
-open Fate.EvalReal
+open FateV2.Loop.EvalReal
 
 /-!
   # Loop · EvalRealProof

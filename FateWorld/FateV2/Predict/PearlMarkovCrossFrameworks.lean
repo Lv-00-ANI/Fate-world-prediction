@@ -33,7 +33,7 @@ import FateWorld.FateV2.Predict.PearlPathDecomp
   |---|---|---|
   | `Fate.FinCondIndep` | `FinCondIndep.lean` | `∀ x y z, p·margZ = margXZ·margYZ` |
   | `Fate.Fork213` | `PearlFork.lean` | **逐字相同** |
-  | `Fate.R242G1` | `PearlMarkovBridgeG1.lean` | **逐字相同** |
+  | `FateV2.Predict.R242G1` | `PearlMarkovBridgeG1.lean` | **逐字相同** |
   | `Fate.PearlMarkov` | `PearlMarkov.lean` | 只给 `ColliderFac`（对撞，另一支）|
 
   `PearlFork.lean` 的文件头**明说**「⚠ 本文件刻意不 `import FateV2.Predict.FinCondIndep`」，
@@ -167,7 +167,7 @@ theorem fork213_bridge_ratio {al be ga : Type u}
     (f : ga → al → ℝ) (g : ga → be → ℝ)
     (hfac : FateV2.Predict.Fork213.ForkFac p h f g) :
     FateV2.Predict.FinCondIndep.CondRatio p :=
-  Fate.R242G1.condMul_imp_condRatio p (fork213_bridge p h f g hfac)
+  FateV2.Predict.R242G1.condMul_imp_condRatio p (fork213_bridge p h f g hfac)
 
 /-! ===========================================================================
   §4 ⭐⭐⭐ **chain 支（`R242G1`）→ 统一口径**
@@ -188,9 +188,9 @@ theorem chain_bridge {al be ga : Type u}
     [DecidableEq al] [DecidableEq be] [DecidableEq ga]
     (p : FateV2.Predict.FinCondIndep.FinJoint al be ga) (A : al → ℝ)
     (B : al → ga → ℝ) (C : ga → be → ℝ)
-    (hfac : Fate.R242G1.ChainFac p A B C) :
+    (hfac : FateV2.Predict.R242G1.ChainFac p A B C) :
     FateV2.Predict.FinCondIndep.CondMul p :=
-  Fate.R242G1.chain_condMul p A B C hfac
+  FateV2.Predict.R242G1.chain_condMul p A B C hfac
 
 /-- ⭐⭐ **chain 支 → `CondRatio`**。 -/
 theorem chain_bridge_ratio {al be ga : Type u}
@@ -198,9 +198,9 @@ theorem chain_bridge_ratio {al be ga : Type u}
     [DecidableEq al] [DecidableEq be] [DecidableEq ga]
     (p : FateV2.Predict.FinCondIndep.FinJoint al be ga) (A : al → ℝ)
     (B : al → ga → ℝ) (C : ga → be → ℝ)
-    (hfac : Fate.R242G1.ChainFac p A B C) :
+    (hfac : FateV2.Predict.R242G1.ChainFac p A B C) :
     FateV2.Predict.FinCondIndep.CondRatio p :=
-  Fate.R242G1.condMul_imp_condRatio p (chain_bridge p A B C hfac)
+  FateV2.Predict.R242G1.condMul_imp_condRatio p (chain_bridge p A B C hfac)
 
 /-! ===========================================================================
   §5 ⭐⭐⭐⭐ **汇合定理**：fork 与 chain **两条独立路径到达同一结论**
@@ -231,7 +231,7 @@ theorem fork_and_chain_same_target {al be ga : Type u}
     (h : ga → ℝ) (f : ga → al → ℝ) (g : ga → be → ℝ)
     (hf : FateV2.Predict.Fork213.ForkFac p h f g)
     (A : al → ℝ) (B : al → ga → ℝ) (C : ga → be → ℝ)
-    (hc : Fate.R242G1.ChainFac p A B C) :
+    (hc : FateV2.Predict.R242G1.ChainFac p A B C) :
     FateV2.Predict.FinCondIndep.CondMul p
       ∧ FateV2.Predict.FinCondIndep.CondRatio p :=
   ⟨fork213_bridge p h f g hf, chain_bridge_ratio p A B C hc⟩
@@ -245,7 +245,7 @@ theorem fork_and_chain_same_target {al be ga : Type u}
 
 **⚠ 注意这是**结构层**（`TripleStructure`）的陈述，
 不是概率层的 `¬ CondMul`** —— 后者需要反例（见
-`Fate.R242G1.collider_switch` / `xorCond_not_condMul`），本文件不重证。
+`FateV2.Predict.R242G1.collider_switch` / `xorCond_not_condMul`），本文件不重证。
 
 **意义**：`PearlMarkov.collider_unique` 此前**零引用**；
 接上本文件后，`PearlMarkov` 的「三结构判据」进入了跨框架视野 ——

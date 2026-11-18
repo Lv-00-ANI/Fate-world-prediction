@@ -32,7 +32,7 @@ import FateWorld.FateV2.Predict.FactorMarkov
 
   `factorizes_colliderP_corrected`：**需要 `{0, 2} ⊆ G.parents 1`**。
 
-  证明用 `Fate.ThreeNodeFactorizes.colliderPhi`（现成的分解：
+  证明用 `FateV2.Predict.ThreeNodeFactorizes.colliderPhi`（现成的分解：
   `colliderPhi v x = if v = 1 then [x 0 = x 2] else 1`），
   再用 `Finset.prod_eq_single 1` 收口。
 
@@ -52,11 +52,11 @@ open FateV2.Modeling.Graph
 -- ⭐ 修正版：Factorizes colliderP G 成立当 pa_G(1) ⊇ {0,2}
 theorem factorizes_colliderP_corrected (G : FateV2.Modeling.Graph.DAG (Fin 3))
     (hpa : ({0, 2} : Finset (Fin 3)) ⊆ G.parents 1) :
-    Fate.FactorMarkov.Factorizes
-      (Fate.ThreeNodeFactorizes.colliderP (α := Bool)) G := by
-  refine ⟨Fate.ThreeNodeFactorizes.colliderPhi (α := Bool), ?_, ?_⟩
+    FateV2.Predict.FactorMarkov.Factorizes
+      (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) G := by
+  refine ⟨FateV2.Predict.ThreeNodeFactorizes.colliderPhi (α := Bool), ?_, ?_⟩
   · intro v x y hxy
-    unfold Fate.ThreeNodeFactorizes.colliderPhi
+    unfold FateV2.Predict.ThreeNodeFactorizes.colliderPhi
     by_cases hv : v = 1
     · subst hv
       simp only
@@ -66,9 +66,9 @@ theorem factorizes_colliderP_corrected (G : FateV2.Modeling.Graph.DAG (Fin 3))
     · simp only [hv, if_false]
   · intro x
     rw [Finset.prod_eq_single 1]
-    · simp [Fate.ThreeNodeFactorizes.colliderPhi, Fate.ThreeNodeFactorizes.colliderP]
+    · simp [FateV2.Predict.ThreeNodeFactorizes.colliderPhi, FateV2.Predict.ThreeNodeFactorizes.colliderP]
     · intro b _ hb
-      simp [Fate.ThreeNodeFactorizes.colliderPhi, hb]
+      simp [FateV2.Predict.ThreeNodeFactorizes.colliderPhi, hb]
     · intro h; exact absurd (Finset.mem_univ _) h
 
 end FateV2.Predict.BridgeA4Fixed

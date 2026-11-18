@@ -57,8 +57,8 @@
 
 ## 3 依赖
 
-* `Fate.FactorizesToHyper.readSetOf` / `condIndep_of_factorizes` —— `Fate/FactorizesToHyper.lean`
-* `Fate.View19.Split` —— `Fate/View19FactorGraphSplit.lean`
+* `FateV2.Predict.FactorizesToHyper.readSetOf` / `condIndep_of_factorizes` —— `Fate/FactorizesToHyper.lean`
+* `FateV2.Predict.View19.Split` —— `Fate/View19FactorGraphSplit.lean`
 * `Causalean.Graph.DAG.dSep` / `dSep_symm` / `bbReachable_init_subset` /
   `bbReachable_bbStep_subset` / `bbStep` / `bbInit` —— `CausSeparation.lean`、
   `CausBayesBall.lean`
@@ -118,7 +118,7 @@ def parentClosed (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) : Prop :=
 theorem split_of_parentClosed (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hXZ : parentClosed G (X ∪ Z)) (hYZ : parentClosed G (Y ∪ Z))
     (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z := by
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z := by
   intro v
   have hv : v ∈ X ∪ Y ∪ Z := by rw [hcover]; exact Finset.mem_univ v
   have hmem : v ∈ X ∪ Z ∨ v ∈ Y ∪ Z := by
@@ -126,10 +126,10 @@ theorem split_of_parentClosed (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset 
     tauto
   rcases hmem with h | h
   · left
-    rw [Fate.FactorizesToHyper.readSetOf]
+    rw [FateV2.Predict.FactorizesToHyper.readSetOf]
     exact Finset.insert_subset h (hXZ v h)
   · right
-    rw [Fate.FactorizesToHyper.readSetOf]
+    rw [FateV2.Predict.FactorizesToHyper.readSetOf]
     exact Finset.insert_subset h (hYZ v h)
 
 /-! ===========================================================================
@@ -200,7 +200,7 @@ theorem no_collider_in_Z (G : FateV2.Modeling.Graph.DAG V) {X Y Z : Finset V}
 theorem split_of_dSep (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z)
     (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z := by
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z := by
   intro v
   have hv : v ∈ X ∪ Y ∪ Z := by rw [hcover]; exact Finset.mem_univ v
   simp only [Finset.mem_union] at hv
@@ -262,7 +262,7 @@ theorem split_of_dSep (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
 /-- ⭐ 收窄形式：`Z = ∅` 时 `dSep X Y ∅` + `X ∪ Y = univ` 直接给 `Split`。 -/
 theorem split_of_dSep_emptyZ (G : FateV2.Modeling.Graph.DAG V) (X Y : Finset V)
     (hdsep : G.dSep X Y ∅) (hcover : X ∪ Y = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y ∅ := by
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y ∅ := by
   refine split_of_dSep G X Y ∅ hdsep ?_
   rw [Finset.union_empty]; exact hcover
 
@@ -277,12 +277,12 @@ variable {α : Type u} [Fintype α] [DecidableEq α] [Nonempty α]
 $$p \text{ 因子分解于 } G \;\wedge\; X \perp_d Y \mid \emptyset \;\wedge\; X\cup Y = V
 \;\Longrightarrow\; X \perp\!\!\!\perp_p Y \mid \emptyset.$$ -/
 theorem condIndep_of_factorizes_dSep
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y : Finset V}
     (hdsep : G.dSep X Y ∅) (hcover : X ∪ Y = univ) :
-    Fate.FactorMarkov.CondIndep p X Y ∅ := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y ∅ := by
   have hd : Disjoint X Y := hdsep.1
-  exact Fate.FactorizesToHyper.condIndep_of_factorizes p G hfac
+  exact FateV2.Predict.FactorizesToHyper.condIndep_of_factorizes p G hfac
     (split_of_dSep_emptyZ G X Y hdsep hcover) hd hcover
 
 end Chain
@@ -340,9 +340,9 @@ theorem colliderDAG_dSep : colliderDAG.dSep {0} {1} (∅ : Finset (Fin 3)) := by
 
 /-- 反例中 `Split (readSetOf G) {0} {1} ∅` **不成立**（`decide` 判定）。 -/
 theorem colliderDAG_not_split :
-    ¬ Fate.View19.Split (Fate.FactorizesToHyper.readSetOf colliderDAG)
+    ¬ FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf colliderDAG)
         {0} {1} (∅ : Finset (Fin 3)) := by
-  unfold Fate.View19.Split Fate.FactorizesToHyper.readSetOf
+  unfold FateV2.Predict.View19.Split FateV2.Predict.FactorizesToHyper.readSetOf
   decide
 
 /-- ⭐⭐⭐⭐⭐ **判决**：`dSep` **不**一般蕴含 `Split`。
@@ -351,7 +351,7 @@ theorem colliderDAG_not_split :
 使得 `dSep X Y Z` 成立而 `Split (readSetOf G) X Y Z` 不成立。 -/
 theorem dSep_not_implies_split_fin3 :
     ¬ (∀ (G : FateV2.Modeling.Graph.DAG (Fin 3)) (X Y Z : Finset (Fin 3)),
-        G.dSep X Y Z → Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z) := by
+        G.dSep X Y Z → FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z) := by
   intro h
   exact colliderDAG_not_split
     (h colliderDAG {0} {1} ∅ colliderDAG_dSep)

@@ -101,9 +101,9 @@ open FateV2.Loop.ThetaConvergence
 两个定义各自独立写就；本条的桥是 `push_cast` + `ring_nf`
 （先证 `((1-η : ℚ) : ℝ) = 1 - (η : ℝ)` 等，再对齐）。 -/
 theorem fstepQ_cast (η θstar θ : ℚ) :
-    ((Fate.EndToEndUnconditionalQ.fstepQ η θstar θ : ℚ) : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.fstepQ η θstar θ : ℚ) : ℝ)
       = FateV2.Loop.ThetaConvergence.fstep (η : ℝ) (θstar : ℝ) (θ : ℝ) := by
-  simp only [Fate.EndToEndUnconditionalQ.fstepQ, FateV2.Loop.ThetaConvergence.fstep]
+  simp only [FateV2.Loop.EndToEndUnconditionalQ.fstepQ, FateV2.Loop.ThetaConvergence.fstep]
   push_cast
   ring
 
@@ -116,12 +116,12 @@ $$(\theta^{Q}_n : \mathbb{R}) = f^{[n]}(\theta_0), \qquad f(\theta) = (1-\eta)\t
 右端是 `ℝ` 上的 `Function.iterate`；两者既不同域也不同定义形式，
 必须对 `n` 归纳并用 `fstepQ_cast` 才能接上。 -/
 theorem thetaNQ_eq_fstep_iterate (η θstar θ₀ : ℚ) (n : ℕ) :
-    ((Fate.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n : ℚ) : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n : ℚ) : ℝ)
       = (FateV2.Loop.ThetaConvergence.fstep (η : ℝ) (θstar : ℝ))^[n] (θ₀ : ℝ) := by
   induction n with
-  | zero => simp [Fate.EndToEndUnconditionalQ.thetaNQ]
+  | zero => simp [FateV2.Loop.EndToEndUnconditionalQ.thetaNQ]
   | succ k ih =>
-    rw [Fate.EndToEndUnconditionalQ.thetaNQ, fstepQ_cast, Function.iterate_succ_apply', ih]
+    rw [FateV2.Loop.EndToEndUnconditionalQ.thetaNQ, fstepQ_cast, Function.iterate_succ_apply', ih]
 
 /-- ⭐⭐⭐⭐ **【主桥：`ℚ` 版与 `ℝ` 版在嵌入下同值】**
 
@@ -138,7 +138,7 @@ $$\bigl(\texttt{thetaNQ}\ \eta\ \theta^*\ \theta_0\ n : \mathbb{R}\bigr)
 **⚠ 注意 `x` 不出现在右端值上**：这本身就是一条信息 ——
 `linWorld` 的迭代**与 `x` 无关**（`x` 只在推导中被 `1/x` 与 `θ*x` 抵消掉）。 -/
 theorem thetaNQ_eq_thetaN_cast (η θstar x θ₀ : ℚ) (hx : x ≠ 0) (n : ℕ) :
-    ((Fate.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n : ℚ) : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n : ℚ) : ℝ)
       = FateV2.Loop.ThetaConvergence.thetaN (η : ℝ) (θstar : ℝ) (x : ℝ) (θ₀ : ℝ) n := by
   rw [FateV2.Loop.ThetaConvergence.thetaN_eq_iterate _ _ _ _ (by exact_mod_cast hx) n,
     thetaNQ_eq_fstep_iterate]
@@ -159,7 +159,7 @@ $$\bigl(\theta^{Q}_n - \theta^* : \mathbb{R}\bigr) = (1-\eta)^n\,(\theta_0 - \th
 即**经由 `ℝ` 侧的迭代闭式**，而不是把结论塞进前件。
 （`ℚ` 侧的直接路径见下一条 `thetaNQ_cast_closed'`，两条路径互相独立。） -/
 theorem thetaNQ_cast_closed (η θstar θ₀ : ℚ) (n : ℕ) :
-    ((Fate.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n - θstar : ℚ) : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n - θstar : ℚ) : ℝ)
       = (1 - (η : ℝ))^n * ((θ₀ : ℝ) - (θstar : ℝ)) := by
   have h := FateV2.Loop.ThetaConvergence.fstep_iterate_closed (η : ℝ) (θstar : ℝ) (θ₀ : ℝ) n
   rw [← thetaNQ_eq_fstep_iterate] at h
@@ -171,10 +171,10 @@ theorem thetaNQ_cast_closed (η θstar θ₀ : ℚ) (n : ℕ) :
 本条走 `ℚ` 侧 `thetaNQ_closed`）。两条独立路径给出同一等式，
 是本文件对 `thetaNQ_closed` 的**交叉验证**。 -/
 theorem thetaNQ_cast_closed' (η θstar θ₀ : ℚ) (n : ℕ) :
-    ((Fate.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n : ℚ) : ℝ) - (θstar : ℝ)
+    ((FateV2.Loop.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n : ℚ) : ℝ) - (θstar : ℝ)
       = (1 - (η : ℝ))^n * ((θ₀ : ℝ) - (θstar : ℝ)) := by
-  have h := Fate.EndToEndUnconditionalQ.thetaNQ_closed η θstar θ₀ n
-  have h' : ((Fate.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n - θstar : ℚ) : ℝ)
+  have h := FateV2.Loop.EndToEndUnconditionalQ.thetaNQ_closed η θstar θ₀ n
+  have h' : ((FateV2.Loop.EndToEndUnconditionalQ.thetaNQ η θstar θ₀ n - θstar : ℚ) : ℝ)
       = ((1 - η)^n * (θ₀ - θstar) : ℚ) := by rw [h]
   push_cast at h' ⊢
   linarith [h']
@@ -260,9 +260,9 @@ theorem unique_limit_matches_closed (η θstar x θ₀ : ℝ) (hx : x ≠ 0)
           (θstar * x) PUnit.unit PUnit.unit PUnit.unit x n θ₀
         = -((1 - η)^n * (θ₀ - θstar)) := by
   obtain ⟨L, hLtend, huniq⟩ :=
-    Fate.EndToEndUnconditionalConsumer.linWorld_unique_limit η θstar x θ₀ hx hη
+    FateV2.Loop.EndToEndUnconditionalConsumer.linWorld_unique_limit η θstar x θ₀ hx hη
   have hL : L = θstar := (huniq θstar
-    ((Fate.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
+    ((FateV2.Loop.EndToEndUnconditional.endToEndIter_linWorld_tendsto_unconditional
       η θstar x θ₀ hη).2 hx)).symm
   refine ⟨L, hLtend, by
     rw [hL]
@@ -290,7 +290,7 @@ theorem zero_branch_limit (η θstar θ₀ : ℝ) :
           (((1 / (0 : ℝ) : ℝ)) • (LinearMap.id : ℝ →ₗ[ℝ] ℝ) : ℝ →+ ℝ)
           (θstar * 0) PUnit.unit PUnit.unit PUnit.unit 0 n θ₀)
         Filter.atTop (nhds L) ∧ L = θ₀ :=
-  ⟨θ₀, Fate.EndToEndUnconditionalConsumer.linWorld_at_zero_tendsto η θstar θ₀, rfl⟩
+  ⟨θ₀, FateV2.Loop.EndToEndUnconditionalConsumer.linWorld_at_zero_tendsto η θstar θ₀, rfl⟩
 
 
 /-! ===========================================================================
@@ -306,24 +306,24 @@ theorem zero_branch_limit (η θstar θ₀ : ℝ) :
 
 -- 实例 1：eta = 1/2, theta_star = 1, theta_0 = 0，第 4 步
 -- 闭式验证：(1/2)^4 * (0 - 1) = -1/16，故 theta_4 = 1 - 1/16 = 15/16
-#eval Fate.EndToEndUnconditionalQ.thetaNQ (1 / 2) 1 0 4
+#eval FateV2.Loop.EndToEndUnconditionalQ.thetaNQ (1 / 2) 1 0 4
 
 -- 实例 2：eta = 1/2, theta_star = 1, theta_0 = 0，第 6 步
 -- 闭式验证：(1/2)^6 * (0 - 1) = -1/64，故 theta_6 = 63/64
-#eval Fate.EndToEndUnconditionalQ.thetaNQ (1 / 2) 1 0 6
+#eval FateV2.Loop.EndToEndUnconditionalQ.thetaNQ (1 / 2) 1 0 6
 
 -- 实例 3：fstepQ 一步（eta = 1/3, theta_star = 2, theta = 0）
 -- fstepQ (1/3) 2 0 = (1 - 1/3) * 0 + 1/3 * 2 = 2/3
-#eval Fate.EndToEndUnconditionalQ.fstepQ (1 / 3) 2 0
+#eval FateV2.Loop.EndToEndUnconditionalQ.fstepQ (1 / 3) 2 0
 
 -- 实例 4：eta = 3/2（|1 - eta| = 1/2 < 1，仍收敛），theta_star = 1, theta_0 = 0，第 5 步
 -- 闭式：(1 - 3/2)^5 * (0 - 1) = (-1/2)^5 * (-1) = 1/32，故 theta_5 = 1 + 1/32 = 33/32（注意符号：闭式是 theta_n - theta_star = (1-eta)^n (theta_0 - theta_star)，故 theta_n = theta_star + (1-eta)^n (theta_0 - theta_star)）
-#eval Fate.EndToEndUnconditionalQ.thetaNQ (3 / 2) 1 0 5
+#eval FateV2.Loop.EndToEndUnconditionalQ.thetaNQ (3 / 2) 1 0 5
 
 -- 实例 5：eta = 1/4, theta_star = 3, theta_0 = 0，第 3 步
 -- 闭式：(1 - 1/4)^3 * (0 - 3) = (3/4)^3 * (-3) = -81/64
 -- 故 theta_3 = 3 - 81/64 = 192/64 - 81/64 = 111/64
-#eval Fate.EndToEndUnconditionalQ.thetaNQ (1 / 4) 3 0 3
+#eval FateV2.Loop.EndToEndUnconditionalQ.thetaNQ (1 / 4) 3 0 3
 
 end EndToEndQConsumer
 end FateV2.Loop

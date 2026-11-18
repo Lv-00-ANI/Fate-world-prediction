@@ -76,7 +76,7 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace PipelineEndToEndCapstone
 
-open Filter Fate.PipelineAdaptiveEtaNormed
+open Filter FateV2.Loop.PipelineAdaptiveEtaNormed
 
 /-! ## §1  确定性端到端保证（③ + ④） -/
 
@@ -102,7 +102,7 @@ theorem end_to_end_convergence_guarantee
     ∃ N : ℕ, (c ^ N * ‖theta0 - thetaStar‖ < eps) ∧
       ∀ n : ℕ, N ≤ n →
         ‖Nat.rec theta0 (fun k ih => ih + eta k • (thetaStar - ih)) n - thetaStar‖ < eps :=
-  Fate.PipelineAdaptiveEtaComplexity.exists_N_for_eps_closed
+  FateV2.Loop.PipelineAdaptiveEtaComplexity.exists_N_for_eps_closed
     eta thetaStar theta0 c hc0 hc1 heta eps heps
 
 /-- ⭐⭐⭐⭐ **【端到端保证的事件形式】**
@@ -119,7 +119,7 @@ theorem end_to_end_convergence_eventually
     ∀ᶠ n in atTop,
       ‖Nat.rec theta0 (fun k ih => ih + eta k • (thetaStar - ih)) n - thetaStar‖ < eps := by
   obtain ⟨N, hN⟩ :=
-    Fate.PipelineAdaptiveEtaComplexity.exists_N_for_eps
+    FateV2.Loop.PipelineAdaptiveEtaComplexity.exists_N_for_eps
       eta thetaStar theta0 c hc0 hc1 heta eps heps
   exact eventually_atTop.mpr ⟨N, hN⟩
 
@@ -139,7 +139,7 @@ theorem end_to_end_noisy_guarantee
     (c M eps : ℝ) (hc0 : 0 ≤ c) (hc1 : c < 1) (heps : 0 < eps)
     (e : ℕ → E) (h : ∀ n, ‖e n‖ ≤ c ^ n * ‖e 0‖ + M / (1 - c)) :
     ∀ᶠ n in atTop, ‖e n‖ < M / (1 - c) + eps :=
-  Fate.PipelineAdaptiveEtaRobust.limsup_le c M hc0 hc1 e h eps heps
+  FateV2.Loop.PipelineAdaptiveEtaRobust.limsup_le c M hc0 hc1 e h eps heps
 
 /-- ⭐⭐⭐⭐ **【噪声 + 显式有限步数：端到端】**
 
@@ -162,10 +162,10 @@ theorem end_to_end_noisy_finite_steps
     (e : ℕ → E) (hrec : ∀ n, ‖e (n + 1)‖ ≤ c * ‖e n‖ + M) :
     ∃ N : ℕ, ‖e N‖ < M / (1 - c) + eps := by
   obtain ⟨N, hN⟩ :=
-    Fate.PipelineAdaptiveEtaComplexity.exists_N_pow_lt (e 0) 0 c hc0 hc1 eps heps
+    FateV2.Loop.PipelineAdaptiveEtaComplexity.exists_N_pow_lt (e 0) 0 c hc0 hc1 eps heps
   refine ⟨N, ?_⟩
   have hbound : ‖e N‖ ≤ c ^ N * ‖e 0‖ + M / (1 - c) :=
-    Fate.PipelineAdaptiveEtaRobust.noise_error_bound c M hc0 hc1 hM e hrec N
+    FateV2.Loop.PipelineAdaptiveEtaRobust.noise_error_bound c M hc0 hc1 hM e hrec N
   rw [sub_zero] at hN
   have : c ^ N * ‖e 0‖ + M / (1 - c) < M / (1 - c) + eps := by linarith
   exact lt_of_le_of_lt hbound this

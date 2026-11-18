@@ -46,7 +46,7 @@ import FateWorld.FateV2.Predict.ChainMarkovExplicitAntecedent
 
   | 来源模块 | 被本文件调用的定理 | 被接线到的结论 |
   |---|---|---|
-  | `Fate.GlobalMarkovMinimal` | `global_markov_minimal`、`condMul_gives_separable_of_margZ_ne` | ①③⑥⑧ |
+  | `FateV2.Predict.GlobalMarkovMinimal` | `global_markov_minimal`、`condMul_gives_separable_of_margZ_ne` | ①③⑥⑧ |
   | `Fate.PearlMarkovBridgeG1` | `condMul_imp_condRatio` | ①②④⑤⑦⑧ |
   | `Fate.MarkovBridgeReal` | `chain_markov_relative_condmul` | ②③ |
   | `Fate.MoralGraphMarkov` | `moral_factorization_condmul` | ④⑤ |
@@ -54,7 +54,7 @@ import FateWorld.FateV2.Predict.ChainMarkovExplicitAntecedent
   | `Fate.MarkovBridgeAncestral` | `three_stage_condmul` | ⑥ |
   | `Fate.MarkovBridgeTopo` | `chainMarkov3_condmul` | ⑦ |
   | `Fate.ChainMarkovExplicitAntecedent` | `chain_factorizes_condMul`、`chain_dsep_factorizes_condMul` | ⑧⑨ |
-  | `Fate.CondMulSeparable` | `condMul_implies_separable` | ③b |
+  | `FateV2.Predict.NonemptyFree.CondMulSeparable` | `condMul_implies_separable` | ③b |
 
   ## 诚实边界
 
@@ -88,8 +88,8 @@ def reindex {α β γ : Type} (p : α × β × γ → ℝ) : FinJoint α γ β :
 /-- ⭐⭐⭐ **`Fate.P213B1.ChainMarkov ⟹ CondRatio`**。
 
 **接线**：
-1. `Fate.GlobalMarkovMinimal.global_markov_minimal`：`ChainMarkov ⟹ CondMul`；
-2. `Fate.R242G1.condMul_imp_condRatio`：`CondMul ⟹ CondRatio`。
+1. `FateV2.Predict.GlobalMarkovMinimal.global_markov_minimal`：`ChainMarkov ⟹ CondMul`；
+2. `FateV2.Predict.R242G1.condMul_imp_condRatio`：`CondMul ⟹ CondRatio`。
 
 **⚠ 自审（前件不包结论）**：前件 `ChainMarkov p` 是**三因子乘积分解**
 （`∃ α β γ`），完全不含 `margZ`、不含除法、不含 `CondRatio`；
@@ -102,8 +102,8 @@ theorem chainMarkov_condRatio {A B C : Type} [Fintype A] [Fintype B] [Fintype C]
     [DecidableEq A] [DecidableEq B] [DecidableEq C]
     (p : A × B × C → ℝ) (h : FateV2.Predict.P213B1.ChainMarkov p) :
     CondRatio (reindex p) :=
-  Fate.R242G1.condMul_imp_condRatio (reindex p)
-    (Fate.GlobalMarkovMinimal.global_markov_minimal p h)
+  FateV2.Predict.R242G1.condMul_imp_condRatio (reindex p)
+    (FateV2.Predict.GlobalMarkovMinimal.global_markov_minimal p h)
 
 /-! ## §2 链 Markov 相对性 ⟹ 条件比形式（`MarkovBridgeReal` × `PearlMarkovBridgeG1`） -/
 
@@ -111,7 +111,7 @@ theorem chainMarkov_condRatio {A B C : Type} [Fintype A] [Fintype B] [Fintype C]
 
 **接线**：
 1. `Fate.MarkovBridgeReal.chain_markov_relative_condmul`：`ChainMarkovRelative ⟹ CondMul`；
-2. `Fate.R242G1.condMul_imp_condRatio`：`CondMul ⟹ CondRatio`。
+2. `FateV2.Predict.R242G1.condMul_imp_condRatio`：`CondMul ⟹ CondRatio`。
 
 **⚠ 自审**：`ChainMarkovRelative` 是**存在三因子**
 （`p x z y = pX x * pZX x z * pYZ z y`），不含 `margXZ`/`margZ`/除法。
@@ -123,7 +123,7 @@ theorem chainMarkovRelative_condRatio {α β γ : Type} [Fintype α] [Fintype β
     [DecidableEq α] [DecidableEq γ] [DecidableEq β]
     (p : α × β × γ → ℝ) (h : Fate.MarkovBridgeReal.ChainMarkovRelative p) :
     CondRatio (reindex p) :=
-  Fate.R242G1.condMul_imp_condRatio (reindex p)
+  FateV2.Predict.R242G1.condMul_imp_condRatio (reindex p)
     (Fate.MarkovBridgeReal.chain_markov_relative_condmul p h)
 
 /-! ## §3 链 Markov 相对性 ⟹ 可分离（`MarkovBridgeReal` × `GlobalMarkovMinimal` · `CondMulSeparable`） -/
@@ -132,7 +132,7 @@ theorem chainMarkovRelative_condRatio {α β γ : Type} [Fintype α] [Fintype β
 
 **接线**：
 1. `Fate.MarkovBridgeReal.chain_markov_relative_condmul`：`⟹ CondMul`；
-2. `Fate.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne`：`CondMul + margZ≠0 ⟹ 可分离`。
+2. `FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne`：`CondMul + margZ≠0 ⟹ 可分离`。
 
 **⚠ 自审**：前件是**因子分解 + 一个非退化条件**，结论是**存在性分解**。
 `margZ ≠ 0` 只是「能除以 `margZ`」，**不包含**结论。
@@ -146,7 +146,7 @@ theorem chainMarkovRelative_separable_of_margZ_ne {α β γ : Type}
     (hZ : ∀ z : β, margZ (reindex p) z ≠ 0) :
     ∃ (f : α → β → ℝ) (g : γ → β → ℝ),
       ∀ x y z, reindex p ((x, y), z) = f x z * g y z :=
-  Fate.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne (reindex p)
+  FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne (reindex p)
     (Fate.MarkovBridgeReal.chain_markov_relative_condmul p h) hZ
 
 /-- ⭐⭐⭐ **`ChainMarkovRelative` + 逐点正 ⟹ 可分离**（正分布版）。
@@ -163,7 +163,7 @@ theorem chainMarkovRelative_separable_of_pos {α β γ : Type}
     (hpos : ∀ x y z, 0 < reindex p ((x, y), z)) :
     ∃ (f : α → β → ℝ) (g : γ → β → ℝ),
       ∀ x y z, reindex p ((x, y), z) = f x z * g y z :=
-  Fate.CondMulSeparable.condMul_implies_separable (reindex p)
+  FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable (reindex p)
     (Fate.MarkovBridgeReal.chain_markov_relative_condmul p h) hpos
 
 /-! ## §4 道德图因子分解 ⟹ 条件比（`MoralGraphMarkov` × `PearlMarkovBridgeG1`） -/
@@ -172,7 +172,7 @@ theorem chainMarkovRelative_separable_of_pos {α β γ : Type}
 
 **接线**：
 1. `Fate.MoralGraphMarkov.moral_factorization_condmul`：`MoralFactorizes ⟹ CondMul`；
-2. `Fate.R242G1.condMul_imp_condRatio`：`CondMul ⟹ CondRatio`。
+2. `FateV2.Predict.R242G1.condMul_imp_condRatio`：`CondMul ⟹ CondRatio`。
 
 **⚠ 自审**：`MoralFactorizes q ⟺ ∃ ψ₁ ψ₂, q (x,y,z) = ψ₁ x z * ψ₂ y z`。
 结论 `CondRatio` 是**边缘律的除法等式**，需要 `margZ`、`margXZ`、`margYZ`，
@@ -183,7 +183,7 @@ theorem moralFactorizes_condRatio {α β γ : Type} [Fintype α] [Fintype β] [F
     (h : FateV2.Modeling.MoralGraphMarkov.MoralFactorizes
       (fun q : α × β × γ => p ((q.1, q.2.1), q.2.2))) :
     CondRatio p :=
-  Fate.R242G1.condMul_imp_condRatio p
+  FateV2.Predict.R242G1.condMul_imp_condRatio p
     (FateV2.Modeling.MoralGraphMarkov.moral_factorization_condmul p h)
 
 /-! ## §5 无向图的团分解 ⟹ 道德图因子分解 ⟹ `CondMul`
@@ -220,7 +220,7 @@ theorem undirected_threeFactor_condMul {α β γ : Type} [Fintype α] [Fintype �
 
 **接线**：
 1. `Fate.MarkovBridgeAncestral.three_stage_condmul`：三段分解 ⟹ `CondMul`；
-2. `Fate.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne`：`⟹ 可分离`。
+2. `FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne`：`⟹ 可分离`。
 
 **⚠ 自审**：前件是**三段因子分解**（`p1 x * p2 x z * p3 z y`，`p3` 不读 `x`）；
 结论是**两因子分解**（`f x z * g y z`）**加**一个非退化条件
@@ -234,7 +234,7 @@ theorem threeStage_separable_of_margZ_ne {α β γ : Type}
     (hZ : ∀ z : β, margZ (reindex p) z ≠ 0) :
     ∃ (f : α → β → ℝ) (g : γ → β → ℝ),
       ∀ x y z, reindex p ((x, y), z) = f x z * g y z :=
-  Fate.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne (reindex p)
+  FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable_of_margZ_ne (reindex p)
     (Fate.MarkovBridgeAncestral.three_stage_condmul p h) hZ
 
 /-! ## §7 链 Markov3（拓扑序版）⟹ 条件比（`MarkovBridgeTopo` × `PearlMarkovBridgeG1`） -/
@@ -243,7 +243,7 @@ theorem threeStage_separable_of_margZ_ne {α β γ : Type}
 
 **接线**：
 1. `Fate.MarkovBridgeTopo.chainMarkov3_condmul`：三段分解 ⟹ `CondMul`；
-2. `Fate.R242G1.condMul_imp_condRatio`：`⟹ CondRatio`。
+2. `FateV2.Predict.R242G1.condMul_imp_condRatio`：`⟹ CondRatio`。
 
 **⚠ 自审**：`ChainMarkov3` 的**定义体**（三因子 + 拓扑序 `0 < 1 < 2` 的父子结构）
 以**显式命题**给出，`CondRatio` 是**除法等式**。前提不含除法。
@@ -257,7 +257,7 @@ theorem chainMarkov3_condRatio {α β γ : Type} [Fintype α] [Fintype β] [Fint
     (h : ∃ (p0 : α → ℝ) (p10 : α → β → ℝ) (p21 : β → γ → ℝ),
       ∀ x0 x1 x2, p (x0, x1, x2) = p0 x0 * p10 x0 x1 * p21 x1 x2) :
     CondRatio (reindex p) :=
-  Fate.R242G1.condMul_imp_condRatio (reindex p)
+  FateV2.Predict.R242G1.condMul_imp_condRatio (reindex p)
     (Fate.MarkovBridgeTopo.chainMarkov3_condmul p h)
 
 /-! ## §8 图上的因子分解 ⟹ 条件比（`ChainMarkovExplicitAntecedent` × `PearlMarkovBridgeG1`）
@@ -270,7 +270,7 @@ theorem chainMarkov3_condRatio {α β γ : Type} [Fintype α] [Fintype β] [Fint
 **接线**：
 1. `Fate.ChainMarkovExplicitAntecedent.chain_factorizes_condMul`：
    `Factorizes p G3 ⟹ CondMul (pullback p)`（证明里用 `pa_zero/one/two` 消费了图）；
-2. `Fate.R242G1.condMul_imp_condRatio`：`⟹ CondRatio`。
+2. `FateV2.Predict.R242G1.condMul_imp_condRatio`：`⟹ CondRatio`。
 
 **⚠ 自审**：前件是**图上的因子分解**（`p x = ∏ v, φ v x`，`φ v` 只读 `pa G3 v`）；
 结论是 `Fin 2` 上的**边缘律除法等式**。前件**不含** `margZ`、不含除法、
@@ -279,7 +279,7 @@ theorem factorizes_chain_condRatio (p : Fate.ChainMarkovExplicitAntecedent.Obs �
     (h : Fate.ChainMarkovExplicitAntecedent.Factorizes p
       Fate.ChainMarkovExplicitAntecedent.G3) :
     CondRatio (Fate.ChainMarkovExplicitAntecedent.pullback p) :=
-  Fate.R242G1.condMul_imp_condRatio _
+  FateV2.Predict.R242G1.condMul_imp_condRatio _
     (Fate.ChainMarkovExplicitAntecedent.chain_factorizes_condMul p h)
 
 /-- ⭐⭐⭐⭐ **`Factorizes p G3` + `dSep X Y Z` ⟹ `CondRatio (pullback p)`**。
@@ -287,7 +287,7 @@ theorem factorizes_chain_condRatio (p : Fate.ChainMarkovExplicitAntecedent.Obs �
 **接线**：
 1. `Fate.ChainMarkovExplicitAntecedent.chain_dsep_factorizes_condMul`
    （**额外消费** `dSep`：由它取出端点不在条件集里）；
-2. `Fate.R242G1.condMul_imp_condRatio`。
+2. `FateV2.Predict.R242G1.condMul_imp_condRatio`。
 
 **⚠ 自审**：两个前件（图级因子分解 + 一个**含自由变量**的 `dSep` 命题）
 与结论（边缘律除法等式）**完全不同层**。
@@ -300,7 +300,7 @@ theorem factorizes_chain_dsep_condRatio (p : Fate.ChainMarkovExplicitAntecedent.
     {X Y Z : Finset (Fin 3)} (h0 : 0 ∈ X) (h2 : 2 ∈ Y)
     (hd : Fate.ChainMarkovExplicitAntecedent.G3.dSep X Y Z) :
     CondRatio (Fate.ChainMarkovExplicitAntecedent.pullback p) :=
-  Fate.R242G1.condMul_imp_condRatio _
+  FateV2.Predict.R242G1.condMul_imp_condRatio _
     (Fate.ChainMarkovExplicitAntecedent.chain_dsep_factorizes_condMul p h h0 h2 hd)
 
 /-! ## §9 诚实边界

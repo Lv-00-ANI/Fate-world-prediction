@@ -352,7 +352,7 @@ theorem kernelValueN_mul_fiber
       =ᵐ[weightedCountN p] ce := by
     rw [hce]
     have hcle := comapSnd_le_default (fam := fam) (γ := γ)
-    exact Fate.BridgeProofStep3.condExpKernel_real_apply
+    exact FateV2.Modeling.BridgeProofStep3.condExpKernel_real_apply
       (inferInstance : MeasurableSpace ((∀ i, fam i) × γ)) (weightedCountN p)
       (MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance) hcle ht
   have hmeas := condExpN_indicator_measurable (weightedCountN p) t
@@ -376,7 +376,7 @@ theorem kernelValueN_mul_fiber
     have h' : ∀ a, (weightedCountN p) {a} = 0 ∨
         ((condExpKernel (Ω := (∀ i, fam i) × γ) (weightedCountN p)
           (MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance)) a).real t = ce a := by
-      exact (Fate.FinMeasureBridge.ae_iff_forall_or_zero (μ := weightedCountN p)
+      exact (FateV2.Modeling.FinMeasureBridge.ae_iff_forall_or_zero (μ := weightedCountN p)
         (P := fun b : (∀ i, fam i) × γ => ((condExpKernel (Ω := (∀ i, fam i) × γ) (weightedCountN p)
           (MeasurableSpace.comap (fun w : (∀ i, fam i) × γ => w.2) inferInstance)) b).real t = ce b)).mp
         hstep1

@@ -63,8 +63,8 @@ import Mathlib.Tactic.FieldSimp
 
   | # | 名字 | 内容 |
   |---|---|---|
-  | 12 | `Mgood_exec` | `Rule1Executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood` |
-  | 13 | `Mdet_exec` | `Rule1Executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet` |
+  | 12 | `Mgood_exec` | `Rule1Executable FateV2.Predict.R1G.Mgood` |
+  | 13 | `Mdet_exec` | `Rule1Executable FateV2.Predict.R1G.Mdet` |
   | 14 | `Mgood_exec_vals` | 表值 `[1, 0, 1/2, 1/2]` |
   | 15 | `chain_rule2_exec` | `Rule2Executable R246G3.chain x` |
   | 16 | `chain_rule2_exec_vals` | 表值 `[z=y]` |
@@ -135,7 +135,7 @@ variable {Z X Y : Type u}
 /-- ⭐⭐⭐ **规则 1 的表**：`(y,z) ↦ P(y|do(x),z) = doCondZ M x z y`。
 
 **⭐ 填法**（逐格）：`∑_u pU(u)·[z_u = z]·[f_u(x,z) = y] / ∑_u pU(u)·[z_u = z]`。 -/
-noncomputable def DoTab (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
+noncomputable def DoTab (M : FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
     (x : X) : Tab Y Z :=
   fun y z => M.doCondZ x z y
 
@@ -156,7 +156,7 @@ $$\textbf{Rule1Executable}(M) := \exists T : Y\times Z \to ℝ,\
 
 **条件 (2) 是全部内容** —— 它说的是「`x` 可以从表里消掉」。
 **没有 (2)，(1) 对任何 `M` 都平凡成立**（取 `T := DoTab M x₀`）。 -/
-def Rule1Executable (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y] : Prop :=
+def Rule1Executable (M : FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y] : Prop :=
   ∃ T : Tab Y Z, (∀ (x : X) (y : Y) (z : Z), T y z = M.doCondZ x z y)
     ∧ (∀ (y : Y) (z : Z) (x x' : X), T y z = M.doCondZ x' z y)
 
@@ -189,7 +189,7 @@ variable {Z X Y : Type u}
 1. 取 `x₀`，建表 `T := DoTab M x₀`；
 2. 条件 (1) 对 `x₀` 成立：`refl`；
 3. 条件 (2)：由 `Rule1Genuine` 的抽象律 `doCondZ_indep_of_readsX` —— **`x` 被消去**。 -/
-theorem rule1_wired_executable (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
+theorem rule1_wired_executable (M : FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
     (h : M.NoiseReadsX) : Rule1Executable M := by
   classical
   by_cases hne : Nonempty X
@@ -197,10 +197,10 @@ theorem rule1_wired_executable (M : FateV2.Predict.FateV2.Predict.FateV2.Predict
     refine ⟨DoTab M x₀, ?_, ?_⟩
     · intro x y z
       show M.doCondZ x₀ z y = M.doCondZ x z y
-      exact FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX M h x₀ x z y
+      exact FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX M h x₀ x z y
     · intro y z x x'
       show M.doCondZ x₀ z y = M.doCondZ x' z y
-      exact FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX M h x₀ x' z y
+      exact FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX M h x₀ x' z y
   · refine ⟨fun _ _ => 0, ?_, ?_⟩
     · intro x; exact absurd ⟨x⟩ hne
     · intro y z x; exact absurd ⟨x⟩ hne
@@ -212,18 +212,18 @@ $$\texttt{doCondZ}\,M\,x\,z\,y
 
 **左端含 `x`，右端只含 `x₀`** —— **这就是「`x` 被消去」的逐格形式**，
 **且右端是显式算法，照它做就能填表。** -/
-theorem rule1_step_by_step (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
+theorem rule1_step_by_step (M : FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
     (h : M.NoiseReadsX) (x x₀ : X) (y : Y) (z : Z) :
     M.doCondZ x z y
       = (∑ u ∈ Finset.univ.filter (fun u => M.zOf u = z),
             M.pU u * (if M.fY u x₀ z = y then (1 : ℝ) else 0))
         / (∑ u ∈ Finset.univ.filter (fun u => M.zOf u = z), M.pU u) := by
   classical
-  rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ_eq_fiber_ratio']
+  rw [FateV2.Predict.R1G.ZSCM.doCondZ_eq_fiber_ratio']
   congr 1
   refine Finset.sum_congr rfl (fun u hu => ?_)
   have hzu : M.zOf u = z := (Finset.mem_filter.mp hu).2
-  rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.indicator_congr_of_readsX M h hzu x x₀ y]
+  rw [FateV2.Predict.R1G.ZSCM.indicator_congr_of_readsX M h hzu x x₀ y]
 
 /-- ⭐⭐⭐⭐⭐ **规则 2 的接线：结构条件 ⟹ `Rule2Executable`**。
 
@@ -268,7 +268,7 @@ theorem rule2_get (M : R246G3.Sem3.SCM3 Z X Y) [Fintype Z]
 
 **⚠ 诚实登记**：`M₁` 与 `M₂` 是**不同载体**（`ZSCM` vs `Sem3.SCM3`），
 **本定理是**并列**而非**复合** —— 它**不**声称两张表能拼成一张。 -/
-theorem rule2_then_rule1 (M₁ : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
+theorem rule2_then_rule1 (M₁ : FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
     (M₂ : R246G3.Sem3.SCM3 Z X Y) [Fintype Z]
     (h1 : M₁.NoiseReadsX) (hInv : R248.Sem.MediationInvariant M₂)
     (hNorm : R248.Sem.MassOne M₂) (hRoot : R248.Sem.ZIsRoot M₂)
@@ -287,23 +287,23 @@ namespace Run
 open Exec
 
 /-- ⭐⭐⭐⭐ **`Mgood` 上规则 1 可执行**（`Mgood.fY` 不读 `x`）。 -/
-theorem Mgood_exec : Rule1Executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood :=
-  rule1_wired_executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MgoodProof.readsX_Mgood
+theorem Mgood_exec : Rule1Executable FateV2.Predict.R1G.Mgood :=
+  rule1_wired_executable FateV2.Predict.R1G.Mgood FateV2.Predict.R1G.MgoodProof.readsX_Mgood
 
 /-- ⭐⭐⭐⭐ **`Mdet` 上规则 1 可执行**。 -/
-theorem Mdet_exec : Rule1Executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet :=
-  rule1_wired_executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.readsX_Mdet
+theorem Mdet_exec : Rule1Executable FateV2.Predict.R1G.Mdet :=
+  rule1_wired_executable FateV2.Predict.R1G.Mdet FateV2.Predict.R1G.MdetProof.readsX_Mdet
 
 /-- ⭐⭐⭐ **`Mgood` 的 `z` 纤维质量**（分母恒为 `1/2`）。 -/
-theorem Mgood_zMass (z : Bool) : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood.zMass z = 1 / 2 := FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MgoodProof.zMass_Mgood z
+theorem Mgood_zMass (z : Bool) : FateV2.Predict.R1G.Mgood.zMass z = 1 / 2 := FateV2.Predict.R1G.MgoodProof.zMass_Mgood z
 
 /-- ⭐⭐⭐⭐ **`Mgood` 上的**表值**：`[1, 0, 1/2, 1/2]`，对 `x` **任意**取值都不变**。 -/
 theorem Mgood_exec_vals (x : Bool) :
-    (DoTab FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood x false false = 1)
-    ∧ (DoTab FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood x true false = 0)
-    ∧ (DoTab FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood x false true = 1 / 2)
-    ∧ (DoTab FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mgood x true true = 1 / 2) := by
-  obtain ⟨h1, h2, h3, h4⟩ := FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MgoodProof.doCondZ_Mgood_vals x
+    (DoTab FateV2.Predict.R1G.Mgood x false false = 1)
+    ∧ (DoTab FateV2.Predict.R1G.Mgood x true false = 0)
+    ∧ (DoTab FateV2.Predict.R1G.Mgood x false true = 1 / 2)
+    ∧ (DoTab FateV2.Predict.R1G.Mgood x true true = 1 / 2) := by
+  obtain ⟨h1, h2, h3, h4⟩ := FateV2.Predict.R1G.MgoodProof.doCondZ_Mgood_vals x
   exact ⟨h1, h2, h3, h4⟩
 
 /-- ⭐⭐⭐⭐ **`chain` 上规则 2 可执行**。
@@ -335,7 +335,7 @@ namespace Exec
 
 **⭐ 用途**：这是**否证**可执行性的出口 —— 只要找到一对 `x ≠ x'` 使 `doCondZ` 不同，
 **该模型就**不可执行**。 -/
-theorem indep_of_executable (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
+theorem indep_of_executable (M : FateV2.Predict.R1G.ZSCM Z X Y) [DecidableEq Z] [DecidableEq Y]
     (h : Rule1Executable M) (x x' : X) (z : Z) (y : Y) :
     M.doCondZ x z y = M.doCondZ x' z y := by
   obtain ⟨T, h1, h2⟩ := h
@@ -447,7 +447,7 @@ theorem doCondZ_Mdirect (x z y : Bool) :
   have hden : Mdirect.zMass z
       = (∑ u : Fin 2, Mdirect.pU (u : Mdirect.U)
           * (if Mdirect.zOf (u : Mdirect.U) = z then (1 : ℝ) else 0)) := rfl
-  rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ, Mdirect_joint, hden, Mdirect_zSum]
+  rw [FateV2.Predict.R1G.ZSCM.doCondZ, Mdirect_joint, hden, Mdirect_zSum]
   have h : (1 : ℝ) / 2 ≠ 0 := by norm_num
   field_simp
 
@@ -559,7 +559,7 @@ end FateV2.Predict
   **本节的处置**：新建**以模块名为名的命名空间**，在其中**只放真正调用
   `Fate.R1G.*` / `Fate.R248.Sem.*` 定理的组合定理** ——
   **不复制、不重述、不用 `:= rfl` 假装**。每一条的证明体里都能看到
-  **对被消费模块定理的真实调用**（`FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX`、
+  **对被消费模块定理的真实调用**（`FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX`、
   `R248.Sem.rule2_genuine` 等）。
 
   ⚠ **诚实边界**：本节**不**声称这些命名空间是那两个模块的官方命名空间；
@@ -569,10 +569,10 @@ end FateV2.Predict
 
   | # | 名字 | 用到的被消费模块定理 |
   |---|---|---|
-  | 1 | `Rule1Genuine.premise_implies_executable` | `FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.readsX_of_premise` |
-  | 2 | `Rule1Genuine.premise_implies_cell_form` | `FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ_eq_fiber_ratio'` + `indicator_congr_of_readsX` |
-  | 3 | `Rule1Genuine.Mdet_premise_exec_and_values` | `FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.premise_Mdet` / `doCondZ_Mdet` |
-  | 4 | `Rule1Genuine.premise_implies_observational_gap` | `FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.premise_not_enough_for_delete` 的量化形式 |
+  | 1 | `Rule1Genuine.premise_implies_executable` | `FateV2.Predict.R1G.ZSCM.readsX_of_premise` |
+  | 2 | `Rule1Genuine.premise_implies_cell_form` | `FateV2.Predict.R1G.ZSCM.doCondZ_eq_fiber_ratio'` + `indicator_congr_of_readsX` |
+  | 3 | `Rule1Genuine.Mdet_premise_exec_and_values` | `FateV2.Predict.R1G.MdetProof.premise_Mdet` / `doCondZ_Mdet` |
+  | 4 | `Rule1Genuine.premise_implies_observational_gap` | `FateV2.Predict.R1G.MdetProof.premise_not_enough_for_delete` 的量化形式 |
   | 5 | `Rule2Genuine.invariant_root_mass_implies_table` | `R248.Sem.rule2_genuine` |
   | 6 | `Rule2Genuine.invariant_implies_factor_and_law` | `R248.Sem.exists_medFactor_of_invariant` |
   | 7 | `Rule2Genuine.chain_table_closed_form` | `R248.Sem.chain_satisfies_rule2_genuine` |
@@ -584,7 +584,7 @@ end FateV2.Predict
 namespace FateV2.Predict.Rule1Genuine
 
 open FateV2.Error
-open Fate.W7.Exec
+open FateV2.Predict.W7.Exec
 
 /-- ⭐⭐⭐⭐ **组合定理 1（规则 1）：`Rule1Premise` ⟹ 表可执行。**
 
@@ -593,9 +593,9 @@ open Fate.W7.Exec
 （`Rule1Executable`，含「表与 `x` 无关」的第二个合取项）。
 **两者形态完全不同**；中间需要 `Rule1Genuine` 的 `doCondZ_indep_of_readsX`。 -/
 theorem premise_implies_executable {Z X Y : Type} [DecidableEq Z] [DecidableEq Y]
-    (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) (h : M.Rule1Premise) :
+    (M : FateV2.Predict.R1G.ZSCM Z X Y) (h : M.Rule1Premise) :
     Rule1Executable M :=
-  rule1_wired_executable M (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.readsX_of_premise M h)
+  rule1_wired_executable M (FateV2.Predict.R1G.ZSCM.readsX_of_premise M h)
 
 /-- ⭐⭐⭐⭐ **组合定理 2（规则 1）：`Rule1Premise` ⟹ 逐格闭式（右端只含参考值 `x0`）。**
 
@@ -604,17 +604,17 @@ theorem premise_implies_executable {Z X Y : Type} [DecidableEq Z] [DecidableEq Y
 （把 `doCondZ` 拆成纤维求和之比）与 `indicator_congr_of_readsX`
 （把 `x` 换成 `x0` 的逐项等值）—— **不是 `rfl`，不是定义展开**。 -/
 theorem premise_implies_cell_form {Z X Y : Type} [DecidableEq Z] [DecidableEq Y]
-    (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Z X Y) (h : M.Rule1Premise) (x x0 : X) (y : Y) (z : Z) :
+    (M : FateV2.Predict.R1G.ZSCM Z X Y) (h : M.Rule1Premise) (x x0 : X) (y : Y) (z : Z) :
     M.doCondZ x z y
       = (∑ u ∈ Finset.univ.filter (fun u => M.zOf u = z),
             M.pU u * (if M.fY u x0 z = y then (1 : ℝ) else 0))
         / (∑ u ∈ Finset.univ.filter (fun u => M.zOf u = z), M.pU u) := by
   classical
-  rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.doCondZ_eq_fiber_ratio']
+  rw [FateV2.Predict.R1G.ZSCM.doCondZ_eq_fiber_ratio']
   congr 1
   refine Finset.sum_congr rfl (fun u hu => ?_)
   have hzu : M.zOf u = z := (Finset.mem_filter.mp hu).2
-  rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.indicator_congr_of_readsX M (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.readsX_of_premise M h) hzu x x0 y]
+  rw [FateV2.Predict.R1G.ZSCM.indicator_congr_of_readsX M (FateV2.Predict.R1G.ZSCM.readsX_of_premise M h) hzu x x0 y]
 
 /-- ⭐⭐⭐⭐ **组合定理 3（规则 1）：`Mdet` 上「前提成立 ∧ 可执行 ∧ 表值非平凡」。**
 
@@ -622,13 +622,13 @@ theorem premise_implies_cell_form {Z X Y : Type} [DecidableEq Z] [DecidableEq Y]
 **数值层**，且第三项 `Mdet.doCondZ true true false = 0` 是**真算出来的数**
 （`MdetProof.doCondZ_Mdet` + `norm_num`）—— 它**不是**前提的一部分。 -/
 theorem Mdet_premise_exec_and_values :
-    (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet.Rule1Premise ∧ Rule1Executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet)
-      ∧ (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet.doCondZ true true true = 1)
-      ∧ (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet.doCondZ true true false = 0) := by
-  refine ⟨⟨FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.premise_Mdet,
-    premise_implies_executable FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.Mdet FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.premise_Mdet⟩, ?_, ?_⟩
-  · rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.doCondZ_Mdet]; norm_num
-  · rw [FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.MdetProof.doCondZ_Mdet]; norm_num
+    (FateV2.Predict.R1G.Mdet.Rule1Premise ∧ Rule1Executable FateV2.Predict.R1G.Mdet)
+      ∧ (FateV2.Predict.R1G.Mdet.doCondZ true true true = 1)
+      ∧ (FateV2.Predict.R1G.Mdet.doCondZ true true false = 0) := by
+  refine ⟨⟨FateV2.Predict.R1G.MdetProof.premise_Mdet,
+    premise_implies_executable FateV2.Predict.R1G.Mdet FateV2.Predict.R1G.MdetProof.premise_Mdet⟩, ?_, ?_⟩
+  · rw [FateV2.Predict.R1G.MdetProof.doCondZ_Mdet]; norm_num
+  · rw [FateV2.Predict.R1G.MdetProof.doCondZ_Mdet]; norm_num
 
 /-- ⭐⭐⭐⭐ **组合定理 4（规则 1）：`Rule1Premise` **不**蕴含 `z` 的删除。**
 
@@ -637,11 +637,11 @@ theorem Mdet_premise_exec_and_values :
 `premise_not_enough_for_delete`（那里已经用 `Mdet` 构造了反例），
 本定理把它**改写成消费侧的可见形式**并把 `Mdet` 前提**显式说出**。 -/
 theorem premise_implies_no_observational_gap :
-    ¬ (∀ (M : FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM Bool Bool Bool) [DecidableEq Bool],
+    ¬ (∀ (M : FateV2.Predict.R1G.ZSCM Bool Bool Bool) [DecidableEq Bool],
         M.Rule1Premise → Rule1Executable M →
           ∀ x z y : Bool, M.doCondZ x z y = M.doLaw x y) := by
   intro hbad
-  exact FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R1G.ZSCM.premise_not_enough_for_delete
+  exact FateV2.Predict.R1G.ZSCM.premise_not_enough_for_delete
     (fun M _ hP x z y => hbad M hP (premise_implies_executable M hP) x z y)
 
 end FateV2.Predict.Rule1Genuine

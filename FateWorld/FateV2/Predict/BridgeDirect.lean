@@ -578,12 +578,12 @@ theorem gap_not_improved :
 **⚠ 结论里 `Z` **没有**被撑大**（与 `BridgeExpanded` 路线相反）。 -/
 theorem bridge_direct_of_peel {α : Type u} [Fintype α] [DecidableEq α]
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     {X Y Z : Finset V} (hd : G.dSep X Y Z)
     (hpeel : ∀ v ∈ X, G.parents v ⊆ X ∪ Z)
     (hZ : AncClosed G Z) (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   -- `X ∪ Y ∪ Z` 父闭：由 `hpeel`（X 侧）、`hY`（Y 侧）、`hZ`（Z 侧）拼
   have stepX : ∀ v ∈ X, G.parents v ⊆ X ∪ Y ∪ Z := by
     intro v hv u hu
@@ -649,12 +649,12 @@ theorem parents_subset_of_ancClosed {X Z : Finset V} (hX : AncClosed G X) :
 **⟹ 这是路线 B 在 `Fate.Strategy11AncestralHull` 口径下真的成立的**标准情形**。** -/
 theorem bridge_direct_of_ancClosed_X {α : Type u} [Fintype α] [DecidableEq α]
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     {X Y Z : Finset V} (hd : G.dSep X Y Z)
     (hX : AncClosed G X) (hZ : AncClosed G Z)
     (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   bridge_direct_of_peel hloc hfac hnorm hd
     (parents_subset_of_ancClosed hX) hZ hY
 
@@ -665,11 +665,11 @@ theorem bridge_direct_of_ancClosed_X {α : Type u} [Fintype α] [DecidableEq α]
 （`subset_Z_dSep_trivial`），故本适用域仅在 `X` 空时非空 —— 本文件如实标注。 -/
 theorem bridge_direct_of_subset_Z {α : Type u} [Fintype α] [DecidableEq α]
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     {X Y Z : Finset V} (hd : G.dSep X Y Z) (hXZ : X ⊆ Z)
     (hZ : AncClosed G Z) (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   bridge_direct_of_peel hloc hfac hnorm hd
     (fun v hv _ hu => Finset.mem_union_right X (hZ v (hXZ hv) hu))
     hZ hY
@@ -688,12 +688,12 @@ theorem subset_Z_dSep_trivial {X Z : Finset V} (hd : G.dSep X Y Z) (hXZ : X ⊆ 
 `∀ v ∈ X, pa v = ∅` 时 `hpeel` 免费（空集是任何集合的子集）。 -/
 theorem bridge_direct_of_sources {α : Type u} [Fintype α] [DecidableEq α]
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     {X Y Z : Finset V} (hd : G.dSep X Y Z)
     (hsrc : ∀ v ∈ X, G.parents v = ∅)
     (hZ : AncClosed G Z) (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   bridge_direct_of_peel hloc hfac hnorm hd
     (fun _ hv => (hsrc _ hv) ▸ Finset.empty_subset _) hZ hY
 

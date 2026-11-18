@@ -54,7 +54,7 @@ theorem disjoint_left_of_disjoinable {G : FateV2.Modeling.Graph.DAG V} {X Y Z : 
 variable {G : FateV2.Modeling.Graph.DAG V}
 
 theorem localTo_eq_of_eq_on_AZ {φ : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G φ)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G φ)
     {A Z : Finset V} (hdis : ∀ v ∈ A, G.parents v ⊆ A ∪ Z)
     {x y : V → α} (hxy : ∀ u ∈ A ∪ Z, x u = y u)
     {v : V} (hv : v ∈ A) : φ v x = φ v y := by
@@ -85,7 +85,7 @@ def NoInflow (G : FateV2.Modeling.Graph.DAG V) (A : Finset V) : Prop :=
 
 **⚠ 不用塔性质**：全程无 `mass`，更无 `mass ∘ mass`。 -/
 theorem typed_split {φ : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G φ)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G φ)
     {A Z : Finset V} (hdis : ∀ v ∈ A, G.parents v ⊆ A ∪ Z)
     (hA : NoInflow G A) :
     (∀ x y : V → α, (∀ u ∈ A ∪ Z, x u = y u) →

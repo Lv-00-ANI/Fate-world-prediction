@@ -103,7 +103,7 @@ theorem fixed_iff_optimal_strong (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (η 
     (BoundWriteBack.wbW A φ η x' θ : E) = θ ↔ FateV2.Loop.ConvergeToOptimalV2.IsOptimal (A : E →ₗ[ℝ] F) x' θ := by
   -- 单射性由 `Corrects` 直接导出（核心：`hφ` 前件冗余）
   have hφ : Function.Injective φ :=
-    Fate.ConvergeToOptimalCounterexample.corrects_injective A φ h
+    FateV2.Loop.ConvergeToOptimalCounterexample.corrects_injective A φ h
   have hstep : (BoundWriteBack.wbW A φ η x' θ : E) = θ ↔ φ (x' - A θ) = 0 := by
     rw [← sub_eq_zero (a := (BoundWriteBack.wbW A φ η x' θ : E)) (b := θ),
       FateV2.Loop.ConvergeToOptimalV2.wbW_sub]
@@ -167,7 +167,7 @@ theorem fixed_set_eq_optimal_set (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (η 
 作为 §1/§2 前件删除的**正当性依据**（可独立调用，便于后续模块引用）。 -/
 theorem corrects_gives_injective (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
     (h : Corrects A φ) : Function.Injective φ :=
-  Fate.ConvergeToOptimalCounterexample.corrects_injective A φ h
+  FateV2.Loop.ConvergeToOptimalCounterexample.corrects_injective A φ h
 
 /-! ===========================================================================
     §4  降级一致性：强化版**蕴含**原版（证明未削弱任何结论）

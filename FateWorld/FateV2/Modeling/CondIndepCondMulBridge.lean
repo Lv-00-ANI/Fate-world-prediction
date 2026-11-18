@@ -30,7 +30,7 @@ import Mathlib.Tactic.Ring
 
   都声称「无正性因子分解 ⟹ 条件独立」。它们的实质已在一般空间上由
   `Fate.GraphToProbView7.condIndep_general` 实现，但它用的是
-  `Fate.FactorMarkov.CondIndep`（`mass` 口径），而文档用的是有限版
+  `FateV2.Predict.FactorMarkov.CondIndep`（`mass` 口径），而文档用的是有限版
   `Fate.FinCondIndep.CondMul`。**本文件证明两者在 `Fin 3` 上是同一命题**，
   从而把「幽灵的一般化」真正落地。
 
@@ -86,7 +86,7 @@ namespace CondIndepCondMulBridge
 
 open Finset
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 
 variable {α : Type} [Fintype α] [DecidableEq α]
 
@@ -193,7 +193,7 @@ theorem margYZ_gamma (p : (Fin 3 → α) → ℝ) (y z : α) :
 `Z = {2}` 四个 `mass` 分别用 **B2–B5** 显式展开，`gamma p` 的三个 `marg` 用
 定义展开。两边随即成为**逐点上完全相同的乘性等式**。 -/
 theorem condIndep_iff_condMul (p : (Fin 3 → α) → ℝ) :
-    Fate.FactorMarkov.CondIndep p {0} {1} {2}
+    FateV2.Predict.FactorMarkov.CondIndep p {0} {1} {2}
       ↔ FateV2.Predict.FinCondIndep.CondMul (gamma p) := by
   have huniv : (({0} : Finset (Fin 3)) ∪ {1} ∪ {2}) = Finset.univ := by decide
   have hXZ : (({0} : Finset (Fin 3)) ∪ {2}) = ({0, 2} : Finset (Fin 3)) := by decide
@@ -215,14 +215,14 @@ theorem condIndep_iff_condMul (p : (Fin 3 → α) → ℝ) :
 
 /-- ⭐⭐ **B7a**：`CondIndep` ⟹ `CondMul`。 -/
 theorem condMul_of_condIndep {p : (Fin 3 → α) → ℝ}
-    (h : Fate.FactorMarkov.CondIndep p {0} {1} {2}) :
+    (h : FateV2.Predict.FactorMarkov.CondIndep p {0} {1} {2}) :
     FateV2.Predict.FinCondIndep.CondMul (gamma p) :=
   (condIndep_iff_condMul p).mp h
 
 /-- ⭐⭐ **B7b**：`CondMul` ⟹ `CondIndep`。 -/
 theorem condIndep_of_condMul {p : (Fin 3 → α) → ℝ}
     (h : FateV2.Predict.FinCondIndep.CondMul (gamma p)) :
-    Fate.FactorMarkov.CondIndep p {0} {1} {2} :=
+    FateV2.Predict.FactorMarkov.CondIndep p {0} {1} {2} :=
   (condIndep_iff_condMul p).mpr h
 
 /-! ### §4 ⭐⭐⭐ 幽灵的 `Fin 3` 形态（B8 / B9） -/
@@ -245,7 +245,7 @@ theorem condMul_fin3_of_factorization (p : (Fin 3 → α) → ℝ)
 theorem condIndep_fin3_of_factorization (p : (Fin 3 → α) → ℝ)
     (f g h : α → ℝ)
     (hfac : ∀ x y z, p (enc ((x, y), z)) = f x * g y * h z) :
-    Fate.FactorMarkov.CondIndep p {0} {1} {2} :=
+    FateV2.Predict.FactorMarkov.CondIndep p {0} {1} {2} :=
   condIndep_of_condMul (condMul_fin3_of_factorization p f g h hfac)
 
 end CondIndepCondMulBridge

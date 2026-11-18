@@ -40,7 +40,7 @@ variable {α β γ : Type}
   [Countable α] [Countable β] [Countable γ]
   [MeasurableSingletonClass ((α × β) × γ)]
 
-open Fate.FinMeasureBridge Fate.FinalB3
+open FateV2.Modeling.FinMeasureBridge Fate.FinalB3
 
 /-- ⭐⭐ **单纤维版**：`bridgeStatement p` ⟹ `CondIndepFin` 在固定 `z` 处的逐点等式，
     只需 `p` 的 `z` 纤维非零。 -/
@@ -48,7 +48,7 @@ theorem bridge_to_condIndepFin_at
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (hp : ∀ w, 0 ≤ p w)
     (z : γ) (hz : (∑ x : α, ∑ y : β, p ((x, y), z)) ≠ 0)
-    (h : Fate.FinCondIndepMeasure.bridgeStatement p) :
+    (h : FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p) :
     ∀ x y, p ((x, y), z) * (∑ x' : α, ∑ y' : β, p ((x', y'), z))
       = (∑ y' : β, p ((x, y'), z)) * (∑ x' : α, p ((x', y), z)) := by
   classical
@@ -56,82 +56,82 @@ theorem bridge_to_condIndepFin_at
   -- 桥的逐点形式
   have hunfold := (bridgeStatement_unfold_def (α := α) (β := β) (γ := γ) p).mp h
   intro x y
-  set t1 : Set ((α × β) × γ) := (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' {x} with ht1def
-  set t2 : Set ((α × β) × γ) := (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' {y} with ht2def
+  set t1 : Set ((α × β) × γ) := (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' {x} with ht1def
+  set t2 : Set ((α × β) × γ) := (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) ⁻¹' {y} with ht2def
   have ht1 : MeasurableSet[MeasurableSpace.comap
-      (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t1 :=
+      (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t1 :=
     MeasurableSpace.measurableSet_comap.mpr ⟨{x}, measurableSet_singleton x, rfl⟩
   have ht2 : MeasurableSet[MeasurableSpace.comap
-      (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) inferInstance] t2 :=
+      (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) inferInstance] t2 :=
     MeasurableSpace.measurableSet_comap.mpr ⟨{y}, measurableSet_singleton y, rfl⟩
   have hae := hunfold t1 t2 ht1 ht2
   -- `∀ᵐ` 展开（对 `trim`）
-  let hm' : MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+  let hm' : MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
       (inferInstance : MeasurableSpace γ) ≤ (inferInstance : MeasurableSpace ((α × β) × γ)) :=
     MeasurableSpace.comap_le_iff_le_map.mpr
-      (Fate.FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))
+      (FateV2.Modeling.FinCondIndepMeasure.measurable_projZ (α := α) (β := β) (γ := γ))
   have hae' : ∀ a : (α × β) × γ,
       (@Measure.trim ((α × β) × γ)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
           (inferInstance : MeasurableSpace γ))
         (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm') {a} = 0 ∨
       ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           a) (t1 ∩ t2)
         = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
             a) t1
           * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
             a) t2 :=
     (@Fate.FinalB3.ae_iff_forall_or_zero ((α × β) × γ)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       _
       (@Measure.trim ((α × β) × γ)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
           (inferInstance : MeasurableSpace γ))
         (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm')
       (fun a => ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           a) (t1 ∩ t2)
         = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
             a) t1
           * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
             a) t2)).mp hae
   -- 在 `a = ((x,y),z)` 处取值
   have hpoint := hae' ((x, y), z)
   have htrim : (@Measure.trim ((α × β) × γ)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm')
       {((x, y), z)} ≠ 0 := by
     rw [Fate.FinalB3.trim_singleton_eq_fiber]
-    rw [Fate.FinMeasureBridge.fiber_ne_zero_iff p hp z]
+    rw [FateV2.Modeling.FinMeasureBridge.fiber_ne_zero_iff p hp z]
     exact hz
   have heq : ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
         ((x, y), z)) (t1 ∩ t2)
       = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((x, y), z)) t1
         * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((x, y), z)) t2 := by
     rcases hpoint with h0 | hP
     · exact absurd h0 htrim
     · exact hP
   -- 取 `real` 版等式
   have hrealeq : ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
         ((x, y), z)).real (t1 ∩ t2)
       = ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((x, y), z)).real t1
         * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
           ((x, y), z)).real t2 := by
     rw [Measure.real, Measure.real, Measure.real, heq, ENNReal.toReal_mul]
   -- 三个 `real` 层的商
@@ -142,10 +142,10 @@ theorem bridge_to_condIndepFin_at
     exact hz
   have hA : MeasurableSet t1 := by
     rw [ht1def]
-    exact Fate.FinCondIndepMeasure.measurable_projX (measurableSet_singleton x)
+    exact FateV2.Modeling.FinCondIndepMeasure.measurable_projX (measurableSet_singleton x)
   have hB : MeasurableSet t2 := by
     rw [ht2def]
-    exact Fate.FinCondIndepMeasure.measurable_projY (measurableSet_singleton y)
+    exact FateV2.Modeling.FinCondIndepMeasure.measurable_projY (measurableSet_singleton y)
   have hAB : MeasurableSet (t1 ∩ t2) := hA.inter hB
   have r1 := Fate.FinalB3.kernelValue_fiber_ratio p (t1 ∩ t2) hAB hp ((x, y), z) hF
   have r2 := Fate.FinalB3.kernelValue_fiber_ratio p t1 hA hp ((x, y), z) hF
@@ -155,7 +155,7 @@ theorem bridge_to_condIndepFin_at
       (if ((x', y'), z) ∈ t1 ∩ t2 then p ((x', y'), z) else 0)) = p ((x, y), z) := by
     rw [ht1def, ht2def]
     simp only [Set.mem_preimage, Set.mem_singleton_iff, Set.mem_inter_iff,
-      Fate.FinCondIndepMeasure.projX, Fate.FinCondIndepMeasure.projY]
+      FateV2.Modeling.FinCondIndepMeasure.projX, FateV2.Modeling.FinCondIndepMeasure.projY]
     rw [Finset.sum_eq_single x]
     · rw [Finset.sum_eq_single y]
       · simp
@@ -168,7 +168,7 @@ theorem bridge_to_condIndepFin_at
       (if ((x', y'), z) ∈ t1 then p ((x', y'), z) else 0))
       = ∑ y' : β, p ((x, y'), z) := by
     rw [ht1def]
-    simp only [Set.mem_preimage, Set.mem_singleton_iff, Fate.FinCondIndepMeasure.projX]
+    simp only [Set.mem_preimage, Set.mem_singleton_iff, FateV2.Modeling.FinCondIndepMeasure.projX]
     rw [Finset.sum_eq_single x]
     · simp
     · intro x' _ hx'
@@ -178,7 +178,7 @@ theorem bridge_to_condIndepFin_at
       (if ((x', y'), z) ∈ t2 then p ((x', y'), z) else 0))
       = ∑ x' : α, p ((x', y), z) := by
     rw [ht2def]
-    simp only [Set.mem_preimage, Set.mem_singleton_iff, Fate.FinCondIndepMeasure.projY]
+    simp only [Set.mem_preimage, Set.mem_singleton_iff, FateV2.Modeling.FinCondIndepMeasure.projY]
     refine Finset.sum_congr rfl fun x' _ => ?_
     rw [Finset.sum_eq_single y]
     · simp
@@ -197,7 +197,7 @@ theorem bridge_to_condIndepFin'
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (hp : ∀ w, 0 ≤ p w)
     (hz : ∀ z : γ, (∑ x : α, ∑ y : β, p ((x, y), z)) ≠ 0)
-    (h : Fate.FinCondIndepMeasure.bridgeStatement p) :
+    (h : FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p) :
     FateV2.Modeling.FiniteCondIndep.CondIndepFin p := by
   intro x y z
   rw [FateV2.Modeling.FiniteCondIndep.margZ, FateV2.Modeling.FiniteCondIndep.margXZ,

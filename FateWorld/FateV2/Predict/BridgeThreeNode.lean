@@ -72,8 +72,8 @@ namespace BridgeThreeNode
 
 open Finset
 open Fate.DAGFactorization
-open Fate.FactorRecursionRouteB (Factorizes)
-open Fate.ThreeNodeFactorizes (N a b c jointXZ jointXZ_apply)
+open FateV2.Predict.FactorRecursionRouteB (Factorizes)
+open FateV2.Predict.ThreeNodeFactorizes (N a b c jointXZ jointXZ_apply)
 open FateV2.Predict.FinCondIndep (CondMul)
 
 universe u
@@ -340,15 +340,15 @@ theorem factorizes_condMul_of_dSep {p : (N → α) → ℝ} {G : FateV2.Modeling
 
 /-- **C1.4a（链）**：`dSep` 由 `decide` 得，`Factorizes ⟹ CondMul` 由主定理得。 -/
 theorem chain_condMul_of_dSep {p : (N → α) → ℝ}
-    (hfac : Factorizes p Fate.ThreeNodeFactorizes.chainDAG) :
+    (hfac : Factorizes p FateV2.Predict.ThreeNodeFactorizes.chainDAG) :
     CondMul (jointXZ p) :=
-  factorizes_condMul_of_dSep (G := Fate.ThreeNodeFactorizes.chainDAG) (by decide) hfac
+  factorizes_condMul_of_dSep (G := FateV2.Predict.ThreeNodeFactorizes.chainDAG) (by decide) hfac
 
 /-- **C1.4b（分叉）**：同上。 -/
 theorem fork_condMul_of_dSep {p : (N → α) → ℝ}
-    (hfac : Factorizes p Fate.ThreeNodeFactorizes.forkDAG) :
+    (hfac : Factorizes p FateV2.Predict.ThreeNodeFactorizes.forkDAG) :
     CondMul (jointXZ p) :=
-  factorizes_condMul_of_dSep (G := Fate.ThreeNodeFactorizes.forkDAG) (by decide) hfac
+  factorizes_condMul_of_dSep (G := FateV2.Predict.ThreeNodeFactorizes.forkDAG) (by decide) hfac
 
 /-! ===========================================================================
   §6 ⭐⭐ **C1.5 撞子：主定理的 `dSep` 前件**真的**排除了撞子（非空洞性）**
@@ -360,7 +360,7 @@ theorem fork_condMul_of_dSep {p : (N → α) → ℝ}
 /-- **C1.5（撞子不满足 `dSep {0}{2}{1}`）**：条件化撞子 `1` 会**开启**路径，
 故 `0` 与 `2` 不再 d-分离。 -/
 theorem collider_not_dSep_cond :
-    ¬ Fate.ThreeNodeFactorizes.colliderDAG.dSep
+    ¬ FateV2.Predict.ThreeNodeFactorizes.colliderDAG.dSep
         ({0} : Finset N) ({2} : Finset N) ({1} : Finset N) := by
   decide
 
@@ -368,13 +368,13 @@ theorem collider_not_dSep_cond :
 但其 `CondMul` 失败；`collider_not_dSep_cond` 说明主定理前件 `hd` 在此**不成立**。
 ⟹ 主定理**不是**恒真；它的 `dSep` 前件是**必需的**（否则撞子反例会闯进来）。 -/
 theorem collider_excluded_consistently :
-    (Factorizes (Fate.ThreeNodeFactorizes.colliderP (α := Bool))
-        Fate.ThreeNodeFactorizes.colliderDAG)
-    ∧ ¬ CondMul (jointXZ (Fate.ThreeNodeFactorizes.colliderP (α := Bool)))
-    ∧ ¬ Fate.ThreeNodeFactorizes.colliderDAG.dSep
+    (Factorizes (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
+        FateV2.Predict.ThreeNodeFactorizes.colliderDAG)
+    ∧ ¬ CondMul (jointXZ (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)))
+    ∧ ¬ FateV2.Predict.ThreeNodeFactorizes.colliderDAG.dSep
           ({0} : Finset N) ({2} : Finset N) ({1} : Finset N) :=
-  ⟨Fate.ThreeNodeFactorizes.colliderP_factorizes Bool,
-   Fate.ThreeNodeFactorizes.collider_not_condMul,
+  ⟨FateV2.Predict.ThreeNodeFactorizes.colliderP_factorizes Bool,
+   FateV2.Predict.ThreeNodeFactorizes.collider_not_condMul,
    collider_not_dSep_cond⟩
 
 /-! ===========================================================================

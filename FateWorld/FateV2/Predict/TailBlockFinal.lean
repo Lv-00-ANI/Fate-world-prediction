@@ -7,11 +7,11 @@
 theorem condIndep_tail_block (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ Z)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z
 ```
 
 **不需要 `hcover`（`X ∪ Y ∪ Z = univ`），不需要 `hTail`（它被 `Split` 蕴含）。**
@@ -85,7 +85,7 @@ set_option linter.unusedVariables false
 namespace FateV2.Predict.TailBlockFinal
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization Fate.FactorMarkov Fate.View19
+open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Predict.View19
 
 universe u
 

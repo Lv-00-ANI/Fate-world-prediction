@@ -80,8 +80,8 @@ open Finset
 open FateV2.Modeling.Graph.DAG
 open FateV2.Predict.FinCondIndep
 
-/-- 链 `0 → 1 → 2`（重用 `Fate.GlobalMarkovMinimal.chainDAG3`）。 -/
-abbrev G3 : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.GlobalMarkovMinimal.chainDAG3
+/-- 链 `0 → 1 → 2`（重用 `FateV2.Predict.GlobalMarkovMinimal.chainDAG3`）。 -/
+abbrev G3 : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Predict.GlobalMarkovMinimal.chainDAG3
 
 /-! ===========================================================================
   §1 小工具
@@ -98,7 +98,7 @@ theorem fin3_cases (j : Fin 3) : j = 0 ∨ j = 1 ∨ j = 2 := by
 
 /-- **链上任意边都严格推进**：`u.val < v.val`。 -/
 theorem chain_edge_val (u v : Fin 3) (h : G3.edge u v) : (u : Nat) < (v : Nat) := by
-  simp only [G3, Fate.GlobalMarkovMinimal.chainDAG3] at h
+  simp only [G3, FateV2.Predict.GlobalMarkovMinimal.chainDAG3] at h
   rcases h with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
   · show (0 : Nat) < 1
     omega

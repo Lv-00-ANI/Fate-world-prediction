@@ -146,7 +146,7 @@ def AncClosed (G : FateV2.Modeling.Graph.DAG V) (A : Finset V) : Prop :=
 
 /-- **B1.0a**：与 `AncestralInheritanceRouteB.AncestorClosed` 是同一个谓词（防重复发明）。 -/
 theorem ancClosed_iff (G : FateV2.Modeling.Graph.DAG V) (A : Finset V) :
-    AncClosed G A ↔ Fate.AncestralInheritanceRouteB.AncestorClosed G A := Iff.rfl
+    AncClosed G A ↔ FateV2.Predict.AncestralInheritanceRouteB.AncestorClosed G A := Iff.rfl
 
 /-- **B1.0b**：`ancestralSet S` 的成员判据。 -/
 theorem mem_ancestralSet' (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) (u : V) :

@@ -74,7 +74,7 @@ universe u
 theorem dSep_forces_split_general {V : Type*} [DecidableEq V] [Fintype V]
     (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z :=
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z :=
   @BridgeGeneralize.dSep_forces_split V _ _ G X Y Z hdsep hcover
 
 /-! ### W2 —— 一般 DAG 主定理 -/
@@ -87,7 +87,7 @@ theorem twoBlock_of_dSep_general {V : Type u} [DecidableEq V] [Fintype V]
     {α : Type u} [Fintype α] [DecidableEq α]
     (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ)
-    (hfac : Fate.FactorMarkov.Factorizes p G) :
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) :
     ∃ f g : (V → α) → ℝ,
       (∀ w, p w = f w * g w) ∧ BridgeGeneralize.FrozenOn (X ∪ Z) f ∧
         BridgeGeneralize.FrozenOn (Y ∪ Z) g :=
@@ -102,10 +102,10 @@ theorem twoBlock_of_dSep_general {V : Type u} [DecidableEq V] [Fintype V]
 即 `BridgeGeneralize.condIndep_of_factorizes_dSep_generalZ` 的转发。 -/
 theorem condIndep_of_dSep_general {V : Type u} [DecidableEq V] [Fintype V]
     {α : Type u} [Fintype α] [DecidableEq α] [Nonempty α]
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   @BridgeGeneralize.condIndep_of_factorizes_dSep_generalZ V _ _ α _ _ _ p G
     hfac X Y Z hdsep hcover
 
@@ -118,7 +118,7 @@ theorem condIndep_of_dSep_general {V : Type u} [DecidableEq V] [Fintype V]
 的覆盖前件 `X ∪ Y ∪ Z = univ` 无法删除。 -/
 theorem cover_condition_necessary :
     ¬ (∀ (G : FateV2.Modeling.Graph.DAG (Fin 3)) (X Y Z : Finset (Fin 3)),
-        G.dSep X Y Z → Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z) :=
+        G.dSep X Y Z → FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z) :=
   @SplitFromDAG.dSep_not_implies_split_fin3
 
 /-! ### W5 / W6 —— 接通 `ChainDSepCondMul`（P0-A2：消「已入库零消费」孤岛）

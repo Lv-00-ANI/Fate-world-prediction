@@ -191,7 +191,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace DAGFactorization
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 /-! ===========================================================================
   §5 ⭐⭐⭐⭐ **T9–T14：拓扑序的严格性（零缺口）**
@@ -535,10 +535,10 @@ end FateV2.Predict
   §9 ⭐⭐⭐⭐ **T19–T22：与 `FinJoint`/`CondMul` 的对接 + 具体验证**
   =========================================================================== -/
 
-namespace Fate
+namespace FateV2.Predict
 namespace DAGFactorization
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 section Validation
 
@@ -546,35 +546,35 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
 
 /-! ### §9.1 **T19：`chainDAG3` 上的拓扑枚举是具体可算的**
 
-`chainDAG3 : DAG (Fin 3)`（边 `0→1→2`）来自 `Fate.GlobalMarkovMinimal`。
+`chainDAG3 : DAG (Fin 3)`（边 `0→1→2`）来自 `FateV2.Predict.GlobalMarkovMinimal`。
 用 T12 得到 `Fin 3 ≃ Fin 3`，并**验证**它是恒等（因为 `topoOrder` 已按
 `0 < 1 < 2` 排好）。 -/
 
 /-- [验证] **T19**：`chainDAG3`（链 `0→1→2`）有拓扑枚举，且边严格递增。 -/
 theorem chainDAG3_topo_enum :
-    ∃ e : Fin 3 ≃ Fin 3, ∀ u v, Fate.GlobalMarkovMinimal.chainDAG3.edge u v → e u < e v :=
-  exists_topo_enum Fate.GlobalMarkovMinimal.chainDAG3
+    ∃ e : Fin 3 ≃ Fin 3, ∀ u v, FateV2.Predict.GlobalMarkovMinimal.chainDAG3.edge u v → e u < e v :=
+  exists_topo_enum FateV2.Predict.GlobalMarkovMinimal.chainDAG3
 
 /-- [验证] **T20**：`topoOrder` 在 `chainDAG3` 上**严格递增**（具体数值）。 -/
 theorem chainDAG3_topoOrder_lt_01 :
-    Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (0 : Fin 3)
-      < Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3) :=
-  Fate.GlobalMarkovMinimal.chainDAG3.topoOrder_lt 0 1 (by decide)
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (0 : Fin 3)
+      < FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3) :=
+  FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder_lt 0 1 (by decide)
 
 /-- [验证] **T21**：`topoOrder` 在 `chainDAG3` 上 `1 → 2` 也严格递增。 -/
 theorem chainDAG3_topoOrder_lt_12 :
-    Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3)
-      < Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (2 : Fin 3) :=
-  Fate.GlobalMarkovMinimal.chainDAG3.topoOrder_lt 1 2 (by decide)
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3)
+      < FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (2 : Fin 3) :=
+  FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder_lt 1 2 (by decide)
 
 /-- [验证] **T22**：`chainDAG3` 上 `pa 1 = {0}`，与 `MarkovBridgeTopo` 的
 `parents` 结果一致（T14 的 `filter_pa_eq_pa` 给出接口）。 -/
 theorem chainDAG3_pa_one :
-    pa Fate.GlobalMarkovMinimal.chainDAG3 (1 : Fin 3) = {(0 : Fin 3)} := by
-  have h := filter_pa_eq_pa Fate.GlobalMarkovMinimal.chainDAG3 (1 : Fin 3)
+    pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1 : Fin 3) = {(0 : Fin 3)} := by
+  have h := filter_pa_eq_pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1 : Fin 3)
   rw [← h]
   ext u
-  fin_cases u <;> simp [Fate.GlobalMarkovMinimal.chainDAG3]
+  fin_cases u <;> simp [FateV2.Predict.GlobalMarkovMinimal.chainDAG3]
 
 end Validation
 
@@ -604,5 +604,4 @@ theorem condMul_is_multiplicative_form :
 end CondMulBridge
 
 end DAGFactorization
-end Fate
-
+end FateV2.Predict

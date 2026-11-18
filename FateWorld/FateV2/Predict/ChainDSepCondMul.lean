@@ -114,7 +114,7 @@ open FateV2.Modeling.Graph.DAG
 下面所有 `G3` 都指它。 -/
 
 /-- 简写：链图 `0 → 1 → 2`。 -/
-abbrev G3 : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.GlobalMarkovMinimal.chainDAG3
+abbrev G3 : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Predict.GlobalMarkovMinimal.chainDAG3
 
 /-! ## §1 链的三条**结构步进律**
 
@@ -136,7 +136,7 @@ theorem step_from_zero {p : List (Fin 3)} (hact : G3.IsActiveWalk {1} p)
     (h : p.get ⟨i, by omega⟩ = 0) : p.get ⟨i + 1, hi⟩ = 1 := by
   have hh := hact.1 i hi
   rw [h] at hh
-  unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj at hh
+  unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj at hh
   simp only at hh
   revert hh
   generalize p.get ⟨i + 1, hi⟩ = v
@@ -154,7 +154,7 @@ theorem step_from_one {p : List (Fin 3)} (hact : G3.IsActiveWalk {1} p)
     p.get ⟨i + 1, hi⟩ = 2 := by
   have hh := hact.1 i hi
   rw [h] at hh
-  unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj at hh
+  unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj at hh
   simp only at hh
   revert hne
   revert hh
@@ -178,7 +178,7 @@ theorem no_two_at_succ {p : List (Fin 3)} (hact : G3.IsActiveWalk {1} p)
       (p.get ⟨i + 2, by omega⟩) := by
     intro hc
     -- `IsCollider l m r = (edge l m ∧ edge r m)`；第二分量含 `edge r m = edge 2 1`，链上为假
-    unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.IsCollider at hc
+    unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.IsCollider at hc
     simp only at hc
     omega
   have h' : (if G3.IsCollider (p.get ⟨i, by omega⟩) (p.get ⟨i + 1, by omega⟩)
@@ -239,7 +239,7 @@ theorem no_active_walk_to_two {p : List (Fin 3)} (hlen : p.length ≥ 2)
         generalize p.get ⟨k, by omega⟩ = u
         intro hadj
         rw [h] at hadj
-        unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj at hadj
+        unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj at hadj
         simp only at hadj
         fin_cases u
         · exact absurd hadj (by simp)
@@ -409,7 +409,7 @@ theorem chain_dsep_condmul
   -- 技术上它不被 `CondMul` 的代数证明需要，故用 `_` 标记其「形状依据」角色，
   -- 但**保留为显式假设**以拒绝 `A ∧ B` 式的并列。
   have _hd_witness : G3.dSep {0} {2} {1} := hd
-  exact Fate.GlobalMarkovMinimal.global_markov_minimal p hfac
+  exact FateV2.Predict.GlobalMarkovMinimal.global_markov_minimal p hfac
 
 /-! ## §7 ⭐⭐⭐ 更强的版本：`dSep` **真的**参与推导（非空转）
 
@@ -436,11 +436,11 @@ theorem activeWalk_nil_cond : G3.IsActiveWalk (∅ : Finset (Fin 3)) [0, 1, 2] :
     | 0, _ =>
       -- `UAdj 0 1`：`edge 0 1` 成立
       show G3.UAdj (([0, 1, 2] : List (Fin 3)).get ⟨0, _⟩) (([0, 1, 2] : List (Fin 3)).get ⟨0 + 1, _⟩)
-      unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj
+      unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj
       simp
     | 1, _ =>
       show G3.UAdj (([0, 1, 2] : List (Fin 3)).get ⟨1, _⟩) (([0, 1, 2] : List (Fin 3)).get ⟨1 + 1, _⟩)
-      unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj
+      unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.UAdj
       simp
     | n + 2, hi => rw [hlen3] at hi; omega
   · -- 阻断条件：唯一的三元组起点是 `i = 0`，即 `(0, 1, 2)`
@@ -459,7 +459,7 @@ theorem activeWalk_nil_cond : G3.IsActiveWalk (∅ : Finset (Fin 3)) [0, 1, 2] :
         else m ∉ (∅ : Finset (Fin 3)))
       rw [hl0, hm1, hr2]
       have hnc : ¬ G3.IsCollider 0 1 2 := by
-        unfold G3 Fate.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.IsCollider
+        unfold G3 FateV2.Predict.GlobalMarkovMinimal.chainDAG3 FateV2.Modeling.Graph.DAG.IsCollider
         simp
       rw [if_neg hnc]
       simp

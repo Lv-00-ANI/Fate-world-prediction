@@ -8,16 +8,16 @@
 
   | # | 原定理（**未改动**） | 所在模块 | 原 `[Nonempty]` | 结论 |
   |---|---|---|---|---|
-  | 1 | `Fate.T35Rule1Split.rule1_of_separable` | `T35Rule1Split` | `[Nonempty Ux] [Nonempty Uy]` | ✅ 可去 |
-  | 2 | `Fate.T35Rule1Split.rule1_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
-  | 3 | `Fate.T35Rule1Split.noConfounding_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
-  | 4 | `Fate.T35Rule1Split.rule1_normalized` | `T35Rule1Split` | 同上 | ✅ 可去 |
+  | 1 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_separable` | `T35Rule1Split` | `[Nonempty Ux] [Nonempty Uy]` | ✅ 可去 |
+  | 2 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
+  | 3 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.noConfounding_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
+  | 4 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_normalized` | `T35Rule1Split` | 同上 | ✅ 可去 |
   | 5 | `Fate.SCMIdentifiability.scmThetaSubsingleton_pred_eq` | `SCMIdentifiability` | `[Nonempty Y]` | ✅ 可去（**完全未用**）|
   | 6 | `Fate.LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one` | `LawRulePointDecidabilityConsumer` | `[Nonempty C.Carrier] [Nonempty X.Carrier]` | ✅ 可去（空型时空真）|
-  | 7 | `Fate.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
-  | 8 | `Fate.Strategy11.peel_lower_univ_minus` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
-  | 9 | `Fate.Strategy11.peel_top_vertex` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
-  | 10 | `Fate.Strategy11Fiber.mass_prefix` | `Strategy11FiberPinned` | 同上 | ✅ 可去（转调 7）|
+  | 7 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
+  | 8 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_univ_minus` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
+  | 9 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_top_vertex` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
+  | 10 | `FateV2.Predict.NonemptyFree2.Strategy11Fiber.mass_prefix` | `Strategy11FiberPinned` | 同上 | ✅ 可去（转调 7）|
 
   ⚠ **本文件共交 10 条**（任务要求 ≥4 条）。
 
@@ -129,7 +129,7 @@ namespace T35Rule1Split
 open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`Fate.T35Rule1Split.rule1_of_separable` 去掉 `[Nonempty Ux] [Nonempty Uy]` 后**仍然成立**。
+`FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_separable` 去掉 `[Nonempty Ux] [Nonempty Uy]` 后**仍然成立**。
 
 **证明策略**：`Ux` 空 ⟹ `SeparablePU` 的 `∑ pX = 1` 变成 `0 = 1`（矛盾）；
 `Uy` 空同理。两情形都**复用原证**（原定理由 `hsep` 保证 `Nonempty`）。 -/
@@ -137,15 +137,15 @@ theorem rule1_of_separable_noNonempty {X Y Ux Uy : Type} [Fintype X] [DecidableE
     [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux] [Fintype Uy]
     [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (hx : Fate.T35Rule1Split.XReadsOnlyUx M e)
-    (hy : Fate.T35Rule1Split.YReadsOnlyUy M e)
-    (hsep : Fate.T35Rule1Split.SeparablePU M e) (x : X) (y : Y) :
+    (hx : FateV2.Predict.NonemptyFree2.T35Rule1Split.XReadsOnlyUx M e)
+    (hy : FateV2.Predict.NonemptyFree2.T35Rule1Split.YReadsOnlyUy M e)
+    (hsep : FateV2.Predict.NonemptyFree2.T35Rule1Split.SeparablePU M e) (x : X) (y : Y) :
     FateV2.Modeling.SCMSemantics.condY M x y
       = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y := by
   classical
   by_cases hUx : Nonempty Ux
   · by_cases hUy : Nonempty Uy
-    · exact Fate.T35Rule1Split.rule1_of_separable M e hx hy hsep x y
+    · exact FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_separable M e hx hy hsep x y
     · -- `Uy` 空 ⟹ `∑ v, pY v = 0 ≠ 1` ⟹ `hsep` 不可满足
       obtain ⟨pX, pY, -, -, hpY⟩ := hsep
       haveI : IsEmpty Uy := not_nonempty_iff.mp hUy
@@ -156,20 +156,20 @@ theorem rule1_of_separable_noNonempty {X Y Ux Uy : Type} [Fintype X] [DecidableE
     simp at hpX
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`Fate.T35Rule1Split.rule1_of_fullNoConfounding` 的无实例形式。
+`FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_fullNoConfounding` 的无实例形式。
 
 前件换成打包的 `FullNoConfounding`，直接转调 §1.1。 -/
 theorem rule1_of_fullNoConfounding_noNonempty {X Y Ux Uy : Type} [Fintype X]
     [DecidableEq X] [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux]
     [Fintype Uy] [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (h : Fate.T35Rule1Split.FullNoConfounding M e) (x : X) (y : Y) :
+    (h : FateV2.Predict.NonemptyFree2.T35Rule1Split.FullNoConfounding M e) (x : X) (y : Y) :
     FateV2.Modeling.SCMSemantics.condY M x y
       = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y :=
   rule1_of_separable_noNonempty M e h.1.1 h.1.2 h.2 x y
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`Fate.T35Rule1Split.noConfounding_of_fullNoConfounding` 的无实例形式。
+`FateV2.Predict.NonemptyFree2.T35Rule1Split.noConfounding_of_fullNoConfounding` 的无实例形式。
 
 结论是**谓词** `NC M = ∀ x y, condY M x y = marginalX M x * doLaw M x y`，
 由 §1.2 全称化即得。 -/
@@ -177,21 +177,21 @@ theorem noConfounding_of_fullNoConfounding_noNonempty {X Y Ux Uy : Type} [Fintyp
     [DecidableEq X] [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux]
     [Fintype Uy] [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (h : Fate.T35Rule1Split.FullNoConfounding M e) :
-    Fate.T35Rule1Split.NC M :=
+    (h : FateV2.Predict.NonemptyFree2.T35Rule1Split.FullNoConfounding M e) :
+    FateV2.Predict.NonemptyFree2.T35Rule1Split.NC M :=
   fun x y => rule1_of_fullNoConfounding_noNonempty M e h x y
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`Fate.T35Rule1Split.rule1_normalized` 的无实例形式（归一化形式，多一个 `hpos`）。
+`FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_normalized` 的无实例形式（归一化形式，多一个 `hpos`）。
 
 先在无实例的 §1.1 上 `mul_div_cancel_left₀`，只用到 `hpos`，与 `Nonempty` 无关。 -/
 theorem rule1_normalized_noNonempty {X Y Ux Uy : Type} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux] [Fintype Uy]
     [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (hx : Fate.T35Rule1Split.XReadsOnlyUx M e)
-    (hy : Fate.T35Rule1Split.YReadsOnlyUy M e)
-    (hsep : Fate.T35Rule1Split.SeparablePU M e)
+    (hx : FateV2.Predict.NonemptyFree2.T35Rule1Split.XReadsOnlyUx M e)
+    (hy : FateV2.Predict.NonemptyFree2.T35Rule1Split.YReadsOnlyUy M e)
+    (hsep : FateV2.Predict.NonemptyFree2.T35Rule1Split.SeparablePU M e)
     (hpos : ∀ x, FateV2.Modeling.SCMSemantics.marginalX M x ≠ 0) (x : X) (y : Y) :
     FateV2.Modeling.SCMSemantics.condY M x y / FateV2.Modeling.SCMSemantics.marginalX M x
       = FateV2.Modeling.SCMSemantics.doLaw M x y := by
@@ -274,7 +274,7 @@ end LawRulePointDecidabilityConsumer
 
 namespace Strategy11
 
-open Fate.Strategy11 Fate.FactorMarkov
+open FateV2.Predict.NonemptyFree2.Strategy11 FateV2.Predict.FactorMarkov
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]
@@ -303,7 +303,7 @@ theorem mass_empty_of_not_nonempty (hV : ¬ Nonempty V)
     exact absurd (Finset.mem_univ x) h
 
 /-- ⭐ **【无 `[Nonempty V]` 版】顶层引擎**：
-`Fate.Strategy11.peel_lower` 去掉 `[Nonempty V]` 后**仍然成立**。
+`FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` 去掉 `[Nonempty V]` 后**仍然成立**。
 
 **证明策略**：非空分支**复用原证**；空分支用 `lowerSet = ∅` + `mass ∅ p x = p x`
 + `hfac x : p x = ∏ v, f v x = 1`（空积）**两边同时归 `1`**。 -/
@@ -322,7 +322,7 @@ theorem peel_lower_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) →
     rw [hfac x]
     exact Finset.prod_eq_one (fun v _ => absurd ⟨v⟩ hV)
 
-/-- ⭐ **【无 `[Nonempty V]` 版】**：`Fate.Strategy11.peel_lower_univ_minus`
+/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_univ_minus`
 去掉 `[Nonempty V]` 后**仍然成立**（直接由上面转调）。 -/
 theorem peel_lower_univ_minus_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
@@ -330,7 +330,7 @@ theorem peel_lower_univ_minus_noNonempty {p : (V → α) → ℝ} {f : V → (V 
     Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
   peel_lower_noNonempty hloc hfac hnorm k x
 
-/-- ⭐ **【无 `[Nonempty V]` 版】**：`Fate.Strategy11.peel_top_vertex`
+/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11.peel_top_vertex`
 去掉 `[Nonempty V]` 后**仍然成立**（`htop` 把 `univ \ {s}` 换成 `lowerSet`，再转调）。 -/
 theorem peel_top_vertex_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
@@ -349,7 +349,7 @@ end Strategy11
 
 namespace Strategy11Fiber
 
-open Fate.Strategy11 Fate.FactorMarkov
+open FateV2.Predict.NonemptyFree2.Strategy11 FateV2.Predict.FactorMarkov
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]
@@ -357,14 +357,14 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 
 set_option linter.unusedSectionVars false
 
-/-- ⭐ **【无 `[Nonempty V]` 版】**：`Fate.Strategy11Fiber.mass_prefix`
+/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11Fiber.mass_prefix`
 去掉 `[Nonempty V]` 后**仍然成立**。
 
 原式只是 `S = lowerSet k` 的包装，故**直接转调** §4 的
 `peel_lower_noNonempty`。 -/
 theorem mass_prefix_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : FactorNorm f) {S : Finset V} (hS : Fate.Strategy11Fiber.isPrefix G S) :
+    (hnorm : FactorNorm f) {S : Finset V} (hS : FateV2.Predict.NonemptyFree2.Strategy11Fiber.isPrefix G S) :
     ∀ x, Fate.DAGFactorization.mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
   exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_noNonempty hloc hfac hnorm k
@@ -376,7 +376,7 @@ end Strategy11Fiber
   ===========================================================================
 
   1. ⚠⚠ **更正**：本文件**第一版**在此处记录了
-     `Fate.Strategy11.peel_lower` / `peel_lower_univ_minus` 为**不可去**，
+     `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` / `peel_lower_univ_minus` 为**不可去**，
      理由是「空 `V` 时 `mass ∅ p x = p (空函数)` 而右边 `= 1`，二者一般不等」。
      **该理由是错的**：`hfac x` 在空 `V` 时给出 `p x = ∏ v : V, f v x = 1`（空积），
      **所以左边也等于 `1`**。见 §4 的 `peel_lower_noNonempty`（机检通过）。

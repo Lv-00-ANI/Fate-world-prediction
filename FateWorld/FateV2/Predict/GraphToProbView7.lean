@@ -53,7 +53,7 @@
 | `G1` 即 `pa(v) ∩ nd(v) = ∅` | ❌ 不使用（`g1_false`）|
 | `DAG.induce` | ❌ 不需要（本文件**不剥离顶点**，见 §1.2） |
 
-**⚠ 唯一保留的朴素假设**：`FactorNorm`（局部归一，`Fate.FactorMarkov.FactorNorm`），
+**⚠ 唯一保留的朴素假设**：`FactorNorm`（局部归一，`FateV2.Predict.FactorMarkov.FactorNorm`），
 即每个因子对自己坐标求和为 1。它是**标准证明也需要**的假设，
 且在**有限概率质量函数**下自动成立（不是凑结论）。
 
@@ -266,7 +266,7 @@ namespace GraphToProbView7
 open Finset
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization (mass unpin)
-open Fate.FactorMarkov (LocalTo FactorNorm CondIndep)
+open FateV2.Predict.FactorMarkov (LocalTo FactorNorm CondIndep)
 
 universe u
 
@@ -367,7 +367,7 @@ section GraphSide
 theorem topo_max_not_parent (G : DAG V) (s : V)
     (hs : ∀ u : V, G.topoOrder u ≤ G.topoOrder s) :
     ∀ v : V, v ≠ s → s ∉ G.parents v :=
-  Fate.FactorMarkov.sink_not_parent G s (Fate.FactorMarkov.sink_no_edge G s hs)
+  FateV2.Predict.FactorMarkov.sink_not_parent G s (FateV2.Predict.FactorMarkov.sink_no_edge G s hs)
 
 /-- ⭐⭐⭐ **§3.2 祖先闭包在拓扑序上向下封闭**（**本文件唯一的祖先集用法**）。
 
@@ -600,7 +600,7 @@ $$\mathrm{mass}_A\,p\,x = f\,x\cdot \mathrm{mass}_A\,g\,x .$$
 `AncestorStable` 不约束 `A` 内点，故 `pa(A) ⊆ A` 是必要的新条件，不是装饰）。 -/
 theorem mass_split_of_inner_stable {G : FateV2.Modeling.Graph.DAG V} {A : Finset V}
     (hclosed : ∀ v, v ∈ A → G.parents v ⊆ A)
-    {p : (V → α) → ℝ} (hfac : Fate.FactorMarkov.Factorizes p G) :
+    {p : (V → α) → ℝ} (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) :
     ∃ f g : (V → α) → ℝ,
       (∀ x y : V → α, (∀ u ∈ A, x u = y u) → f x = f y) ∧
       (∀ x, p x = f x * g x) ∧

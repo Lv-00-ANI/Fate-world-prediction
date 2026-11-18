@@ -59,7 +59,7 @@ theorem prod_split_sides (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ
 
 end FateV2.Predict.View19
 
-namespace Fate.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Error FateV2.Predict.View19
 
@@ -69,7 +69,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 /-- ⭐ **`ancestral_dSep_CondIndep`**（幽灵名）：主定理 C。
 
-**真实实现**：`Fate.GraphToProbView7.condIndep_general`
+**真实实现**：`FateV2.Predict.GraphToProbView7.condIndep_general`
 （`Fate/CondIndepGeneralNZ.lean`）。 -/
 theorem ancestral_dSep_CondIndep {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
@@ -78,12 +78,12 @@ theorem ancestral_dSep_CondIndep {ψ : V → (V → α) → ℝ} {p : (V → α)
     (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_general ψ p hfac hread hsplit hXY hXZ hYZ hcover
 
 /-- ⭐ **`tail_block`**（幽灵名）：有尾块情形（真正版）。
 
-**真实实现**：`Fate.GraphToProbView7.condIndep_tail_HA`
+**真实实现**：`FateV2.Predict.GraphToProbView7.condIndep_tail_HA`
 （`Fate/TailBlockAssemble.lean`）。 -/
 theorem tail_block {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
@@ -92,22 +92,22 @@ theorem tail_block {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     (hA : ∀ v, R v ⊆ X ∪ Y ∪ Z)
     (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_HA hfacA hread hA hsplit hXY hXZ hYZ
 
 /-- ⭐ **`ancestral_shadow`**（幽灵名）：声影分解（主定理 A）。
 
-**真实实现**：`Fate.GraphToProbView7.shadow_decomp`（`Fate/GraphToProbView7.lean`）。 -/
+**真实实现**：`FateV2.Predict.GraphToProbView7.shadow_decomp`（`Fate/GraphToProbView7.lean`）。 -/
 theorem ancestral_shadow {A T : Finset V} (hTA : T ⊆ A)
     {p f g : (V → α) → ℝ} (hfac : ∀ w, p w = f w * g w)
     (hf : ∀ w w', (∀ u ∈ T, w u = w' u) → f w = f w') :
     ∀ x : V → α, Fate.DAGFactorization.mass A p x = f x * Fate.DAGFactorization.mass A g x :=
-  Fate.GraphToProbView7.shadow_decomp hTA hfac hf
+  FateV2.Predict.GraphToProbView7.shadow_decomp hTA hfac hf
 
-end Fate.GraphToProbView7
+end FateV2.Predict.GraphToProbView7
 
 
-namespace Fate.FactorizesToHyper
+namespace FateV2.Predict.FactorizesToHyper
 
 open FateV2.Error
 
@@ -117,35 +117,35 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 /-- ⭐ **`bridge_separated`**（幽灵名）：桥主定理（无尾块）。
 
-**真实实现**：`Fate.GraphToProbView7.condIndep_of_factorizes_dSep_general`
+**真实实现**：`FateV2.Predict.GraphToProbView7.condIndep_of_factorizes_dSep_general`
 （`Fate/BridgeDSepGeneral.lean`）。 -/
 theorem bridge_separated
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
-  Fate.BridgeDSepGeneral.condIndep_of_factorizes_dSep_general p G hfac hdsep hcover
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
+  FateV2.Predict.BridgeDSepGeneral.condIndep_of_factorizes_dSep_general p G hfac hdsep hcover
 
-end Fate.FactorizesToHyper
+end FateV2.Predict.FactorizesToHyper
 
-namespace Fate.CondIndepCondMulBridge
+namespace FateV2.Modeling.CondIndepCondMulBridge
 
 open FateV2.Error
 
 /-- ⭐ **`factorizesOn_of_components`**（幽灵名）：无正性因子分解 ⟹ 条件独立。
 
-**真实实现**：`Fate.CondIndepCondMulBridge.condIndep_fin3_of_factorization`
+**真实实现**：`FateV2.Modeling.CondIndepCondMulBridge.condIndep_fin3_of_factorization`
 （`Fate/CondIndepCondMulBridge.lean`）。
 一般版是 `condIndep_general`（`Fate/CondIndepGeneralNZ.lean`）。 -/
 theorem factorizesOn_of_components {α : Type} [Fintype α] [DecidableEq α]
     (p : (Fin 3 → α) → ℝ) (f g h : α → ℝ)
     (hfac : ∀ x y z, p (enc ((x, y), z)) = f x * g y * h z) :
-    Fate.FactorMarkov.CondIndep p {0} {1} {2} :=
+    FateV2.Predict.FactorMarkov.CondIndep p {0} {1} {2} :=
   condIndep_fin3_of_factorization p f g h hfac
 
 /-- ⭐ **`factorizesOn_to_components`**（幽灵名）：因子分解到分量 ⟹ `CondMul`。
 
-**真实实现**：`Fate.CondIndepCondMulBridge.condMul_fin3_of_factorization`。 -/
+**真实实现**：`FateV2.Modeling.CondIndepCondMulBridge.condMul_fin3_of_factorization`。 -/
 theorem factorizesOn_to_components {α : Type} [Fintype α] [DecidableEq α]
     (p : (Fin 3 → α) → ℝ) (f g h : α → ℝ)
     (hfac : ∀ x y z, p (enc ((x, y), z)) = f x * g y * h z) :
@@ -154,7 +154,7 @@ theorem factorizesOn_to_components {α : Type} [Fintype α] [DecidableEq α]
 
 /-- ⭐ **`factorizesOn_implies_condMul_fork`**（幽灵名）：因子分解 ⟹ `CondMul`（两路版本）。
 
-**真实实现**：`Fate.CondIndepCondMulBridge.condMul_fin3_of_factorization`。
+**真实实现**：`FateV2.Modeling.CondIndepCondMulBridge.condMul_fin3_of_factorization`。
 与 `factorizesOn_to_components` 同一定理，文档里是两个名字。 -/
 theorem factorizesOn_implies_condMul_fork {α : Type} [Fintype α] [DecidableEq α]
     (p : (Fin 3 → α) → ℝ) (f g h : α → ℝ)
@@ -162,4 +162,4 @@ theorem factorizesOn_implies_condMul_fork {α : Type} [Fintype α] [DecidableEq 
     FateV2.Predict.FinCondIndep.CondMul (gamma p) :=
   condMul_fin3_of_factorization p f g h hfac
 
-end Fate.CondIndepCondMulBridge
+end FateV2.Modeling.CondIndepCondMulBridge

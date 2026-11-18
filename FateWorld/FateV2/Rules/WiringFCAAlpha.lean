@@ -4,7 +4,7 @@
 
 模块：Fate.WiringFCAAlpha
 任务：**W1-最高优先 接线** —— 把 `Fate.T112FCASpecific` 的具体 FCA 结果
-      接到规则层 α（`Fate.Alpha` / `Fate.InstanceChain.AlphaOutput`）。
+      接到规则层 α（`Fate.Alpha` / `FateV2.Rules.InstanceChain.AlphaOutput`）。
 
 ---------------------------------------------------------------------------
 本文件做什么
@@ -25,7 +25,7 @@
 | `RankTwo.polarUp_polarDown_polarUp_polarDown_idem`（四次极=二次极） | α 读集闭包**秩 ≤ 2**：`alphaRead_four_eq_two` |
 | `Contrast.closure_four_eq_two`（一般对照） | 诚实性对照（防虚假声称）：`alphaRead_rankTwo_notFCA` |
 
-§5 再给出**真正的 α 实例**：`Fate.InstanceChain.AlphaOutput` 的具体构造，
+§5 再给出**真正的 α 实例**：`FateV2.Rules.InstanceChain.AlphaOutput` 的具体构造，
 其 `partition` 由 `K3`（`Fate.Alpha` 的取概念过程）的**读集（extent）**给出。
 
 ---------------------------------------------------------------------------
@@ -40,8 +40,8 @@
 `Carrier` / `topo` / `meas` / `borel_le` 四分量 | 逐字段构造，`meas := @borel _ ⊤`、`borel_le := le_rfl` |
 | 2 | `alphaPartition : Set G3 → …` 里调 `K3.takeConcept y` | ⚠ **不是改名，是类型写错**：`takeConcept : Set K.MFCA → Set K.MFCA`，
 而 α 的输入本来就是**属性集**；写成 `Set G3`（对象集）类型不符 | 状态类型改为 `Set M2`（`= Set K3.MFCA`） |
-| 3 | `LawRule` / `Alpha` / `AlphaSpec` 未限定 | `LawRule` 在 `Fate.LawRule`，`Alpha`/`AlphaSpec` 在 `Fate.InstanceChain`；
-且 `Fate.Frame.Alpha`（接 `InstSpace`）**与** `Fate.InstanceChain.Alpha`（接 `Type u`）**同名**，非限定会歧义 | 加 `open FateV2.Rules.LawRule`；`Alpha`/`AlphaSpec` 显式限定为 `Fate.InstanceChain.*` |
+| 3 | `LawRule` / `Alpha` / `AlphaSpec` 未限定 | `LawRule` 在 `Fate.LawRule`，`Alpha`/`AlphaSpec` 在 `FateV2.Rules.InstanceChain`；
+且 `Fate.Frame.Alpha`（接 `InstSpace`）**与** `FateV2.Rules.InstanceChain.Alpha`（接 `Type u`）**同名**，非限定会歧义 | 加 `open FateV2.Rules.LawRule`；`Alpha`/`AlphaSpec` 显式限定为 `FateV2.Rules.InstanceChain.*` |
 | 4 | `MeasurableSpace K3Y.Carrier` 无法解析 | `StateSpace.meas` 是**结构字段**不是实例，
 而 `LawRule` 需要 `[MeasurableSpace Y.Carrier]` | 仿 `Fate/T1DegeneracyVerify.lean:232` 写
 `instance … := inferInstanceAs (MeasurableSpace (Set M2))` |
@@ -106,8 +106,8 @@ namespace WiringFCAAlpha
 
 open Set
 open FateV2.Rules.FormalCtx
-open Fate.AlphaInstance
-open Fate.InstanceChain
+open FateV2.Rules.AlphaInstance
+open FateV2.Rules.InstanceChain
 open FateV2.Rules.LawRule
 
 noncomputable section
@@ -196,7 +196,7 @@ end FormalCtx
 
 namespace NonSelfDual
 
-open Fate.ClosureSep NonSelfDual
+open FateV2.Rules.ClosureSep NonSelfDual
 
 /-- ⭐⭐ **单面 α 阅读不存在**（消费 `T112FCASpecific` 的 `no_selfDual_iso`）。
 
@@ -213,7 +213,7 @@ theorem no_singleFace_alphaRead :
   rintro ⟨f, hf, hinv⟩
   -- 由前件构造 `CL ≃o CLᵒᵈ`，与 T112 的分离定理矛盾
   have hff : ∀ a : CL, f (f a) = a := hinv
-  refine Fate.ClosureSep.NonSelfDual.no_selfDual_iso ⟨?_⟩
+  refine FateV2.Rules.ClosureSep.NonSelfDual.no_selfDual_iso ⟨?_⟩
   exact
     { toFun := fun a => OrderDual.toDual (f a)
       invFun := fun b => f (OrderDual.ofDual b)
@@ -230,8 +230,8 @@ theorem no_singleFace_alphaRead :
 /-- **推论（正向陈述）**：T112 的分离结论本身
 （`no_selfDual_iso` 的直接消费，用于下游引用）。 -/
 theorem fca_twoFace_needed :
-    ¬ Nonempty (Fate.ClosureSep.NonSelfDual.CL ≃o Fate.ClosureSep.NonSelfDual.CLᵒᵈ) :=
-  Fate.ClosureSep.NonSelfDual.no_selfDual_iso
+    ¬ Nonempty (FateV2.Rules.ClosureSep.NonSelfDual.CL ≃o FateV2.Rules.ClosureSep.NonSelfDual.CLᵒᵈ) :=
+  FateV2.Rules.ClosureSep.NonSelfDual.no_selfDual_iso
 
 end NonSelfDual
 
@@ -308,7 +308,7 @@ theorem alphaRead_four_eq_two_K3 (A : Set G3) :
 **不是** FCA 的贡献，只反映幂等性。 -/
 theorem alphaRead_rankTwo_notFCA {β : Type*} [Preorder β] (c : ClosureOperator β) (x : β) :
     c (c (c (c x))) = c (c x) :=
-  Fate.Contrast.closure_four_eq_two c x
+  FateV2.Rules.Contrast.closure_four_eq_two c x
 
 end RankTwo
 /-! ===========================================================================
@@ -389,7 +389,7 @@ theorem alphaPartition_symm : PartitionSymm alphaPartition := by
 α 不单射）。故要 (S4) 成立，规则**必须**在同类上取同值 —— 常函数是最简实现。
 
 **这不是空洞的退化**：规则输出取自 **`∅` 的取概念结果**（`takeConcept ∅ = ∅`，
-见 `Fate.AlphaInstance.takeConcept_eq_empty`），故它与 α 直接相关。 -/
+见 `FateV2.Rules.AlphaInstance.takeConcept_eq_empty`），故它与 α 直接相关。 -/
 def k3Rule : LawRule K3Ctx K3X K3Y :=
   fun _ _ => {MeasureTheory.Measure.dirac (∅ : Set M2)}
 
@@ -422,7 +422,7 @@ theorem k3Rules_local :
 
 /-- ⭐ **α 在 `K3` 上的具体输出**：`partition` = α 读集划分，`rules` = 常值规则集。
 
-这是 `Fate.InstanceChain.AlphaOutput` 的**第一个由 FCA 读集驱动**的具体实例。 -/
+这是 `FateV2.Rules.InstanceChain.AlphaOutput` 的**第一个由 FCA 读集驱动**的具体实例。 -/
 def alphaReadOutput : AlphaOutput K3Ctx K3X K3Y where
   partition := alphaPartition
   rules := k3Rules
@@ -432,7 +432,7 @@ def alphaReadOutput : AlphaOutput K3Ctx K3X K3Y where
 ⭐ 缺失 `part_trans`（见上登记）—— 本文件**不**提供它，
 故本结构**不是** `AlphaSpec`，本文件**不**声称 `alphaReadOutput` 满足 `AlphaSpec`。 -/
 structure AlphaSpecPartial {D : Type u} {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
-    [MeasurableSpace Y.Carrier] (α : Fate.InstanceChain.Alpha D C X Y) : Prop where
+    [MeasurableSpace Y.Carrier] (α : FateV2.Rules.InstanceChain.Alpha D C X Y) : Prop where
   /-- (S1) 局部域覆盖全空间。 -/
   covers : ∀ d, PartitionCovers (α d).partition
   /-- (S2) 局部域同类关系对称。 -/
@@ -444,8 +444,8 @@ structure AlphaSpecPartial {D : Type u} {C : CtxSpace} {X : StateSpace} {Y : Out
 
 /-- **`AlphaSpec` 蕴含 `AlphaSpecPartial`**（只缺 (S3)）。 -/
 theorem AlphaSpec.toPartial {D : Type u} {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
-    [MeasurableSpace Y.Carrier] {α : Fate.InstanceChain.Alpha D C X Y}
-    (h : Fate.InstanceChain.AlphaSpec α) :
+    [MeasurableSpace Y.Carrier] {α : FateV2.Rules.InstanceChain.Alpha D C X Y}
+    (h : FateV2.Rules.InstanceChain.AlphaSpec α) :
     AlphaSpecPartial α where
   covers := h.covers
   part_symm := h.part_symm

@@ -15,9 +15,9 @@
 
   ## 依赖
 
-  * `Fate.FactorMarkov.LocalTo` / `Factorizes` / `CondIndep` —— `Fate/FactorMarkov.lean`
-  * `Fate.View19.ReadSet` / `HyperFactorizes` / `Split` —— `Fate/View19FactorGraphSplit.lean`
-  * `Fate.GraphToProbView7.condIndep_emptyZ` —— `Fate/CondIndepEmptyZ.lean`
+  * `FateV2.Predict.FactorMarkov.LocalTo` / `Factorizes` / `CondIndep` —— `Fate/FactorMarkov.lean`
+  * `FateV2.Predict.View19.ReadSet` / `HyperFactorizes` / `Split` —— `Fate/View19FactorGraphSplit.lean`
+  * `FateV2.Predict.GraphToProbView7.condIndep_emptyZ` —— `Fate/CondIndepEmptyZ.lean`
   * `Causalean.Graph.DAG.parents` / `mem_parents` —— `CausDAG.lean`
 
   ## 诚实边界
@@ -90,7 +90,7 @@ theorem readSetOf_nonempty (G : DAG V) (v : V) : (readSetOf G v).Nonempty :=
 两者的前提**逐字相同**（`∀ u ∈ {v}∪pa v, x u = y u`），
 区别仅在于 `LocalTo` 把集合写开、`ReadSet` 用 `Finset` 成员。 -/
 theorem localTo_iff_readSet (G : DAG V) (f : V → (V → α) → ℝ) :
-    Fate.FactorMarkov.LocalTo G f ↔ Fate.View19.ReadSet f (readSetOf G) := by
+    FateV2.Predict.FactorMarkov.LocalTo G f ↔ FateV2.Predict.View19.ReadSet f (readSetOf G) := by
   constructor
   · intro h v x y hxy
     exact h v x y (fun u hu => hxy u ((mem_readSetOf).mpr hu))
@@ -99,12 +99,12 @@ theorem localTo_iff_readSet (G : DAG V) (f : V → (V → α) → ℝ) :
 
 /-- `LocalTo` 版本（便于直接消费）。 -/
 theorem readSet_of_localTo {G : DAG V} {f : V → (V → α) → ℝ}
-    (h : Fate.FactorMarkov.LocalTo G f) : Fate.View19.ReadSet f (readSetOf G) :=
+    (h : FateV2.Predict.FactorMarkov.LocalTo G f) : FateV2.Predict.View19.ReadSet f (readSetOf G) :=
   (localTo_iff_readSet G f).mp h
 
 /-- `ReadSet` 版本（便于直接消费）。 -/
 theorem localTo_of_readSet {G : DAG V} {f : V → (V → α) → ℝ}
-    (h : Fate.View19.ReadSet f (readSetOf G)) : Fate.FactorMarkov.LocalTo G f :=
+    (h : FateV2.Predict.View19.ReadSet f (readSetOf G)) : FateV2.Predict.FactorMarkov.LocalTo G f :=
   (localTo_iff_readSet G f).mpr h
 
 /-! ===========================================================================
@@ -113,17 +113,17 @@ theorem localTo_of_readSet {G : DAG V} {f : V → (V → α) → ℝ}
 
 /-- ⭐⭐⭐⭐ **主命题**：`Factorizes p G` 给出**同族因子** `f`，
 它既满足读集约束 `ReadSet f (readSetOf G)`，又满足 `HyperFactorizes f p`。 -/
-theorem factorizes_to_hyper (p : Fate.FactorMarkov.Joint V α) (G : DAG V)
-    (h : Fate.FactorMarkov.Factorizes p G) :
+theorem factorizes_to_hyper (p : FateV2.Predict.FactorMarkov.Joint V α) (G : DAG V)
+    (h : FateV2.Predict.FactorMarkov.Factorizes p G) :
     ∃ f : V → (V → α) → ℝ,
-      Fate.View19.ReadSet f (readSetOf G) ∧ Fate.View19.HyperFactorizes f p := by
+      FateV2.Predict.View19.ReadSet f (readSetOf G) ∧ FateV2.Predict.View19.HyperFactorizes f p := by
   obtain ⟨f, hloc, hfac⟩ := h
   exact ⟨f, readSet_of_localTo hloc, hfac⟩
 
 /-- 只取 `HyperFactorizes` 部分的便利形式。 -/
-theorem factorizes_to_hyperFactorizes (p : Fate.FactorMarkov.Joint V α) (G : DAG V)
-    (h : Fate.FactorMarkov.Factorizes p G) :
-    ∃ f : V → (V → α) → ℝ, Fate.View19.HyperFactorizes f p :=
+theorem factorizes_to_hyperFactorizes (p : FateV2.Predict.FactorMarkov.Joint V α) (G : DAG V)
+    (h : FateV2.Predict.FactorMarkov.Factorizes p G) :
+    ∃ f : V → (V → α) → ℝ, FateV2.Predict.View19.HyperFactorizes f p :=
   let ⟨f, _, hf⟩ := factorizes_to_hyper p G h
   ⟨f, hf⟩
 
@@ -140,15 +140,15 @@ variable [Nonempty α]
 把 §3 的 `factorizes_to_hyper` 直接喂给 `condIndep_emptyZ`；
 唯一的额外工作是 `hne : ∀ v, (readSetOf G v).Nonempty`，
 它由 `readSetOf_nonempty` 免费得到。 -/
-theorem condIndep_of_factorizes (p : Fate.FactorMarkov.Joint V α) (G : DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G)
+theorem condIndep_of_factorizes (p : FateV2.Predict.FactorMarkov.Joint V α) (G : DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G)
     {X Y : Finset V}
-    (hsplit : Fate.View19.Split (readSetOf G) X Y (∅ : Finset V))
+    (hsplit : FateV2.Predict.View19.Split (readSetOf G) X Y (∅ : Finset V))
     (hXY : Disjoint X Y)
     (hcover : X ∪ Y = univ) :
-    Fate.FactorMarkov.CondIndep p X Y ∅ := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y ∅ := by
   obtain ⟨f, hread, hhyper⟩ := factorizes_to_hyper p G hfac
-  exact Fate.GraphToProbView7.condIndep_emptyZ f p hhyper hread
+  exact FateV2.Predict.GraphToProbView7.condIndep_emptyZ f p hhyper hread
     (readSetOf_nonempty G) hsplit hXY hcover
 
 end Chain

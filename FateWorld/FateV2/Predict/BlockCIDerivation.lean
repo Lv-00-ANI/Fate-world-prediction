@@ -68,7 +68,7 @@ namespace FateV2.Predict.BlockCIDerivation
 
 open FateV2.Modeling
 
-open Finset Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -135,7 +135,7 @@ end FateV2.Predict.BlockCIDerivation
 
 namespace FateV2.Predict.BlockCIDerivation
 
-open Finset Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u'
 
@@ -249,8 +249,8 @@ Pearl 因子化 + d-分离 + `Z ⊆ X` 给出 `BlockCI_Gap`，再沿 `p ↦ c ·
 `blockCI_of_factorizes_dSep` 本身只能给出归一载体上的 gap；
 本定理说明**非归一载体**（`c ≠ 1`）同样成立，无需重走 `CondIndep` 全链。 -/
 theorem blockCI_of_dSep_scaled [Nonempty α]
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) (hZX : Z ⊆ X)
     (c : ℝ) :
     BlockCI_Gap (fun w => c * p w) G X Y Z :=
@@ -267,8 +267,8 @@ theorem blockCI_of_dSep_scaled [Nonempty α]
 theorem blockCI_of_factorization_neg [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) (hZX : Z ⊆ X)
     (G : FateV2.Modeling.Graph.DAG V) :
@@ -287,8 +287,8 @@ theorem blockCI_of_factorization_neg [Nonempty α] {ψ : V → (V → α) → �
 theorem blockCI_empty_of_split_scaled [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {A B : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R A B ∅)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R A B ∅)
     (hAB : A ∪ B = Finset.univ) (hdisj : Disjoint A B)
     (G : FateV2.Modeling.Graph.DAG V) (c : ℝ) :
     BlockCI_Gap (fun w => c * p w) G A B ∅ :=

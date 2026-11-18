@@ -20,7 +20,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
   ## 0  本文件补什么
 
-  `Fate.PipelineAdaptiveEtaComplexity.exists_N_pow_lt` 给出
+  `FateV2.Loop.PipelineAdaptiveEtaComplexity.exists_N_pow_lt` 给出
 
       ∃ N, c ^ N * ‖x0 - xstar‖ < eps
 
@@ -58,7 +58,7 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace PipelineComplexityOptimal
 
-open Fate.PipelineAdaptiveEtaComplexity
+open FateV2.Loop.PipelineAdaptiveEtaComplexity
 
 /-! ## §1  `c^N < eps` 的存在性（Archimedes 形式） -/
 

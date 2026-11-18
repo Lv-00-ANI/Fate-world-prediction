@@ -10,8 +10,8 @@
 
   ## 本文件新增内容
   * `§1 split_rebase`（**核心，已完成**）：
-    `Fate.View19.Split R X Y Z` + `∀ v, R v ⊆ A ∨ v ∉ A` ⟹
-    `Fate.View19.Split (fun v : ↥A => sub A (R v.1) _) (sub A X hX) (sub A Y hY) (sub A Z hZ)`。
+    `FateV2.Predict.View19.Split R X Y Z` + `∀ v, R v ⊆ A ∨ v ∉ A` ⟹
+    `FateV2.Predict.View19.Split (fun v : ↥A => sub A (R v.1) _) (sub A X hX) (sub A Y hY) (sub A Z hZ)`。
     证明即「用 `mem_sub_iff` 在 `↥A` 与 `V` 之间来回搬运 `∈`」，无实质障碍。
 
   * `§2 readSet_rebase`（**已完成，但是一个 Prop 形式**）：
@@ -119,8 +119,8 @@ theorem hR_of_hAll {R : V → Finset V} {A : Finset V}
 theorem split_rebase {R : V → Finset V} {X Y Z A : Finset V}
     (hX : X ⊆ A) (hY : Y ⊆ A) (hZ : Z ⊆ A)
     (hAll : ∀ v, R v ⊆ A ∨ v ∉ A)
-    (hsplit : Fate.View19.Split R X Y Z) :
-    Fate.View19.Split (fun v : ↥A => sub A (R v.1) (hR_of_hAll hAll v))
+    (hsplit : FateV2.Predict.View19.Split R X Y Z) :
+    FateV2.Predict.View19.Split (fun v : ↥A => sub A (R v.1) (hR_of_hAll hAll v))
       (sub A X hX) (sub A Y hY) (sub A Z hZ) := by
   intro v
   show sub A (R v.1) _ ⊆ sub A X hX ∪ sub A Z hZ ∨
@@ -161,7 +161,7 @@ theorem extEnd_of_not_mem (A : Finset V) (ω₀ : V → α) (w : ↥A → α)
 /-- ⭐⭐ **`ReadSet` 的 rebase（显式形式）**：若 `ψ v` 只读 `R v`，且 `R v ⊆ A`，
 则 `ψA v w := ψ v.1 (extEnd A ω₀ w)` 只读 `sub A (R v.1)`。 -/
 theorem readSet_rebase {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (A : Finset V) (ω₀ : V → α)
     (hR : ∀ v : ↥A, R v.1 ⊆ A) :
     ∀ (v : ↥A) (x y : ↥A → α),
@@ -178,10 +178,10 @@ theorem readSet_rebase {ψ : V → (V → α) → ℝ} {R : V → Finset V}
 /-- ⭐⭐ **`ReadSet` 的 rebase（字面 `ReadSet` 形式）**，条件直接用任务书的
 `hAll : ∀ v, R v ⊆ A ∨ v ∉ A`。 -/
 theorem readSet_rebase' {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (A : Finset V) (ω₀ : V → α)
     (hAll : ∀ v, R v ⊆ A ∨ v ∉ A) :
-    Fate.View19.ReadSet (fun v w => ψ v.1 (extEnd A ω₀ w))
+    FateV2.Predict.View19.ReadSet (fun v w => ψ v.1 (extEnd A ω₀ w))
       (fun v : ↥A => sub A (R v.1) (hR_of_hAll hAll v)) :=
   readSet_rebase hread A ω₀ (hR_of_hAll hAll)
 

@@ -12,7 +12,7 @@
   目的是让主链真的**消费**随机版。本文件以
   **独立模块 + `Fate.RA14Strong.G4Link` 命名空间**达成该目的：
 
-  * `import Fate.ObsEstimationStrong`（主链模块）、`import Fate.ObsErrorRandom`（G4 模块）；
+  * `import Fate.ObsEstimationStrong`（主链模块）、`import FateV2.Error.ObsErrorRandom`（G4 模块）；
   * 新定理的证明**逐字调用** `ObsErrorRandom.estimator_error_bound_random`；
   * **已有模块零改动**（纪律 2）。
 
@@ -95,7 +95,7 @@ namespace G4Link
 
 open MeasureTheory
 
-open Fate.ObsErrorRandom
+open FateV2.Error.ObsErrorRandom
 
 open FateV2.Error.ObsEstSharp (LocallyDecodable)
 

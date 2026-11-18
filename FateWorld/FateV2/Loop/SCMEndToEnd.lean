@@ -321,7 +321,7 @@ theorem endToEnd_scmWorldModel_step_eq {X Y G : Type} (M : SCM X Y) [Nonempty Y]
 $$\mathrm{endToEnd}\,(\mathrm{scmWorldModel}\,M)\,\dots\,\theta = \theta
   \iff \varphi\bigl(\hat x^{\mathrm{obs}} - (\mathrm{sg}\,u).2\,a\bigr) = 0 .$$
 
-**⟹ 这是 `Fate.FillGap.fixed_iff_phi_resid_zero`（`Fate/FillGap.lean:42`）
+**⟹ 这是 `FateV2.Loop.FillGap.fixed_iff_phi_resid_zero`（`Fate/FillGap.lean:42`）
 在 SCM 实例上的落点**：通式的残差位 `observe h y - predFrom …`
 被本文件的 `predFrom_scmWorldModel` 换成 `observe h y - (sg u).2 a`。
 
@@ -333,7 +333,7 @@ theorem endToEnd_scmWorldModel_fixed_iff {X Y G : Type} (M : SCM X Y) [Nonempty 
     (y : G) (θ : PUnit) (u : M.U) (ε : PUnit) (a : X) (x : Y) (hη : η ≠ 0) :
     FateV2.Loop.EndToEnd.endToEnd (SCMWorldModel.scmWorldModel M) h η φ y θ u ε a x = θ
       ↔ φ (FateV2.Loop.EndToEnd.observe h y - (M.sg u).2 a) = 0 := by
-  rw [Fate.FillGap.fixed_iff_phi_resid_zero
+  rw [FateV2.Loop.FillGap.fixed_iff_phi_resid_zero
     (SCMWorldModel.scmWorldModel M) h η φ y θ u ε a x hη,
     predFrom_scmWorldModel]
 
@@ -347,7 +347,7 @@ $$\mathrm{predFrom}\;(\mathrm{scmWorldModel}\,M)\;\theta\;u\;\varepsilon\;a\;x
 `endToEnd_fixed_of_sg_hit`（下一条）把它换成 `(sg u).2 a`，
 两条合读即：**「SCM 结构映射命中观测」⟹「端到端不动」**。
 
-**⟹ 这是 `Fate.FillGap.fixed_of_predicts_exactly`（`Fate/FillGap.lean:65`）
+**⟹ 这是 `FateV2.Loop.FillGap.fixed_of_predicts_exactly`（`Fate/FillGap.lean:65`）
 在 SCM 实例上的落点。** -/
 theorem endToEnd_scmWorldModel_fixed_of_predicts {X Y G : Type} (M : SCM X Y)
     [Nonempty Y] [AddCommGroup Y] [Ring PUnit] [NoZeroDivisors PUnit]
@@ -356,7 +356,7 @@ theorem endToEnd_scmWorldModel_fixed_of_predicts {X Y G : Type} (M : SCM X Y)
     (hpred : FateV2.Loop.EndToEnd.predFrom (SCMWorldModel.scmWorldModel M) θ u ε a x
       = FateV2.Loop.EndToEnd.observe h y) :
     FateV2.Loop.EndToEnd.endToEnd (SCMWorldModel.scmWorldModel M) h η φ y θ u ε a x = θ :=
-  Fate.FillGap.fixed_of_predicts_exactly (SCMWorldModel.scmWorldModel M)
+  FateV2.Loop.FillGap.fixed_of_predicts_exactly (SCMWorldModel.scmWorldModel M)
     h η φ hφ y θ u ε a x hη hpred
 
 /-- ⭐⭐⭐⭐ **任务书 (d) 的最终形态：SCM 结构映射命中观测 ⟹ 端到端不动**。

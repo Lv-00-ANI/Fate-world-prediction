@@ -86,7 +86,7 @@ open FateV2.Modeling
 
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 open Fate.Strategy11Hull
 
 universe u
@@ -177,7 +177,7 @@ theorem factorizes_standard_implies_routeB (h : Factorizes p G) :
 
 **该陈述为假，已删除**（按修复纪律「证不出就删该定理并在文件头说明」，不用 `sorry` 占位）。
 
-**为何为假**：`Fate.FactorMarkov.LocalTo` 的读集是 `{v} ∪ pa(v)`（**更大**），
+**为何为假**：`FateV2.Predict.FactorMarkov.LocalTo` 的读集是 `{v} ∪ pa(v)`（**更大**），
 `Fate.FactorRecursionRouteB.Factorizes` 的读集是 `pa(v)`（**更小**）。
 「函数对更大集合不敏感」**不蕴含**「对更小集合不敏感」，故方向弄反了：
 真方向是 **`RouteB.Factorizes ⟹ Factorizes`**（读集更小 ⟹ 也满足更大读集）。
@@ -432,7 +432,7 @@ theorem markov_of_gap {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
   intro X Y Z hd
   exact markov_of_readClosedBlocks hloc hfac hnorm hd (hg X Y Z hd)
 
-/-- **T6′（`Markov` 形式）**：与 `Fate.FactorMarkov.Markov` 的定义直接对接 ——
+/-- **T6′（`Markov` 形式）**：与 `FateV2.Predict.FactorMarkov.Markov` 的定义直接对接 ——
 `hloc`/`hfac`/`hnorm`/G1 ⟹ `Markov p G`（**一般 DAG**）。
 即：**若**缺口 G1 成立，**则** `p` 满足 `G` 的全局 Markov 性。 -/
 theorem markov_of_gap_markov {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}

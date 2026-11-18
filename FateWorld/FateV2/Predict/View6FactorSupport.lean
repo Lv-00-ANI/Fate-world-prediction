@@ -342,7 +342,7 @@ theorem SupportCut.mono {G : DAG V} {X Y Z : Finset V} (hcut : SupportCut G X Y 
 /-! ===========================================================================
   §5 ⭐⭐⭐⭐⭐ **链实例 `0 → 1 → 2`：由 `dSep` 造出支撑切（`V6.6`）**
 
-  在**真 DAG**（`Fate.GlobalMarkovMinimal.chainDAG3`）上：
+  在**真 DAG**（`FateV2.Predict.GlobalMarkovMinimal.chainDAG3`）上：
   * `dSep {0} {2} {1}` 是**已证的真图论事实**（`chainDAG3_dsep`）；
   * 本节的切 `V₀ = ∅`、`V₁ = {0,1}`、`V₂ = {2}`，区 `X∪Z = {0,1}`、`Y∪Z = {1,2}`，
     **逐点 `decide` 验证**（真计算，不是转发）。
@@ -350,7 +350,7 @@ theorem SupportCut.mono {G : DAG V} {X Y Z : Finset V} (hcut : SupportCut G X Y 
 
 namespace Chain
 
-open Fate.GlobalMarkovMinimal
+open FateV2.Predict.GlobalMarkovMinimal
 
 /-- `X∪Z` 侧指标：`{0,1}`。 -/
 def VXZ : Finset (Fin 3) := {0, 1}

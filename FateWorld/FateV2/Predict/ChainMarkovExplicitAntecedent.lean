@@ -78,8 +78,8 @@ open FateV2.Modeling
 open Finset FateV2.Predict.FinCondIndep
 open FateV2.Modeling.Graph.DAG
 
-/-- 链 `0 → 1 → 2`（重用 `Fate.GlobalMarkovMinimal.chainDAG3`）。 -/
-abbrev G3 : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.GlobalMarkovMinimal.chainDAG3
+/-- 链 `0 → 1 → 2`（重用 `FateV2.Predict.GlobalMarkovMinimal.chainDAG3`）。 -/
+abbrev G3 : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Predict.GlobalMarkovMinimal.chainDAG3
 
 /-- 观测坐标类型：`Fin 3 → Fin 2`（三个顶点，各取两个值）。 -/
 abbrev Obs := Fin 3 → Fin 2

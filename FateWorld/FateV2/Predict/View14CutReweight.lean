@@ -60,7 +60,7 @@ import Mathlib.Tactic.Ring
 
 ## 2 数学构造
 
-**载体**（仓库既有口径，`Fate.FactorMarkov` / `Fate.DAGFactorization`）：
+**载体**（仓库既有口径，`FateV2.Predict.FactorMarkov` / `Fate.DAGFactorization`）：
 `p : (V→α)→ℝ`；`mass S p x := ∑_{w : w|_S = x|_S} p w`；
 `LocalTo G f := ∀ v x y, (∀ u, u = v ∨ u ∈ pa_G v → x u = y u) → f v x = f v y`；
 `Factorizes p G := ∃ f, LocalTo G f ∧ ∀ x, p x = ∏ v, f v x`。
@@ -106,7 +106,7 @@ open FateV2.Modeling
 open Finset
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization (mass unpin)
-open Fate.FactorMarkov (Joint LocalTo Factorizes FactorNorm)
+open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm)
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]

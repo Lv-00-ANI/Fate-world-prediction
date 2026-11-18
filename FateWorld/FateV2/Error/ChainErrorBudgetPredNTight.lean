@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ChainErrorBudgetPredNTight`
+模块：`FateV2.Error.ChainErrorBudgetPredNTight`
 ======================================
 
 ## ⚠⚠ 任务 B 结论：原「学习项消去」目标**是假命题**（相关定理已删除）
@@ -76,10 +76,10 @@ namespace ChainErrorBudgetPredNTight
 open FateV2.Error.GaussMarkovScalar
 open FateV2.Loop.BoundWriteBack
 open FateV2.Loop.ClosedLoopNoisy
-open Fate.ChainErrorBudgetBound
-open Fate.ChainErrorBudgetPredN
+open FateV2.Error.ChainErrorBudgetBound
+open FateV2.Error.ChainErrorBudgetPredN
 open FateV2.Loop.ThetaConvergence
-open Fate.AssemblyLearnsScratch
+open FateV2.Loop.AssemblyLearnsScratch
 open FateV2.Loop.OptimalEta
 
 open MeasureTheory ProbabilityTheory

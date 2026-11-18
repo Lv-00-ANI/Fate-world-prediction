@@ -298,7 +298,7 @@ end FateV2.Rules
 /-! ===========================================================================
   `Fate/T112Exactly` —— **R11 追加段：T112 系列真实接线**
 
-  本段（`namespace Fate.R11T112`）**只做组合**：把本文件已导入的
+  本段（`namespace FateV2.Rules.R11T112`）**只做组合**：把本文件已导入的
   `T112UnaryClosure` / `T112Candidates` / `T112FCAConnection` /
   `T112SecondQuotient` / `T112FCAPolar` / `T112FCATheorems` 中的既有定理
   两两/三三组合，产生**在任一单模块中都不存在的接口**。
@@ -321,8 +321,7 @@ end FateV2.Rules
   | 10 | `unary_extent_is_uClosure_fix` | `isExtent_iff_lowerPolar_lowerPolar` + `isExtent_iff_uClosure_fix` |
 ================================================================================ -/
 
-namespace Fate
-
+namespace FateV2.Rules
 open Set Order
 
 namespace R11T112
@@ -338,7 +337,7 @@ universe u
 **这是本文件首次把「闭包算子 API」直接作用到 `T112.closure` 上。** -/
 theorem closure_intentClosure_fix (K : FormalCtx) (A : Set K.MFCA) :
     (intentClosure K.Irel) (T112.closure K A) = T112.closure K A := by
-  rw [← FateV2.Rules.FateV2.Rules.T112.closure_eq_intentClosure]
+  rw [← FateV2.Rules.T112.closure_eq_intentClosure]
   exact (T112.closureOp K).idempotent A
 
 /-- **(R11-2)** `A` 是内涵 ⟺ `A` 是 FCA 闭包的不动点。
@@ -351,7 +350,7 @@ theorem isIntent_iff_closure_fix (K : FormalCtx) (A : Set K.MFCA) :
     Order.IsIntent K.Irel A ↔ T112.closure K A = A := by
   constructor
   · intro hA
-    rw [FateV2.Rules.FateV2.Rules.T112.closure_eq_intentClosure]
+    rw [FateV2.Rules.T112.closure_eq_intentClosure]
     exact FormalCtx.polarUp_polarDown_eq_of_isIntent K hA
   · intro hA
     rw [← hA]
@@ -368,14 +367,14 @@ theorem closure_range_isIntent (K : FormalCtx) (A : Set K.MFCA) :
 
 /-- **(R11-4)** 两个属性集落在同一商类 ⟺ 它们的闭包相等（`Quotient.mk` 形式）。 -/
 theorem mk_eq_iff_closure_eq (K : FormalCtx) (A B : Set K.MFCA) :
-    Quotient.mk (FateV2.Rules.FateV2.Rules.FateV2.Rules.T112.attrsEquivSetoid K) A = Quotient.mk (FateV2.Rules.FateV2.Rules.FateV2.Rules.T112.attrsEquivSetoid K) B ↔
+    Quotient.mk (FateV2.Rules.T112.attrsEquivSetoid K) A = Quotient.mk (FateV2.Rules.T112.attrsEquivSetoid K) B ↔
       T112.closure K A = T112.closure K B :=
   FateV2.Rules.T112.t112_injective_iff K A B
 
 /-- **(R11-5)** `A` 与其闭包同属一类，且两者再闭包后相等（幂等的类内稳定性）。 -/
 theorem class_of_closure_eq (K : FormalCtx) (A : Set K.MFCA) :
     T112.closure K A = T112.closure K (T112.closure K A) ∧
-      (FateV2.Rules.FateV2.Rules.FateV2.Rules.T112.attrsEquivSetoid K) A (T112.closure K A) :=
+      (FateV2.Rules.T112.attrsEquivSetoid K) A (T112.closure K A) :=
   ⟨((T112.closureOp K).idempotent A).symm, FateV2.Rules.T112.attrsEquiv_self_closure K A⟩
 
 /-! ## §R11.3  任意幂集闭包算子 ↔ 规范背景 -/
@@ -408,13 +407,13 @@ theorem t112_for_canonical {γ : Type u} (c : ClosureOperator (Set γ)) :
 theorem polar_antitone_closure_bipolar (K : FormalCtx) :
     Antitone K.polarUp ∧ Antitone K.polarDown ∧
       ∀ A : Set K.MFCA, T112.closure K A = K.polarUp (K.polarDown A) :=
-  ⟨(FateV2.Rules.FateV2.Rules.T112.polar_pair_antitone K).1, (FateV2.Rules.FateV2.Rules.T112.polar_pair_antitone K).2,
-    FateV2.Rules.FateV2.Rules.T112.fca_closure_is_bipolar K⟩
+  ⟨(FateV2.Rules.T112.polar_pair_antitone K).1, (FateV2.Rules.T112.polar_pair_antitone K).2,
+    FateV2.Rules.T112.fca_closure_is_bipolar K⟩
 
 /-- **(R11-9)** 伴随律 `B ⊆ A' ↔ A ⊆ B'` 与「闭包 = 双极复合」同时成立。 -/
 theorem adjunction_and_closure (K : FormalCtx) (A : Set K.GFCA) (B : Set K.MFCA) :
     (B ⊆ K.polarUp A ↔ A ⊆ K.polarDown B) ∧ T112.closure K B = K.polarUp (K.polarDown B) :=
-  ⟨FateV2.Rules.T112.polar_adjunction K A B, FateV2.Rules.FateV2.Rules.T112.fca_closure_is_bipolar K B⟩
+  ⟨FateV2.Rules.T112.polar_adjunction K A B, FateV2.Rules.T112.fca_closure_is_bipolar K B⟩
 
 /-! ## §R11.5  单底集坍缩与闭包算子不动点 -/
 
@@ -431,4 +430,4 @@ theorem unary_extent_is_uClosure_fix {γ : Type*} {r : γ → γ → Prop} (hr :
 
 end R11T112
 
-end Fate
+end FateV2.Rules

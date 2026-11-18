@@ -55,7 +55,7 @@ import FateWorld.FateV2.Predict.FactorizesToHyper
   ## 2 依赖方向（一句话）
 
   `Causalean.Graph.DAG` 侧陈述 ⟶ `DAGBridge` 的搬运引理 ⟶
-  **`Fate.DAGBridge` 不再是叶子**（`grep -rn "DAGBridge" Fate/*.lean` 现有本文件命中）。
+  **`FateV2.Predict.DAGBridge` 不再是叶子**（`grep -rn "DAGBridge" Fate/*.lean` 现有本文件命中）。
 
   =========================================================================== -/
 
@@ -101,9 +101,9 @@ universe v
 theorem dSep_excludes_dagCollider_in_Z {V : Type u} [Fintype V]
     (G : DAG V) {X Y Z : Finset V} (hdsep : G.dSep X Y Z)
     {x y z : V} (hx : x ∈ X) (hy : y ∈ Y) (hz : z ∈ Z) :
-    ¬ Fate.DAGBridge.IsCollider G x z y := by
-  rw [Fate.DAGBridge.isCollider_iff]
-  exact fun h => Fate.SplitFromDAG.no_collider_in_Z G hdsep hx hy h.1 h.2 hz
+    ¬ FateV2.Predict.DAGBridge.IsCollider G x z y := by
+  rw [FateV2.Predict.DAGBridge.isCollider_iff]
+  exact fun h => FateV2.Predict.SplitFromDAG.no_collider_in_Z G hdsep hx hy h.1 h.2 hz
 
 /-! ===========================================================================
   §2 ⭐⭐⭐ **C5.2 —— `Split` 与「无 `DAGBridge` collider」并存**
@@ -128,10 +128,10 @@ theorem dSep_excludes_dagCollider_in_Z {V : Type u} [Fintype V]
 theorem split_and_no_dagCollider {V : Type u} [Fintype V]
     (G : DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z ∧
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z ∧
       (∀ x y z : V, x ∈ X → y ∈ Y → z ∈ Z →
-        ¬ Fate.DAGBridge.IsCollider G x z y) :=
-  ⟨Fate.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover,
+        ¬ FateV2.Predict.DAGBridge.IsCollider G x z y) :=
+  ⟨FateV2.Predict.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover,
    fun _ _ _ hx hy hz => dSep_excludes_dagCollider_in_Z G hdsep hx hy hz⟩
 
 /-! ===========================================================================
@@ -152,17 +152,17 @@ theorem split_and_no_dagCollider {V : Type u} [Fintype V]
 
 **前件都是链上 / 图中**（`hdsep`、`hcover`、`hfac`），**不含结论**。 -/
 theorem factorizes_separable_and_no_dagCollider {V : Type u} {α : Type u}
-    [Fintype V] [Fintype α] [DecidableEq α] (p : Fate.FactorMarkov.Joint V α)
+    [Fintype V] [Fintype α] [DecidableEq α] (p : FateV2.Predict.FactorMarkov.Joint V α)
     (G : DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ)
-    (hfac : Fate.FactorMarkov.Factorizes p G) :
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) :
     (∃ f g : (V → α) → ℝ,
         (∀ w, p w = f w * g w) ∧
-          Fate.BridgeGeneralize.FrozenOn (X ∪ Z) f ∧
-          Fate.BridgeGeneralize.FrozenOn (Y ∪ Z) g) ∧
+          FateV2.Predict.BridgeGeneralize.FrozenOn (X ∪ Z) f ∧
+          FateV2.Predict.BridgeGeneralize.FrozenOn (Y ∪ Z) g) ∧
       (∀ x y z : V, x ∈ X → y ∈ Y → z ∈ Z →
-        ¬ Fate.DAGBridge.IsCollider G x z y) :=
-  ⟨Fate.BridgeGeneralize.dSep_factorizes_separable_general p G X Y Z hdsep hcover hfac,
+        ¬ FateV2.Predict.DAGBridge.IsCollider G x z y) :=
+  ⟨FateV2.Predict.BridgeGeneralize.dSep_factorizes_separable_general p G X Y Z hdsep hcover hfac,
    (split_and_no_dagCollider G X Y Z hdsep hcover).2⟩
 
 /-! ===========================================================================
@@ -189,15 +189,15 @@ theorem factorizes_separable_and_no_dagCollider {V : Type u} {α : Type u}
 `DAGBridge.transGen_iff_isAncestor` + `mem_parents` 现场组装。 -/
 theorem ancestor_chain_and_readSet {V : Type u} [Fintype V]
     (G : DAG V) {v w : V} (h : G.edge v w) :
-    (Fate.DAGBridge.toCausalGraph G).Adj v w ∧
-      Relation.TransGen (Fate.DAGBridge.toCausalGraph G).Adj v w ∧
-        G.isAncestor v w ∧ v ∈ Fate.FactorizesToHyper.readSetOf G w := by
-  have hadj : (Fate.DAGBridge.toCausalGraph G).Adj v w :=
-    (Fate.DAGBridge.edge_iff_adj G v w).mpr h
-  have htg : Relation.TransGen (Fate.DAGBridge.toCausalGraph G).Adj v w :=
+    (FateV2.Predict.DAGBridge.toCausalGraph G).Adj v w ∧
+      Relation.TransGen (FateV2.Predict.DAGBridge.toCausalGraph G).Adj v w ∧
+        G.isAncestor v w ∧ v ∈ FateV2.Predict.FactorizesToHyper.readSetOf G w := by
+  have hadj : (FateV2.Predict.DAGBridge.toCausalGraph G).Adj v w :=
+    (FateV2.Predict.DAGBridge.edge_iff_adj G v w).mpr h
+  have htg : Relation.TransGen (FateV2.Predict.DAGBridge.toCausalGraph G).Adj v w :=
     Relation.TransGen.single hadj
-  exact ⟨hadj, htg, (Fate.DAGBridge.transGen_iff_isAncestor G).mp htg,
-    (Fate.FactorizesToHyper.mem_readSetOf).mpr
+  exact ⟨hadj, htg, (FateV2.Predict.DAGBridge.transGen_iff_isAncestor G).mp htg,
+    (FateV2.Predict.FactorizesToHyper.mem_readSetOf).mpr
       (Or.inr ((FateV2.Modeling.Graph.DAG.mem_parents G).mpr h))⟩
 
 /-! ===========================================================================
@@ -220,11 +220,11 @@ theorem ancestor_chain_and_readSet {V : Type u} [Fintype V]
 theorem tripleType_transport_on_chain_dag {V : Type u} [Fintype V]
     (G : DAG V) {a b c : V}
     (hab : G.edge a b ∨ G.edge b a) (hbc : G.edge b c ∨ G.edge c b) :
-    (Fate.DAGBridge.TripleType G a b c ↔
-        CausalDirection.TripleType (Fate.DAGBridge.toCausalGraph G) a b c) ∧
-      Fate.DAGBridge.TripleType G a b c :=
-  ⟨Fate.DAGBridge.tripleType_iff G a b c,
-   Fate.DAGBridge.triple_exhaustive G hab hbc⟩
+    (FateV2.Predict.DAGBridge.TripleType G a b c ↔
+        CausalDirection.TripleType (FateV2.Predict.DAGBridge.toCausalGraph G) a b c) ∧
+      FateV2.Predict.DAGBridge.TripleType G a b c :=
+  ⟨FateV2.Predict.DAGBridge.tripleType_iff G a b c,
+   FateV2.Predict.DAGBridge.triple_exhaustive G hab hbc⟩
 
 end DAGBridgeConsumer
 end FateV2.Predict

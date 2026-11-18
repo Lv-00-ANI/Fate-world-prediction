@@ -48,7 +48,7 @@ open MeasureTheory ProbabilityTheory
 #check @FateV2.Modeling.GenN.product_factorize
 
 -- ⭐ Step 3 (ingredient): `CondIndepN` sum factorisation.
-#check @Fate.GenC3.condIndepN_sum_factorize
+#check @FateV2.Modeling.GenC3.condIndepN_sum_factorize
 
 -- ⭐ Step 4: the fiber mass is the sum of `p` over the fiber (uses `hp`).
 #check @FateV2.Modeling.GenN.fiberN_real_eq_sum'

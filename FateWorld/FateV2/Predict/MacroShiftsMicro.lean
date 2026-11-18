@@ -60,7 +60,7 @@ MacroShiftsMicro.lean  ——  「宏观状态改变微观因果」的非平凡�
 ## (d) 依赖
 
 仅依赖已入链模块 `Fate/CausalEventFormal.lean`（`CausalEvent`、`holdsAt`、
-`holdsAt_iff`、`holdsAt_assign` 等，命名空间 `Fate.CausalEventFormal`）。
+`holdsAt_iff`、`holdsAt_assign` 等，命名空间 `FateV2.Predict.CausalEventFormal`）。
 本文件**新建**，不覆盖、不修改任何已入链模块。
 
 --------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ MacroShiftsMicro.lean  ——  「宏观状态改变微观因果」的非平凡�
 
 import FateWorld.FateV2.Predict.CausalEventFormal
 open FateV2.Error
-open Fate.CausalEventFormal
+open FateV2.Predict.CausalEventFormal
 
 namespace FateV2.Predict
 

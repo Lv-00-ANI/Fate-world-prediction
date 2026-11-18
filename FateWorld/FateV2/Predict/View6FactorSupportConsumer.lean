@@ -49,7 +49,7 @@ namespace FateV2.Predict.View6FactorSupportConsumer
 
 open FateV2.Modeling
 
-open Fate.View6FactorSupport
+open FateV2.Predict.View6FactorSupport
 
 /-!
   # Predict · View6FactorSupportConsumer
@@ -146,16 +146,16 @@ theorem chain4_dsep_but_no_cut :
 `chainDAG3_dsep` 供给，用户无需再提供。
 
 **⚠ 这不是同义反复**：结论 `CondMul` 不在任何前件里；
-`hdsep` 由 `Fate.GlobalMarkovMinimal.chainDAG3_dsep`（`decide` 证的真图论事实）填充，
+`hdsep` 由 `FateV2.Predict.GlobalMarkovMinimal.chainDAG3_dsep`（`decide` 证的真图论事实）填充，
 `FactorizesOn` 仍是实质概率论假设。 -/
 theorem chain3_condMul_of_factorizesOn
     (p : (Fin 3 → Bool) → ℝ)
-    (hfac : Fate.T1A2.FactorizesOn Fate.GlobalMarkovMinimal.chainDAG3 p) :
+    (hfac : Fate.T1A2.FactorizesOn FateV2.Predict.GlobalMarkovMinimal.chainDAG3 p) :
     FateV2.Predict.FinCondIndep.CondMul
       (fun q : (Bool × Bool) × Bool =>
-        p (Fate.View6FactorSupport.Chain.unpack q.1.1 q.2 q.1.2)) :=
-  Fate.View6FactorSupport.Chain.chain3_factorizesOn_condMul p hfac
-    Fate.GlobalMarkovMinimal.chainDAG3_dsep
+        p (FateV2.Predict.View6FactorSupport.Chain.unpack q.1.1 q.2 q.1.2)) :=
+  FateV2.Predict.View6FactorSupport.Chain.chain3_factorizesOn_condMul p hfac
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3_dsep
 
 /-- **`C3'`** 无可分离中间步的版本：由 `SupportCut` 直接到 `CondMul`（链 3）。
 
@@ -163,12 +163,12 @@ theorem chain3_condMul_of_factorizesOn
 也不需要 `f`/`g` 的中间数据）。 -/
 theorem chain3_condMul_of_supportCut
     (p : (Fin 3 → Bool) → ℝ)
-    (hfac : Fate.T1A2.FactorizesOn Fate.GlobalMarkovMinimal.chainDAG3 p)
-    (_hcut : SupportCut Fate.GlobalMarkovMinimal.chainDAG3
+    (hfac : Fate.T1A2.FactorizesOn FateV2.Predict.GlobalMarkovMinimal.chainDAG3 p)
+    (_hcut : SupportCut FateV2.Predict.GlobalMarkovMinimal.chainDAG3
       {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)}) :
     FateV2.Predict.FinCondIndep.CondMul
       (fun q : (Bool × Bool) × Bool =>
-        p (Fate.View6FactorSupport.Chain.unpack q.1.1 q.2 q.1.2)) :=
+        p (FateV2.Predict.View6FactorSupport.Chain.unpack q.1.1 q.2 q.1.2)) :=
   chain3_condMul_of_factorizesOn p hfac
 
 end FateV2.Predict.View6FactorSupportConsumer

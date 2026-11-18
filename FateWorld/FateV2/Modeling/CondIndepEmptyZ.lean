@@ -75,8 +75,8 @@ open FateV2.Predict
 open Finset
 open FateV2.Error
 open Fate.DAGFactorization
-open Fate.FactorMarkov
-open Fate.View19
+open FateV2.Predict.FactorMarkov
+open FateV2.Predict.View19
 
 universe u
 
@@ -101,7 +101,7 @@ theorem mem_Wblk {R : V → Finset V} {S : Finset V} {v : V} :
 
 /-- `Split R X Y ∅` ⟹ `W_X ∪ W_Y = univ`。 -/
 theorem Wblk_union_univ {R : V → Finset V} {X Y : Finset V}
-    (hsplit : Fate.View19.Split R X Y (∅ : Finset V)) :
+    (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V)) :
     Wblk R X ∪ Wblk R Y = (Finset.univ : Finset V) := by
   have hcov : ∀ v, R v ⊆ X ∨ R v ⊆ Y := split_emptyZ_covers hsplit
   ext v
@@ -215,7 +215,7 @@ theorem mass_Y_form (ψ : V → (V → α) → ℝ) {R : V → Finset V} (hread 
 **证明**：`W_X ∪ W_Y = univ`（`Wblk_union_univ`）、`W_X ∩ W_Y = W_∅`（`Wblk_inter_empty`），
 再用 `Finset.prod_union_inter`。 -/
 theorem Wblk_prod_partition {R : V → Finset V} (ψ : V → (V → α) → ℝ)
-    {X Y : Finset V} (hsplit : Fate.View19.Split R X Y (∅ : Finset V))
+    {X Y : Finset V} (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V))
     (hXY : Disjoint X Y) (w : V → α) :
     (∏ v ∈ Wblk R X, ψ v w) * (∏ v ∈ Wblk R Y, ψ v w)
       = (∏ v, ψ v w) * (∏ v ∈ Wblk R (∅ : Finset V), ψ v w) := by
@@ -295,13 +295,13 @@ theorem glue_eq_toV_left {X Y : Finset V} (hXY : Disjoint X Y)
     (hcover : X ∪ Y = (Finset.univ : Finset V))
     (hY : ∀ v, v ∈ X ∨ v ∈ Y) (x : V → α)
     (t : { u : V // u ∉ X } → α) :
-    Fate.View19.glue X x t
+    FateV2.Predict.View19.glue X x t
       = FateV2.Modeling.GraphToProbView7.toV X Y hY (fun i => x i.1)
           (fun j => t ⟨j.1, (mem_Y_iff_not_mem_X hXY hcover j.1).mp j.2⟩) := by
   funext u
   by_cases hu : u ∈ X
-  · rw [Fate.View19.glue_of_mem X x t hu, toV_mem_X (hY := hY) _ _ hu]
-  · rw [Fate.View19.glue_of_not_mem X x t hu]
+  · rw [FateV2.Predict.View19.glue_of_mem X x t hu, toV_mem_X (hY := hY) _ _ hu]
+  · rw [FateV2.Predict.View19.glue_of_not_mem X x t hu]
     have huY : u ∈ Y := (mem_Y_iff_not_mem_X hXY hcover u).mpr hu
     rw [toV_mem_Y (hY := hY) hXY _ _ huY]
 
@@ -310,14 +310,14 @@ theorem glue_eq_toV_right {X Y : Finset V} (hXY : Disjoint X Y)
     (hcover : X ∪ Y = (Finset.univ : Finset V))
     (hY : ∀ v, v ∈ X ∨ v ∈ Y) (x : V → α)
     (t : { u : V // u ∉ Y } → α) :
-    Fate.View19.glue Y x t
+    FateV2.Predict.View19.glue Y x t
       = FateV2.Modeling.GraphToProbView7.toV X Y hY
           (fun i => t ⟨i.1, (mem_X_iff_not_mem_Y hXY hcover i.1).mp i.2⟩)
           (fun j => x j.1) := by
   funext u
   by_cases hu : u ∈ Y
-  · rw [Fate.View19.glue_of_mem Y x t hu, toV_mem_Y (hY := hY) hXY _ _ hu]
-  · rw [Fate.View19.glue_of_not_mem Y x t hu]
+  · rw [FateV2.Predict.View19.glue_of_mem Y x t hu, toV_mem_Y (hY := hY) hXY _ _ hu]
+  · rw [FateV2.Predict.View19.glue_of_not_mem Y x t hu]
     have huX : u ∈ X := by
       have h : u ∈ X ∪ Y := by rw [hcover]; exact Finset.mem_univ u
       rcases Finset.mem_union.mp h with h' | h'
@@ -411,12 +411,12 @@ variable [Nonempty α]
 theorem condIndep_emptyZ (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hne : ∀ v, (R v).Nonempty)
-    (hsplit : Fate.View19.Split R X Y (∅ : Finset V))
+    (hsplit : FateV2.Predict.View19.Split R X Y (∅ : Finset V))
     (hXY : Disjoint X Y)
     (hcover : X ∪ Y = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y ∅ := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y ∅ := by
   classical
   intro x
   -- 记号

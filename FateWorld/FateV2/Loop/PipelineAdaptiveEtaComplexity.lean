@@ -60,7 +60,7 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace PipelineAdaptiveEtaComplexity
 
-open Fate.PipelineAdaptiveEtaNormed
+open FateV2.Loop.PipelineAdaptiveEtaNormed
 
 /-! ## §1  误差单调不增 -/
 

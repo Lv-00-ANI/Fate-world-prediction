@@ -456,16 +456,16 @@ end Rule1
 
 namespace Rule3
 
-/-- ⭐⭐⭐ **`conf`（复用 `FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf`）满足 `EffNull`**：
+/-- ⭐⭐⭐ **`conf`（复用 `FateV2.Predict.R246G3.conf`）满足 `EffNull`**：
 `sg u = ((u,u), fun _ => u)` —— **`Y` 的方程完全不读参数**。 -/
-theorem conf_effNull : EffNull FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf := by
+theorem conf_effNull : EffNull FateV2.Predict.R246G3.conf := by
   intro u z₁ z₂ x
   rfl
 
 /-- ⭐⭐⭐⭐ **`rule3_genuine` 在 `conf` 上**跑通**（**现成定理的直接实例**）。 -/
 theorem conf_rule3 (x z y : Fin 2) :
-    R246G3.Sem3.doLaw2 FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf x z y = R246G3.Sem3.doLawXOnly FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf x y :=
-  rule3_genuine FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf conf_effNull x z y
+    R246G3.Sem3.doLaw2 FateV2.Predict.R246G3.conf x z y = R246G3.Sem3.doLawXOnly FateV2.Predict.R246G3.conf x y :=
+  rule3_genuine FateV2.Predict.R246G3.conf conf_effNull x z y
 
 /-- ⭐⭐⭐⭐ **`chain` **不**满足 `EffNull`**（`f_u(z,x) = z`，**真读**第一个参数）。
 

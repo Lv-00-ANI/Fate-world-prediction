@@ -202,20 +202,20 @@ hd     G.dSep X Y (zStar G X Y Z)          ← 真前件（可以失败，见 §
 **⟹ 结论 `CondIndep p X Y (zStar …)` 不是前件的任何一行**；
 `hd`（`dSep`）与 `readClosed_zStar`（`ReadClosedBlocks`）是**两个独立**义务。 -/
 theorem markov_at_zStar {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     (X Y Z : Finset V) (hd : G.dSep X Y (zStar G X Y Z)) :
-    Fate.FactorMarkov.CondIndep p X Y (zStar G X Y Z) :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y (zStar G X Y Z) :=
   Fate.BridgeFull.markov_of_readClosedBlocks hloc hfac hnorm hd
     (readClosed_zStar_full X Y Z)
 
 /-- ⭐ **C4′**：**只差 `dSep` 一条**的版本 —— 把 `dSep` 义务显式留在前提里，
 便于与 `BridgeFull.markov_of_readClosedBlocks` 直接对齐比较口径。 -/
 theorem markov_of_dSep_zStar {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f) :
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) :
     ∀ X Y Z : Finset V, G.dSep X Y (zStar G X Y Z) →
-      Fate.FactorMarkov.CondIndep p X Y (zStar G X Y Z) :=
+      FateV2.Predict.FactorMarkov.CondIndep p X Y (zStar G X Y Z) :=
   fun X Y Z hd => markov_at_zStar hloc hfac hnorm X Y Z hd
 
 /-! ===========================================================================

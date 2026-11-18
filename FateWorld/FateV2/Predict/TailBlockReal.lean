@@ -45,7 +45,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -57,7 +57,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 条件：`∀ v ∉ A, R v \ {v} ⊆ outSet A`（`A` 外因子的父节点也在 `A` 外）。 -/
 theorem pout_reads_out {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A) :
     ∀ w w', (∀ u ∈ outSet A, w u = w' u) →
       (∏ v ∈ outSet A, ψ v w) = (∏ v ∈ outSet A, ψ v w') := by
@@ -133,7 +133,7 @@ theorem arrowEquivOut_fst (A : Finset V) (w : V → α) (u : ↥A) :
 
 /-- ⭐⭐ **`p` 只读 `A`**（当所有因子只读 `A` 时）。 -/
 theorem p_reads_A {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R) (hA : ∀ v, R v ⊆ A) :
+    (hread : FateV2.Predict.View19.ReadSet ψ R) (hA : ∀ v, R v ⊆ A) :
     ∀ w w', (∀ u ∈ A, w u = w' u) → (∏ v, ψ v w) = (∏ v, ψ v w') := by
   intro w w' h
   refine Finset.prod_congr rfl fun v _ => ?_
@@ -141,7 +141,7 @@ theorem p_reads_A {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V → Fins
 
 /-- ⭐⭐ **`p(merge A wA wt)` 与 `wt` 无关**（当所有因子只读 `A` 时）。 -/
 theorem p_merge_indep_of_reads_A {A : Finset V} {ψ : V → (V → α) → ℝ}
-    {R : V → Finset V} (hread : Fate.View19.ReadSet ψ R)
+    {R : V → Finset V} (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hA : ∀ v, R v ⊆ A) (wA : ↥A → α) (wt wt' : ↥(outSet A) → α) :
     (∏ v, ψ v (merge A wA wt)) = (∏ v, ψ v (merge A wA wt')) := by
   refine Finset.prod_congr rfl fun v _ => ?_

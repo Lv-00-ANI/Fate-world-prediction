@@ -17,7 +17,7 @@ import FateWorld.FateV2.Predict.GlobalMarkovMinimal
 /-! ===========================================================================
   `Fate/Audit10Factorizes` —— **第 10 路：独立复核 `FactorRecursionRouteB.Factorizes`**
 
-  任务：判断 `Fate.FactorRecursionRouteB.Factorizes` 的**定义体**是否真的
+  任务：判断 `FateV2.Predict.FactorRecursionRouteB.Factorizes` 的**定义体**是否真的
   表达了「因子分解」`p(x) = ∏_v p(x_v | x_{pa(v)})`。
 
   **本文件不采信任何前路结论**，全部结论由本文件自行构造的例子机检。
@@ -65,7 +65,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace Audit10Factorizes
 
-open Fate.FactorRecursionRouteB (Factorizes)
+open FateV2.Predict.FactorRecursionRouteB (Factorizes)
 open Fate.DAGFactorization (pa mass mem_pa)
 open Finset
 
@@ -163,13 +163,13 @@ theorem factorizes_one_anyDAG {V : Type} [DecidableEq V] [Fintype V]
 设 `h : Factorizes p chainDAG3`，则在 `x` 与 `y` 仅在 `x₂` 位不同时 `p x = p y`。 -/
 
 /-- 链上 `pa 0 = ∅`。 -/
-theorem chain_pa0 : pa Fate.GlobalMarkovMinimal.chainDAG3 (0:Fin 3) = ∅ := by decide
+theorem chain_pa0 : pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (0:Fin 3) = ∅ := by decide
 
 /-- 链上 `pa 1 = {0}`。 -/
-theorem chain_pa1 : pa Fate.GlobalMarkovMinimal.chainDAG3 (1:Fin 3) = {0} := by decide
+theorem chain_pa1 : pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1:Fin 3) = {0} := by decide
 
 /-- 链上 `pa 2 = {1}`。 -/
-theorem chain_pa2 : pa Fate.GlobalMarkovMinimal.chainDAG3 (2:Fin 3) = {1} := by decide
+theorem chain_pa2 : pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (2:Fin 3) = {1} := by decide
 
 /-- ⭐⭐⭐ **2.2（机检）**：链 `0 → 1 → 2` 上 RouteB `Factorizes` 迫使
 `p` 对 `x₂` **完全不敏感**（除 `x₂` 外完全相同的两点 `p` 值相等）。
@@ -178,7 +178,7 @@ theorem chain_pa2 : pa Fate.GlobalMarkovMinimal.chainDAG3 (2:Fin 3) = {1} := by 
 `φ₂` 读 `{1}` ⟹ 只读 `x₁`。故 `∏ φ` 只读 `(x₀, x₁)`，`x₂` 无人读。
 **⟹ 真链式法则中 `p(x₂|x₁)` 丢掉，`p` 不能携带 `x₂` 信息。** -/
 theorem chain2_irrelevant {p : (Fin 3 → Bool) → ℝ}
-    (h : Factorizes p Fate.GlobalMarkovMinimal.chainDAG3)
+    (h : Factorizes p FateV2.Predict.GlobalMarkovMinimal.chainDAG3)
     {x y : Fin 3 → Bool} (hxy : ∀ u, u ≠ 2 → x u = y u) : p x = p y := by
   obtain ⟨φ, hφ, hp⟩ := h
   rw [hp x, hp y]
@@ -201,7 +201,7 @@ theorem chain2_irrelevant {p : (Fin 3 → Bool) → ℝ}
 ⟹ **`Factorizes` 漏掉了真因子分解的一大类解。** -/
 theorem chain_dep_on_two_not_factorizes :
     ¬ Factorizes (fun x : Fin 3 → Bool => if x 2 then (1:ℝ) else 0)
-      Fate.GlobalMarkovMinimal.chainDAG3 := by
+      FateV2.Predict.GlobalMarkovMinimal.chainDAG3 := by
   intro h
   have hc := chain2_irrelevant h
     (x := (fun j : Fin 3 => if j = 2 then true else false))
@@ -217,7 +217,7 @@ theorem chain_dep_on_two_not_factorizes :
 合法链式分布，被 RouteB 口径**排除**。**这机检了「读集缺 `{v}`」这一缺陷。** -/
 theorem routeB_rejects_what_FactorMarkov_accepts :
     FactorMarkov.Factorizes (fun x : Fin 3 → Bool => if x 2 then (1:ℝ) else 0)
-      Fate.GlobalMarkovMinimal.chainDAG3 :=
+      FateV2.Predict.GlobalMarkovMinimal.chainDAG3 :=
   ⟨fun v x => if v = 2 then (if x 2 then (1:ℝ) else 0) else 1,
    by
      intro v x y hv

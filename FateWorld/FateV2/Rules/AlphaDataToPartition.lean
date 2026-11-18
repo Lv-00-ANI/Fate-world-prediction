@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaDataToPartition`
+模块：`FateV2.Rules.AlphaDataToPartition`
 阶段：**P2 桥的第 1 半 —— `AlphaData.alpha` 的商化给出「划分的一块」**
 
 ---------------------------------------------------------------------------
@@ -271,13 +271,13 @@ end AlphaData
     §5  公理审计
     =========================================================================== -/
 
-#print axioms Fate.AlphaData.alphaCell_mem_self
-#print axioms Fate.AlphaData.alphaCell_eq_of_mem
-#print axioms Fate.AlphaData.alphaCell_saturated
-#print axioms Fate.AlphaData.alphaCell_union_eq_univ
-#print axioms Fate.AlphaData.alphaCell_eq_ker
-#print axioms Fate.AlphaData.alphaQuot_eq_of_mem_alphaCell
-#print axioms Fate.AlphaData.alphaCell_extent_eq
+#print axioms FateV2.Rules.AlphaData.alphaCell_mem_self
+#print axioms FateV2.Rules.AlphaData.alphaCell_eq_of_mem
+#print axioms FateV2.Rules.AlphaData.alphaCell_saturated
+#print axioms FateV2.Rules.AlphaData.alphaCell_union_eq_univ
+#print axioms FateV2.Rules.AlphaData.alphaCell_eq_ker
+#print axioms FateV2.Rules.AlphaData.alphaQuot_eq_of_mem_alphaCell
+#print axioms FateV2.Rules.AlphaData.alphaCell_extent_eq
 
 end
 

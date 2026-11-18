@@ -140,7 +140,7 @@ open FateV2.Modeling
 
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]

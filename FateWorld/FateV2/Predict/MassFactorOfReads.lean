@@ -51,7 +51,7 @@ namespace FateV2.Predict.C5e
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization
 
 universe u
 
@@ -61,15 +61,15 @@ set_option maxHeartbeats 2000000
 
 theorem sum_const_of_cond {Z C : Finset V} (hCZ : C ⊆ Z) (y : ↥Z → α) (c : ℝ) :
     (∑ wZ : (↥Z → α),
-      if (∀ u ∈ Fate.GraphToProbView7.sub Z C hCZ, wZ u = y u) then c else 0)
+      if (∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C hCZ, wZ u = y u) then c else 0)
       = ((Fintype.card α : ℝ) ^ (Z.card - C.card)) * c := by
   rw [← Finset.sum_filter]
   have hcard : (Finset.univ.filter (fun wZ : (↥Z → α) =>
-      ∀ u ∈ Fate.GraphToProbView7.sub Z C hCZ, wZ u = y u)).card
+      ∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C hCZ, wZ u = y u)).card
       = Fintype.card α ^ (Z.card - C.card) := by
     rw [← Fate.C5d.card_sub_fib' hCZ y]
     exact (Fintype.card_subtype (fun wZ : (↥Z → α) =>
-      ∀ u ∈ Fate.GraphToProbView7.sub Z C hCZ, wZ u = y u)).symm
+      ∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C hCZ, wZ u = y u)).symm
   rw [Finset.sum_const, hcard]
   push_cast
   ring
@@ -84,24 +84,24 @@ theorem mass_factor_of_reads {A C Z : Finset V} (hAZ : A ⊆ Z) (hCA : C ⊆ A)
   have hfZ : ∀ w w', (∀ u ∈ Z, w u = w' u) → f w = f w' :=
     fun w w' h => hf w w' (fun u hu => h u (hAZ hu))
   rw [Fate.C5b.mass_self hfZ ω₀ x]
-  rw [Fate.GraphToProbView7.mass_eq_card_mul_massA (A := Z) (S := C)
+  rw [FateV2.Predict.GraphToProbView7.mass_eq_card_mul_massA (A := Z) (S := C)
     (Finset.Subset.trans hCA hAZ) hfZ ω₀ x]
   -- 求和化为常数
   -- 先用 f_eq_of_agree_C 把求和内每项化为常数
   have hpt : ∀ wZ : (↥Z → α),
-      (∀ u ∈ Fate.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ), wZ u = x u.1) →
-      f (Fate.GraphToProbView7.extEnd Z ω₀ wZ)
-        = f (Fate.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) :=
+      (∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ), wZ u = x u.1) →
+      f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ wZ)
+        = f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) :=
     fun wZ hag => Fate.C5b.f_eq_of_agree_C hAZ hCA hC hf ω₀ x wZ hag
   have hsum : (∑ wZ : (↥Z → α),
-      if (∀ u ∈ Fate.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ), wZ u = x u.1)
-        then f (Fate.GraphToProbView7.extEnd Z ω₀ wZ) else 0)
+      if (∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ), wZ u = x u.1)
+        then f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ wZ) else 0)
       = ((Fintype.card α : ℝ) ^ (Z.card - C.card))
-        * f (Fate.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) := by
+        * f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) := by
     rw [← sum_const_of_cond (Finset.Subset.trans hCA hAZ) (fun u : ↥Z => x u.1)
-      (f (Fate.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)))]
+      (f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)))]
     refine Finset.sum_congr rfl fun wZ _ => ?_
-    by_cases hag : ∀ u ∈ Fate.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ),
+    by_cases hag : ∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ),
         wZ u = x u.1
     · rw [if_pos hag, if_pos hag, hpt wZ hag]
     · rw [if_neg hag, if_neg hag]

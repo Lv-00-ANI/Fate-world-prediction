@@ -230,7 +230,7 @@ lemma sink_factor_off {φ : V → (V → α) → ℝ}
 **这正是视角 1 的 `DAGFactorization.T5 sink_marginal_locality` 的内容，
 但这里通过 `peel`（一次求和 + 乘积拆分）得到，全程没有 `mass` 塔。** -/
 theorem sink_elim_law {p : (V → α) → ℝ}
-    (h : Fate.AncestralInheritanceRouteB.FactorizesC p G)
+    (h : FateV2.Predict.AncestralInheritanceRouteB.FactorizesC p G)
     {v : V} (hsink : ∀ u, ¬ G.edge v u) (x : V → α) :
     ∃ φ : V → (V → α) → ℝ, (∀ w x y, (∀ u ∈ insert w (pa G w), x u = y u) → φ w x = φ w y) ∧
       mass (Finset.univ \ {v}) p x
@@ -247,7 +247,7 @@ theorem sink_elim_law {p : (V → α) → ℝ}
 即 `mass (V∖{v}) p` 是 `V∖{v}` 上的良定义函数 —— 这正是沿拓扑序**继续剥离**
 所需的不变量（`DAGFactorization.T5` 的视角 2 版本）。 -/
 theorem sink_marginal_constant {p : (V → α) → ℝ}
-    (h : Fate.AncestralInheritanceRouteB.FactorizesC p G)
+    (h : FateV2.Predict.AncestralInheritanceRouteB.FactorizesC p G)
     {v : V} (hsink : ∀ u, ¬ G.edge v u) {x x' : V → α}
     (hxx : ∀ u ∈ (Finset.univ \ {v} : Finset V), x u = x' u) :
     mass (Finset.univ \ {v}) p x = mass (Finset.univ \ {v}) p x' := by
@@ -295,7 +295,7 @@ theorem demoφ_read2 : ∀ x y : Fin 3 → Bool,
 noncomputable def demoP : (Fin 3 → Bool) → ℝ := fun y => ∏ u, demoφ u y
 
 /-- ⭐⭐ **演示分布确实 `FactorizesC`（读集真来自 `chainDAG`）。** -/
-theorem demo_factorizes : Fate.AncestralInheritanceRouteB.FactorizesC demoP chainDAG := by
+theorem demo_factorizes : FateV2.Predict.AncestralInheritanceRouteB.FactorizesC demoP chainDAG := by
   refine ⟨demoφ, ?_, ?_⟩
   · intro v
     fin_cases v

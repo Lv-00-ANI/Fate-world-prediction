@@ -74,7 +74,7 @@ open FateV2.Model
 open FateV2.Modeling
 namespace RuleSyntaxOps
 
-open Fate.RuleSyntax
+open FateV2.Rules.RuleSyntax
 
 variable {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
 

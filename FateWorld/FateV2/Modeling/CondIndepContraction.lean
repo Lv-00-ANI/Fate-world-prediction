@@ -25,7 +25,7 @@ import Mathlib.Tactic.Ring
   `A ⟂ B | C ∧ A ⟂ D | B ∪ C ⟹ A ⟂ (B ∪ D) | C`」。
   **在 `CondRel` 的现有定义下，那条定理是同义反复（前件已把结论包进去）。**
 
-  `Fate.Semigraphoid.CondRel p A B C`（`CondIndepSemigraphoid.lean:401`）定义为
+  `FateV2.Modeling.Semigraphoid.CondRel p A B C`（`CondIndepSemigraphoid.lean:401`）定义为
 
       CondRel p A B C  :=  Disjoint A B ∧ Disjoint A C ∧ Disjoint B C
                             ∧ CondIndepN (proj p (A ∪ B ∪ C))
@@ -318,24 +318,24 @@ $$\mathrm{projMass}\,p\,S\,z := \mathrm{NMass}\,(\mathrm{proj}\,p\,S)\,z .$$
 证明 `BlockRel` **不是空类**（`projMass_blockRel_iff` 给出逐字对应）。
 特别地 `projMass p ∅ z = NMass p z`（`projMass_empty`）。 -/
 noncomputable def projMass (p : GenC3.NJoint (ι := ι') α ζ) (S : Finset ι') (z : ζ) : ℝ :=
-  GenC3.NMass (Fate.Semigraphoid.proj p S) z
+  GenC3.NMass (FateV2.Modeling.Semigraphoid.proj p S) z
 
 /-- ⭐ **`projMass` 与 `NMass` 相容**：$S=\emptyset$ 时退化为总质量
 （用 `proj_empty` / `nmass_proj_empty`：`proj p ∅` 是常数 `NMass p z`，
 故其 `NMass` 仍是 `NMass p z`）。这里直接展开为等式的复合。 -/
 theorem projMass_empty (p : GenC3.NJoint (ι := ι') α ζ) (z : ζ) :
     projMass (α := α) p ∅ z = GenC3.NMass p z :=
-  Fate.Semigraphoid.nmass_proj_empty p z
+  FateV2.Modeling.Semigraphoid.nmass_proj_empty p z
 
 /-- ⭐⭐ **`BlockRel` 在 `projMass` 上的展开**（逐字对应，说明实例化是平凡的、
 但**不是空的**）：`BlockRel (projMass p) A B C` 就是
 三条边缘质量的乘积等式。 -/
 theorem projMass_blockRel_iff (p : GenC3.NJoint (ι := ι') α ζ) (A B C : Finset ι') :
     BlockRel (projMass (α := α) p) A B C ↔
-      ∀ z, GenC3.NMass (Fate.Semigraphoid.proj p (A ∪ B ∪ C)) z
-              * GenC3.NMass (Fate.Semigraphoid.proj p C) z
-        = GenC3.NMass (Fate.Semigraphoid.proj p (A ∪ C)) z
-              * GenC3.NMass (Fate.Semigraphoid.proj p (B ∪ C)) z :=
+      ∀ z, GenC3.NMass (FateV2.Modeling.Semigraphoid.proj p (A ∪ B ∪ C)) z
+              * GenC3.NMass (FateV2.Modeling.Semigraphoid.proj p C) z
+        = GenC3.NMass (FateV2.Modeling.Semigraphoid.proj p (A ∪ C)) z
+              * GenC3.NMass (FateV2.Modeling.Semigraphoid.proj p (B ∪ C)) z :=
   Iff.rfl
 
 end Contraction

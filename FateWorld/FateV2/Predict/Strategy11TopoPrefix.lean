@@ -4,7 +4,7 @@
 ## 0 问题与约束
 
 目标是把 `Factorizes ⟹ Markov`（Pearl 1.2.4 / 1.2.7 三级链的图⟹概率台阶）
-在 `Fate.FactorMarkov` 口径下落成。**两条已知死路**：
+在 `FateV2.Predict.FactorMarkov` 口径下落成。**两条已知死路**：
 
 * **塔性质** `mass S (mass T p) = mass (S∪T) p` **已被证伪**
   （`DAGFactorizationGeneral.tower_property_false`；`TowerAudit.mass_idempotent_fails`）。
@@ -100,7 +100,7 @@ theorem not_mem_pa_of_topoOrder_lt (G : FateV2.Modeling.Graph.DAG V) {s v : V}
   omega
 
 theorem fv_insensitive_topo (G : FateV2.Modeling.Graph.DAG V) {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) {s v : V}
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) {s v : V}
     (h : G.topoOrder v < G.topoOrder s) {x : V → α} {a b : α} :
     f v (unpin s x a) = f v (unpin s x b) := by
   have hne : v ≠ s := fun e => by rw [e] at h; omega
@@ -167,7 +167,7 @@ theorem lowerSet_succ_eq (k : ℕ) :
 
 /-- ⭐ KEY ENGINE STEP. -/
 theorem peel_step {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     (k : ℕ) {s : V} (hs : G.topoOrder s = k)
     (hsucc : lowerSet G (k+1) = insert s (lowerSet G k))
     (ih : ∀ y : V → α, Fate.DAGFactorization.mass (lowerSet G (k+1)) p y
@@ -210,8 +210,8 @@ Proved by **descent** from `k = topN` (where the set is everything and the claim
 `mass univ p x = p x = ∏ f v x`, free from `hfac`), peeling one vertex at a time with
 `peel_step` — which uses **only `mass_insert_sum'`**, never the (false) tower property. -/
 theorem peel_lower [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f) :
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) :
     ∀ k : ℕ, ∀ x : V → α,
       Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
   -- descend from N := topN G via r = N - k
@@ -245,8 +245,8 @@ theorem peel_lower [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) �
 the engine gives exactly `FactorMarkov.sink_peel`'s conclusion, but **derived without
 any sink/no-edge hypothesis** — purely from the topological order. -/
 theorem peel_lower_univ_minus [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f) (k : ℕ) (x : V → α) :
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) (k : ℕ) (x : V → α) :
     Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
   peel_lower hloc hfac hnorm k x
 
@@ -272,8 +272,8 @@ The engine derives it **without** any sink/no-edge hypothesis: take `k = topoOrd
 /-- If `s` is the top vertex (`lowerSet (topoOrder s) = univ \ {s}`), the engine gives the
 `sink_peel` conclusion purely from order, with no `∀ u, ¬ edge s u` needed. -/
 theorem peel_top_vertex [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f) (s : V)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) (s : V)
     (htop : lowerSet G (G.topoOrder s) = univ \ {s}) (x : V → α) :
     Fate.DAGFactorization.mass (univ \ {s}) p x = ∏ v ∈ (univ \ {s}), f v x := by
   rw [← htop]
@@ -301,7 +301,7 @@ fibre-gluing identity holds for **every** triple, then `Markov p G` holds.
 Note `dSep` supplies the three disjointness facts, so this closes the bridge
 `graph ⟹ probability` **given** `FibreGluing` — the single remaining counting identity. -/
 theorem markov_of_fibreGluing {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph.DAG V}
-    (h : FibreGluing p G) : Fate.FactorMarkov.Markov p G := by
+    (h : FibreGluing p G) : FateV2.Predict.FactorMarkov.Markov p G := by
   intro X Y Z hd
   obtain ⟨hXY, hXZ, hYZ, _⟩ := hd
   exact h X Y Z hXY hXZ hYZ
@@ -316,9 +316,9 @@ open Fate.DAGFactorization
 `mass (lowerSet 1) p x = ∏_{v∈lowerSet 1} f v x`（`topoOrder` 非computable，故不展开数值）。 -/
 theorem chain_peel_example {α : Type} [Fintype α] [DecidableEq α]
     (p : (Fin 3 → α) → ℝ) (f : Fin 3 → (Fin 3 → α) → ℝ)
-    (hloc : Fate.FactorMarkov.LocalTo Fate.DAGFactorization.chainDAG f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo Fate.DAGFactorization.chainDAG f)
     (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f) (x : Fin 3 → α) :
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) (x : Fin 3 → α) :
     Fate.DAGFactorization.mass (lowerSet Fate.DAGFactorization.chainDAG 1) p x
       = ∏ v ∈ lowerSet Fate.DAGFactorization.chainDAG 1, f v x :=
   peel_lower hloc hfac hnorm 1 x

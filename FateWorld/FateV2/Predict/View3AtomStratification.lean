@@ -531,7 +531,7 @@ theorem stratify_disjoint_AB (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V
 
 /-- ⭐⭐⭐ **`LocalTo` + `R_v ⊆ S` ⟹ `ReadsOn S (f v)`**（读集的桥）。 -/
 theorem readsOn_of_localTo_of_subset {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) {v : V} {S : Finset V}
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) {v : V} {S : Finset V}
     (hS : readSet G v ⊆ S) : ReadsOn S (f v) := by
   intro x y h
   refine hloc v x y fun u hu => h u (hS ?_)
@@ -541,12 +541,12 @@ theorem readsOn_of_localTo_of_subset {f : V → (V → α) → ℝ}
   · exact mem_insert_of_mem hp
 
 /-- ⭐⭐⭐⭐ **V3-7a：`D`-族只读 `Z`**（`LocalTo` + `R_v ⊆ Z`）。 -/
-theorem atomD_reads {f : V → (V → α) → ℝ} (hloc : Fate.FactorMarkov.LocalTo G f)
+theorem atomD_reads {f : V → (V → α) → ℝ} (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     {v : V} (hv : v ∈ atomD G Z) : ReadsOn Z (f v) :=
   readsOn_of_localTo_of_subset hloc (mem_atomD.mp hv)
 
 /-- ⭐⭐⭐⭐ **V3-7a'：`D`-族 ⟹ `IgnoresOn Y` 且 `IgnoresOn X`**（若 `Z` 与 `X`,`Y` 不交）。 -/
-theorem atomD_ignores {f : V → (V → α) → ℝ} (hloc : Fate.FactorMarkov.LocalTo G f)
+theorem atomD_ignores {f : V → (V → α) → ℝ} (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     {v : V} (hv : v ∈ atomD G Z) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
     IgnoresOn Y (f v) ∧ IgnoresOn X (f v) := by
   have hsub : readSet G v ⊆ Z := mem_atomD.mp hv
@@ -565,7 +565,7 @@ theorem atomD_ignores {f : V → (V → α) → ℝ} (hloc : Fate.FactorMarkov.L
 
 **⟹ 我们把 §4 的 `hA` 前提取 `A` 族**不读 `Y`**（`IgnoresOn Y`）。**-/
 theorem atomA_ignores_Y {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     {v : V} (hv : v ∈ atomA G Y Z) : IgnoresOn Y (f v) := by
   intro a b hab
   refine hloc v a b (fun u hu => ?_)
@@ -592,7 +592,7 @@ theorem atomA_ignores_Y {f : V → (V → α) → ℝ}
 **第二支已被排除**（`R_v ∩ Y ≠ ∅`），第一支若成立则直接给出结论；若第三支
 （`R_v ⊆ Z`）成立，则与 `v ∉ D` 矛盾。**⟹ `R_v ∩ X = ∅`**，即 `B` 族不读 `X`。 -/
 theorem atomB_ignores_X {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     (hstrat : ReadStratifiable G X Y Z)
     {v : V} (hv : v ∈ atomB G X Y Z) : IgnoresOn X (f v) := by
   -- 由 `v ∈ B = univ ∖ (A ∪ D)` 得 `v ∉ A`、`v ∉ D`
@@ -646,7 +646,7 @@ $$\texttt{Factorizes}_G\,p\ \wedge\ \texttt{ReadStratifiable}_G(X,Y,Z)\ \wedge\
 **⟹ 这是前 20 条策略都没有的：一条**真正消费图**、**不用塔**、
 **终点非退化**、**零缺口**的桥。** -/
 theorem stratify_bridge {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph.DAG V}
-    (hfac : Fate.FactorMarkov.Factorizes p G)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G)
     (hstrat : ReadStratifiable G X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
     FiberCI X Y Z p := by
@@ -669,7 +669,7 @@ theorem stratify_bridge {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph.DAG 
 /-- ⭐⭐⭐ **`Factorizes` 的 `c₀ = 1` 形式**（`stratify_bridge` 的用户界面对接）。 -/
 theorem stratify_bridge_of_condIndep_inputs
     {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph.DAG V}
-    (hfac : Fate.FactorMarkov.Factorizes p G)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G)
     (hstrat : ReadStratifiable G X Y Z)
     (hdse : G.dSep X Y Z) : FiberCI X Y Z p := by
   obtain ⟨hXY, hXZ, hYZ, _⟩ := hdse
@@ -1029,7 +1029,7 @@ theorem readStratifiable_comm (G : FateV2.Modeling.Graph.DAG V') (X Y Z : Finset
 另一条充分路径**（`IgnoresOn X ∧ IgnoresOn Y`）。 -/
 theorem atomD_ignores_of_dSep {α : Type u} [Fintype α] [DecidableEq α]
     {G : FateV2.Modeling.Graph.DAG V'} {X Y Z : Finset V'} {f : V' → (V' → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hdse : G.dSep X Y Z)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hdse : G.dSep X Y Z)
     {v : V'} (hv : v ∈ atomD G Z) :
     IgnoresOn Y (f v) ∧ IgnoresOn X (f v) := by
   obtain ⟨_, hXZ, hYZ, _⟩ := hdse

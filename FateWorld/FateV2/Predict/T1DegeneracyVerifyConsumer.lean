@@ -67,7 +67,7 @@ import FateWorld.FateV2.Rules.LawRule
 
   ## 3  ⚠ 诚实边界
 
-  **3.1** 本文件只 `import Fate.T1DegeneracyVerify` 与 `Fate.LawRule`，
+  **3.1** 本文件只 `import FateV2.Predict.T1DegeneracyVerify` 与 `Fate.LawRule`，
   **不改任何已有模块**，不引入公理，零 `sorry`。
 
   **3.2** **C4 是「空集 ⟹ 非 `IsPoint`」**，它消费的是 T-1 §0.5 明确登记的语义修正
@@ -338,9 +338,9 @@ theorem not_isPoint_rankDeficient (a : ℤ) [MeasurableSingletonClass (ℤ × �
 
 /-- **`x = 0`、`y ≠ 0` ⟹ 零残差集是空集**（不唯一性的极限形态：**零解**）。 -/
 theorem zeroResidualSet_x_zero_eq_empty {y : ℤ} (hy : y ≠ 0) :
-    FateV2.Predict.FateV2.Predict.FateV2.Predict.T1DegeneracyVerify.zeroResidualSet (fun θ : ℤ => (0 : ℤ) * θ) y = ∅ := by
+    FateV2.Predict.T1DegeneracyVerify.zeroResidualSet (fun θ : ℤ => (0 : ℤ) * θ) y = ∅ := by
   ext θ
-  simp only [FateV2.Predict.FateV2.Predict.FateV2.Predict.T1DegeneracyVerify.zeroResidualSet, Set.mem_setOf_eq, Set.mem_empty_iff_false,
+  simp only [FateV2.Predict.T1DegeneracyVerify.zeroResidualSet, Set.mem_setOf_eq, Set.mem_empty_iff_false,
     iff_false]
   rw [zero_mul]
   exact fun h => hy h.symm
@@ -376,7 +376,7 @@ example {a b : ℤ} (h : Measure.dirac a = Measure.dirac b) : a = b := dirac_inj
 /-- **自检 2**：`residLawZ` 的成员刻画与零残差集一致。 -/
 example (R : ℤ → ℤ) (y : ℤ) (θ : ℤ) [MeasurableSingletonClass ℤ] :
     Measure.dirac θ ∈ residLawZ R y PUnit.unit PUnit.unit
-      ↔ θ ∈ FateV2.Predict.FateV2.Predict.FateV2.Predict.T1DegeneracyVerify.zeroResidualSet R y := by
+      ↔ θ ∈ FateV2.Predict.T1DegeneracyVerify.zeroResidualSet R y := by
   rw [mem_residLawZ]; rfl
 
 /-- **自检 3**：三条判据**可同时**成立且不冲突

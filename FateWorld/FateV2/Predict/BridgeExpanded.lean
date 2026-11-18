@@ -142,7 +142,7 @@ error: Fate/BridgeFull.lean:187:20: Application type mismatch:
 ```
 
 出错处是 `factorizes_standard_implies_routeB`。**不只是编译错，命题本身为假**：
-`Fate.FactorMarkov.LocalTo` 要求 `f v` 在**`u = v`** 处也一致，
+`FateV2.Predict.FactorMarkov.LocalTo` 要求 `f v` 在**`u = v`** 处也一致，
 故标准 `Factorizes`（读 `{v} ∪ pa v`）**不能**推出 `RouteB.Factorizes`（读 `pa v`）——
 后者的读集**更小、要求更强**。（`BridgeFull` 的定理名与注释把方向写反了。）
 
@@ -495,11 +495,11 @@ theorem readClosedBlocks_ancClosed {X Y Z : Finset V}
 **⚠ 零 `sorry`；不用塔性质；不 `import` `BridgeFull`。** -/
 theorem bridge_reduced_to_disjoint {α : Type u} [Fintype α] [DecidableEq α]
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
-    (hloc : Fate.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     {X Y Z Z' : Finset V} (_hZ' : Z ⊆ Z')
     (hRC : ReadClosedBlocks G X Y Z') (hd' : G.dSep X Y Z') :
-    Fate.FactorMarkov.CondIndep p X Y Z' :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z' :=
   Fate.Strategy11Hull.condIndep_of_dSep_ancClosed hloc hfac hnorm hd'
     (readClosedBlocks_ancClosed hRC).1
     (readClosedBlocks_ancClosed hRC).2.1

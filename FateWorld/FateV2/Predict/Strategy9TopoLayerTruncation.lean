@@ -353,7 +353,7 @@ theorem condIndep_of_blockProduct
     (h : ∀ x : V → α,
       mass (X ∪ Y ∪ Z) (fun w => A w * B w) x * mass Z (fun w => A w * B w) x
         = mass (X ∪ Z) (fun w => A w * B w) x * mass (Y ∪ Z) (fun w => A w * B w) x) :
-    Fate.FactorMarkov.CondIndep (fun w => A w * B w) X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep (fun w => A w * B w) X Y Z :=
   h
 
 end Grouping
@@ -460,7 +460,7 @@ theorem condIndep_of_FactorGrouping {G : FateV2.Modeling.Graph.DAG V} {p : (V �
     (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) (hXY : Disjoint X Y)
     (hEq : ∀ x : V → α,
       mass (X ∪ Y ∪ Z) p x * mass Z p x = mass (X ∪ Z) p x * mass (Y ∪ Z) p x) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   hEq
 
 /-! ### §5.2 「提出一块」恒等式（S9-9'）：`mass` 的**单层**提因子

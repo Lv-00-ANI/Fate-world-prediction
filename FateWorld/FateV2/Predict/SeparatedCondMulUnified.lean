@@ -229,7 +229,7 @@ theorem condMul_iff_separable_unified
     (q : FinJoint α β γ) (hpos : ∀ x y z, 0 < q ((x, y), z)) :
     CondMul q ↔
       ∃ (f : α → γ → ℝ) (g : β → γ → ℝ), ∀ x y z, q ((x, y), z) = f x z * g y z :=
-  Fate.GlobalMarkovMinimal.condMul_iff_separable q hpos
+  FateV2.Predict.GlobalMarkovMinimal.condMul_iff_separable q hpos
 
 /-- ⭐⭐⭐⭐ **闭环的正向使用点**：在 `hpos` 下，
 从 `CondMul` **取回可分离见证**，并**逐点核对**该见证。
@@ -242,7 +242,7 @@ theorem separable_of_condMul_pos
     (q : FinJoint α β γ) (h : CondMul q)
     (hpos : ∀ x y z, 0 < q ((x, y), z)) :
     ∃ (f : α → γ → ℝ) (g : β → γ → ℝ), ∀ x y z, q ((x, y), z) = f x z * g y z :=
-  Fate.GlobalMarkovMinimal.condMul_gives_separable q h hpos
+  FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable q h hpos
 
 end Converse
 
@@ -266,9 +266,9 @@ end Converse
 二者在**同一条链图**上对齐，但**不是蕴含**。 -/
 theorem chain_dsep_of_condMul {A B C : Type} [Fintype A] [Fintype B] [Fintype C]
     (p : A × B × C → ℝ) (h : FateV2.Predict.P213B1.ChainMarkov p) :
-    Fate.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} ∧
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} ∧
       CondMul (fun q : (A × C) × B => p (q.1.1, q.2, q.1.2)) :=
-  Fate.GlobalMarkovMinimal.global_markov_minimal_of_dsep p h
+  FateV2.Predict.GlobalMarkovMinimal.global_markov_minimal_of_dsep p h
 
 /-- ⭐⭐⭐⭐ **主定理 4：本文件的「总装」**。
 
@@ -289,15 +289,15 @@ theorem chain_dsep_condMul_separable_package
     {A B C : Type} [Fintype A] [Fintype B] [Fintype C]
     (p : A × B × C → ℝ) (h : FateV2.Predict.P213B1.ChainMarkov p)
     (hpos : ∀ a c b, 0 < p (a, b, c)) :
-    Fate.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)}
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)}
       ∧ CondMul (fun q : (A × C) × B => p (q.1.1, q.2, q.1.2))
       ∧ (∃ (f : A → B → ℝ) (g : C → B → ℝ),
           ∀ a c b, p (a, b, c) = f a b * g c b) := by
-  refine ⟨Fate.GlobalMarkovMinimal.chainDAG3_dsep,
-          Fate.GlobalMarkovMinimal.global_markov_minimal p h, ?_⟩
-  exact Fate.GlobalMarkovMinimal.condMul_gives_separable
+  refine ⟨FateV2.Predict.GlobalMarkovMinimal.chainDAG3_dsep,
+          FateV2.Predict.GlobalMarkovMinimal.global_markov_minimal p h, ?_⟩
+  exact FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable
     (fun q : (A × C) × B => p (q.1.1, q.2, q.1.2))
-    (Fate.GlobalMarkovMinimal.global_markov_minimal p h)
+    (FateV2.Predict.GlobalMarkovMinimal.global_markov_minimal p h)
     (fun a c b => hpos a c b)
 
 /-! ===========================================================================

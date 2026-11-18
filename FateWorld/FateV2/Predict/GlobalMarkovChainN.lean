@@ -604,9 +604,9 @@ end FateV2.Predict
 **⚠ 关于 G9（原计划的一条）的如实说明**：原计划把
 `Fate/Stage2/ChainDsepFull.chainDAG_dsep_n`（任意 `n` 的 `dSep`）搬进本节。
 **未能做到**：`Fate/Stage2/ChainDsepFull.lean` 的第 1 行就是
-`import Fate.GlobalMarkovChainN`，把它 import 回来会构成**循环依赖**
+`import FateV2.Predict.GlobalMarkovChainN`，把它 import 回来会构成**循环依赖**
 （Lean 直接报 `object file ... does not exist`）。同理，`GlobalMarkovChainNConsumer`
-也 `import Fate.GlobalMarkovChainN`，故本节**也不能**引用 Consumer 的
+也 `import FateV2.Predict.GlobalMarkovChainN`，故本节**也不能**引用 Consumer 的
 `no_chainFac_of_Pcol`；G7 因此在本文件内**独立复证**同一命题。
 **这两条是真实的依赖方向限制，不是能力问题。** 详见 §10.3。
 
@@ -648,7 +648,7 @@ end FateV2.Predict
 * 本节的价值是**结构性的**：`GlobalMarkovChainN` 现在在正文里**按名字引用**
   `GlobalMarkovMinimal`（G3/G4）与 `GlobalMarkovChain4`（G3/G4）的具名定理。
 * **⚠ 反向（Consumer / Stage2 → 本模块）无法接线**：那两个模块
-  `import Fate.GlobalMarkovChainN`，再 import 回来是**循环依赖**。
+  `import FateV2.Predict.GlobalMarkovChainN`，再 import 回来是**循环依赖**。
   故 Global 系的引用方向**只能**是 Minimal/Chain4 → ChainN，
   以及 Consumer/Stage2 → ChainN。这是**依赖 DAG 的拓扑约束**。
 * **无 `sorry` / `admit` / `axiom` / `native_decide` / `maxHeartbeats`。**
@@ -658,8 +658,7 @@ section R18CrossScale
 
 set_option linter.unusedSectionVars false
 
-namespace Fate
-
+namespace FateV2.Predict
 namespace GlobalMarkovChainN
 
 open FateV2.Predict.FinCondIndep
@@ -703,12 +702,12 @@ theorem chainMarkovHom_iff_chainFac2 (P : (Fin 3 → α) → ℝ) :
 这正是「三/四节点版是 `n` 参数版的实例」这件事在**机器可检查层面**的印证。
 （`chainDAG 2` 与 `chainDAG3` 都是 `Fin 3` 上的同一个链图，只是构造路径不同。） -/
 theorem chainDsep_three_scales :
-    Fate.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} ∧
-      Fate.GlobalMarkovChain4.chainDAG4.dSep {(0 : Fin 4)} {(3 : Fin 4)} ({1, 2} : Finset (Fin 4)) ∧
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} ∧
+      FateV2.Predict.GlobalMarkovChain4.chainDAG4.dSep {(0 : Fin 4)} {(3 : Fin 4)} ({1, 2} : Finset (Fin 4)) ∧
       (chainDAG 2).dSep {(0 : Fin 3)} {Fin.last 2}
         ((Finset.univ.erase 0).erase (Fin.last 2)) :=
-  ⟨Fate.GlobalMarkovMinimal.chainDAG3_dsep,
-   Fate.GlobalMarkovChain4.chainDAG4_dsep,
+  ⟨FateV2.Predict.GlobalMarkovMinimal.chainDAG3_dsep,
+   FateV2.Predict.GlobalMarkovChain4.chainDAG4_dsep,
    chainDAG_dsep_2⟩
 
 /-- ⭐⭐⭐⭐ **G4：三个尺度的「不条件化则不分离」同时成立**（G3 的**对照**）。
@@ -719,11 +718,11 @@ theorem chainDsep_three_scales :
 不条件于任何东西 ⟹ 不分离（G4）。**故条件集不可去** ——
 这是「假设不可去」在**三个尺度上的一致登记**。 -/
 theorem chainNotDsep_three_scales :
-    ¬ Fate.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} ∅ ∧
-      ¬ Fate.GlobalMarkovChain4.chainDAG4.dSep {(0 : Fin 4)} {(3 : Fin 4)} ∅ ∧
+    ¬ FateV2.Predict.GlobalMarkovMinimal.chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} ∅ ∧
+      ¬ FateV2.Predict.GlobalMarkovChain4.chainDAG4.dSep {(0 : Fin 4)} {(3 : Fin 4)} ∅ ∧
       ¬ (chainDAG 2).dSep {(0 : Fin 3)} {Fin.last 2} ∅ :=
-  ⟨Fate.GlobalMarkovMinimal.chainDAG3_not_dsep_empty,
-   Fate.GlobalMarkovChain4.chainDAG4_not_dsep_empty,
+  ⟨FateV2.Predict.GlobalMarkovMinimal.chainDAG3_not_dsep_empty,
+   FateV2.Predict.GlobalMarkovChain4.chainDAG4_not_dsep_empty,
    chainDAG_not_dsep_empty_2⟩
 
 /-- ⭐⭐⭐ **G5：`ChainFac 2 ⟹ CondMul`（三节点枚举的显式载体）**。
@@ -792,8 +791,7 @@ theorem not_chainMarkovHom_Pcol :
 
 end GlobalMarkovChainN
 
-end Fate
-
+end FateV2.Predict
 end R18CrossScale
 
 /-! ===========================================================================
@@ -810,8 +808,7 @@ section R54SmallCases
 
 set_option linter.unusedSectionVars false
 
-namespace Fate
-
+namespace FateV2.Predict
 namespace GlobalMarkovChainN
 
 variable {α : Type u} [Fintype α]
@@ -895,6 +892,5 @@ theorem chainFac_one_carrier_isEmpty : IsEmpty (Fin 0) :=
 
 end GlobalMarkovChainN
 
-end Fate
-
+end FateV2.Predict
 end R54SmallCases

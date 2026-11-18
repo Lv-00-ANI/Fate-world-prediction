@@ -48,7 +48,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -57,7 +57,7 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 /-! ### §1 `hAll`：所有读集落在 `A` 内 -/
 
 theorem hAll_of_split_tail {R : V → Finset V} {X Y Z : Finset V}
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ Z) :
     ∀ v, R v ⊆ X ∪ Y ∪ Z := by
   intro v u hu
@@ -78,7 +78,7 @@ theorem hAll_of_split_tail {R : V → Finset V} {X Y Z : Finset V}
 /-! ### §2 `hPA`：`∏ v ∈ A, ψ v` 只读 `A` -/
 
 theorem hPA_of_readSet {ψ : V → (V → α) → ℝ} {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R) {A : Finset V}
+    (hread : FateV2.Predict.View19.ReadSet ψ R) {A : Finset V}
     (hAll : ∀ v, R v ⊆ A) :
     ∀ w w', (∀ u ∈ A, w u = w' u) → (∏ v ∈ A, ψ v w) = (∏ v ∈ A, ψ v w') := by
   intro w w' h
@@ -92,12 +92,12 @@ variable [Nonempty α]
 
 theorem condIndep_on_A {ψ : V → (V → α) → ℝ} {R : V → Finset V} {X Y Z A : Finset V}
     (hX : X ⊆ A) (hY : Y ⊆ A) (hZ : Z ⊆ A) (hcover : X ∪ Y ∪ Z = A)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hAll : ∀ v, R v ⊆ A)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (ω₀ : V → α) :
-    Fate.FactorMarkov.CondIndep
+    FateV2.Predict.FactorMarkov.CondIndep
       (fun w : ↥A → α => ∏ v : ↥A, ψ v.1 (extEnd A ω₀ w))
       (sub A X hX) (sub A Y hY) (sub A Z hZ) := by
   classical
@@ -109,12 +109,12 @@ theorem condIndep_on_A {ψ : V → (V → α) → ℝ} {R : V → Finset V} {X Y
   -- hfacA
   have hfacA : ∀ w : ↥A → α, pA w = ∏ v, ψA v w := fun w => rfl
   -- hreadA
-  have hreadA : Fate.View19.ReadSet ψA RA := by
+  have hreadA : FateV2.Predict.View19.ReadSet ψA RA := by
     intro v x y hxy
     exact readSet_rebase hread A ω₀ (fun v : ↥A => hAll v.1) v x y hxy
   -- hsplitA
   have hAll' : ∀ v : V, R v ⊆ A ∨ v ∉ A := fun v => Or.inl (hAll v)
-  have hsplitA : Fate.View19.Split RA (sub A X hX) (sub A Y hY) (sub A Z hZ) :=
+  have hsplitA : FateV2.Predict.View19.Split RA (sub A X hX) (sub A Y hY) (sub A Z hZ) :=
     split_rebase hX hY hZ hAll' hsplit
   -- hdisjA
   have hdisjA_XY : Disjoint (sub A X hX) (sub A Y hY) := disjoint_attach hX hY hXY

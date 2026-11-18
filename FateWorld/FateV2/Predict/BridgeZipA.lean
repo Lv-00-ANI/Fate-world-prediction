@@ -56,7 +56,7 @@ open FateV2.Modeling
 
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 open Fate.Strategy11Hull
 
 universe u

@@ -90,7 +90,7 @@
 ---------------------------------------------------------------------------
 * `Fate.ComposeUnified` —— `Composite` / `CommutativeComposite` /
   `DirectedComposite` 三层抽象，`instCommutativeCompositeAttrSet`（B 族实例）。
-* `Fate.ComposeSemantics` —— `combClosure_commutable`、
+* `FateV2.Rules.ComposeSemantics` —— `combClosure_commutable`、
   `two_semantics_incompatible`。
 * `Fate.CompNotCommutative` —— `comp_not_commutative_witness`、
   `comp_not_commutative`（核复合的不可交换反例）。
@@ -225,9 +225,9 @@ Lean 中**数字越大优先级越高**（`default` = 1000，见文件头 (f) �
 **「默认」的实质**：同载体上两个候选实例时，解析**优先**选中本实例；
 见 `defaultComp_is_combClosure`（`rfl` 证明解析结果就是本实例的 `comp`）。 -/
 instance (priority := 2000) instDefaultCompositeAttrSet :
-    CommutativeComposite (Set Fate.AlphaInstance.K3.MFCA) where
-  comp := Fate.AlphaInstance.WiringFixed.combClosure
-  comp_comm := Fate.ComposeSemantics.combClosure_commutable
+    CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA) where
+  comp := FateV2.Rules.AlphaInstance.WiringFixed.combClosure
+  comp_comm := FateV2.Rules.ComposeSemantics.combClosure_commutable
 
 /-! ===========================================================================
     §3  (乙)「默认」—— 方案 2：显式选择函数 `defaultComp`
@@ -252,8 +252,8 @@ noncomputable def defaultComp {α : Type u} [inst : CommutativeComposite α] : �
 `comp := combClosure` 的实例（即 §2 的 priority-2000 实例）时才成立。
 **非平凡**（防同义反复自查）：前件只有类型待定元 `A B`，结论「等于
 `combClosure`」来自**实例解析**这一计算，而非来自任何假设。 -/
-theorem defaultComp_is_combClosure (A B : Set Fate.AlphaInstance.K3.MFCA) :
-    defaultComp A B = Fate.AlphaInstance.WiringFixed.combClosure A B := rfl
+theorem defaultComp_is_combClosure (A B : Set FateV2.Rules.AlphaInstance.K3.MFCA) :
+    defaultComp A B = FateV2.Rules.AlphaInstance.WiringFixed.combClosure A B := rfl
 
 /-- ⭐ **默认选择器保交换**：**任何** `defaultComp` 都是可交换的
 （因为它取自 `CommutativeComposite`，而非任意函数）。
@@ -288,16 +288,16 @@ theorem defaultComp_comm {α : Type u} [inst : CommutativeComposite α] (a b : �
 `Set K3.MFCA` 固定外），三支都是**无条件**结论。 -/
 theorem B_dominates_in_both_senses :
     -- (甲)-B：`combClosure` 恒可交换
-    (∀ a b : Set Fate.AlphaInstance.K3.MFCA,
-        Fate.AlphaInstance.WiringFixed.combClosure a b
-          = Fate.AlphaInstance.WiringFixed.combClosure b a)
+    (∀ a b : Set FateV2.Rules.AlphaInstance.K3.MFCA,
+        FateV2.Rules.AlphaInstance.WiringFixed.combClosure a b
+          = FateV2.Rules.AlphaInstance.WiringFixed.combClosure b a)
       -- (甲)-严格证据：函数复合有不交换实例
       ∧ (∃ f g : Fin 2 → Fin 2, f ∘ g ≠ g ∘ f)
       -- (乙)-默认：`defaultComp` 在 B 上就是 `combClosure`
-      ∧ (∀ A B : Set Fate.AlphaInstance.K3.MFCA,
-        defaultComp A B = Fate.AlphaInstance.WiringFixed.combClosure A B) :=
-  ⟨Fate.ComposeSemantics.combClosure_commutable,
-   Fate.ComposeSemantics.two_semantics_incompatible.2,
+      ∧ (∀ A B : Set FateV2.Rules.AlphaInstance.K3.MFCA,
+        defaultComp A B = FateV2.Rules.AlphaInstance.WiringFixed.combClosure A B) :=
+  ⟨FateV2.Rules.ComposeSemantics.combClosure_commutable,
+   FateV2.Rules.ComposeSemantics.two_semantics_incompatible.2,
    fun _ _ => rfl⟩
 
 /-- ⭐ **两种「默认」表达一致**：§2 的 priority 实例（方案 1）与 §3 的
@@ -305,7 +305,7 @@ theorem B_dominates_in_both_senses :
 
 **意义**：方案 1（优先级）与方案 2（选择器）**不冲突**，它们描述的是
 同一件「默认」事实的两个侧面 —— 这排除了「两条路径各说一套」的风险。 -/
-theorem two_defaults_agree (A B : Set Fate.AlphaInstance.K3.MFCA) :
+theorem two_defaults_agree (A B : Set FateV2.Rules.AlphaInstance.K3.MFCA) :
     defaultComp A B
       = @Composite.comp _ instDefaultCompositeAttrSet.toComposite A B := rfl
 

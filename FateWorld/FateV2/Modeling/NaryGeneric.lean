@@ -60,9 +60,9 @@ Same content as `nary_bridge_pointwise_all`, but each per-coordinate parameter
 is an **arbitrary set** instead of a finset. -/
 theorem nary_bridge_generic
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hpN : ∀ xs z, pN xs z = p (xs, z))
-    (hcond : Fate.GenC3.CondIndepN pN)
+    (hcond : FateV2.Modeling.GenC3.CondIndepN pN)
     (hproj : ∀ i, Measurable (fun w : (∀ j, fam j) × γ => w.1 i))
     (hsnd : Measurable (fun w : (∀ j, fam j) × γ => w.2))
     (S : ∀ i, Set (fam i)) :

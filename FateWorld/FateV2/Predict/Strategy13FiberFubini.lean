@@ -86,7 +86,7 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 set_option linter.unusedSectionVars false
 
 open Fate.DAGFactorization (mass unpin)
-open Fate.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
+open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 /-!
   # Predict · Strategy13FiberFubini

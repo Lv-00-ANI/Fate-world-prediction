@@ -58,7 +58,7 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
 theorem card_balance_lmgc (G : FateV2.Modeling.Graph.DAG V) (v : V) :
     ({(v)} ∪ pa G v).card + (G.nonDescendants v).card
       = (pa G v).card + ({(v)} ∪ G.nonDescendants v).card := by
-  have hPS : pa G v ⊆ G.nonDescendants v := Fate.BridgeA1.pa_subset_nonDescendants G v
+  have hPS : pa G v ⊆ G.nonDescendants v := FateV2.Predict.BridgeA1.pa_subset_nonDescendants G v
   have hvS : v ∉ G.nonDescendants v := by
     rw [Fate.NDMem.mem_nd_iff]
     intro h

@@ -22,7 +22,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
   「组合算子被要求的四条公理（`ComposeAxioms`：结合律、左右幺元律、封闭性）
   **不足以唯一确定**一个二元运算」，因而 `R₁ ∘ R₂` 无由公理确定的计算含义。
 
-  主链 `Fate.RuleSyntaxOps` 里有一个**具体的**组合实现
+  主链 `FateV2.Rules.RuleSyntaxOps` 里有一个**具体的**组合实现
   `compose a b := RuleTerm.and a b`，其语义（经 `holds`）是「两个约束同时成立」。
 
   **本模块的接线**（共 8 条定理）：
@@ -74,7 +74,7 @@ open FateV2.Meta
 open FateV2.Modeling
 namespace T68ComposeSemanticsConsumer
 
-open Fate.RuleSyntax
+open FateV2.Rules.RuleSyntax
 open FateV2.Meta.R230B4
 
 /-! ### §1  主链 `compose` 的语义像

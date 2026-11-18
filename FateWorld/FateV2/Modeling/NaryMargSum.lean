@@ -60,7 +60,7 @@ This was the last blocking point of the N-ary bridge:
 **Proof**: rewrite each inner sum as a filter-sum, then apply
 `sum_fiberwise_of_maps_to` with `s = univ.filter (xs i in Sf)`, `t = Sf`;
 finally use `filter_filter_absorb` for the redundant guard. -/
-theorem sum_marg_eq_fiberwise {p : Fate.GenC3.NJoint (ι := ι) fam γ}
+theorem sum_marg_eq_fiberwise {p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ}
     (i : ι) (Sf : Finset (fam i)) (z : γ) :
     (∑ a ∈ Sf, ∑ xs : (∀ j, fam j), (if xs i = a then p xs z else 0))
       = ∑ xs ∈ (Finset.univ.filter (fun xs : (∀ j, fam j) => xs i ∈ Sf)), p xs z := by

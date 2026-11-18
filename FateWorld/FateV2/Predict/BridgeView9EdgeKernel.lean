@@ -542,13 +542,13 @@ theorem sepset_absorb {p : (V → α) → ℝ} {A B Z : Finset V}
 /-- ⭐⭐⭐⭐ **V9-10'：`FactorMarkov.CondIndep` 形式**（与旧路线**同一**定义）。 -/
 theorem condIndep_of_absorb {p : (V → α) → ℝ} {A B Z : Finset V}
     (hA : A ⊆ Z) (hB : B ⊆ Z) :
-    Fate.FactorMarkov.CondIndep p A B Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p A B Z :=
   fun x => sepset_absorb hA hB x
 
 /-- ⭐⭐⭐⭐⭐ **V9-11：`Z` 吸收 ⟹ 全局 Markov**（`FactorMarkov.Markov` 同一形式）。 -/
 theorem markov_of_absorbSubsets {p : (V → α) → ℝ} {G : DAG V}
     (hAbsorb : ∀ X Y Z : Finset V, G.dSep X Y Z → X ∪ Y ⊆ Z) :
-    Fate.FactorMarkov.Markov (V := V) (α := α) p G := by
+    FateV2.Predict.FactorMarkov.Markov (V := V) (α := α) p G := by
   intro X Y Z hsep
   exact condIndep_of_absorb
     (fun u hu => hAbsorb X Y Z hsep (Finset.mem_union.mpr (Or.inl hu)))
@@ -556,8 +556,8 @@ theorem markov_of_absorbSubsets {p : (V → α) → ℝ} {G : DAG V}
 
 /-- ⭐⭐ `markov_of_absorbSubsets` 与 `FactorMarkov.Markov` **逐字同义**。 -/
 theorem markov_iff (p : (V → α) → ℝ) (G : DAG V) :
-    (∀ X Y Z : Finset V, G.dSep X Y Z → Fate.FactorMarkov.CondIndep p X Y Z)
-      ↔ Fate.FactorMarkov.Markov (V := V) (α := α) p G :=
+    (∀ X Y Z : Finset V, G.dSep X Y Z → FateV2.Predict.FactorMarkov.CondIndep p X Y Z)
+      ↔ FateV2.Predict.FactorMarkov.Markov (V := V) (α := α) p G :=
   Iff.rfl
 
 end CondIndepBridge

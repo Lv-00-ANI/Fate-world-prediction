@@ -135,14 +135,14 @@ end FateV2.Predict.View3
   ⚠ **诚实登记（不 import `Strategy13Filler` 的原因）**：
   `Fate/Strategy13Filler.lean` 在当前 Mathlib 下**整模块编译失败**
   （`push_neg` 已弃用 → `Fate/Strategy13Filler.lean:95:2` 与 `:128:4` 报
-  ``push Not made no progress``），`lake build Fate.Strategy13Filler` 退出码 1。
+  ``push Not made no progress``），`lake build FateV2.Predict.Strategy13Filler` 退出码 1。
   故本段**不 import 它**，而是把它的 D13.4 定义 `Filler` **原样**在本地重述
   （见下 `Filler`），并让 G2 只依赖 `chainDAG3`（来自 `GlobalMarkovMinimal`）。
   **未修改任何已有模块。**
 
   ⚠ 本段**无** `sorry` / `admit` / `axiom`。 -/
 
-namespace Fate.C4Ghost
+namespace FateV2.Predict.C4Ghost
 
 open FateV2.Modeling.Graph
 open FateV2.Predict.View3 (colliderDAG collider_parents)
@@ -194,7 +194,7 @@ def Filler (G : FateV2.Modeling.Graph.DAG (Fin 3)) (Z A : Finset (Fin 3)) : Prop
 theorem chain_filler_premise :
     ({(0 : Fin 3), (1 : Fin 3)} : Finset (Fin 3)) ⊆ ({(1 : Fin 3)} : Finset (Fin 3)) ∪
       ({(0 : Fin 3), (1 : Fin 3)} : Finset (Fin 3)).biUnion
-        (fun v : Fin 3 => Fate.GlobalMarkovMinimal.chainDAG3.parents v) := by
+        (fun v : Fin 3 => FateV2.Predict.GlobalMarkovMinimal.chainDAG3.parents v) := by
   decide
 
 /-- ⭐⭐⭐⭐ **G2 `disjoinable_needs_ancestor_closure`（T13.4 的诚实机检版）：
@@ -212,14 +212,14 @@ theorem chain_filler_premise :
 ⚠ **原始强形式登记**：文档原名的强读法「∃ `G X Y Z`, `dSep X Y Z ∧ ¬ Disjoinable G X Y Z`」
 在 `Fin 3` / `Fin 4` 的**全图 × 全组合穷举**中**无见证**，故本段**不**声称它。 -/
 theorem disjoinable_needs_ancestor_closure :
-    ¬ Filler Fate.GlobalMarkovMinimal.chainDAG3
+    ¬ Filler FateV2.Predict.GlobalMarkovMinimal.chainDAG3
         ({(1 : Fin 3)} : Finset (Fin 3)) ({(0 : Fin 3), (1 : Fin 3)} : Finset (Fin 3)) := by
   intro h
   have h0 : (0 : Fin 3) ∈ ({(0 : Fin 3), (1 : Fin 3)} : Finset (Fin 3)) := by decide
   have hmem := h chain_filler_premise h0
   exact absurd hmem (by decide)
 
-end Fate.C4Ghost
+end FateV2.Predict.C4Ghost
 
 
 /-! ===========================================================================

@@ -101,11 +101,11 @@ import FateWorld.FateV2.Predict.ThreeNodeFactorizes
 
   ## 3 依赖
 
-  * `Fate.SplitFromDAG.split_of_dSep`（`dSep + 覆盖 ⟹ Split`，零 `sorry`）
-  * `Fate.BridgeIntegrated.condIndep_of_factorizes_general`（`Factorizes + Split ⟹ CondIndep`）
-  * `Fate.FactorizesToHyper.readSetOf` / `localTo_iff_readSet`
+  * `FateV2.Predict.SplitFromDAG.split_of_dSep`（`dSep + 覆盖 ⟹ Split`，零 `sorry`）
+  * `FateV2.Predict.BridgeIntegrated.condIndep_of_factorizes_general`（`Factorizes + Split ⟹ CondIndep`）
+  * `FateV2.Predict.FactorizesToHyper.readSetOf` / `localTo_iff_readSet`
   * `Fate.PearlCondIndepBridge.separable_implies_condMul`（纯代数收尾）
-  * `Fate.ThreeNodeFactorizes.jointXZ` / `CondMul`
+  * `FateV2.Predict.ThreeNodeFactorizes.jointXZ` / `CondMul`
   =========================================================================== -/
 
 namespace FateV2.Predict
@@ -172,15 +172,15 @@ $$p\,w = f\,w \cdot g\,w,\qquad
 （没有它 `p` 可任意，乘积结构无从谈起）；`hsplit` 提供 `B` 侧的 `Y∪Z` 归属
 （没有它 `g` 不冻结于 `Y∪Z`）。 -/
 theorem factorizes_split_twoBlock (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) (X Y Z : Finset V)
-    (hsplit : Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z) :
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) (X Y Z : Finset V)
+    (hsplit : FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z) :
     ∃ f g : (V → α) → ℝ,
       (∀ w, p w = f w * g w) ∧ FrozenOn (X ∪ Z) f ∧ FrozenOn (Y ∪ Z) g := by
   classical
   obtain ⟨φ, hloc, hprod⟩ := hfac
-  have hread : Fate.View19.ReadSet φ (Fate.FactorizesToHyper.readSetOf G) :=
-    Fate.FactorizesToHyper.readSet_of_localTo hloc
-  set R : V → Finset V := Fate.FactorizesToHyper.readSetOf G with hR
+  have hread : FateV2.Predict.View19.ReadSet φ (FateV2.Predict.FactorizesToHyper.readSetOf G) :=
+    FateV2.Predict.FactorizesToHyper.readSet_of_localTo hloc
+  set R : V → Finset V := FateV2.Predict.FactorizesToHyper.readSetOf G with hR
   set A : Finset V := univ.filter (fun v => R v ⊆ X ∪ Z) with hA
   set B : Finset V := univ.filter (fun v => ¬ R v ⊆ X ∪ Z) with hB
   refine ⟨fun w => ∏ v ∈ A, φ v w, fun w => ∏ v ∈ B, φ v w, ?_, ?_, ?_⟩
@@ -223,13 +223,13 @@ theorem factorizes_split_twoBlock (p : (V → α) → ℝ) (G : FateV2.Modeling.
 翻成读集不横跨。
 
 **⚠ 覆盖条件 `X ∪ Y ∪ Z = univ` 不可去**：反例见
-`Fate.SplitFromDAG.dSep_not_implies_split`（`Fin 3` collider）。
+`FateV2.Predict.SplitFromDAG.dSep_not_implies_split`（`Fin 3` collider）。
 三节点情形 (`V = Fin 3`, `X={0},Y={2},Z={1}`) 该覆盖**自动成立**
 （`{0}∪{2}∪{1} = univ`），故在那里它被隐藏了。 -/
 theorem dSep_forces_split (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z :=
-  Fate.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z :=
+  FateV2.Predict.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover
 
 /-! ===========================================================================
   §4 ⭐⭐⭐ **主定理（一般 DAG）：`dSep` + `Factorizes` + 覆盖 ⟹ 两块可分离**
@@ -254,7 +254,7 @@ $$\underbrace{G.\texttt{dSep}\ X\, Y\, Z}_{hdsep}
 theorem dSep_factorizes_separable_general (p : (V → α) → ℝ)
     (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ)
-    (hfac : Fate.FactorMarkov.Factorizes p G) :
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) :
     ∃ f g : (V → α) → ℝ,
       (∀ w, p w = f w * g w) ∧ FrozenOn (X ∪ Z) f ∧ FrozenOn (Y ∪ Z) g :=
   factorizes_split_twoBlock p G hfac X Y Z (dSep_forces_split G X Y Z hdsep hcover)
@@ -268,13 +268,13 @@ theorem dSep_factorizes_separable_general (p : (V → α) → ℝ)
 **⟹ 这是三节点 `CondMul` 在一般 `V` 上的正确推广终点**：
 `CondMul` 只能在 `FinJoint α β γ` 上陈述，一般 `V` 上的对应命题就是 `CondIndep`。 -/
 theorem condIndep_of_factorizes_dSep_generalZ [Nonempty α]
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   have hsplit := dSep_forces_split G X Y Z hdsep hcover
   obtain ⟨hXY, hXZ, hYZ, _⟩ := hdsep
-  exact Fate.BridgeIntegrated.condIndep_of_factorizes_general p G hfac
+  exact FateV2.Predict.BridgeIntegrated.condIndep_of_factorizes_general p G hfac
     hsplit hXY hXZ hYZ hcover
 
 /-! ===========================================================================
@@ -286,22 +286,22 @@ theorem condIndep_of_factorizes_dSep_generalZ [Nonempty α]
 
 section ThreeNode
 
-/- 三节点部分把 `α` 落在 `Type 0`：`Fate.ThreeNodeFactorizes.jointXZ` 与
-`Fate.FactorMarkov.Factorizes` 在此处的宇宙参数一致（`V = Fin 3 : Type`）。 -/
+/- 三节点部分把 `α` 落在 `Type 0`：`FateV2.Predict.ThreeNodeFactorizes.jointXZ` 与
+`FateV2.Predict.FactorMarkov.Factorizes` 在此处的宇宙参数一致（`V = Fin 3 : Type`）。 -/
 variable {β : Type} [Fintype β] [DecidableEq β] [Nonempty β]
 
 /-- **B4.0**：`FrozenOn {0,1}` 的向量形式 —— 与 `BridgeThreeNode.reads01` 同一命题，
 但这里从**一般**的 `FrozenOn` 得到。 -/
-theorem frozen01 {f : (Fate.ThreeNodeFactorizes.N → β) → ℝ}
-    (hf : FrozenOn ({0, 1} : Finset Fate.ThreeNodeFactorizes.N) f)
+theorem frozen01 {f : (FateV2.Predict.ThreeNodeFactorizes.N → β) → ℝ}
+    (hf : FrozenOn ({0, 1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) f)
     (x y z d : β) : f ![x, z, y] = f ![x, z, d] := by
   refine hf _ _ ?_
   intro u hu
   fin_cases u <;> simp_all
 
 /-- **B4.0′**：`FrozenOn {1,2}` 的向量形式 —— 与 `BridgeThreeNode.reads12` 同一命题。 -/
-theorem frozen12 {f : (Fate.ThreeNodeFactorizes.N → β) → ℝ}
-    (hf : FrozenOn ({1, 2} : Finset Fate.ThreeNodeFactorizes.N) f)
+theorem frozen12 {f : (FateV2.Predict.ThreeNodeFactorizes.N → β) → ℝ}
+    (hf : FrozenOn ({1, 2} : Finset FateV2.Predict.ThreeNodeFactorizes.N) f)
     (x y z d : β) : f ![x, z, y] = f ![d, z, y] := by
   refine hf _ _ ?_
   intro u hu
@@ -318,43 +318,43 @@ theorem frozen12 {f : (Fate.ThreeNodeFactorizes.N → β) → ℝ}
 **⚠ 这里唯一的 `Fin 3` 专属步骤是「向量重排」**（`frozen01` / `frozen12`：
 把 `FrozenOn {0,1}` 翻译成 `![x,z,y] = ![x,z,d]`），
 它是 `FinJoint` 坐标约定的产物，**与图论内容无关**。 -/
-theorem threeNode_condMul_of_general {p : (Fate.ThreeNodeFactorizes.N → β) → ℝ}
-    (G : FateV2.Modeling.Graph.DAG Fate.ThreeNodeFactorizes.N)
-    (hdsep : G.dSep ({0} : Finset Fate.ThreeNodeFactorizes.N)
-      ({2} : Finset Fate.ThreeNodeFactorizes.N)
-      ({1} : Finset Fate.ThreeNodeFactorizes.N))
-    (hfac : Fate.FactorMarkov.Factorizes p G) :
-    FateV2.Predict.FinCondIndep.CondMul (Fate.ThreeNodeFactorizes.jointXZ p) := by
-  have hsub01 : ({0, 1} : Finset Fate.ThreeNodeFactorizes.N) =
-      ({0} : Finset Fate.ThreeNodeFactorizes.N) ∪ ({1} : Finset Fate.ThreeNodeFactorizes.N) := rfl
-  have hsub12 : ({1, 2} : Finset Fate.ThreeNodeFactorizes.N) =
-      ({2} : Finset Fate.ThreeNodeFactorizes.N) ∪ ({1} : Finset Fate.ThreeNodeFactorizes.N) :=
+theorem threeNode_condMul_of_general {p : (FateV2.Predict.ThreeNodeFactorizes.N → β) → ℝ}
+    (G : FateV2.Modeling.Graph.DAG FateV2.Predict.ThreeNodeFactorizes.N)
+    (hdsep : G.dSep ({0} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+      ({2} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+      ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N))
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) :
+    FateV2.Predict.FinCondIndep.CondMul (FateV2.Predict.ThreeNodeFactorizes.jointXZ p) := by
+  have hsub01 : ({0, 1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) =
+      ({0} : Finset FateV2.Predict.ThreeNodeFactorizes.N) ∪ ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) := rfl
+  have hsub12 : ({1, 2} : Finset FateV2.Predict.ThreeNodeFactorizes.N) =
+      ({2} : Finset FateV2.Predict.ThreeNodeFactorizes.N) ∪ ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) :=
     Finset.ext (fun u => by fin_cases u <;> simp)
   obtain ⟨f, g, hpg, hf, hg⟩ :=
     dSep_factorizes_separable_general p G
-      ({0} : Finset Fate.ThreeNodeFactorizes.N)
-      ({2} : Finset Fate.ThreeNodeFactorizes.N)
-      ({1} : Finset Fate.ThreeNodeFactorizes.N) hdsep (by decide) hfac
+      ({0} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+      ({2} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+      ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) hdsep (by decide) hfac
   rw [← hsub01] at hf
   rw [← hsub12] at hg
   obtain ⟨d⟩ := ‹Nonempty β›
   refine FateV2.Predict.PearlCondIndepBridge.separable_implies_condMul
-    (Fate.ThreeNodeFactorizes.jointXZ p)
+    (FateV2.Predict.ThreeNodeFactorizes.jointXZ p)
     (fun x z => f ![x, z, d]) (fun y z => g ![d, z, y]) ?_
   intro x y z
-  rw [Fate.ThreeNodeFactorizes.jointXZ_apply, hpg, frozen01 hf x y z d,
+  rw [FateV2.Predict.ThreeNodeFactorizes.jointXZ_apply, hpg, frozen01 hf x y z d,
     frozen12 hg x y z d]
 
 /-- ⭐⭐ **B4.2（连通性检查）**：主定理 B3.1 的**假设确实可满足**（链图）。
 若把 `hdsep` 换成撞子图，`Split` 不成立（见 B5.1），链条在此断开 ——
 说明 B4.1 的前件**非空洞**。 -/
 theorem chain_dSep_split :
-    Fate.View19.Split
-      (Fate.FactorizesToHyper.readSetOf Fate.ThreeNodeFactorizes.chainDAG)
-      ({0} : Finset Fate.ThreeNodeFactorizes.N)
-      ({2} : Finset Fate.ThreeNodeFactorizes.N)
-      ({1} : Finset Fate.ThreeNodeFactorizes.N) :=
-  dSep_forces_split Fate.ThreeNodeFactorizes.chainDAG _ _ _
+    FateV2.Predict.View19.Split
+      (FateV2.Predict.FactorizesToHyper.readSetOf FateV2.Predict.ThreeNodeFactorizes.chainDAG)
+      ({0} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+      ({2} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+      ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) :=
+  dSep_forces_split FateV2.Predict.ThreeNodeFactorizes.chainDAG _ _ _
     (by decide) (by decide)
 
 end ThreeNode
@@ -372,10 +372,10 @@ end ThreeNode
 /-- **B5.1**：撞子图 `0 → 2 ← 1` 不满足 `dSep {0}{2}{1}`（一般口径下的交叉核对；
 与 `BridgeThreeNode.collider_not_dSep_cond` 同一命题）。 -/
 theorem collider_not_dSep_general :
-    ¬ Fate.ThreeNodeFactorizes.colliderDAG.dSep
-        ({0} : Finset Fate.ThreeNodeFactorizes.N)
-        ({2} : Finset Fate.ThreeNodeFactorizes.N)
-        ({1} : Finset Fate.ThreeNodeFactorizes.N) := by
+    ¬ FateV2.Predict.ThreeNodeFactorizes.colliderDAG.dSep
+        ({0} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+        ({2} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+        ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) := by
   decide
 
 /-- **B5.2**：撞子图上 `Split R {0} {2} {1}` **也**不成立 ——
@@ -383,12 +383,12 @@ theorem collider_not_dSep_general :
 `Split` 假 ⟹ `dSep` 假（B2.2 的逆否），故 B3.1 的链条确实断开，
 而不是绕过了撞子。 -/
 theorem collider_not_split_general :
-    ¬ Fate.View19.Split
-        (Fate.FactorizesToHyper.readSetOf Fate.ThreeNodeFactorizes.colliderDAG)
-        ({0} : Finset Fate.ThreeNodeFactorizes.N)
-        ({2} : Finset Fate.ThreeNodeFactorizes.N)
-        ({1} : Finset Fate.ThreeNodeFactorizes.N) := by
-  unfold Fate.View19.Split Fate.FactorizesToHyper.readSetOf
+    ¬ FateV2.Predict.View19.Split
+        (FateV2.Predict.FactorizesToHyper.readSetOf FateV2.Predict.ThreeNodeFactorizes.colliderDAG)
+        ({0} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+        ({2} : Finset FateV2.Predict.ThreeNodeFactorizes.N)
+        ({1} : Finset FateV2.Predict.ThreeNodeFactorizes.N) := by
+  unfold FateV2.Predict.View19.Split FateV2.Predict.FactorizesToHyper.readSetOf
   decide
 
 /-! ===========================================================================

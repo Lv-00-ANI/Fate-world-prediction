@@ -117,7 +117,7 @@ open FateV2.Modeling
 
 open FateV2.Modeling.Graph
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 open Fate.Strategy11Hull
 
 universe u
@@ -206,7 +206,7 @@ theorem bridgeB4_mass_prod_compl_false :
 ```
 
 **⚠ 漏了 `{v}`**：标准因子是 `φ_v(x_v | x_{pa(v)})`，读集应为 `{v} ∪ pa(v)`。
-这与 `Fate.FactorMarkov.LocalTo`（读 `{v} ∪ pa(v)`）**严格不同**。
+这与 `FateV2.Predict.FactorMarkov.LocalTo`（读 `{v} ∪ pa(v)`）**严格不同**。
 
 **⚠⚠ 方向澄清（本文件初稿在此处出过错，必须写清）**
 
@@ -234,7 +234,7 @@ theorem bridgeB4_mass_prod_compl_false :
 `{v} ∪ parents v = {v} ∪ pa(v)` 上一致，**更强**，故可直接喂给 `hloc`。
 （`parents` 与 `pa` 定义上相同，都是 `univ.filter (fun u => G.edge u v)`。） -/
 theorem routeB_implies_standard {p : (V → α) → ℝ}
-    (h : Fate.FactorRecursionRouteB.Factorizes p G) :
+    (h : FateV2.Predict.FactorRecursionRouteB.Factorizes p G) :
     Factorizes p G := by
   obtain ⟨f, hloc, hp⟩ := h
   refine ⟨f, ?_, hp⟩
@@ -273,7 +273,7 @@ theorem pa_empty1RouteB (v : Fin 1) : pa emptyDAG1RouteB v = ∅ := by
 
 /-- `RouteB.Factorizes` 在 `Fin 1` 空图上迫使 `p` 为常函数（读集 `∅`）。 -/
 theorem routeB_const_empty1 {p : (Fin 1 → Bool) → ℝ}
-    (h : Fate.FactorRecursionRouteB.Factorizes p emptyDAG1RouteB)
+    (h : FateV2.Predict.FactorRecursionRouteB.Factorizes p emptyDAG1RouteB)
     {x y : Fin 1 → Bool} : p x = p y := by
   obtain ⟨f, hf, hp⟩ := h
   rw [hp x, hp y]
@@ -294,7 +294,7 @@ theorem standard_holds_routeB :
 
 /-- 同一 `p` **不满足** `RouteB.Factorizes`（其读集 `pa = ∅` 禁掉了对 `x 0` 的依赖）。 -/
 theorem not_routeB_indicator :
-    ¬ Fate.FactorRecursionRouteB.Factorizes
+    ¬ FateV2.Predict.FactorRecursionRouteB.Factorizes
         (fun x : Fin 1 → Bool => if x 0 then (1:ℝ) else 0) emptyDAG1RouteB := by
   intro h
   have hc := routeB_const_empty1 h (x := fun _ => true) (y := fun _ => false)
@@ -305,7 +305,7 @@ theorem not_routeB_indicator :
 theorem standard_not_implies_routeB :
     ¬ (∀ (p : (Fin 1 → Bool) → ℝ),
         Factorizes p emptyDAG1RouteB →
-        Fate.FactorRecursionRouteB.Factorizes p emptyDAG1RouteB) := by
+        FateV2.Predict.FactorRecursionRouteB.Factorizes p emptyDAG1RouteB) := by
   intro h
   exact not_routeB_indicator (h _ standard_holds_routeB)
 
@@ -550,7 +550,7 @@ theorem markov_of_gap {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
   intro X Y Z hd
   exact markov_of_readClosedBlocks hloc hfac hnorm hd (hg X Y Z hd)
 
-/-- **T6′（`Markov` 形式）**：与 `Fate.FactorMarkov.Markov` 的定义直接对接 ——
+/-- **T6′（`Markov` 形式）**：与 `FateV2.Predict.FactorMarkov.Markov` 的定义直接对接 ——
 `hloc`/`hfac`/`hnorm`/G1 ⟹ `Markov p G`（**一般 DAG**）。
 即：**若**缺口 G1 成立，**则** `p` 满足 `G` 的全局 Markov 性。 -/
 theorem markov_of_gap_markov {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}

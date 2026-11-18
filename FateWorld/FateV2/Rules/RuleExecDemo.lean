@@ -61,8 +61,8 @@ namespace RuleSyntax
 namespace Exec
 namespace RuleExecDemo
 
-open Fate.RuleSyntax (Env)
-open Fate.RuleSyntax.Exec
+open FateV2.Rules.RuleSyntax (Env)
+open FateV2.Rules.RuleSyntax.Exec
 
 /-! ## §1  环境与项 -/
 

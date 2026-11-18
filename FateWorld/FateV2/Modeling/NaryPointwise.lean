@@ -64,9 +64,9 @@ For **every** anchor point `a` with nonzero mass and nonzero fiber mass,
 with `t_i = coordSet i (Sf i)`. -/
 theorem nary_bridge_pointwise_all
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hpN : ∀ xs z, pN xs z = p (xs, z))
-    (hcond : Fate.GenC3.CondIndepN pN)
+    (hcond : FateV2.Modeling.GenC3.CondIndepN pN)
     (hproj : ∀ i, Measurable (fun w : (∀ j, fam j) × γ => w.1 i))
     (hsnd : Measurable (fun w : (∀ j, fam j) × γ => w.2))
     (Sf : ∀ i, Finset (fam i)) :

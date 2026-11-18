@@ -66,11 +66,11 @@ theorem mass_sdiff_of_const {T : Finset V} {s : V} (hsT : s ∈ T) (c : ℝ) (x 
     · simp [hh]
   have h1 : mass (T \ {s}) (fun _ => c) x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - (T \ {s}).card)) * c := by
-    rw [hc, Fate.GraphToProbView7.mass_one_card]
+    rw [hc, FateV2.Predict.GraphToProbView7.mass_one_card]
     ring
   have h2 : mass T (fun _ => c) x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - T.card)) * c := by
-    rw [hc, Fate.GraphToProbView7.mass_one_card]
+    rw [hc, FateV2.Predict.GraphToProbView7.mass_one_card]
     ring
   rw [h1, h2]
   have hcard : (T \ {s}).card = T.card - 1 := by
@@ -109,11 +109,11 @@ theorem mass_sdiff_of_reads {T : Finset V} {s : V} (hsT : s ∈ T)
   rw [Fate.S13HoistFixed.mass_self_insert hgS x,
       Fate.S13HoistFixed.mass_self_insert hgT x]
   -- 关键：两个 extEnd 处的 g 值相等
-  have hgeq : g (Fate.GraphToProbView7.extEnd (T \ {s}) x (fun u : ↥(T \ {s}) => x u.1))
-      = g (Fate.GraphToProbView7.extEnd T x (fun u : ↥T => x u.1)) := by
+  have hgeq : g (FateV2.Predict.GraphToProbView7.extEnd (T \ {s}) x (fun u : ↥(T \ {s}) => x u.1))
+      = g (FateV2.Predict.GraphToProbView7.extEnd T x (fun u : ↥T => x u.1)) := by
     refine hg _ _ fun u hu => ?_
-    rw [Fate.GraphToProbView7.extEnd_of_mem (T \ {s}) x _ u hu,
-        Fate.GraphToProbView7.extEnd_of_mem T x _ u (Finset.mem_sdiff.mp hu).1]
+    rw [FateV2.Predict.GraphToProbView7.extEnd_of_mem (T \ {s}) x _ u hu,
+        FateV2.Predict.GraphToProbView7.extEnd_of_mem T x _ u (Finset.mem_sdiff.mp hu).1]
   rw [hgeq]
   -- 指数关系
   have hcard : (T \ {s}).card = T.card - 1 := by

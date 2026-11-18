@@ -37,7 +37,7 @@ import FateWorld.FateV2.Rules.WiringFourOperators
 
   **② 并 + 闭包**：`Fate/WiringFourOpFixed.lean:152`
   ```lean
-  def combClosure (A B : Set Fate.AlphaInstance.K3.MFCA) : Set Fate.AlphaInstance.K3.MFCA := K3.closureOp (A ∪ B)
+  def combClosure (A B : Set FateV2.Rules.AlphaInstance.K3.MFCA) : Set FateV2.Rules.AlphaInstance.K3.MFCA := K3.closureOp (A ∪ B)
   ```
   **⟹ 对应净版候选 3（规则集的并）。**
 
@@ -69,9 +69,9 @@ open MeasureTheory
 /-- **并 + 闭包是可交换的**（引用 `WiringFourOperators.combClosure_comm`，实测在 `:226`）。
 
 `combClosure A B = closureOp (A ∪ B) = closureOp (B ∪ A) = combClosure B A`。 -/
-theorem combClosure_commutable (A B : Set Fate.AlphaInstance.K3.MFCA) :
-    Fate.AlphaInstance.WiringFixed.combClosure A B = Fate.AlphaInstance.WiringFixed.combClosure B A := by
-  unfold Fate.AlphaInstance.WiringFixed.combClosure
+theorem combClosure_commutable (A B : Set FateV2.Rules.AlphaInstance.K3.MFCA) :
+    FateV2.Rules.AlphaInstance.WiringFixed.combClosure A B = FateV2.Rules.AlphaInstance.WiringFixed.combClosure B A := by
+  unfold FateV2.Rules.AlphaInstance.WiringFixed.combClosure
   rw [Set.union_comm]
 
 /-! ### §2  确定性情形下 `comp` 退化为函数复合 -/
@@ -115,8 +115,8 @@ theorem fin2_comp_not_comm :
 **⟹ 所以「∘ = combClosure」与「∘ = comp」不可能同时是同一个运算的实现。**
 **⟹ 净版开放问题 5.1 的三个候选里，候选 3（并）与候选 1/2（相接/边缘化）是【互斥】的两族。** -/
 theorem two_semantics_incompatible :
-    (∀ A B : Set Fate.AlphaInstance.K3.MFCA,
-        Fate.AlphaInstance.WiringFixed.combClosure A B = Fate.AlphaInstance.WiringFixed.combClosure B A)
+    (∀ A B : Set FateV2.Rules.AlphaInstance.K3.MFCA,
+        FateV2.Rules.AlphaInstance.WiringFixed.combClosure A B = FateV2.Rules.AlphaInstance.WiringFixed.combClosure B A)
       ∧ (∃ f g : Fin 2 → Fin 2, f ∘ g ≠ g ∘ f) :=
   ⟨combClosure_commutable, fin2_comp_not_comm⟩
 

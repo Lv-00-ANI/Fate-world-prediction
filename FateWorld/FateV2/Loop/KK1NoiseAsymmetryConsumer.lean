@@ -16,7 +16,7 @@ import FateWorld.FateV2.Loop.PipelineTendstoGen
 -/
 
 /-! ===========================================================================
-  `Fate.KK1NoiseAsymmetryConsumer` —— **`KK1NoiseAsymmetry` 的首个消费者**
+  `FateV2.Predict.KK1NoiseAsymmetryConsumer` —— **`KK1NoiseAsymmetry` 的首个消费者**
 
   （叶子接线 2；本文件由 `Fate.lean` 直接 import）
 
@@ -142,7 +142,7 @@ open FateV2.Modeling
 open FateV2.Predict
 namespace KK1NoiseAsymmetryConsumer
 
-open Fate.KK1NoiseAsymmetry
+open FateV2.Predict.KK1NoiseAsymmetry
 
 /-! ### 主链符号的局部实例登记（与 `Fate/RuleDrivesEndToEnd.lean:139` 同一手法）
 
@@ -217,7 +217,7 @@ theorem endToEnd_noise_slot_drops_prev_noise
     ∧ FateV2.Loop.EndToEnd.observe h y
           - FateV2.Loop.EndToEnd.predFrom W θ (u 0) (εs 0) (a 0) (W.sim θ u εs a 0)
         = FateV2.Loop.EndToEnd.observe h y - W.sim θ u εs a (0 + 1) := by
-  refine ⟨Fate.KK1NoiseAsymmetry.fact_B1_endToEnd_single_noise W h η φ y θ
+  refine ⟨FateV2.Predict.KK1NoiseAsymmetry.fact_B1_endToEnd_single_noise W h η φ y θ
     (u 0) (εs 0) (a 0) (W.sim θ u εs a 0), ?_⟩
   rw [FateV2.Loop.EndToEnd.predFrom_eq_sim_succ]
 
@@ -259,10 +259,10 @@ theorem endToEndIter_noise_raw_eq
     ∧ FateV2.Loop.EndToEnd.endToEndIter W h η φ y u ε a x (0 + 1) θ
         = θ + η * φ (FateV2.Loop.EndToEnd.observe h y
             - FateV2.Loop.EndToEnd.predFrom W θ u ε a x) := by
-  refine ⟨Fate.KK1NoiseAsymmetry.fact_B3_iter_reuses_same_noise W h η φ y u ε a x 0 θ,
+  refine ⟨FateV2.Predict.KK1NoiseAsymmetry.fact_B3_iter_reuses_same_noise W h η φ y u ε a x 0 θ,
     ?_⟩
   rw [FateV2.Loop.EndToEnd.endToEndIter_succ, FateV2.Loop.EndToEnd.endToEndIter_zero,
-    Fate.KK1NoiseAsymmetry.fact_B1_endToEnd_single_noise]
+    FateV2.Predict.KK1NoiseAsymmetry.fact_B1_endToEnd_single_noise]
 
 /-! ===========================================================================
   §3  ⭐⭐⭐ 连接 3、4：KK1 的具体反例 **落在** 主链的学习轨道上
@@ -308,7 +308,7 @@ theorem demoW_traj_two_matches_linWorld_orbit :
     ∧ ((1 : ℤ) : ℝ) = ((1 : ℝ) + (0 : ℝ))
     ∧ FateV2.Loop.ThetaConvergence.thetaN 1 0 1 (0 : ℝ) 1 = 0 := by
   refine ⟨?_, by norm_num, thetaN_one_zero 0⟩
-  exact Fate.KK1NoiseAsymmetry.true_traj_at_two
+  exact FateV2.Predict.KK1NoiseAsymmetry.true_traj_at_two
 
 /-- ⭐⭐⭐ **连接 4（KK1 × 主链 `PipelineTendstoGen.gstep`）**：
 
@@ -337,8 +337,8 @@ theorem demoW_iter_step1_ne_pipeline :
     ∧ FateV2.Loop.EndToEnd.endToEndIter demoW (id : ℤ → ℤ) (1 : ℤ) (AddMonoidHom.id ℤ)
         (id (1 : ℤ)) () (0 : ℤ) () (0 : ℤ) 1 (0 : ℤ) ≠ 0
     ∧ PipelineTendstoGen.pipelineNGen (1 : ℝ) (0 : ℝ) (0 : ℝ) 1 = 0 := by
-  refine ⟨Fate.KK1NoiseAsymmetry.endToEndIter_wrong_at_step1,
-    Fate.KK1NoiseAsymmetry.endToEndIter_diverges_from_truth, ?_⟩
+  refine ⟨FateV2.Predict.KK1NoiseAsymmetry.endToEndIter_wrong_at_step1,
+    FateV2.Predict.KK1NoiseAsymmetry.endToEndIter_diverges_from_truth, ?_⟩
   rw [PipelineTendstoGen.pipelineNGen_real_eq_fstep]
   simp [FateV2.Loop.ThetaConvergence.fstep]
 
@@ -368,8 +368,8 @@ theorem noise_asymmetry_is_constant_vs_sequence :
           (id (1 : ℤ)) (0 : ℤ) () (0 : ℤ) () (0 : ℤ)
         ≠ FateV2.Loop.EndToEnd.endToEnd demoW (id : ℤ → ℤ) (1 : ℤ) (AddMonoidHom.id ℤ)
           (id (1 : ℤ)) (0 : ℤ) () (1 : ℤ) () (0 : ℤ)) :=
-  ⟨Fate.KK1NoiseAsymmetry.no_constant_noise_matches,
-    Fate.KK1NoiseAsymmetry.endToEnd_noise_sensitivity⟩
+  ⟨FateV2.Predict.KK1NoiseAsymmetry.no_constant_noise_matches,
+    FateV2.Predict.KK1NoiseAsymmetry.endToEnd_noise_sensitivity⟩
 
 /-! ===========================================================================
   §5  ⭐⭐⭐ 连接 5（**最强**）：主链 `linWorld` 的**整个参数族**都无法复现 KK1 的两点真值
@@ -473,14 +473,14 @@ _Kernel-checked statement_：
 theorem linWorld_cannot_match_KK1_two_point (θ : ℝ) (u : ℕ → PUnit)
     (ε : ℕ → PUnit) (a : ℕ → PUnit) :
     ¬ (FateV2.Loop.ThetaConvergence.linWorld.sim θ u ε a 1
-          = ((Fate.KK1NoiseAsymmetry.demoW.sim (0 : ℤ) (fun _ => ()) epsT
+          = ((FateV2.Predict.KK1NoiseAsymmetry.demoW.sim (0 : ℤ) (fun _ => ()) epsT
               (fun _ => ()) 1 : ℤ) : ℝ)
         ∧ FateV2.Loop.ThetaConvergence.linWorld.sim θ u ε a 2
-          = ((Fate.KK1NoiseAsymmetry.demoW.sim (0 : ℤ) (fun _ => ()) epsT
+          = ((FateV2.Predict.KK1NoiseAsymmetry.demoW.sim (0 : ℤ) (fun _ => ()) epsT
               (fun _ => ()) 2 : ℤ) : ℝ)) := by
   rintro ⟨h1, h2⟩
-  rw [Fate.KK1NoiseAsymmetry.true_traj_at_one] at h1
-  rw [Fate.KK1NoiseAsymmetry.true_traj_at_two] at h2
+  rw [FateV2.Predict.KK1NoiseAsymmetry.true_traj_at_one] at h1
+  rw [FateV2.Predict.KK1NoiseAsymmetry.true_traj_at_two] at h2
   simp only [Int.cast_zero, Int.cast_one] at h1 h2
   rw [linWorld_sim_one] at h1
   rw [linWorld_sim_two] at h2
@@ -513,7 +513,7 @@ theorem linWorld_outside_KK1_constant_noise_class (u : ℕ → PUnit)
           = ((demoW.sim (0 : ℤ) (fun _ => ()) epsT (fun _ => ()) 1 : ℤ) : ℝ)
         ∧ FateV2.Loop.ThetaConvergence.linWorld.sim θ' u ε a 2
           = ((demoW.sim (0 : ℤ) (fun _ => ()) epsT (fun _ => ()) 2 : ℤ) : ℝ))) := by
-  refine ⟨Fate.KK1NoiseAsymmetry.no_constant_noise_matches,
+  refine ⟨FateV2.Predict.KK1NoiseAsymmetry.no_constant_noise_matches,
     linWorld_noise_carrier_singleton, ?_⟩
   intro θ'
   exact linWorld_cannot_match_KK1_two_point θ' u ε a
@@ -523,7 +523,7 @@ theorem linWorld_outside_KK1_constant_noise_class (u : ℕ → PUnit)
   =========================================================================== -/
 
 /-- **自检 1**：`KK1` 的 `demoW` 状态载体是 `ℤ`，本文件把它当 `ℤ` 用（类型层核对）。 -/
-example : demoW.frame.X.Carrier = ℤ := Fate.KK1NoiseAsymmetry.demoW_X_carrier
+example : demoW.frame.X.Carrier = ℤ := FateV2.Predict.KK1NoiseAsymmetry.demoW_X_carrier
 
 /-- **自检 2**：连接 3 的右半（`thetaN 1 0 1 θ 1 = 0`）可独立重放。 -/
 example : FateV2.Loop.ThetaConvergence.thetaN 1 0 1 (0 : ℝ) 1 = 0 := thetaN_one_zero 0
@@ -531,7 +531,7 @@ example : FateV2.Loop.ThetaConvergence.thetaN 1 0 1 (0 : ℝ) 1 = 0 := thetaN_on
 /-- **自检 3**：连接 4 的第二分量（KK1 的迭代结果 `≠ 0`）可独立重放。 -/
 example : FateV2.Loop.EndToEnd.endToEndIter demoW (id : ℤ → ℤ) (1 : ℤ) (AddMonoidHom.id ℤ)
     (id (1 : ℤ)) () (0 : ℤ) () (0 : ℤ) 1 (0 : ℤ) ≠ 0 :=
-  Fate.KK1NoiseAsymmetry.endToEndIter_diverges_from_truth
+  FateV2.Predict.KK1NoiseAsymmetry.endToEndIter_diverges_from_truth
 
 /-- **自检 4**：连接 5 可独立重放（`θ = 1` 时主链给 `(1,1)`，真值是 `(0,1)`）。 -/
 example : ¬ (FateV2.Loop.ThetaConvergence.linWorld.sim (1 : ℝ) (fun _ => PUnit.unit)

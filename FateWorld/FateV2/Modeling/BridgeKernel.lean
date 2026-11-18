@@ -10,20 +10,20 @@ theorem bridgeKernelStep1 [Fintype α] [Fintype β] [Fintype γ]
     [DiscreteMeasurableSpace α] [DiscreteMeasurableSpace β] [DiscreteMeasurableSpace γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (s : Set ((α × β) × γ)) (hs : MeasurableSet s) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    (fun ω => (((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real s))
-      =ᵐ[Fate.FinMeasureBridge.weightedCount p]
-      (Fate.FinMeasureBridge.weightedCount p)[s.indicator fun _ => 1
-        | MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-  exact Fate.BridgeProofStep3.condExpKernel_real_apply
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    (fun ω => (((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real s))
+      =ᵐ[FateV2.Modeling.FinMeasureBridge.weightedCount p]
+      (FateV2.Modeling.FinMeasureBridge.weightedCount p)[s.indicator fun _ => 1
+        | MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  exact FateV2.Modeling.BridgeProofStep3.condExpKernel_real_apply
     (inferInstance : MeasurableSpace ((α × β) × γ))
-    (Fate.FinMeasureBridge.weightedCount p)
-    (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
-    (MeasurableSpace.comap_le_iff_le_map.mpr Fate.FinCondIndepMeasure.measurable_projZ) hs
+    (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+    (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
+    (MeasurableSpace.comap_le_iff_le_map.mpr FateV2.Modeling.FinCondIndepMeasure.measurable_projZ) hs
 
 /-- ⭐⭐⭐ **`comap projZ`-可测函数在**每个纤维上是常数****（**桥的第 2 步核心**）。
 
@@ -105,34 +105,34 @@ theorem bridgeKernelValue_depends_on_fiber [Fintype α] [Fintype β] [Fintype γ
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (s : Set ((α × β) × γ)) (hs : MeasurableSet s)
     (ω₁ ω₂ : (α × β) × γ) (h : ω₁.2 = ω₂.2)
-    (h1 : (Fate.FinMeasureBridge.weightedCount p) {ω₁} ≠ 0)
-    (h2 : (Fate.FinMeasureBridge.weightedCount p) {ω₂} ≠ 0) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ((condExpKernel (Fate.FinMeasureBridge.weightedCount p)
+    (h1 : (FateV2.Modeling.FinMeasureBridge.weightedCount p) {ω₁} ≠ 0)
+    (h2 : (FateV2.Modeling.FinMeasureBridge.weightedCount p) {ω₂} ≠ 0) :
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ((condExpKernel (FateV2.Modeling.FinMeasureBridge.weightedCount p)
       (MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance)) ω₁).real s
-      = ((condExpKernel (Fate.FinMeasureBridge.weightedCount p)
+      = ((condExpKernel (FateV2.Modeling.FinMeasureBridge.weightedCount p)
       (MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance)) ω₂).real s := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   have hk := bridgeKernelStep1 p s hs
-  have hmeas := condExp_indicator_measurable (Fate.FinMeasureBridge.weightedCount p) s
+  have hmeas := condExp_indicator_measurable (FateV2.Modeling.FinMeasureBridge.weightedCount p) s
   have hconst := comap_projZ_apply_eq_of_fiber hmeas ω₁ ω₂ h
-  have key : ∀ w, (Fate.FinMeasureBridge.weightedCount p) {w} ≠ 0 →
-      ((condExpKernel (Fate.FinMeasureBridge.weightedCount p)
+  have key : ∀ w, (FateV2.Modeling.FinMeasureBridge.weightedCount p) {w} ≠ 0 →
+      ((condExpKernel (FateV2.Modeling.FinMeasureBridge.weightedCount p)
         (MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance)) w).real s
-        = (Fate.FinMeasureBridge.weightedCount p)[s.indicator fun _ => (1:ℝ)
+        = (FateV2.Modeling.FinMeasureBridge.weightedCount p)[s.indicator fun _ => (1:ℝ)
           | MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance] w := by
     intro w hw
-    have h' : ∀ᵐ x ∂(Fate.FinMeasureBridge.weightedCount p),
-        ((condExpKernel (Fate.FinMeasureBridge.weightedCount p)
+    have h' : ∀ᵐ x ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p),
+        ((condExpKernel (FateV2.Modeling.FinMeasureBridge.weightedCount p)
           (MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance)) x).real s
-          = (Fate.FinMeasureBridge.weightedCount p)[s.indicator fun _ => (1:ℝ)
+          = (FateV2.Modeling.FinMeasureBridge.weightedCount p)[s.indicator fun _ => (1:ℝ)
             | MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance] x := hk
-    have := Fate.FinMeasureBridge.ae_iff_forall_or_zero (Fate.FinMeasureBridge.weightedCount p)
-      (fun x => ((condExpKernel (Fate.FinMeasureBridge.weightedCount p)
+    have := FateV2.Modeling.FinMeasureBridge.ae_iff_forall_or_zero (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (fun x => ((condExpKernel (FateV2.Modeling.FinMeasureBridge.weightedCount p)
         (MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance)) x).real s
-        = (Fate.FinMeasureBridge.weightedCount p)[s.indicator fun _ => (1:ℝ)
+        = (FateV2.Modeling.FinMeasureBridge.weightedCount p)[s.indicator fun _ => (1:ℝ)
           | MeasurableSpace.comap (fun w : (α × β) × γ => w.2) inferInstance] x)
     rw [this] at h'
     rcases h' w with h0 | heq
@@ -183,30 +183,30 @@ theorem bridgeStatement_unfold_def [Fintype α] [Fintype β] [Fintype γ]
     [DiscreteMeasurableSpace α] [DiscreteMeasurableSpace β] [DiscreteMeasurableSpace γ]
     [Countable α] [Countable β] [Countable γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    Fate.FinCondIndepMeasure.bridgeStatement p ↔
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p ↔
       ∀ (t₁ t₂ : Set ((α × β) × γ)),
-        MeasurableSet[MeasurableSpace.comap (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t₁ →
-        MeasurableSet[MeasurableSpace.comap (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) inferInstance] t₂ →
-        ∀ᵐ a ∂(Fate.FinMeasureBridge.weightedCount p).trim
-          (MeasurableSpace.comap_le_iff_le_map.mpr Fate.FinCondIndepMeasure.measurable_projZ),
-          (condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) a)
+        MeasurableSet[MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t₁ →
+        MeasurableSet[MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) inferInstance] t₂ →
+        ∀ᵐ a ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p).trim
+          (MeasurableSpace.comap_le_iff_le_map.mpr FateV2.Modeling.FinCondIndepMeasure.measurable_projZ),
+          (condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) a)
             (t₁ ∩ t₂)
-          = (condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) a) t₁
-            * (condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-            (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) a) t₂ := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-  have h1 : Fate.FinCondIndepMeasure.bridgeStatement p =
-      Kernel.IndepFun Fate.FinCondIndepMeasure.projX Fate.FinCondIndepMeasure.projY
-        (condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-          (MeasurableSpace.comap Fate.FinCondIndepMeasure.projZ inferInstance))
-        ((Fate.FinMeasureBridge.weightedCount p).trim
-          (MeasurableSpace.comap_le_iff_le_map.mpr Fate.FinCondIndepMeasure.measurable_projZ)) := by
-    unfold Fate.FinCondIndepMeasure.bridgeStatement; rfl
+          = (condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) a) t₁
+            * (condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+            (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance) a) t₂ := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  have h1 : FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p =
+      Kernel.IndepFun FateV2.Modeling.FinCondIndepMeasure.projX FateV2.Modeling.FinCondIndepMeasure.projY
+        (condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+          (MeasurableSpace.comap FateV2.Modeling.FinCondIndepMeasure.projZ inferInstance))
+        ((FateV2.Modeling.FinMeasureBridge.weightedCount p).trim
+          (MeasurableSpace.comap_le_iff_le_map.mpr FateV2.Modeling.FinCondIndepMeasure.measurable_projZ)) := by
+    unfold FateV2.Modeling.FinCondIndepMeasure.bridgeStatement; rfl
   rw [h1]
   unfold Kernel.IndepFun Kernel.Indep Kernel.IndepSets
   simp only [Set.mem_setOf_eq]
@@ -240,22 +240,22 @@ theorem setIntegral_indicator_one [MeasurableSpace ((α × β) × γ)]
 /-- ⭐⭐⭐ **`comap projX`-可测集只依赖 `x`**（**新路线的基石**）。 -/
 theorem comap_projX_mem_iff [MeasurableSpace α] [MeasurableSpace ((α × β) × γ)]
     {t₁ : Set ((α × β) × γ)}
-    (ht₁ : MeasurableSet[MeasurableSpace.comap (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t₁)
+    (ht₁ : MeasurableSet[MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t₁)
     (x : α) (y₁ y₂ : β) (z₁ z₂ : γ) :
     (((x, y₁), z₁) ∈ t₁) ↔ (((x, y₂), z₂) ∈ t₁) := by
   obtain ⟨S, _, hS⟩ := (MeasurableSpace.measurableSet_comap).mp ht₁
   rw [← hS]
-  simp [Fate.FinCondIndepMeasure.projX]
+  simp [FateV2.Modeling.FinCondIndepMeasure.projX]
 
 /-- ⭐⭐ **`comap projY`-可测集只依赖 `y`**。 -/
 theorem comap_projY_mem_iff [MeasurableSpace β] [MeasurableSpace ((α × β) × γ)]
     {t₂ : Set ((α × β) × γ)}
-    (ht₂ : MeasurableSet[MeasurableSpace.comap (Fate.FinCondIndepMeasure.projY : (α × β) × γ → β) inferInstance] t₂)
+    (ht₂ : MeasurableSet[MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projY : (α × β) × γ → β) inferInstance] t₂)
     (y : β) (x₁ x₂ : α) (z₁ z₂ : γ) :
     (((x₁, y), z₁) ∈ t₂) ↔ (((x₂, y), z₂) ∈ t₂) := by
   obtain ⟨S, _, hS⟩ := (MeasurableSpace.measurableSet_comap).mp ht₂
   rw [← hS]
-  simp [Fate.FinCondIndepMeasure.projY]
+  simp [FateV2.Modeling.FinCondIndepMeasure.projY]
 
 /-- ⭐⭐⭐⭐ **`CondIndepFin` 的**逐点乘积形式**（新路线的代数核心）**。
 
@@ -296,24 +296,24 @@ theorem setIntegral_condExp_fiber [Fintype α] [Fintype β] [Fintype γ]
     [MeasurableSingletonClass ((α × β) × γ)]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (t : Set ((α × β) × γ)) (ht : MeasurableSet t) (z : γ) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ∫ w in (Fate.FinMeasureBridge.fiber z),
-        (Fate.FinMeasureBridge.weightedCount p)[t.indicator fun _ => (1:ℝ)
-          | MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] w
-        ∂(Fate.FinMeasureBridge.weightedCount p)
-      = ∫ w in (Fate.FinMeasureBridge.fiber z), t.indicator (fun _ => (1:ℝ)) w
-        ∂(Fate.FinMeasureBridge.weightedCount p) := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber z),
+        (FateV2.Modeling.FinMeasureBridge.weightedCount p)[t.indicator fun _ => (1:ℝ)
+          | MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] w
+        ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      = ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber z), t.indicator (fun _ => (1:ℝ)) w
+        ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p) := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   exact setIntegral_condExp
-    (m := MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
+    (m := MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)
     (m₀ := inferInstance)
-    (μ := Fate.FinMeasureBridge.weightedCount p)
-    (f := t.indicator fun _ => (1:ℝ)) (s := Fate.FinMeasureBridge.fiber z)
-    (hm := MeasurableSpace.comap_le_iff_le_map.mpr Fate.FinCondIndepMeasure.measurable_projZ)
-    (hf := (integrable_const (μ := Fate.FinMeasureBridge.weightedCount p) (1:ℝ)).indicator ht)
-    (hs := Fate.FinMeasureBridge.measurableSet_fiber z)
+    (μ := FateV2.Modeling.FinMeasureBridge.weightedCount p)
+    (f := t.indicator fun _ => (1:ℝ)) (s := FateV2.Modeling.FinMeasureBridge.fiber z)
+    (hm := MeasurableSpace.comap_le_iff_le_map.mpr FateV2.Modeling.FinCondIndepMeasure.measurable_projZ)
+    (hf := (integrable_const (μ := FateV2.Modeling.FinMeasureBridge.weightedCount p) (1:ℝ)).indicator ht)
+    (hs := FateV2.Modeling.FinMeasureBridge.measurableSet_fiber z)
 
 /-! ## §7 ⭐⭐⭐⭐ **纤维上的常数积分**（**第 165 轮，在具体语境内证明**）
 
@@ -337,20 +337,20 @@ theorem setIntegral_fiber_const_direct [Fintype α] [Fintype β] [Fintype γ]
     [MeasurableSingletonClass ((α × β) × γ)]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (g : (α × β) × γ → ℝ) (z : γ) (c : ℝ)
-    (hconst : ∀ w ∈ Fate.FinMeasureBridge.fiber z, g w = c) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ∫ w in (Fate.FinMeasureBridge.fiber z), g w ∂(Fate.FinMeasureBridge.weightedCount p)
-      = (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber z) * c := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-  have hle : MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance
+    (hconst : ∀ w ∈ FateV2.Modeling.FinMeasureBridge.fiber z, g w = c) :
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber z), g w ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      = (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber z) * c := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  have hle : MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance
       ≤ (inferInstance : MeasurableSpace ((α × β) × γ)) :=
-    MeasurableSpace.comap_le_iff_le_map.mpr Fate.FinCondIndepMeasure.measurable_projZ
-  have hfib_meas : MeasurableSet (Fate.FinMeasureBridge.fiber z) :=
-    hle _ (Fate.FinMeasureBridge.measurableSet_fiber z)
-  have h1 : ∫ w in (Fate.FinMeasureBridge.fiber z), g w ∂(Fate.FinMeasureBridge.weightedCount p)
-      = ∫ w in (Fate.FinMeasureBridge.fiber z), c ∂(Fate.FinMeasureBridge.weightedCount p) := by
+    MeasurableSpace.comap_le_iff_le_map.mpr FateV2.Modeling.FinCondIndepMeasure.measurable_projZ
+  have hfib_meas : MeasurableSet (FateV2.Modeling.FinMeasureBridge.fiber z) :=
+    hle _ (FateV2.Modeling.FinMeasureBridge.measurableSet_fiber z)
+  have h1 : ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber z), g w ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      = ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber z), c ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p) := by
     apply MeasureTheory.setIntegral_congr_fun hfib_meas
     intro w hw
     exact hconst w hw
@@ -379,57 +379,57 @@ theorem bridgeKernelValue_mul_fiber [Fintype α] [Fintype β] [Fintype γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (t : Set ((α × β) × γ)) (ht : MeasurableSet t)
     (ω : (α × β) × γ)
-    (hω : (Fate.FinMeasureBridge.weightedCount p) {ω} ≠ 0) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t
-      * (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber ω.2)
-      = (Fate.FinMeasureBridge.weightedCount p).real (t ∩ Fate.FinMeasureBridge.fiber ω.2) := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-  set ce : (α × β) × γ → ℝ := (Fate.FinMeasureBridge.weightedCount p)[t.indicator fun _ => (1:ℝ)
-    | MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] with hce
-  have hstep1 : (fun a => ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t)
-      =ᵐ[Fate.FinMeasureBridge.weightedCount p] ce := by
+    (hω : (FateV2.Modeling.FinMeasureBridge.weightedCount p) {ω} ≠ 0) :
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t
+      * (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber ω.2)
+      = (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (t ∩ FateV2.Modeling.FinMeasureBridge.fiber ω.2) := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  set ce : (α × β) × γ → ℝ := (FateV2.Modeling.FinMeasureBridge.weightedCount p)[t.indicator fun _ => (1:ℝ)
+    | MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] with hce
+  have hstep1 : (fun a => ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t)
+      =ᵐ[FateV2.Modeling.FinMeasureBridge.weightedCount p] ce := by
     rw [hce]; exact bridgeKernelStep1 p t ht
-  have hmeas := condExp_indicator_measurable (Fate.FinMeasureBridge.weightedCount p) t
-  have hconst' : ∀ w ∈ Fate.FinMeasureBridge.fiber ω.2, ce w = ce ω := by
+  have hmeas := condExp_indicator_measurable (FateV2.Modeling.FinMeasureBridge.weightedCount p) t
+  have hconst' : ∀ w ∈ FateV2.Modeling.FinMeasureBridge.fiber ω.2, ce w = ce ω := by
     intro w hw
-    have hh := comap_projZ_apply_eq_of_fiber hmeas w ω (by simpa [Fate.FinMeasureBridge.fiber] using hw)
+    have hh := comap_projZ_apply_eq_of_fiber hmeas w ω (by simpa [FateV2.Modeling.FinMeasureBridge.fiber] using hw)
     rw [hce]; exact hh
-  have h_int_const : ∫ w in (Fate.FinMeasureBridge.fiber ω.2), ce w
-      ∂(Fate.FinMeasureBridge.weightedCount p)
-      = (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber ω.2) * ce ω :=
+  have h_int_const : ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber ω.2), ce w
+      ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      = (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber ω.2) * ce ω :=
     setIntegral_fiber_const_direct p ce ω.2 (ce ω) hconst'
-  have h_eq_int : ∫ w in (Fate.FinMeasureBridge.fiber ω.2), ce w
-      ∂(Fate.FinMeasureBridge.weightedCount p)
-      = (Fate.FinMeasureBridge.weightedCount p).real (t ∩ Fate.FinMeasureBridge.fiber ω.2) := by
+  have h_eq_int : ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber ω.2), ce w
+      ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      = (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (t ∩ FateV2.Modeling.FinMeasureBridge.fiber ω.2) := by
     rw [hce]
     rw [setIntegral_condExp_fiber p t ht ω.2]
-    have h := setIntegral_indicator_one (Fate.FinMeasureBridge.weightedCount p)
-      (Fate.FinMeasureBridge.fiber ω.2) t ht
+    have h := setIntegral_indicator_one (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (FateV2.Modeling.FinMeasureBridge.fiber ω.2) t ht
     rw [h, Set.inter_comm]
-  have h_point : ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t = ce ω := by
-    have h' : ∀ᵐ a ∂(Fate.FinMeasureBridge.weightedCount p),
-        ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-          (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t = ce a := hstep1
-    have hz := Fate.FinMeasureBridge.ae_iff_forall_or_zero (Fate.FinMeasureBridge.weightedCount p)
-      (fun a => ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-        (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t = ce a)
+  have h_point : ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t = ce ω := by
+    have h' : ∀ᵐ a ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p),
+        ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+          (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t = ce a := hstep1
+    have hz := FateV2.Modeling.FinMeasureBridge.ae_iff_forall_or_zero (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (fun a => ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+        (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) a).real t = ce a)
     rw [hz] at h'
     rcases h' ω with h0 | heq
     · exact absurd h0 hω
     · exact heq
-  calc ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t
-        * (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber ω.2)
-      = ce ω * (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber ω.2) := by rw [h_point]
-    _ = (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber ω.2) * ce ω := by rw [mul_comm]
-    _ = ∫ w in (Fate.FinMeasureBridge.fiber ω.2), ce w ∂(Fate.FinMeasureBridge.weightedCount p) := h_int_const.symm
-    _ = (Fate.FinMeasureBridge.weightedCount p).real (t ∩ Fate.FinMeasureBridge.fiber ω.2) := h_eq_int
+  calc ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t
+        * (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber ω.2)
+      = ce ω * (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber ω.2) := by rw [h_point]
+    _ = (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber ω.2) * ce ω := by rw [mul_comm]
+    _ = ∫ w in (FateV2.Modeling.FinMeasureBridge.fiber ω.2), ce w ∂(FateV2.Modeling.FinMeasureBridge.weightedCount p) := h_int_const.symm
+    _ = (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (t ∩ FateV2.Modeling.FinMeasureBridge.fiber ω.2) := h_eq_int
 
 /-! ## §9 ⭐⭐⭐ **纤维质量的实数版非零判据**（**第 166 轮，代理 Z1 交付，我独立验证**） -/
 
@@ -444,14 +444,14 @@ theorem fiber_real_ne_zero [Fintype α] [Fintype β] [Fintype γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (hp : ∀ w, 0 ≤ p w) (z : γ)
     (hz : (∑ x : α, ∑ y : β, p ((x, y), z)) ≠ 0) :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber z) ≠ 0 := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber z) ≠ 0 := by
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   rw [Measure.real, ENNReal.toReal_ne_zero]
   refine ⟨?_, ?_⟩
-  · rw [Fate.FinMeasureBridge.fiber_ne_zero_iff p hp z]
+  · rw [FateV2.Modeling.FinMeasureBridge.fiber_ne_zero_iff p hp z]
     exact hz
   · exact measure_ne_top _ _
 
@@ -479,20 +479,20 @@ theorem kernelValue_eq_sum_ratio [Fintype α] [Fintype β] [Fintype γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (t : Set ((α × β) × γ)) (ht : MeasurableSet t)
     (ω : (α × β) × γ) (hp : ∀ w, 0 ≤ p w)
-    (hω : (Fate.FinMeasureBridge.weightedCount p) {ω} ≠ 0)
+    (hω : (FateV2.Modeling.FinMeasureBridge.weightedCount p) {ω} ≠ 0)
     (hz : (∑ x : α, ∑ y : β, p ((x, y), ω.2)) ≠ 0)
     [DecidablePred (· ∈ t)] [DecidablePred (· ∈ (t ∩ {w | w.2 = ω.2}))] :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω).real t
       = (∑ x : α, ∑ y : β, (if ((x, y), ω.2) ∈ t then p ((x, y), ω.2) else 0))
         / (∑ x : α, ∑ y : β, p ((x, y), ω.2)) := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   have hmul := bridgeKernelValue_mul_fiber p t ht ω hω
-  have hfn := Fate.FinMeasureBridge.fiber_normalization_general p t ω.2 hp
-  have hF : (Fate.FinMeasureBridge.weightedCount p).real (Fate.FinMeasureBridge.fiber ω.2) ≠ 0 :=
+  have hfn := FateV2.Modeling.FinMeasureBridge.fiber_normalization_general p t ω.2 hp
+  have hF : (FateV2.Modeling.FinMeasureBridge.weightedCount p).real (FateV2.Modeling.FinMeasureBridge.fiber ω.2) ≠ 0 :=
     fiber_real_ne_zero p hp ω.2 hz
   rw [← hfn]
   rw [eq_div_iff hF]
@@ -518,9 +518,9 @@ theorem fiber_sum_projX [Fintype α] [Fintype β] [Fintype γ]
     [MeasurableSingletonClass ((α × β) × γ)]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (t₁ : Set ((α × β) × γ))
-    (ht₁ : MeasurableSet[MeasurableSpace.comap (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t₁)
+    (ht₁ : MeasurableSet[MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) inferInstance] t₁)
     (z : γ) :
-    ∃ (S1 : Set α), MeasurableSet S1 ∧ t₁ = (Fate.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1 := by
+    ∃ (S1 : Set α), MeasurableSet S1 ∧ t₁ = (FateV2.Modeling.FinCondIndepMeasure.projX : (α × β) × γ → α) ⁻¹' S1 := by
   obtain ⟨S1, hS1, hS1eq⟩ := (MeasurableSpace.measurableSet_comap).mp ht₁
   exact ⟨S1, hS1, hS1eq.symm⟩
 
@@ -629,17 +629,17 @@ theorem kernelValue_ennreal [Fintype α] [Fintype β] [Fintype γ]
     (p : FateV2.Modeling.FiniteCondIndep.FinJoint α β γ)
     (t : Set ((α × β) × γ)) (ht : MeasurableSet t)
     (ω : (α × β) × γ) (hp : ∀ w, 0 ≤ p w)
-    (hω : (Fate.FinMeasureBridge.weightedCount p) {ω} ≠ 0)
+    (hω : (FateV2.Modeling.FinMeasureBridge.weightedCount p) {ω} ≠ 0)
     (hz : (∑ x : α, ∑ y : β, p ((x, y), ω.2)) ≠ 0)
     [DecidablePred (· ∈ t)] [DecidablePred (· ∈ (t ∩ {w | w.2 = ω.2}))] :
-    letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-      Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
-    ((condExpKernel (Ω := (α × β) × γ) (Fate.FinMeasureBridge.weightedCount p)
-      (MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω) t
+    letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+      FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
+    ((condExpKernel (Ω := (α × β) × γ) (FateV2.Modeling.FinMeasureBridge.weightedCount p)
+      (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance)) ω) t
       = ENNReal.ofReal ((∑ x : α, ∑ y : β, (if ((x, y), ω.2) ∈ t then p ((x, y), ω.2) else 0))
         / (∑ x : α, ∑ y : β, p ((x, y), ω.2))) := by
-  letI : IsFiniteMeasure (Fate.FinMeasureBridge.weightedCount p) :=
-    Fate.FinMeasureBridge.weightedCount_isFiniteMeasure p
+  letI : IsFiniteMeasure (FateV2.Modeling.FinMeasureBridge.weightedCount p) :=
+    FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   have hreal := kernelValue_eq_sum_ratio p t ht ω hp hω hz
   rw [← hreal]
   rw [Measure.real]
@@ -665,13 +665,13 @@ theorem kernelValue_ennreal [Fintype α] [Fintype β] [Fintype γ]
 **⚠ 即**：若 `s` 是 `comap projZ`-可测且 `a ∈ s`，则**整条 `fiber a.2` 都在 `s` 里**。 -/
 theorem comap_projZ_mem_fiber [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ]
     {s : Set ((α × β) × γ)}
-    (hs : MeasurableSet[MeasurableSpace.comap (Fate.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] s)
+    (hs : MeasurableSet[MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance] s)
     {a : (α × β) × γ} (ha : a ∈ s) :
-    Fate.FinMeasureBridge.fiber a.2 ⊆ s := by
+    FateV2.Modeling.FinMeasureBridge.fiber a.2 ⊆ s := by
   obtain ⟨S, _, hS⟩ := (MeasurableSpace.measurableSet_comap).mp hs
   rw [← hS] at ha ⊢
   intro w hw
-  have hw2 : w.2 = a.2 := by simpa [Fate.FinMeasureBridge.fiber] using hw
+  have hw2 : w.2 = a.2 := by simpa [FateV2.Modeling.FinMeasureBridge.fiber] using hw
   show w.2 ∈ S
   rw [hw2]
   exact ha

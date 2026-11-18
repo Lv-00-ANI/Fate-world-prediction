@@ -14,7 +14,7 @@ namespace FateV2.Predict.ZipDownFalseConsumer
 open FateV2.Modeling
 
 open Fate.DAGFactorization
-open Fate.FactorMarkov
+open FateV2.Predict.FactorMarkov
 open Fate.ZipDownFalseFixed
 open Fate.BridgeFullFixed
 open Fate.BridgeZipDown (gempty gempty_parents)
@@ -45,7 +45,7 @@ open Fate.Strategy11Hull
 
 ⟹ `PjointB` 不满足 `gempty` 的全局 Markov 性。
 
-**消费含义**：`Fate.FactorMarkov.Markov` 是主链的落点谓词，
+**消费含义**：`FateV2.Predict.FactorMarkov.Markov` 是主链的落点谓词，
 `BridgeFullFixed.markov_of_gap_markov` 把它作为**结论**交付。本定理表明该结论
 **不能**对 `PjointB` 成立 —— 即 `PjointB` 落在主链前件（归一化联合律）之外，
 两边因此**必须**是不同对象，主链的 `hnorm` 前件在这里不可省。 -/

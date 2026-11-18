@@ -70,7 +70,7 @@ open FateV2.Modeling
 open FateV2.Rules
 namespace FullPipelineDemo
 
-open Fate.RuleSyntax.Exec
+open FateV2.Rules.RuleSyntax.Exec
 
 /-! ## §1  环节 1：数据（`ℚ` 数值表） -/
 

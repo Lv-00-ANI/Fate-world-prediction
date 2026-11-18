@@ -156,12 +156,12 @@ theorem GM_iff (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) :
 
 /-- **B4.GM.1**：清单字面版目标 `LMG ⟹ GM` 的**精确陈述**（本文件 §5 判定它为假）。 -/
 def LMG_implies_GM (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : Prop :=
-  Fate.FactorRecursionRouteB.LMG p G → GM p G
+  FateV2.Predict.FactorRecursionRouteB.LMG p G → GM p G
 
 /-! ===========================================================================
   §R26 ⭐ **跨模块组合层（R-26 真接线）**
 
-  把 `Fate.BridgeA2` / `Fate.BridgeB2` / `Fate.BridgeB3` 三个**此前零引用**模块
+  把 `FateV2.Predict.BridgeA2` / `FateV2.Modeling.BridgeB2` / `FateV2.Predict.BridgeB3` 三个**此前零引用**模块
   的定理，与本文件的 `CIMul` / `GM` 组装成组合结论（本条 § 为**纯追加**：
   不改动上面任何一条 `theorem` / `def`，不删除任何声明）。
 
@@ -182,8 +182,8 @@ def LMG_implies_GM (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : 
 theorem peel_source_and_not_mem_pa_self {G : FateV2.Modeling.Graph.DAG V}
     {X Y Z : Finset V} {l : V} (hl : l ∈ X) (hd : G.dSep X Y Z) :
     G.dSep (X \ {l}) Y (Z ∪ {l}) ∧ l ∉ Fate.DAGFactorization.pa G l :=
-  ⟨Fate.BridgeB3.dSep_peel_source hl hd,
-   Fate.BridgeA2.not_mem_pa_self_local G l⟩
+  ⟨FateV2.Predict.BridgeB3.dSep_peel_source hl hd,
+   FateV2.Predict.BridgeA2.not_mem_pa_self_local G l⟩
 
 /-- **R26.2（B2 × B3）拓扑前缀整体剥离 + 前缀父闭性**：
 
@@ -191,14 +191,14 @@ theorem peel_source_and_not_mem_pa_self {G : FateV2.Modeling.Graph.DAG V}
 `S` 搬进条件集后 `dSep (X∖S) Y (Z∪S)`（B3.5 `dSep_peel_fold`），且前缀的父闭性
 `pa_G(v) ⊆ S`（B2.9c `topoPrefix_parent_closed`，真消费 `τ.strict`）。 -/
 theorem topoPrefix_peel_fold_and_parent_closed {G : FateV2.Modeling.Graph.DAG V}
-    (τ : Fate.BridgeB2.TopoOrderData G) (k : ℕ) {X Y Z : Finset V}
-    (hS : Fate.BridgeB2.topoPrefix G τ k ⊆ X) (hd : G.dSep X Y Z) :
-    G.dSep (X \ Fate.BridgeB2.topoPrefix G τ k) Y
-        (Z ∪ Fate.BridgeB2.topoPrefix G τ k)
-      ∧ ∀ v ∈ Fate.BridgeB2.topoPrefix G τ k,
-          Fate.DAGFactorization.pa G v ⊆ Fate.BridgeB2.topoPrefix G τ k :=
-  ⟨Fate.BridgeB3.dSep_peel_fold hS hd,
-   fun v hv => Fate.BridgeB2.topoPrefix_parent_closed G τ k hv⟩
+    (τ : FateV2.Modeling.BridgeB2.TopoOrderData G) (k : ℕ) {X Y Z : Finset V}
+    (hS : FateV2.Modeling.BridgeB2.topoPrefix G τ k ⊆ X) (hd : G.dSep X Y Z) :
+    G.dSep (X \ FateV2.Modeling.BridgeB2.topoPrefix G τ k) Y
+        (Z ∪ FateV2.Modeling.BridgeB2.topoPrefix G τ k)
+      ∧ ∀ v ∈ FateV2.Modeling.BridgeB2.topoPrefix G τ k,
+          Fate.DAGFactorization.pa G v ⊆ FateV2.Modeling.BridgeB2.topoPrefix G τ k :=
+  ⟨FateV2.Predict.BridgeB3.dSep_peel_fold hS hd,
+   fun v hv => FateV2.Modeling.BridgeB2.topoPrefix_parent_closed G τ k hv⟩
 
 /-- **R26.3（B2 × B3）存在一步剥离：基数严格下降且 `dSep` 保持**：
 
@@ -207,9 +207,9 @@ theorem topoPrefix_peel_fold_and_parent_closed {G : FateV2.Modeling.Graph.DAG V}
 theorem peel_step_and_dSep {G : FateV2.Modeling.Graph.DAG V}
     {X Y Z S : Finset V} (hS : S ⊆ X) (hSne : S.Nonempty) (hd : G.dSep X Y Z) :
     ∃ v ∈ S, (S.erase v).card = S.card - 1 ∧ G.dSep (X \ {v}) Y (Z ∪ {v}) := by
-  obtain ⟨v, hvS, hcard⟩ := Fate.BridgeB2.peel_step G
-    (Fate.BridgeB2.topoOrderData G) S hSne
-  exact ⟨v, hvS, hcard, Fate.BridgeB3.dSep_peel_source (hS hvS) hd⟩
+  obtain ⟨v, hvS, hcard⟩ := FateV2.Modeling.BridgeB2.peel_step G
+    (FateV2.Modeling.BridgeB2.topoOrderData G) S hSne
+  exact ⟨v, hvS, hcard, FateV2.Predict.BridgeB3.dSep_peel_source (hS hvS) hd⟩
 
 /-- **R26.4（B3 × B2）拓扑最小源点：无入边、父不在 `S`、可剥离**：
 
@@ -222,9 +222,9 @@ theorem topo_min_source_peel {G : FateV2.Modeling.Graph.DAG V}
     ∃ l ∈ S, (∀ w ∈ S, ¬ G.edge w l)
       ∧ (∀ u, G.edge u l → u ∉ S)
       ∧ G.dSep (X \ {l}) Y (Z ∪ {l}) := by
-  obtain ⟨l, hlS, hmin⟩ := Fate.BridgeB3.source_of_topo_min G hSne
-  exact ⟨l, hlS, hmin, Fate.BridgeB2.peel_no_parent_in G hmin,
-    Fate.BridgeB3.dSep_peel_source (hS hlS) hd⟩
+  obtain ⟨l, hlS, hmin⟩ := FateV2.Predict.BridgeB3.source_of_topo_min G hSne
+  exact ⟨l, hlS, hmin, FateV2.Modeling.BridgeB2.peel_no_parent_in G hmin,
+    FateV2.Predict.BridgeB3.dSep_peel_source (hS hlS) hd⟩
 
 /-- **R26.5（B3 × 本文件 B4）整段剥离到空源集 + 全局 Markov 给乘性条件独立**：
 
@@ -234,7 +234,7 @@ theorem topo_min_source_peel {G : FateV2.Modeling.Graph.DAG V}
 theorem GM_CIMul_of_full_peel {G : FateV2.Modeling.Graph.DAG V} (p : (V → α) → ℝ)
     (hGM : GM p G) {X Y Z : Finset V} (hd : G.dSep X Y Z) :
     CIMul (∅ : Finset V) Y (Z ∪ X) p :=
-  hGM ∅ Y (Z ∪ X) (Fate.BridgeB3.dSep_peel_univ hd)
+  hGM ∅ Y (Z ∪ X) (FateV2.Predict.BridgeB3.dSep_peel_univ hd)
 
 /-- **R26.6（B3 × A2）拓扑最大汇点：无出边 + 父代与后代不交**：
 
@@ -248,8 +248,8 @@ theorem sink_of_topo_max_and_pa_desc_disjoint {G : FateV2.Modeling.Graph.DAG V}
     {S : Finset V} (hS : S.Nonempty) :
     (∃ l ∈ S, ∀ w ∈ S, ¬ G.edge l w)
       ∧ ∀ l : V, Disjoint (Fate.DAGFactorization.pa G l) (G.descendants l) :=
-  ⟨Fate.BridgeB3.sink_of_topo_max G hS,
-   fun l => Fate.BridgeA2.pa_vs_descendants_disjoint G l⟩
+  ⟨FateV2.Predict.BridgeB3.sink_of_topo_max G hS,
+   fun l => FateV2.Predict.BridgeA2.pa_vs_descendants_disjoint G l⟩
 
 /-- **R26.7（B2 × A2）拓扑前缀父闭性 + 非后代点不作父**：
 
@@ -257,12 +257,12 @@ theorem sink_of_topo_max_and_pa_desc_disjoint {G : FateV2.Modeling.Graph.DAG V}
 `w ∈ nonDescendants v` 有 `v ∉ pa_G(w)`（A2.4′ `not_mem_pa_self_for_w`，
 真消费 `hnd`）。 -/
 theorem topoPrefix_parent_closed_and_nondesc_pa {G : FateV2.Modeling.Graph.DAG V}
-    (τ : Fate.BridgeB2.TopoOrderData G) (k : ℕ) {v : V}
-    (hv : v ∈ Fate.BridgeB2.topoPrefix G τ k) :
-    (Fate.DAGFactorization.pa G v ⊆ Fate.BridgeB2.topoPrefix G τ k)
+    (τ : FateV2.Modeling.BridgeB2.TopoOrderData G) (k : ℕ) {v : V}
+    (hv : v ∈ FateV2.Modeling.BridgeB2.topoPrefix G τ k) :
+    (Fate.DAGFactorization.pa G v ⊆ FateV2.Modeling.BridgeB2.topoPrefix G τ k)
       ∧ ∀ w : V, w ∈ G.nonDescendants v → v ∉ Fate.DAGFactorization.pa G w :=
-  ⟨Fate.BridgeB2.topoPrefix_parent_closed G τ k hv,
-   fun w hnd => Fate.BridgeA2.not_mem_pa_self_for_w (G := G) (v := v) hnd⟩
+  ⟨FateV2.Modeling.BridgeB2.topoPrefix_parent_closed G τ k hv,
+   fun w hnd => FateV2.Predict.BridgeA2.not_mem_pa_self_for_w (G := G) (v := v) hnd⟩
 
 
 end BridgeB4

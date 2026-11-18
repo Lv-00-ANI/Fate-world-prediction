@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ChainErrorBudgetPredNGen`
+模块：`FateV2.Error.ChainErrorBudgetPredNGen`
 ====================================
 
 ## 任务 T2.3 / D：G5 `n` 步误差界 **`ℝ` → 任意范数空间**
@@ -106,8 +106,8 @@
 
 ### 依赖
 
-* `Fate.ChainErrorBudgetPredN`（`pred_n_error_bound` 的原版，用于 `genErr_mulCLM` 对照）
-* `Fate.ChainErrorBudgetBound`（`steadyTerm`）
+* `FateV2.Error.ChainErrorBudgetPredN`（`pred_n_error_bound` 的原版，用于 `genErr_mulCLM` 对照）
+* `FateV2.Error.ChainErrorBudgetBound`（`steadyTerm`）
 * `Fate.OptimalEta`（`c`、`c_nonneg`、`c_one`、`err_eq_c_pow`）
 * `Fate.WiringConvergence`（`iterMap`、`iterMap_zero`、`err_iterMap`）
 * `Fate.BoundWriteBack`（`errA`、`errA_nonneg`、`Corrects`）
@@ -134,7 +134,7 @@ open FateV2.Modeling
 namespace ChainErrorBudgetPredNGen
 
 open FateV2.Loop.BoundWriteBack
-open Fate.ChainErrorBudgetBound
+open FateV2.Error.ChainErrorBudgetBound
 open FateV2.Loop.OptimalEta
 
 /-!
@@ -221,9 +221,9 @@ theorem genErr_eq_errA_iterMap [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 **意义**：泛化**没有**换掉被讨论的量，只是把它放到更一般的载体上。 -/
 theorem genErr_mulCLM (η θstar x θ : ℝ) (n : ℕ) :
-    genErr (Fate.AssemblyLearnsScratch.mulCLM x) (Fate.AssemblyLearnsScratch.invLM x)
+    genErr (FateV2.Loop.AssemblyLearnsScratch.mulCLM x) (FateV2.Loop.AssemblyLearnsScratch.invLM x)
         η (θstar * x) θ n
-      = Fate.ChainErrorBudgetPredN.simMultiError η θstar x θ n := rfl
+      = FateV2.Error.ChainErrorBudgetPredN.simMultiError η θstar x θ n := rfl
 
 /-! ===========================================================================
   §2  ⭐⭐⭐⭐⭐ 主泛化定理：`n` 步误差界在任意实赋范空间上

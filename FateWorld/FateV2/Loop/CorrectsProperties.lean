@@ -93,7 +93,7 @@
 * 全部定理不依赖有限维/坐标/内积（§8 具体例子除外）。
 
 依赖：`Fate.BoundWriteBack`（`Corrects` / `wbW` / `errA` 定义与主定理）、
-      `Fate.ConvergeToOptimalCounterexample`（§2 的推论原始证明）、
+      `FateV2.Loop.ConvergeToOptimalCounterexample`（§2 的推论原始证明）、
       `Fate.ConvergeToOptimalV2`（最优参数的 `IsOptimal` 定义）。
 -/
 
@@ -171,22 +171,22 @@ theorem corrects_mem_range (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (h : Corre
 要求 `A (φ v) = v`，故 `v = 0`。 -/
 theorem corrects_ker_eq_bot (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (h : Corrects A φ) :
     LinearMap.ker φ = ⊥ :=
-  Fate.ConvergeToOptimalCounterexample.corrects_ker_eq_bot A φ h
+  FateV2.Loop.ConvergeToOptimalCounterexample.corrects_ker_eq_bot A φ h
 
 /-- ⭐⭐⭐⭐ **【推论 2】`Corrects A φ ⟹ φ` 单射。** -/
 theorem corrects_injective (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (h : Corrects A φ) :
     Function.Injective φ :=
-  Fate.ConvergeToOptimalCounterexample.corrects_injective A φ h
+  FateV2.Loop.ConvergeToOptimalCounterexample.corrects_injective A φ h
 
 /-- ⭐⭐⭐⭐ **【推论 3】`Corrects A φ ⟹ A` 满射（右逆存在 ⟹ 满射）。** -/
 theorem corrects_surjective (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (h : Corrects A φ) :
     Function.Surjective A :=
-  Fate.ConvergeToOptimalCounterexample.corrects_surjective A φ h
+  FateV2.Loop.ConvergeToOptimalCounterexample.corrects_surjective A φ h
 
 /-- ⭐⭐⭐ **【推论 4】`ker φ ≠ ⊥` 与 `Corrects` 不可共存（否定式）。** -/
 theorem no_corrects_with_nontrivial_kernel (A : E →L[ℝ] F) :
     ¬ ∃ φ : F →ₗ[ℝ] E, Corrects A φ ∧ φ.ker ≠ ⊥ :=
-  Fate.ConvergeToOptimalCounterexample.no_corrects_with_nontrivial_kernel A
+  FateV2.Loop.ConvergeToOptimalCounterexample.no_corrects_with_nontrivial_kernel A
 
 /-- ⭐⭐⭐ **【推论 5】`Corrects` 的存在性刻画：`(∃ φ, Corrects A φ) ⟺ A` 满射。**
 
@@ -194,12 +194,12 @@ theorem no_corrects_with_nontrivial_kernel (A : E →L[ℝ] F) :
 （`ℝ`-向量空间自由 ⟹ 投射），故 `Corrects` 非空。 -/
 theorem exists_corrects_iff_surjective (A : E →L[ℝ] F) :
     (∃ φ : F →ₗ[ℝ] E, Corrects A φ) ↔ Function.Surjective A :=
-  Fate.ConvergeToOptimalCounterexample.exists_corrects_iff_surjective A
+  FateV2.Loop.ConvergeToOptimalCounterexample.exists_corrects_iff_surjective A
 
 /-- ⭐⭐⭐ **【推论 6】`A` 单射 ⟹ 满足 `Corrects` 的 `φ` 唯一（`φ = A⁻¹` 于像上）。** -/
 theorem corrects_unique_of_injective (A : E →L[ℝ] F) (hA : Function.Injective A)
     (φ ψ : F →ₗ[ℝ] E) (hφ : Corrects A φ) (hψ : Corrects A ψ) : φ = ψ :=
-  Fate.ConvergeToOptimalCounterexample.corrects_unique_of_injective A hA φ ψ hφ hψ
+  FateV2.Loop.ConvergeToOptimalCounterexample.corrects_unique_of_injective A hA φ ψ hφ hψ
 
 /-! ===========================================================================
     §3  把 §2 的三条合并成「一张表」（编译期可检查的合取）

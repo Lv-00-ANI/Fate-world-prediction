@@ -15,11 +15,11 @@
 | # | 模块 | 本文件消费的内容 |
 |---|---|---|
 | 1 | `Fate.WorldModelSynthesis`  | `linModels_agree` |
-| 2 | `Fate.SharedParamGain`      | `ThetaCons1_eq`、`ThetaCons2_eq` |
+| 2 | `FateV2.Loop.SharedParamGain`      | `ThetaCons1_eq`、`ThetaCons2_eq` |
 | 3 | `Fate.SCMWorldModelEval`    | `scmStep_eq_stepD`、`scmSim_succ_eq_stepD` |
 | 4 | `Fate.FirstLayerCapstone`   | `linkLearn`、`linkSteady`、`capstone_concrete` |
 | 5 | `Fate.SharedThetaChain`     | `wTheta_sum`、`wTheta_sq_sum`、`sim_shared_value` |
-| 6 | `Fate.SCMIdentifiabilityCorrect` | `not_identifiableObs_of_sg_eq`、`identifiableObs_of_subsingleton` |
+| 6 | `FateV2.Predict.SCMIdentifiabilityCorrect` | `not_identifiableObs_of_sg_eq`、`identifiableObs_of_subsingleton` |
 | 7 | `Fate.OptimalityThirdInstance`   | `no_point_unique_of_two_eq`、`fitExp_opt_unique` |
 
 **⚠ 方向自查（第 225 轮的教训）**：本文件是「**被 import 的反面**」——
@@ -95,7 +95,7 @@ open FateV2.Modeling
 open FateV2.Predict
 namespace MainChainConsumer
 
-open Fate.SharedParamGain FateV2.Predict.ParamSCM Fate.SCMIdentifiabilityCorrect
+open FateV2.Loop.SharedParamGain FateV2.Predict.ParamSCM FateV2.Predict.SCMIdentifiabilityCorrect
 
 /-!
   # Loop · MainChainConsumer
@@ -304,15 +304,15 @@ theorem identifiability_extremes_are_complementary
     (M : FateV2.Predict.ParamSCM.ParamSCM X Y) {θ₀ : M.Th}
     (h : ∀ (θ : M.Th) (u : M.U), M.sg θ u = M.sg θ₀ u)
     (hne : ∃ θ₁ θ₂ : M.Th, θ₁ ≠ θ₂) :
-    ¬ Fate.SCMIdentifiabilityCorrect.IdentifiableObs M
+    ¬ FateV2.Predict.SCMIdentifiabilityCorrect.IdentifiableObs M
       ∧ ¬ Subsingleton M.Th
       ∧ (∀ γ : ℝ, FitExpThirdInstance.fitExpPattern.f γ
             = FitExpThirdInstance.fitExpPattern.lb → γ = 0) := by
-  refine ⟨Fate.SCMIdentifiabilityCorrect.not_identifiableObs_of_sg_eq h hne, ?_,
+  refine ⟨FateV2.Predict.SCMIdentifiabilityCorrect.not_identifiableObs_of_sg_eq h hne, ?_,
     fun γ hγ => FitExpThirdInstance.fitExp_opt_unique γ hγ⟩
   intro hsub
-  exact Fate.SCMIdentifiabilityCorrect.not_identifiableObs_of_sg_eq h hne
-    (Fate.SCMIdentifiabilityCorrect.identifiableObs_of_subsingleton (M := M))
+  exact FateV2.Predict.SCMIdentifiabilityCorrect.not_identifiableObs_of_sg_eq h hne
+    (FateV2.Predict.SCMIdentifiabilityCorrect.identifiableObs_of_subsingleton (M := M))
 
 /-! ===========================================================================
   §5  ⭐⭐ **组合结论 5：两种「唯一性」路径的汇合（点层无解 → 值层仍唯一）**

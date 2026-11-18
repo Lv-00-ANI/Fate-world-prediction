@@ -64,9 +64,9 @@
 
 ## 3 依赖
 
-* `Fate.SplitFromDAG` —— 既有结论 `split_of_dSep` 及三条禁边引理（本文件不改动它）
-* `Fate.FactorizesToHyper.readSetOf` / `mem_readSetOf`
-* `Fate.View19.Split`
+* `FateV2.Predict.SplitFromDAG` —— 既有结论 `split_of_dSep` 及三条禁边引理（本文件不改动它）
+* `FateV2.Predict.FactorizesToHyper.readSetOf` / `mem_readSetOf`
+* `FateV2.Predict.View19.Split`
 * `Causalean.Graph.DAG.dSep` / `mem_parents`
 
 **本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `Fate.lean`。**
@@ -103,8 +103,8 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
 
 /-- 读集的成员判定（展开版，避免依赖 `readSetOf` 的 `def` 形态）。 -/
 theorem mem_R (G : FateV2.Modeling.Graph.DAG V) {v u : V} :
-    u ∈ Fate.FactorizesToHyper.readSetOf G v ↔ u = v ∨ G.edge u v := by
-  rw [Fate.FactorizesToHyper.mem_readSetOf, FateV2.Modeling.Graph.DAG.mem_parents]
+    u ∈ FateV2.Predict.FactorizesToHyper.readSetOf G v ↔ u = v ∨ G.edge u v := by
+  rw [FateV2.Predict.FactorizesToHyper.mem_readSetOf, FateV2.Modeling.Graph.DAG.mem_parents]
 
 /-- ⭐ **覆盖下的三分**：若 `X ∪ Y ∪ Z = univ`，则每个 `v` 落在 `X` 或 `Y` 或 `Z`。
 
@@ -129,8 +129,8 @@ theorem mem_three_of_cover {X Y Z : Finset V} (hcover : X ∪ Y ∪ Z = univ) (v
 
 /-- ⭐⭐ **跨侧见证**：读集 `R v` 同时含 `X` 中的 `a` 与 `Y` 中的 `b`。 -/
 def Crossing (G : FateV2.Modeling.Graph.DAG V) (X Y : Finset V) : Prop :=
-  ∃ v a b, a ∈ Fate.FactorizesToHyper.readSetOf G v ∧
-    b ∈ Fate.FactorizesToHyper.readSetOf G v ∧ a ∈ X ∧ b ∈ Y
+  ∃ v a b, a ∈ FateV2.Predict.FactorizesToHyper.readSetOf G v ∧
+    b ∈ FateV2.Predict.FactorizesToHyper.readSetOf G v ∧ a ∈ X ∧ b ∈ Y
 
 /-- ⭐⭐⭐ **深度 1 归约（反向）**：若无跨侧见证，则 `Split` 成立。
 
@@ -143,7 +143,7 @@ def Crossing (G : FateV2.Modeling.Graph.DAG V) (X Y : Finset V) : Prop :=
 theorem split_of_no_crossing (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hcover : X ∪ Y ∪ Z = univ)
     (hnc : ¬ Crossing G X Y) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z := by
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z := by
   intro v
   by_contra hcon
   rw [not_or] at hcon
@@ -176,7 +176,7 @@ theorem split_of_no_crossing (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V
 theorem not_split_of_crossing (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hc : Crossing G X Y) :
-    ¬ Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z := by
+    ¬ FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z := by
   rintro hsplit
   obtain ⟨v, a, b, haR, hbR, haX, hbY⟩ := hc
   rcases hsplit v with h | h
@@ -199,7 +199,7 @@ theorem not_split_of_crossing (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset 
 theorem split_iff_no_crossing (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hcover : X ∪ Y ∪ Z = univ)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z ↔
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z ↔
       ¬ Crossing G X Y :=
   ⟨fun h hc => not_split_of_crossing G X Y Z hXY hXZ hYZ hc h,
     split_of_no_crossing G X Y Z hcover⟩
@@ -235,10 +235,10 @@ def dSepOneHop (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V) : Prop :=
 §4 仍然推得出 `Split`。 -/
 theorem dSep_implies_oneHop (G : FateV2.Modeling.Graph.DAG V) {X Y Z : Finset V}
     (h : G.dSep X Y Z) : dSepOneHop G X Y Z :=
-  ⟨fun _ _ hu hv => Fate.SplitFromDAG.not_edge_of_dSep_left G h hu hv,
-   fun _ _ hu hv => Fate.SplitFromDAG.not_edge_of_dSep_right G h hu hv,
+  ⟨fun _ _ hu hv => FateV2.Predict.SplitFromDAG.not_edge_of_dSep_left G h hu hv,
+   fun _ _ hu hv => FateV2.Predict.SplitFromDAG.not_edge_of_dSep_right G h hu hv,
    fun _ _ _ hx hy hz hxz hyz =>
-     Fate.SplitFromDAG.no_collider_in_Z G h hx hy hxz hyz hz⟩
+     FateV2.Predict.SplitFromDAG.no_collider_in_Z G h hx hy hxz hyz hz⟩
 
 /-! ===========================================================================
   §4 **主定理**：`dSepOneHop` ⟹ 无跨侧见证 ⟹ `Split`
@@ -307,7 +307,7 @@ theorem no_crossing_of_oneHop (G : FateV2.Modeling.Graph.DAG V) {X Y Z : Finset 
 theorem split_of_dSep_complete (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z)
     (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z := by
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z := by
   have hXY : Disjoint X Y := hdsep.1
   exact split_of_no_crossing G X Y Z hcover
     (no_crossing_of_oneHop G hXY (dSep_implies_oneHop G hdsep) hcover)
@@ -334,13 +334,13 @@ theorem split_of_dSep_complete (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset
   **这里正是「二分」的来源**：读集在 `Z` 处只能倒向一侧。 -/
 theorem split_case_classification (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ) :
-    (∀ v ∈ X, Fate.FactorizesToHyper.readSetOf G v ⊆ X ∪ Z) ∧
-    (∀ v ∈ Y, Fate.FactorizesToHyper.readSetOf G v ⊆ Y ∪ Z) ∧
-    (∀ v ∈ Z, Fate.FactorizesToHyper.readSetOf G v ⊆ X ∪ Z ∨
-              Fate.FactorizesToHyper.readSetOf G v ⊆ Y ∪ Z) := by
+    (∀ v ∈ X, FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ X ∪ Z) ∧
+    (∀ v ∈ Y, FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Y ∪ Z) ∧
+    (∀ v ∈ Z, FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ X ∪ Z ∨
+              FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Y ∪ Z) := by
   have hXY : Disjoint X Y := hdsep.1
   obtain ⟨hop₁, hop₂, hop₃⟩ := dSep_implies_oneHop G hdsep
-  have key : ∀ v u, u ∈ Fate.FactorizesToHyper.readSetOf G v → u = v ∨ G.edge u v :=
+  have key : ∀ v u, u ∈ FateV2.Predict.FactorizesToHyper.readSetOf G v → u = v ∨ G.edge u v :=
     fun v u hu => (mem_R G).mp hu
   refine ⟨?_, ?_, ?_⟩
   · -- v ∈ X：只需要「无 Y → X 边」
@@ -383,7 +383,7 @@ theorem split_case_classification (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Fin
 /-- ⭐ **分类引理直接重推出 `Split`**（说明 §5 的分类确实穷尽且充分）。 -/
 theorem split_of_classification (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z := by
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z := by
   obtain ⟨hX, hY, hZ⟩ := split_case_classification G X Y Z hdsep hcover
   intro v
   rcases mem_three_of_cover hcover v with hvX | hvY | hvZ
@@ -394,7 +394,7 @@ theorem split_of_classification (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finse
 /-! ===========================================================================
   §6 与既有模块的一致性
 
-  三条独立证明（`Fate.SplitFromDAG.split_of_dSep` 的逐点路线、
+  三条独立证明（`FateV2.Predict.SplitFromDAG.split_of_dSep` 的逐点路线、
   §4 的跨侧见证路线、§5 的分类路线）给出**同一陈述**，
   且 `Agreement` 机检它们互相蕴含（因陈述相同，这里是 `Iff.rfl` 级的核对）。
   =========================================================================== -/
@@ -402,15 +402,15 @@ theorem split_of_classification (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finse
 /-- ⭐ **既有结论的重新机检**：`split_of_dSep` 无需任何补丁。 -/
 theorem kept_split_of_dSep (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z :=
-  Fate.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z :=
+  FateV2.Predict.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover
 
 /-- ⭐ **三条证明路线一致**：陈述逐字相同，故互相等价。 -/
 theorem split_three_routes_agree (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = univ) :
-    Fate.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover =
+    FateV2.Predict.SplitFromDAG.split_of_dSep G X Y Z hdsep hcover =
       split_of_dSep_complete G X Y Z hdsep hcover ∧
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z :=
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z :=
   ⟨rfl, split_of_classification G X Y Z hdsep hcover⟩
 
 /-! ===========================================================================

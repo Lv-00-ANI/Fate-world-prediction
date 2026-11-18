@@ -121,12 +121,12 @@ open Fate.ComposeOperator
 theorem no_faithful_embedding :
     ¬ ∃ (enc : MeasurableRule Fate.CompNotCommutative.CX
         Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2
-        → Set Fate.AlphaInstance.K3.MFCA),
+        → Set FateV2.Rules.AlphaInstance.K3.MFCA),
         Function.Injective enc
         ∧ (∀ (a b : MeasurableRule Fate.CompNotCommutative.CX
               Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2),
             enc (a.comp b)
-              = Fate.AlphaInstance.WiringFixed.combClosure (enc a) (enc b)) := by
+              = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc a) (enc b)) := by
   rintro ⟨enc, hinj, hhom⟩
   -- 反证：若有这样的 `enc`，则核复合必可交换
   apply Fate.CompNotCommutative.comp_not_commutative
@@ -135,9 +135,9 @@ theorem no_faithful_embedding :
   apply hinj
   -- 归约为 `enc (R₂.comp R₁) = enc (R₁.comp R₂)`
   calc enc (R₂.comp R₁)
-      = Fate.AlphaInstance.WiringFixed.combClosure (enc R₂) (enc R₁) := hhom R₂ R₁
-    _ = Fate.AlphaInstance.WiringFixed.combClosure (enc R₁) (enc R₂) :=
-          Fate.ComposeSemantics.combClosure_commutable (enc R₂) (enc R₁)
+      = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc R₂) (enc R₁) := hhom R₂ R₁
+    _ = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc R₁) (enc R₂) :=
+          FateV2.Rules.ComposeSemantics.combClosure_commutable (enc R₂) (enc R₁)
     _ = enc (R₁.comp R₂) := (hhom R₁ R₂).symm
 
 /-! ===========================================================================
@@ -148,17 +148,17 @@ theorem no_faithful_embedding :
 
 **来源**：`K3.takeConcept ∅ = ∅`（`AlphaConcreteInstance.takeConcept_eq_empty`，实测 `:209`）
 而 `FormalCtx.takeConcept K = K.closureOp`（`Fate/Alpha.lean:302` 的定义展开）。 -/
-theorem K3_closureOp_empty : Fate.AlphaInstance.K3.closureOp
-    (∅ : Set Fate.AlphaInstance.K3.MFCA) = ∅ := by
-  show Fate.AlphaInstance.K3.takeConcept (∅ : Set Fate.AlphaInstance.K3.MFCA) = ∅
-  exact Fate.AlphaInstance.takeConcept_eq_empty
+theorem K3_closureOp_empty : FateV2.Rules.AlphaInstance.K3.closureOp
+    (∅ : Set FateV2.Rules.AlphaInstance.K3.MFCA) = ∅ := by
+  show FateV2.Rules.AlphaInstance.K3.takeConcept (∅ : Set FateV2.Rules.AlphaInstance.K3.MFCA) = ∅
+  exact FateV2.Rules.AlphaInstance.takeConcept_eq_empty
 
 /-- ⭐ **`combClosure ∅ ∅ = ∅`**（上面引理的 `combClosure` 形式）。 -/
 theorem combClosure_empty_empty :
-    Fate.AlphaInstance.WiringFixed.combClosure
-      (∅ : Set Fate.AlphaInstance.K3.MFCA)
-      (∅ : Set Fate.AlphaInstance.K3.MFCA) = ∅ := by
-  unfold Fate.AlphaInstance.WiringFixed.combClosure
+    FateV2.Rules.AlphaInstance.WiringFixed.combClosure
+      (∅ : Set FateV2.Rules.AlphaInstance.K3.MFCA)
+      (∅ : Set FateV2.Rules.AlphaInstance.K3.MFCA) = ∅ := by
+  unfold FateV2.Rules.AlphaInstance.WiringFixed.combClosure
   rw [Set.union_empty]
   exact K3_closureOp_empty
 
@@ -176,11 +176,11 @@ theorem combClosure_empty_empty :
 theorem trivial_embedding_exists :
     ∃ (enc : MeasurableRule Fate.CompNotCommutative.CX
         Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2
-        → Set Fate.AlphaInstance.K3.MFCA),
+        → Set FateV2.Rules.AlphaInstance.K3.MFCA),
         ∀ (a b : MeasurableRule Fate.CompNotCommutative.CX
               Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2),
             enc (a.comp b)
-              = Fate.AlphaInstance.WiringFixed.combClosure (enc a) (enc b) := by
+              = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc a) (enc b) := by
   refine ⟨fun _ => ∅, ?_⟩
   intro a b
   exact (combClosure_empty_empty).symm
@@ -196,11 +196,11 @@ theorem trivial_embedding_exists :
 theorem hom_encoding_not_injective
     (enc : MeasurableRule Fate.CompNotCommutative.CX
         Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2
-        → Set Fate.AlphaInstance.K3.MFCA)
+        → Set FateV2.Rules.AlphaInstance.K3.MFCA)
     (hhom : ∀ (a b : MeasurableRule Fate.CompNotCommutative.CX
               Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2),
             enc (a.comp b)
-              = Fate.AlphaInstance.WiringFixed.combClosure (enc a) (enc b)) :
+              = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc a) (enc b)) :
     ¬ Function.Injective enc := by
   intro hinj
   exact no_faithful_embedding ⟨enc, hinj, hhom⟩

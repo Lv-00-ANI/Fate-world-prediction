@@ -19,7 +19,7 @@ import FateWorld.FateV2.Predict.GlobalMarkovMinimal
   ## 0 本轮的实际结论（先看这个）
 
   本路（第 5 路）的任务是攻 `LMG p G ⟹ GM`。**本轮没有攻下这条蕴含，
-  而是证明了它不该被攻** —— 因为 **`Fate.FactorRecursionRouteB` 里的 `LMG`
+  而是证明了它不该被攻** —— 因为 **`FateV2.Predict.FactorRecursionRouteB` 里的 `LMG`
   定义本身是假的**（有显式反例），连带 **第 1 路要证的 G1（`pa ∩ nd = ∅`）也是假的**。
 
   这比「未证」更强：**不是没证出来，是命题为假**。
@@ -129,7 +129,7 @@ namespace LMGGlobalMarkovRoute5
 
 set_option linter.unusedSimpArgs false
 
-open Fate.FactorRecursionRouteB (LMG Factorizes)
+open FateV2.Predict.FactorRecursionRouteB (LMG Factorizes)
 open Fate.DAGFactorization (pa mass mem_pa)
 
 universe u
@@ -182,12 +182,12 @@ theorem mass_zero_eq : mass ({(0:Fin 3)} : Finset (Fin 3)) pone xt = 4 := by
 /-! ### 4.3 图侧事实（链上 `v = 0`） -/
 
 /-- 链 `0→1→2` 上 `pa(0) = ∅`。 -/
-theorem chain_pa_zero : pa Fate.GlobalMarkovMinimal.chainDAG3 (0:Fin 3) = ∅ := by
-  unfold pa Fate.GlobalMarkovMinimal.chainDAG3; decide
+theorem chain_pa_zero : pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (0:Fin 3) = ∅ := by
+  unfold pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3; decide
 
 /-- 链 `0→1→2` 上 `nonDescendants 0 = ∅`（`1,2` 都是 `0` 的后代）。 -/
 theorem chain_nd_zero :
-    FateV2.Modeling.Graph.DAG.nonDescendants Fate.GlobalMarkovMinimal.chainDAG3 (0:Fin 3) = ∅ := by
+    FateV2.Modeling.Graph.DAG.nonDescendants FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (0:Fin 3) = ∅ := by
   decide
 
 /-! ### 4.4 ⭐ **R5.1：`LMG` 是假的** -/
@@ -196,7 +196,7 @@ theorem chain_nd_zero :
 
   在 `v = 0` 处，`LMG` 断言 `pone xt * mass ∅ = mass {0} * mass ∅`
   即 `1 * 8 = 4 * 8`，矛盾。 -/
-theorem LMG_false : ¬ LMG pone Fate.GlobalMarkovMinimal.chainDAG3 := by
+theorem LMG_false : ¬ LMG pone FateV2.Predict.GlobalMarkovMinimal.chainDAG3 := by
   intro h
   have hp0 := chain_pa_zero
   have hnd0 := chain_nd_zero
@@ -213,7 +213,7 @@ theorem LMG_false : ¬ LMG pone Fate.GlobalMarkovMinimal.chainDAG3 := by
 /-! ### 4.5 ⭐ **R5.2：`Factorizes ⟹ LMG` 是假的** -/
 
 /-- `pone ≡ 1` **满足** RouteB 的 `Factorizes`（全 `φ ≡ 1`）。 -/
-theorem Factorizes_pone : Factorizes pone Fate.GlobalMarkovMinimal.chainDAG3 := by
+theorem Factorizes_pone : Factorizes pone FateV2.Predict.GlobalMarkovMinimal.chainDAG3 := by
   refine ⟨fun _ _ => 1, ?_, ?_⟩
   · intro v x y _; rfl
   · intro x
@@ -223,26 +223,26 @@ theorem Factorizes_pone : Factorizes pone Fate.GlobalMarkovMinimal.chainDAG3 := 
 /-- ⭐⭐⭐ **`Factorizes p G ⇏ LMG p G`**：存在合法因子分解的 `p`（即 `pone`）
      使 `LMG` 失败。**⟹ 第 3 路的目标 `Factorizes_implies_LMG_Gap` 为假，不是未证。** -/
 theorem factorizes_not_implies_LMG :
-    ¬ (Factorizes pone Fate.GlobalMarkovMinimal.chainDAG3
-        → LMG pone Fate.GlobalMarkovMinimal.chainDAG3) :=
+    ¬ (Factorizes pone FateV2.Predict.GlobalMarkovMinimal.chainDAG3
+        → LMG pone FateV2.Predict.GlobalMarkovMinimal.chainDAG3) :=
   fun h => LMG_false (h Factorizes_pone)
 
 /-! ### 4.6 ⭐ **R5.3：G1（`pa ∩ nd = ∅`）是假的** -/
 
 /-- 链上 `pa(1) = {0}`。 -/
-theorem chain_pa_one : pa Fate.GlobalMarkovMinimal.chainDAG3 (1:Fin 3) = {0} := by
-  unfold pa Fate.GlobalMarkovMinimal.chainDAG3; decide
+theorem chain_pa_one : pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1:Fin 3) = {0} := by
+  unfold pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3; decide
 
 /-- 链上 `nonDescendants 1 = {0}`（`0` 不是 `1` 的后代）。 -/
 theorem chain_nd_one :
-    FateV2.Modeling.Graph.DAG.nonDescendants Fate.GlobalMarkovMinimal.chainDAG3 (1:Fin 3) = {0} := by
+    FateV2.Modeling.Graph.DAG.nonDescendants FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1:Fin 3) = {0} := by
   decide
 
 /-- ⭐⭐⭐ **G1 反例**：`pa(1) ∩ nd(1) = {0} ≠ ∅`。
      ⟹ 第 1 路要证的 `pa ∩ nd = ∅` **不成立**（父节点属于「非后代」）。 -/
 theorem g1_false :
-    ¬ Disjoint (pa Fate.GlobalMarkovMinimal.chainDAG3 (1:Fin 3))
-        (FateV2.Modeling.Graph.DAG.nonDescendants Fate.GlobalMarkovMinimal.chainDAG3 (1:Fin 3)) := by
+    ¬ Disjoint (pa FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1:Fin 3))
+        (FateV2.Modeling.Graph.DAG.nonDescendants FateV2.Predict.GlobalMarkovMinimal.chainDAG3 (1:Fin 3)) := by
   rw [Finset.disjoint_left]
   push Not
   refine ⟨0, ?_, ?_⟩

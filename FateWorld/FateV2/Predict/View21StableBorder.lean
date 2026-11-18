@@ -84,7 +84,7 @@ open FateV2.Modeling
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.FactorMarkov (Joint LocalTo Factorizes CondIndep)
+open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes CondIndep)
 
 universe u
 

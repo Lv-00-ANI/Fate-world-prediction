@@ -47,7 +47,7 @@ namespace FateV2.Predict.C5i
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization Fate.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -55,14 +55,14 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 -- ⭐⭐⭐ 终极组合：Pearl 因子化 + dSep + Z ⊆ X ⟹ BlockCI_Gap
 theorem blockCI_of_factorizes_dSep
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
     (hdsep : G.dSep X Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ)
     (hZX : Z ⊆ X) :
     BlockCI_Gap p G X Y Z := by
   -- 先得 CondIndep
-  have hci := Fate.BridgeDSepGeneral.condIndep_of_factorizes_dSep_general p G hfac hdsep hcover
+  have hci := FateV2.Predict.BridgeDSepGeneral.condIndep_of_factorizes_dSep_general p G hfac hdsep hcover
   -- dSep 给出三个 Disjoint
   obtain ⟨hXY, _, _⟩ := (hdsep : _ ∧ _ ∧ _ ∧ _)
   -- X ∪ Y = univ

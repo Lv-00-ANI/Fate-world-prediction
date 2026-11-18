@@ -125,8 +125,8 @@ theorem twoNode_dSep : twoNodeDAG.dSep {0, 1} ∅ ∅ := by
 
 读集：`readSetOf G 0 = {0}`、`readSetOf G 1 = {0,1}`，两者都 `⊆ {0,1} ∪ ∅`。 -/
 theorem twoNode_split :
-    Fate.View19.Split (Fate.FactorizesToHyper.readSetOf twoNodeDAG) {0, 1} ∅ ∅ := by
-  unfold Fate.View19.Split Fate.FactorizesToHyper.readSetOf
+    FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf twoNodeDAG) {0, 1} ∅ ∅ := by
+  unfold FateV2.Predict.View19.Split FateV2.Predict.FactorizesToHyper.readSetOf
   decide
 
 /-- T4: exists a concrete DAG and query with cover, dSep and Split all true.
@@ -149,7 +149,7 @@ Genuine tightness requires `Y` nonempty and `dSep` nontrivial.
 theorem tight_example_two_node :
     ∃ (G : FateV2.Modeling.Graph.DAG (Fin 2)) (X Y Z : Finset (Fin 2)),
       X ∪ Y ∪ Z = Finset.univ ∧ G.dSep X Y Z ∧
-      Fate.View19.Split (Fate.FactorizesToHyper.readSetOf G) X Y Z :=
+      FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf G) X Y Z :=
   by
     exact ⟨twoNodeDAG, ({0, 1} : Finset (Fin 2)), ∅, ∅, by decide, twoNode_dSep, twoNode_split⟩
 /-! ===========================================================================
@@ -164,8 +164,8 @@ theorem twoNode_not_dSep : ¬ twoNodeDAG.dSep {1} {0} ∅ := by
 /-- ⭐ **T6**：`¬ Split (readSetOf twoNodeDAG) {1} {0} ∅` ——
 `readSetOf G 1 = {0,1}` 既不是 `{1} ∪ ∅` 的子集，也不是 `{0} ∪ ∅` 的子集，横跨两侧。 -/
 theorem twoNode_not_split :
-    ¬ Fate.View19.Split (Fate.FactorizesToHyper.readSetOf twoNodeDAG) {1} {0} ∅ := by
-  unfold Fate.View19.Split Fate.FactorizesToHyper.readSetOf
+    ¬ FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf twoNodeDAG) {1} {0} ∅ := by
+  unfold FateV2.Predict.View19.Split FateV2.Predict.FactorizesToHyper.readSetOf
   decide
 
 /-! ===========================================================================
@@ -197,7 +197,7 @@ Genuine tightness requires `Y` nonempty and `dSep` nontrivial.
 它只断言**一个具体实例**处两者的真值一致，从而蕴含在此处**不可再加强**。 -/
 theorem tight_iff_on_example :
     twoNodeDAG.dSep ({0, 1} : Finset (Fin 2)) ∅ ∅ ↔
-      Fate.View19.Split (Fate.FactorizesToHyper.readSetOf twoNodeDAG) {0, 1} ∅ ∅ :=
+      FateV2.Predict.View19.Split (FateV2.Predict.FactorizesToHyper.readSetOf twoNodeDAG) {0, 1} ∅ ∅ :=
   ⟨fun _ => twoNode_split, fun _ => twoNode_dSep⟩
 
 end BridgeGeneralizeTight

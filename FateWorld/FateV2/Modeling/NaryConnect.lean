@@ -82,7 +82,7 @@ variable [MeasurableSingletonClass ((∀ j, fam j) × γ)]
 variable [StandardBorelSpace ((∀ j, fam j) × γ)]
 
 /-- ⭐ **把 `NJoint`（柯里化）转成 `(Pair) → ℝ`**（与 `weightedCountN` 的输入一致）。 -/
-def uncurryN (p : Fate.GenC3.NJoint (ι := ι) fam γ) :
+def uncurryN (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ) :
     ((∀ j, fam j) × γ) → ℝ := fun w => p w.1 w.2
 
 /-- ⚠⚠ **N 元桥的**真正缺口**（**显式登记**）。
@@ -102,6 +102,6 @@ $$\kappa_a(t_1 \cap t_2) \cdot M = \kappa_a(t_1) \cdot \kappa_a(t_2)$$
 **⭐ 本 `def` 只是把这个缺口**结构化地记下来**，
 使它出现在 `#check` 的输出里，防止被误认为已完成。 -/
 def naryBridgeTarget : Prop :=
-  ∀ (_p : Fate.GenC3.NJoint (ι := ι) fam γ), True
+  ∀ (_p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ), True
 
 end Bridge

@@ -57,7 +57,7 @@ import FateWorld.FateV2.Modeling.CondIndepGeneralNZ
 namespace FateV2.Predict.LMGCEquiv
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization Fate.View19
+open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.View19
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α]
@@ -65,12 +65,12 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 -- 先证：pa v ⊆ nd v
 theorem pa_sub_nd (G : FateV2.Modeling.Graph.DAG V) (v : V) :
     pa G v ⊆ G.nonDescendants v :=
-  Fate.BridgeA1.pa_subset_nonDescendants G v
+  FateV2.Predict.BridgeA1.pa_subset_nonDescendants G v
 
 -- ⭐ LMGc ⟺ ∀ v, CondIndep p {v} (nd v) (pa v)
 theorem lmgc_iff (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) :
-    Fate.AncestralInheritanceRouteB.LMGc p G ↔
-      ∀ v : V, Fate.FactorMarkov.CondIndep p {v} (G.nonDescendants v) (pa G v) := by
+    FateV2.Predict.AncestralInheritanceRouteB.LMGc p G ↔
+      ∀ v : V, FateV2.Predict.FactorMarkov.CondIndep p {v} (G.nonDescendants v) (pa G v) := by
   constructor
   · intro h v x
     have hpand := pa_sub_nd G v

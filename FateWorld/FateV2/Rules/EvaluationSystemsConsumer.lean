@@ -1,8 +1,8 @@
 /-
 命运理论 · **EvaluationSystems 的消费方**（EvaluationSystemsConsumer）
 ================================================================================
-模块：`Fate.EvaluationSystemsConsumer`
-依赖：`Fate.EvaluationSystems`
+模块：`FateV2.Rules.EvaluationSystemsConsumer`
+依赖：`FateV2.Rules.EvaluationSystems`
 --------------------------------------------------------------------------------
 (a) 本文件做什么
 --------------------------------------------------------------------------------
@@ -262,10 +262,10 @@ end EvaluationSystems
 
 end FateV2.Rules
 /-! ### §4 公理审计（`#print axioms`） -/
-#print axioms Fate.EvaluationSystems.Consumer.popperBetter_iff
-#print axioms Fate.EvaluationSystems.Consumer.occamBetter_iff
-#print axioms Fate.EvaluationSystems.Consumer.lakatosBetter_iff
-#print axioms Fate.EvaluationSystems.Consumer.popperAndOccamBetter_conflict
-#print axioms Fate.EvaluationSystems.Consumer.popperBetter_occamNotBetter
-#print axioms Fate.EvaluationSystems.Consumer.metaBetter_irrefl_popper
-#print axioms Fate.EvaluationSystems.Consumer.metaBetter_irrefl_occam
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.popperBetter_iff
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.occamBetter_iff
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.lakatosBetter_iff
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.popperAndOccamBetter_conflict
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.popperBetter_occamNotBetter
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.metaBetter_irrefl_popper
+#print axioms FateV2.Rules.EvaluationSystems.Consumer.metaBetter_irrefl_occam

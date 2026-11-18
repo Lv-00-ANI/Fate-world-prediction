@@ -97,7 +97,7 @@ end T112Pair
 
 namespace T112PairProbe
 
-open Fate.T112Unary
+open FateV2.Rules.T112Unary
 
 /-- ⭐ **探针（一）**：单底集里，外延闭包 `lowerPolar ∘ upperPolar`
 与内涵闭包 `upperPolar ∘ lowerPolar` 在**对称** `r` 下**逐点相等**。

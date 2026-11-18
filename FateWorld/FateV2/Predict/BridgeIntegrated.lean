@@ -16,9 +16,9 @@
   ## 依赖（全部已入库、零 `sorry`）
 
   * `Fate.FactorizesToHyper.factorizes_to_hyper` —— `Fate/FactorizesToHyper.lean`
-  * `Fate.GraphToProbView7.condIndep_general` —— `Fate/CondIndepGeneralNZ.lean`
-  * `Fate.FactorMarkov.Factorizes` / `CondIndep` —— `Fate/FactorMarkov.lean`
-  * `Fate.View19.Split` / `ReadSet` —— `Fate/View19FactorGraphSplit.lean`
+  * `FateV2.Predict.GraphToProbView7.condIndep_general` —— `Fate/CondIndepGeneralNZ.lean`
+  * `FateV2.Predict.FactorMarkov.Factorizes` / `CondIndep` —— `Fate/FactorMarkov.lean`
+  * `FateV2.Predict.View19.Split` / `ReadSet` —— `Fate/View19FactorGraphSplit.lean`
   * `Causalean.Graph.DAG.parents` —— `CausDAG.lean`
 
   **零 `sorry` / `admit` / `axiom`**；不修改任何既有模块。
@@ -69,15 +69,15 @@ variable [Nonempty α]
 证明只有一行：`factorizes_to_hyper` 把 `Factorizes p G` 拆成
 「同族因子 `f` + 读集约束 + `HyperFactorizes`」，直接喂给 `condIndep_general`。 -/
 theorem condIndep_of_factorizes_general
-    (p : Fate.FactorMarkov.Joint V α) (G : DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G)
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G)
     {X Y Z : Finset V}
-    (hsplit : Fate.View19.Split (FactorizesToHyper.readSetOf G) X Y Z)
+    (hsplit : FateV2.Predict.View19.Split (FactorizesToHyper.readSetOf G) X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   obtain ⟨f, hread, hhyper⟩ := FactorizesToHyper.factorizes_to_hyper p G hfac
-  exact Fate.GraphToProbView7.condIndep_general f p hhyper hread hsplit
+  exact FateV2.Predict.GraphToProbView7.condIndep_general f p hhyper hread hsplit
     hXY hXZ hYZ hcover
 
 end General
@@ -111,7 +111,7 @@ set_option linter.unusedSectionVars false in
 theorem split_of_parentClosed (G : DAG V) {X Y Z : Finset V}
     (hXZ : parentClosed G (X ∪ Z)) (hYZ : parentClosed G (Y ∪ Z))
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.View19.Split (FactorizesToHyper.readSetOf G) X Y Z := by
+    FateV2.Predict.View19.Split (FactorizesToHyper.readSetOf G) X Y Z := by
   intro v
   have hv : v ∈ X ∪ Y ∪ Z := by rw [hcover]; exact Finset.mem_univ v
   rcases Finset.mem_union.mp hv with hv' | hvz
@@ -135,12 +135,12 @@ variable [Nonempty α]
 
 把 `split_of_parentClosed` 产出的 `Split` 直接喂给 `condIndep_of_factorizes_general`。 -/
 theorem condIndep_of_factorizes_parentClosed
-    (p : Fate.FactorMarkov.Joint V α) (G : DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G)
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G)
     (hXZc : parentClosed G (X ∪ Z)) (hYZc : parentClosed G (Y ∪ Z))
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_of_factorizes_general p G hfac
     (split_of_parentClosed G hXZc hYZc hcover) hXY hXZ hYZ hcover
 

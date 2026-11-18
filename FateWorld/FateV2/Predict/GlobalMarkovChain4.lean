@@ -870,7 +870,7 @@ theorem r28_separable_iff {A C D B : Type u}
     CondMul (reorder4 p) ↔
       ∃ (f : A → (C × D) → ℝ) (g : B → (C × D) → ℝ),
         ∀ x y z, reorder4 p ((x, y), z) = f x z * g y z :=
-  Fate.GlobalMarkovMinimal.condMul_iff_separable (reorder4 p) hpos
+  FateV2.Predict.GlobalMarkovMinimal.condMul_iff_separable (reorder4 p) hpos
 
 /-- ⭐⭐⭐ **`ChainMarkov4` + 正性 ⟹ 显式可分离见证**（**真消费主定理 A**）。
 
@@ -884,7 +884,7 @@ theorem r28_chainMarkov4_separable {A C D B : Type u}
     ∃ (f : A → (C × D) → ℝ) (g : B → (C × D) → ℝ),
       ∀ x y z, reorder4 p ((x, y), z) = f x z * g y z := by
   have hm := chainMarkov4_condMul p h
-  exact Fate.GlobalMarkovMinimal.condMul_gives_separable (reorder4 p) hm hpos
+  exact FateV2.Predict.GlobalMarkovMinimal.condMul_gives_separable (reorder4 p) hm hpos
 
 /-- ⭐ **数值见证**：`Fin 2` 上的均匀四节点律满足**平凡可分离分解** `1 = 1 * 1`。
 

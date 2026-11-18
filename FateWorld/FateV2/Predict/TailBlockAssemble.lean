@@ -38,7 +38,7 @@ namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Modeling
 
-open Finset FateV2.Error Fate.View19
+open Finset FateV2.Error FateV2.Predict.View19
 
 universe u
 
@@ -52,7 +52,7 @@ theorem alg_step (c m1 m2 m3 m4 : ℝ) (h : m1 * m2 = m3 * m4) :
 /-- 辅助：`p` 只读 `A`（当 `hfacA` 与 `hA`、`hread` 成立时）。 -/
 theorem hp_of_facA {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V → Finset V}
     {p : (V → α) → ℝ} (hfacA : ∀ w, p w = ∏ v ∈ A, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R) (hA : ∀ v, R v ⊆ A) :
+    (hread : FateV2.Predict.View19.ReadSet ψ R) (hA : ∀ v, R v ⊆ A) :
     ∀ w w', (∀ u ∈ A, w u = w' u) → p w = p w' := by
   intro w w' h
   rw [hfacA w, hfacA w']
@@ -84,11 +84,11 @@ theorem mass_eq_c_mul_massA {A S : Finset V} (hSA : S ⊆ A)
 theorem condIndep_tail_HA {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
     (hfacA : ∀ w, p w = ∏ v ∈ X ∪ Y ∪ Z, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hA : ∀ v, R v ⊆ X ∪ Y ∪ Z)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   classical
   intro x
   set A := X ∪ Y ∪ Z with hAdef

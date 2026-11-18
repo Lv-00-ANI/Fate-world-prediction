@@ -307,8 +307,8 @@ $$\mathrm{mass}\,(\mathrm{insert}\,v\,S)\,p\,x
 `g`-边缘用纤维重标号 `mass_insert_off_left` 与 `x` 无关；
 再对 `v` 位用 `mass_insert_sum'`（**一次**求和）与 `FactorNorm` 收束。
 **全程无 `mass` 嵌套。** -/
-theorem peel (hloc : Fate.FactorMarkov.LocalTo G f)
-    (hnorm : Fate.FactorMarkov.FactorNorm f)
+theorem peel (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
+    (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     (hfac : ∀ z, p z = ∏ u, f u z)
     {v : V} {S : Finset V} (hvS : v ∉ S) (hpa : Fate.DAGFactorization.pa G v ⊆ S)
     (hsink : ∀ w : V, w ≠ v → v ∉ Fate.DAGFactorization.pa G w)
@@ -423,7 +423,7 @@ end Assemble
 
 namespace Counterexample
 
-open Fate.FactorRecursionRouteB (arrowDAG)
+open FateV2.Predict.FactorRecursionRouteB (arrowDAG)
 
 /-- 反例用的 `p`：`p z := if z 0 then 1 else 0`（**读 `z 0`**，即 `0` 的**子节点**效应）。-/
 noncomputable def pce : (Fin 2 → Bool) → ℝ := fun z => if z 0 then 1 else 0
@@ -435,7 +435,7 @@ noncomputable def fce : Fin 2 → (Fin 2 → Bool) → ℝ
   | 1, z => if z 0 then 1 else 0
 
 /-- `fce` 局部于 `arrowDAG`（`f 1` 读 `{1} ∪ pa 1 = {1,0}`；`f 0` 常数）。 -/
-theorem fce_local : Fate.FactorMarkov.LocalTo arrowDAG fce := by
+theorem fce_local : FateV2.Predict.FactorMarkov.LocalTo arrowDAG fce := by
   intro v x y hxy
   fin_cases v
   · -- v = 0：`fce 0` 常数

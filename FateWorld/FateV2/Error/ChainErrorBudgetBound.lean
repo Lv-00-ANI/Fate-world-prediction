@@ -185,7 +185,7 @@ open FateV2.Loop.OptimalEta
 open FateV2.Loop.BoundWriteBack
 open FateV2.Loop.ClosedLoopNoisy
 open FateV2.Loop.ThetaConvergence
-open Fate.AssemblyLearnsScratch
+open FateV2.Loop.AssemblyLearnsScratch
 
 /-!
   # Error · ChainErrorBudgetBound

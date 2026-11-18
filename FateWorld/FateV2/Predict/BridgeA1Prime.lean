@@ -130,20 +130,20 @@ theorem card_pa_union_de (G : FateV2.Modeling.Graph.DAG V) (v : V) :
 
 /-! ## §2 对照：A1（`pa ∩ nd`）为何不是不交陈述（重申 + 自足化）
 
-以下三条与 `Fate.BridgeA1` 的结论一致，重述以便本文件自足，
+以下三条与 `FateV2.Predict.BridgeA1` 的结论一致，重述以便本文件自足，
 并**明确区分** A1 的「塌缩」与 A1' 的「不交」。
-（证明直接调用 `Fate.BridgeA1.pa_inter_nonDescendants_eq` 等，
+（证明直接调用 `FateV2.Predict.BridgeA1.pa_inter_nonDescendants_eq` 等，
 不重新发明。） -/
 
 /-- **A1（原陈述）的真相**：`pa ∩ nd` 塌缩为 `pa`，与 `pa ∩ de = ∅` 形成对照。 -/
 theorem pa_inter_nd_eq_pa (G : FateV2.Modeling.Graph.DAG V) (v : V) :
     pa G v ∩ G.nonDescendants v = pa G v :=
-  Fate.BridgeA1.pa_inter_nonDescendants_eq G v
+  FateV2.Predict.BridgeA1.pa_inter_nonDescendants_eq G v
 
 /-- **A1' 与 A1 的分野**：`pa v` 中的任一元素都落在 `nd v` 里、且**不**落在 `de v` 里。 -/
 theorem pa_mem_nd_and_not_de (G : FateV2.Modeling.Graph.DAG V) {u : V} (hu : u ∈ pa G v) :
     u ∈ G.nonDescendants v ∧ u ∉ de G v :=
-  ⟨Fate.BridgeA1.pa_subset_nonDescendants G v hu, not_mem_de_of_mem_pa hu⟩
+  ⟨FateV2.Predict.BridgeA1.pa_subset_nonDescendants G v hu, not_mem_de_of_mem_pa hu⟩
 
 /-- **A1' 的可证性对照**：`pa G v ∩ de G v = ∅` 对**所有** DAG、所有 `v` 成立，
 无需任何附加条件（对比 `a1_universally_false` 中被否证的 A1）。 -/

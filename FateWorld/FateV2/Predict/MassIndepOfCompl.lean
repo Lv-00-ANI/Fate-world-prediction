@@ -42,7 +42,7 @@ import FateWorld.FateV2.Predict.MassAEqCorrected
 namespace FateV2.Predict.C17
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 
 set_option maxHeartbeats 1000000
@@ -77,7 +77,7 @@ theorem mass_indep_of_reads_compl {T : Finset V} {g : (V → α) → ℝ}
     (hg : ∀ w w', (∀ u ∈ univ \ T, w u = w' u) → g w = g w')
     (x y : V → α) : mass T g x = mass T g y := by
   classical
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   rw [← Finset.sum_filter, ← Finset.sum_filter]
   -- 两边都用 sum_bij，通过 glueT T y 把 x 侧的纤维映射到 y 侧的纤维
   refine Finset.sum_bij' (M := ℝ) (f := g) (g := g)
@@ -145,7 +145,7 @@ end FateV2.Predict.C17
   全部定理均为完整证明，无占位符。
   =========================================================================== -/
 
-namespace Fate.R17Mass
+namespace FateV2.Predict.R17Mass
 
 open Finset
 universe u
@@ -153,63 +153,63 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 /-- ⭐ **1**. `mass (T \ {s})` 对常数 1 的取值是 `mass T` 的 `|α|` 倍。 -/
 theorem mass_sdiff_one {T : Finset V} {s : V} (hsT : s ∈ T) (x : V → α) :
-    Fate.DAGFactorization.mass (T \ {s}) (fun _ => (1 : ℝ)) x
-      = (Fintype.card α : ℝ) * Fate.DAGFactorization.mass T (fun _ => (1 : ℝ)) x :=
-  Fate.C11.mass_sdiff_of_const hsT 1 x
+    FateV2.Predict.DAGFactorization.mass (T \ {s}) (fun _ => (1 : ℝ)) x
+      = (Fintype.card α : ℝ) * FateV2.Predict.DAGFactorization.mass T (fun _ => (1 : ℝ)) x :=
+  FateV2.Predict.C11.mass_sdiff_of_const hsT 1 x
 
 /-- ⭐ **2**. `multS` 的删点递推：`multS (T \ {s}) = |α| * multS T`。
 组合 `C11`（`mass` 层面）与 `C8`（`mass ⟷ multS` 桥梁）。 -/
 theorem multS_sdiff {T : Finset V} {s : V} (hsT : s ∈ T) (x : V → α) :
-    Fate.TowerExactLaw.multS (T \ {s}) x
-      = (Fintype.card α : ℝ) * Fate.TowerExactLaw.multS T x := by
+    FateV2.Predict.TowerExactLaw.multS (T \ {s}) x
+      = (Fintype.card α : ℝ) * FateV2.Predict.TowerExactLaw.multS T x := by
   classical
-  have h1 := Fate.C8.mass_eq_multS_of_reads (S := T \ {s}) (g := fun _ => (1 : ℝ))
+  have h1 := FateV2.Predict.C8.mass_eq_multS_of_reads (S := T \ {s}) (g := fun _ => (1 : ℝ))
     (fun _ _ _ => rfl) x
-  have h2 := Fate.C8.mass_eq_multS_of_reads (S := T) (g := fun _ => (1 : ℝ))
+  have h2 := FateV2.Predict.C8.mass_eq_multS_of_reads (S := T) (g := fun _ => (1 : ℝ))
     (fun _ _ _ => rfl) x
   simp only [mul_one] at h1 h2
-  have h := Fate.C11.mass_sdiff_of_const (T := T) (s := s) hsT 1 x
+  have h := FateV2.Predict.C11.mass_sdiff_of_const (T := T) (s := s) hsT 1 x
   rw [h1, h2] at h
   exact h
 
 /-- ⭐ **3**. `multS S x` 与 `x` 无关，等于 `|α|^(|V| - |S|)`。
 组合 `C8`（桥梁）与 `C7.b_one`（边界值）。 -/
 theorem multS_eq_card_pow (S : Finset V) (x : V → α) :
-    Fate.TowerExactLaw.multS S x
+    FateV2.Predict.TowerExactLaw.multS S x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) := by
-  have h := Fate.C8.mass_eq_multS_of_reads (S := S) (g := fun _ => (1 : ℝ))
+  have h := FateV2.Predict.C8.mass_eq_multS_of_reads (S := S) (g := fun _ => (1 : ℝ))
     (fun _ _ _ => rfl) x
   rw [mul_one] at h
-  rw [← h, Fate.C7.b_one]
+  rw [← h, FateV2.Predict.C7.b_one]
 
 /-- ⭐ **4**. `mass S 1 x = multS S x`（`C8` 的 `g ≡ 1` 特化）。 -/
 theorem mass_one_eq_multS (S : Finset V) (x : V → α) :
-    Fate.DAGFactorization.mass S (fun _ => (1 : ℝ)) x = Fate.TowerExactLaw.multS S x := by
-  rw [Fate.C8.mass_eq_multS_of_reads (S := S) (g := fun _ => (1 : ℝ))
+    FateV2.Predict.DAGFactorization.mass S (fun _ => (1 : ℝ)) x = FateV2.Predict.TowerExactLaw.multS S x := by
+  rw [FateV2.Predict.C8.mass_eq_multS_of_reads (S := S) (g := fun _ => (1 : ℝ))
     (fun _ _ _ => rfl) x, mul_one]
 
 /-- ⭐ **5**. `multS` 的插点递推：`multS S = |α| * multS (insert h S)`。
 组合定理 4 与 `S13HoistFixed.mass_insert_corrected`（`MassInsertCorrected`）。 -/
 theorem multS_insert {h : V} {S : Finset V} (sh : h ∉ S) (x : V → α) :
-    Fate.TowerExactLaw.multS S x
-      = (Fintype.card α : ℝ) * Fate.TowerExactLaw.multS (insert h S) x := by
+    FateV2.Predict.TowerExactLaw.multS S x
+      = (Fintype.card α : ℝ) * FateV2.Predict.TowerExactLaw.multS (insert h S) x := by
   rw [← mass_one_eq_multS, ← mass_one_eq_multS]
-  exact Fate.S13HoistFixed.mass_insert_corrected (h := h) (S := S) sh
+  exact FateV2.Predict.S13HoistFixed.mass_insert_corrected (h := h) (S := S) sh
     (g := fun _ => (1 : ℝ)) (fun _ _ _ => rfl) x
 
 /-- ⭐ **6**（`View19` × `C7` 定量闭合式）：读集被 `S` 覆盖的因子集 `W`
 可从 `mass S` 整体提出，且剩余 `mass S 1` 恰为 `|α|^(|V| - |S|)`。
 组合 `View19.mass_prod_cover` 与 `C7.b_one`。 -/
 theorem mass_prod_cover_one (ψ : V → (V → α) → ℝ) {R : V → Finset V}
-    (hread : Fate.View19.ReadSet ψ R) {S : Finset V} (W : Finset V)
+    (hread : FateV2.Predict.View19.ReadSet ψ R) {S : Finset V} (W : Finset V)
     (hW : ∀ v ∈ W, R v ⊆ S) (x : V → α) :
-    Fate.DAGFactorization.mass S (fun w => (∏ v ∈ W, ψ v w) * (1 : ℝ)) x
+    FateV2.Predict.DAGFactorization.mass S (fun w => (∏ v ∈ W, ψ v w) * (1 : ℝ)) x
       = (∏ v ∈ W, ψ v x) * ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) := by
-  rw [Fate.View19.mass_prod_cover ψ hread W hW (fun _ => (1 : ℝ)) x, Fate.C7.b_one]
+  rw [FateV2.Predict.View19.mass_prod_cover ψ hread W hW (fun _ => (1 : ℝ)) x, FateV2.Predict.C7.b_one]
 
 /-- ⭐ **7**. §0 的补集无关性对常数 `g` 的特化：`mass T c` 与 `x` 无关。 -/
 theorem mass_const_indep (T : Finset V) (c : ℝ) (x y : V → α) :
-    Fate.DAGFactorization.mass T (fun _ => c) x = Fate.DAGFactorization.mass T (fun _ => c) y :=
+    FateV2.Predict.DAGFactorization.mass T (fun _ => c) x = FateV2.Predict.DAGFactorization.mass T (fun _ => c) y :=
   FateV2.Predict.C17.mass_indep_of_reads_compl (T := T) (g := fun _ => c) (fun _ _ _ => rfl) x y
 
 /-- ⭐ **8**. `C5e.mass_factor_of_reads` 的 `C = A` 特例：
@@ -217,9 +217,9 @@ theorem mass_const_indep (T : Finset V) (c : ℝ) (x y : V → α) :
 theorem mass_factor_of_reads_A {A Z : Finset V} (hAZ : A ⊆ Z)
     {f : (V → α) → ℝ} (hf : ∀ w w', (∀ u ∈ A, w u = w' u) → f w = f w')
     (ω₀ x : V → α) :
-    Fate.DAGFactorization.mass A f x
-      = ((Fintype.card α : ℝ) ^ (Z.card - A.card)) * Fate.DAGFactorization.mass Z f x :=
-  Fate.C5e.mass_factor_of_reads (A := A) (C := A) (Z := Z) hAZ (Finset.Subset.refl A)
+    FateV2.Predict.DAGFactorization.mass A f x
+      = ((Fintype.card α : ℝ) ^ (Z.card - A.card)) * FateV2.Predict.DAGFactorization.mass Z f x :=
+  FateV2.Predict.C5e.mass_factor_of_reads (A := A) (C := A) (Z := Z) hAZ (Finset.Subset.refl A)
     (by rw [Finset.inter_comm]; exact Finset.inter_eq_left.mpr hAZ) hf ω₀ x
 
 /-- ⭐ **9**. `Direct.mass_eq_of_reads_cover` 与 `S13HoistFixed.mass_self_insert`
@@ -227,15 +227,15 @@ theorem mass_factor_of_reads_A {A Z : Finset V} (hAZ : A ⊆ Z)
 theorem mass_reads_cover_self_insert {S : Finset V} {ψ : V → (V → α) → ℝ}
     {p : (V → α) → ℝ} (hfac : ∀ w, p w = ∏ v, ψ v w)
     (hread : ∀ v, ∀ w w', (∀ u ∈ S, w u = w' u) → ψ v w = ψ v w') (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) * p x :=
-  Fate.Direct.mass_eq_of_reads_cover hfac hread x
+  FateV2.Predict.Direct.mass_eq_of_reads_cover hfac hread x
 
 /-- ⭐ **10**. 边界值 × 删点：`mass (T \ {s}) 1 x = |α| * |α|^(|V| - |T|)`。
 组合 `C11.mass_sdiff_of_const` 与 `C7.b_one`。 -/
 theorem mass_boundary_one_sdiff {T : Finset V} {s : V} (hsT : s ∈ T) (x : V → α) :
-    Fate.DAGFactorization.mass (T \ {s}) (fun _ => (1 : ℝ)) x
+    FateV2.Predict.DAGFactorization.mass (T \ {s}) (fun _ => (1 : ℝ)) x
       = (Fintype.card α : ℝ) * ((Fintype.card α : ℝ) ^ (Fintype.card V - T.card)) := by
-  rw [mass_sdiff_one hsT x, Fate.C7.b_one]
+  rw [mass_sdiff_one hsT x, FateV2.Predict.C7.b_one]
 
-end Fate.R17Mass
+end FateV2.Predict.R17Mass

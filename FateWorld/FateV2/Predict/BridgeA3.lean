@@ -83,7 +83,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace BridgeA3
 
-open Finset Fate.DAGFactorization Fate.FactorRecursionRouteB
+open Finset Fate.DAGFactorization FateV2.Predict.FactorRecursionRouteB
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false

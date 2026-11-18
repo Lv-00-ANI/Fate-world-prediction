@@ -75,32 +75,32 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
 这条定理是「合并」的**形式化**：不删定义，但下游可据它**任选一份**调用，
 不必关心用的是 `CausalClassificationBridge` 还是 `CausalFCAAdjacency` 的版本。 -/
 theorem ctxOf_agree (G : DAG V) :
-    Fate.CausalClassificationBridge.ctxOf G
-      = Fate.CausalFCAAdjacency.ctxOf G := rfl
+    FateV2.Predict.CausalClassificationBridge.ctxOf G
+      = FateV2.Predict.CausalFCAAdjacency.ctxOf G := rfl
 
 /-- 同一事实的 **`funext` 形式**：两个 `ctxOf` 作为 `DAG V → FateV2.Rules.FormalCtx` 函数相等。 -/
 theorem ctxOf_GFCA_agree :
-    (Fate.CausalClassificationBridge.ctxOf :
+    (FateV2.Predict.CausalClassificationBridge.ctxOf :
         DAG V → FateV2.Rules.FormalCtx)
-      = (Fate.CausalFCAAdjacency.ctxOf : DAG V → FateV2.Rules.FormalCtx) :=
+      = (FateV2.Predict.CausalFCAAdjacency.ctxOf : DAG V → FateV2.Rules.FormalCtx) :=
   funext ctxOf_agree
 
 /-! ## §2 逐字段一致 -/
 
 /-- ⭐ **对象集字段一致**。 -/
 theorem ctxOf_GFCA_fields (G : DAG V) :
-    (Fate.CausalClassificationBridge.ctxOf G).GFCA
-      = (Fate.CausalFCAAdjacency.ctxOf G).GFCA := rfl
+    (FateV2.Predict.CausalClassificationBridge.ctxOf G).GFCA
+      = (FateV2.Predict.CausalFCAAdjacency.ctxOf G).GFCA := rfl
 
 /-- ⭐ **属性集字段一致**。 -/
 theorem ctxOf_MFCA_fields (G : DAG V) :
-    (Fate.CausalClassificationBridge.ctxOf G).MFCA
-      = (Fate.CausalFCAAdjacency.ctxOf G).MFCA := rfl
+    (FateV2.Predict.CausalClassificationBridge.ctxOf G).MFCA
+      = (FateV2.Predict.CausalFCAAdjacency.ctxOf G).MFCA := rfl
 
 /-- ⭐ **关系字段逐点等价**：两份 `Irel` 在任意 `a b` 上等价。 -/
 theorem ctxOf_Irel_agree (G : DAG V) (a b : V) :
-    (Fate.CausalClassificationBridge.ctxOf G).Irel a b
-      ↔ (Fate.CausalFCAAdjacency.ctxOf G).Irel a b :=
+    (FateV2.Predict.CausalClassificationBridge.ctxOf G).Irel a b
+      ↔ (FateV2.Predict.CausalFCAAdjacency.ctxOf G).Irel a b :=
   Iff.rfl
 
 /-! ## §3 合并后可用的统一接口 -/
@@ -108,16 +108,16 @@ theorem ctxOf_Irel_agree (G : DAG V) (a b : V) :
 /-- ⭐⭐ **统一接口**：给定 `G`，`unifiedCtxOf G` 就是那个唯一的 `FormalCtx`。
 它**借用** `CausalFCAAdjacency.ctxOf`（避免再抄第三遍）。 -/
 def unifiedCtxOf (G : DAG V) : FateV2.Rules.FormalCtx :=
-  Fate.CausalFCAAdjacency.ctxOf G
+  FateV2.Predict.CausalFCAAdjacency.ctxOf G
 
 /-- ⭐⭐ `unifiedCtxOf` 与 `CausalFCAAdjacency.ctxOf` 相同（`rfl`）。 -/
 theorem unifiedCtxOf_eq_adjacency (G : DAG V) :
-    unifiedCtxOf G = Fate.CausalFCAAdjacency.ctxOf G := rfl
+    unifiedCtxOf G = FateV2.Predict.CausalFCAAdjacency.ctxOf G := rfl
 
 /-- ⭐⭐⭐ `unifiedCtxOf` 与 `CausalClassificationBridge.ctxOf` 也相同——
 **这就是「合并」的落点**：一份接口，两份来源都对得上。 -/
 theorem unifiedCtxOf_eq_bridge (G : DAG V) :
-    unifiedCtxOf G = Fate.CausalClassificationBridge.ctxOf G :=
+    unifiedCtxOf G = FateV2.Predict.CausalClassificationBridge.ctxOf G :=
   (ctxOf_agree G).symm
 
 /-- ⭐ `unifiedCtxOf` 的对象集是 `V`。 -/

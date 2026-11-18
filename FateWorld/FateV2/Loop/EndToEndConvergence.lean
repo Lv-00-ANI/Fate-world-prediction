@@ -50,7 +50,7 @@ namespace EndToEndConvergence
 
 open FateV2.Loop.EndToEnd
 open FateV2.Loop.ThetaConvergence
-open Fate.EndToEndPipelineBridge
+open FateV2.Loop.EndToEndPipelineBridge
 open PipelineTendstoGen
 open Filter
 open scoped Topology

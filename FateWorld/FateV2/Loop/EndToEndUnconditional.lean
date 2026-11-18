@@ -158,7 +158,7 @@ theorem endToEndIter_linWorld_tendsto_unconditional
     rw [hconst]
     exact tendsto_const_nhds
   · intro hx
-    exact Fate.EndToEndPipelineTendsto.endToEndIter_linWorld_tendsto
+    exact FateV2.Loop.EndToEndPipelineTendsto.endToEndIter_linWorld_tendsto
       η θstar x θ₀ hx hη
 
 /-! ===========================================================================

@@ -107,7 +107,7 @@
 >   而且还需要考虑是否需要变成一个自更新的元评价体系以及多种评价体系同时存在**」
 
 **§7 交付了什么**：
-- `def ruleSpecSystem [Fate.RuleSpec C X Y] : EvaluationSystem C X Y`——
+- `def ruleSpecSystem [FateV2.Rules.RuleSpec C X Y] : EvaluationSystem C X Y`——
   这是 **`RuleSpec` → `EvaluationSystem` 的桥**。
   `Fate/GammaOperator.lean:644` 的 `class RuleSpec` 恰好提供
   `le` / `refl` / `trans` 三个字段，与本文件的 `le` / `le_refl` / `le_trans`
@@ -211,7 +211,7 @@
 
 **(g-1) §9 做到的（如实登记，逐条对应）**
 1. `noncomputable def independenceOf`——**第 2 个有真公式的维度**（第 1 个是 §8 的
-   `falsifiabilityOf`）。用**已有的** `Fate.RuleSpec.le`：
+   `falsifiabilityOf`）。用**已有的** `FateV2.Rules.RuleSpec.le`：
    不可比 ⟹ `1`，可比 ⟹ `0`。
 2. `theorem independenceOf_mem_Icc`——值域 `[0,1]`。
 3. `noncomputable def simplicityOfSet`——**第 3 个有真公式的维度**，落在**规则集**
@@ -449,7 +449,7 @@ class RuleCovers (C) (X) (Y) (I) [MeasurableSpace X.Carrier] [MeasurableSpace Y.
 -/
 
 import FateWorld.FateV2.Rules.RuleEvaluation
--- ⭐ **新增的唯一 import**：`Fate.RuleSpec` 定义在 `Fate/GammaOperator.lean:644`。
+-- ⭐ **新增的唯一 import**：`FateV2.Rules.RuleSpec` 定义在 `Fate/GammaOperator.lean:644`。
 -- 本文件的 §7（`ruleSpecSystem`）需要它；不改动任何已有模块，只是本文件多引入一条依赖。
 import FateWorld.FateV2.Rules.GammaOperator
 namespace FateV2.Rules
@@ -738,25 +738,25 @@ class RuleSpec (C) (X) (Y) [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrie
 要数值化需要具体的 `Dimensions` 实例。 -/
 def ruleSpecSystem {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
     [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrier]
-    [Fate.RuleSpec C X Y] : EvaluationSystem C X Y where
+    [FateV2.Rules.RuleSpec C X Y] : EvaluationSystem C X Y where
   name := "RuleSpec"
   Eval := Rule C X Y
   eval := id
-  le := Fate.RuleSpec.le
-  le_refl := Fate.RuleSpec.refl
-  le_trans := fun _ _ _ hab hbc => Fate.RuleSpec.trans hab hbc
+  le := FateV2.Rules.RuleSpec.le
+  le_refl := FateV2.Rules.RuleSpec.refl
+  le_trans := fun _ _ _ hab hbc => FateV2.Rules.RuleSpec.trans hab hbc
 
 /-- ⭐⭐ **【`ruleSpecSystem` 上的「更好」与 `RuleSpec.le` 严格对应】**
 
 本定理用 `RuleEval.Better`（`Fate/RuleEvaluation.lean:155`）表述：
 `Better r₁ r₂ := le (eval r₂) (eval r₁) ∧ ¬ le (eval r₁) (eval r₂)`。
 把 `ruleSpecSystem` 通过 §3 的 `toRuleEvaluation` 桥注册后，
-`Better` 的 `le` **就是** `Fate.RuleSpec.le`，`eval` **就是** `id`。
+`Better` 的 `le` **就是** `FateV2.Rules.RuleSpec.le`，`eval` **就是** `id`。
 
 **⚠ 前件与结论的关系（自审，防同义反复）**：
 本定理**没有把结论包进前件**。前件有且仅有：
 - `[MeasurableSpace X.Carrier]` / `[MeasurableSpace Y.Carrier]`（实例参数，构造 `Rule` 所必需）；
-- `[Fate.RuleSpec C X Y]`（实例参数，提供 `le` 及其两条律）；
+- `[FateV2.Rules.RuleSpec C X Y]`（实例参数，提供 `le` 及其两条律）；
 - 两个规则 `r₁ r₂ : Rule C X Y`。
 结论是「`Better`（在 `ruleSpecSystem` 诱导的 `RuleEvaluation` 实例下）
 恰好等价于 `RuleSpec.le r₂ r₁ ∧ ¬ RuleSpec.le r₁ r₂`」。
@@ -769,10 +769,10 @@ def ruleSpecSystem {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
 ⟹ **不**声称它给出了「哪个规则更好」的任何判定。 -/
 theorem ruleSpecSystem_better_iff {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
     [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrier]
-    [Fate.RuleSpec C X Y] (r₁ r₂ : Rule C X Y) :
+    [FateV2.Rules.RuleSpec C X Y] (r₁ r₂ : Rule C X Y) :
     @RuleEval.Better C X Y _ _
       (EvaluationSystem.toRuleEvaluation (ruleSpecSystem (C := C) (X := X) (Y := Y)))
-      r₁ r₂ ↔ (Fate.RuleSpec.le r₂ r₁ ∧ ¬ Fate.RuleSpec.le r₁ r₂) := by
+      r₁ r₂ ↔ (FateV2.Rules.RuleSpec.le r₂ r₁ ∧ ¬ FateV2.Rules.RuleSpec.le r₁ r₂) := by
   rfl
 
 /-! ===========================================================================
@@ -938,9 +938,9 @@ theorem falsifiability_det_ge_nondet {C : CtxSpace} {X : StateSpace} {Y : OutSpa
 这与 §8 `falsifiabilityOf` 的处置**一致**。 -/
 noncomputable def independenceOf {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
     [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrier]
-    [Fate.RuleSpec C X Y] (R₁ R₂ : Rule C X Y) : ℝ := by
+    [FateV2.Rules.RuleSpec C X Y] (R₁ R₂ : Rule C X Y) : ℝ := by
   classical
-  exact if (Fate.RuleSpec.le R₁ R₂ ∨ Fate.RuleSpec.le R₂ R₁) then 0 else 1
+  exact if (FateV2.Rules.RuleSpec.le R₁ R₂ ∨ FateV2.Rules.RuleSpec.le R₂ R₁) then 0 else 1
 
 /-- ⭐ **`independenceOf` 的值域在 `[0, 1]`。**
 
@@ -951,7 +951,7 @@ noncomputable def independenceOf {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
 ⟹ **不是**同义反复，但**很浅**（输出只有两点，区间界显然）。 -/
 theorem independenceOf_mem_Icc {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
     [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrier]
-    [Fate.RuleSpec C X Y] (R₁ R₂ : Rule C X Y) :
+    [FateV2.Rules.RuleSpec C X Y] (R₁ R₂ : Rule C X Y) :
     independenceOf R₁ R₂ ∈ Set.Icc (0 : ℝ) 1 := by
   unfold independenceOf
   split <;> simp
@@ -2052,7 +2052,7 @@ grep -n ": Dimensions" Fate/EvaluationSystems.lean
 |---|---|---|---|
 | `simplicity` | `simplicityOfSet (Rs : FateV2.Model.Rules C X Y) : ℝ` | `Rule C X Y → ℝ` | 收**规则集** `Rules`，不是单条 `Rule` |
 | `consistency` | `consistencyOf (R₁ R₂ : Rule C X Y) : ℝ` | `Rule C X Y → ℝ` | **两参**，缺第二条规则 |
-| `independence` | `independenceOf (R₁ R₂ : Rule C X Y) : ℝ` | `Rule C X Y → ℝ` | **两参**（且需 `[Fate.RuleSpec C X Y]`）|
+| `independence` | `independenceOf (R₁ R₂ : Rule C X Y) : ℝ` | `Rule C X Y → ℝ` | **两参**（且需 `[FateV2.Rules.RuleSpec C X Y]`）|
 | `novelty` | `noveltyOf (Rs : FateV2.Model.Rules C X Y) (R : Rule C X Y) : ℝ` | `Rule C X Y → ℝ` | **`Rules` + `Rule` 两参** |
 | `robustness` | `robustnessOf (R) (c : C.Carrier) (x : X.Carrier) : ℝ` | `Rule C X Y → ℝ` | **三参**（且需 `PseudoMetricSpace X.Carrier`）|
 

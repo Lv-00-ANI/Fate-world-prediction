@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.WorldModelReadsTheta
 -/
 
 /-! ===========================================================================
-  `Fate.LearnFunctionUnified` —— **NN2：把「θ 是函数的学习」与「θ 是点的学习」聚合**
+  `FateV2.Loop.LearnFunctionUnified` —— **NN2：把「θ 是函数的学习」与「θ 是点的学习」聚合**
 
   ## 0  任务与定位
 
@@ -23,8 +23,8 @@ import FateWorld.FateV2.Loop.WorldModelReadsTheta
 
   | 上游模块 | 提供的东西 |
   |---|---|
-  | `Fate.LearnFunction` | 「θ 是**函数**」的**逐点（Dirac）**学习：`stepFun` / `stepFunN` / `tN`；主定理 `tendsto_stepFunN_apply`（在 `x` 处收敛）、`stepFunN_apply_of_ne`（其他点不动）|
-  | `Fate.ThetaExpressiveness` | 「θ 是**点**」`Θ := ℝ` 与「θ 是**函数**」`Θ := ℝ → ℝ` 的**表达力**对比；反例 `counterexample : ℝ → ℝ` 与 `not_point_expressible_counterexample` |
+  | `FateV2.Loop.LearnFunction` | 「θ 是**函数**」的**逐点（Dirac）**学习：`stepFun` / `stepFunN` / `tN`；主定理 `tendsto_stepFunN_apply`（在 `x` 处收敛）、`stepFunN_apply_of_ne`（其他点不动）|
+  | `FateV2.Model.ThetaExpressiveness` | 「θ 是**点**」`Θ := ℝ` 与「θ 是**函数**」`Θ := ℝ → ℝ` 的**表达力**对比；反例 `counterexample : ℝ → ℝ` 与 `not_point_expressible_counterexample` |
   | `Fate.WorldModelReadsTheta` | 一个**真正读 θ** 的 `WorldModel` 实例 `wmWorldModel`（`step = θ*x+u+ε+a`）与其 `predFrom` 闭式 |
   | `Fate.EndToEnd` | 端到端全链 `endToEnd`（`θ' = θ + η * φ (x̂_obs − x̂_pred)`）|
 
@@ -112,8 +112,8 @@ namespace FateV2.Loop
 open FateV2.Modeling
 namespace LearnFunctionUnified
 
-open Fate.LearnFunction
-open Fate.ThetaExpressiveness
+open FateV2.Loop.LearnFunction
+open FateV2.Model.ThetaExpressiveness
 open Filter
 
 /-! ===========================================================================

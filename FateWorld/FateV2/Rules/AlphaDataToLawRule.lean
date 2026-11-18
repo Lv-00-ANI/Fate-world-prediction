@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaDataToLawRule`
+模块：`FateV2.Rules.AlphaDataToLawRule`
 阶段：**P2 桥的第 2 半 —— 规则提取（`dgBasis` → `LawRule`）**
 
 ---------------------------------------------------------------------------
@@ -380,13 +380,13 @@ end AlphaData
     §5  公理审计
     =========================================================================== -/
 
-#print axioms Fate.AlphaData.dgRule_respected
-#print axioms Fate.AlphaData.dgRule_respected_takeConcept
-#print axioms Fate.AlphaData.dgBasis_stable
-#print axioms Fate.AlphaData.dgRule_respected_iff_of_obs_eq
-#print axioms Fate.AlphaData.dgToLawRule_rulesLocal
-#print axioms Fate.AlphaData.dgToLawRule_rulesInhabited
-#print axioms Fate.AlphaData.dgToLawRule_eq_of_same_minClosed
+#print axioms FateV2.Rules.AlphaData.dgRule_respected
+#print axioms FateV2.Rules.AlphaData.dgRule_respected_takeConcept
+#print axioms FateV2.Rules.AlphaData.dgBasis_stable
+#print axioms FateV2.Rules.AlphaData.dgRule_respected_iff_of_obs_eq
+#print axioms FateV2.Rules.AlphaData.dgToLawRule_rulesLocal
+#print axioms FateV2.Rules.AlphaData.dgToLawRule_rulesInhabited
+#print axioms FateV2.Rules.AlphaData.dgToLawRule_eq_of_same_minClosed
 
 end
 

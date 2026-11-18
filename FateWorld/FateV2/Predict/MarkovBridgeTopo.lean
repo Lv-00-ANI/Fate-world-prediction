@@ -79,35 +79,35 @@ variable {α β γ : Type} [Fintype α] [Fintype β] [Fintype γ]
 
 /-- ⭐⭐⭐ **`0` 无父节点**（`chainDAG3` 中无边指向 `0`）。 -/
 theorem chainDAG3_parents_zero :
-    Fate.GlobalMarkovMinimal.chainDAG3.parents (0 : Fin 3) = ∅ := by
-  unfold FateV2.Modeling.Graph.DAG.parents Fate.GlobalMarkovMinimal.chainDAG3
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.parents (0 : Fin 3) = ∅ := by
+  unfold FateV2.Modeling.Graph.DAG.parents FateV2.Predict.GlobalMarkovMinimal.chainDAG3
   decide
 
 /-- ⭐⭐⭐ **`1` 的父是 `{0}`**。 -/
 theorem chainDAG3_parents_one :
-    Fate.GlobalMarkovMinimal.chainDAG3.parents (1 : Fin 3) = {(0 : Fin 3)} := by
-  unfold FateV2.Modeling.Graph.DAG.parents Fate.GlobalMarkovMinimal.chainDAG3
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.parents (1 : Fin 3) = {(0 : Fin 3)} := by
+  unfold FateV2.Modeling.Graph.DAG.parents FateV2.Predict.GlobalMarkovMinimal.chainDAG3
   decide
 
 /-- ⭐⭐⭐ **`2` 的父是 `{1}`**。 -/
 theorem chainDAG3_parents_two :
-    Fate.GlobalMarkovMinimal.chainDAG3.parents (2 : Fin 3) = {(1 : Fin 3)} := by
-  unfold FateV2.Modeling.Graph.DAG.parents Fate.GlobalMarkovMinimal.chainDAG3
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.parents (2 : Fin 3) = {(1 : Fin 3)} := by
+  unfold FateV2.Modeling.Graph.DAG.parents FateV2.Predict.GlobalMarkovMinimal.chainDAG3
   decide
 
 /-! ## §2 ⭐⭐ **拓扑序验证**（复用已有的 `topoOrder_lt`） -/
 
 /-- ⭐⭐ **拓扑序 `0 < 1`**（由边 `0 → 1` 与 `topoOrder_lt` 给出）。 -/
 theorem chainDAG3_topo_0_lt_1 :
-    Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (0 : Fin 3) <
-      Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3) :=
-  DAG.topoOrder_lt Fate.GlobalMarkovMinimal.chainDAG3 0 1 (Or.inl ⟨rfl, rfl⟩)
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (0 : Fin 3) <
+      FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3) :=
+  DAG.topoOrder_lt FateV2.Predict.GlobalMarkovMinimal.chainDAG3 0 1 (Or.inl ⟨rfl, rfl⟩)
 
 /-- ⭐⭐ **拓扑序 `1 < 2`**。 -/
 theorem chainDAG3_topo_1_lt_2 :
-    Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3) <
-      Fate.GlobalMarkovMinimal.chainDAG3.topoOrder (2 : Fin 3) :=
-  DAG.topoOrder_lt Fate.GlobalMarkovMinimal.chainDAG3 1 2 (Or.inr ⟨rfl, rfl⟩)
+    FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (1 : Fin 3) <
+      FateV2.Predict.GlobalMarkovMinimal.chainDAG3.topoOrder (2 : Fin 3) :=
+  DAG.topoOrder_lt FateV2.Predict.GlobalMarkovMinimal.chainDAG3 1 2 (Or.inr ⟨rfl, rfl⟩)
 
 /-! ## §3 ⭐⭐ **链上的 Markov 定义（逐节点展开）** -/
 

@@ -50,7 +50,7 @@ import Mathlib.Data.Fintype.Pi
 namespace FateV2.Modeling.GenN
 
 open MeasureTheory ProbabilityTheory
-open Fate.GenC3
+open FateV2.Modeling.GenC3
 
 section ProductFactorize
 
@@ -64,8 +64,8 @@ omit [Fintype γ] [DecidableEq γ] in
 This is `condIndepN_sum_factorize` rewritten so that both sides are ready to
 meet the measure-theoretic identities of `NaryRealSum` / `NaryFiberDecomp`. -/
 theorem product_factorize
-    (p : Fate.GenC3.NJoint (ι := ι) fam γ)
-    (h : Fate.GenC3.CondIndepN p)
+    (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
+    (h : FateV2.Modeling.GenC3.CondIndepN p)
     (Sf : ∀ i, Finset (fam i))
     (z : γ) :
     (∑ xs : (∀ j, fam j), (if ∀ i, xs i ∈ Sf i then p xs z else 0))
@@ -73,7 +73,7 @@ theorem product_factorize
       ∏ i, ∑ a ∈ Sf i, marg p i a z := by
   classical
   have key : ∀ xs : (∀ i, fam i), p xs z * (NMass p z) ^ (Fintype.card ι - 1)
-      = ∏ i, marg p i (xs i) z := fun xs => (Fate.GenC3.condIndepN_iff p).mp h xs z
+      = ∏ i, marg p i (xs i) z := fun xs => (FateV2.Modeling.GenC3.condIndepN_iff p).mp h xs z
   rw [Finset.sum_mul]
   have hL : ∀ xs : (∀ i, fam i),
       (if ∀ i, xs i ∈ Sf i then p xs z else 0) * (NMass p z) ^ (Fintype.card ι - 1)

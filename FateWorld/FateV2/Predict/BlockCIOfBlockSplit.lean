@@ -47,7 +47,7 @@ import FateWorld.FateV2.Predict.TailOutExtract
 namespace FateV2.Predict.C5b
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.View19 Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 
@@ -55,14 +55,14 @@ theorem mass_self {Z : Finset V} {f : (V → α) → ℝ}
     (hf : ∀ w w', (∀ u ∈ Z, w u = w' u) → f w = f w')
     (ω₀ x : V → α) :
     mass Z f x = ((Fintype.card α : ℝ) ^ (Fintype.card V - Z.card))
-      * f (Fate.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) := by
-  rw [Fate.GraphToProbView7.mass_eq_card_mul_massA (A := Z) (S := Z)
+      * f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) := by
+  rw [FateV2.Predict.GraphToProbView7.mass_eq_card_mul_massA (A := Z) (S := Z)
     (Finset.Subset.refl Z) hf ω₀ x]
   congr 1
   rw [Finset.sum_eq_single (fun u : ↥Z => x u.1)]
-  · simp [Fate.GraphToProbView7.sub]
+  · simp [FateV2.Predict.GraphToProbView7.sub]
   · intro b _ hb
-    simp only [Fate.GraphToProbView7.sub, Finset.mem_filter, Finset.mem_univ, true_and]
+    simp only [FateV2.Predict.GraphToProbView7.sub, Finset.mem_filter, Finset.mem_univ, true_and]
     have : ∃ u : ↥Z, b u ≠ x u.1 := by
       by_contra h; push Not at h; exact hb (funext h)
     obtain ⟨u, hu⟩ := this
@@ -74,19 +74,19 @@ theorem f_eq_of_agree_C {A C Z : Finset V} (hAZ : A ⊆ Z) (hCA : C ⊆ A)
     (hC : Z ∩ A = C)
     {f : (V → α) → ℝ} (hf : ∀ w w', (∀ u ∈ A, w u = w' u) → f w = f w')
     (ω₀ x : V → α) (wZ : ↥Z → α)
-    (hag : ∀ u ∈ Fate.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ),
+    (hag : ∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ),
         wZ u = x u.1) :
-    f (Fate.GraphToProbView7.extEnd Z ω₀ wZ)
-      = f (Fate.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) := by
+    f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ wZ)
+      = f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) := by
   refine hf _ _ fun u huA => ?_
   have huZ : u ∈ Z := hAZ huA
-  rw [Fate.GraphToProbView7.extEnd_of_mem Z ω₀ wZ u huZ,
-      Fate.GraphToProbView7.extEnd_of_mem Z ω₀ (fun u : ↥Z => x u.1) u huZ]
+  rw [FateV2.Predict.GraphToProbView7.extEnd_of_mem Z ω₀ wZ u huZ,
+      FateV2.Predict.GraphToProbView7.extEnd_of_mem Z ω₀ (fun u : ↥Z => x u.1) u huZ]
   have huC : u ∈ C := hC ▸ Finset.mem_inter.mpr ⟨huZ, huA⟩
   -- u ∈ C ⊆ Z，故 u ∈ Z
   have huZ' : u ∈ Z := Finset.Subset.trans hCA hAZ huC
-  have hmem : (⟨u, huZ'⟩ : ↥Z) ∈ Fate.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ) := by
-    simp only [Fate.GraphToProbView7.sub, Finset.mem_filter, Finset.mem_univ, true_and]
+  have hmem : (⟨u, huZ'⟩ : ↥Z) ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ) := by
+    simp only [FateV2.Predict.GraphToProbView7.sub, Finset.mem_filter, Finset.mem_univ, true_and]
     exact huC
   exact hag ⟨u, huZ'⟩ hmem
 

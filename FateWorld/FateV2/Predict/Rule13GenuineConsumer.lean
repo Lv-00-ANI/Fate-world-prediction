@@ -343,9 +343,9 @@ theorem rule3_rebase {Z X Y : Type u} [DecidableEq Z] [DecidableEq Y]
 
 **⭐ 具体见证**：取 `g u = (u, u)`，即在 `conf` 上重标定并验证规则 3 仍成立。 -/
 theorem conf_rebase_rule3 (x z y : Fin 2) :
-    R246G3.Sem3.doLaw2 (rebase FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf (fun u => (u, u))) x z y
-      = R246G3.Sem3.doLawXOnly (rebase FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf (fun u => (u, u))) x y :=
-  rule3_rebase FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf (fun u => (u, u)) R249.Rule3.conf_effNull x z y
+    R246G3.Sem3.doLaw2 (rebase FateV2.Predict.R246G3.conf (fun u => (u, u))) x z y
+      = R246G3.Sem3.doLawXOnly (rebase FateV2.Predict.R246G3.conf (fun u => (u, u))) x y :=
+  rule3_rebase FateV2.Predict.R246G3.conf (fun u => (u, u)) R249.Rule3.conf_effNull x z y
 
 /-- ⭐⭐⭐⭐ **⚠ 诚实边界的**载体侧**：重标定**不能**让 `chain` 满足 `EffNull`**。
 
@@ -417,8 +417,8 @@ theorem doLaw2_indep_xz_of_effNull_invariant {Z X Y : Type u}
 **⭐ 这是**非空实例性**的验证**（不是 `conf_effNull_invariant` 的重复：
 那条只说前提成立，本条给出**结论**的实例）。 -/
 theorem conf_doLaw2_indep_xz (x₁ x₂ z₁ z₂ y : Fin 2) :
-    R246G3.Sem3.doLaw2 FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf x₁ z₁ y = R246G3.Sem3.doLaw2 FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf x₂ z₂ y :=
-  doLaw2_indep_xz_of_effNull_invariant FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf R249.Rule3.conf_effNull
+    R246G3.Sem3.doLaw2 FateV2.Predict.R246G3.conf x₁ z₁ y = R246G3.Sem3.doLaw2 FateV2.Predict.R246G3.conf x₂ z₂ y :=
+  doLaw2_indep_xz_of_effNull_invariant FateV2.Predict.R246G3.conf R249.Rule3.conf_effNull
     R248.Sem.conf_invariant x₁ x₂ z₁ z₂ y
 
 /-- ⭐⭐⭐⭐⭐ **两前提**不互相蕴含**的见证**：`chain` 满足 `MediationInvariant`
@@ -441,7 +441,7 @@ theorem chain_not_indep_z :
         R246G3.Sem3.doLaw2 R246G3.chain x z₁ y = R246G3.Sem3.doLaw2 R246G3.chain x z₂ y) := by
   intro h
   have hkey := h 0 0 1 0
-  rw [FateV2.Predict.FateV2.Predict.R246G3.doLaw2_chain, FateV2.Predict.FateV2.Predict.R246G3.doLaw2_chain] at hkey
+  rw [FateV2.Predict.R246G3.doLaw2_chain, FateV2.Predict.R246G3.doLaw2_chain] at hkey
   norm_num at hkey
 
 end Cross

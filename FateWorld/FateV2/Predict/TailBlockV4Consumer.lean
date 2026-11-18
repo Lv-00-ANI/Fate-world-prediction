@@ -29,8 +29,8 @@ import FateWorld.FateV2.Predict.TailBlockV4
 
   | 消费方 | 位置 |
   |---|---|
-  | `Fate.View19.mass_const` | `Fate/View19FactorGraphSplit.lean:150` |
-  | `Fate.FactorMarkov.CondIndep` | `Fate/FactorMarkov.lean:194` |
+  | `FateV2.Predict.View19.mass_const` | `Fate/View19FactorGraphSplit.lean:150` |
+  | `FateV2.Predict.FactorMarkov.CondIndep` | `Fate/FactorMarkov.lean:194` |
 
   ## 1 本文件的消费定理（9 条，全部机检）
 
@@ -45,7 +45,7 @@ import FateWorld.FateV2.Predict.TailBlockV4
   3. §3 「实例化消费」：`condIndep_of_cover_v4`、`condIndep_tail_block_v4`、
      `cover_agrees_with_tail_block` —— 把 `TailBlockV4` 的两条主入口
      在本文件的实例束下**直接消费**，结论是已入库的
-     `Fate.FactorMarkov.CondIndep p X Y Z`。
+     `FateV2.Predict.FactorMarkov.CondIndep p X Y Z`。
 
   ## 2 诚实声明
 
@@ -88,7 +88,7 @@ theorem massA_const_self (A : Finset V) (c : ℝ) (x : V → α) :
 theorem mass_const_eq_tail_mul_massA (A : Finset V) (c : ℝ) (x : V → α) :
     Fate.DAGFactorization.mass A (fun _ => c) x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card)) * massA A A (fun _ => c) x := by
-  rw [massA_const_self, Fate.View19.mass_const, card_tail]
+  rw [massA_const_self, FateV2.Predict.View19.mass_const, card_tail]
   push_cast
   ring
 
@@ -141,26 +141,26 @@ theorem condIndep_factor_cancel {k a b c d : ℝ} (hk : k ≠ 0)
 /-- ⭐⭐⭐ `TailBlockV4.condIndep_of_cover` 的直接消费（本文件实例）。
 
 `TailBlockV4` 内部的 `variable` 实例不被其他文件继承，故此处显式传递。
-结论是 `Fate.FactorMarkov.CondIndep p X Y Z`，与已入库主链同一口径。 -/
+结论是 `FateV2.Predict.FactorMarkov.CondIndep p X Y Z`，与已入库主链同一口径。 -/
 theorem condIndep_of_cover_v4 (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   TailBlockV4.condIndep_of_cover ψ p hfac hread hsplit hXY hXZ hYZ hcover
 
 /-- ⭐⭐⭐ 尾块版主定理 D 的直接消费（**不**要求 `X∪Y∪Z = univ`）。 -/
 theorem condIndep_tail_block_v4 (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hTail : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ Z)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   TailBlockV4.condIndep_tail_block ψ p hfac hread hTail hsplit hXY hXZ hYZ
 
 /-- ⭐⭐ 一致性自检：`condIndep_of_cover_v4` 是 `condIndep_tail_block_v4` 的特例
@@ -169,11 +169,11 @@ theorem condIndep_tail_block_v4 (ψ : V → (V → α) → ℝ) (p : (V → α) 
 theorem cover_agrees_with_tail_block (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z ∧ Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z ∧ FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   ⟨condIndep_of_cover_v4 ψ p hfac hread hsplit hXY hXZ hYZ hcover,
    condIndep_tail_block_v4 ψ p hfac hread
      (fun v hv => by rw [hcover] at hv; exact absurd (Finset.mem_univ v) hv)

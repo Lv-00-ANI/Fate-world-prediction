@@ -103,8 +103,8 @@ universe u v
 namespace FcaToRuleTerm
 
 open FateV2.Rules.LawRule
-open Fate.RuleSyntax
-open Fate.AlphaData
+open FateV2.Rules.RuleSyntax
+open FateV2.Rules.AlphaData
 
 variable {E : InstSpace.{u}} {M : Type u}
 variable {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]

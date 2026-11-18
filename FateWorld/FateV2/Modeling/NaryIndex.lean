@@ -131,11 +131,11 @@ omit [MeasurableSpace γ] in
 /-- ⭐⭐⭐⭐ fiber mass = NMass -/
 theorem fiberN_real_eq_NMass
     (p : ((∀ j, fam j) × γ) → ℝ) (hp : ∀ w, 0 ≤ p w)
-    (pN : Fate.GenC3.NJoint (ι := ι) fam γ)
+    (pN : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hpN : ∀ xs z, pN xs z = p (xs, z))
     (z : γ)
     [dec : DecidablePred (· ∈ (fiberN z : Set ((∀ j, fam j) × γ)))] :
-    (weightedCountN p).real (fiberN z) = Fate.GenC3.NMass pN z := by
+    (weightedCountN p).real (fiberN z) = FateV2.Modeling.GenC3.NMass pN z := by
   rw [NMass_eq_sum pN z, fiberN_real_eq_sum' p hp z]
   exact Finset.sum_congr rfl (fun xs _ => (hpN xs z).symm)
 
@@ -173,9 +173,9 @@ variable {fam : ι → Type*} [∀ i, Fintype (fam i)]
 variable {γ : Type*}
 
 /-- ⭐⭐ NMass nonneg -/
-theorem NMass_nonneg_of_nonneg (p : Fate.GenC3.NJoint (ι := ι) fam γ)
+theorem NMass_nonneg_of_nonneg (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (hp : ∀ xs z, 0 ≤ p xs z) (z : γ) :
-    0 ≤ Fate.GenC3.NMass p z := by
+    0 ≤ FateV2.Modeling.GenC3.NMass p z := by
   rw [NMass_eq_sum p z]
   exact Finset.sum_nonneg (fun xs _ => hp xs z)
 
@@ -189,15 +189,15 @@ variable {γ : Type*}
 
 /-- ⭐⭐⭐ card two factorize -/
 theorem condIndepN_sum_factorize_card_two
-    (p : Fate.GenC3.NJoint (ι := ι) fam γ)
-    (h : Fate.GenC3.CondIndepN p)
+    (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
+    (h : FateV2.Modeling.GenC3.CondIndepN p)
     (hcard : Fintype.card ι = 2)
     (S : ∀ i, Set (fam i)) [∀ i, DecidablePred (· ∈ S i)]
     (z : γ) :
     (∑ xs : (∀ j, fam j), (if ∀ i, xs i ∈ S i then p xs z else 0))
-        * Fate.GenC3.NMass p z
-      = ∏ i, ∑ a : fam i, (if a ∈ S i then Fate.GenC3.marg p i a z else 0) := by
-  have h2 := Fate.GenC3.condIndepN_sum_factorize p h S z
+        * FateV2.Modeling.GenC3.NMass p z
+      = ∏ i, ∑ a : fam i, (if a ∈ S i then FateV2.Modeling.GenC3.marg p i a z else 0) := by
+  have h2 := FateV2.Modeling.GenC3.condIndepN_sum_factorize p h S z
   rw [hcard] at h2
   simpa using h2
 
@@ -231,7 +231,7 @@ theorem mul_pow_card_of_produced
   have hBeq : B = ∏ i, (kappa_i i * M) := hB
   calc kappa * M ^ Fintype.card ι
       = kappa * (M ^ (Fintype.card ι - 1) * M) := by
-        rw [Fate.GenC3.pow_card_pred_mul Fintype.card_pos M]
+        rw [FateV2.Modeling.GenC3.pow_card_pred_mul Fintype.card_pos M]
     _ = (kappa * M) * M ^ (Fintype.card ι - 1) := by ring
     _ = A * M ^ (Fintype.card ι - 1) := by rw [hκM]
     _ = B := hAB
@@ -316,7 +316,7 @@ variable {γ : Type*}
 **前件**：无（对任意 `pN`、`Sf`、`z` 成立）。
 **结论**：`∑ xs, [xs i ∈ Sf] pN xs z = ∑ a∈Sf, ∑ xs, [xs i = a] pN xs z`
 （方向与 `sum_marg_eq_fiberwise` **相反**，故不是它的换名）。 -/
-theorem sum_ite_mem_eq_sum_marg (p : Fate.GenC3.NJoint (ι := ι) fam γ)
+theorem sum_ite_mem_eq_sum_marg (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (i : ι) (Sf : Finset (fam i)) (z : γ) :
     (∑ xs : (∀ j, fam j), (if xs i ∈ Sf then p xs z else 0))
       = ∑ a ∈ Sf, ∑ xs : (∀ j, fam j), (if xs i = a then p xs z else 0) := by
@@ -327,7 +327,7 @@ theorem sum_ite_mem_eq_sum_marg (p : Fate.GenC3.NJoint (ι := ι) fam γ)
 
 /-- ⭐⭐⭐ **`filter_filter_absorb` 的推论：过滤器的嵌套可交换**
 （`NaryMargSum` 的两个定理组合）。 -/
-theorem sum_filter_mem_filter_eq (p : Fate.GenC3.NJoint (ι := ι) fam γ)
+theorem sum_filter_mem_filter_eq (p : FateV2.Modeling.GenC3.NJoint (ι := ι) fam γ)
     (i : ι) (Sf : Finset (fam i)) {a : fam i} (ha : a ∈ Sf) (z : γ) :
     (∑ xs ∈ (Finset.univ.filter (fun xs : (∀ j, fam j) => xs i = a)), p xs z)
       = ∑ xs ∈ (Finset.univ.filter (fun xs : (∀ j, fam j) => xs i ∈ Sf)).filter

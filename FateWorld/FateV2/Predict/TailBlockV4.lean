@@ -12,7 +12,7 @@ set_option maxHeartbeats 1600000
 namespace FateV2.Predict.TailBlockV4
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization Fate.FactorMarkov Fate.View19 Fate.GraphToProbView7
+open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Predict.View19 FateV2.Predict.GraphToProbView7
 
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α]
@@ -405,11 +405,11 @@ theorem readsets_subset_union {R : V → Finset V} {X Y Z : Finset V}
 theorem condIndep_tail_block (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
     (_hTail : ∀ v, v ∉ X ∪ Y ∪ Z → R v ⊆ Z)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (_hXZ : Disjoint X Z) (_hYZ : Disjoint Y Z) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   classical
   have hAll : ∀ v, R v ⊆ X ∪ Y ∪ Z := readsets_subset_union hsplit
   have hreadsP : ReadsOn p (X ∪ Y ∪ Z) := by
@@ -494,18 +494,18 @@ theorem condIndep_tail_block (ψ : V → (V → α) → ℝ) (p : (V → α) →
 
 /-- ⭐ 自检：`hTail` 与 `Split` 的关系 —— `Split` 给出的读集界更强（`A` 而非 `Z`）。 -/
 theorem split_gives_subset_A {R : V → Finset V} {X Y Z : Finset V}
-    (hsplit : Fate.View19.Split R X Y Z) : ∀ v, R v ⊆ X ∪ Y ∪ Z :=
+    (hsplit : FateV2.Predict.View19.Split R X Y Z) : ∀ v, R v ⊆ X ∪ Y ∪ Z :=
   readsets_subset_union hsplit
 
 /-- ⭐ 自检：`hcover` 情形下本定理可直接替代 `condIndep_general`。 -/
 theorem condIndep_of_cover (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z :=
   condIndep_tail_block ψ p hfac hread
     (fun v hv => by rw [hcover] at hv; exact absurd (Finset.mem_univ v) hv)
     hsplit hXY hXZ hYZ

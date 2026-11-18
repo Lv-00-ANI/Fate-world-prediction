@@ -48,7 +48,7 @@ import FateWorld.FateV2.Predict.FactorMarkov
 namespace FateV2.Predict.Direct
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization Fate.View19
+open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.View19
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
@@ -75,6 +75,6 @@ theorem mass_eq_of_reads_cover {S : Finset V} {ψ : V → (V → α) → ℝ}
   -- extEnd S x (x|_S) 与 x 在 S 上一致，故 ∏ ψ 相等
   refine Finset.prod_congr rfl fun v _ => ?_
   exact hread v _ _ (fun u hu => by
-    rw [Fate.GraphToProbView7.extEnd_of_mem S x _ u hu])
+    rw [FateV2.Predict.GraphToProbView7.extEnd_of_mem S x _ u hu])
 
 end FateV2.Predict.Direct

@@ -9,11 +9,11 @@
 
   | # | 原定理（**未改动**） | 本文件新定理 |
   |---|---|---|
-  | 1 | `Fate.SCMEndToEnd.predFrom_scmWorldModel` | `predFrom_scmWorldModel_noNonempty` |
-  | 2 | `Fate.SCMEndToEnd.predFrom_scmWorldModel_indep_start` | `predFrom_scmWorldModel_indep_start_noNonempty` |
-  | 3 | `Fate.SCMEndToEnd.e2eResidual_scmWorldModel` | `e2eResidual_scmWorldModel_noNonempty` |
-  | 4 | `Fate.SCMEndToEnd.e2eResidual_scmWorldModel_eq_zero_iff` | `e2eResidual_scmWorldModel_eq_zero_iff_noNonempty` |
-  | 5 | `Fate.SCMEndToEnd.endToEnd_scmWorldModel` | `endToEnd_scmWorldModel_noNonempty` |
+  | 1 | `FateV2.Loop.SCMEndToEnd.predFrom_scmWorldModel` | `predFrom_scmWorldModel_noNonempty` |
+  | 2 | `FateV2.Loop.SCMEndToEnd.predFrom_scmWorldModel_indep_start` | `predFrom_scmWorldModel_indep_start_noNonempty` |
+  | 3 | `FateV2.Loop.SCMEndToEnd.e2eResidual_scmWorldModel` | `e2eResidual_scmWorldModel_noNonempty` |
+  | 4 | `FateV2.Loop.SCMEndToEnd.e2eResidual_scmWorldModel_eq_zero_iff` | `e2eResidual_scmWorldModel_eq_zero_iff_noNonempty` |
+  | 5 | `FateV2.Loop.SCMEndToEnd.endToEnd_scmWorldModel` | `endToEnd_scmWorldModel_noNonempty` |
 
   ⚠ 本文件共交 **5 条**（任务要求 ≥4 条）。
 
@@ -64,7 +64,7 @@
 
   ```lean
   haveI : Nonempty Y := ⟨y⟩
-  exact Fate.SCMEndToEnd.predFrom_scmWorldModel M θ u ε a y
+  exact FateV2.Loop.SCMEndToEnd.predFrom_scmWorldModel M θ u ε a y
   ```
 
   ⟹ 新定理与原定理**语义相同**，只是把 `Nonempty` 前件换成了
@@ -121,7 +121,7 @@ open FateV2.Loop
 open FateV2.Modeling
 namespace NonemptyFree4
 
-open Fate.SCMEndToEnd
+open FateV2.Loop.SCMEndToEnd
 
 set_option autoImplicit false
 
@@ -154,7 +154,7 @@ theorem predFrom_scmWorldModel_noNonempty {X Y : Type} (M : PearlHierarchy.SCM X
     FateV2.Loop.EndToEnd.predFrom (@SCMWorldModel.scmWorldModel X Y M ⟨y⟩) θ u ε a y
       = (M.sg u).2 a := by
   haveI : Nonempty Y := ⟨y⟩
-  exact Fate.SCMEndToEnd.predFrom_scmWorldModel M θ u ε a y
+  exact FateV2.Loop.SCMEndToEnd.predFrom_scmWorldModel M θ u ε a y
 
 /-! ## 2. `predFrom_scmWorldModel_indep_start`（去 `[Nonempty Y]`）
 
@@ -166,7 +166,7 @@ theorem predFrom_scmWorldModel_indep_start_noNonempty {X Y : Type}
     FateV2.Loop.EndToEnd.predFrom (@SCMWorldModel.scmWorldModel X Y M ⟨y₁⟩) θ u ε a y₁
       = FateV2.Loop.EndToEnd.predFrom (@SCMWorldModel.scmWorldModel X Y M ⟨y₂⟩) θ u ε a y₂ := by
   haveI : Nonempty Y := ⟨y₁⟩
-  exact Fate.SCMEndToEnd.predFrom_scmWorldModel_indep_start M θ u ε a y₁ y₂
+  exact FateV2.Loop.SCMEndToEnd.predFrom_scmWorldModel_indep_start M θ u ε a y₁ y₂
 
 /-! ## 3. `e2eResidual_scmWorldModel`（去 `[Nonempty Y]`）
 
@@ -179,7 +179,7 @@ theorem e2eResidual_scmWorldModel_noNonempty {X Y : Type} (M : PearlHierarchy.SC
     FateV2.Loop.EndToEnd.e2eResidual (@SCMWorldModel.scmWorldModel X Y M ⟨xobs⟩) xobs θ u ε a xpred
       = xobs - (M.sg u).2 a := by
   haveI : Nonempty Y := ⟨xobs⟩
-  exact Fate.SCMEndToEnd.e2eResidual_scmWorldModel M xobs θ u ε a xpred
+  exact FateV2.Loop.SCMEndToEnd.e2eResidual_scmWorldModel M xobs θ u ε a xpred
 
 /-! ## 4. `e2eResidual_scmWorldModel_eq_zero_iff`（去 `[Nonempty Y]`）
 
@@ -193,7 +193,7 @@ theorem e2eResidual_scmWorldModel_eq_zero_iff_noNonempty {X Y : Type}
         = 0
       ↔ xobs = (M.sg u).2 a := by
   haveI : Nonempty Y := ⟨xobs⟩
-  exact Fate.SCMEndToEnd.e2eResidual_scmWorldModel_eq_zero_iff M xobs θ u ε a xpred
+  exact FateV2.Loop.SCMEndToEnd.e2eResidual_scmWorldModel_eq_zero_iff M xobs θ u ε a xpred
 
 /-! ## 5. `endToEnd_scmWorldModel`（去 `[Nonempty Y]`）
 
@@ -211,7 +211,7 @@ theorem endToEnd_scmWorldModel_noNonempty {X Y G : Type} (M : PearlHierarchy.SCM
     FateV2.Loop.EndToEnd.endToEnd (@SCMWorldModel.scmWorldModel X Y M ⟨x⟩) h η φ y θ u ε a x
       = θ + η * φ (FateV2.Loop.EndToEnd.observe h y - (M.sg u).2 a) := by
   haveI : Nonempty Y := ⟨x⟩
-  exact Fate.SCMEndToEnd.endToEnd_scmWorldModel M h η φ y θ u ε a x
+  exact FateV2.Loop.SCMEndToEnd.endToEnd_scmWorldModel M h η φ y θ u ε a x
 
 end NonemptyFree4
 end FateV2.Predict

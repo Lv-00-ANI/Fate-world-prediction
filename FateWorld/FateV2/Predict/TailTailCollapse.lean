@@ -61,7 +61,7 @@ theorem notMem_of_notMem_of_subset {A Z : Finset V} (hZA : Z ⊆ A) {v : V}
 **⟹ 主定理 D 的 `hTail` 前提等价于「无尾块」**，没有真正处理有尾块的情形。 -/
 theorem hTail_implies_univ {G : FateV2.Modeling.Graph.DAG V} {A Z : Finset V}
     (hZA : Z ⊆ A)
-    (hTail : ∀ v, v ∉ A → Fate.FactorizesToHyper.readSetOf G v ⊆ Z) :
+    (hTail : ∀ v, v ∉ A → FateV2.Predict.FactorizesToHyper.readSetOf G v ⊆ Z) :
     A = Finset.univ := by
   by_contra hne
   have ⟨v, hv⟩ : ∃ v, v ∉ A := by
@@ -69,8 +69,8 @@ theorem hTail_implies_univ {G : FateV2.Modeling.Graph.DAG V} {A Z : Finset V}
     push Not at h
     exact hne (Finset.eq_univ_of_forall h)
   have hsub := hTail v hv
-  have hmem : v ∈ Fate.FactorizesToHyper.readSetOf G v := by
-    unfold Fate.FactorizesToHyper.readSetOf
+  have hmem : v ∈ FateV2.Predict.FactorizesToHyper.readSetOf G v := by
+    unfold FateV2.Predict.FactorizesToHyper.readSetOf
     simp
   exact hv (hZA (hsub hmem))
 

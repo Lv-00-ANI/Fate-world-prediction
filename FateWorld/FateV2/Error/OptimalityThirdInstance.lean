@@ -405,12 +405,12 @@ theorem three_instances_share_pattern (n : ℕ) (hn : 0 < n)
     (FateV2.Error.GaussMarkovInstance.gaussMarkovPattern n hn hP hv).lb = varOf P / (n : ℝ)
       ∧ FateV2.Error.OptimalEtaInstance.optimalEtaPattern.lb = 0
       ∧ FateV2.Error.OptimalEtaInstance.optimalEtaPattern.p_star = (1 : ℝ)
-      ∧ Fate.FitExpThirdInstance.fitExpPattern.lb = 2
-      ∧ Fate.FitExpThirdInstance.fitExpPattern.p_star = (0 : ℝ)
+      ∧ FateV2.Error.FitExpThirdInstance.fitExpPattern.lb = 2
+      ∧ FateV2.Error.FitExpThirdInstance.fitExpPattern.p_star = (0 : ℝ)
       ∧ (∀ η : ℝ, FateV2.Error.OptimalEtaInstance.optimalEtaPattern.f η
             = FateV2.Error.OptimalEtaInstance.optimalEtaPattern.lb → η = 1)
-      ∧ (∀ γ : ℝ, Fate.FitExpThirdInstance.fitExpPattern.f γ
-            = Fate.FitExpThirdInstance.fitExpPattern.lb → γ = 0)
+      ∧ (∀ γ : ℝ, FateV2.Error.FitExpThirdInstance.fitExpPattern.f γ
+            = FateV2.Error.FitExpThirdInstance.fitExpPattern.lb → γ = 0)
       ∧ (∀ a : {a : Fin n → ℝ // ∑ i, a i = 1},
           (FateV2.Error.GaussMarkovInstance.gaussMarkovPattern n hn hP hv).f a
             = (FateV2.Error.GaussMarkovInstance.gaussMarkovPattern n hn hP hv).lb →
@@ -418,10 +418,10 @@ theorem three_instances_share_pattern (n : ℕ) (hn : 0 < n)
   ⟨rfl,
    FateV2.Error.OptimalEtaInstance.optimalEta_lb_zero,
    FateV2.Error.OptimalEtaInstance.optimalEta_star_one,
-   Fate.FitExpThirdInstance.fitExp_lb_two,
-   Fate.FitExpThirdInstance.fitExp_star_zero,
+   FateV2.Error.FitExpThirdInstance.fitExp_lb_two,
+   FateV2.Error.FitExpThirdInstance.fitExp_star_zero,
    fun η hη => FateV2.Error.OptimalEtaInstance.optimalEta_opt_unique η hη,
-   fun γ hγ => Fate.FitExpThirdInstance.fitExp_opt_unique γ hγ,
+   fun γ hγ => FateV2.Error.FitExpThirdInstance.fitExp_opt_unique γ hγ,
    fun a ha => OptimalityPattern.unique_opt _ a ha⟩
 
 end ThreeInstances

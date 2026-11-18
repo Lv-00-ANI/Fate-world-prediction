@@ -80,7 +80,7 @@ open FateV2.Rules
 namespace LawRuleCondMulConsumer
 
 open FateV2.Predict.FinCondIndep
-open Fate.LawRuleCondMul
+open FateV2.Predict.LawRuleCondMul
 
 attribute [local instance] Classical.propDecidable
 

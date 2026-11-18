@@ -95,7 +95,7 @@ namespace SCMResidual
 
 open FateV2.Modeling.PearlHierarchy Filter Topology
 
-open Fate.SCMWorldModel
+open FateV2.Loop.SCMWorldModel
 
 set_option autoImplicit false
 

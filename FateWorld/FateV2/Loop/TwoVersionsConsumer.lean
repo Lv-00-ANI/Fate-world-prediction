@@ -236,11 +236,11 @@ theorem inst_one_step_exact (x' θ₀ : ℝ) :
   exact inst_thetaStar x' θ₀
 
 /-! ===========================================================================
-    § 6  ⭐⭐⭐ **接线 `Fate.LearnFunction`**：逐点学习轨迹 = `wbSeq` 的 `id`/`id` 特例
+    § 6  ⭐⭐⭐ **接线 `FateV2.Loop.LearnFunction`**：逐点学习轨迹 = `wbSeq` 的 `id`/`id` 特例
 
     ## 6.0  为什么这是**真**接线而不是重述
 
-    `Fate.LearnFunction`（零引用模块）的自有轨迹是
+    `FateV2.Loop.LearnFunction`（零引用模块）的自有轨迹是
 
     ```
     θ_{n+1}(x) = θ_n(x) + η (y - θ_n(x))     -- `LearnFunction.tN_succ`
@@ -254,7 +254,7 @@ theorem inst_one_step_exact (x' θ₀ : ℝ) :
 
     这两条递推在文献里是**同一件事的两种讲述**（前者「逐点学函数」，
     后者「抽象线性回写」），但此前**库里没有任何定理把它们连起来**：
-    `Fate.LearnFunction` 的 external_refs 为 0，`TwoVersions` 一方也从不提 `tN`。
+    `FateV2.Loop.LearnFunction` 的 external_refs 为 0，`TwoVersions` 一方也从不提 `tN`。
 
     **本节的接线**：取 `E = F = ℝ`、`A := 1`、`φ := 1`，则
     `Corrects 1 1` 平凡成立，且 `wbW 1 1 η y t = t + η (y - t)`，
@@ -312,14 +312,14 @@ theorem ptWbW_eq_scalar_step (η y t : ℝ) :
   rw [wbW_apply]
   simp
 
-/-- ⭐⭐⭐ **【主桥】`LearnFunction` 的 `Fate.LearnFunction.tN` 序列 = `wbSeq` 的 `id`/`id` 特例**。
+/-- ⭐⭐⭐ **【主桥】`LearnFunction` 的 `FateV2.Loop.LearnFunction.tN` 序列 = `wbSeq` 的 `id`/`id` 特例**。
 
 $$\mathrm{wbSeq}\ 1\ 1\ \eta\ y\ (\theta_0 x)\ n \;=\;
   \texttt{LearnFunction.tN}\ \eta\ y\ x\ \theta_0\ n
   \qquad (\forall n).$$
 
 **⭐ 这是本次接线的核心**：`wbSeq` 是 `Nat.iterate` 于 `wbW`（抽象线性框架），
-`Fate.LearnFunction.tN` 是**独立递归**定义（`stepFunN` → `stepFun` → `Function.update`）。
+`FateV2.Loop.LearnFunction.tN` 是**独立递归**定义（`stepFunN` → `stepFun` → `Function.update`）。
 两条定义路径完全不同，本节证明它们**给出同一个 ℕ-序列**。
 
 **⚠ 不是同义反复**：前件**为空**（`η, y, x, θ₀` 全自由）。证明需**对 `n` 归纳**，
@@ -327,20 +327,20 @@ $$\mathrm{wbSeq}\ 1\ 1\ \eta\ y\ (\theta_0 x)\ n \;=\;
 结论不可能由任一前件得到 —— 因为**没有前件**。
 
 **⚠ 为什么初值是 `θ₀ x`（标量）而不是 `θ₀`（函数）**：`wbSeq` 的参数空间是 `E = ℝ`，
-它**承载不了**整个函数。`Fate.LearnFunction.tN` 在 `n` 处只依赖 `θ₀` 在 `x` 处的取值
+它**承载不了**整个函数。`FateV2.Loop.LearnFunction.tN` 在 `n` 处只依赖 `θ₀` 在 `x` 处的取值
 （`LearnFunction.stepFunN_apply_of_ne` 的**逆向读法**），故取 `t₀ := θ₀ x`
 是**唯一正确**的嵌入。**这是「逐点学习」被压缩成标量迭代的精确代价。** -/
 theorem wbSeq_one_seq_eq_tN (η y x : ℝ) (θ₀ : ℝ → ℝ) (n : ℕ) :
-    wbSeq (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) η y (θ₀ x) n = Fate.LearnFunction.tN η y x θ₀ n := by
+    wbSeq (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) η y (θ₀ x) n = FateV2.Loop.LearnFunction.tN η y x θ₀ n := by
   induction n with
   | zero => rfl
   | succ k ih =>
-    rw [wbSeq_succ, ih, Fate.LearnFunction.tN_succ, ptWbW_eq_scalar_step]
+    rw [wbSeq_succ, ih, FateV2.Loop.LearnFunction.tN_succ, ptWbW_eq_scalar_step]
 
-/-- ⭐⭐⭐ **【消费 `TwoVersions` 主定理】`Fate.LearnFunction.tN` 收敛到观测 `y`**。
+/-- ⭐⭐⭐ **【消费 `TwoVersions` 主定理】`FateV2.Loop.LearnFunction.tN` 收敛到观测 `y`**。
 
 $$|1-\eta| < 1 \;\Longrightarrow\;
-  \mathrm{Tendsto}\ (\texttt{Fate.LearnFunction.tN}\ \eta\ y\ x\ \theta_0)\ \mathrm{atTop}\ (\mathcal{N} y).$$
+  \mathrm{Tendsto}\ (\texttt{FateV2.Loop.LearnFunction.tN}\ \eta\ y\ x\ \theta_0)\ \mathrm{atTop}\ (\mathcal{N} y).$$
 
 **⭐ 这是接线的**收益**：`LearnFunction.tendsto_stepFunN_apply` 已证过同一命题，
 但走的是**标量闭式 `tN_closed` + 几何级数**。本定理走**完全不同**的路径：
@@ -353,7 +353,7 @@ $$|1-\eta| < 1 \;\Longrightarrow\;
 结论是整条序列的极限。`y`、`x`、`θ₀`、`n` 全自由，前件不提它们中的任何一个。
 **`y` 是推导出的极限点**（经 `thetaStar 1 1 y t = y`），不是前提。 -/
 theorem tN_tendsto_via_wbSeq (η y x : ℝ) (θ₀ : ℝ → ℝ) (hη : |1 - η| < 1) :
-    Tendsto (Fate.LearnFunction.tN η y x θ₀) atTop (nhds y) := by
+    Tendsto (FateV2.Loop.LearnFunction.tN η y x θ₀) atTop (nhds y) := by
   have h := wbSeq_tendsto_thetaStar (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) η y (θ₀ x)
     corrects_one_one hη
   have hstar : thetaStar (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) y (θ₀ x) = y := by
@@ -362,7 +362,7 @@ theorem tN_tendsto_via_wbSeq (η y x : ℝ) (θ₀ : ℝ → ℝ) (hη : |1 - η
   rw [hstar] at h
   exact h.congr (fun n => wbSeq_one_seq_eq_tN η y x θ₀ n)
 
-/-- ⭐⭐ **【消费 `wbSeq_closed`】`Fate.LearnFunction.tN` 的**求和形式**闭式**。
+/-- ⭐⭐ **【消费 `wbSeq_closed`】`FateV2.Loop.LearnFunction.tN` 的**求和形式**闭式**。
 
 $$\texttt{tN}\ \eta\ y\ x\ \theta_0\ n \;=\;
   \theta_0(x) + \Bigl(\eta \sum_{k<n} (1-\eta)^k\Bigr)\,(y - \theta_0(x)).$$
@@ -378,7 +378,7 @@ $$\texttt{tN}\ \eta\ y\ x\ \theta_0\ n \;=\;
 **不出现在** `wbSeq_closed` 的陈述里（那里是 `θ₀ + coef • φ (x' - A θ₀)`，
 在 `E = ℝ` 上方才成为标量式）。 -/
 theorem tN_closed_via_wbSeq_closed (η y x : ℝ) (θ₀ : ℝ → ℝ) (n : ℕ) :
-    Fate.LearnFunction.tN η y x θ₀ n
+    FateV2.Loop.LearnFunction.tN η y x θ₀ n
       = θ₀ x + (η * ∑ k ∈ Finset.range n, (1 - η)^k) * (y - θ₀ x) := by
   have h := wbSeq_closed (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) η y (θ₀ x)
     corrects_one_one n
@@ -386,7 +386,7 @@ theorem tN_closed_via_wbSeq_closed (η y x : ℝ) (θ₀ : ℝ → ℝ) (n : ℕ
   rw [h]
   simp [smul_eq_mul]
 
-/-- ⭐⭐ **【消费 `residN_closed`】**：`Fate.LearnFunction.tN` 的误差**幂形式**闭式（**残差路线**）。
+/-- ⭐⭐ **【消费 `residN_closed`】**：`FateV2.Loop.LearnFunction.tN` 的误差**幂形式**闭式（**残差路线**）。
 
 $$\texttt{tN}\ \eta\ y\ x\ \theta_0\ n - y \;=\;(1-\eta)^n\,(\theta_0(x) - y).$$
 
@@ -400,7 +400,7 @@ $$\texttt{tN}\ \eta\ y\ x\ \theta_0\ n - y \;=\;(1-\eta)^n\,(\theta_0(x) - y).$$
 **⚠ `hη` 未使用**（`residN_closed` 对任意 `η` 成立）：为接口对称保留，
 此点在证明中**可见**（`hη` 不出现在证明项里）。 -/
 theorem tN_resid_closed_via_TwoVersions (η y x : ℝ) (θ₀ : ℝ → ℝ) (_hη : |1 - η| < 1)
-    (n : ℕ) : Fate.LearnFunction.tN η y x θ₀ n - y = (1 - η)^n * (θ₀ x - y) := by
+    (n : ℕ) : FateV2.Loop.LearnFunction.tN η y x θ₀ n - y = (1 - η)^n * (θ₀ x - y) := by
   have hr := residN_closed (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) η y (θ₀ x)
     corrects_one_one n
   simp only [residN] at hr
@@ -412,7 +412,7 @@ theorem tN_resid_closed_via_TwoVersions (η y x : ℝ) (θ₀ : ℝ → ℝ) (_h
 
 $$|1-\eta| < 1 \;\Longrightarrow\;
   (\exists!\,t : \mathbb{R},\ t = y) \;\wedge\;
-  \mathrm{Tendsto}\ (\texttt{Fate.LearnFunction.tN}\ \eta\ y\ x\ \theta_0)\ \mathrm{atTop}\ (\mathcal{N} y).$$
+  \mathrm{Tendsto}\ (\texttt{FateV2.Loop.LearnFunction.tN}\ \eta\ y\ x\ \theta_0)\ \mathrm{atTop}\ (\mathcal{N} y).$$
 
 **⭐ 读法（诚实）**：`TwoVersions.version2_main` 说「`Corrects` + `A` 单射 + 步长窗口
 ⟹ 最优参数**唯一存在** 且 `θ_n → φ x'`」。在 `A = φ = id` 上：
@@ -429,7 +429,7 @@ $$|1-\eta| < 1 \;\Longrightarrow\;
 本定理的**非平凡部分**是**它由 `version2_main` 与 `TwoVersions` 的唯一性机制给出**，
 且与收敛**同时**成立。**不**声称 `∃!` 这一分量有任何独立难度。 -/
 theorem tN_limit_mem_solution_set (η y x : ℝ) (θ₀ : ℝ → ℝ) (hη : |1 - η| < 1) :
-    (∃! t : ℝ, (1 : ℝ →L[ℝ] ℝ) t = y) ∧ Tendsto (Fate.LearnFunction.tN η y x θ₀) atTop (nhds y) := by
+    (∃! t : ℝ, (1 : ℝ →L[ℝ] ℝ) t = y) ∧ Tendsto (FateV2.Loop.LearnFunction.tN η y x θ₀) atTop (nhds y) := by
   have hinj : Function.Injective (⇑(1 : ℝ →L[ℝ] ℝ)) := fun a b hab => by simpa using hab
   obtain ⟨hu, ht⟩ := version2_main (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) η y (θ₀ x)
     corrects_one_one hinj hη
@@ -446,7 +446,7 @@ $$\texttt{tN}\ 1\ y\ x\ \theta_0\ 1 \;=\; y.$$
 路径不同：`tN_one_exact` 用 `tN_closed` + `nlinarith`；
 本定理用 `wbSeq_closed` 令 `η = 1`（`Finset.sum_range_one`、`pow_zero`）
 + 主桥。**⟹ 又一处路径一致性核对。** -/
-theorem tN_one_exact_via_wbSeq (y x : ℝ) (θ₀ : ℝ → ℝ) : Fate.LearnFunction.tN 1 y x θ₀ 1 = y := by
+theorem tN_one_exact_via_wbSeq (y x : ℝ) (θ₀ : ℝ → ℝ) : FateV2.Loop.LearnFunction.tN 1 y x θ₀ 1 = y := by
   have h := wbSeq_closed (1 : ℝ →L[ℝ] ℝ) (1 : ℝ →ₗ[ℝ] ℝ) 1 y (θ₀ x)
     corrects_one_one 1
   rw [wbSeq_one_seq_eq_tN] at h

@@ -81,8 +81,8 @@ namespace FateV2.Modeling.GraphToProbView7
 open Finset
 open FateV2.Error
 open Fate.DAGFactorization
-open Fate.FactorMarkov
-open Fate.View19
+open FateV2.Predict.FactorMarkov
+open FateV2.Predict.View19
 
 universe u
 
@@ -147,7 +147,7 @@ theorem mem_WG {R : V → Finset V} {Y Z : Finset V} {v : V} :
 
 /-- ⭐⭐ **三块覆盖 `univ`**（需 `Split`）。 -/
 theorem WF_union_WG_union_WZ {R : V → Finset V} {X Y Z : Finset V}
-    (hsplit : Fate.View19.Split R X Y Z) :
+    (hsplit : FateV2.Predict.View19.Split R X Y Z) :
     WF R X Z ∪ WG R Y Z ∪ Wblk R Z = (Finset.univ : Finset V) := by
   ext v
   simp only [Finset.mem_union, mem_WF, mem_WG, mem_Wblk, Finset.mem_univ, iff_true]
@@ -185,7 +185,7 @@ theorem WG_disjoint_WZ (R : V → Finset V) (Y Z : Finset V) :
 
 /-- ⭐⭐⭐ **乘积三分**。 -/
 theorem prod_univ_split (ψ : V → (V → α) → ℝ) {R : V → Finset V} {X Y Z : Finset V}
-    (hsplit : Fate.View19.Split R X Y Z) (hXY : Disjoint X Y) (w : V → α) :
+    (hsplit : FateV2.Predict.View19.Split R X Y Z) (hXY : Disjoint X Y) (w : V → α) :
     (∏ v, ψ v w)
       = (∏ v ∈ Wblk R Z, ψ v w) * (∏ v ∈ WF R X Z, ψ v w) * (∏ v ∈ WG R Y Z, ψ v w) := by
   classical
@@ -367,11 +367,11 @@ theorem sq_cancel {c A B C D : ℝ} (hc : c ≠ 0) :
 theorem condIndep_general (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (_hXZ : Disjoint X Z) (_hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   classical
   intro x
   set Pz : (V → α) → ℝ := fun w => ∏ v ∈ Wblk R Z, ψ v w with hPz
@@ -442,12 +442,12 @@ theorem condIndep_general (ψ : V → (V → α) → ℝ) (p : (V → α) → �
 theorem condIndep_general_nz (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ)
     {R : V → Finset V} {X Y Z : Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
-    (hread : Fate.View19.ReadSet ψ R)
-    (hsplit : Fate.View19.Split R X Y Z)
+    (hread : FateV2.Predict.View19.ReadSet ψ R)
+    (hsplit : FateV2.Predict.View19.Split R X Y Z)
     (hXY : Disjoint X Y) (hXZ : Disjoint X Z) (hYZ : Disjoint Y Z)
     (hcover : X ∪ Y ∪ Z = Finset.univ)
     (hprod : ∀ x, (∏ v ∈ Wblk R Z, ψ v x) ≠ 0) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   classical
   intro x
   set Pz : (V → α) → ℝ := fun w => ∏ v ∈ Wblk R Z, ψ v w with hPz

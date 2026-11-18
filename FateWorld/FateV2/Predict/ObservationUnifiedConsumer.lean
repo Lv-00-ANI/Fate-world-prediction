@@ -2,13 +2,13 @@
   Fate · **接入：ObservationUnified 的消费方**
   （`Fate/_wip` 新工作流：先在 `_wip` 验证 `EXIT=0`，再搬回 `Fate/` 并加 import）
 
-  源模块：`Fate/ObservationUnified.lean`（`namespace Fate.ObservationUnified`，465 行）
+  源模块：`Fate/ObservationUnified.lean`（`namespace FateV2.Predict.ObservationUnified`，465 行）
   接入方向：把「观测反推潜变量的三档」（`InversionTier`：`bounded` / `posterior` /
             `quotient`）当作**统一接口**去消费 —— 不重述它的三条主定理，而是把它的
             **载体**（`Inversion` / `classOf` / `PosteriorData.post` / `BoundedData`）
             接到仓内三条**独立主线**上：
-              · `Fate.MiddleZoneDichotomy`（中间地带二分法，**纯函数论**层）
-              · `Fate.TieredScheme`（预测/干预/反事实**分档读出**层）
+              · `FateV2.Predict.MiddleZoneDichotomy`（中间地带二分法，**纯函数论**层）
+              · `FateV2.Predict.TieredScheme`（预测/干预/反事实**分档读出**层）
               · （`BoundedData` 的零误差界，接到上面的中间地带）
 
   ============================================================================
@@ -57,7 +57,7 @@
   1. `weak_tier_equals_middle_zone`（消费 `classOf_eq_iff` + `MiddleZone`）
      结论：`MiddleZone I.h = {p | I.classOf p.1 = I.classOf p.2 ∧ p.1 ≠ p.2}`。
      前件**只有** `I : Inversion W Y`（裸载体：两个字段，**零假设**）。
-     左侧来自 `Fate.MiddleZoneDichotomy`（其变量是**任意函数** `Φ`，不认识 `Quotient`），
+     左侧来自 `FateV2.Predict.MiddleZoneDichotomy`（其变量是**任意函数** `Φ`，不认识 `Quotient`），
      右侧来自 `Inversion.classOf`（`Quotient.mk` 于 `Setoid.ker I.h`，不认识 `MiddleZone`）。
      **为何不同义反复**：两个定义**互不知情**；证明必须双向用 `classOf_eq_iff`
      （内部是 `Quotient.eq''`）在**商的相等**与**观测的相等**之间翻译。
@@ -94,12 +94,12 @@
   5. `tierToScheme` / `tierToScheme_le_quotient` / `tierToScheme_le_bounded` /
      `tierToScheme_strict` / `discrimOn_univ_iff_middle_zone_empty`
      （消费 `inversion_tier_trichotomy` + `TieredScheme.Tier.le` + `DiscrimOn`）
-     把 `InversionTier` **保序嵌入** `Fate.TieredScheme.Tier`
+     把 `InversionTier` **保序嵌入** `FateV2.Predict.TieredScheme.Tier`
      （`quotient ↦ predict`，`posterior ↦ intervene`，`bounded ↦ counterfactual`），
      并证：在 `Inversion` 载体的**分档读出** `invObs I` 上，
      `DiscrimOn … Set.univ ⟺ MiddleZoneEmpty I.h`。
-     **为何不同义反复**：`DiscrimOn` / `Tier.le` 来自 `Fate.TieredScheme`，
-     `MiddleZoneEmpty` 来自 `Fate.MiddleZoneDichotomy`，`tierToScheme` 是本文件新定义；
+     **为何不同义反复**：`DiscrimOn` / `Tier.le` 来自 `FateV2.Predict.TieredScheme`，
+     `MiddleZoneEmpty` 来自 `FateV2.Predict.MiddleZoneDichotomy`，`tierToScheme` 是本文件新定义；
      三者互相独立，前件只给 `I` 与 `t`。
 
   ============================================================================
@@ -151,10 +151,10 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace ObservationUnifiedConsumer
 
-open Fate.ObservationUnified
-open Fate.ObservationUnified.Inversion
-open Fate.MiddleZoneDichotomy (MiddleZone MiddleZoneEmpty)
-open Fate.TieredScheme (Tier Obs DiscrimOn)
+open FateV2.Predict.ObservationUnified
+open FateV2.Predict.ObservationUnified.Inversion
+open FateV2.Predict.MiddleZoneDichotomy (MiddleZone MiddleZoneEmpty)
+open FateV2.Predict.TieredScheme (Tier Obs DiscrimOn)
 
 universe u v
 
@@ -166,7 +166,7 @@ variable {W : Type u} {Y : Type v}
 
 /-- ⭐⭐⭐ **【主消费 1】弱档的等价类 = `MiddleZoneDichotomy` 的中间地带**。
 
-`Fate.MiddleZoneDichotomy.MiddleZone Φ`（对**任意函数** `Φ : SCM → CF`）定义为
+`FateV2.Predict.MiddleZoneDichotomy.MiddleZone Φ`（对**任意函数** `Φ : SCM → CF`）定义为
 
   `{p | Φ p.1 = Φ p.2 ∧ p.1 ≠ p.2}`
 
@@ -177,7 +177,7 @@ variable {W : Type u} {Y : Type v}
 
 **为何不同义反复**：
 * 前件只有 `I : Inversion W Y`（`tier` + `h` 两个字段，**零假设**）；
-* 结论是**两个 `Set` 相等**，左侧由 `Fate.MiddleZoneDichotomy` 提供
+* 结论是**两个 `Set` 相等**，左侧由 `FateV2.Predict.MiddleZoneDichotomy` 提供
   （不知道 `Quotient` 存在），右侧由 `Inversion.classOf` 提供
   （`Quotient.mk (Setoid.ker I.h)`，不知道 `MiddleZone` 存在）；
 * 证明双向用 `classOf_eq_iff`（=`Quotient.eq''`）翻译 **商的相等** ⟷ **观测的相等**
@@ -192,7 +192,7 @@ theorem weak_tier_equals_middle_zone (I : Inversion W Y) :
 
 /-- ⭐⭐⭐ **【主消费 2】「中间地带为空」⟷「弱档的类是单点」**。
 
-把 `Fate.MiddleZoneDichotomy.middleZone_empty_iff_injective` 的结论
+把 `FateV2.Predict.MiddleZoneDichotomy.middleZone_empty_iff_injective` 的结论
 （`Z = ∅ ⟺ Φ` 单射）**翻译到商层面**：
 
   `MiddleZoneEmpty I.h  ⟺  ∀ w w', I.classOf w = I.classOf w' → w = w'`
@@ -264,10 +264,10 @@ theorem zero_bound_obs_injective [MetricSpace W] (B : BoundedData W Y)
   exact eq_of_dist_eq_zero hd
 
 /-- ⭐⭐⭐ **【主消费 4b】强档零误差界 ⟹ 中间地带为空**
-（把 4a 落到 `Fate.MiddleZoneDichotomy.MiddleZoneEmpty` 上）。
+（把 4a 落到 `FateV2.Predict.MiddleZoneDichotomy.MiddleZoneEmpty` 上）。
 
 **为何不同义反复**：前件是 `B.h = I.h`（载体对齐）与 `B.ε = 0`；
-结论 `MiddleZoneEmpty I.h` 是一个**关于集合为空**的陈述（`Fate.MiddleZoneDichotomy`
+结论 `MiddleZoneEmpty I.h` 是一个**关于集合为空**的陈述（`FateV2.Predict.MiddleZoneDichotomy`
 的定义），既不是 `B.ε = 0` 的展开，也不是 `B.h = I.h` 的展开 ——
 必须经 `middleZone_empty_iff_injective` 与 `zero_bound_obs_injective` 两步。 -/
 theorem zero_bound_middle_zone_empty [MetricSpace W] (I : Inversion W Y)
@@ -277,10 +277,10 @@ theorem zero_bound_middle_zone_empty [MetricSpace W] (I : Inversion W Y)
   exact zero_bound_obs_injective B hε0
 
 /-! ===========================================================================
-  §4  ⭐⭐ 三档 ⟷ `Fate.TieredScheme` 的分档读出（保序嵌入 + 可区分性）
+  §4  ⭐⭐ 三档 ⟷ `FateV2.Predict.TieredScheme` 的分档读出（保序嵌入 + 可区分性）
   =========================================================================== -/
 
-/-- ⭐ **档映射：`InversionTier` 保序嵌入 `Fate.TieredScheme.Tier`**。
+/-- ⭐ **档映射：`InversionTier` 保序嵌入 `FateV2.Predict.TieredScheme.Tier`**。
 
 按「反推产物的信息量」从**粗**到**细**排列：
 
@@ -319,7 +319,7 @@ theorem tierToScheme_le_bounded (t : InversionTier) :
 theorem tierToScheme_strict : tierToScheme .quotient ≠ tierToScheme .bounded := by
   simp [tierToScheme]
 
-/- ⚠ **宇宙层限制（如实登记）**：`Fate.TieredScheme.Obs.Val : Tier → Type u`
+/- ⚠ **宇宙层限制（如实登记）**：`FateV2.Predict.TieredScheme.Obs.Val : Tier → Type u`
    要求每档读出值都在**同一宇宙** `Type u`。故本节把 `Y` 也限制到 `Type u`
    （源模块本身 `Inversion W Y` 允许 `W : Type u`、`Y : Type v` 不同宇宙；
    **本节是那上面的一个特例**，不是全称）。 -/
@@ -343,8 +343,8 @@ def invObs (I : Inversion W Y) : Obs W where
 
 **为何不同义反复**：
 * 前件只有 `I : Inversion W Y` 与 `t : InversionTier`；
-* `DiscrimOn` 来自 `Fate.TieredScheme`（其定义是 `∀ s ∈ F, ∀ t ∈ F, obs … = obs … → s = t`），
-  `MiddleZoneEmpty` 来自 `Fate.MiddleZoneDichotomy`（其定义是集合为空），
+* `DiscrimOn` 来自 `FateV2.Predict.TieredScheme`（其定义是 `∀ s ∈ F, ∀ t ∈ F, obs … = obs … → s = t`），
+  `MiddleZoneEmpty` 来自 `FateV2.Predict.MiddleZoneDichotomy`（其定义是集合为空），
   `invObs` 是本文件新定义的读出 —— 三者互相独立；
 * 证明要**两段**：先 `middleZone_empty_iff_injective` 把「集合空」转成单射，
   再用 `DiscrimOn` 的**逐点**定义在 `Set.univ` 上展开 —— 两个表述的**量词形状不同**

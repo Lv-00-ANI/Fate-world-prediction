@@ -41,10 +41,10 @@ $$p \text{ 因子分解于 } G \;\wedge\; X \perp_d Y \mid Z \;\wedge\; X\cup Y\
 `Disjoint X Y ∧ Disjoint X Z ∧ Disjoint Y Z ∧ Disjoint (bbReachableVertices Z X) Y`），
 覆盖条件在两处签名中类型一致，因此证明是纯粹的串联。 -/
 theorem condIndep_of_factorizes_dSep_general
-    (p : Fate.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
-    (hfac : Fate.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
+    (p : FateV2.Predict.FactorMarkov.Joint V α) (G : FateV2.Modeling.Graph.DAG V)
+    (hfac : FateV2.Predict.FactorMarkov.Factorizes p G) {X Y Z : Finset V}
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) :
-    Fate.FactorMarkov.CondIndep p X Y Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p X Y Z := by
   have hdisj : Disjoint X Y ∧ Disjoint X Z ∧ Disjoint Y Z ∧
       Disjoint (G.bbReachableVertices Z X) Y := hdsep
   obtain ⟨hXY, hXZ, hYZ, _⟩ := hdisj

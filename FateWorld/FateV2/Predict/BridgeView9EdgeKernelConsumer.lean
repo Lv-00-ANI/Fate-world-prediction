@@ -114,7 +114,7 @@ theorem mem_readSet_iff {G : DAG V} {v u : V} :
 **消费**：`EdgeKernel.loc`（`EdgeLocTwo`，**双参数**只读）与 `EdgeKernel.joint`
 （`p x = ∏ v, κ v x x`）。
 
-**产出**：`Fate.FactorMarkov.Factorizes p G`，即主链的
+**产出**：`FateV2.Predict.FactorMarkov.Factorizes p G`，即主链的
 `∃ f, LocalTo G f ∧ ∀ x, p x = ∏ v, f v x`。
 
 **为什么不是同义反复**：
@@ -128,7 +128,7 @@ theorem mem_readSet_iff {G : DAG V} {v u : V} :
 **⟹ 这是把「视角 9 的载体」接进主链 `FactorMarkov` 的**唯一**入口。 -/
 theorem edgeKernel_factorizes {G : DAG V} {p : (V → α) → ℝ}
     (K : BridgeView9.EdgeKernel (α := α) G p) :
-    Fate.FactorMarkov.Factorizes p G := by
+    FateV2.Predict.FactorMarkov.Factorizes p G := by
   refine ⟨fun v x => K.κ v x x, ?_, K.joint⟩
   -- `LocalTo`：`f v` 只读 `{v} ∪ pa v`
   intro v x y hxy
@@ -216,7 +216,7 @@ theorem mem_readSet_eq_sink {G : DAG V} {s v : V} (hs : ∀ u : V, ¬ G.edge s u
 的对称），**不是新的概率内容**。 -/
 theorem condIndep_symm_of_absorb {p : (V → α) → ℝ} {A B Z : Finset V}
     (hA : A ⊆ Z) (hB : B ⊆ Z) :
-    Fate.FactorMarkov.CondIndep p B A Z := by
+    FateV2.Predict.FactorMarkov.CondIndep p B A Z := by
   intro x
   -- 三元并的换序
   have hunion : B ∪ A ∪ Z = A ∪ B ∪ Z := by
@@ -230,7 +230,7 @@ theorem condIndep_symm_of_absorb {p : (V → α) → ℝ} {A B Z : Finset V}
 **复核**：模块只给单一方向（`condIndep_of_absorb`），双向需要 `Iff` 的两侧各用一次 C4。 -/
 theorem condIndep_comm_of_absorb {p : (V → α) → ℝ} {A B Z : Finset V}
     (hA : A ⊆ Z) (hB : B ⊆ Z) :
-    Fate.FactorMarkov.CondIndep p A B Z ↔ Fate.FactorMarkov.CondIndep p B A Z :=
+    FateV2.Predict.FactorMarkov.CondIndep p A B Z ↔ FateV2.Predict.FactorMarkov.CondIndep p B A Z :=
   ⟨fun _ => condIndep_symm_of_absorb hA hB, fun _ => condIndep_symm_of_absorb hB hA⟩
 
 /-! ===========================================================================
@@ -263,7 +263,7 @@ theorem mass_univ_of_edgeKernel {G : DAG V} {p : (V → α) → ℝ}
 theorem exists_local_factor_of_edgeKernel {G : DAG V} {p : (V → α) → ℝ}
     (K : BridgeView9.EdgeKernel (α := α) G p) :
     ∃ f : V → (V → α) → ℝ,
-      Fate.FactorMarkov.LocalTo G f ∧
+      FateV2.Predict.FactorMarkov.LocalTo G f ∧
         ∀ x : V → α, mass univ p x = ∏ v, f v x := by
   obtain ⟨f, hloc, hfac⟩ := edgeKernel_factorizes K
   exact ⟨f, hloc, fun x => by rw [mass_univ, hfac]⟩
