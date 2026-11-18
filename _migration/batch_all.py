@@ -34,6 +34,14 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第五十一批 ——
+    'BarSdiffIndep': 'Predict', 'LMGcCoverGap': 'Predict',
+    # —— 第五十批 ——
+    'MassIndepOfCompl': 'Predict', 'CardBalanceLMGc': 'Predict',
+    # —— 第四十九批 ——
+    'MassOfReadsCover': 'Predict',
+    # —— 第四十八批 ——
+    'LMGcDirectRoute': 'Predict', 'SinkPeelFinalVerdict': 'Predict',
     # —— 第四十七批 ——
     'NonDescendantsMem': 'Predict', 'BarSdiffEq': 'Predict',
     # —— 第四十六批 ——
