@@ -34,6 +34,21 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第四十七批 ——
+    'NonDescendantsMem': 'Predict', 'BarSdiffEq': 'Predict',
+    # —— 第四十六批 ——
+    'SolutionCLMGcCounterexample': 'Predict', 'SdiffEraseEq': 'Predict',
+    'LMGcProjectionNote': 'Predict', 'SolutionCLMGcNote': 'Predict',
+    # —— 第四十五批（含纯文档模块）——
+    'SinkPeelDiagnosis': 'Predict', 'LMGcCoverObstacle': 'Predict',
+    'NaryIndexCheck': 'Modeling', 'RouteBGapNote': 'Predict',
+    'TwoRoutesNote': 'Predict',
+    # —— 第四十四批 ——
+    'MassSdiffConst': 'Predict',
+    # —— 第四十三批 ——
+    'TailBlockReal2Consumer': 'Predict', 'BlockCIDerivation': 'Predict',
+    'GhostAliases': 'Predict', 'SinkPeelCounterexample': 'Predict',
+    'NaryFin2': 'Modeling', 'TailBlockIntegration': 'Predict',
     # —— 第四十二批 ——
     'TailBlockReal2': 'Predict', 'TailFromDSepIntegration': 'Predict',
     'NaryIndex': 'Modeling', 'TailBlockAssemble': 'Predict',
@@ -486,7 +501,7 @@ def candidates():
             if n in v2m:
                 continue
             info = port_v2.analyze(n)
-            if info and not info['unresolved'] and not info['blocked'] and (info['theorems'] > 0 or info.get('defs', 0) > 0):
+            if info and not info['unresolved'] and not info['blocked'] :
                 rows.append(info)
     rows.sort(key=lambda r: -r['theorems'])
     return rows

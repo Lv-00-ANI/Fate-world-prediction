@@ -342,10 +342,21 @@ def port_one(name, domain, verify=True):
                 body_start = m.start()
                 break
             if body_start is None:
-                return {'module': name, 'ok': False, 'why': '无 namespace 且无定义'}
-            head, body = text[:body_start], text[body_start:]
-            text = (head.rstrip() + f'\n\nnamespace FateV2.{domain}.{name}\n\n'
-                    + body.rstrip() + f'\n\nend FateV2.{domain}.{name}\n')
+                # ⚠ 规则 8b：连定义也没有 —— 纯 import + 注释的**文档模块**。
+                # 这在 Lean 里完全合法（编译成一个只引入依赖的空模块），
+                # 而且下游会 import 它（作为文档引用 / 传递依赖）。
+                #
+                # 实测反例：LMGcCoverObstacle 48 行，只有 2 条 import 和
+                # 一段「LMGc 不能用现有桥推出」的障碍论证（纯注释）。
+                # 它阻塞了 NonDescendantsMem → LMGcProjectionNote →
+                # LMGcDirectRoute → MassOfReadsCover（5 个模块）整条链。
+                #
+                # 处理：只做 import 重定向 + 加迁移头，不包 namespace。
+                text = text.rstrip() + '\n'
+            else:
+                head, body = text[:body_start], text[body_start:]
+                text = (head.rstrip() + f'\n\nnamespace FateV2.{domain}.{name}\n\n'
+                        + body.rstrip() + f'\n\nend FateV2.{domain}.{name}\n')
         else:
             bare = mb.group(1)
             # ⚠ 必须**全部**改写，不能只改第一处。
@@ -629,7 +640,7 @@ def main():
                 if n in v2m:
                     continue
                 info = analyze(n)
-                if info and not info['unresolved'] and not info['blocked'] and (info['theorems'] > 0 or info.get('defs', 0) > 0):
+                if info and not info['unresolved'] and not info['blocked'] :
                     rows.append(info)
         rows.sort(key=lambda r: -r['theorems'])
         print(f'可迁（三重规则完整）：{len(rows)}')
