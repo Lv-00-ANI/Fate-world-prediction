@@ -1,3 +1,6 @@
+import FateWorld.FateV2.Error.ErrorBoundE4
+import Mathlib.Tactic
+
 /-!
   # Error · ErrorBoundE4Full
 
@@ -25,8 +28,6 @@
     * 第 3 条：结构误差的三角分解/组合     `|e1 d1 + e2 d2| ≤ g1 + g2`
 -/
 
-import FateWorld.FateV2.Error.ErrorBoundE4
-import Mathlib.Tactic
 
 namespace FateV2.Error.Stage2.ErrorBoundE4Full
 

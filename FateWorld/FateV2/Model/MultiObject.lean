@@ -67,6 +67,8 @@ import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
   =========================================================================== -/
 
 namespace FateV2.Model
+
+open FateV2.Modeling
 universe u
 
 /-! ### §0.1 空间的积（在 Fate 根命名空间，便于字段记法 `X.prod Y`） -/

@@ -108,4 +108,4 @@ def nd (G : DAG V) (v : V) : Finset V :=
 
 -- 本文件无代码，仅登记缺口。
 
-end FateV2.Predict._T1A2_Gap
+-- （本文件是纯文档模块：唯一的「代码」是 § 中 ```lean 围栏内的示例，未经 Lean 验证。迁移时不需要 namespace 包裹，故移除规则 8 误加的 end。）

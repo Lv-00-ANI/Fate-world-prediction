@@ -1,5 +1,5 @@
 import FateWorld.FateV2.Predict.Counterfactual
-import FateWorld.FateV2.Model.FrameBridge
+import FateWorld.FateV2.Predict.FrameBridge
 import Mathlib.Data.Set.Basic
 import Mathlib.Data.Setoid.Basic
 import Mathlib.Data.Set.Card

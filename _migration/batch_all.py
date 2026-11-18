@@ -34,6 +34,18 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 
 # 人工判定的域分配（按依赖+职责，不按文件名）
 DOMAIN_HINT = {
+    # —— 第五十七批 ——
+    'ExistingToolsAudit': 'Meta',
+    # —— 第五十六批 ——
+    'SubMassFoundations': 'Predict',
+    # —— 第五十五批 ——
+    'SubMassPlan': 'Predict',
+    # —— 第五十四批 ——
+    'NoCoverCondIndepPlan': 'Predict',
+    # —— 第五十三批 ——
+    'LMGcFinalVerdict': 'Predict',
+    # —— 第五十二批 ——
+    'SinkPeelGeneralRefutation': 'Predict', 'LMGcRouteHistory': 'Predict',
     # —— 第五十一批 ——
     'BarSdiffIndep': 'Predict', 'LMGcCoverGap': 'Predict',
     # —— 第五十批 ——
@@ -498,6 +510,31 @@ DOMAIN_HINT = {
 }
 
 
+def regen_entry():
+    """重新生成 FateWorld.lean，使其 import 覆盖 FateWorld/ 下全部模块。
+
+    ⚠ 为什么必须有这一步：
+    `lake build FateWorld` 只构建**入口的 import 闭包**，不是「目录下所有文件」。
+    若写完新模块却不更新入口，验证就是空洞的 —— 模块根本没被编译。
+    实测教训：入口停在 1105 条 import 时，627 个已迁模块从未编译过。
+    """
+    import io
+    base = os.path.join(ROOT, 'FateWorld')
+    mods = []
+    for dp, _, fs in os.walk(base):
+        for fn in fs:
+            if fn.endswith('.lean'):
+                rel = os.path.relpath(os.path.join(dp, fn), base).replace(os.sep, '.')[:-5]
+                mods.append('FateWorld.' + rel)
+    mods.sort()
+    lines = [f'import {m}' for m in mods]
+    lines += ['', '/-!', '  # FateWorld —— 总入口', '',
+              '  导入本仓库全部模块，供 `lake build FateWorld` 一次性验证。', '',
+              '  自动生成，勿手工编辑。', '-/']
+    with open(os.path.join(ROOT, 'FateWorld.lean'), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write('\n'.join(lines) + '\n')
+    return len(mods)
+
 def candidates():
     v2m = port_v2.v2_index()
     rows = []
@@ -558,6 +595,8 @@ def main():
     if not written:
         return
 
+    n_entry = regen_entry()
+    print(f'已重新生成入口：{n_entry} 条 import')
     print(f'\n=== 统一验证（{len(written)} 个）===')
     proc = subprocess.run(['lake', 'build', 'FateWorld'], cwd=ROOT,
                           capture_output=True, text=True,

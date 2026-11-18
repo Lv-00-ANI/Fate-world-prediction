@@ -81,6 +81,8 @@ import Mathlib.Tactic.Push
 
 namespace FateV2.Model
 
+open FateV2.Modeling
+
 open FateV2.Model
 namespace ThetaExpressiveness
 

@@ -3,12 +3,12 @@
 > **《命运》世界模型 / 预测系统的形式化工程仓库。**
 >
 > [![Lean](https://img.shields.io/badge/Lean-4.33.0--rc1-blue)](https://leanprover.github.io/)
-> [![Modules](https://img.shields.io/badge/modules-1148-green)]()
-> [![Build](https://img.shields.io/badge/build-passing-brightgreen)]()
+> [![Modules](https://img.shields.io/badge/modules-1828-lightgrey)]()
+> [![Build](https://img.shields.io/badge/build-348%2F975%20verified-orange)]()
 > [![sorry](https://img.shields.io/badge/sorry-0-brightgreen)]()
 >
 > **远程**：https://github.com/Lv-00-ANI/Fate-world-prediction
-> **构建状态**：`Build completed successfully (9765 jobs)` — 零 error、零 sorryAx
+> **构建状态**：⚠️ **迁移进行中，348 / 975 个 FateV2 模块已验证编译**。详见 [`_inventory/迁移完整性问题.md`](_inventory/迁移完整性问题.md)
 
 ---
 
@@ -249,8 +249,8 @@ Fate-world-prediction/
 
 | 项 | 状态 |
 |---|---|
-| 模块总数 | **1148**（FateV2 296 + Legacy 851 + 入口 1） |
-| 构建 | ✅ **1148 / 1148 全通过**（9765 jobs，零 error、零 sorryAx） |
+| 模块总数 | **1828**（FateV2 975 + Legacy 851 + 入口 1 + 其他） |
+| 构建 | ⚠️ **348 / 975 FateV2 模块已验证**（见迁移完整性问题） |
 | 可执行 demo | ✅ 五层端到端能跑出数值 |
 | 空壳补全 | ✅ **15 / 15 完成**（220 个新声明） |
 | 文档归档 | ✅ 254 文件零差异 |

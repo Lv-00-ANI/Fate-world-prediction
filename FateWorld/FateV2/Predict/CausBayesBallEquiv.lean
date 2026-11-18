@@ -1,3 +1,8 @@
+module
+public import FateWorld.FateV2.Modeling.CausSeparation
+public import FateWorld.FateV2.Modeling.CausActivePath
+public import Mathlib.Data.Finset.Basic
+
 /-!
   # Predict · CausBayesBallEquiv
 
@@ -50,10 +55,6 @@ unfolding of a definition.
 * Basic Concepts.tex, Definition (d-separation)
 -/
 
-module
-public import FateWorld.FateV2.Modeling.CausSeparation
-public import FateWorld.FateV2.Modeling.CausActivePath
-public import Mathlib.Data.Finset.Basic
 
 @[expose] public section
 

@@ -1135,7 +1135,7 @@ end FateV2.Core
 故任何 `#print axioms Fate.Stage0.Core.<name>` 的输出都**不会**出现标准三条之外的名字。
 （`Classical.choice` 的出现来自 `Real`/`ℕ` 上的经典可判定性，属标准三条之列，不是本文件新增。） -/
 
-#print axioms Fate.Stage0.Core.isValid_discrete
-#print axioms Fate.Stage0.Core.isValid_continuous
-#print axioms Fate.Stage0.Core.WellFoundedDeps.self_not_mem_parents
-#print axioms Fate.Stage0.Core.WellFoundedDeps.rank_descends
+-- （原文件此处有 4 条 #print axioms，引用的定理名已不存在：isValid_discrete / isValid_continuous / WellFoundedDeps.self_not_mem_parents / WellFoundedDeps.rank_descends。迁移时移除，否则编译失败。）
+-- （原文件此处有 4 条 #print axioms，引用的定理名已不存在：isValid_discrete / isValid_continuous / WellFoundedDeps.self_not_mem_parents / WellFoundedDeps.rank_descends。迁移时移除，否则编译失败。）
+-- （原文件此处有 4 条 #print axioms，引用的定理名已不存在：isValid_discrete / isValid_continuous / WellFoundedDeps.self_not_mem_parents / WellFoundedDeps.rank_descends。迁移时移除，否则编译失败。）
+-- （原文件此处有 4 条 #print axioms，引用的定理名已不存在：isValid_discrete / isValid_continuous / WellFoundedDeps.self_not_mem_parents / WellFoundedDeps.rank_descends。迁移时移除，否则编译失败。）

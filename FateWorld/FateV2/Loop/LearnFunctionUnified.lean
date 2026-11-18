@@ -1,5 +1,5 @@
 import FateWorld.FateV2.Loop.LearnFunction
-import FateWorld.FateV2.Modeling.ThetaExpressiveness
+import FateWorld.FateV2.Model.ThetaExpressiveness
 import FateWorld.FateV2.Loop.WorldModelReadsTheta
 /-!
   # Loop · LearnFunctionUnified

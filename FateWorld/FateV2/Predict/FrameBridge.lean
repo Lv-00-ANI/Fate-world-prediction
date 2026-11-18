@@ -73,7 +73,7 @@ variable (F : Frame)
 本项目只给了 `TrajGen` 的**类型**，未给具体实现；
 `Obs` 的具体形式依赖轨迹生成器如何实现。
 **强行构造会给出一条未经验证的断言** —— 故此处**如实留参数**。 -/
-def frameModel (CF : Type*) (Obs : Step F → CF) : Model where
+def frameModel (CF : Type*) (Obs : Step F → CF) : FateV2.Predict.Counterfactual.Model where
   SCM := Step F
   CF := CF
   Obs := Obs
