@@ -177,7 +177,7 @@ structure WorldModelCompleteV2W (F : Frame) [instX : MeasurableSpace F.X.Carrier
   /-- **⑤ 因果**。与 `WorldModelCompleteV2.causal` 同。 -/
   causal : ParamSCM.ParamSCM F.X.Carrier F.X.Carrier
   /-- **⑥a 误差剖面**。与 `WorldModelCompleteV2.error` 同。 -/
-  error : R238E3.ErrProfileWeak
+  error : FateV2.Error.Core.ErrProfileWeak
   /-- **⑥b 签名 σ 来源**。与 `WorldModelCompleteV2.sigma` 同。 -/
   sigma : SigmaFromDomain.SigmaSource
   /-- **（C6 断点）规则集**。与 `WorldModelCompleteV2.rules` 同。 -/
@@ -309,7 +309,7 @@ def wmcWCompose : ComposeOperator.MeasurableRule nonDegCtx nonDegFrame.X nonDegF
   fun a _ => a
 
 /-- **实例的误差剖面**：零偏置、零方差（都满足非负公理）。 -/
-def wmcWErr : R238E3.ErrProfileWeak where
+def wmcWErr : FateV2.Error.Core.ErrProfileWeak where
   bias := fun _ => 0
   var := fun _ => 0
   bias_nonneg := fun _ => le_refl 0

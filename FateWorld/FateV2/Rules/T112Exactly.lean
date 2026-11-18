@@ -338,7 +338,7 @@ universe u
 **这是本文件首次把「闭包算子 API」直接作用到 `T112.closure` 上。** -/
 theorem closure_intentClosure_fix (K : FormalCtx) (A : Set K.MFCA) :
     (intentClosure K.Irel) (T112.closure K A) = T112.closure K A := by
-  rw [← T112.closure_eq_intentClosure]
+  rw [← FateV2.Rules.FateV2.Rules.T112.closure_eq_intentClosure]
   exact (T112.closureOp K).idempotent A
 
 /-- **(R11-2)** `A` 是内涵 ⟺ `A` 是 FCA 闭包的不动点。
@@ -351,32 +351,32 @@ theorem isIntent_iff_closure_fix (K : FormalCtx) (A : Set K.MFCA) :
     Order.IsIntent K.Irel A ↔ T112.closure K A = A := by
   constructor
   · intro hA
-    rw [T112.closure_eq_intentClosure]
+    rw [FateV2.Rules.FateV2.Rules.T112.closure_eq_intentClosure]
     exact FormalCtx.polarUp_polarDown_eq_of_isIntent K hA
   · intro hA
     rw [← hA]
-    exact T112.closure_isIntent K A
+    exact FateV2.Rules.T112.closure_isIntent K A
 
-/-- **(R11-3)** `T112.closure K A` 落在 `T112.range_closure_eq_intents` 所刻画的
+/-- **(R11-3)** `T112.closure K A` 落在 `FateV2.Rules.T112.range_closure_eq_intents` 所刻画的
 「某概念的 intent」这一集合中。 -/
 theorem closure_range_isIntent (K : FormalCtx) (A : Set K.MFCA) :
     T112.closure K A ∈ { B : Set K.MFCA | ∃ c : ConceptLattice K, c.intent = B } := by
-  rw [← T112.range_closure_eq_intents]
+  rw [← FateV2.Rules.T112.range_closure_eq_intents]
   exact mem_image_of_mem _ (mem_univ A)
 
 /-! ## §R11.2  二次商的类与闭包 -/
 
 /-- **(R11-4)** 两个属性集落在同一商类 ⟺ 它们的闭包相等（`Quotient.mk` 形式）。 -/
 theorem mk_eq_iff_closure_eq (K : FormalCtx) (A B : Set K.MFCA) :
-    Quotient.mk (T112.attrsEquivSetoid K) A = Quotient.mk (T112.attrsEquivSetoid K) B ↔
+    Quotient.mk (FateV2.Rules.FateV2.Rules.FateV2.Rules.T112.attrsEquivSetoid K) A = Quotient.mk (FateV2.Rules.FateV2.Rules.FateV2.Rules.T112.attrsEquivSetoid K) B ↔
       T112.closure K A = T112.closure K B :=
-  T112.t112_injective_iff K A B
+  FateV2.Rules.T112.t112_injective_iff K A B
 
 /-- **(R11-5)** `A` 与其闭包同属一类，且两者再闭包后相等（幂等的类内稳定性）。 -/
 theorem class_of_closure_eq (K : FormalCtx) (A : Set K.MFCA) :
     T112.closure K A = T112.closure K (T112.closure K A) ∧
-      (T112.attrsEquivSetoid K) A (T112.closure K A) :=
-  ⟨((T112.closureOp K).idempotent A).symm, T112.attrsEquiv_self_closure K A⟩
+      (FateV2.Rules.FateV2.Rules.FateV2.Rules.T112.attrsEquivSetoid K) A (T112.closure K A) :=
+  ⟨((T112.closureOp K).idempotent A).symm, FateV2.Rules.T112.attrsEquiv_self_closure K A⟩
 
 /-! ## §R11.3  任意幂集闭包算子 ↔ 规范背景 -/
 
@@ -400,7 +400,7 @@ theorem clo_extents_eq_closed {γ : Type u} (c : ClosureOperator (Set γ)) :
 theorem t112_for_canonical {γ : Type u} (c : ClosureOperator (Set γ)) :
     Nonempty (Quotient (Setoid.ker fun s : Set γ => c s) ≃ { s : Set γ // c s = s }) ∧
       (∀ s : Set γ, Order.IsExtent (cloRel c) s ↔ c s = s) :=
-  ⟨T112.t112_holds_for_any_closureOperator (Set γ) c, canonical_context_extents c⟩
+  ⟨FateV2.Rules.T112.t112_holds_for_any_closureOperator (Set γ) c, canonical_context_extents c⟩
 
 /-! ## §R11.4  极算子：反单调、伴随、双极 -/
 
@@ -408,13 +408,13 @@ theorem t112_for_canonical {γ : Type u} (c : ClosureOperator (Set γ)) :
 theorem polar_antitone_closure_bipolar (K : FormalCtx) :
     Antitone K.polarUp ∧ Antitone K.polarDown ∧
       ∀ A : Set K.MFCA, T112.closure K A = K.polarUp (K.polarDown A) :=
-  ⟨(T112.polar_pair_antitone K).1, (T112.polar_pair_antitone K).2,
-    T112.fca_closure_is_bipolar K⟩
+  ⟨(FateV2.Rules.FateV2.Rules.T112.polar_pair_antitone K).1, (FateV2.Rules.FateV2.Rules.T112.polar_pair_antitone K).2,
+    FateV2.Rules.FateV2.Rules.T112.fca_closure_is_bipolar K⟩
 
 /-- **(R11-9)** 伴随律 `B ⊆ A' ↔ A ⊆ B'` 与「闭包 = 双极复合」同时成立。 -/
 theorem adjunction_and_closure (K : FormalCtx) (A : Set K.GFCA) (B : Set K.MFCA) :
     (B ⊆ K.polarUp A ↔ A ⊆ K.polarDown B) ∧ T112.closure K B = K.polarUp (K.polarDown B) :=
-  ⟨T112.polar_adjunction K A B, T112.fca_closure_is_bipolar K B⟩
+  ⟨FateV2.Rules.T112.polar_adjunction K A B, FateV2.Rules.FateV2.Rules.T112.fca_closure_is_bipolar K B⟩
 
 /-! ## §R11.5  单底集坍缩与闭包算子不动点 -/
 
@@ -426,8 +426,8 @@ theorem adjunction_and_closure (K : FormalCtx) (A : Set K.GFCA) (B : Set K.MFCA)
 theorem unary_extent_is_uClosure_fix {γ : Type*} {r : γ → γ → Prop} (hr : Std.Symm r)
     (s : Set γ) :
     (Order.IsExtent r s ↔ lowerPolar r (lowerPolar r s) = s) ∧
-      (Order.IsExtent r s ↔ T112Unary.uClosure r s = s) :=
-  ⟨T112Unary.isExtent_iff_lowerPolar_lowerPolar hr s, C5.isExtent_iff_uClosure_fix r s⟩
+      (Order.IsExtent r s ↔ FateV2.Rules.T112Unary.uClosure r s = s) :=
+  ⟨FateV2.Rules.T112Unary.isExtent_iff_lowerPolar_lowerPolar hr s, C5.isExtent_iff_uClosure_fix r s⟩
 
 end R11T112
 

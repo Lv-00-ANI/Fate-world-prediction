@@ -417,7 +417,7 @@ theorem M1_rule1 (x y : Fin 2) :
 theorem XIndependent_not_necessary :
     ∃ (M : PearlHierarchy.SCM (Fin 2) (Fin 2)),
       R242G3.SCM.NoConfounding M ∧ ¬ Exog.XIndependent M :=
-  ⟨R242G3.M2, R242G3.noConfounding_M2, by
+  ⟨R242G3.M2, FateV2.Predict.R242G3.noConfounding_M2, by
     intro h
     have hp : ∀ u : Fin 2, R242G3.M2.pU u = (1 : ℝ) / 2 := fun _ => rfl
     have h01 : (R242G3.M2.sg (0 : Fin 2)).1 = (R242G3.M2.sg (1 : Fin 2)).1
@@ -456,16 +456,16 @@ end Rule1
 
 namespace Rule3
 
-/-- ⭐⭐⭐ **`conf`（复用 `R246G3.conf`）满足 `EffNull`**：
+/-- ⭐⭐⭐ **`conf`（复用 `FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf`）满足 `EffNull`**：
 `sg u = ((u,u), fun _ => u)` —— **`Y` 的方程完全不读参数**。 -/
-theorem conf_effNull : EffNull R246G3.conf := by
+theorem conf_effNull : EffNull FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf := by
   intro u z₁ z₂ x
   rfl
 
 /-- ⭐⭐⭐⭐ **`rule3_genuine` 在 `conf` 上**跑通**（**现成定理的直接实例**）。 -/
 theorem conf_rule3 (x z y : Fin 2) :
-    R246G3.Sem3.doLaw2 R246G3.conf x z y = R246G3.Sem3.doLawXOnly R246G3.conf x y :=
-  rule3_genuine R246G3.conf conf_effNull x z y
+    R246G3.Sem3.doLaw2 FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf x z y = R246G3.Sem3.doLawXOnly FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf x y :=
+  rule3_genuine FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf conf_effNull x z y
 
 /-- ⭐⭐⭐⭐ **`chain` **不**满足 `EffNull`**（`f_u(z,x) = z`，**真读**第一个参数）。
 

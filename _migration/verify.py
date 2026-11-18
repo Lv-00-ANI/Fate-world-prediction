@@ -85,24 +85,33 @@ def main():
 
     print(f'待验证: {len(todo)} 个模块', flush=True)
 
-    rows = []
-    ok_n = 0
-    for i, (mod, rel, dom) in enumerate(todo, 1):
-        ok, err = build(mod)
-        if ok:
-            ok_n += 1
-        rows.append({'模块': rel, '域': dom, '状态': 'OK' if ok else 'FAIL', '错误': err})
-        mark = 'OK  ' if ok else 'FAIL'
-        print(f'[{mark}] {i:>4}/{len(todo)} {rel}' + ('' if ok else f'  {err[:90]}'), flush=True)
+    # 增量写盘：每验一个就落盘，进程中断也不丢进度。
+    # 已记录的模块默认跳过（可用 --all 重验）。
+    done = {}
+    if os.path.exists(OUT):
+        with open(OUT, encoding='utf-8-sig') as fh:
+            for r in csv.DictReader(fh):
+                done[r['模块']] = r
+    todo = [t for t in todo if t[1] not in done or a.all]
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    with open(OUT, 'w', encoding='utf-8-sig', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=['模块', '域', '状态', '错误'])
-        w.writeheader()
-        w.writerows(rows)
+    fields = ['模块', '域', '状态', '错误']
+    fresh = not os.path.exists(OUT) or a.all
+    with open(OUT, 'w' if fresh else 'a', encoding='utf-8-sig', newline='') as fh:
+        w = csv.DictWriter(fh, fieldnames=fields)
+        if fresh:
+            w.writeheader()
+        ok_n = 0
+        for i, (mod, rel, dom) in enumerate(todo, 1):
+            ok, err = build(mod)
+            if ok:
+                ok_n += 1
+            w.writerow({'模块': rel, '域': dom, '状态': 'OK' if ok else 'FAIL', '错误': err})
+            fh.flush()
+            mark = 'OK  ' if ok else 'FAIL'
+            print(f'[{mark}] {i:>4}/{len(todo)} {rel}' + ('' if ok else f'  {err[:90]}'), flush=True)
 
-    fail = len(rows) - ok_n
-    print(f'\n通过 {ok_n} / {len(rows)}，失败 {fail}')
+    print(f'\n本轮通过 {ok_n} / {len(todo)}')
     print(f'明细写入 {OUT}')
 
 

@@ -74,8 +74,29 @@ def main():
     ap.add_argument('--fix', action='store_true')
     a = ap.parse_args()
 
-    with open(TIDX, encoding='utf-8') as f:
-        tidx = json.load(f)
+    # ⚠ 不能用 type_index.json 直接判定归属：它是「先到先得」，
+    # 同名标识符（如 `Model` 在 Modeling.SCM / Predict.Counterfactual /
+    # Demo.ExecutableSCM 各有定义）只会保留第一个。
+    # 直接按索引报警会产生大量假阳性（实测 123 条里绝大部分是 `Model`）。
+    #
+    # 正确做法：扫描全部定义，建立 name → {domains}；
+    # **只对全局唯一定义的名字**报警。
+    multi = {}
+    for dp, _, fs in os.walk(V2):
+        for fn in fs:
+            if not fn.endswith('.lean'):
+                continue
+            p2 = os.path.join(dp, fn)
+            rel2 = os.path.relpath(p2, V2).replace(os.sep, '.')[:-5]
+            d2 = rel2.split('.')[0]
+            with open(p2, encoding='utf-8') as fh2:
+                src2 = fh2.read()
+            for nm in re.findall(
+                    r'(?m)^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*'
+                    r'(?:structure|inductive|class)\s+([A-Za-z_]\w*)', src2):
+                multi.setdefault(nm, set()).add(d2)
+    uniq = {nm: next(iter(ds)) for nm, ds in multi.items() if len(ds) == 1}
+    tidx = {nm: {'domain': d} for nm, d in uniq.items()}
 
     rows = []
     for dp, _, fs in os.walk(V2):

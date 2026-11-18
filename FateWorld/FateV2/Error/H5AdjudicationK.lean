@@ -7,8 +7,8 @@
 
   任务：检查 `Fate/FitBoundary.lean` 的两条裁决 K 组定理
 
-  - `R238E3.existsUnique_isFitBoundary_of_strictConvexOn`
-  - `R238E3.boundary_not_unique`
+  - `FateV2.Error.existsUnique_isFitBoundary_of_strictConvexOn`
+  - `FateV2.Error.boundary_not_unique`
 
   的**前件是否已把结论包进去**（同义反复），若是，给出**真正有内容**的版本。
 
@@ -98,10 +98,10 @@ $$\mathrm{IsFitBoundary}(W,\sigma,\gamma)
 **⟹ 原定理不是逻辑同义反复**（γ₁=γ₂ 不在前件），
 但它的内容**完全**寄生于「最小点唯一性」，而这一点由 `StrictConvexOn` 提供。
 **这条恒等式把「寄生于哪里」显式化，供后续审计引用。** -/
-theorem isFitBoundary_iff_isMinOn {W : R238E3.ErrProfileWeak} {σ γ : ℝ} :
-    R238E3.IsFitBoundary W σ γ ↔
+theorem isFitBoundary_iff_isMinOn {W : FateV2.Error.Core.ErrProfileWeak} {σ γ : ℝ} :
+    FateV2.Error.Core.IsFitBoundary W σ γ ↔
       (IsMinOn (fun γ' => W.err γ') univ γ ∧ W.err γ = σ) := by
-  unfold R238E3.IsFitBoundary
+  unfold FateV2.Error.Core.IsFitBoundary
   constructor
   · rintro ⟨hval, hlb⟩
     refine ⟨?_, hval⟩
@@ -184,13 +184,13 @@ $$\Bigl(\mathrm{StrictConvexOn}\ \mathbb{R}\ \mathrm{univ}\ E_W\Bigr)
 真正独立的条件并**证出**存在性，同时给出对**任意 σ** 的完整刻画。
 这就是「真正有内容的版本」。** -/
 theorem existsUnique_isFitBoundary_of_strictConvexOn_coercive
-    {W : R238E3.ErrProfileWeak}
+    {W : FateV2.Error.Core.ErrProfileWeak}
     (hcvx : StrictConvexOn ℝ (univ : Set ℝ) (fun γ => W.err γ))
     (hcont : Continuous (fun γ => W.err γ))
     (htop : Tendsto (fun γ => W.err γ) atTop atTop)
     (hbot : Tendsto (fun γ => W.err γ) atBot atTop) :
-    ∃! γ_, R238E3.IsFitBoundary W (W.err γ_) γ_ ∧
-      ∀ σ : ℝ, (R238E3.HasFitBoundary W σ ↔ σ = W.err γ_) := by
+    ∃! γ_, FateV2.Error.Core.IsFitBoundary W (W.err γ_) γ_ ∧
+      ∀ σ : ℝ, (FateV2.Error.Core.HasFitBoundary W σ ↔ σ = W.err γ_) := by
   obtain ⟨γ₀, hmin₀, huniq⟩ :=
     existsUnique_isMinOn_of_strictConvexOn_coercive hcvx hcont htop hbot
   refine ⟨γ₀, ⟨?_, ?_⟩, ?_⟩
@@ -230,7 +230,7 @@ theorem existsUnique_isFitBoundary_of_strictConvexOn_coercive
 def hingeErr (γ : ℝ) : ℝ := max 0 (max (γ - 1) (-(γ + 1)))
 
 /-- **凸但非严格凸的弱剖面**（`bias = hingeErr`，`var = 0`）。 -/
-def profHinge : R238E3.ErrProfileWeak where
+def profHinge : FateV2.Error.Core.ErrProfileWeak where
   bias := hingeErr
   var := fun _ => 0
   bias_nonneg := fun γ => le_max_left _ _
@@ -238,7 +238,7 @@ def profHinge : R238E3.ErrProfileWeak where
 
 /-- `profHinge` 的误差就是 `hingeErr`。 -/
 theorem profHinge_err (γ : ℝ) : profHinge.err γ = hingeErr γ := by
-  simp only [R238E3.ErrProfileWeak.err, profHinge]; ring
+  simp only [FateV2.Error.Core.ErrProfileWeak.err, profHinge]; ring
 
 /-- **仿射函数凸**（辅助）。 -/
 theorem affine_convexOn (c d : ℝ) :
@@ -301,8 +301,8 @@ $$\mathrm{ConvexOn}\ \mathbb{R}\ \mathrm{univ}\ (\mathrm{err\ profHinge})
 theorem boundary_not_unique_with_convex :
     ConvexOn ℝ (univ : Set ℝ) (fun γ => profHinge.err γ) ∧
     ¬ StrictConvexOn ℝ (univ : Set ℝ) (fun γ => profHinge.err γ) ∧
-    R238E3.IsFitBoundary profHinge 0 1 ∧
-    R238E3.IsFitBoundary profHinge 0 (-1) ∧
+    FateV2.Error.Core.IsFitBoundary profHinge 0 1 ∧
+    FateV2.Error.Core.IsFitBoundary profHinge 0 (-1) ∧
     (1 : ℝ) ≠ -1 := by
   have hconv : ConvexOn ℝ (univ : Set ℝ) (fun γ => profHinge.err γ) := by
     have he : (fun γ => profHinge.err γ) = hingeErr :=
@@ -323,8 +323,8 @@ theorem boundary_not_unique_with_convex :
 /-- **读法**：`profHinge` 有边界，但边界点**不唯一**——
 即使 `err` **凸**。 -/
 theorem profHinge_hasBoundary_not_unique :
-    R238E3.HasFitBoundary profHinge 0 ∧
-      ¬ ∃! γ, R238E3.IsFitBoundary profHinge 0 γ := by
+    FateV2.Error.Core.HasFitBoundary profHinge 0 ∧
+      ¬ ∃! γ, FateV2.Error.Core.IsFitBoundary profHinge 0 γ := by
   refine ⟨⟨1, boundary_not_unique_with_convex.2.2.1⟩, ?_⟩
   rintro ⟨γ, _, huniq⟩
   have h1 : (1 : ℝ) = γ := huniq 1 boundary_not_unique_with_convex.2.2.1

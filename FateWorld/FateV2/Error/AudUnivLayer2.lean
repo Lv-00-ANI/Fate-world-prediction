@@ -96,7 +96,7 @@ theorem univ_learning_bound {X : Type*} (f δ : X → ℝ) (ε : X → ℝ)
 theorem univ_tight_bound_epsilon_eq_m :
     ∀ m : ℝ, 0 < m → R250ErrorBound.sgn (m + (-m)) = 0 ∧ R250ErrorBound.sgn m = 1 ∧
       R250ErrorBound.sgn (m + (-m)) ≠ R250ErrorBound.sgn m :=
-  fun m hm => R250ErrorBound.tight_bound_epsilon_eq_m m hm
+  fun m hm => FateV2.Error.R250ErrorBound.tight_bound_epsilon_eq_m m hm
 
 /-! ## C. 全称形式补强 -/
 

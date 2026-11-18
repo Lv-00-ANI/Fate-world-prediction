@@ -589,7 +589,7 @@ theorem chain_satisfies_rule2_genuine (x z y : Fin 2) :
     R246G3.Sem3.doLaw2 R246G3.chain x z y
       = R246G3.Sem3.doLawXCond R246G3.chain x z y := by
   rw [chain_doLawXCond]
-  exact R246G3.doLaw2_chain x z y
+  exact FateV2.Predict.R246G3.doLaw2_chain x z y
 
 /-- ⭐⭐⭐⭐⭐ **`conf` **违反**中介不变量**（**主定理的前提真的能被打破**）。
 
@@ -608,10 +608,10 @@ theorem chain_satisfies_rule2_genuine (x z y : Fin 2) :
 也不是，`zOf(conf.sg u) = u`，`ZIsRoot` 要求**对所有 `z`** 成立，**故 `conf` **不满足** `ZIsRoot`。**
 
 **⭐⭐ 这正是 `ZIsRoot` 的必要性所在**（见 `conf_not_zIsRoot`）。 -/
-theorem conf_not_zIsRoot : ¬ ZIsRoot R246G3.conf := by
+theorem conf_not_zIsRoot : ¬ ZIsRoot FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf := by
   intro h
   have hh := h (0 : Fin 2) (1 : Fin 2)
-  have h0 : R246G3.Sem3.zOf (R246G3.conf.sg (0 : Fin 2)).1 = 0 := rfl
+  have h0 : R246G3.Sem3.zOf (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf.sg (0 : Fin 2)).1 = 0 := rfl
   rw [h0] at hh
   exact absurd hh (by decide)
 
@@ -622,23 +622,23 @@ theorem conf_not_zIsRoot : ¬ ZIsRoot R246G3.conf := by
 `conf` 满足 `MediationInvariant`（方程不读 `p`）**却**不满足规则 2 ——
 **差别全在 `zMass`（`Z` 是否被 `do(x)` 供给）。**
 **⟹ 「`Y` 不读 `x`」**不足以**推出规则 2；**还需要「`Z` 能被 `do(x)` 供给」**。** -/
-theorem conf_zMass : R246G3.Sem3.zMass R246G3.conf (0 : Fin 2) = 1 / 2 := by
+theorem conf_zMass : R246G3.Sem3.zMass FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf (0 : Fin 2) = 1 / 2 := by
   show (∑ u : Fin 2, (1 : ℝ) / 2
-    * (if R246G3.Sem3.zOf (R246G3.conf.sg u).1 = (0 : Fin 2) then (1 : ℝ) else 0)) = 1 / 2
+    * (if R246G3.Sem3.zOf (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf.sg u).1 = (0 : Fin 2) then (1 : ℝ) else 0)) = 1 / 2
   rw [Fin.sum_univ_two]
-  rw [if_pos (show R246G3.Sem3.zOf (R246G3.conf.sg (0 : Fin 2)).1 = (0 : Fin 2) from rfl),
-    if_neg (show ¬(R246G3.Sem3.zOf (R246G3.conf.sg (1 : Fin 2)).1 = (0 : Fin 2)) from by decide)]
+  rw [if_pos (show R246G3.Sem3.zOf (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf.sg (0 : Fin 2)).1 = (0 : Fin 2) from rfl),
+    if_neg (show ¬(R246G3.Sem3.zOf (FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf.sg (1 : Fin 2)).1 = (0 : Fin 2)) from by decide)]
   norm_num
 
 /-- ⭐⭐⭐ **`conf` 的质量归一**。 -/
-theorem conf_massOne : MassOne R246G3.conf := by
+theorem conf_massOne : MassOne FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf := by
   show (∑ u : Fin 2, (1 : ℝ) / 2) = 1
   rw [Fin.sum_univ_two]; norm_num
 
 /-- ⭐⭐⭐ **`conf` 满足中介不变量**（**它的方程连 `p` 都不读**）。
 
 **⚠⚠ 这条**加强了 §5 的诚实性**：**`MediationInvariant` **不足以**单独推出规则 2。** -/
-theorem conf_invariant : MediationInvariant R246G3.conf :=
+theorem conf_invariant : MediationInvariant FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.FateV2.Predict.R246G3.conf :=
   fun _ _ _ _ => rfl
 
 end Sem

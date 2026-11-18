@@ -40,7 +40,7 @@ C6 同时指出一个**关键断点**：
    - `combine.gamma` 用 `Fate.GenOp (Rule C X X)`，**相对 `RuleSpec` 的预序**。
      本结构把 `[RuleSpec C X X]` 作为**参数**（不是隐藏前提），
      故「γ 的三条律」随 `GenOp` 自动生效，**不**是本文件的断言。
-   - `error` 用 `Fate.R238E3.ErrProfileWeak`，`sigma` 用
+   - `error` 用 `Fate.FateV2.Error.Core.ErrProfileWeak`，`sigma` 用
      `Fate.SigmaFromDomain.SigmaSource`（含 `unknown` 支）。
      二者**都是真接口**，**不是占位**。
 4. **规则 ⟹ 模拟器**（C6 的核心断点）由字段 `rules_determine_step` 表达：
@@ -149,7 +149,7 @@ noncomputable section
 | ③c 完善 υ | `upsilon` | `Fate.UpsilonOperator.Upsilon PUnit (Rule C F.X F.X)` |
 | ④ 生成 / 预测 | `simulator` | `Fate.WorldSimulator F`（字段 `step : Step F` / `horizon : ℕ`） |
 | ⑤ 因果 | `causal` | `Fate.ParamSCM.ParamSCM F.X.Carrier F.X.Carrier` |
-| ⑥a 误差剖面 | `error` | `Fate.R238E3.ErrProfileWeak` |
+| ⑥a 误差剖面 | `error` | `Fate.FateV2.Error.Core.ErrProfileWeak` |
 | ⑥b 签名 σ 来源 | `sigma` | `Fate.SigmaFromDomain.SigmaSource` |
 | **（C6 断点）** 规则集 | `rules` | `Fate.Rules C F.X F.X` |
 | **（C6 断点）** 规则→机制 | `render` / `render_surj` | 本文件定义 |
@@ -202,8 +202,8 @@ structure WorldModelCompleteV2 (F : Frame) [instX : MeasurableSpace F.X.Carrier]
   /-- **⑤ 因果**：参数化 SCM（`Fate.ParamSCM.ParamSCM X Y`，`Th` 位承载 θ）。 -/
   causal : ParamSCM.ParamSCM F.X.Carrier F.X.Carrier
   /-- **⑥a 误差剖面**：偏置 / 方差两分量 + 非负公理的**弱**剖面
-  （`Fate.R238E3.ErrProfileWeak`）。 -/
-  error : R238E3.ErrProfileWeak
+  （`Fate.FateV2.Error.Core.ErrProfileWeak`）。 -/
+  error : FateV2.Error.Core.ErrProfileWeak
   /-- **⑥b 签名 σ 的来源**：领域给定 / 估计 / 未给
   （`Fate.SigmaFromDomain.SigmaSource`，**含 `unknown` 支**）。 -/
   sigma : SigmaFromDomain.SigmaSource
@@ -274,7 +274,7 @@ def WorldModelCompleteV2.causalOf {F : Frame} [MeasurableSpace F.X.Carrier]
 /-- **投影·⑥a 误差**。 -/
 def WorldModelCompleteV2.errorOf {F : Frame} [MeasurableSpace F.X.Carrier]
     [RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X]
-    (W : WorldModelCompleteV2 F) : R238E3.ErrProfileWeak := W.error
+    (W : WorldModelCompleteV2 F) : FateV2.Error.Core.ErrProfileWeak := W.error
 
 /-- **投影·（C6）规则集**。 -/
 def WorldModelCompleteV2.rulesOf {F : Frame} [MeasurableSpace F.X.Carrier]
@@ -390,7 +390,7 @@ def vCompose : ComposeOperator.MeasurableRule vCtx vFrameP.X vFrameP.X →
   fun a _ => a
 
 /-- **最小实例的误差剖面**：零偏置、零方差（都满足非负公理）。 -/
-def vErr : R238E3.ErrProfileWeak where
+def vErr : FateV2.Error.Core.ErrProfileWeak where
   bias := fun _ => 0
   var := fun _ => 0
   bias_nonneg := fun _ => le_refl 0

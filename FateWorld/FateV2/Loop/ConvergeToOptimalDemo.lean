@@ -49,7 +49,7 @@
 故唯一性成立；**不**声称一般 `Corrects` 单独就蕴含唯一。
 
 **2. `φ` 单射在本文件里用来证「不动点 ⟺ 最优」。**
-这是 `T1Verify.fixed_iff_of_injective` 的落点（§1 `fixed_iff_optimal_of_injective`）：
+这是 `FateV2.Loop.T1Verify.fixed_iff_of_injective` 的落点（§1 `fixed_iff_optimal_of_injective`）：
 `φ` 单射时，迭代的**不动点集恰为**最优集 `{θ | A θ = x'}`。
 **这与「`A` 单射给唯一性」是两条独立事实，都在 §1/§2 分别证出。**
 
@@ -196,7 +196,7 @@ variable {E F : Type*} [AddCommGroup E] [Module ℝ E]
 theorem fixed_iff_optimal_of_injective
     (A : F →ₗ[ℝ] E) (φ : E →ₗ[ℝ] F) (hφ : Function.Injective φ) (x : E) (θ : F) :
     φ (x - A θ) = 0 ↔ A θ = x :=
-  T1Verify.fixed_iff_of_injective A φ hφ x θ
+  FateV2.Loop.T1Verify.fixed_iff_of_injective A φ hφ x θ
 
 end FixedPoint
 

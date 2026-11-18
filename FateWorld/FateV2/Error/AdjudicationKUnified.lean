@@ -142,9 +142,9 @@ $$\mathrm{InfoComplete}\ E_W
 
 这把裁决 K 的「数学侧」直接落到 `FitBoundary` 的词汇上。 -/
 theorem fitBoundary_existsUnique_of_infoComplete
-    {W : R238E3.ErrProfileWeak} (h : InfoComplete (fun γ => W.err γ)) :
-    ∃! γ_, R238E3.IsFitBoundary W (W.err γ_) γ_ ∧
-      ∀ σ : ℝ, (R238E3.HasFitBoundary W σ ↔ σ = W.err γ_) :=
+    {W : FateV2.Error.Core.ErrProfileWeak} (h : InfoComplete (fun γ => W.err γ)) :
+    ∃! γ_, FateV2.Error.Core.IsFitBoundary W (W.err γ_) γ_ ∧
+      ∀ σ : ℝ, (FateV2.Error.Core.HasFitBoundary W σ ↔ σ = W.err γ_) :=
   H5K.existsUnique_isFitBoundary_of_strictConvexOn_coercive h.1 h.2.1 h.2.2.1 h.2.2.2
 
 /-! ===========================================================================
@@ -203,9 +203,9 @@ theorem hingeErr_two_minima :
 theorem notUniqueMin_of_convexOnly :
     ConvexOn ℝ (univ : Set ℝ) (fun γ => H5K.profHinge.err γ) ∧
     ¬ StrictConvexOn ℝ (univ : Set ℝ) (fun γ => H5K.profHinge.err γ) ∧
-    R238E3.IsFitBoundary H5K.profHinge 0 1 ∧
-    R238E3.IsFitBoundary H5K.profHinge 0 (-1) ∧
-    ¬ (∃! γ, R238E3.IsFitBoundary H5K.profHinge 0 γ) :=
+    FateV2.Error.Core.IsFitBoundary H5K.profHinge 0 1 ∧
+    FateV2.Error.Core.IsFitBoundary H5K.profHinge 0 (-1) ∧
+    ¬ (∃! γ, FateV2.Error.Core.IsFitBoundary H5K.profHinge 0 γ) :=
   ⟨H5K.boundary_not_unique_with_convex.1,
    H5K.boundary_not_unique_with_convex.2.1,
    H5K.boundary_not_unique_with_convex.2.2.1,
@@ -357,9 +357,9 @@ theorem adjudicationK :
 「误差值 = σ」的完整刻画（对任意 σ），故它给出的是**可计算的判据**
 而非仅存在性断言。这是对 `adjudicationK_math_side` 的内容性加强。 -/
 theorem adjudicationK_math_side_boundary
-    {W : R238E3.ErrProfileWeak} (h : InfoComplete (fun γ => W.err γ)) :
-    ∃! γ_, R238E3.IsFitBoundary W (W.err γ_) γ_ ∧
-      ∀ σ : ℝ, (R238E3.HasFitBoundary W σ ↔ σ = W.err γ_) :=
+    {W : FateV2.Error.Core.ErrProfileWeak} (h : InfoComplete (fun γ => W.err γ)) :
+    ∃! γ_, FateV2.Error.Core.IsFitBoundary W (W.err γ_) γ_ ∧
+      ∀ σ : ℝ, (FateV2.Error.Core.HasFitBoundary W σ ↔ σ = W.err γ_) :=
   fitBoundary_existsUnique_of_infoComplete h
 
 end

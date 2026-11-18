@@ -1,0 +1,2 @@
+﻿模块,域,状态,错误
+Error.AdjudicationKUnified,Error,FAIL,error: FateWorld/FateV2/Error/H5AdjudicationK.lean:101:39: Unknown identifier `R238E3.ErrProfileWeak` | error: FateWorld/FateV2/Error/H5AdjudicationK.lean:102:4: Unknown identifier `R238E3.IsFitBoundary`

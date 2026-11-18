@@ -73,7 +73,7 @@ import Mathlib.MeasureTheory.Measure.Dirac
   | `doWorld_idempotent` / `doWorld_comp`（§2）| ❌ 同上 | **非平凡接线** |
   | `doStep_at_x`（§3）| ⚠ **是**——它就是 `scm_align` 在 `x₀ = x` 处的实例 | **已标注为接线** |
   | `doSim_eq_doStep`（§3）| ⚠ **是**——同上 | **已标注为接线** |
-  | ⭐ `doProb_sum_eq_one`（§4）| ❌ 只看 SCM 与外生律，**不依赖 `scm_align`** | **非平凡**（用 `T34.doLaw_mass`）|
+  | ⭐ `doProb_sum_eq_one`（§4）| ❌ 只看 SCM 与外生律，**不依赖 `scm_align`** | **非平凡**（用 `FateV2.Predict.T34.doLaw_mass`）|
   | ⭐⭐ `demoCapable`（§5）| ❌ 需**建造**一个真实 `WorldModel` 并**证** `scm_align` | **非平凡**（`rfl` 级构造）|
   | ⭐⭐ `obs_ne_do_on_capable`（§5）| ❌ 需 `T35` 的数值 `1/2 ≠ 0` | **非平凡** |
   | ⭐ `wiring_closes`（§6）| ❌ 组合 §2 + §4 | **非平凡** |
@@ -379,7 +379,7 @@ theorem DoCapable.doSim_eq_doStep (W : DoCapable) (x : W.State)
   §4 ⭐⭐⭐⭐ **`doProb` 在 `WorldModel` 上是真正的概率分布**
 
   **⚠ 本节不依赖 `scm_align`** —— 它只看 SCM 与外生律。
-  **⚠ 不把归一性塞进定义**：证明用 `T34.doLaw_mass`。
+  **⚠ 不把归一性塞进定义**：证明用 `FateV2.Predict.T34.doLaw_mass`。
   =========================================================================== -/
 
 /-- ⭐⭐⭐⭐ **`WorldModel` 上的干预分布归一**：若外生律总和为 1，
@@ -389,7 +389,7 @@ $$\Bigl(\sum_u p_U(u) = 1\Bigr) \;\Longrightarrow\;
   \sum_y \mathrm{doProb}(W)\,x\,y = 1 .$$
 
 **⭐ 这是「`doProb` 是真正的概率分布」在 `WorldModel` 层的证明。**
-证明分两步：`∑ y, doLaw x y = ∑ u, pU u = 1`（`T34.doLaw_mass` + `hU`），
+证明分两步：`∑ y, doLaw x y = ∑ u, pU u = 1`（`FateV2.Predict.T34.doLaw_mass` + `hU`），
 再逐项除以该和。
 
 **⚠ 前件 `hU` 是**真实的外生律归一假设**，不是结论的改写。** -/
@@ -399,7 +399,7 @@ theorem DoCapable.doProb_sum_eq_one (W : DoCapable)
     ∑ y, W.doProb x y = 1 := by
   have hU' : ∑ u, W.toSCM.pU u = 1 := by rw [DoCapable.toSCM_pU]; exact hU
   have hmass : ∑ y, SCMSemantics.doLaw W.toSCM x y = ∑ u, W.toSCM.pU u :=
-    T34.doLaw_mass W.toSCM x
+    FateV2.Predict.T34.doLaw_mass W.toSCM x
   have hne : (∑ y, SCMSemantics.doLaw W.toSCM x y) ≠ 0 := by
     rw [hmass, hU']; norm_num
   have hsplit : ∑ y, W.doProb x y

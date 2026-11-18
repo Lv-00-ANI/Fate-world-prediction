@@ -116,7 +116,7 @@ theorem corrects_injective_here (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
 
 /-- ⭐⭐⭐⭐ **【EE2 主定理】`Corrects A φ` 下：`φ (x' - A θ) = 0 ↔ A θ = x'`。**
 
-这是 `Fate/T1Verify.fixed_iff_of_injective` 的**强化形式**：
+这是 `Fate/FateV2.Loop.T1Verify.fixed_iff_of_injective` 的**强化形式**：
 前提从 `Function.Injective φ` 弱化为 `Corrects A φ`（后者蕴含前者）。 -/
 theorem fixed_iff_of_corrects (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
     (h : Corrects A φ) (x' : F) (θ : E) :
@@ -169,7 +169,7 @@ theorem wbW_fixed_iff_of_corrects (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
     rw [hiff.mpr hAx, smul_zero, add_zero]
 
 /-! ===========================================================================
-    §4  与 `T1Verify.fixed_iff_of_injective` 的一致性
+    §4  与 `FateV2.Loop.T1Verify.fixed_iff_of_injective` 的一致性
     =========================================================================== -/
 
 /-- ⭐ **一致性检查**：由 `Corrects` 得到的单射性喂回 `T1Verify` 的原定理，
@@ -177,7 +177,7 @@ theorem wbW_fixed_iff_of_corrects (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
 theorem fixed_iff_of_corrects_via_T1Verify (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
     (h : Corrects A φ) (x' : F) (θ : E) :
     φ (x' - A θ) = 0 ↔ A θ = x' :=
-  T1Verify.fixed_iff_of_injective A φ (corrects_injective_here A φ h) x' θ
+  FateV2.Loop.T1Verify.fixed_iff_of_injective A φ (corrects_injective_here A φ h) x' θ
 
 end Basic
 
