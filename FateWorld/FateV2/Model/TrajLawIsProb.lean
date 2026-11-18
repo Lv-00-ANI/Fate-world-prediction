@@ -32,7 +32,7 @@
   故此两条是**实质性前件**，结论（`trajLaw` 是概率测度）**不蕴含**它们。
 - `hstep : ∀ n, Measurable (fun p : X × Ν => f p.1 (u n) p.2 θ (a n))`：
   这是「单步随机转移可测」这一**正则性假设**，标准马尔可夫核理论本就要求。
-  `Step F` 只是裸函数类型 `X → U → Ν → Θ → Act → X`（`Fate/Frame.lean:146`），
+  `FateV2.Model.Step F` 只是裸函数类型 `X → U → Ν → Θ → Act → X`（`Fate/FateV2.Model.Frame.lean:146`），
   **不含任何可测性**，故须显式携带；否则 `unfold` 不可测，推前测度不可定义。
   在本文件中，由 `hstep` **推出** `unfold` 的可测性（见证明中的 `hstate`），
   而非把「`unfold` 可测」直接当作同义反复式前提。
@@ -66,6 +66,7 @@ namespace FateV2.Model
 namespace TrajLawIsProb
 
 open MeasureTheory
+open FateV2.Modeling
 
 noncomputable section
 
@@ -88,8 +89,8 @@ noncomputable section
 可由 `hstep` 对时间 `n` 归纳得到，进而 `unfold` 作为 `Π i, X` 中一元可测。 -/
 
 private theorem measurable_unfold_of_hstep
-    (F : Frame) [MeasurableSpace F.Ν.Carrier] [MeasurableSpace F.X.Carrier]
-    (f : Step F) (T : ℕ) (θ : F.Θ.Carrier)
+    (F : FateV2.Model.Frame) [MeasurableSpace F.Ν.Carrier] [MeasurableSpace F.X.Carrier]
+    (f : FateV2.Model.Step F) (T : ℕ) (θ : F.Θ.Carrier)
     (u : Fin T → F.U.Carrier) (a : Fin T → F.Act.Carrier)
     (hstep : ∀ n : Fin T, Measurable (fun p : F.X.Carrier × F.Ν.Carrier =>
       f p.1 (u n) p.2 θ (a n))) :
@@ -134,8 +135,8 @@ private theorem measurable_unfold_of_hstep
 
 ⚠ **只对有限视窗 `Fin T` 成立**；`T = ℝ≥0`（连续时间）的情形**本文件不做**。 -/
 theorem isProbabilityMeasure_trajLaw
-    (F : Frame) [MeasurableSpace F.Ν.Carrier] [MeasurableSpace F.X.Carrier]
-    (f : Step F) (T : ℕ) (D0 : InitDist F) (Dε : Dist F.Ν)
+    (F : FateV2.Model.Frame) [MeasurableSpace F.Ν.Carrier] [MeasurableSpace F.X.Carrier]
+    (f : FateV2.Model.Step F) (T : ℕ) (D0 : InitDist F) (Dε : Dist F.Ν)
     (θ : F.Θ.Carrier) (u : Fin T → F.U.Carrier) (a : Fin T → F.Act.Carrier)
     [IsProbabilityMeasure D0] [IsProbabilityMeasure Dε]
     (hstep : ∀ n : Fin T, Measurable (fun p : F.X.Carrier × F.Ν.Carrier =>

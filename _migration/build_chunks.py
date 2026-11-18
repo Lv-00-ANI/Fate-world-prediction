@@ -18,7 +18,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 OLEAN = os.path.join(ROOT, '.lake', 'build', 'lib', 'lean', 'FateWorld', 'FateV2')
 LOG = os.path.join(ROOT, '_inventory', '批量构建失败.txt')
-CHUNK = 80
+CHUNK = 20
 
 
 def missing():
