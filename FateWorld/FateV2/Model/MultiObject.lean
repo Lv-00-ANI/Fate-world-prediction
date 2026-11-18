@@ -111,28 +111,28 @@ def ThetaSpace.prod (Θ₁ Θ₂ : ThetaSpace.{u}) : ThetaSpace.{u} :=
 **这是「能追问是谁的参数错了」的形式化** —— 也是「全部取积」的真正理由。 -/
 
 /-- **参数的第一分量**（取 `O₁` 的参数）。 -/
-def thetaFst {Θ₁ Θ₂ : ThetaSpace.{u}} (θ : (Θ₁.prod Θ₂).Carrier) : Θ₁.Carrier := θ.1
+def thetaFst {Θ₁ Θ₂ : ThetaSpace.{u}} (θ : (ThetaSpace.prod Θ₁ Θ₂).Carrier) : Θ₁.Carrier := θ.1
 
 /-- **参数的第二分量**（取 `O₂` 的参数）。 -/
-def thetaSnd {Θ₁ Θ₂ : ThetaSpace.{u}} (θ : (Θ₁.prod Θ₂).Carrier) : Θ₂.Carrier := θ.2
+def thetaSnd {Θ₁ Θ₂ : ThetaSpace.{u}} (θ : (ThetaSpace.prod Θ₁ Θ₂).Carrier) : Θ₂.Carrier := θ.2
 
 /-- ⭐ **参数的分解互逆**：拆开再装回是恒等。
 
 **⟹ 联合参数不丢信息** —— 可以无损地拆回各自的参数。 -/
 theorem theta_decompose_recompose {Θ₁ Θ₂ : ThetaSpace.{u}}
-    (θ : (Θ₁.prod Θ₂).Carrier) : (thetaFst θ, thetaSnd θ) = θ := rfl
+    (θ : (ThetaSpace.prod Θ₁ Θ₂).Carrier) : (thetaFst θ, thetaSnd θ) = θ := rfl
 
 /-- ⭐ **参数的分解是满射**：任何一对参数都能装配成联合参数。 -/
 theorem theta_prod_surjective {Θ₁ Θ₂ : ThetaSpace.{u}} :
     Function.Surjective (fun (p : Θ₁.Carrier × Θ₂.Carrier) =>
-      (p : (Θ₁.prod Θ₂).Carrier)) :=
+      (p : (ThetaSpace.prod Θ₁ Θ₂).Carrier)) :=
   fun p => ⟨p, rfl⟩
 
 /-- ⭐ **状态的分解互逆**（同参数）。 -/
 theorem state_decompose_recompose {X₁ X₂ : StateSpace.{u}}
     (h₁ : @SecondCountableTopology X₁.Carrier X₁.topo)
     (h₂ : @SecondCountableTopology X₂.Carrier X₂.topo)
-    (x : (X₁.prod X₂ h₁ h₂).Carrier) : (x.1, x.2) = x := rfl
+    (x : (StateSpace.prod X₁ X₂ h₁ h₂).Carrier) : (x.1, x.2) = x := rfl
 
 namespace MultiObject
 

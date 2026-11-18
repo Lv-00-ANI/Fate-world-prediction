@@ -3,6 +3,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 namespace FateV2.Loop
 
 open FateV2.Predict
+open FateV2.Modeling
 namespace AssemblyLearnsScratch
 
 open FateV2.Loop.EndToEnd

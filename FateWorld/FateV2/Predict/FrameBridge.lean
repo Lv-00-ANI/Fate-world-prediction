@@ -32,10 +32,10 @@ import FateWorld.FateV2.Predict.Counterfactual
 
   本项目的主公式是
   $$x_{t+1} = f(x_t, u_t, \varepsilon_t;\ \theta,\ a_t)$$
-  其中 `Step F` 就是 $f$ 的类型。
+  其中 `FateV2.Model.Step F` 就是 $f$ 的类型。
 
   **故**：
-  - **`SCM`** := **`Step F`**（机制，即"结构方程"）
+  - **`SCM`** := **`FateV2.Model.Step F`**（机制，即"结构方程"）
   - **`CF`** := **轨迹生成器** `TrajGen F ι` 的像（反事实预测 = "若机制是 f，轨迹会怎样"）
   - **`Obs`** := 从机制到其诱导轨迹的映射
 
@@ -55,7 +55,7 @@ namespace FrameBridge
 
 open FateV2.Predict.Counterfactual
 
-variable (F : Frame)
+variable (F : FateV2.Model.Frame)
 
 /-! ### §2.1 核心对应：`SCM` ↔ `Step` -/
 
@@ -65,7 +65,7 @@ variable (F : Frame)
 
 | 抽象字段 | 本项目的具体化 |
 |---|---|
-| `SCM` | **`Step F`** —— 机制 $f$（即"结构方程"）|
+| `SCM` | **`FateV2.Model.Step F`** —— 机制 $f$（即"结构方程"）|
 | `CF` | 反事实预测空间（**由调用者给出**）|
 | `Obs` | 从机制读出反事实（**由调用者给出**）|
 
@@ -73,8 +73,8 @@ variable (F : Frame)
 本项目只给了 `TrajGen` 的**类型**，未给具体实现；
 `Obs` 的具体形式依赖轨迹生成器如何实现。
 **强行构造会给出一条未经验证的断言** —— 故此处**如实留参数**。 -/
-def frameModel (CF : Type*) (Obs : Step F → CF) : FateV2.Predict.Counterfactual.Model where
-  SCM := Step F
+def frameModel (CF : Type*) (Obs : FateV2.Model.Step F → CF) : FateV2.Predict.Counterfactual.Model where
+  SCM := FateV2.Model.Step F
   CF := CF
   Obs := Obs
 
@@ -87,8 +87,8 @@ $$\mathfrak{F}|_{f_0} := \{\, f : \mathrm{Step}\,F \mid \mathrm{Obs}\,f = \mathr
 
 **这是抽象 `𝔉|_G` 在本项目里的精确落点**：
 - 抽象里的"给定图 $G$" → 本项目里"给定机制 $f_0$"
-- 抽象里的"全部 𝓕" → 本项目里"全部 `Step F`" -/
-def bridgeFiber {CF : Type*} (Obs : Step F → CF) (f₀ : Step F) : Set (Step F) :=
+- 抽象里的"全部 𝓕" → 本项目里"全部 `FateV2.Model.Step F`" -/
+def bridgeFiber {CF : Type*} (Obs : FateV2.Model.Step F → CF) (f₀ : FateV2.Model.Step F) : Set (FateV2.Model.Step F) :=
   { f | Obs f = Obs f₀ }
 
 /-! ### §2.3 ⭐ 把突破的定理搬到 `Step` 上 -/
@@ -103,8 +103,8 @@ def bridgeFiber {CF : Type*} (Obs : Step F → CF) (f₀ : Step F) : Set (Step F
 **反事实观测在商上是单射的** —— **即桥在该商上单值化。**
 
 **⚠ 无前件**：本定理对**任意** `Obs` 成立（不需要 `Obs` 单射或常值）。 -/
-theorem bridge_single_valued_on_quotient {CF : Type*} (Obs : Step F → CF)
-    (f₀ : Step F) :
+theorem bridge_single_valued_on_quotient {CF : Type*} (Obs : FateV2.Model.Step F → CF)
+    (f₀ : FateV2.Model.Step F) :
     Function.Injective
       (obsOnQuot (frameModel F CF Obs) (bridgeFiber F Obs f₀)) :=
   obsOnQuot_injective (frameModel F CF Obs) (bridgeFiber F Obs f₀)
@@ -112,8 +112,8 @@ theorem bridge_single_valued_on_quotient {CF : Type*} (Obs : Step F → CF)
 /-- ⭐ **桥商单值 ⟺ 观测在纤维上常值**（`cfQuotient_subsingleton_iff` 的实例化）。
 
 **即**：桥**完全塌缩**当且仅当该机制与它纤维内的**所有**机制反事实等价。 -/
-theorem bridge_quot_subsingleton_iff {CF : Type*} (Obs : Step F → CF)
-    (f₀ : Step F) :
+theorem bridge_quot_subsingleton_iff {CF : Type*} (Obs : FateV2.Model.Step F → CF)
+    (f₀ : FateV2.Model.Step F) :
     Subsingleton (cfQuotient (frameModel F CF Obs) (bridgeFiber F Obs f₀))
       ↔ ∀ f ∈ bridgeFiber F Obs f₀, ∀ g ∈ bridgeFiber F Obs f₀, Obs f = Obs g :=
   cfQuotient_subsingleton_iff (frameModel F CF Obs) (bridgeFiber F Obs f₀)
@@ -129,7 +129,7 @@ theorem bridge_quot_subsingleton_iff {CF : Type*} (Obs : Step F → CF)
 | **C 中间地带** | 既非常值又非单射 |
 
 **⚠ 情形 C 的商基数未给闭式** —— 见 `Fate.Counterfactual` 的诚实标注。 -/
-theorem bridge_trichotomy {CF : Type*} (Obs : Step F → CF) (f₀ : Step F) :
+theorem bridge_trichotomy {CF : Type*} (Obs : FateV2.Model.Step F → CF) (f₀ : FateV2.Model.Step F) :
     Collapse (frameModel F CF Obs) (bridgeFiber F Obs f₀)
       ∨ Faithful (frameModel F CF Obs) (bridgeFiber F Obs f₀)
       ∨ MiddleZone (frameModel F CF Obs) (bridgeFiber F Obs f₀) :=
@@ -150,14 +150,14 @@ $$\exists F_0,\ \neg\,\mathrm{Subsingleton}\bigl(\mathfrak{F}_{F_0}/\sim_{\mathr
 **⟹ 若 `Obs` 在 `{f,g}` 上**单射**（即 `Obs f ≠ Obs g`），则商含两点，非单点。**
 
 **故前件应是 `Obs f ≠ Obs g`（而非相等）** —— 这是本定理的**正确形式**。 -/
-theorem bridge_multivalued_witness {CF : Type*} (Obs : Step F → CF)
-    {f g : Step F} (hne : f ≠ g) (hfg : Obs f ≠ Obs g) :
-    ∃ F₀ : Set (Step F), ¬ Subsingleton (cfQuotient (frameModel F CF Obs) F₀) := by
+theorem bridge_multivalued_witness {CF : Type*} (Obs : FateV2.Model.Step F → CF)
+    {f g : FateV2.Model.Step F} (hne : f ≠ g) (hfg : Obs f ≠ Obs g) :
+    ∃ F₀ : Set (FateV2.Model.Step F), ¬ Subsingleton (cfQuotient (frameModel F CF Obs) F₀) := by
   classical
   refine ⟨{f, g}, ?_⟩
   intro hs
-  have hmem_f : f ∈ ({f, g} : Set (Step F)) := by simp
-  have hmem_g : g ∈ ({f, g} : Set (Step F)) := by simp
+  have hmem_f : f ∈ ({f, g} : Set (FateV2.Model.Step F)) := by simp
+  have hmem_g : g ∈ ({f, g} : Set (FateV2.Model.Step F)) := by simp
   have heq : (Quotient.mk _ ⟨f, hmem_f⟩ : cfQuotient (frameModel F CF Obs) {f, g})
            = (Quotient.mk _ ⟨g, hmem_g⟩ : cfQuotient (frameModel F CF Obs) {f, g}) :=
     hs.elim _ _

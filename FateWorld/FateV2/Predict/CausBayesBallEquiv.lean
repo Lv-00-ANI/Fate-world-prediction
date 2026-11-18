@@ -58,7 +58,7 @@ unfolding of a definition.
 
 @[expose] public section
 
-namespace FateV2.Predict.Causalean.Graph
+namespace FateV2.Modeling.Graph
 
 open FateV2.Modeling
 variable {V : Type*} [DecidableEq V] [Fintype V]
@@ -171,4 +171,4 @@ instance dSepWalk_decidable (X Y Z : Finset V) : Decidable (G.dSepWalk X Y Z) :=
 
 end DAG
 
-end FateV2.Predict.Causalean.Graph
+end FateV2.Modeling.Graph
