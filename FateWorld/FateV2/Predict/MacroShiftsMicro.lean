@@ -1,3 +1,5 @@
+import FateWorld.FateV2.Predict.CausalEventFormal
+
 /-!
   # Predict · MacroShiftsMicro
 
@@ -83,7 +85,6 @@ MacroShiftsMicro.lean  ——  「宏观状态改变微观因果」的非平凡�
   而被删除；**因此无「删了哪条、为什么」需要登记**。
 -/
 
-import FateWorld.FateV2.Predict.CausalEventFormal
 open FateV2.Error
 open FateV2.Predict.CausalEventFormal
 

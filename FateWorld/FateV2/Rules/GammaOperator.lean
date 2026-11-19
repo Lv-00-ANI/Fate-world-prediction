@@ -1,3 +1,15 @@
+import Mathlib.Order.Concept
+import Mathlib.Order.Closure
+import Mathlib.Order.GaloisConnection.Basic
+import Mathlib.Data.Set.Lattice
+import Mathlib.Order.Hom.Basic
+import Mathlib.Order.BoundedOrder.Basic
+import Mathlib.Order.Bounds.Basic
+import FateWorld.FateV2.Modeling.Basic
+import FateWorld.FateV2.Model.Frame
+import FateWorld.FateV2.Rules.Alpha
+import FateWorld.FateV2.Rules.Implication
+
 /-
 命运理论 · Lean 4 形式化实现
 ================================
@@ -66,17 +78,6 @@
 - `FateV2.Rules`：`closureOp`、`IsClosedAttr`、`Models` 及其基本律。
 -/
 
-import Mathlib.Order.Concept
-import Mathlib.Order.Closure
-import Mathlib.Order.GaloisConnection.Basic
-import Mathlib.Data.Set.Lattice
-import Mathlib.Order.Hom.Basic
-import Mathlib.Order.BoundedOrder.Basic
-import Mathlib.Order.Bounds.Basic
-import FateWorld.FateV2.Modeling.Basic
-import FateWorld.FateV2.Model.Frame
-import FateWorld.FateV2.Rules.Alpha
-import FateWorld.FateV2.Rules.Implication
 namespace FateV2.Rules
 
 open FateV2.Model

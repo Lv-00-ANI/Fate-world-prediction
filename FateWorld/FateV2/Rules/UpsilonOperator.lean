@@ -1,3 +1,12 @@
+import Mathlib.Order.Closure
+import Mathlib.Data.Set.Lattice
+import Mathlib.Topology.MetricSpace.Contracting
+import FateWorld.FateV2.Modeling.Basic
+import FateWorld.FateV2.Model.Frame
+import FateWorld.FateV2.Rules.FCA
+import FateWorld.FateV2.Rules.Implication
+import FateWorld.FateV2.Rules.Alpha
+
 /-
 命运理论 · Lean 4 形式化实现
 ================================
@@ -83,14 +92,6 @@
   不是关于世界的断言，也不冒充规格原文。
 -/
 
-import Mathlib.Order.Closure
-import Mathlib.Data.Set.Lattice
-import Mathlib.Topology.MetricSpace.Contracting
-import FateWorld.FateV2.Modeling.Basic
-import FateWorld.FateV2.Model.Frame
-import FateWorld.FateV2.Rules.FCA
-import FateWorld.FateV2.Rules.Implication
-import FateWorld.FateV2.Rules.Alpha
 namespace FateV2.Rules
 
 open FateV2.Model

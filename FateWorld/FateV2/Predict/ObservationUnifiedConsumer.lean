@@ -1,3 +1,7 @@
+import FateWorld.FateV2.Predict.ObservationUnified
+import FateWorld.FateV2.Predict.MiddleZoneDichotomy
+import FateWorld.FateV2.Predict.TieredScheme
+
 /-
   Fate · **接入：ObservationUnified 的消费方**
   （`Fate/_wip` 新工作流：先在 `_wip` 验证 `EXIT=0`，再搬回 `Fate/` 并加 import）
@@ -143,9 +147,6 @@
        （为避免下游 grep 误命中，本行不写全词）。
 -/
 
-import FateWorld.FateV2.Predict.ObservationUnified
-import FateWorld.FateV2.Predict.MiddleZoneDichotomy
-import FateWorld.FateV2.Predict.TieredScheme
 namespace FateV2.Predict
 
 open FateV2.Modeling

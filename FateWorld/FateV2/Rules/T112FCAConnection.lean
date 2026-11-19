@@ -61,8 +61,6 @@ import FateWorld.FateV2.Rules.FCA
 
 namespace FateV2.Rules.T112
 
-open FateV2.Error
-
 /-! ## §1 ⭐ 实例的属性集（**清单的 `∼_ℰ`**） -/
 
 /-- ⭐⭐ **实例的属性集**：`polarUp {e}` —— 给定 `e`，**所有 `e` 满足的属性**。 -/

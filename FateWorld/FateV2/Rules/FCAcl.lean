@@ -1,3 +1,6 @@
+import FateWorld.FateV2.Rules.FCA
+import Mathlib.Tactic
+
 /-!
   # Rules · FCAcl
 
@@ -64,8 +67,6 @@
 - 本文件**不修改**任何既有文件。
 -/
 
-import FateWorld.FateV2.Rules.FCA
-import Mathlib.Tactic
 
 namespace FateV2.Rules.Stage2.FCAcl
 
