@@ -1,4 +1,4 @@
-import FateWorld.Legacy._root.CausSeparation
+import FateWorld.FateV2.Modeling.CausSeparation
 import FateWorld.FateV2.Predict.PearlCondIndepBridge
 import FateWorld.FateV2.Predict.PearlGlobalMarkov
 import FateWorld.FateV2.Predict.SeparableCondMul
@@ -31,7 +31,7 @@ import Mathlib.Tactic.NormNum
 
 * `PearlGlobalMarkov` 的定理**全部是图论谓词**（`DConnected` /
   `DSeparated` / `DOpen` / `dsepStd`）之间的恒等式与归纳；
-* 本文件 §2 的图侧用的是 `Causalean.Graph.DAG.dSep`（`CausSeparation`
+* 本文件 §2 的图侧用的是 `FateV2.Modeling.Graph.DAG.dSep`（`CausSeparation`
   的口径），与 `PearlGlobalMarkov` 的 `CausalDirection.CausalGraph`
   **口径不同**（两套图类型），**没有**现成的转换引理，
   **故不能**在本文件里直接把两者拼成一条定理。
@@ -108,7 +108,7 @@ theorem global_markov_minimal_of_dsep ... :
   与 `Fate/PearlCondIndepBridge.lean` 的 `chain_markov_gives_condindep`
   **逐字相同（只差名字）**。**⟹ 本文不重证，只把该名字登记出来**（§2.2），
   并**补上它缺的那一半**：**图侧的 d-分离前提是真的**（§2.1，用
-  `Causalean.Graph.DAG.dSep` 在 `Fin 3` 上**用 `decide` 判定**，
+  `FateV2.Modeling.Graph.DAG.dSep` 在 `Fin 3` 上**用 `decide` 判定**，
   **不是**定义展开、**不是**假设白送）。
 
   ### 0.2 本文的**新数学**：反向蕴含（§3）
@@ -158,7 +158,7 @@ universe u
   顶点 `Fin 3`：`0 = X`、`1 = Z`、`2 = Y`；边 `0 → 1 → 2`。
   条件集 `Z = {1}`。
 
-  用 `Causalean.Graph.DAG.dSep`（**Bayes-Ball 语义的 d-分离**，
+  用 `FateV2.Modeling.Graph.DAG.dSep`（**Bayes-Ball 语义的 d-分离**，
   见 `CausSeparation.lean`）判定 `X ⊥_d Y | Z`。
   =========================================================================== -/
 
@@ -166,7 +166,7 @@ universe u
 
 **⚠ 无环性是**真的证了**的**（`Relation.TransGen` 沿 `Fin 3` 的 `<` 严格上升，
 故不能回到起点），**不是 `decide` 或假设白送**。 -/
-def chainDAG3 : Causalean.Graph.DAG (Fin 3) where
+def chainDAG3 : FateV2.Modeling.Graph.DAG (Fin 3) where
   edge := fun u v => (u = 0 ∧ v = 1) ∨ (u = 1 ∧ v = 2)
   decEdge := by intro u v; infer_instance
   acyclic := by
@@ -189,12 +189,12 @@ def chainDAG3 : Causalean.Graph.DAG (Fin 3) where
 /-- ⭐⭐⭐⭐ **图侧 d-分离**：在链 `0 → 1 → 2` 上，`X = 0` 与 `Y = 2`
 **在给定 `Z = {1}` 下 d-分离**。
 
-**⚠ 这是**真的图论断言**（`Causalean.Graph.DAG.dSep` 是 Bayes-Ball 语义），
+**⚠ 这是**真的图论断言**（`FateV2.Modeling.Graph.DAG.dSep` 是 Bayes-Ball 语义），
 由 `decide` **判定**（该实例的 d-分离谓词是**可判定的**，
 见 `CausSeparation.lean` 的 `decSynonym`/`decDSep` 实例）。 -/
 theorem chainDAG3_dsep :
     chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} := by
-  unfold Causalean.Graph.DAG.dSep
+  unfold FateV2.Modeling.Graph.DAG.dSep
   decide
 
 /-- ⭐⭐ **对照：不分离的情形**（`X = 0`、`Y = 1`、条件于 `{1}`）。
@@ -206,7 +206,7 @@ theorem chainDAG3_dsep :
 同一条链上就有分离与不分离两种结果。 -/
 theorem chainDAG3_not_dsep_self :
     ¬ chainDAG3.dSep {(0 : Fin 3)} {(1 : Fin 3)} {(1 : Fin 3)} := by
-  unfold Causalean.Graph.DAG.dSep
+  unfold FateV2.Modeling.Graph.DAG.dSep
   decide
 
 /-- ⭐⭐ **再一个对照：条件集**不含**中间节点时不分离**。
@@ -218,7 +218,7 @@ theorem chainDAG3_not_dsep_self :
 与 `chainDAG3_dsep`（条中于 `{1}` 时**分离**）正好并成一对。 -/
 theorem chainDAG3_not_dsep_empty :
     ¬ chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3)) := by
-  unfold Causalean.Graph.DAG.dSep
+  unfold FateV2.Modeling.Graph.DAG.dSep
   decide
 
 /-! ### 2.2 ⭐⭐⭐⭐ 概率侧：`global_markov_minimal`
