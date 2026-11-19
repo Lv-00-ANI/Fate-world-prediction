@@ -56,7 +56,7 @@ import FateWorld.FateV2.Predict.MassProCover
   * **因子部分（`W_X ∪ W_Y = V` 等）未形式化** —— 它依赖 `Split` 与 `W` 的定义。
   =========================================================================== -/
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Predict
 

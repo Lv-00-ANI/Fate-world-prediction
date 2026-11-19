@@ -76,7 +76,7 @@ import FateWorld.FateV2.Modeling.CondIndepSemigraphoid
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open Finset
 open FateV2.Error
@@ -506,4 +506,4 @@ theorem condIndep_general_nz (ψ : V → (V → α) → ℝ) (p : (V → α) →
     _ = (Pz x * (F x * mass (X ∪ Z) G x)) * (Pz x * (G x * mass (Y ∪ Z) F x)) := key
     _ = Pz x * F x * mass (X ∪ Z) G x * (Pz x * G x * mass (Y ∪ Z) F x) := by ring
 
-end FateV2.Modeling.GraphToProbView7
+end FateV2.Predict.GraphToProbView7

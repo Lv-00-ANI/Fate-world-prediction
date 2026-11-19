@@ -44,7 +44,7 @@ import FateWorld.FateV2.Modeling.SumSeparation
     与具体选取无关（由 `hf` 保证），故良定义。
   =========================================================================== -/
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open Finset
 open FateV2.Error
@@ -96,4 +96,4 @@ theorem shadowOn_congr {X : Finset V} {f : (V → α) → ℝ}
   intro u hu
   rw [hw ⟨u, hu⟩, extendTo_mem a hu]
 
-end FateV2.Modeling.GraphToProbView7
+end FateV2.Predict.GraphToProbView7

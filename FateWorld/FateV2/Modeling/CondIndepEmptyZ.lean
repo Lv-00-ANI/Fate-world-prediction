@@ -68,7 +68,7 @@ import Mathlib.Tactic.Ring
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Predict
 
@@ -296,7 +296,7 @@ theorem glue_eq_toV_left {X Y : Finset V} (hXY : Disjoint X Y)
     (hY : ∀ v, v ∈ X ∨ v ∈ Y) (x : V → α)
     (t : { u : V // u ∉ X } → α) :
     FateV2.Predict.View19.glue X x t
-      = FateV2.Modeling.GraphToProbView7.toV X Y hY (fun i => x i.1)
+      = FateV2.Predict.GraphToProbView7.toV X Y hY (fun i => x i.1)
           (fun j => t ⟨j.1, (mem_Y_iff_not_mem_X hXY hcover j.1).mp j.2⟩) := by
   funext u
   by_cases hu : u ∈ X
@@ -311,7 +311,7 @@ theorem glue_eq_toV_right {X Y : Finset V} (hXY : Disjoint X Y)
     (hY : ∀ v, v ∈ X ∨ v ∈ Y) (x : V → α)
     (t : { u : V // u ∉ Y } → α) :
     FateV2.Predict.View19.glue Y x t
-      = FateV2.Modeling.GraphToProbView7.toV X Y hY
+      = FateV2.Predict.GraphToProbView7.toV X Y hY
           (fun i => t ⟨i.1, (mem_X_iff_not_mem_Y hXY hcover i.1).mp i.2⟩)
           (fun j => x j.1) := by
   funext u
@@ -488,4 +488,4 @@ theorem condIndep_emptyZ (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ
 
 end FinalAssembly
 
-end FateV2.Modeling.GraphToProbView7
+end FateV2.Predict.GraphToProbView7

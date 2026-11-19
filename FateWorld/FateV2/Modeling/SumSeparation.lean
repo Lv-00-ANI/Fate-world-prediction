@@ -45,7 +45,7 @@ import FateWorld.FateV2.Predict.MainTheoremC
   * **本节只处理 `Z = ∅` 的两侧分解**；`Z ≠ ∅` 需要 `X ⊔ (Y∪Z)` 的类似分解。
   =========================================================================== -/
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open FateV2.Predict
 
@@ -103,4 +103,4 @@ noncomputable def arrowEquivOfSplit {X Y : Finset V}
 登记为缺口，不假装完成。
 -/
 
-end FateV2.Modeling.GraphToProbView7
+end FateV2.Predict.GraphToProbView7

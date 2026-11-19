@@ -150,13 +150,13 @@ open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics
 
 
 /-- ⭐ **别名**：`Fate/Rule1Semantic.lean` 的 `SCM.NoConfounding` 位于
-`FateV2.Predict.R242G3.SCM` 命名空间下，这里给出本文件可直接使用的短名。 -/
+`FateV2.Modeling.R242G3.SCM` 命名空间下，这里给出本文件可直接使用的短名。 -/
 def NC {X Y : Type} [DecidableEq X] [DecidableEq Y] (M : SCM X Y) : Prop :=
-  FateV2.Predict.R242G3.SCM.NoConfounding M
+  FateV2.Modeling.R242G3.SCM.NoConfounding M
 
-/-- ⭐ **别名**：`FateV2.Predict.R242G3.SCM.NoUDependence`。 -/
+/-- ⭐ **别名**：`FateV2.Modeling.R242G3.SCM.NoUDependence`。 -/
 def NUD {X Y : Type} (M : SCM X Y) : Prop :=
-  FateV2.Predict.R242G3.SCM.NoUDependence M
+  FateV2.Modeling.R242G3.SCM.NoUDependence M
 
 /-! ===========================================================================
   §1 任务书的**结构式**「无混杂」

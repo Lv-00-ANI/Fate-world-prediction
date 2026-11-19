@@ -62,7 +62,7 @@ import Mathlib.Tactic
 
 open Finset
 
-namespace FateV2.Error.Stage2.ErrorBoundE2cFull
+namespace FateV2.Predict.Stage2.ErrorBoundE2cFull
 
 /-!
   # Error · ErrorBoundE2cFull
@@ -261,4 +261,4 @@ theorem exp_sub_one_le_mul_exp {t : ℝ} (_ht : 0 ≤ t) :
 #print axioms exp_mul_one_sub_le_one
 #print axioms exp_sub_one_le_mul_exp
 
-end FateV2.Error.Stage2.ErrorBoundE2cFull
+end FateV2.Predict.Stage2.ErrorBoundE2cFull

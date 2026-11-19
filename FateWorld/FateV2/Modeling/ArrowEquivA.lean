@@ -29,7 +29,7 @@ universe u
 
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α]
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 /-- 把定义域拆成 `A` 与其补集：`(V → α) ≃ (↥A → α) × (↥(A : Set V)ᶜ → α)`。 -/
 noncomputable def arrowEquivA (A : Finset V) :
@@ -48,4 +48,4 @@ theorem card_tail (A : Finset V) :
   rw [Fintype.card_coe] at h
   exact h
 
-end FateV2.Modeling.GraphToProbView7
+end FateV2.Predict.GraphToProbView7

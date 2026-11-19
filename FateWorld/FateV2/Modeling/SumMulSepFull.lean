@@ -45,7 +45,7 @@ import Mathlib.Logic.Equiv.Basic
   * **`Nonempty α` 与 `hY : ∀ v, v ∈ X ∨ v ∈ Y` 都是必需前提。**
   =========================================================================== -/
 
-namespace FateV2.Modeling.GraphToProbView7
+namespace FateV2.Predict.GraphToProbView7
 
 open Finset
 open FateV2.Error

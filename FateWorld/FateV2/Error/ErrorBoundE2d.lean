@@ -84,7 +84,7 @@ open Real
 
 /-- ⭐⭐ **`log(1 + x) ≤ x`**（`x > -1`）。直接复用 `ErrorBoundE2c.log_one_add_le`。 -/
 theorem log_one_add_le' {x : ℝ} (hx : -1 < x) : Real.log (1 + x) ≤ x :=
-  FateV2.Error.Stage2.ErrorBoundE2c.log_one_add_le hx
+  FateV2.Predict.Stage2.ErrorBoundE2c.log_one_add_le hx
 
 /-! ## §2  `1 ≤ exp x` -/
 

@@ -29,7 +29,7 @@ $$\exp t \le 1 + t + t^2 \le 1 + 2t$$（`t ∈ [0,1]`）
 **⚠ 这是把 `eᵗ-1` 控制成 `2t` 的关键。** -/
 theorem exp_le_one_add_two_mul {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     Real.exp t ≤ 1 + 2 * t := by
-  have h := FateV2.Error.Stage2.ErrorBoundE2e.exp_le_quadratic_upper ht0 ht1
+  have h := FateV2.Predict.Stage2.ErrorBoundE2e.exp_le_quadratic_upper ht0 ht1
   nlinarith [sq_nonneg t, ht0, ht1]
 
 /-- ⭐⭐⭐⭐ **`eᵗ - 1 ≤ 2t`**（`t ∈ [0,1]`）。 -/
