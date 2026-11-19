@@ -428,7 +428,7 @@ theorem mass_insert_split {h : V} {S : Finset V} (sh : h ∉ S)
 ⚠ 为避免对 `α` 非空性作额外假设，本条采用**直接刻度**：
 `est := mass S p x`，`learn := 0`，`steady := 0`，`total := mass S p x`。 -/
 noncomputable def chainBudgetOfMass (p : (V → α) → ℝ) (x : V → α) :
-    _root_.ChainErrorBudget.ChainBudget :=
+    _root_.FateV2.Error.ChainErrorBudget.ChainBudget :=
   { est := mass ∅ p x
     learn := 0
     steady := 0
@@ -437,14 +437,14 @@ noncomputable def chainBudgetOfMass (p : (V → α) → ℝ) (x : V → α) :
 /-- **上述 `ChainBudget` 是 `consistent` 的。** -/
 theorem chainBudgetOfMass_consistent (p : (V → α) → ℝ) (x : V → α) :
     (chainBudgetOfMass p x).consistent := by
-  unfold _root_.ChainErrorBudget.ChainBudget.consistent _root_.ChainErrorBudget.ChainBudget.sum
+  unfold _root_.FateV2.Error.ChainErrorBudget.ChainBudget.consistent _root_.FateV2.Error.ChainErrorBudget.ChainBudget.sum
   show mass ∅ p x = mass ∅ p x + 0 + 0
   ring
 
 /-- **接上 `sum_first_le_budget`：估计分量 ≤ 总预算。** -/
 theorem chainBudgetOfMass_first_le (p : (V → α) → ℝ) (x : V → α) :
     mass ∅ p x ≤ (chainBudgetOfMass p x).total :=
-  _root_.ChainErrorBudget.ChainBudget.sum_first_le_budget
+  _root_.FateV2.Error.ChainErrorBudget.ChainBudget.sum_first_le_budget
     (chainBudgetOfMass_consistent p x) le_rfl le_rfl
 
 /-- **`mass ∅` 与 `α` 的基数关系（把 `mass` 接到可数刻度上）。**

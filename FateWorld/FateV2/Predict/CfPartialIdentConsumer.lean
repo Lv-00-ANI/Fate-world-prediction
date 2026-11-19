@@ -356,9 +356,9 @@ namespace CfPartialIdent.R49
 theorem open_interval_zero_one_sound :
     SoundInterval 𝔐open false false true false 0 1 := by
   intro M hM
-  rcases _root_.CfPartialIdent.open_shape M hM with rfl | rfl
-  · rw [_root_.CfPartialIdent.cf_M0_true_false]; norm_num
-  · rw [_root_.CfPartialIdent.cf_M1_true_false]; norm_num
+  rcases _root_.FateV2.Predict.CfPartialIdent.open_shape M hM with rfl | rfl
+  · rw [_root_.FateV2.Predict.CfPartialIdent.cf_M0_true_false]; norm_num
+  · rw [_root_.FateV2.Predict.CfPartialIdent.cf_M1_true_false]; norm_num
 
 /-- ⭐⭐ **`open_sound_via_general_theorem`**：用**一般定理** `soundInterval_lower_upper`
 （而不是逐模型验算）得到同一条结论，**端点由模块的 `open_Lower`/`open_Upper` 给出**。
@@ -367,10 +367,10 @@ theorem open_interval_zero_one_sound :
 两者**独立**得到 `[0,1]`，彼此印证 —— 若哪一侧的数值被改动，另一侧会先坏。 -/
 theorem open_sound_via_general_theorem :
     SoundInterval 𝔐open false false true false
-      (_root_.CfPartialIdent.cfLower 𝔐open false false true false)
-      (_root_.CfPartialIdent.cfUpper 𝔐open false false true false) :=
+      (_root_.FateV2.Predict.CfPartialIdent.cfLower 𝔐open false false true false)
+      (_root_.FateV2.Predict.CfPartialIdent.cfUpper 𝔐open false false true false) :=
   soundInterval_lower_upper 𝔐open false false true false
-    _root_.CfPartialIdent.open_bounds
+    _root_.FateV2.Predict.CfPartialIdent.open_bounds
 
 /-! ### R49.2 sharpness 的定量重述：`[0,1]` 已是最紧 -/
 
@@ -394,15 +394,15 @@ theorem open_zero_one_is_tightest (l u : ℝ) (h : SoundInterval 𝔐open false 
 `M1` 是 `1`（贴上界）—— 两个模型**恰好把区间两端都占满**，
 所以任何「更窄的可信区间」都会漏掉其中一个模型。这正是 §R49.2 sharpness 的**机制**。 -/
 theorem open_mem_Icc_both_models :
-    (_root_.CfPartialIdent.cfLower 𝔐open false false true false
-        ≤ _root_.T43.cfWithAbduction M0 false false true false
-      ∧ _root_.T43.cfWithAbduction M0 false false true false
-        ≤ _root_.CfPartialIdent.cfUpper 𝔐open false false true false)
-    ∧ (_root_.CfPartialIdent.cfLower 𝔐open false false true false
-        ≤ _root_.T43.cfWithAbduction M1 false false true false
-      ∧ _root_.T43.cfWithAbduction M1 false false true false
-        ≤ _root_.CfPartialIdent.cfUpper 𝔐open false false true false) :=
-  ⟨_root_.CfPartialIdent.open_mem_Icc_M0, _root_.CfPartialIdent.open_mem_Icc_M1⟩
+    (_root_.FateV2.Predict.CfPartialIdent.cfLower 𝔐open false false true false
+        ≤ _root_.FateV2.Predict.T43.cfWithAbduction M0 false false true false
+      ∧ _root_.FateV2.Predict.T43.cfWithAbduction M0 false false true false
+        ≤ _root_.FateV2.Predict.CfPartialIdent.cfUpper 𝔐open false false true false)
+    ∧ (_root_.FateV2.Predict.CfPartialIdent.cfLower 𝔐open false false true false
+        ≤ _root_.FateV2.Predict.T43.cfWithAbduction M1 false false true false
+      ∧ _root_.FateV2.Predict.T43.cfWithAbduction M1 false false true false
+        ≤ _root_.FateV2.Predict.CfPartialIdent.cfUpper 𝔐open false false true false) :=
+  ⟨_root_.FateV2.Predict.CfPartialIdent.open_mem_Icc_M0, _root_.FateV2.Predict.CfPartialIdent.open_mem_Icc_M1⟩
 
 /-- ⭐⭐⭐ **`open_endpoints_exactly_attained`**：`[0,1]` 的两个端点都在 `𝔐open` 上
 **恰好被实现**（`M0 ↦ 0`，`M1 ↦ 1`）。
@@ -411,9 +411,9 @@ theorem open_mem_Icc_both_models :
 不是保守估计。这也是「弱档不可点识别」的**数值机理**：
 两个都符合观测数据的模型，给出**完全相反**的反事实值。 -/
 theorem open_endpoints_exactly_attained :
-    _root_.T43.cfWithAbduction M0 false false true false = 0
-      ∧ _root_.T43.cfWithAbduction M1 false false true false = 1 :=
-  ⟨_root_.CfPartialIdent.cf_M0_true_false, _root_.CfPartialIdent.cf_M1_true_false⟩
+    _root_.FateV2.Predict.T43.cfWithAbduction M0 false false true false = 0
+      ∧ _root_.FateV2.Predict.T43.cfWithAbduction M1 false false true false = 1 :=
+  ⟨_root_.FateV2.Predict.CfPartialIdent.cf_M0_true_false, _root_.FateV2.Predict.CfPartialIdent.cf_M1_true_false⟩
 
 end CfPartialIdent.R49
 
