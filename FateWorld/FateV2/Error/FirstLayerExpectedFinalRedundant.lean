@@ -45,8 +45,8 @@ open MeasureTheory
 
 注意：`Final.e2e_expand` 的 `μ * 1` 与 `General` 的 `μ * xhat` 在 `xhat = 1` 时相同。 -/
 theorem e2e_expand_from_general (η μ θ₀ : ℝ) (n : ℕ) :
-    |FateV2.Loop.EndToEnd.e2eResidual ThetaConvergence.linWorld (μ * 1)
-        (ThetaConvergence.thetaN η μ 1 θ₀ n)
+    |FateV2.Loop.EndToEnd.e2eResidual FateV2.Loop.ThetaConvergence.linWorld (μ * 1)
+        (FateV2.Loop.ThetaConvergence.thetaN η μ 1 θ₀ n)
         PUnit.unit PUnit.unit PUnit.unit 1|
       = |1 - η| ^ n * |θ₀ - μ| := by
   rw [FirstLayerExpectedGeneral.e2e_expand_general η μ θ₀ 1 one_ne_zero n]
@@ -54,8 +54,8 @@ theorem e2e_expand_from_general (η μ θ₀ : ℝ) (n : ℕ) :
 
 /-- ⭐ **`Final.e2e_eta_one_zero` 可以从 `General.e2e_expand_general` 推出**（`η = 1`、`xhat = 1`）。 -/
 theorem e2e_eta_one_zero_from_general (μ θ₀ : ℝ) {n : ℕ} (hn : 0 < n) :
-    |FateV2.Loop.EndToEnd.e2eResidual ThetaConvergence.linWorld (μ * 1)
-        (ThetaConvergence.thetaN 1 μ 1 θ₀ n)
+    |FateV2.Loop.EndToEnd.e2eResidual FateV2.Loop.ThetaConvergence.linWorld (μ * 1)
+        (FateV2.Loop.ThetaConvergence.thetaN 1 μ 1 θ₀ n)
         PUnit.unit PUnit.unit PUnit.unit 1| = 0 := by
   rw [e2e_expand_from_general 1 μ θ₀ n]
   simp [hn.ne']
@@ -68,8 +68,8 @@ theorem first_layer_bound_expected_final_from_general
     {P : Measure ℝ} [IsProbabilityMeasure P]
     (hP : MemLp (fun x : ℝ => x) 2 P) (η : ℝ) (n : ℕ) (hn : 0 < n) :
     ∫ ω : Fin n → ℝ,
-        |FateV2.Loop.EndToEnd.e2eResidual ThetaConvergence.linWorld (((∫ y, y ∂P)) * 1)
-          (ThetaConvergence.thetaN η ((∫ y, y ∂P)) 1
+        |FateV2.Loop.EndToEnd.e2eResidual FateV2.Loop.ThetaConvergence.linWorld (((∫ y, y ∂P)) * 1)
+          (FateV2.Loop.ThetaConvergence.thetaN η ((∫ y, y ∂P)) 1
             (GaussMarkovScalar.est (fun _ : Fin n => 1 / (n : ℝ)) ω) n)
           PUnit.unit PUnit.unit PUnit.unit 1|
         ∂(Measure.pi (fun _ : Fin n => P))

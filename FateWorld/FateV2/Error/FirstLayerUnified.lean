@@ -59,8 +59,8 @@ namespace FirstLayerUnified
 
 open MeasureTheory
 
-/-- **`OptimalEta.c η = |1 - η|`**（定义直接展开，供下述引理使用）。 -/
-theorem c_eq (η : ℝ) : OptimalEta.c η = |1 - η| := rfl
+/-- **`FateV2.Loop.OptimalEta.c η = |1 - η|`**（定义直接展开，供下述引理使用）。 -/
+theorem c_eq (η : ℝ) : FateV2.Loop.OptimalEta.c η = |1 - η| := rfl
 
 /-- ⭐⭐ **【统一的核心等式】**
 
@@ -73,12 +73,12 @@ theorem c_eq (η : ℝ) : OptimalEta.c η = |1 - η| := rfl
 **这把分解 A 里的「学习项」与分解 B 里的「收缩因子乘偏差」变成了同一个对象**：
 `sigmaLearn` 不是一个额外的加项，它**就是**残差本身。 -/
 theorem e2e_eq_sigmaLearn (η μ θ₀ xhat : ℝ) (hx : xhat ≠ 0) (n : ℕ) :
-    |FateV2.Loop.EndToEnd.e2eResidual ThetaConvergence.linWorld (μ * xhat)
-        (ThetaConvergence.thetaN η μ xhat θ₀ n)
+    |FateV2.Loop.EndToEnd.e2eResidual FateV2.Loop.ThetaConvergence.linWorld (μ * xhat)
+        (FateV2.Loop.ThetaConvergence.thetaN η μ xhat θ₀ n)
         PUnit.unit PUnit.unit PUnit.unit xhat|
       = ChainBudgetBound.sigmaLearn η μ xhat θ₀ n := by
   rw [FirstLayerExpectedGeneral.e2e_expand_general η μ θ₀ xhat hx n]
-  unfold ChainBudgetBound.sigmaLearn OptimalEta.c
+  unfold ChainBudgetBound.sigmaLearn FateV2.Loop.OptimalEta.c
   simp only [Real.norm_eq_abs, mul_comm]
 
 /-- ⭐⭐ **【期望形式：残差的期望就等于学习项的期望】**
@@ -87,8 +87,8 @@ theorem e2e_eq_sigmaLearn (η μ θ₀ xhat : ℝ) (hx : xhat ≠ 0) (n : ℕ) :
 theorem expectedE2E_eq_integral_sigmaLearn {P : Measure ℝ} [IsProbabilityMeasure P]
     (η : ℝ) (n : ℕ) (xhat : ℝ) (hx : xhat ≠ 0) :
     ∫ ω : Fin n → ℝ,
-        |FateV2.Loop.EndToEnd.e2eResidual ThetaConvergence.linWorld (((∫ y, y ∂P)) * xhat)
-          (ThetaConvergence.thetaN η ((∫ y, y ∂P)) xhat
+        |FateV2.Loop.EndToEnd.e2eResidual FateV2.Loop.ThetaConvergence.linWorld (((∫ y, y ∂P)) * xhat)
+          (FateV2.Loop.ThetaConvergence.thetaN η ((∫ y, y ∂P)) xhat
             (GaussMarkovScalar.est (fun _ : Fin n => 1 / (n : ℝ)) ω) n)
           PUnit.unit PUnit.unit PUnit.unit xhat|
         ∂(Measure.pi (fun _ : Fin n => P))

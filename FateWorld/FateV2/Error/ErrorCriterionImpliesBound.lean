@@ -545,7 +545,7 @@ theorem errorAcceptable_compose_two_perturbations
   have hm : 2 * ε1 < |s| :=
     errorAcceptable_implies_margin_of_sigma_margin hK hs
   have htot : 2 * (ε1 + ε2) < |s| := by linarith only [hm, hbud]
-  exact FateV2.Error.error_bound_compose_perturbations h1 h2 htot
+  exact FateV2.Error.R250ErrorBound.error_bound_compose_perturbations h1 h2 htot
 
 /-- **【判据 ⟹ 误差预算可加】**判据给出的**总预算**形式。
 
@@ -582,7 +582,7 @@ theorem errorAcceptable_implies_linScore_sign_stable {ι : Type*} [Fintype ι]
       R250ErrorBound.sgn (R250ErrorBound.linScore w x) := by
   have hm : 2 * ε < R250ErrorBound.margin w x :=
     errorAcceptable_implies_margin_of_sigma_margin hK hs
-  exact FateV2.Error.margin_implies_score_sign_stable w x hm hδ
+  exact FateV2.Error.R250ErrorBound.margin_implies_score_sign_stable w x hm hδ
 
 /-- **【判据 ⟹ 尺度不变分类】**判据下的分类判断对打分器的**正缩放**不变。
 
@@ -597,7 +597,7 @@ theorem errorAcceptable_implies_scale_invariant {s δ ε σ c : ℝ}
     (hK : ErrorCriterion.ErrorAcceptable ε σ) (hs : 4 * σ < |s|)
     (hδ : |δ| ≤ ε) (hc : 0 < c) :
     R250ErrorBound.sgn (c * (s + δ)) = R250ErrorBound.sgn (c * s) :=
-  FateV2.Error.error_bound_scale_invariant hc hδ
+  FateV2.Error.R250ErrorBound.error_bound_scale_invariant hc hδ
     (errorAcceptable_implies_margin_of_sigma_margin hK hs)
 
 end ErrorCriterionImpliesBound

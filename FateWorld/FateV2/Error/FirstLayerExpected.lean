@@ -29,7 +29,7 @@ Gauss–Markov 只约束**方差**（二阶矩）。于是第 1 层留在了一�
 只要把估计器输出 `θ̂ := estHat P n ω`（`est` 取**均匀权重** `1/n`）代入，
 端到端残差就成了定义在样本空间 `Fin n → ℝ` 上的可测函数，期望（积分）可写。
 
-关键的可证性来自 `ThetaConvergence.thetaN_closed`：
+关键的可证性来自 `FateV2.Loop.ThetaConvergence.thetaN_closed`：
 
     θ_n − θ* = (1−η)^n (θ₀ − θ*)   （`thetaN` 对 `θ₀` **仿射**），
 
@@ -159,8 +159,8 @@ noncomputable def estHat (_P : Measure ℝ) (n : ℕ) (ω : Fin n → ℝ) : ℝ
 
 即 `e2eAt P n η θ₀ x̂ ω := |e2eResidual linWorld (μ·x̂) (thetaN η (estHatω) x̂ θ₀ n) ⋯ x̂|`。 -/
 noncomputable def e2eAt (P : Measure ℝ) (n : ℕ) (η θ₀ xhat : ℝ) (ω : Fin n → ℝ) : ℝ :=
-  |FateV2.Loop.EndToEnd.e2eResidual ThetaConvergence.linWorld (muP P * xhat)
-      (ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n)
+  |FateV2.Loop.EndToEnd.e2eResidual FateV2.Loop.ThetaConvergence.linWorld (muP P * xhat)
+      (FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n)
       PUnit.unit PUnit.unit PUnit.unit xhat|
 
 /-- ⭐⭐ **【期望端到端误差】**
@@ -180,7 +180,7 @@ noncomputable def expectedE2E (P : Measure ℝ) (n : ℕ) (η θ₀ xhat : ℝ) 
 它的作用是让 §4 的积分估计可以作用在**参数** `θ_n(ω)` 上。 -/
 theorem e2eAt_eq_abs (P : Measure ℝ) (n : ℕ) (η θ₀ xhat : ℝ) (ω : Fin n → ℝ) :
     e2eAt P n η θ₀ xhat ω
-      = ‖ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖ * ‖xhat‖ := by
+      = ‖FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖ * ‖xhat‖ := by
   unfold e2eAt
   rw [ChainBudgetBound.e2e_abs_eq]
 
@@ -246,23 +246,23 @@ theorem int_abs_estHat_sub_const_le (hP : MemLp (fun x : ℝ => x) 2 P) (n : ℕ
 
 omit [IsProbabilityMeasure P] in
 theorem thetaN_sub_mu_eq (η θ₀ xhat : ℝ) (hx : xhat ≠ 0) (n : ℕ) (ω : Fin n → ℝ) :
-    ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
+    FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
       = -( (1 - η)^n * (estHat P n ω - θ₀) ) + (estHat P n ω - muP P) := by
-  have h := ThetaConvergence.thetaN_closed η (estHat P n ω) xhat θ₀ hx n
-  rw [show ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
-      = (ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - estHat P n ω)
+  have h := FateV2.Loop.ThetaConvergence.thetaN_closed η (estHat P n ω) xhat θ₀ hx n
+  rw [show FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
+      = (FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - estHat P n ω)
         + (estHat P n ω - muP P) from by ring]
   rw [h]; ring
 
 omit [IsProbabilityMeasure P] in
 theorem ptwise_decomp (η θ₀ xhat : ℝ) (hx : xhat ≠ 0) (n : ℕ) (ω : Fin n → ℝ) :
-    ‖ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖
+    ‖FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖
       ≤ |1 - η|^n * |estHat P n ω - θ₀| + |estHat P n ω - muP P| := by
-  have h := ThetaConvergence.thetaN_closed η (estHat P n ω) xhat θ₀ hx n
-  have key : ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
+  have h := FateV2.Loop.ThetaConvergence.thetaN_closed η (estHat P n ω) xhat θ₀ hx n
+  have key : FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
       = -( (1 - η)^n * (estHat P n ω - θ₀) ) + (estHat P n ω - muP P) := by
-    rw [show ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
-        = (ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - estHat P n ω)
+    rw [show FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P
+        = (FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - estHat P n ω)
           + (estHat P n ω - muP P) from by ring]
     rw [h]; ring
   rw [key, Real.norm_eq_abs]
@@ -301,11 +301,11 @@ theorem expectedE2E_bound (hP : MemLp (fun x : ℝ => x) 2 P) (n : ℕ) (hn : 0 
     -- e2eAt equals abs(...)*norm
     have heq : (fun ω : Fin n → ℝ => e2eAt P n η θ₀ xhat ω)
         = fun ω : Fin n → ℝ =>
-            ‖ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖ * ‖xhat‖ := by
+            ‖FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖ * ‖xhat‖ := by
       funext ω; rw [e2eAt_eq_abs]
     rw [heq]
     have hinner : (fun ω : Fin n → ℝ =>
-        ‖ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖ * ‖xhat‖)
+        ‖FateV2.Loop.ThetaConvergence.thetaN η (estHat P n ω) xhat θ₀ n - muP P‖ * ‖xhat‖)
         = (fun ω : Fin n → ℝ =>
             |-( (1 - η)^n * (estHat P n ω - θ₀) ) + (estHat P n ω - muP P)| * ‖xhat‖) := by
       funext ω; rw [thetaN_sub_mu_eq η θ₀ xhat hx n ω, Real.norm_eq_abs]
