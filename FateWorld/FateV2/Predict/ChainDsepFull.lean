@@ -127,28 +127,28 @@ section ChainBasics
 
 /-- `chainDAG n` 的边：`u → v` 当且仅当 `u + 1 = v`（按 `ℕ` 比较）。 -/
 theorem chainDAG_edge_iff {n : ℕ} (u v : Fin (n + 1)) :
-    (Fate.GlobalMarkovChainN.chainDAG n).edge u v ↔ (u : ℕ) + 1 = (v : ℕ) := Iff.rfl
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).edge u v ↔ (u : ℕ) + 1 = (v : ℕ) := Iff.rfl
 
 /-- 链图上 `u` 是 `v` 的父亲当且仅当 `u + 1 = v`。 -/
 theorem chainDAG_parents_mem {n : ℕ} (u v : Fin (n + 1)) :
-    u ∈ (Fate.GlobalMarkovChainN.chainDAG n).parents v ↔ (v : ℕ) = (u : ℕ) + 1 := by
+    u ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).parents v ↔ (v : ℕ) = (u : ℕ) + 1 := by
   rw [FateV2.Modeling.Graph.DAG.mem_parents, chainDAG_edge_iff]
   exact eq_comm
 
 /-- 链图上 `w` 是 `v` 的孩子当且仅当 `v + 1 = w`。 -/
 theorem chainDAG_children_mem {n : ℕ} (v w : Fin (n + 1)) :
-    w ∈ (Fate.GlobalMarkovChainN.chainDAG n).children v ↔ (w : ℕ) = (v : ℕ) + 1 := by
+    w ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).children v ↔ (w : ℕ) = (v : ℕ) + 1 := by
   rw [FateV2.Modeling.Graph.DAG.mem_children, chainDAG_edge_iff]
   exact eq_comm
 
 /-- 链图上无向相邻当且仅当两顶点在 `ℕ` 上相差 1。 -/
 theorem chainDAG_uadj_iff {n : ℕ} (a b : Fin (n + 1)) :
-    (Fate.GlobalMarkovChainN.chainDAG n).UAdj a b ↔
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).UAdj a b ↔
       ((a : ℕ) + 1 = (b : ℕ) ∨ (b : ℕ) + 1 = (a : ℕ)) := Iff.rfl
 
 /-- ⭐ **链图上 `u` 是 `v` 的祖先当且仅当 `u < v`**（`n` 无关的真定理，不是 `decide`）。 -/
 theorem chainDAG_isAncestor_iff {n : ℕ} (u v : Fin (n + 1)) :
-    (Fate.GlobalMarkovChainN.chainDAG n).isAncestor u v ↔ (u : ℕ) < (v : ℕ) := by
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).isAncestor u v ↔ (u : ℕ) < (v : ℕ) := by
   have key : ∀ a b : Fin (n + 1),
       Relation.TransGen (fun x y : Fin (n + 1) => (x : ℕ) + 1 = (y : ℕ)) a b →
         (a : ℕ) < (b : ℕ) := by
@@ -194,7 +194,7 @@ theorem val_two_fin {n : ℕ} (hn : 2 ≤ n) : ((2 : Fin (n + 1)) : ℕ) = 2 := 
 
 /-- 链图起点的父集为空。 -/
 theorem chainDAG_parents_zero (n : ℕ) :
-    (Fate.GlobalMarkovChainN.chainDAG n).parents (0 : Fin (n + 1)) = ∅ := by
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).parents (0 : Fin (n + 1)) = ∅ := by
   apply Finset.eq_empty_of_forall_notMem
   intro u hu
   rw [chainDAG_parents_mem] at hu
@@ -203,7 +203,7 @@ theorem chainDAG_parents_zero (n : ℕ) :
 
 /-- 链图终点的子集为空。 -/
 theorem chainDAG_children_last (n : ℕ) :
-    (Fate.GlobalMarkovChainN.chainDAG n).children (Fin.last n) = ∅ := by
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).children (Fin.last n) = ∅ := by
   apply Finset.eq_empty_of_forall_notMem
   intro w hw
   rw [chainDAG_children_mem] at hw
@@ -213,7 +213,7 @@ theorem chainDAG_children_last (n : ℕ) :
 
 /-- 链图上 `w` 是 `0` 的孩子，当且仅当 `w = 1`（`n ≥ 1`）。 -/
 theorem chainDAG_children_zero {n : ℕ} (hn : 1 ≤ n) (w : Fin (n + 1)) :
-    w ∈ (Fate.GlobalMarkovChainN.chainDAG n).children (0 : Fin (n + 1)) ↔
+    w ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).children (0 : Fin (n + 1)) ↔
       w = (1 : Fin (n + 1)) := by
   rw [chainDAG_children_mem]
   constructor
@@ -229,7 +229,7 @@ theorem chainDAG_children_zero {n : ℕ} (hn : 1 ≤ n) (w : Fin (n + 1)) :
 
 /-- 链图上 `w` 是 `1` 的孩子，当且仅当 `w = 2`（`n ≥ 2`）。 -/
 theorem chainDAG_children_one {n : ℕ} (hn : 2 ≤ n) (w : Fin (n + 1)) :
-    w ∈ (Fate.GlobalMarkovChainN.chainDAG n).children (1 : Fin (n + 1)) ↔
+    w ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).children (1 : Fin (n + 1)) ↔
       w = (2 : Fin (n + 1)) := by
   rw [chainDAG_children_mem]
   constructor
@@ -245,7 +245,7 @@ theorem chainDAG_children_one {n : ℕ} (hn : 2 ≤ n) (w : Fin (n + 1)) :
 
 /-- 链图上 `u` 是 `1` 的父亲，当且仅当 `u = 0`（`n ≥ 1`）。 -/
 theorem chainDAG_parents_one {n : ℕ} (hn : 1 ≤ n) (u : Fin (n + 1)) :
-    u ∈ (Fate.GlobalMarkovChainN.chainDAG n).parents (1 : Fin (n + 1)) ↔
+    u ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).parents (1 : Fin (n + 1)) ↔
       u = (0 : Fin (n + 1)) := by
   rw [chainDAG_parents_mem]
   constructor
@@ -431,7 +431,7 @@ theorem zero_notMem_one_brCons {n : ℕ} (hn : 1 ≤ n) :
 /-- ⭐ **`bbStep Z` 在 `(1, fromParent)` 上只有 `(0, fromChild)`**（`1 ∈ Z`）。
 结果集取 `chainSurf` 的形状 `brCons (brCons ∅ 1 fP) 0 fC`。 -/
 theorem chainDAG_bbStep_one_fromParent {n : ℕ} (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbStep ((Finset.univ.erase 0).erase (Fin.last n))
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbStep ((Finset.univ.erase 0).erase (Fin.last n))
         ((1 : Fin (n + 1)), FateV2.Modeling.Graph.DAG.BBDir.fromParent) ⊆
       brCons (brCons (chainEmpty n) ((1 : Fin (n + 1)))
         FateV2.Modeling.Graph.DAG.BBDir.fromParent (mem_chainEmpty_not n _))
@@ -451,7 +451,7 @@ theorem chainDAG_bbStep_one_fromParent {n : ℕ} (hn : 2 ≤ n) :
 
 /-- ⭐ **`bbStep Z` 在 `(0, fromChild)` 上只有 `(1, fromParent)`**（`0 ∉ Z`，`0` 无父）。 -/
 theorem chainDAG_bbStep_zero_fromChild {n : ℕ} (hn : 1 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbStep ((Finset.univ.erase 0).erase (Fin.last n))
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbStep ((Finset.univ.erase 0).erase (Fin.last n))
         ((0 : Fin (n + 1)), FateV2.Modeling.Graph.DAG.BBDir.fromChild) ⊆
       brCons (chainEmpty n) ((1 : Fin (n + 1)))
         FateV2.Modeling.Graph.DAG.BBDir.fromParent (mem_chainEmpty_not n _) := by
@@ -486,7 +486,7 @@ theorem brCons_one_subset_chainSurf (n : ℕ) (hn : 2 ≤ n) (Z : Finset (Fin (n
 /-- ⭐⭐⭐⭐⭐ **`chainSurf` 对 `chainDAG n` 的 `bbStep Z` 封闭**（`n ≥ 2`）。 -/
 theorem chainSurf_closed (n : ℕ) (hn : 2 ≤ n) :
     ∀ s ∈ chainSurf n hn ((Finset.univ.erase 0).erase (Fin.last n)),
-      (Fate.GlobalMarkovChainN.chainDAG n).bbStep ((Finset.univ.erase 0).erase (Fin.last n)) s ⊆
+      (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbStep ((Finset.univ.erase 0).erase (Fin.last n)) s ⊆
         chainSurf n hn ((Finset.univ.erase 0).erase (Fin.last n)) := by
   intro s hs t ht
   have h1 : 1 ≤ n := by omega
@@ -508,7 +508,7 @@ section Main
 
 `bbInit {0}` 只含 `children 0 × fromParent = {(1, fromParent)}`（`0` 无父）。 -/
 theorem chainDAG_bbInit_zero_subset (n : ℕ) (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbInit {(0 : Fin (n + 1))} ⊆
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbInit {(0 : Fin (n + 1))} ⊆
       chainSurf n hn ((Finset.univ.erase 0).erase (Fin.last n)) := by
   intro s hs
   unfold FateV2.Modeling.Graph.DAG.bbInit at hs
@@ -538,11 +538,11 @@ theorem chainDAG_bbInit_zero_subset (n : ℕ) (hn : 2 ≤ n) :
 `chainSurf` 含 `bbInit {0}`（`chainDAG_bbInit_zero_subset`）且对 `bbStep Z` 封闭
 （`chainSurf_closed`），故 BFS 结果被 `chainSurf` 包住。**完全不涉及 `decide`。** -/
 theorem chainDAG_bbReachable_subset (n : ℕ) (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbReachable
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbReachable
         ((Finset.univ.erase 0).erase (Fin.last n)) {(0 : Fin (n + 1))} ⊆
       chainSurf n hn ((Finset.univ.erase 0).erase (Fin.last n)) :=
   FateV2.Modeling.Graph.DAG.bbReachable_minimal (V := Fin (n + 1))
-    (Fate.GlobalMarkovChainN.chainDAG n)
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n)
     ((Finset.univ.erase 0).erase (Fin.last n)) {(0 : Fin (n + 1))}
     (chainSurf n hn ((Finset.univ.erase 0).erase (Fin.last n)))
     (chainDAG_bbInit_zero_subset n hn)
@@ -552,7 +552,7 @@ theorem chainDAG_bbReachable_subset (n : ℕ) (hn : 2 ≤ n) :
 
 `chainSurf` 的两个状态的顶点坐标恰好是 `1` 与 `0`。 -/
 theorem chainDAG_bbReachableVertices_subset (n : ℕ) (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbReachableVertices
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbReachableVertices
         ((Finset.univ.erase 0).erase (Fin.last n)) {(0 : Fin (n + 1))} ⊆
       ({(0 : Fin (n + 1))} : Finset (Fin (n + 1))) ∪ {(1 : Fin (n + 1))} := by
   intro v hv
@@ -570,14 +570,14 @@ theorem chainDAG_bbReachableVertices_subset (n : ℕ) (hn : 2 ≤ n) :
 
 /-- ⭐⭐⭐⭐ **任务书第 2 条：`bbReachableVertices Z {0} ⊆ {0, 1}`**（任意 `n ≥ 2`）。 -/
 theorem chainDAG_reachable_subset' (n : ℕ) (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbReachableVertices
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbReachableVertices
       ((Finset.univ.erase 0).erase (Fin.last n)) {(0 : Fin (n + 1))}
       ⊆ ({(0 : Fin (n + 1))} ∪ {(1 : Fin (n + 1))}) :=
   chainDAG_bbReachableVertices_subset n hn
 
 /-- ⭐⭐⭐⭐ **`last n` 不在可达顶点集里**（`n ≥ 2`）。 -/
 theorem chainDAG_reachable_not_last (n : ℕ) (hn : 2 ≤ n) :
-    Fin.last n ∉ (Fate.GlobalMarkovChainN.chainDAG n).bbReachableVertices
+    Fin.last n ∉ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbReachableVertices
       ((Finset.univ.erase 0).erase (Fin.last n)) {(0 : Fin (n + 1))} := by
   intro h
   have hsub := chainDAG_bbReachableVertices_subset n hn h
@@ -592,7 +592,7 @@ theorem chainDAG_reachable_not_last (n : ℕ) (hn : 2 ≤ n) :
 
 **⚠ 这是 `GlobalMarkovChainN.lean:136` 明确标注「没做」的定理。** -/
 theorem chainDAG_dsep_n (n : ℕ) (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).dSep
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).dSep
       {(0 : Fin (n+1))} {(Fin.last n : Fin (n+1))}
       ((Finset.univ.erase 0).erase (Fin.last n)) := by
   refine ⟨?_, ?_, ?_, ?_⟩

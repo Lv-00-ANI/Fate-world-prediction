@@ -101,12 +101,12 @@ $$p(x) = \prod_{v} \varphi_v\bigl(x|_{\mathrm{pa}(v)}\bigr),
 **一个等式假设** `hφ`，与图的联系由 `pa G v` 给出，
 **故 `G` 是真参数**（不是 `_G` 哑变量，也不是类型编码）。
 
-**⚠ 与 `Fate.DAGFactorizationGeneral.LM` 的关系**：`LM` 是**局部** Markov 性的
+**⚠ 与 `FateV2.Predict.DAGFactorizationGeneral.LM` 的关系**：`LM` 是**局部** Markov 性的
 乘性形式（用 `mass`），本定义是**全局**因子分解形式。两者在链上的关系
 **不在本文范围内**（§7 缺口登记）。 -/
 def Factorizes (p : Obs → ℝ) (G : FateV2.Modeling.Graph.DAG (Fin 3)) : Prop :=
   ∃ (φ : Fin 3 → Obs → ℝ),
-    (∀ v x y, (∀ u ∈ Fate.DAGFactorization.pa G v, x u = y u) → φ v x = φ v y) ∧
+    (∀ v x y, (∀ u ∈ FateV2.Predict.DAGFactorization.pa G v, x u = y u) → φ v x = φ v y) ∧
     ∀ x, p x = ∏ v, φ v x
 
 /-! ===========================================================================
@@ -136,13 +136,13 @@ theorem not_mem_Z_of_dsep {G : FateV2.Modeling.Graph.DAG (Fin 3)} {X Y Z : Finse
   =========================================================================== -/
 
 /-- 链上 `pa 0 = ∅`。 -/
-theorem pa_zero : Fate.DAGFactorization.pa G3 (0 : Fin 3) = ∅ := by decide
+theorem pa_zero : FateV2.Predict.DAGFactorization.pa G3 (0 : Fin 3) = ∅ := by decide
 
 /-- 链上 `pa 1 = {0}`。 -/
-theorem pa_one : Fate.DAGFactorization.pa G3 (1 : Fin 3) = {0} := by decide
+theorem pa_one : FateV2.Predict.DAGFactorization.pa G3 (1 : Fin 3) = {0} := by decide
 
 /-- 链上 `pa 2 = {1}`。 -/
-theorem pa_two : Fate.DAGFactorization.pa G3 (2 : Fin 3) = {1} := by decide
+theorem pa_two : FateV2.Predict.DAGFactorization.pa G3 (2 : Fin 3) = {1} := by decide
 
 /-! ===========================================================================
   §4 层 B：`Factorizes` 在链上展开为三因子形式 + 读集降维
@@ -167,7 +167,7 @@ theorem prod_fin3 (φ : Fin 3 → Obs → ℝ) (x : Obs) :
 任意搬动」才能把 `f` 写成 `(a, z)` 的函数（`g` 写成 `(c, z)` 的函数）。 -/
 theorem factorizes_chain_decompose (p : Obs → ℝ) (h : Factorizes p G3) :
     ∃ (φ : Fin 3 → Obs → ℝ),
-      (∀ v x y, (∀ u ∈ Fate.DAGFactorization.pa G3 v, x u = y u) → φ v x = φ v y) ∧
+      (∀ v x y, (∀ u ∈ FateV2.Predict.DAGFactorization.pa G3 v, x u = y u) → φ v x = φ v y) ∧
       (∀ x y : Obs, φ 0 x = φ 0 y) ∧
       (∀ x y : Obs, x 0 = y 0 → x 1 = y 1 → φ 1 x = φ 1 y) ∧
       (∀ x y : Obs, x 1 = y 1 → x 2 = y 2 → φ 2 x = φ 2 y) ∧

@@ -41,7 +41,7 @@ import FateWorld.FateV2.Predict.SinkPeelDiagnosis
 namespace FateV2.Predict.C14
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]

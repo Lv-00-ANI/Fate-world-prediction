@@ -77,7 +77,7 @@ namespace FateV2.Modeling
 open FateV2.Predict
 namespace MainlineIntegration
 
-open FateV2.Modeling.FinMeasureBridge Fate.FinalB3 FateV2.Modeling.FiniteCondIndep
+open FateV2.Modeling.FinMeasureBridge FateV2.Modeling.FinalB3 FateV2.Modeling.FiniteCondIndep
 open FateV2.Modeling.FinCondIndepMeasure
 
 variable {α β γ : Type}
@@ -172,7 +172,7 @@ theorem condIndepFin_to_indep
     FateV2.Modeling.FinMeasureBridge.weightedCount_isFiniteMeasure p
   -- ⭐ 这里**真实调用**桥的最终定理（而非 `#check`）。
   have hb : FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p :=
-    Fate.FinalB3.condIndepFin_to_bridge p hp hcond
+    FateV2.Modeling.FinalB3.condIndepFin_to_bridge p hp hcond
   -- 展开成逐点乘积等式 —— 这与 `Kernel.Indep` 是同一个命题。
   have hunfold := (bridgeStatement_unfold_def (α := α) (β := β) (γ := γ) p).mp hb
   intro t₁ t₂ ht₁ ht₂
@@ -275,7 +275,7 @@ theorem doCalculus_bridge_concrete
     (hcond : FateV2.Modeling.FiniteCondIndep.CondIndepFin p) :
     ∃ (_ : Prop), FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p :=
   ⟨FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p,
-    Fate.FinalB3.condIndepFin_to_bridge p hp hcond⟩
+    FateV2.Modeling.FinalB3.condIndepFin_to_bridge p hp hcond⟩
 
 /-! ## §B4.4 ⭐⭐⭐ 接 `PearlHierarchy.SCM` 的观测层 -/
 
@@ -291,7 +291,7 @@ theorem SCM_jointLaw3_bridge
       (fun w : (α × β) × γ => M.jointLaw3 (w.1.1, w.1.2, w.2))) :
     FateV2.Modeling.FinCondIndepMeasure.bridgeStatement
       (fun w : (α × β) × γ => M.jointLaw3 (w.1.1, w.1.2, w.2)) :=
-  Fate.FinalB3.condIndepFin_to_bridge
+  FateV2.Modeling.FinalB3.condIndepFin_to_bridge
     (fun w : (α × β) × γ => M.jointLaw3 (w.1.1, w.1.2, w.2)) hp hcond
 
 end MainlineIntegration

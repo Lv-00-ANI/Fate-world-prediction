@@ -128,7 +128,7 @@ namespace View11Splitter
 open Finset
 open FateV2.Modeling.Graph
 open FateV2.Modeling.Graph.DAG
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 
 universe u

@@ -87,7 +87,7 @@ namespace View3FiberMass
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 open Fate.View3 (mergeOn mergeOn_Z mergeOn_X mergeOn_Y mergeOn_else)
 
 universe u

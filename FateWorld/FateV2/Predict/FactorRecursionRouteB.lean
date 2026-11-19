@@ -49,8 +49,8 @@ import FateWorld.FateV2.Predict.CausalDescendant
 
   ## §2 与既有资产的接口
 
-  * `mass` / `unpin` / `mass_univ` / `mass_insert_sum` —— `Fate.DAGFactorization`
-  * `pa` / `mem_pa` / `pa_lt_topo` / `topoOrder` / `topoOrder_lt` —— `Fate.DAGFactorization` + `CausDAG`
+  * `mass` / `unpin` / `mass_univ` / `mass_insert_sum` —— `FateV2.Predict.DAGFactorization`
+  * `pa` / `mem_pa` / `pa_lt_topo` / `topoOrder` / `topoOrder_lt` —— `FateV2.Predict.DAGFactorization` + `CausDAG`
   * `nonDescendants` / `descendants` / `isAncestor` —— `CausDAG`
   * `CondMul` / `CondMul2` —— `Fate.CondIndep2`（本文件不下沉到 `CondMul`，
     只用 `mass` 口径的乘性条件独立，最后 §4 说明如何接 `CondMul`）
@@ -63,7 +63,7 @@ namespace FactorRecursionRouteB
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 universe u
 
@@ -149,7 +149,7 @@ $$p(x) = \prod_v \varphi_v(x),\qquad
 
 **特征**：
 * `G` 出现在定义类型里（**不是 `_G` 哑变量**）；
-* 读集由 `pa G v` 给出（`pa` 是 `Fate.DAGFactorization.pa`，从 `edge` 算）；
+* 读集由 `pa G v` 给出（`pa` 是 `FateV2.Predict.DAGFactorization.pa`，从 `edge` 算）；
 * 「只读」是**等式约束** `hφ`，不是类型编码（故 `dSep` 可对 `G` 说话）。
 
 **⚠ 与 `Fate.ChainMarkovExplicitAntecedent.Factorizes` 的关系**：
@@ -165,7 +165,7 @@ def Factorizes (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : Prop
 其中 `nd(v)` 是 `v` 的**非后代**（不含 `v` 自身）。
 
 即 `v ⟂ nd(v) | pa(v)`（乘性条件独立，无除法、无需归一化）。
-这正是 `Fate.DAGFactorization.ChainMarkov` 在一般 DAG 上的推广
+这正是 `FateV2.Predict.DAGFactorization.ChainMarkov` 在一般 DAG 上的推广
 （`ChainMarkov` 是 `Fin 3` 上特化）。 -/
 def LMG (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : Prop :=
   ∀ v : V,

@@ -39,7 +39,7 @@ import FateWorld.FateV2.Predict.FactorMarkov
 namespace FateV2.Predict.S9Fixed
 
 open FateV2.Modeling
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [DecidableEq V] [Fintype V] [DecidableEq α] [Fintype α]
@@ -55,12 +55,12 @@ theorem bar_univ_correct (f : V → (V → α) → ℝ) (x : V → α) :
     bar univ f x = 1 := by
   unfold bar tail
   simp only [Finset.sdiff_self, Finset.prod_empty]
-  rw [Fate.DAGFactorization.mass_univ]
+  rw [FateV2.Predict.DAGFactorization.mass_univ]
 
 -- ⭐ bar ∅ f x = ∑ w, ∏ v, f v w（tail f ∅ = ∏ v ∈ univ, f v）
 theorem bar_empty_correct (f : V → (V → α) → ℝ) (x : V → α) :
     bar ∅ f x = ∑ w, ∏ v, f v w := by
   unfold bar tail
-  rw [Finset.sdiff_empty, Fate.DAGFactorization.mass_empty]
+  rw [Finset.sdiff_empty, FateV2.Predict.DAGFactorization.mass_empty]
 
 end FateV2.Predict.S9Fixed

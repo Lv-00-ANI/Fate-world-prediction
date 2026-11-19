@@ -46,7 +46,7 @@ import FateWorld.FateV2.Predict.BarSdiffIndep
 namespace FateV2.Predict.C19
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
@@ -61,18 +61,18 @@ theorem sink_peel_general_refutation {T : Finset V} {s : V} (hsT : s ∈ T)
     (hft : ∀ w w' : V → α, (∀ u ∈ univ \ T, w u = w' u) → tail f T w = tail f T w')
     {x y : V → α} (hfsxy : f s x = f s y)
     (hne : bar T f x ≠ bar T f y) :
-    ¬ (∀ z : V → α, bar T f z = bar (T \ {s}) f (Fate.DAGFactorization.unpin s z (z s)) * f s z) := by
+    ¬ (∀ z : V → α, bar T f z = bar (T \ {s}) f (FateV2.Predict.DAGFactorization.unpin s z (z s)) * f s z) := by
   intro h
   have hx := h x
   have hy := h y
   have hind := Fate.C18.bar_sdiff_indep hsT hfs hft
-    (Fate.DAGFactorization.unpin s x (x s)) (Fate.DAGFactorization.unpin s y (y s))
+    (FateV2.Predict.DAGFactorization.unpin s x (x s)) (FateV2.Predict.DAGFactorization.unpin s y (y s))
   -- bar T f x = A * f s x, bar T f y = A * f s y, 且 f s x = f s y
   apply hne
   calc bar T f x
-      = bar (T \ {s}) f (Fate.DAGFactorization.unpin s x (x s)) * f s x := hx
-    _ = bar (T \ {s}) f (Fate.DAGFactorization.unpin s y (y s)) * f s x := by rw [hind]
-    _ = bar (T \ {s}) f (Fate.DAGFactorization.unpin s y (y s)) * f s y := by rw [hfsxy]
+      = bar (T \ {s}) f (FateV2.Predict.DAGFactorization.unpin s x (x s)) * f s x := hx
+    _ = bar (T \ {s}) f (FateV2.Predict.DAGFactorization.unpin s y (y s)) * f s x := by rw [hind]
+    _ = bar (T \ {s}) f (FateV2.Predict.DAGFactorization.unpin s y (y s)) * f s y := by rw [hfsxy]
     _ = bar T f y := hy.symm
 
 end FateV2.Predict.C19

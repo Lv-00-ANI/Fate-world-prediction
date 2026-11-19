@@ -296,9 +296,9 @@ section MassExpansion
 **不是** `p x`。上一轮把 `mass ∅ p x` 当成 `p x` 的写法是错的。 -/
 theorem mass_single_eq
     (p : (Fin 3 → Fin 3) → ℝ) (x : Fin 3 → Fin 3) (v : Fin 3) :
-    Fate.DAGFactorization.mass ({v} : Finset (Fin 3)) p x
+    FateV2.Predict.DAGFactorization.mass ({v} : Finset (Fin 3)) p x
       = ∑ w : Fin 3 → Fin 3, (if w v = x v then p w else 0) := by
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   refine Finset.sum_congr rfl ?_
   intro w _
   by_cases h : w v = x v

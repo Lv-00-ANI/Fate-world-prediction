@@ -43,7 +43,7 @@ variable {α β γ : Type}
   [Countable α] [Countable β] [Countable γ]
   [MeasurableSingletonClass ((α × β) × γ)]
 
-open FateV2.Modeling.FinMeasureBridge Fate.FinalB3
+open FateV2.Modeling.FinMeasureBridge FateV2.Modeling.FinalB3
 
 /-- ⭐⭐ **`bridgeStatement` ⟹ `CondIndepFin`**（`hp` 非负 + 纤维非零）。 -/
 theorem bridge_to_condIndepFin
@@ -86,7 +86,7 @@ theorem bridge_to_condIndepFin
           * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
             (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
             a) t2 :=
-    (@Fate.FinalB3.ae_iff_forall_or_zero ((α × β) × γ)
+    (@FateV2.Modeling.FinalB3.ae_iff_forall_or_zero ((α × β) × γ)
       (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       _
@@ -110,7 +110,7 @@ theorem bridge_to_condIndepFin
         (inferInstance : MeasurableSpace γ))
       (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm')
       {((x, y), z)} ≠ 0 := by
-    rw [Fate.FinalB3.trim_singleton_eq_fiber]
+    rw [FateV2.Modeling.FinalB3.trim_singleton_eq_fiber]
     rw [FateV2.Modeling.FinMeasureBridge.fiber_ne_zero_iff p hp z]
     exact hz z
   have heq : ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
@@ -149,9 +149,9 @@ theorem bridge_to_condIndepFin
     rw [ht2def]
     exact FateV2.Modeling.FinCondIndepMeasure.measurable_projY (measurableSet_singleton y)
   have hAB : MeasurableSet (t1 ∩ t2) := hA.inter hB
-  have r1 := Fate.FinalB3.kernelValue_fiber_ratio p (t1 ∩ t2) hAB hp ((x, y), z) hF
-  have r2 := Fate.FinalB3.kernelValue_fiber_ratio p t1 hA hp ((x, y), z) hF
-  have r3 := Fate.FinalB3.kernelValue_fiber_ratio p t2 hB hp ((x, y), z) hF
+  have r1 := FateV2.Modeling.FinalB3.kernelValue_fiber_ratio p (t1 ∩ t2) hAB hp ((x, y), z) hF
+  have r2 := FateV2.Modeling.FinalB3.kernelValue_fiber_ratio p t1 hA hp ((x, y), z) hF
+  have r3 := FateV2.Modeling.FinalB3.kernelValue_fiber_ratio p t2 hB hp ((x, y), z) hF
   -- 简化三个分子
   have hn1 : (∑ x' : α, ∑ y' : β,
       (if ((x', y'), z) ∈ t1 ∩ t2 then p ((x', y'), z) else 0)) = p ((x, y), z) := by
@@ -213,7 +213,7 @@ open MeasureTheory ProbabilityTheory
 1. `FateV2.Modeling.FinCondIndepMeasure.bridgeStatement`（`FinCondIndepMeasure.lean`）
    的定义只对 `α β γ` **处于同一个 universe** 的情形可陈述
    （内部 `StandardBorelSpace` 等实例要求同 universe）；
-2. `Fate.FinalB3.condIndepFin_to_bridge`（`BridgeFinal.lean`）建立在
+2. `FateV2.Modeling.FinalB3.condIndepFin_to_bridge`（`BridgeFinal.lean`）建立在
    `universe 0`（`{α β γ : Type}`）上。
 
 ⟹ 本等价定理也落在 **`universe 0`** 上，**这是 `bridgeStatement`
@@ -239,7 +239,7 @@ theorem condIndepFin_iff_bridge [Fintype α] [Fintype β] [Fintype γ]
     FateV2.Modeling.FiniteCondIndep.CondIndepFin p ↔ FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p := by
   constructor
   · intro hcond
-    exact Fate.FinalB3.condIndepFin_to_bridge p hp hcond
+    exact FateV2.Modeling.FinalB3.condIndepFin_to_bridge p hp hcond
   · intro hb
     exact FateV2.Modeling.GenC2.bridge_to_condIndepFin p hp hz hb
 

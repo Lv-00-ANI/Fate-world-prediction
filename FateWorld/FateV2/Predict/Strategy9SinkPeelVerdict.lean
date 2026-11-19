@@ -94,7 +94,7 @@ namespace Strategy9Verdict
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin mass_univ mass_empty)
+open FateV2.Predict.DAGFactorization (mass unpin mass_univ mass_empty)
 
 universe u
 

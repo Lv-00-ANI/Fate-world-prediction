@@ -59,7 +59,7 @@ open FateV2.Modeling
 
 open Finset
 open FateV2.Error
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 universe u
 

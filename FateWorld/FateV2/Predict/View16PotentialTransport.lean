@@ -11,7 +11,7 @@ Bayes-ball 逐路径、moral 图、`dSep`↔`activeWalk` 直接对偶 ……）�
 > **要么**把 `mass` 当成「概率边缘」去相除/相套（路线甲、路线乙），
 > **要么**把 `dSep` 当成「不存在 active walk」去逐条路径消解（Bayes-ball 路线）。
 
-**第一条路已证伪**：`Fate.DAGFactorizationGeneral.tower_property_false`
+**第一条路已证伪**：`FateV2.Predict.DAGFactorizationGeneral.tower_property_false`
 （`Fate/TowerAudit.lean` A2/A3 独立复核）—— `mass` 是**非归一化纤维和**，
 `mass S (mass T p)` **两个方向都为假**。所以任何「反复取边缘再接起来」的证明
 （= mass 塔性质）都不成立，**本文件一次也不用它**。
@@ -66,7 +66,7 @@ namespace View16
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin pa mem_pa)
+open FateV2.Predict.DAGFactorization (mass unpin pa mem_pa)
 open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 universe u
@@ -110,7 +110,7 @@ def ReadsOnly (S : Finset V) (P : (V → α) → ℝ) : Prop :=
 theorem mass_mul_of_readsOnly {S : Finset V}
     (hP : ReadsOnly S P) (x : V → α) :
     mass S (fun w => P w * μ w) x = P x * mass S μ x :=
-  Fate.DAGFactorization.mass_mul S P μ x hP
+  FateV2.Predict.DAGFactorization.mass_mul S P μ x hP
 
 /-- ⭐⭐ `mass` 对「读集已完全确定」的因子的**完整**形式（**不**声称去掉纤维基数）。
 

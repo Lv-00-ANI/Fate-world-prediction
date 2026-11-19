@@ -43,7 +43,7 @@ variable {V : Type u} {α : Type u} [DecidableEq V] [Fintype V] [DecidableEq α]
 theorem mass_self_insert {A : Finset V} {g : (V → α) → ℝ}
     (hg : ∀ w w', (∀ u ∈ A, w u = w' u) → g w = g w')
     (x : V → α) :
-    Fate.DAGFactorization.mass A g x
+    FateV2.Predict.DAGFactorization.mass A g x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card))
         * g (FateV2.Predict.GraphToProbView7.extEnd A x (fun u : ↥A => x u.1)) := by
   rw [FateV2.Predict.GraphToProbView7.mass_eq_card_mul_massA (A := A) (S := A)
@@ -64,8 +64,8 @@ theorem mass_insert_corrected {h : V} {S : Finset V} (sh : h ∉ S)
     {g : (V → α) → ℝ}
     (hins : ∀ x y : V → α, (∀ u ∈ S, x u = y u) → g x = g y)
     (x : V → α) :
-    Fate.DAGFactorization.mass S g x
-      = (Fintype.card α : ℝ) * Fate.DAGFactorization.mass (insert h S) g x := by
+    FateV2.Predict.DAGFactorization.mass S g x
+      = (Fintype.card α : ℝ) * FateV2.Predict.DAGFactorization.mass (insert h S) g x := by
   have hgS : ∀ w w', (∀ u ∈ S, w u = w' u) → g w = g w' := hins
   have hgI : ∀ w w', (∀ u ∈ insert h S, w u = w' u) → g w = g w' := by
     intro w w' hw

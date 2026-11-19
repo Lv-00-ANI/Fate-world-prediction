@@ -121,7 +121,7 @@ namespace BridgeStrategy5
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 universe u
 

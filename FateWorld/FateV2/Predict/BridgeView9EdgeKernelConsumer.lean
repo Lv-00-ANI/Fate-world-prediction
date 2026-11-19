@@ -70,7 +70,7 @@ namespace BridgeView9Consumer
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin mass_univ)
+open FateV2.Predict.DAGFactorization (mass unpin mass_univ)
 
 universe u
 
@@ -327,9 +327,9 @@ theorem sink_p_can_depend_on_s :
   refine ⟨emptyDAG, fun x => selfReadKappa true x x * selfReadKappa false x x,
     true, fun u hu => hu, fun _ => true, false, ?_⟩
   have hu1 : unpin true (fun _ => true) false true = false := by
-    simp [Fate.DAGFactorization.unpin]
+    simp [FateV2.Predict.DAGFactorization.unpin]
   have hu2 : unpin true (fun _ => true) false false = true := by
-    simp [Fate.DAGFactorization.unpin]
+    simp [FateV2.Predict.DAGFactorization.unpin]
   show selfReadKappa true (unpin true (fun _ => true) false)
         (unpin true (fun _ => true) false)
       * selfReadKappa false (unpin true (fun _ => true) false)

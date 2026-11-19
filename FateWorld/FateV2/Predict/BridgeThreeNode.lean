@@ -71,7 +71,7 @@ open FateV2.Modeling
 namespace BridgeThreeNode
 
 open Finset
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorRecursionRouteB (Factorizes)
 open FateV2.Predict.ThreeNodeFactorizes (N a b c jointXZ jointXZ_apply)
 open FateV2.Predict.FinCondIndep (CondMul)

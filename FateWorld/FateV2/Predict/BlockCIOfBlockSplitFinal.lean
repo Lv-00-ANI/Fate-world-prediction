@@ -45,7 +45,7 @@ namespace FateV2.Predict.C5f
 
 open FateV2.Modeling
 
-open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 FateV2.Predict.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -58,7 +58,7 @@ theorem blockCI_of_condIndep_zero {p : (V → α) → ℝ} {G : FateV2.Modeling.
   intro x
   have hz := hci x
   simp only [Finset.union_empty, hAB] at hz
-  rw [Fate.DAGFactorization.mass_univ] at hz
+  rw [FateV2.Predict.DAGFactorization.mass_univ] at hz
   simpa using hz
 
 -- ⭐ 完整版：从因子分解 + Split 直接得 BlockCI_Gap（C = ∅ 情形）

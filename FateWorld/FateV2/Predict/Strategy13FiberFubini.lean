@@ -7,7 +7,7 @@
 具体数学构造 + Lean 落地。**硬约束**：**不得使用 `mass` 塔性质**。
 
 塔性质 `mass S (mass T p) x = mass (S∪T) p x` 已被本仓库**证伪**两处：
-* `Fate.DAGFactorizationGeneral.tower_property_false`（T24），
+* `FateV2.Predict.DAGFactorizationGeneral.tower_property_false`（T24），
 * `Fate.TowerAudit.mass_idempotent_fails`（A3，连 `S ⊆ T` 方向也假）。
 
 ⟹ 本文件**语法层**禁止任何 `mass S (mass T p)` 形式的嵌套。
@@ -85,7 +85,7 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 
 set_option linter.unusedSectionVars false
 
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 /-!

@@ -86,7 +86,7 @@ theorem massA_const_self (A : Finset V) (c : ℝ) (x : V → α) :
 而 `massA`（`A` 上的受限求和，`S = A`）给出 `c`。本条把两式**并列**陈述，
 机检二者之差正是尾块因子。 -/
 theorem mass_const_eq_tail_mul_massA (A : Finset V) (c : ℝ) (x : V → α) :
-    Fate.DAGFactorization.mass A (fun _ => c) x
+    FateV2.Predict.DAGFactorization.mass A (fun _ => c) x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card)) * massA A A (fun _ => c) x := by
   rw [massA_const_self, FateV2.Predict.View19.mass_const, card_tail]
   push_cast
@@ -108,7 +108,7 @@ theorem tail_factor_ne_zero (A : Finset V) :
 `CondIndep` 两边的 `k²` 可约。 -/
 theorem mass_eq_tail_factor_mul_massA {p : (V → α) → ℝ} {A S : Finset V}
     (hSA : S ⊆ A) (hp : ReadsOn p A) (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card)) * massA A S p x :=
   mass_tail_const hSA hp x
 

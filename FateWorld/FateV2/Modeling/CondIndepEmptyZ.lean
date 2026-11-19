@@ -74,7 +74,7 @@ open FateV2.Predict
 
 open Finset
 open FateV2.Error
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 open FateV2.Predict.View19
 

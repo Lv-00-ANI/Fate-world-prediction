@@ -72,7 +72,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace View20
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 universe u
 

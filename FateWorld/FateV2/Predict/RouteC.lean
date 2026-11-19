@@ -112,7 +112,7 @@ namespace FateV2.Predict.RouteC
 open FateV2.Modeling
 
 open Finset
-open Fate.DAGFactorization (mass)
+open FateV2.Predict.DAGFactorization (mass)
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]

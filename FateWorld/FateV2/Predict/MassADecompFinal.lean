@@ -46,12 +46,12 @@ theorem mass_eq_card_mul_massA {A S : Finset V} (hSA : S ⊆ A)
     {p : (V → α) → ℝ}
     (hp : ∀ w w', (∀ u ∈ A, w u = w' u) → p w = p w')
     (ω₀ : V → α) (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card))
         * ∑ wA : (↥A → α),
             if (∀ u ∈ sub A S hSA, wA u = x u.1) then p (extEnd A ω₀ wA) else 0 := by
   classical
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   -- 步骤 2/3：把 RHS 的 `∑ wA` 展开成 `∑ wA ∑ t`，再算出内层是常数倍
   have hRHS : (∑ q : (↥A → α) × (↥(A : Set V)ᶜ → α),
           if (∀ u ∈ sub A S hSA, q.1 u = x u.1) then p (extEnd A ω₀ q.1) else 0)

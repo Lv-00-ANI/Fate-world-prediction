@@ -12,7 +12,7 @@ set_option maxHeartbeats 1600000
 namespace FateV2.Predict.TailBlockV4
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Predict.View19 FateV2.Predict.GraphToProbView7
+open Finset FateV2.Error FateV2.Predict.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Predict.View19 FateV2.Predict.GraphToProbView7
 
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α]

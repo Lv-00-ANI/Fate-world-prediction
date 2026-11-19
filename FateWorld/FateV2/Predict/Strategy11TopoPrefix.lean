@@ -83,7 +83,7 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 set_option linter.unusedSectionVars false
 
 noncomputable abbrev unpin (v : V) (x : V → α) (a : α) : V → α :=
-  Fate.DAGFactorization.unpin v x a
+  FateV2.Predict.DAGFactorization.unpin v x a
 
 noncomputable def lowerSet (G : FateV2.Modeling.Graph.DAG V) (k : ℕ) : Finset V :=
   Finset.univ.filter (fun v => G.topoOrder v < k)
@@ -170,17 +170,17 @@ theorem peel_step {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     (k : ℕ) {s : V} (hs : G.topoOrder s = k)
     (hsucc : lowerSet G (k+1) = insert s (lowerSet G k))
-    (ih : ∀ y : V → α, Fate.DAGFactorization.mass (lowerSet G (k+1)) p y
+    (ih : ∀ y : V → α, FateV2.Predict.DAGFactorization.mass (lowerSet G (k+1)) p y
             = ∏ v ∈ lowerSet G (k+1), f v y) :
-    ∀ x : V → α, Fate.DAGFactorization.mass (lowerSet G k) p x
+    ∀ x : V → α, FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x
         = ∏ v ∈ lowerSet G k, f v x := by
   intro x
   have hsk : s ∉ lowerSet G k := by rw [mem_lowerSet]; omega
-  have hstep : Fate.DAGFactorization.mass (lowerSet G k) p x
-      = ∑ a : α, Fate.DAGFactorization.mass (lowerSet G (k+1)) p (unpin s x a) := by
-    rw [Fate.DAGFactorization.mass_insert_sum' s (lowerSet G k) hsk p x, hsucc]
+  have hstep : FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x
+      = ∑ a : α, FateV2.Predict.DAGFactorization.mass (lowerSet G (k+1)) p (unpin s x a) := by
+    rw [FateV2.Predict.DAGFactorization.mass_insert_sum' s (lowerSet G k) hsk p x, hsucc]
   rw [hstep]
-  have hterm : ∀ a : α, Fate.DAGFactorization.mass (lowerSet G (k+1)) p (unpin s x a)
+  have hterm : ∀ a : α, FateV2.Predict.DAGFactorization.mass (lowerSet G (k+1)) p (unpin s x a)
       = (∏ v ∈ lowerSet G k, f v x) * f s (unpin s x a) := by
     intro a
     rw [ih (unpin s x a), hsucc]
@@ -213,17 +213,17 @@ theorem peel_lower [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) �
     (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) :
     ∀ k : ℕ, ∀ x : V → α,
-      Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
+      FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
   -- descend from N := topN G via r = N - k
   have key : ∀ r : ℕ, ∀ k : ℕ, k + r = topN G → ∀ x : V → α,
-      Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
+      FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
     intro r
     induction r with
     | zero =>
       intro k hk x
       have hk' : k = topN G := by omega
       subst hk'
-      rw [lowerSet_topN, Fate.DAGFactorization.mass_univ, hfac x]
+      rw [lowerSet_topN, FateV2.Predict.DAGFactorization.mass_univ, hfac x]
     | succ r ih =>
       intro k hk x
       -- look at level k: either empty jump or a real vertex s
@@ -232,14 +232,14 @@ theorem peel_lower [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) �
         have hrec := ih (k+1) (by omega) x
         rwa [hnone] at hrec
       · -- real vertex s at level k: apply peel_step with IH at k+1
-        have hih : ∀ y : V → α, Fate.DAGFactorization.mass (lowerSet G (k+1)) p y
+        have hih : ∀ y : V → α, FateV2.Predict.DAGFactorization.mass (lowerSet G (k+1)) p y
             = ∏ v ∈ lowerSet G (k+1), f v y := fun y => ih (k+1) (by omega) y
         exact peel_step (G := G) hloc hnorm k hs hsucc hih x
   intro k x
   by_cases hk : k ≤ topN G
   · exact key (topN G - k) k (by omega) x
   · push Not at hk
-    rw [lowerSet_of_topN_le (le_of_lt hk), Fate.DAGFactorization.mass_univ, hfac x]
+    rw [lowerSet_of_topN_le (le_of_lt hk), FateV2.Predict.DAGFactorization.mass_univ, hfac x]
 
 /-- ⭐ **Corollary (recovers the existing `sink_peel`)**: at the top level minus one,
 the engine gives exactly `FactorMarkov.sink_peel`'s conclusion, but **derived without
@@ -247,7 +247,7 @@ any sink/no-edge hypothesis** — purely from the topological order. -/
 theorem peel_lower_univ_minus [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) (k : ℕ) (x : V → α) :
-    Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
+    FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
   peel_lower hloc hfac hnorm k x
 
 /-!
@@ -275,7 +275,7 @@ theorem peel_top_vertex [Nonempty V] {p : (V → α) → ℝ} {f : V → (V → 
     (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) (s : V)
     (htop : lowerSet G (G.topoOrder s) = univ \ {s}) (x : V → α) :
-    Fate.DAGFactorization.mass (univ \ {s}) p x = ∏ v ∈ (univ \ {s}), f v x := by
+    FateV2.Predict.DAGFactorization.mass (univ \ {s}) p x = ∏ v ∈ (univ \ {s}), f v x := by
   rw [← htop]
   exact peel_lower hloc hfac hnorm (G.topoOrder s) x
 
@@ -292,8 +292,8 @@ never a nested `mass`. -/
 def FibreGluing (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : Prop :=
   ∀ (A B Z : Finset V), Disjoint A B → Disjoint A Z → Disjoint B Z →
     ∀ x : V → α,
-      Fate.DAGFactorization.mass (A ∪ B ∪ Z) p x * Fate.DAGFactorization.mass Z p x
-        = Fate.DAGFactorization.mass (A ∪ Z) p x * Fate.DAGFactorization.mass (B ∪ Z) p x
+      FateV2.Predict.DAGFactorization.mass (A ∪ B ∪ Z) p x * FateV2.Predict.DAGFactorization.mass Z p x
+        = FateV2.Predict.DAGFactorization.mass (A ∪ Z) p x * FateV2.Predict.DAGFactorization.mass (B ∪ Z) p x
 
 /-- ⭐⭐ **Reduction (trivially true by definition, but records the architecture)**: if the
 fibre-gluing identity holds for **every** triple, then `Markov p G` holds.
@@ -310,17 +310,17 @@ theorem markov_of_fibreGluing {p : (V → α) → ℝ} {G : FateV2.Modeling.Grap
 
 section ChainSmoke
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 /-- 引擎在 `chainDAG`（`0 → 1 → 2`）上的**可用性冒烟测试**：
 `mass (lowerSet 1) p x = ∏_{v∈lowerSet 1} f v x`（`topoOrder` 非computable，故不展开数值）。 -/
 theorem chain_peel_example {α : Type} [Fintype α] [DecidableEq α]
     (p : (Fin 3 → α) → ℝ) (f : Fin 3 → (Fin 3 → α) → ℝ)
-    (hloc : FateV2.Predict.FactorMarkov.LocalTo Fate.DAGFactorization.chainDAG f)
+    (hloc : FateV2.Predict.FactorMarkov.LocalTo FateV2.Predict.DAGFactorization.chainDAG f)
     (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f) (x : Fin 3 → α) :
-    Fate.DAGFactorization.mass (lowerSet Fate.DAGFactorization.chainDAG 1) p x
-      = ∏ v ∈ lowerSet Fate.DAGFactorization.chainDAG 1, f v x :=
+    FateV2.Predict.DAGFactorization.mass (lowerSet FateV2.Predict.DAGFactorization.chainDAG 1) p x
+      = ∏ v ∈ lowerSet FateV2.Predict.DAGFactorization.chainDAG 1, f v x :=
   peel_lower hloc hfac hnorm 1 x
 
 end ChainSmoke

@@ -185,14 +185,14 @@ theorem prod_scope_split {S V₀ V₁ V₂ ZA ZB : Finset V}
   §2 L2：**单坐标消元**（⚠ 非塔：只用 `mass_insert_sum`，单层 `mass`）
   =========================================================================== -/
 
-open Fate.DAGFactorization (mass)
+open FateV2.Predict.DAGFactorization (mass)
 
 /-- `Bool` 特化的 `unpin`。 -/
 noncomputable def unpinB (u : V) (x : V → Bool) (a : Bool) : V → Bool :=
-  Fate.DAGFactorization.unpin u x a
+  FateV2.Predict.DAGFactorization.unpin u x a
 
 theorem unpinB_self (u : V) (x : V → Bool) : unpinB u x (x u) = x :=
-  Fate.DAGFactorization.unpin_self u x
+  FateV2.Predict.DAGFactorization.unpin_self u x
 
 /-- `π v` 不读坐标 `u`（当 `u ∉ scope v`）。 -/
 theorem insensitive_of_not_mem_scope {π : V → (V → Bool) → ℝ} (G : DAG V)
@@ -262,10 +262,10 @@ theorem elim_step (G : DAG V) (π : V → (V → Bool) → ℝ)
     have hins : insert u (univ \ {u}) = (univ : Finset V) := by
       ext w; simp
     have hnu : u ∉ (univ \ {u} : Finset V) := by simp
-    rw [Fate.DAGFactorization.mass_insert_sum' u (univ \ {u}) hnu
+    rw [FateV2.Predict.DAGFactorization.mass_insert_sum' u (univ \ {u}) hnu
       (fun y => ∏ v, π v y) x, hins]
     refine Finset.sum_congr rfl fun a _ => ?_
-    exact Fate.DAGFactorization.mass_univ (fun y => ∏ v, π v y) (Fate.DAGFactorization.unpin u x a)
+    exact FateV2.Predict.DAGFactorization.mass_univ (fun y => ∏ v, π v y) (FateV2.Predict.DAGFactorization.unpin u x a)
   rw [hstep]
   -- 拆出 `π u`
   have hprod : ∀ y : V → Bool, (∏ v, π v y) = π u y * (∏ v ∈ univ.erase u, π v y) := by
@@ -327,11 +327,11 @@ theorem bucket_elim (G : DAG V) (π : V → (V → Bool) → ℝ)
       = ∑ a : Bool, (∏ v, π v (unpinB u x a)) := by
     have hins : insert u (univ \ {u}) = (univ : Finset V) := by ext w; simp
     have hnu : u ∉ (univ \ {u} : Finset V) := by simp
-    rw [Fate.DAGFactorization.mass_insert_sum' u (univ \ {u}) hnu
+    rw [FateV2.Predict.DAGFactorization.mass_insert_sum' u (univ \ {u}) hnu
       (fun y => ∏ v, π v y) x, hins]
     refine Finset.sum_congr rfl fun a _ => ?_
-    exact Fate.DAGFactorization.mass_univ (fun y => ∏ v, π v y)
-      (Fate.DAGFactorization.unpin u x a)
+    exact FateV2.Predict.DAGFactorization.mass_univ (fun y => ∏ v, π v y)
+      (FateV2.Predict.DAGFactorization.unpin u x a)
   rw [hstep]
   have hRins : ∀ v ∈ R, u ∉ scope G v := by
     intro v hv

@@ -65,7 +65,7 @@ namespace FateV2.Predict.TowerExactLaw
 
 open FateV2.Modeling
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]

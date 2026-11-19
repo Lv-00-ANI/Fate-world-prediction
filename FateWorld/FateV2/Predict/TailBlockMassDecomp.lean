@@ -217,7 +217,7 @@ theorem mass_eq_PA_sum_decomp {A S : Finset V} (hSA : S ⊆ A)
     (hread : FateV2.Predict.View19.ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = ∑ wA : (↥A → α),
           if (∀ u : ↥A, (u : V) ∈ S → wA u = x (u : V)) then
             ∑ wt : (↥(outSet A) → α),
@@ -227,7 +227,7 @@ theorem mass_eq_PA_sum_decomp {A S : Finset V} (hSA : S ⊆ A)
   have hp : ∀ w : V → α, p w
       = (∏ v ∈ A, ψ v w) * (∏ v ∈ outSet A, ψ v w) := by
     intro w; rw [hfac w, prod_split_in_out ψ A w]
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   rw [show (∑ w : V → α, if ∀ u ∈ S, w u = x u then p w else 0)
       = ∑ q : (↥A → α) × (↥(outSet A) → α),
           if (∀ u ∈ S, (arrowEquivOut A).symm q u = x u)
@@ -269,17 +269,17 @@ theorem mass_eq_PA_mul_Pout_mul_card {A S : Finset V} (hSA : S ⊆ A)
     (hInA : ∀ v ∈ A, R v ⊆ A)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (x : V → α) :
-    Fate.DAGFactorization.mass S p x * (Fintype.card ((↥(outSet A) → α)) : ℝ)
-      = (Fate.DAGFactorization.mass S (fun w => ∏ v ∈ A, ψ v w) x)
+    FateV2.Predict.DAGFactorization.mass S p x * (Fintype.card ((↥(outSet A) → α)) : ℝ)
+      = (FateV2.Predict.DAGFactorization.mass S (fun w => ∏ v ∈ A, ψ v w) x)
         * (∑ wt : (↥(outSet A) → α), ∏ v ∈ outSet A, ψ v (extOut A x wt)) := by
   classical
   rw [mass_eq_PA_sum_decomp hSA hfac hread hOut x]
-  have hRHS : Fate.DAGFactorization.mass S (fun w => ∏ v ∈ A, ψ v w) x
+  have hRHS : FateV2.Predict.DAGFactorization.mass S (fun w => ∏ v ∈ A, ψ v w) x
       = ∑ wA : (↥A → α),
           if (∀ u : ↥A, (u : V) ∈ S → wA u = x (u : V)) then
             (Fintype.card ((↥(outSet A) → α)) : ℝ) * (∏ v ∈ A, ψ v (extIn A x wA))
           else 0 := by
-    unfold Fate.DAGFactorization.mass
+    unfold FateV2.Predict.DAGFactorization.mass
     rw [show (∑ w : V → α, if ∀ u ∈ S, w u = x u
             then (∏ v ∈ A, ψ v w) else 0)
         = ∑ q : (↥A → α) × (↥(outSet A) → α),

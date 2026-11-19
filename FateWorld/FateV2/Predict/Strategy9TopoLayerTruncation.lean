@@ -21,7 +21,7 @@
 
 **本文件**全程**不出现** `mass S (mass T p)` 形态。
 `mass` 只以**单层**形式出现（`mass S p x`，`p` 为**原始**密度或 `∏ f`），
-所有「剥层」都经由 `Fate.DAGFactorization.mass_insert_sum'`
+所有「剥层」都经由 `FateV2.Predict.DAGFactorization.mass_insert_sum'`
 （**放开一个坐标再求和**，T1，**零缺口**）在**同一层**内完成。
 **⟹ 结构性避开塔，不是「绕过」，是「根本不需要」。**
 
@@ -79,7 +79,7 @@ $$ \mathrm{pref}_G\,k \;:=\; \{v \mid \mathrm{topoOrder}_G\,v < k\},\qquad k = 0
 $$ \text{mass}\,S\,(f\cdot g)\,x \;=\; f\,x \cdot \text{mass}\,S\,g\,x,
    \qquad\text{若 } f \text{ 只读 } S. $$
 
-（= `Fate.DAGFactorization.mass_mul`，**已证，零缺口**。）
+（= `FateV2.Predict.DAGFactorization.mass_mul`，**已证，零缺口**。）
 
 **乘积按父闭集拆**：设 `P` 父闭（`pa(P) ⊆ P`），`f` 局部。则
 
@@ -173,7 +173,7 @@ namespace Strategy9
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 
 universe u
 
@@ -260,7 +260,7 @@ theorem pref_mono (G : FateV2.Modeling.Graph.DAG V) {k l : ℕ} (h : k ≤ l) :
 theorem mass_pref_mul (S : Finset V) (f g : (V → α) → ℝ) (x : V → α)
     (hf : ∀ x y, (∀ u ∈ S, x u = y u) → f x = f y) :
     mass S (fun w => f w * g w) x = f x * mass S g x :=
-  Fate.DAGFactorization.mass_mul S f g x hf
+  FateV2.Predict.DAGFactorization.mass_mul S f g x hf
 
 /-- ⭐⭐⭐⭐⭐ **S9-6：乘积按**父闭集 `P` **拆分，`mass` 提到第一块上**。
 

@@ -130,7 +130,7 @@ set_option linter.unusedSectionVars false
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 universe u
@@ -168,7 +168,7 @@ $$\mathrm{mass}\,S\,(f \cdot g)\,x = f\,x \cdot \mathrm{mass}\,S\,g\,x.$$
 theorem mass_mul_reads (S : Finset V) (f g : (V → α) → ℝ) (x : V → α)
     (hf : ∀ x y, (∀ u ∈ S, x u = y u) → f x = f y) :
     mass S (fun w => f w * g w) x = f x * mass S g x :=
-  Fate.DAGFactorization.mass_mul S f g x hf
+  FateV2.Predict.DAGFactorization.mass_mul S f g x hf
 
 /-- **K2**：若每个 `f v`（`v ∈ A`）都只读 `S`，则**乘积** `∏_{v∈A} f v` 在 `S`-纤维上**常值**。
 
@@ -243,7 +243,7 @@ section KernelProps
 **⟹ 这条让「核」在 `CondIndep` 的四条 `mass` 之间可以**按 `T` 比较**。** -/
 theorem ker_reads (T : Finset V) (g : (V → α) → ℝ) {x y : V → α}
     (h : ∀ u ∈ T, x u = y u) : mass T g x = mass T g y :=
-  Fate.DAGFactorization.mass_congr T g h
+  FateV2.Predict.DAGFactorization.mass_congr T g h
 
 /-- **K5**：若 `g` 只读 `T`，核**可以直接取出 `g`**。
 
@@ -261,7 +261,7 @@ theorem ker_mul (T : Finset V) (g h : (V → α) → ℝ) (x : V → α)
 ⟹ `mass ∅ p x = ∑_w p w`，常数。这是 `CondIndep` 里 `Z` 为空时的基准。 -/
 theorem ker_empty_const (g : (V → α) → ℝ) (x y : V → α) :
     mass (∅ : Finset V) g x = mass (∅ : Finset V) g y := by
-  rw [Fate.DAGFactorization.mass_empty, Fate.DAGFactorization.mass_empty]
+  rw [FateV2.Predict.DAGFactorization.mass_empty, FateV2.Predict.DAGFactorization.mass_empty]
 
 end KernelProps
 

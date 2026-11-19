@@ -304,14 +304,14 @@ theorem supportCut_not_implied_by_dSep :
   **没有** `mass` 的嵌套，故不可能踩塔。
   =========================================================================== -/
 
-open Fate.DAGFactorization (mass)
+open FateV2.Predict.DAGFactorization (mass)
 
 /-- 局部 `unpin`（`Bool` 特化，便于省略类型参数）。 -/
 noncomputable def unpinB (u : V) (x : V → Bool) (a : Bool) : V → Bool :=
-  Fate.DAGFactorization.unpin u x a
+  FateV2.Predict.DAGFactorization.unpin u x a
 
 theorem unpinB_self (u : V) (x : V → Bool) : unpinB u x (x u) = x :=
-  Fate.DAGFactorization.unpin_self u x
+  FateV2.Predict.DAGFactorization.unpin_self u x
 
 /-- `π v` 不读坐标 `u`（`u ∉ readSet v`，且 `LocalTo`）。 -/
 theorem insensitive_of_not_mem_readSet {π : V → (V → Bool) → ℝ} {G : DAG V}
@@ -346,10 +346,10 @@ theorem absorb_free {G : DAG V} {π : V → (V → Bool) → ℝ}
     have hins : insert u (univ \ {u}) = (univ : Finset V) := by
       ext w; simp
     have hnu : u ∉ (univ \ {u} : Finset V) := by simp
-    rw [Fate.DAGFactorization.mass_insert_sum' u (univ \ {u}) hnu
+    rw [FateV2.Predict.DAGFactorization.mass_insert_sum' u (univ \ {u}) hnu
       (fun y => ∏ v, π v y) x, hins]
     refine Finset.sum_congr rfl fun a _ => ?_
-    exact Fate.DAGFactorization.mass_univ _ _
+    exact FateV2.Predict.DAGFactorization.mass_univ _ _
   rw [hstep]
   have hprod : ∀ y : V → Bool, (∏ v, π v y) = π u y * (∏ v ∈ univ.erase u, π v y) := by
     intro y
@@ -432,20 +432,20 @@ theorem elimCut_zone_split {G : DAG V} {p : (V → Bool) → ℝ} {X Y Z : Finse
     (hcut : ElimCut G u X Y Z) :
     ∃ f g : (V → Bool) → ℝ,
       Fate.T1A2.ReadsOnlyOn (X ∪ Z) f ∧ Fate.T1A2.ReadsOnlyOn (Y ∪ Z) g ∧
-      ∀ x, Fate.DAGFactorization.mass (univ \ {u}) p x = f x * g x := by
+      ∀ x, FateV2.Predict.DAGFactorization.mass (univ \ {u}) p x = f x * g x := by
   obtain ⟨π, hloc, -, hprod⟩ := hfac
   obtain ⟨V₀, V₁, V₂, h01, h02, h12, hcov, h0, hA, hB, hX, hY, hpu⟩ := hcut
   -- `mass(univ\{u}) p = mass(univ\{u})(∏π)`（逐点重写被积函数）
-  have hmass : ∀ x, Fate.DAGFactorization.mass (univ \ {u}) p x
-      = Fate.DAGFactorization.mass (univ \ {u}) (fun y => ∏ v, π v y) x := by
+  have hmass : ∀ x, FateV2.Predict.DAGFactorization.mass (univ \ {u}) p x
+      = FateV2.Predict.DAGFactorization.mass (univ \ {u}) (fun y => ∏ v, π v y) x := by
     intro x
-    unfold Fate.DAGFactorization.mass
+    unfold FateV2.Predict.DAGFactorization.mass
     refine Finset.sum_congr rfl fun w _ => ?_
     by_cases hw : ∀ u' ∈ (univ \ {u} : Finset V), w u' = x u'
     · rw [if_pos hw, if_pos hw, hprod w]
     · rw [if_neg hw, if_neg hw]
   -- 消元：拆成消息 × 其余因子之积
-  have habs : ∀ x, Fate.DAGFactorization.mass (univ \ {u}) (fun y => ∏ v, π v y) x
+  have habs : ∀ x, FateV2.Predict.DAGFactorization.mass (univ \ {u}) (fun y => ∏ v, π v y) x
       = (∑ a : Bool, π u (unpinB u x a)) * (∏ v ∈ univ.erase u, π v x) :=
     fun x => absorb_free hloc hfree x
   -- 其余因子之积按原始读集三分裂

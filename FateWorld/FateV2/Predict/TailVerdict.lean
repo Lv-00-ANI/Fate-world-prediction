@@ -132,17 +132,17 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 ⟹ `mass S` 只经 `x|_S` 看 `x`；`A` 外（甚至 `A \ S`）的坐标不进入 `mass`。 -/
 theorem mass_ignores_tail_of_S_subset_A {A S : Finset V} (hSA : S ⊆ A)
     (p : (V → α) → ℝ) {x x' : V → α} (h : ∀ u ∈ A, x u = x' u) :
-    Fate.DAGFactorization.mass S p x = Fate.DAGFactorization.mass S p x' :=
-  Fate.DAGFactorization.mass_congr S p fun u hu => h u (hSA hu)
+    FateV2.Predict.DAGFactorization.mass S p x = FateV2.Predict.DAGFactorization.mass S p x' :=
+  FateV2.Predict.DAGFactorization.mass_congr S p fun u hu => h u (hSA hu)
 
 /-- ⭐⭐⭐⭐ **V2：`mass S` 与 `A` 外的取值无关**（`S ⊆ A`）。
 
 ⟹ **正面推翻题面卡点**：`mass S p x` 里没有 `x_tail` 这个自由变量。 -/
 theorem mass_ignores_out_of_A {A S : Finset V} (hSA : S ⊆ A)
     (p : (V → α) → ℝ) (wA : ↥A → α) (xt xt' : ↥(outSet A) → α) :
-    Fate.DAGFactorization.mass S p (merge A wA xt)
-      = Fate.DAGFactorization.mass S p (merge A wA xt') := by
-  refine Fate.DAGFactorization.mass_congr S p fun u hu => ?_
+    FateV2.Predict.DAGFactorization.mass S p (merge A wA xt)
+      = FateV2.Predict.DAGFactorization.mass S p (merge A wA xt') := by
+  refine FateV2.Predict.DAGFactorization.mass_congr S p fun u hu => ?_
   have huA : u ∈ A := hSA hu
   rw [merge_mem_A A wA xt ⟨u, huA⟩, merge_mem_A A wA xt' ⟨u, huA⟩]
 
@@ -261,7 +261,7 @@ theorem readset_minus_self_sub_A_iff {A : Finset V} {R : V → Finset V} {v : V}
 theorem mass_separable_A {A : Finset V} {ψ : V → (V → α) → ℝ} {R : V → Finset V}
     (hread : ReadSet ψ R) (hRA : ∀ v ∈ A, R v ⊆ A)
     (_hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A) (x : V → α) :
-    Fate.DAGFactorization.mass A (fun w => ∏ v, ψ v w) x
+    FateV2.Predict.DAGFactorization.mass A (fun w => ∏ v, ψ v w) x
       = (∏ v ∈ A, ψ v x)
         * (∑ t : ({u : V // u ∉ A} → α), ∏ v ∈ outSet A, ψ v (glue A x t)) := by
   classical
@@ -299,7 +299,7 @@ theorem mass_separable_A_merge_shape {A : Finset V} {ψ : V → (V → α) → �
     (hread : ReadSet ψ R) (hRA : ∀ v ∈ A, R v ⊆ A)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (wA : ↥A → α) (x : V → α) :
-    Fate.DAGFactorization.mass A (fun w => ∏ v, ψ v w) x
+    FateV2.Predict.DAGFactorization.mass A (fun w => ∏ v, ψ v w) x
       = (∏ v ∈ A, ψ v x)
         * (∑ wt : (↥(outSet A) → α), ∏ v ∈ outSet A, ψ v (merge A wA wt)) := by
   classical

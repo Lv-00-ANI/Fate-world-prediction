@@ -66,7 +66,7 @@
 
 ### 2.1 `mass_empty_irrel`：空集边缘不提 `x`
 
-`mass ∅ p x = ∑_w p w`，故与 `x` 无关。这是 `Fate.DAGFactorization.mass_empty`
+`mass ∅ p x = ∑_w p w`，故与 `x` 无关。这是 `FateV2.Predict.DAGFactorization.mass_empty`
 + `mass_congr`，本文件封装为 `mass_empty_irrel`。
 
 ### 2.2 `mass_union_sum`：并集求和 = **一次**（不重复计数的）交叉求和
@@ -160,7 +160,7 @@ mass A p x = φ_ℓ x · mass (A \ {ℓ}) p x
 
 **证明（3 步，零 `sorry`）—— 并且只需要 §2 的三个恒等式（不用塔性质）**：
 
-1. `mass A p x = ∑_a mass {ℓ} (mass A p) (x_ℓ:=a)` —— `mass_insert_sum`（`Fate.DAGFactorization`）；
+1. `mass A p x = ∑_a mass {ℓ} (mass A p) (x_ℓ:=a)` —— `mass_insert_sum`（`FateV2.Predict.DAGFactorization`）；
    这一步是「对 `ℓ` 位求和」，`{ℓ} ∪ (A\{ℓ}) = A`。
 2. 令 `C(a) := mass A p (x_ℓ:=a)`。由 `FactorNorm`（`φ_ℓ` 对自身坐标求和为 1）与
    **`φ_ℓ` 不读 `A\{ℓ}`**、**其余 `φ_v (v≠ℓ)` 不读 `ℓ`**（§3.2：`ℓ` 无父），得
@@ -265,7 +265,7 @@ namespace GraphToProbView7
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 open FateV2.Predict.FactorMarkov (LocalTo FactorNorm CondIndep)
 
 universe u
@@ -294,7 +294,7 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 /-- ⭐⭐ **§2.1 空集边缘与 `x` 无关**（`mass_empty` 的 `mass_congr` 封装）。 -/
 theorem mass_empty_irrel (p : (V → α) → ℝ) (x y : V → α) :
     mass (∅ : Finset V) p x = mass (∅ : Finset V) p y :=
-  Fate.DAGFactorization.mass_congr ∅ p (fun u hu => absurd hu (by simp))
+  FateV2.Predict.DAGFactorization.mass_congr ∅ p (fun u hu => absurd hu (by simp))
 
 /-- ⭐⭐⭐⭐ **§2.3 核心恒等式：两个「指标」的乘积 = 并集的「指标」。**
 
@@ -409,7 +409,7 @@ noncomputable def ev (T : Finset V) (x : V → α) : (V → α) → ℝ :=
 **⟹ 这是本文件把 `mass` 换成 `ev` 的唯一桥；之后全部推导都只操作 `ev` 与 `Finset.sum`。** -/
 theorem mass_eq_sum_ev (T : Finset V) (p : (V → α) → ℝ) (x : V → α) :
     mass T p x = ∑ w : V → α, ev T x w * p w := by
-  rw [Fate.DAGFactorization.mass]
+  rw [FateV2.Predict.DAGFactorization.mass]
   refine Finset.sum_congr rfl fun w _ => ?_
   unfold ev
   by_cases h : ∀ u ∈ T, w u = x u
@@ -631,7 +631,7 @@ theorem mass_eq_self_of_border_empty (G : FateV2.Modeling.Graph.DAG V) {A : Fins
     (hborder : Fate.View21.border G A = ∅) (p : (V → α) → ℝ) (x : V → α) :
     mass A p x = p x := by
   rw [(Fate.View21.border_eq_empty_iff G A).mp hborder]
-  exact Fate.DAGFactorization.mass_univ p x
+  exact FateV2.Predict.DAGFactorization.mass_univ p x
 
 /-- ⭐⭐⭐ **R30-5（View21 `prod_split_compl` × 本文件 `mass_univ`）：全集的边缘 = 两侧乘积。**
 
@@ -647,7 +647,7 @@ $$\mathrm{mass}_{\mathrm{univ}}\Bigl(\prod_v \varphi_v\Bigr)x
 theorem mass_univ_factor_split {A : Finset V} (φ : V → (V → α) → ℝ) (x : V → α) :
     mass (univ : Finset V) (fun z => ∏ v, φ v z) x
       = (∏ v ∈ A, φ v x) * (∏ v ∈ ((univ : Finset V) \ A), φ v x) := by
-  rw [Fate.DAGFactorization.mass_univ]
+  rw [FateV2.Predict.DAGFactorization.mass_univ]
   exact Fate.View21.prod_split_compl A φ x
 
 /-- ⭐⭐⭐⭐ **R30-6（View17 × View17SectionGlue）：链图的 `dSep` 与对撞图的不成立。**

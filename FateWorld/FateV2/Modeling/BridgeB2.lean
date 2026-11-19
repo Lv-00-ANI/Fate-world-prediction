@@ -264,7 +264,7 @@ theorem topoOrderData_order (G : FateV2.Modeling.Graph.DAG V) :
 
 即存在**编号** `e`，使每条边 `u → v` 都满足 `e u < e v`。
 
-**证明（独立构造，不引用 `Fate.DAGFactorizationGeneral.topoEnum`）**：
+**证明（独立构造，不引用 `FateV2.Predict.DAGFactorizationGeneral.topoEnum`）**：
 1. 取 `f := G.topoOrder`，它单射（`topoOrder_injective`）；
 2. 其像 `img ⊆ ℕ` 与 `V` 等势（`card_image_of_injective`）；
 3. `Finset.orderIsoOfFin img hcard : Fin (card V) ≃o img` 是 `img` 的**升序**枚举；
@@ -380,10 +380,10 @@ theorem mem_topoPrefix {G : FateV2.Modeling.Graph.DAG V} {τ : TopoOrderData G} 
 这是 B4 归纳里「剥离到前缀后，父都已在前缀里」的**唯一**依据。**零缺口。** -/
 theorem topoPrefix_parent_closed (G : FateV2.Modeling.Graph.DAG V) (τ : TopoOrderData G)
     (k : ℕ) {v : V} (hv : v ∈ topoPrefix G τ k) :
-    Fate.DAGFactorization.pa G v ⊆ topoPrefix G τ k := by
+    FateV2.Predict.DAGFactorization.pa G v ⊆ topoPrefix G τ k := by
   intro u hu
   rw [mem_topoPrefix] at hv ⊢
-  rw [Fate.DAGFactorization.mem_pa] at hu
+  rw [FateV2.Predict.DAGFactorization.mem_pa] at hu
   exact Nat.lt_trans (τ.strict u v hu) hv
 
 /-- **B2.9d（前缀单调）**：`k ≤ l ⟹ pref k ⊆ pref l`。 -/

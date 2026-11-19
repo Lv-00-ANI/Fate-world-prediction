@@ -5,7 +5,7 @@
 
 本文件实现「图 ⟹ 概率」桥的**第 1 种**证明策略，**不使用** `mass` 塔性质
 （`mass S (fun w => mass T p w) x`，已在
-`Fate.DAGFactorizationGeneral.tower_property_false` 中**证明为假**）。
+`FateV2.Predict.DAGFactorizationGeneral.tower_property_false` 中**证明为假**）。
 
 > **策略 1 的一句话**：
 > **一次也不嵌套 `mass`。**把「固定 `S`、对其余坐标求和」写成**一次**求和，
@@ -80,7 +80,7 @@ $$
 ### 1.3 收口
 
 `peel` 给出 `fac_aux` 所需的 `step`（取 `q v := f v`），于是
-`Fate.DAGFactorization.fac_aux` 给出（取 `S = univ`）
+`FateV2.Predict.DAGFactorization.fac_aux` 给出（取 `S = univ`）
 
 $$
 p\,x \;=\; \Bigl(\prod_v f\,v\,x\Bigr)\cdot \mathrm{mass}\,\emptyset\,p\,x,
@@ -128,7 +128,7 @@ namespace BridgeStrategy1
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 
 universe u
 
@@ -185,7 +185,7 @@ $$\Bigl(\sum_y p\,y = 1\Bigr)\iff \mathrm{mass}\,\emptyset\,p\,x = 1.$$
 （见文件头 §1.1 更正）。真正的引擎只要求 `p` 本身归一（真实概率测度自动成立）。 -/
 theorem mass_empty_eq_one_iff (p : (V → α) → ℝ) (x : V → α) :
     mass (∅ : Finset V) p x = 1 ↔ (∑ y : V → α, p y) = 1 := by
-  rw [Fate.DAGFactorization.mass_empty]
+  rw [FateV2.Predict.DAGFactorization.mass_empty]
 
 /-- ⭐⭐⭐ **S1-2′（引擎的可用形式）**：密度归一 ⟹ `mass ∅ p x = 1`。 -/
 theorem mass_empty_eq_one (p : (V → α) → ℝ) (hprob : (∑ y : V → α, p y) = 1)
@@ -310,8 +310,8 @@ $$\mathrm{mass}\,(\mathrm{insert}\,v\,S)\,p\,x
 theorem peel (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     (hfac : ∀ z, p z = ∏ u, f u z)
-    {v : V} {S : Finset V} (hvS : v ∉ S) (hpa : Fate.DAGFactorization.pa G v ⊆ S)
-    (hsink : ∀ w : V, w ≠ v → v ∉ Fate.DAGFactorization.pa G w)
+    {v : V} {S : Finset V} (hvS : v ∉ S) (hpa : FateV2.Predict.DAGFactorization.pa G v ⊆ S)
+    (hsink : ∀ w : V, w ≠ v → v ∉ FateV2.Predict.DAGFactorization.pa G w)
     (x : V → α) :
     mass (insert v S) p x = f v x * mass S p x := by
   classical
@@ -332,7 +332,7 @@ theorem peel (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     intro a b hab
     refine Finset.prod_congr rfl fun w hw => ?_
     rw [mem_sdiff, mem_singleton] at hw
-    have hnp : v ∉ Fate.DAGFactorization.pa G w := hsink w hw.2
+    have hnp : v ∉ FateV2.Predict.DAGFactorization.pa G w := hsink w hw.2
     refine hloc w a b fun u hu => ?_
     rcases hu with h | h
     · rw [h]; exact hab w (Finset.mem_sdiff.mpr ⟨Finset.mem_univ w, by simpa using hw.2⟩)
@@ -349,7 +349,7 @@ theorem peel (hloc : FateV2.Predict.FactorMarkov.LocalTo G f)
     · rw [if_neg hw, if_neg hw, mul_zero]
   -- (5) `mass (insert v S) g x = mass S p x`
   have hg_eq : mass (insert v S) g x = mass S p x := by
-    rw [Fate.DAGFactorization.mass_insert_sum' v S hvS]
+    rw [FateV2.Predict.DAGFactorization.mass_insert_sum' v S hvS]
     have hstep : ∀ a : α,
         mass (insert v S) p (unpin v x a) = f v (unpin v x a) * mass (insert v S) g x := by
       intro a
@@ -395,8 +395,8 @@ theorem factorizes_of_peel
     ∀ x, p x = ∏ v, f v x := by
   intro x
   -- `fac_aux` 在 `S = univ`：`mass univ p x = (∏ v, f v x) * mass ∅ p x`
-  have h := Fate.DAGFactorization.fac_aux (fun v => f v) p hstep (univ : Finset V) x
-  rw [Fate.DAGFactorization.mass_univ] at h
+  have h := FateV2.Predict.DAGFactorization.fac_aux (fun v => f v) p hstep (univ : Finset V) x
+  rw [FateV2.Predict.DAGFactorization.mass_univ] at h
   rw [h, mass_empty_eq_one p hnormp x, mul_one]
 
 end Assemble
@@ -482,7 +482,7 @@ theorem peel_without_sink_false :
   have hrhs : fce 0 (fun _ => false) * mass (∅ : Finset (Fin 2)) pce (fun _ => false) = 2 := by
     have hf0 : fce 0 (fun _ => false) = 1 := by simp [fce]
     rw [hf0, one_mul]
-    rw [Fate.DAGFactorization.mass_empty]
+    rw [FateV2.Predict.DAGFactorization.mass_empty]
     rw [show (∑ w : Fin 2 → Bool, pce w)
           = ∑ w : Fin 2 → Bool, (if w 0 = true then (1:ℝ) else 0) from
         Finset.sum_congr rfl fun w _ => by simp [pce]]

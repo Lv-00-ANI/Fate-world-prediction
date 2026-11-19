@@ -52,7 +52,7 @@ import FateWorld.FateV2.Predict.BarCorrected
 namespace FateV2.Predict.C9
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 
 abbrev U := Fin 1
@@ -69,15 +69,15 @@ theorem lhs_eq (x : U → Bool) : Fate.S9Fixed.bar ({0} : Finset U) f1 x = 1 := 
   -- {0} = univ 在 U = Fin 1 上
   have h2 : ({0} : Finset U) = univ := by
     ext u; simp [Fin.eq_zero]
-  rw [h2, Fate.DAGFactorization.mass_univ]
+  rw [h2, FateV2.Predict.DAGFactorization.mass_univ]
 
 -- 右边 = 2
 theorem rhs_eq (x : U → Bool) (a : Bool) :
-    Fate.S9Fixed.bar (∅ : Finset U) f1 (Fate.DAGFactorization.unpin 0 x a) * f1 0 x = 2 := by
+    Fate.S9Fixed.bar (∅ : Finset U) f1 (FateV2.Predict.DAGFactorization.unpin 0 x a) * f1 0 x = 2 := by
   unfold Fate.S9Fixed.bar Fate.S9Fixed.tail
   have h : (univ \ (∅ : Finset U)) = univ := Finset.sdiff_empty
   rw [h]
-  rw [Fate.DAGFactorization.mass_empty]
+  rw [FateV2.Predict.DAGFactorization.mass_empty]
   simp [f1, Fintype.card_fin, U]
 
 end FateV2.Predict.C9

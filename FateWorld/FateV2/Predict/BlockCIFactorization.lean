@@ -21,7 +21,7 @@ import FateWorld.FateV2.Modeling.CondIndepGeneralNZ
   ```lean
   namespace FateV2.Predict.C5h
 
-open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 FateV2.Predict.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -53,7 +53,7 @@ namespace FateV2.Predict.C5h
 
 open FateV2.Modeling
 
-open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 FateV2.Predict.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 

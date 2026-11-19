@@ -130,7 +130,7 @@ set_option linter.unusedSectionVars false
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 
 universe u
 
@@ -270,10 +270,10 @@ $$\mathrm{mass}_{V\setminus\{s\}}\,p\,x \;=\; \sum_{a}\ p\bigl(x_s{:=}a\bigr).$$
 + `mass_univ`（全空间边缘 = 密度本身）。 -/
 theorem mass_compl_eq_sum (p : Joint V α) (s : V) (x : V → α) :
     mass (univ \ {s}) p x = ∑ a : α, p (unpin s x a) := by
-  rw [Fate.DAGFactorization.mass_insert_sum' s (univ \ {s}) (by simp) p x]
+  rw [FateV2.Predict.DAGFactorization.mass_insert_sum' s (univ \ {s}) (by simp) p x]
   have hins : insert s (univ \ {s}) = (univ : Finset V) := by
     ext u; simp
-  rw [hins, Finset.sum_congr rfl (fun a _ => Fate.DAGFactorization.mass_univ p _)]
+  rw [hins, Finset.sum_congr rfl (fun a _ => FateV2.Predict.DAGFactorization.mass_univ p _)]
 
 /-- ⭐⭐⭐ **乘积的「剥出一点」分解**（T2）。
 

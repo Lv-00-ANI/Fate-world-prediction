@@ -55,7 +55,7 @@ namespace FateV2.Predict.BridgeZipA
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 open Fate.Strategy11Hull
 

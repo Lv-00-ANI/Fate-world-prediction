@@ -91,7 +91,7 @@ namespace FateV2.Predict.ZipDownFalseFixed
 
 open FateV2.Modeling
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 open Fate.BridgeZipDown (ZipDown zipDown_def)
 

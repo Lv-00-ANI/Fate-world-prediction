@@ -66,7 +66,7 @@ open FateV2.Modeling
 namespace Audit10Factorizes
 
 open FateV2.Predict.FactorRecursionRouteB (Factorizes)
-open Fate.DAGFactorization (pa mass mem_pa)
+open FateV2.Predict.DAGFactorization (pa mass mem_pa)
 open Finset
 
 /-! ===========================================================================

@@ -114,7 +114,7 @@ set_option linter.unusedVariables false
 namespace FateV2.Predict.TailBlockQuadraticCounterexample
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Predict.View19
+open Finset FateV2.Error FateV2.Predict.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Predict.View19
 
 /-! ===========================================================================
   §1  容斥配平（`omega` 版本，机检）

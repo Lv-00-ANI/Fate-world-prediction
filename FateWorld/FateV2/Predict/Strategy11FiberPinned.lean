@@ -141,7 +141,7 @@ namespace FateV2.Predict.Strategy11Fiber
 
 open FateV2.Modeling
 
-open Fate.DAGFactorization FateV2.Predict.FactorMarkov
+open FateV2.Predict.DAGFactorization FateV2.Predict.FactorMarkov
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -364,7 +364,7 @@ theorem prefix_fiber_pinned_diag {p : (V → α) → ℝ} {f : V → (V → α) 
 
 section NonDegeneracy
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 /-- 点 `(a,b,c) : Fin 3 → Bool`。 -/
 def pt (a b c : Bool) : Fin 3 → Bool := ![a, b, c]

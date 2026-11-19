@@ -51,7 +51,7 @@ namespace FateV2.Predict.C5e
 
 open FateV2.Modeling
 
-open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.View19 FateV2.Predict.DAGFactorization
 
 universe u
 

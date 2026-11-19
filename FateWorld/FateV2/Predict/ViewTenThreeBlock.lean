@@ -23,7 +23,7 @@ namespace FateV2.Predict.ViewTen
 
 open FateV2.Modeling
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph.DAG
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph.DAG
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 variable {α : Type} [Fintype α] [DecidableEq α]
@@ -58,7 +58,7 @@ end FateV2.Predict.ViewTen
 
 namespace FateV2.Predict.ViewTen
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph.DAG
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph.DAG
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 variable {α : Type} [Fintype α] [DecidableEq α]
@@ -125,7 +125,7 @@ end FateV2.Predict.ViewTen
 
 namespace FateV2.Predict.ViewTen
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph.DAG
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph.DAG
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 variable {α : Type} [Fintype α] [DecidableEq α]

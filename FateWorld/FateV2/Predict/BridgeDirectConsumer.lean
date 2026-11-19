@@ -39,7 +39,7 @@
   （`topoOrder_lt` + `omega`）。价值在于**可整体剥离一层**，从而把 `peel_tower`（逐点 `k` 步）
   的每一步改成「剥一层」，但**这不改变 `bridge_direct_iff` 的判定** ——
   路线 B 的主定理前件仍 ⟺ 原缺口。**本文件不声称路线 B 被改进。**
-* **C4 的 `unpinSet` 是新增定义**（模块与 `Fate.DAGFactorization` 都没有），
+* **C4 的 `unpinSet` 是新增定义**（模块与 `FateV2.Predict.DAGFactorization` 都没有），
   它使「读集不敏感」可以对**一整块**坐标同时成立 ——
   这是与 `BridgeZipDown` 接轨处唯一真正的新东西，且其正确性完全来自 `mass_congr`。
 * **本文件不触碰 `CondIndep`**：不新增任何「桥」结论，也不声称桥已被补全。
@@ -201,7 +201,7 @@ theorem topoUpper_paBlock_disjoint {X T : Finset V} (hT : TopoUpper G X T) :
 
 /-- **`unpinSet T x b`**：把 `x` 在 `T` 中**每一位**都换成 `b` 对应位的值（`T` 外不动）。
 
-**⚠ 这是本文件新增的定义**：`Fate.DAGFactorization` 只有**单点** `unpin v x a`，
+**⚠ 这是本文件新增的定义**：`FateV2.Predict.DAGFactorization` 只有**单点** `unpin v x a`，
 `FateV2.Predict.BridgeDirect` 的 `mass_congr_peel` 只做单点。整块改写是本文件的推广载体。 -/
 noncomputable def unpinSet {V : Type u} [DecidableEq V] (T : Finset V) (x b : V → α) : V → α :=
   fun j => if j ∈ T then b j else x j
@@ -227,9 +227,9 @@ theorem unpinSet_eq_of_notMem {V : Type u} [DecidableEq V] {T : Finset V}
 从而与 `BridgeZipDown` 的分析型出路在**整块**层面接轨。 -/
 theorem mass_congr_peel_set {α : Type u} [Fintype α] [DecidableEq α]
     {S T : Finset V} (hdisj : Disjoint T S) (p : (V → α) → ℝ) (x b : V → α) :
-    Fate.DAGFactorization.mass S p x
-      = Fate.DAGFactorization.mass S p (unpinSet T x b) := by
-  refine Fate.DAGFactorization.mass_congr S p ?_
+    FateV2.Predict.DAGFactorization.mass S p x
+      = FateV2.Predict.DAGFactorization.mass S p (unpinSet T x b) := by
+  refine FateV2.Predict.DAGFactorization.mass_congr S p ?_
   intro u hu
   have huT : u ∉ T := fun h => Finset.disjoint_left.mp hdisj h hu
   exact (unpinSet_eq_of_notMem x b huT).symm
@@ -246,8 +246,8 @@ theorem mass_congr_peel_set {α : Type u} [Fintype α] [DecidableEq α]
 theorem mass_congr_peel_upper {α : Type u} [Fintype α] [DecidableEq α]
     {X T : Finset V} (hT : TopoUpper G X T)
     (p : (V → α) → ℝ) (x b : V → α) :
-    Fate.DAGFactorization.mass (paBlock G (X \ T)) p x
-      = Fate.DAGFactorization.mass (paBlock G (X \ T)) p (unpinSet T x b) :=
+    FateV2.Predict.DAGFactorization.mass (paBlock G (X \ T)) p x
+      = FateV2.Predict.DAGFactorization.mass (paBlock G (X \ T)) p (unpinSet T x b) :=
   mass_congr_peel_set (topoUpper_paBlock_disjoint hT) p x b
 
 end FateV2.Predict.BridgeDirect

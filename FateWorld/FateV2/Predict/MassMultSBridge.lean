@@ -43,7 +43,7 @@ import FateWorld.FateV2.Predict.FactorMarkov
 namespace FateV2.Predict.C8
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
@@ -57,7 +57,7 @@ theorem mass_eq_multS_of_reads {S : Finset V} {g : (V → α) → ℝ}
     (hg : ∀ w w', (∀ u ∈ S, w u = w' u) → g w = g w') (x : V → α) :
     mass S g x = Fate.TowerExactLaw.multS S x * g x := by
   classical
-  unfold Fate.DAGFactorization.mass Fate.TowerExactLaw.multS
+  unfold FateV2.Predict.DAGFactorization.mass Fate.TowerExactLaw.multS
   rw [Finset.sum_mul]
   refine Finset.sum_congr rfl fun w _ => ?_
   by_cases hw : ∀ u ∈ S, w u = x u

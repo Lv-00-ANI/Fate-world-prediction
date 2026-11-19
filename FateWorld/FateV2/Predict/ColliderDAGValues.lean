@@ -47,12 +47,12 @@ namespace FateV2.Predict.BridgeA4Fixed4
 open FateV2.Modeling
 
 theorem mass_two_colliderP :
-    Fate.DAGFactorization.mass ({2} : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass ({2} : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
       (fun v : Fin 3 => if v = 0 then false else if v = 2 then true else false) = 2 := by
   have h1 : ∀ w : Fin 3 → Bool, FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool) w
       = if w 0 = w 2 then (1 : ℝ) else 0 := fun w => rfl
-  simp only [Fate.DAGFactorization.mass, h1, Finset.mem_singleton, forall_eq]
+  simp only [FateV2.Predict.DAGFactorization.mass, h1, Finset.mem_singleton, forall_eq]
   -- 用 conv 把那个 if 化简
   conv_lhs =>
     arg 2

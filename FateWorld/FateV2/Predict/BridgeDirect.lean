@@ -724,12 +724,12 @@ theorem ancClosed_union_of_ancClosed {X Z : Finset V}
 theorem mass_congr_peel {α : Type u} [Fintype α] [DecidableEq α]
     {S : Finset V} (a : V) (haS : a ∉ S)
     (p : (V → α) → ℝ) (x : V → α) (b : α) :
-    Fate.DAGFactorization.mass S p x
-      = Fate.DAGFactorization.mass S p (Fate.DAGFactorization.unpin a x b) := by
-  refine Fate.DAGFactorization.mass_congr S p ?_
+    FateV2.Predict.DAGFactorization.mass S p x
+      = FateV2.Predict.DAGFactorization.mass S p (FateV2.Predict.DAGFactorization.unpin a x b) := by
+  refine FateV2.Predict.DAGFactorization.mass_congr S p ?_
   intro u hu
   have hua : u ≠ a := fun h => haS (h ▸ hu)
-  unfold Fate.DAGFactorization.unpin
+  unfold FateV2.Predict.DAGFactorization.unpin
   rw [if_neg hua]
 
 /-- ⭐ **`paBlock G S = ⋃_{v∈S} pa_G(v)`**：块 `S` 的**父代并**（本地复刻，

@@ -38,7 +38,7 @@ import FateWorld.FateV2.Predict.BridgeA1
 namespace FateV2.Predict.NDMem
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]

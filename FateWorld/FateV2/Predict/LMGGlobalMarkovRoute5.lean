@@ -130,7 +130,7 @@ namespace LMGGlobalMarkovRoute5
 set_option linter.unusedSimpArgs false
 
 open FateV2.Predict.FactorRecursionRouteB (LMG Factorizes)
-open Fate.DAGFactorization (pa mass mem_pa)
+open FateV2.Predict.DAGFactorization (pa mass mem_pa)
 
 universe u
 

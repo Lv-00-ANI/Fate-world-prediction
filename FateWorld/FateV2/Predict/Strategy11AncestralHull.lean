@@ -69,7 +69,7 @@ namespace FateV2.Predict.Strategy11Hull
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 
 universe u

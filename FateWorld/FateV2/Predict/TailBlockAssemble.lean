@@ -64,9 +64,9 @@ theorem mass_eq_c_mul_massA {A S : Finset V} (hSA : S ⊆ A)
     {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     (hfacA : ∀ w, p w = ∏ v ∈ A, ψ v w) (hp : ∀ w w', (∀ u ∈ A, w u = w' u) → p w = p w')
     (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = (Fintype.card α : ℝ) ^ (Fintype.card V - A.card)
-        * Fate.DAGFactorization.mass (sub A S hSA)
+        * FateV2.Predict.DAGFactorization.mass (sub A S hSA)
             (fun w : ↥A → α => ∏ v : ↥A, ψ v.1 (extEnd A x w)) (fun u : ↥A => x u.1) := by
   rw [mass_eq_card_mul_massA hSA hp x x]
   congr 1

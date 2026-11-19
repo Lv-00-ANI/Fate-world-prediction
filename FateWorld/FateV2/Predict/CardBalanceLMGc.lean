@@ -49,7 +49,7 @@ import FateWorld.FateV2.Predict.NonDescendantsMem
 namespace FateV2.Predict.Bal2
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -63,7 +63,7 @@ theorem card_balance_lmgc (G : FateV2.Modeling.Graph.DAG V) (v : V) :
     rw [Fate.NDMem.mem_nd_iff]
     intro h
     exact h.2 rfl
-  have hvP : v ∉ pa G v := Fate.DAGFactorization.not_mem_pa_self G v
+  have hvP : v ∉ pa G v := FateV2.Predict.DAGFactorization.not_mem_pa_self G v
   -- 左边 = 1 + |pa| + |nd|（因 v ∉ pa，Disjoint {v} (pa)）
   -- 右边 = |pa| + 1 + |nd|（因 v ∉ nd）
   rw [Finset.card_union_of_disjoint (Finset.disjoint_singleton_left.mpr hvP),

@@ -85,7 +85,7 @@ open FateV2.Predict
 namespace CondIndepCondMulBridge
 
 open Finset
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 
 variable {α : Type} [Fintype α] [DecidableEq α]
@@ -123,7 +123,7 @@ noncomputable def gamma (p : (Fin 3 → α) → ℝ) : FateV2.Predict.FinCondInd
 /-- ⭐⭐ **B2**：全空间上的 `mass` 就是密度本身。 -/
 theorem mass_univ3 (p : (Fin 3 → α) → ℝ) (x : Fin 3 → α) :
     mass Finset.univ p x = p x :=
-  Fate.DAGFactorization.mass_univ p x
+  FateV2.Predict.DAGFactorization.mass_univ p x
 
 /-- ⭐⭐ **B3**：`mass {2}` 展开为对 `X`、`Y` 的双重求和
 （顺序 `x` 在外、`y` 在内，与 `margZ` 的求和顺序完全一致）。 -/
@@ -132,43 +132,43 @@ theorem mass_single_two (p : (Fin 3 → α) → ℝ) (x : Fin 3 → α) :
       = ∑ a : α, ∑ b : α, p (enc ((a, b), x 2)) := by
   have hset : (insert 1 (insert 0 ({2} : Finset (Fin 3)))) = (Finset.univ : Finset (Fin 3)) :=
     by decide
-  rw [Fate.DAGFactorization.mass_insert_sum' (0 : Fin 3) ({2} : Finset (Fin 3))
+  rw [FateV2.Predict.DAGFactorization.mass_insert_sum' (0 : Fin 3) ({2} : Finset (Fin 3))
     (by decide) p x]
   refine Finset.sum_congr rfl fun a _ => ?_
-  rw [Fate.DAGFactorization.mass_insert_sum' (1 : Fin 3)
-    (insert 0 ({2} : Finset (Fin 3))) (by decide) p (Fate.DAGFactorization.unpin 0 x a)]
+  rw [FateV2.Predict.DAGFactorization.mass_insert_sum' (1 : Fin 3)
+    (insert 0 ({2} : Finset (Fin 3))) (by decide) p (FateV2.Predict.DAGFactorization.unpin 0 x a)]
   rw [hset]
-  simp only [Fate.DAGFactorization.mass_univ]
+  simp only [FateV2.Predict.DAGFactorization.mass_univ]
   refine Finset.sum_congr rfl fun b _ => ?_
-  rw [show Fate.DAGFactorization.unpin 1 (Fate.DAGFactorization.unpin 0 x a) b
+  rw [show FateV2.Predict.DAGFactorization.unpin 1 (FateV2.Predict.DAGFactorization.unpin 0 x a) b
       = enc ((a, b), x 2) from by
-    funext v; fin_cases v <;> simp [Fate.DAGFactorization.unpin, enc]]
+    funext v; fin_cases v <;> simp [FateV2.Predict.DAGFactorization.unpin, enc]]
 
 /-- ⭐⭐ **B4**：`mass {0,2}` 只对 `Y`（1 位）求和，`X` 位冻结为 `x 0`。 -/
 theorem mass_pair_zero_two (p : (Fin 3 → α) → ℝ) (x : Fin 3 → α) :
     mass ({0, 2} : Finset (Fin 3)) p x
       = ∑ b : α, p (enc ((x 0, b), x 2)) := by
   have h1 : (1 : Fin 3) ∉ ({0, 2} : Finset (Fin 3)) := by decide
-  rw [Fate.DAGFactorization.mass_insert_sum' (1 : Fin 3) ({0, 2} : Finset (Fin 3)) h1 p x]
+  rw [FateV2.Predict.DAGFactorization.mass_insert_sum' (1 : Fin 3) ({0, 2} : Finset (Fin 3)) h1 p x]
   have huniv : (insert 1 ({0, 2} : Finset (Fin 3))) = (Finset.univ : Finset (Fin 3)) := by decide
   rw [huniv]
-  simp only [Fate.DAGFactorization.mass_univ]
+  simp only [FateV2.Predict.DAGFactorization.mass_univ]
   exact Finset.sum_congr rfl fun b _ => by
-    rw [show Fate.DAGFactorization.unpin 1 x b = enc ((x 0, b), x 2) from by
-      funext v; fin_cases v <;> simp [Fate.DAGFactorization.unpin, enc]]
+    rw [show FateV2.Predict.DAGFactorization.unpin 1 x b = enc ((x 0, b), x 2) from by
+      funext v; fin_cases v <;> simp [FateV2.Predict.DAGFactorization.unpin, enc]]
 
 /-- ⭐⭐ **B5**：`mass {1,2}` 只对 `X`（0 位）求和，`Y` 位冻结为 `x 1`。 -/
 theorem mass_pair_one_two (p : (Fin 3 → α) → ℝ) (x : Fin 3 → α) :
     mass ({1, 2} : Finset (Fin 3)) p x
       = ∑ a : α, p (enc ((a, x 1), x 2)) := by
   have h0 : (0 : Fin 3) ∉ ({1, 2} : Finset (Fin 3)) := by decide
-  rw [Fate.DAGFactorization.mass_insert_sum' (0 : Fin 3) ({1, 2} : Finset (Fin 3)) h0 p x]
+  rw [FateV2.Predict.DAGFactorization.mass_insert_sum' (0 : Fin 3) ({1, 2} : Finset (Fin 3)) h0 p x]
   have huniv : (insert 0 ({1, 2} : Finset (Fin 3))) = (Finset.univ : Finset (Fin 3)) := by decide
   rw [huniv]
-  simp only [Fate.DAGFactorization.mass_univ]
+  simp only [FateV2.Predict.DAGFactorization.mass_univ]
   exact Finset.sum_congr rfl fun a _ => by
-    rw [show Fate.DAGFactorization.unpin 0 x a = enc ((a, x 1), x 2) from by
-      funext v; fin_cases v <;> simp [Fate.DAGFactorization.unpin, enc]]
+    rw [show FateV2.Predict.DAGFactorization.unpin 0 x a = enc ((a, x 1), x 2) from by
+      funext v; fin_cases v <;> simp [FateV2.Predict.DAGFactorization.unpin, enc]]
 
 /-! ### §3 ⭐⭐⭐ **主定理 B6**：`CondIndep` 与 `CondMul` 在 `Fin 3` 上等价 -/
 

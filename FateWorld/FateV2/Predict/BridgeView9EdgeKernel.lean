@@ -41,7 +41,7 @@ drift = 0，上游签名无一改动）：
 
 ## 0 与前 8 个视角的关系（为什么这是**第 9 种**、且**不用**塔性质）
 
-前几路的共同困难：`Fate.DAGFactorization.mass` 是**非归一化纤维和**，
+前几路的共同困难：`FateV2.Predict.DAGFactorization.mass` 是**非归一化纤维和**，
 故**没有**塔性质。（`Fate/TowerAudit.lean` 的 `mass_idempotent_fails`；
 `Fate/CondMassTower.lean` 的反例。）任何靠「先边缘化到 `S`、再边缘化到 `T`」
 把图形结构往下传的路线都会死在这里。
@@ -159,7 +159,7 @@ namespace BridgeView9
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 
 universe u
 
@@ -367,7 +367,7 @@ theorem agree_unpin_of_not_read {G : DAG V} {s v : V}
     rw [reads_eq_of_sink hs] at hreads
     exact hvs hreads.symm
   show x u = unpin s x a u
-  unfold Fate.DAGFactorization.unpin
+  unfold FateV2.Predict.DAGFactorization.unpin
   simp [hus]
 
 omit [Fintype α] [DecidableEq α] in
@@ -632,7 +632,7 @@ private theorem univ_boolfun :
 /-- `mass {true} ptri` 在「`true` 位 = `b`」处 = 4（`b=true`）或 2（`b=false`）。 -/
 private theorem mass_true_ptri (b : Bool) :
     mass ({true} : Finset Bool) ptri (fun _ => b) = if b then 4 else 2 := by
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   rw [univ_boolfun]
   rw [Finset.sum_insert (by decide : (fun _ => true) ∉
     ({(fun _ => false), (fun j => j), (fun j => !j)} : Finset (Bool → Bool)))]
@@ -646,7 +646,7 @@ private theorem mass_true_ptri (b : Bool) :
 /-- ⭐⭐ **`mass {true} ptri` 在任意点 `w` 处的值**（只依赖 `w true`）。 -/
 private theorem mass_true_ptri_apply (w : Bool → Bool) :
     mass ({true} : Finset Bool) ptri w = if w true then 4 else 2 := by
-  rw [Fate.DAGFactorization.mass_congr ({true} : Finset Bool) ptri
+  rw [FateV2.Predict.DAGFactorization.mass_congr ({true} : Finset Bool) ptri
         (fun u hu => by rw [Finset.mem_singleton] at hu; rw [hu])
       (y := fun _ => w true)]
   exact mass_true_ptri (w true)
@@ -657,7 +657,7 @@ private theorem outer_sum :
     mass ({true} : Finset Bool) (mass ({true} : Finset Bool) ptri) (fun _ => true)
       = ∑ w : Bool → Bool,
           if w true = true then mass ({true} : Finset Bool) ptri w else 0 := by
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   refine Finset.sum_congr rfl fun w _ => ?_
   by_cases h : w true = true
   · have hc : (∀ u ∈ ({true} : Finset Bool), w u = (fun _ => true) u) := by

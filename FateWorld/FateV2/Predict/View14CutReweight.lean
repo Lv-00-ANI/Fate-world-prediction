@@ -24,7 +24,7 @@ import Mathlib.Tactic.Ring
 
 ## 0 硬约束（已证伪的路线，本文件**一次也不用**）
 
-* `Fate.DAGFactorizationGeneral.tower_property_false`（T24）：`mass S (mass T p) x ≠ mass (S∪T) p x`。
+* `FateV2.Predict.DAGFactorizationGeneral.tower_property_false`（T24）：`mass S (mass T p) x ≠ mass (S∪T) p x`。
 * `Fate.TowerAudit.mass_idempotent_fails`（A3）：连 `S ⊆ T` 方向的塔也假。
 * `Fate.View20GraphToProb.massCondMulLike_degenerate`：集合口径 `CondMulLike` 是**退化**终点
   （对任意图、含无边图都成立），不能停在那里。
@@ -60,7 +60,7 @@ import Mathlib.Tactic.Ring
 
 ## 2 数学构造
 
-**载体**（仓库既有口径，`FateV2.Predict.FactorMarkov` / `Fate.DAGFactorization`）：
+**载体**（仓库既有口径，`FateV2.Predict.FactorMarkov` / `FateV2.Predict.DAGFactorization`）：
 `p : (V→α)→ℝ`；`mass S p x := ∑_{w : w|_S = x|_S} p w`；
 `LocalTo G f := ∀ v x y, (∀ u, u = v ∨ u ∈ pa_G v → x u = y u) → f v x = f v y`；
 `Factorizes p G := ∃ f, LocalTo G f ∧ ∀ x, p x = ∏ v, f v x`。
@@ -105,7 +105,7 @@ open FateV2.Modeling
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm)
 
 universe u

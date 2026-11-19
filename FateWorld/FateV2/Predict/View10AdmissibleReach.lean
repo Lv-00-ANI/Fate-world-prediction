@@ -129,7 +129,7 @@ namespace FateV2.Predict.View10
 
 open FateV2.Modeling
 
-open Fate.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Modeling.Graph
+open FateV2.Predict.DAGFactorization FateV2.Predict.FactorMarkov FateV2.Modeling.Graph
 
 universe u
 

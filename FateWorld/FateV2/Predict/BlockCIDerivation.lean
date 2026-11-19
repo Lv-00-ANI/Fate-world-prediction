@@ -68,7 +68,7 @@ namespace FateV2.Predict.BlockCIDerivation
 
 open FateV2.Modeling
 
-open Finset Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
+open Finset FateV2.Predict.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -135,7 +135,7 @@ end FateV2.Predict.BlockCIDerivation
 
 namespace FateV2.Predict.BlockCIDerivation
 
-open Finset Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
+open Finset FateV2.Predict.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u'
 

@@ -46,7 +46,7 @@ import FateWorld.FateV2.Predict.FactorMarkov
 
   核查时发现一处独立问题：`mass_depends_on_S` 的假设 `hp`
   （「`p` 只读 `S`」）在证明中**从未被使用**，因为
-  `Fate.DAGFactorization.mass S p x = ∑_{w : ∃(w 在 S 上 = x)} p w`
+  `FateV2.Predict.DAGFactorization.mass S p x = ∑_{w : ∃(w 在 S 上 = x)} p w`
   的定义只对**求和域**做筛选，`p` 的读集性质并不进入 `mass` 的依赖性。
   （对照 `Fate/Strategy13FiberFubini.lean` 中同名的正确版
   `mass_depends_on_S`，它本身就**不带** `hp` 假设。）
@@ -103,8 +103,8 @@ theorem glue_congr (S : Finset V) {x y : V → α} (h : ∀ v ∈ S, x v = y v)
 -- ⭐ 推论：若 x 与 y 在 S 上一致，则 mass S p x = mass S p y（对任意 p，不需 p 局部）
 theorem mass_depends_on_S {p : (V → α) → ℝ} {S : Finset V}
     {x y : V → α} (h : ∀ v ∈ S, x v = y v) :
-    Fate.DAGFactorization.mass S p x = Fate.DAGFactorization.mass S p y := by
-  unfold Fate.DAGFactorization.mass
+    FateV2.Predict.DAGFactorization.mass S p x = FateV2.Predict.DAGFactorization.mass S p y := by
+  unfold FateV2.Predict.DAGFactorization.mass
   refine Finset.sum_congr rfl fun w _ => ?_
   by_cases hw : ∀ u ∈ S, w u = x u
   · have hw' : ∀ u ∈ S, w u = y u := fun u hu => (hw u hu).trans (h u hu)

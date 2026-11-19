@@ -45,10 +45,10 @@ theorem sum_eq_massA {A S : Finset V} (hSA : S ⊆ A) {ψ : V → (V → α) →
     (∑ wA : (↥A → α),
         if (∀ u ∈ sub A S hSA, wA u = x u.1)
           then ∏ v ∈ A, ψ v (extEnd A ω₀ wA) else 0)
-      = Fate.DAGFactorization.mass (sub A S hSA)
+      = FateV2.Predict.DAGFactorization.mass (sub A S hSA)
           (fun w : ↥A → α => ∏ v : ↥A, ψ v.1 (extEnd A ω₀ w))
           (fun u : ↥A => x u.1) := by
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   refine Finset.sum_congr rfl fun wA _ => ?_
   by_cases h : ∀ u ∈ sub A S hSA, wA u = x u.1
   · rw [if_pos h, if_pos h, ← Finset.prod_coe_sort]
@@ -61,9 +61,9 @@ theorem mass_eq_Pout_massA {A S Z : Finset V} (hSA : S ⊆ A) (hZS : Z ⊆ S)
     (hOut : ∀ v, v ∉ A → R v ⊆ Z)
     (hPA : ∀ w w', (∀ u ∈ A, w u = w' u) → (∏ v ∈ A, ψ v w) = (∏ v ∈ A, ψ v w'))
     (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = (∏ v ∈ outSet A, ψ v x)
-        * (Fate.DAGFactorization.mass (sub A S hSA)
+        * (FateV2.Predict.DAGFactorization.mass (sub A S hSA)
             (fun w : ↥A → α => ∏ v : ↥A, ψ v.1 (extEnd A x w))
             (fun u : ↥A => x u.1)
           * ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card))) := by

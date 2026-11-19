@@ -293,8 +293,8 @@ theorem lowerSet_eq_empty_of_not_nonempty (hV : ¬ Nonempty V) (k : ℕ) :
 /-- 空 `V` 时 `mass ∅ p x = p x`（因 `V → α` 是单点集，求和只剩 `p x`）。 -/
 theorem mass_empty_of_not_nonempty (hV : ¬ Nonempty V)
     (p : (V → α) → ℝ) (x : V → α) :
-    Fate.DAGFactorization.mass (∅ : Finset V) p x = p x := by
-  rw [Fate.DAGFactorization.mass_empty]
+    FateV2.Predict.DAGFactorization.mass (∅ : Finset V) p x = p x := by
+  rw [FateV2.Predict.DAGFactorization.mass_empty]
   have hsub : Subsingleton (V → α) := ⟨fun a b => funext fun v => (hV ⟨v⟩).elim⟩
   rw [Finset.sum_eq_single x]
   · intro b _ hb
@@ -311,7 +311,7 @@ theorem peel_lower_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) →
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FactorNorm f) :
     ∀ k : ℕ, ∀ x : V → α,
-      Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
+      FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x := by
   classical
   by_cases hV : Nonempty V
   · haveI := hV
@@ -327,7 +327,7 @@ theorem peel_lower_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) →
 theorem peel_lower_univ_minus_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FactorNorm f) (k : ℕ) (x : V → α) :
-    Fate.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
+    FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
   peel_lower_noNonempty hloc hfac hnorm k x
 
 /-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11.peel_top_vertex`
@@ -336,7 +336,7 @@ theorem peel_top_vertex_noNonempty {p : (V → α) → ℝ} {f : V → (V → α
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FactorNorm f) (s : V)
     (htop : lowerSet G (G.topoOrder s) = (Finset.univ \ {s})) (x : V → α) :
-    Fate.DAGFactorization.mass (Finset.univ \ {s}) p x
+    FateV2.Predict.DAGFactorization.mass (Finset.univ \ {s}) p x
       = ∏ v ∈ (Finset.univ \ {s}), f v x := by
   rw [← htop]
   exact peel_lower_noNonempty hloc hfac hnorm (G.topoOrder s) x
@@ -365,7 +365,7 @@ set_option linter.unusedSectionVars false
 theorem mass_prefix_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
     (hnorm : FactorNorm f) {S : Finset V} (hS : FateV2.Predict.NonemptyFree2.Strategy11Fiber.isPrefix G S) :
-    ∀ x, Fate.DAGFactorization.mass S p x = ∏ v ∈ S, f v x := by
+    ∀ x, FateV2.Predict.DAGFactorization.mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
   exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_noNonempty hloc hfac hnorm k
 

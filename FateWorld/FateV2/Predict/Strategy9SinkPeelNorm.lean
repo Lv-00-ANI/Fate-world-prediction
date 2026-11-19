@@ -74,7 +74,7 @@ bar T f x = (∑_a mass T (...)) ...   — 需要 f_s 只读 s，或 f_s 在 T-�
 ## 2 依赖
 
 * `Fate.FactorMarkov`（`LocalTo`、`FactorNorm`、`Factorizes`）
-* `Fate.DAGFactorization`（`mass`、`unpin`、`mass_univ`、`mass_empty`、`mass_mul`）
+* `FateV2.Predict.DAGFactorization`（`mass`、`unpin`、`mass_univ`、`mass_empty`、`mass_mul`）
 * `CausSeparation`（`Causalean.Graph.DAG`、`G.edge`）
 -/
 
@@ -94,7 +94,7 @@ namespace Strategy9Norm
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin mass_univ mass_empty mass_mul)
+open FateV2.Predict.DAGFactorization (mass unpin mass_univ mass_empty mass_mul)
 
 universe u
 

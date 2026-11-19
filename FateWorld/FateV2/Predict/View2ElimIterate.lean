@@ -24,7 +24,7 @@ $$\mathrm{mass}\,(S\cup L)\Bigl(\prod_u\varphi_u\Bigr)x
 
 | 事实 | 出处 |
 |---|---|
-| `mass S (mass T p) x ≠ mass (S∪T) p x` 一般为假 | `Fate.DAGFactorizationGeneral.tower_property_false`（T24）|
+| `mass S (mass T p) x ≠ mass (S∪T) p x` 一般为假 | `FateV2.Predict.DAGFactorizationGeneral.tower_property_false`（T24）|
 | 连 `S ⊆ T` 方向的塔也假（`mass` 非归一化）| `Fate/TowerAudit.lean` A3 `mass_idempotent_fails` |
 
 **本文件一次也不出现 `mass S (mass T p)`**。允许的两条工具：
@@ -77,7 +77,7 @@ open FateV2.Modeling
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph
 
 universe u
 
@@ -121,7 +121,7 @@ theorem BlindAt.apply_unpin (v : V) {g : (V → α) → ℝ} (h : BlindAt v g)
     (x : V → α) (a : α) : g (unpin v x a) = g x :=
   h _ _ (fun u hu => by
     rw [mem_sdiff, mem_singleton] at hu
-    simp only [Fate.DAGFactorization.unpin]
+    simp only [FateV2.Predict.DAGFactorization.unpin]
     rw [if_neg hu.2])
 
 /-- ⭐ **`mass` 的纤维集写法**（把 `if` 换成 `filter`，便于做双射）。 -/

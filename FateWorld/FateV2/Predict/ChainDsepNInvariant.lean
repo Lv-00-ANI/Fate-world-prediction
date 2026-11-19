@@ -124,17 +124,17 @@ variable {n : ℕ}
 
 /-- ⭐⭐ **链图的边是字面不等式**（`rfl` 即可）。 -/
 theorem chain_edge_iff (u v : Fin (n + 1)) :
-    (Fate.GlobalMarkovChainN.chainDAG n).edge u v ↔ (u : ℕ) + 1 = (v : ℕ) := Iff.rfl
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).edge u v ↔ (u : ℕ) + 1 = (v : ℕ) := Iff.rfl
 
 /-- ⭐⭐ **链图上 `v` 的父亲恰是前驱**。 -/
 theorem chain_parents_mem (u v : Fin (n + 1)) :
-    u ∈ (Fate.GlobalMarkovChainN.chainDAG n).parents v ↔ (v : ℕ) = (u : ℕ) + 1 := by
+    u ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).parents v ↔ (v : ℕ) = (u : ℕ) + 1 := by
   rw [FateV2.Modeling.Graph.DAG.mem_parents, chain_edge_iff]
   exact eq_comm
 
 /-- ⭐⭐ **链图上 `w` 是 `v` 的孩子 iff `w = v + 1`**。 -/
 theorem chain_children_mem (v w : Fin (n + 1)) :
-    w ∈ (Fate.GlobalMarkovChainN.chainDAG n).children v ↔ (w : ℕ) = (v : ℕ) + 1 := by
+    w ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).children v ↔ (w : ℕ) = (v : ℕ) + 1 := by
   rw [FateV2.Modeling.Graph.DAG.mem_children, chain_edge_iff]
   exact eq_comm
 
@@ -163,9 +163,9 @@ theorem chain_transGen_of_lt {u v : Fin (n + 1)}
 
 /-- ⭐⭐ **链图的祖先关系等价于严格不等式**。 -/
 theorem chain_isAncestor_iff (u v : Fin (n + 1)) :
-    (Fate.GlobalMarkovChainN.chainDAG n).isAncestor u v ↔ (u : ℕ) < (v : ℕ) := by
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).isAncestor u v ↔ (u : ℕ) < (v : ℕ) := by
   have key : ∀ (a b : Fin (n + 1)),
-      Relation.TransGen (Fate.GlobalMarkovChainN.chainDAG n).edge a b → (a : ℕ) < (b : ℕ) := by
+      Relation.TransGen (FateV2.Predict.GlobalMarkovChainN.chainDAG n).edge a b → (a : ℕ) < (b : ℕ) := by
     intro a b hab
     change Relation.TransGen (fun x y : Fin (n + 1) => (x : ℕ) + 1 = (y : ℕ)) a b at hab
     induction hab with
@@ -176,7 +176,7 @@ theorem chain_isAncestor_iff (u v : Fin (n + 1)) :
 
 /-- ⭐⭐ **`chainDAG n` 的 `bbZAncestors` 记录**：`v` 是 `Z` 或 `Z` 的祖先。 -/
 theorem chain_mem_bbZAncestors (Z : Finset (Fin (n + 1))) (v : Fin (n + 1)) :
-    v ∈ (Fate.GlobalMarkovChainN.chainDAG n).bbZAncestors Z ↔
+    v ∈ (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbZAncestors Z ↔
       (v ∈ Z ∨ ∃ w ∈ Z, (v : ℕ) < (w : ℕ)) := by
   unfold FateV2.Modeling.Graph.DAG.bbZAncestors FateV2.Modeling.Graph.DAG.ancestralSet
     FateV2.Modeling.Graph.DAG.ancestorsSet
@@ -259,7 +259,7 @@ theorem mem_chainZ_iff' (v : Fin (n + 1)) :
 与「从子到达」都退化为「去往孩子」，而 `0` 的孩子是 `1`，与 `0 ∉ Z` 的判定一致。
 详见 `chain_bbStep_eq_seed`。 -/
 theorem chain_bbZAncestors_eq {n : ℕ} (hn : 2 ≤ n) :
-    (Fate.GlobalMarkovChainN.chainDAG n).bbZAncestors
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG n).bbZAncestors
         ((Finset.univ.erase 0).erase (Fin.last n)) =
       insert 0 ((Finset.univ.erase 0).erase (Fin.last n)) := by
   apply Finset.ext
@@ -307,7 +307,7 @@ theorem chain_bbZAncestors_eq {n : ℕ} (hn : 2 ≤ n) :
 
 /-- ⭐⭐⭐ **`chainDAG 2` 的 `bbZAncestors` 是 `{1}`**（上式在 `n = 2` 的特例）。 -/
 theorem chain_bbZAncestors_two :
-    (Fate.GlobalMarkovChainN.chainDAG 2).bbZAncestors
+    (FateV2.Predict.GlobalMarkovChainN.chainDAG 2).bbZAncestors
         ((Finset.univ.erase 0).erase (Fin.last 2)) =
       insert 0 ((Finset.univ.erase 0).erase (Fin.last 2)) :=
   chain_bbZAncestors_eq (by omega)

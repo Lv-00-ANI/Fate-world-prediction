@@ -103,7 +103,7 @@ set_option linter.unusedVariables false
 open Finset
 open FateV2.Modeling.Graph
 open FateV2.Modeling.Graph.DAG
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 universe u
 
@@ -181,7 +181,7 @@ def LMG_implies_GM (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : 
 （A2 `not_mem_pa_self_local`，真消费 `G.acyclic`）。 -/
 theorem peel_source_and_not_mem_pa_self {G : FateV2.Modeling.Graph.DAG V}
     {X Y Z : Finset V} {l : V} (hl : l ∈ X) (hd : G.dSep X Y Z) :
-    G.dSep (X \ {l}) Y (Z ∪ {l}) ∧ l ∉ Fate.DAGFactorization.pa G l :=
+    G.dSep (X \ {l}) Y (Z ∪ {l}) ∧ l ∉ FateV2.Predict.DAGFactorization.pa G l :=
   ⟨FateV2.Predict.BridgeB3.dSep_peel_source hl hd,
    FateV2.Predict.BridgeA2.not_mem_pa_self_local G l⟩
 
@@ -196,7 +196,7 @@ theorem topoPrefix_peel_fold_and_parent_closed {G : FateV2.Modeling.Graph.DAG V}
     G.dSep (X \ FateV2.Modeling.BridgeB2.topoPrefix G τ k) Y
         (Z ∪ FateV2.Modeling.BridgeB2.topoPrefix G τ k)
       ∧ ∀ v ∈ FateV2.Modeling.BridgeB2.topoPrefix G τ k,
-          Fate.DAGFactorization.pa G v ⊆ FateV2.Modeling.BridgeB2.topoPrefix G τ k :=
+          FateV2.Predict.DAGFactorization.pa G v ⊆ FateV2.Modeling.BridgeB2.topoPrefix G τ k :=
   ⟨FateV2.Predict.BridgeB3.dSep_peel_fold hS hd,
    fun v hv => FateV2.Modeling.BridgeB2.topoPrefix_parent_closed G τ k hv⟩
 
@@ -247,7 +247,7 @@ theorem GM_CIMul_of_full_peel {G : FateV2.Modeling.Graph.DAG V} (p : (V → α) 
 theorem sink_of_topo_max_and_pa_desc_disjoint {G : FateV2.Modeling.Graph.DAG V}
     {S : Finset V} (hS : S.Nonempty) :
     (∃ l ∈ S, ∀ w ∈ S, ¬ G.edge l w)
-      ∧ ∀ l : V, Disjoint (Fate.DAGFactorization.pa G l) (G.descendants l) :=
+      ∧ ∀ l : V, Disjoint (FateV2.Predict.DAGFactorization.pa G l) (G.descendants l) :=
   ⟨FateV2.Predict.BridgeB3.sink_of_topo_max G hS,
    fun l => FateV2.Predict.BridgeA2.pa_vs_descendants_disjoint G l⟩
 
@@ -259,8 +259,8 @@ theorem sink_of_topo_max_and_pa_desc_disjoint {G : FateV2.Modeling.Graph.DAG V}
 theorem topoPrefix_parent_closed_and_nondesc_pa {G : FateV2.Modeling.Graph.DAG V}
     (τ : FateV2.Modeling.BridgeB2.TopoOrderData G) (k : ℕ) {v : V}
     (hv : v ∈ FateV2.Modeling.BridgeB2.topoPrefix G τ k) :
-    (Fate.DAGFactorization.pa G v ⊆ FateV2.Modeling.BridgeB2.topoPrefix G τ k)
-      ∧ ∀ w : V, w ∈ G.nonDescendants v → v ∉ Fate.DAGFactorization.pa G w :=
+    (FateV2.Predict.DAGFactorization.pa G v ⊆ FateV2.Modeling.BridgeB2.topoPrefix G τ k)
+      ∧ ∀ w : V, w ∈ G.nonDescendants v → v ∉ FateV2.Predict.DAGFactorization.pa G w :=
   ⟨FateV2.Modeling.BridgeB2.topoPrefix_parent_closed G τ k hv,
    fun w hnd => FateV2.Predict.BridgeA2.not_mem_pa_self_for_w (G := G) (v := v) hnd⟩
 

@@ -139,7 +139,7 @@ namespace FateV2.Predict.BridgeZipDown
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 
 universe u

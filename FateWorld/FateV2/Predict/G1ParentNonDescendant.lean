@@ -62,7 +62,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace FactorRecursionRouteB
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 variable {V : Type u} [DecidableEq V] [Fintype V]
 

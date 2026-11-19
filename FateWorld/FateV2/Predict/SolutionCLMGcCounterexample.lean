@@ -59,7 +59,7 @@ import FateWorld.FateV2.Predict.ThreeNodeFactorizes
 namespace FateV2.Predict.GapCE
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization
+open Finset FateV2.Error FateV2.Predict.DAGFactorization
 open FateV2.Modeling.Graph
 
 theorem cP_rfl : ∀ w : Fin 3 → Bool, FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool) w
@@ -67,9 +67,9 @@ theorem cP_rfl : ∀ w : Fin 3 → Bool, FateV2.Predict.ThreeNodeFactorizes.coll
 
 -- 统一形式：x ≡ false 时，mass S = #{w | w|_S = false 且 w0 = w2}
 -- 对 S = {0}: 需 w0 = false，且 w0 = w2 ⟹ w2 = false，w1 自由 ⟹ 2
-theorem m0 : Fate.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
+theorem m0 : FateV2.Predict.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
     (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) = 2 := by
-  simp only [Fate.DAGFactorization.mass, cP_rfl, Finset.mem_singleton, forall_eq]
+  simp only [FateV2.Predict.DAGFactorization.mass, cP_rfl, Finset.mem_singleton, forall_eq]
   rw [show (∑ w : Fin 3 → Bool, if w 0 = (fun _ : Fin 3 => false) 0 then (if w 0 = w 2 then (1:ℝ) else 0) else 0)
       = ∑ w : Fin 3 → Bool, if (w 0 = false ∧ w 0 = w 2) then (1:ℝ) else 0 from by
     refine Finset.sum_congr rfl fun w _ => ?_
@@ -79,9 +79,9 @@ theorem m0 : Fate.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
   rw [hc]; norm_num
 
 -- S = {2}: 需 w2 = false，且 w0 = w2 ⟹ w0 = false，w1 自由 ⟹ 2
-theorem m2 : Fate.DAGFactorization.mass ({2} : Finset (Fin 3))
+theorem m2 : FateV2.Predict.DAGFactorization.mass ({2} : Finset (Fin 3))
     (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) = 2 := by
-  simp only [Fate.DAGFactorization.mass, cP_rfl, Finset.mem_singleton, forall_eq]
+  simp only [FateV2.Predict.DAGFactorization.mass, cP_rfl, Finset.mem_singleton, forall_eq]
   rw [show (∑ w : Fin 3 → Bool, if w 2 = (fun _ : Fin 3 => false) 2 then (if w 0 = w 2 then (1:ℝ) else 0) else 0)
       = ∑ w : Fin 3 → Bool, if (w 2 = false ∧ w 0 = w 2) then (1:ℝ) else 0 from by
     refine Finset.sum_congr rfl fun w _ => ?_
@@ -91,18 +91,18 @@ theorem m2 : Fate.DAGFactorization.mass ({2} : Finset (Fin 3))
   rw [hc]; norm_num
 
 -- S = ∅: ∑ w, (if w0 = w2 then 1 else 0) = #{w | w0 = w2} = 4
-theorem mempty : Fate.DAGFactorization.mass (∅ : Finset (Fin 3))
+theorem mempty : FateV2.Predict.DAGFactorization.mass (∅ : Finset (Fin 3))
     (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) = 4 := by
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   simp only [Finset.notMem_empty, IsEmpty.forall_iff, implies_true, if_true, cP_rfl]
   rw [Finset.sum_boole]
   have hc : (Finset.univ.filter (fun w : Fin 3 → Bool => w 0 = w 2)).card = 4 := by decide
   rw [hc]; norm_num
 
 -- S = {0,2}: 需 w0 = false 且 w2 = false，且 w0 = w2 ✓，w1 自由 ⟹ 2
-theorem m02 : Fate.DAGFactorization.mass ({0, 2} : Finset (Fin 3))
+theorem m02 : FateV2.Predict.DAGFactorization.mass ({0, 2} : Finset (Fin 3))
     (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) = 2 := by
-  simp only [Fate.DAGFactorization.mass, cP_rfl]
+  simp only [FateV2.Predict.DAGFactorization.mass, cP_rfl]
   have key : ∀ w : Fin 3 → Bool,
       (if (∀ u ∈ ({0, 2} : Finset (Fin 3)), w u = (fun _ : Fin 3 => false) u)
         then (if w 0 = w 2 then (1:ℝ) else 0) else 0)
@@ -119,13 +119,13 @@ theorem m02 : Fate.DAGFactorization.mass ({0, 2} : Finset (Fin 3))
 
 -- ⭐ 结论：LMGc 在 v = 0 处失败
 theorem lmgc_fails_at_0 :
-    Fate.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) *
-    Fate.DAGFactorization.mass ({2} : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass ({2} : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) ≠
-    Fate.DAGFactorization.mass (∅ : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass (∅ : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) *
-    Fate.DAGFactorization.mass ({0, 2} : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass ({0, 2} : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) (fun _ : Fin 3 => false) := by
   rw [m0, m2, mempty, m02]
   norm_num

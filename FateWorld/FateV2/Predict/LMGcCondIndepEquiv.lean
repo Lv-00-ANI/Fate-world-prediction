@@ -57,7 +57,7 @@ import FateWorld.FateV2.Modeling.CondIndepGeneralNZ
 namespace FateV2.Predict.LMGCEquiv
 
 open FateV2.Modeling
-open Finset FateV2.Error Fate.DAGFactorization FateV2.Predict.View19
+open Finset FateV2.Error FateV2.Predict.DAGFactorization FateV2.Predict.View19
 open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α]

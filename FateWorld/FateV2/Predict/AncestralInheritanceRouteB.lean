@@ -109,7 +109,7 @@ namespace AncestralInheritanceRouteB
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph
 
 universe u
 

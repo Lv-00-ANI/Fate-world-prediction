@@ -42,7 +42,7 @@ namespace FactorRecursionRouteB
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph
 
 universe u
 
@@ -71,7 +71,7 @@ theorem pa_subset_nonDescendants (G : FateV2.Modeling.Graph.DAG V) (v : V) :
     exact G.isAncestor_irrefl v (G.isAncestor_trans hvu hanc)
   · intro huv
     rw [huv] at hu
-    exact Fate.DAGFactorization.not_mem_pa_self G v hu
+    exact FateV2.Predict.DAGFactorization.not_mem_pa_self G v hu
 
 /-- ⭐ **G1' 的推论**：`pa v ∪ nd v = nd v`（`pa` 是「冗余」的）。 -/
 theorem pa_union_nonDescendants (G : FateV2.Modeling.Graph.DAG V) (v : V) :
@@ -92,7 +92,7 @@ theorem not_pa_of_nondesc (G : FateV2.Modeling.Graph.DAG V) {v w : V}
 
 /-- ⭐ **G3（复用既有）**：`v ∉ pa G v`。 -/
 theorem g3_not_mem_pa_self (G : FateV2.Modeling.Graph.DAG V) (v : V) : v ∉ pa G v :=
-  Fate.DAGFactorization.not_mem_pa_self G v
+  FateV2.Predict.DAGFactorization.not_mem_pa_self G v
 
 /-! ===========================================================================
   §3 ❌ **`Factorizes ⟹ LMG` 的反例（主裁决，机器验证）**

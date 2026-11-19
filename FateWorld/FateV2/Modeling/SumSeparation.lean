@@ -50,7 +50,7 @@ namespace FateV2.Modeling.GraphToProbView7
 open FateV2.Predict
 
 open FateV2.Error
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 universe u
 

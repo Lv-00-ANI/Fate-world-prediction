@@ -112,12 +112,12 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
 把定义**逐字**重述一次，使「定义里没有 `u ≠ v` 条件」成为可机械检查的等式
 （`rfl` 成立即说明两式相同，故不可能悄悄藏了自环约束）。 -/
 theorem pa_def (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    Fate.DAGFactorization.pa G v = Finset.univ.filter (fun u => G.edge u v) := rfl
+    FateV2.Predict.DAGFactorization.pa G v = Finset.univ.filter (fun u => G.edge u v) := rfl
 
-/-- **A2.0′**：`Fate.DAGFactorization.pa` 与 `CausDAG` 的 `G.parents` **定义相同**
+/-- **A2.0′**：`FateV2.Predict.DAGFactorization.pa` 与 `CausDAG` 的 `G.parents` **定义相同**
 （二者都是 `univ.filter (fun u => G.edge u v)`，故 `rfl`）。 -/
 theorem pa_eq_parents (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    Fate.DAGFactorization.pa G v = G.parents v := rfl
+    FateV2.Predict.DAGFactorization.pa G v = G.parents v := rfl
 
 /-! ===========================================================================
   §2.1 ⭐⭐⭐ **A2 自足版**：`v ∉ pa G v`，只用 `G.acyclic`
@@ -128,23 +128,23 @@ theorem pa_eq_parents (G : FateV2.Modeling.Graph.DAG V) (v : V) :
 $$\forall G\ \forall v,\quad v \notin \mathrm{pa}_G(v).$$
 
 **证明用到了什么**（逐条说明，防止「消费不足」）：
-1. `Fate.DAGFactorization.mem_pa`：`v ∈ pa G v ↔ G.edge v v`（定义展开，`pa` 是裸 `filter`）；
+1. `FateV2.Predict.DAGFactorization.mem_pa`：`v ∈ pa G v ↔ G.edge v v`（定义展开，`pa` 是裸 `filter`）；
 2. `Relation.TransGen.single`：`G.edge v v → Relation.TransGen G.edge v v`；
 3. `G.acyclic v`：`¬ Relation.TransGen G.edge v v` —— **这是唯一的图论输入**。
 
 **⚠ `G.acyclic` 是真被消费的**：见 §3 `pa_self_of_selfloop`（去掉无环性即得反例）与
 `not_selfloop_iff`（本定理等价于无自环边）。 -/
 theorem not_mem_pa_self_local (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    v ∉ Fate.DAGFactorization.pa G v := by
-  rw [Fate.DAGFactorization.mem_pa]
+    v ∉ FateV2.Predict.DAGFactorization.pa G v := by
+  rw [FateV2.Predict.DAGFactorization.mem_pa]
   intro h
   exact G.acyclic v (Relation.TransGen.single h)
 
 /-- **A2 的等价形式**：从 `insert v (pa v)` 里删掉 `v` 得到 `pa v` 本身
 （因为 A2 说 `v` 本来就不在 `pa v` 中）。 -/
 theorem insert_erase_pa_self (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    insert v (Fate.DAGFactorization.pa G v) \ {v} = Fate.DAGFactorization.pa G v := by
-  have h : v ∉ Fate.DAGFactorization.pa G v := not_mem_pa_self_local G v
+    insert v (FateV2.Predict.DAGFactorization.pa G v) \ {v} = FateV2.Predict.DAGFactorization.pa G v := by
+  have h : v ∉ FateV2.Predict.DAGFactorization.pa G v := not_mem_pa_self_local G v
   ext u
   simp only [Finset.mem_sdiff, Finset.mem_insert, Finset.mem_singleton]
   constructor
@@ -157,12 +157,12 @@ theorem insert_erase_pa_self (G : FateV2.Modeling.Graph.DAG V) (v : V) :
 
 /-- **A2 的基数形式**：`|pa v| ≤ |V| - 1`（`pa v` 不含 `v`，故不可能取满）。 -/
 theorem card_pa_le (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    (Fate.DAGFactorization.pa G v).card ≤ Fintype.card V - 1 := by
-  have hsub : Fate.DAGFactorization.pa G v ⊆ Finset.univ.erase v := by
+    (FateV2.Predict.DAGFactorization.pa G v).card ≤ Fintype.card V - 1 := by
+  have hsub : FateV2.Predict.DAGFactorization.pa G v ⊆ Finset.univ.erase v := by
     intro u hu
     rw [Finset.mem_erase]
     exact ⟨fun huv => not_mem_pa_self_local G v (huv ▸ hu), Finset.mem_univ u⟩
-  calc (Fate.DAGFactorization.pa G v).card
+  calc (FateV2.Predict.DAGFactorization.pa G v).card
       ≤ (Finset.univ.erase v).card := Finset.card_le_card hsub
     _ = Fintype.card V - 1 := by
         rw [Finset.card_erase_of_mem (Finset.mem_univ v), Finset.card_univ]
@@ -178,10 +178,10 @@ theorem not_mem_parents_self (G : FateV2.Modeling.Graph.DAG V) (v : V) :
   rw [← pa_eq_parents G v]
   exact not_mem_pa_self_local G v
 
-/-- **A2 · 既有资产锚点**：`Fate.DAGFactorization.not_mem_pa_self` 与本文件的
+/-- **A2 · 既有资产锚点**：`FateV2.Predict.DAGFactorization.not_mem_pa_self` 与本文件的
 `not_mem_pa_self_local` **是同一个命题**（用于确认没有重复发明）。 -/
-example (G : FateV2.Modeling.Graph.DAG V) (v : V) : v ∉ Fate.DAGFactorization.pa G v :=
-  Fate.DAGFactorization.not_mem_pa_self G v
+example (G : FateV2.Modeling.Graph.DAG V) (v : V) : v ∉ FateV2.Predict.DAGFactorization.pa G v :=
+  FateV2.Predict.DAGFactorization.not_mem_pa_self G v
 
 /-- **A2 · `ParentMap.pa` 载体**（`CausalDirection.CausalGraph` / `Set` 口径）。
 
@@ -204,8 +204,8 @@ theorem not_mem_pa_of_CausalGraph {W : Type u}
 这个双向陈述是**「A2 到底等价于什么」**的精确答案：
 A2 不多不少就是「`G` 在 `v` 处无自环」。 -/
 theorem not_mem_pa_iff_not_edge (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    v ∉ Fate.DAGFactorization.pa G v ↔ ¬ G.edge v v := by
-  rw [Fate.DAGFactorization.mem_pa]
+    v ∉ FateV2.Predict.DAGFactorization.pa G v ↔ ¬ G.edge v v := by
+  rw [FateV2.Predict.DAGFactorization.mem_pa]
 
 /-- ⭐⭐ **A2 的对偶（安全性检查）**：若 `edge v v` 成立，则 `v ∈ pa G v`。
 **注意此命题的类型不是 `DAG`**：它说的是「A2 依赖 `DAG` 的无环性，
@@ -233,18 +233,18 @@ $$\mathrm{pa}_G(v) \cap \mathrm{desc}_G(v) = \varnothing .$$
 **这里同时用到了 A2 的精神（`v ∉ pa v`）与传递性**；
 若 `u = v` 则还需 A2 排除，故 A2 是必要的。 -/
 theorem pa_vs_descendants_disjoint (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    Disjoint (Fate.DAGFactorization.pa G v) (G.descendants v) := by
+    Disjoint (FateV2.Predict.DAGFactorization.pa G v) (G.descendants v) := by
   rw [Finset.disjoint_left]
   intro u hu hp
-  rw [Fate.DAGFactorization.mem_pa] at hu
+  rw [FateV2.Predict.DAGFactorization.mem_pa] at hu
   have hdup := (Finset.mem_filter.mp hp).2
   exact G.isAncestor_irrefl v (G.isAncestor_trans hdup (FateV2.Modeling.Graph.DAG.isAncestor.edge hu))
 
 /-- **A2 的另一形式**：`v ∉ desc v` 与 `v ∉ pa v` 一起说明
 `insert v (pa v)` 里的 `v` 是**新的**（不是被重复计入）。 -/
 theorem not_mem_pa_self_for_w {G : FateV2.Modeling.Graph.DAG V} {v w : V}
-    (hnd : w ∈ G.nonDescendants v) : v ∉ Fate.DAGFactorization.pa G w := by
-  rw [Fate.DAGFactorization.mem_pa]
+    (hnd : w ∈ G.nonDescendants v) : v ∉ FateV2.Predict.DAGFactorization.pa G w := by
+  rw [FateV2.Predict.DAGFactorization.mem_pa]
   intro h
   have hnd' := (Finset.mem_filter.mp hnd).2
   exact hnd'.1 (FateV2.Modeling.Graph.DAG.isAncestor.edge h)
@@ -263,14 +263,14 @@ theorem not_mem_pa_self_for_w {G : FateV2.Modeling.Graph.DAG V} {v w : V}
   `Factorizes ⟹ LMG` 的读集论证应改用 §2.4 的 `pa_vs_descendants_disjoint`
   与 `not_mem_pa_self_for_w`（二者都是 A2 的真下游）。 -/
 theorem pa_inter_nd_eq_pa (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    Fate.DAGFactorization.pa G v ∩ G.nonDescendants v = Fate.DAGFactorization.pa G v :=
+    FateV2.Predict.DAGFactorization.pa G v ∩ G.nonDescendants v = FateV2.Predict.DAGFactorization.pa G v :=
   Finset.inter_eq_left.mpr (FateV2.Predict.FactorRecursionRouteB.pa_subset_nonDescendants G v)
 
 /-- **A2 与「`insert v (pa v)` 基数」的关系**：
 `|insert v (pa v)| = |pa v| + 1`（由 A2，`v` 是新增元素）。 -/
 theorem card_insert_pa (G : FateV2.Modeling.Graph.DAG V) (v : V) :
-    (insert v (Fate.DAGFactorization.pa G v)).card
-      = (Fate.DAGFactorization.pa G v).card + 1 :=
+    (insert v (FateV2.Predict.DAGFactorization.pa G v)).card
+      = (FateV2.Predict.DAGFactorization.pa G v).card + 1 :=
   Finset.card_insert_of_notMem (not_mem_pa_self_local G v)
 
 /-! ===========================================================================

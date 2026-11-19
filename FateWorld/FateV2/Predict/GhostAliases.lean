@@ -53,8 +53,8 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 theorem prod_split_sides (ψ : V → (V → α) → ℝ) (p : (V → α) → ℝ) {R : V → Finset V}
     (hfac : ∀ w, p w = ∏ v, ψ v w)
     (hread : ReadSet ψ R) {X Y Z : Finset V} (hsplit : Split R X Y Z) (x : V → α) :
-    Fate.DAGFactorization.mass (X ∪ Y ∪ Z) p x
-      = (∏ v, ψ v x) * Fate.DAGFactorization.mass (X ∪ Y ∪ Z) (fun _ => (1 : ℝ)) x :=
+    FateV2.Predict.DAGFactorization.mass (X ∪ Y ∪ Z) p x
+      = (∏ v, ψ v x) * FateV2.Predict.DAGFactorization.mass (X ∪ Y ∪ Z) (fun _ => (1 : ℝ)) x :=
   prod_split_sides_XYZ_statement ψ p hfac hread hsplit x
 
 end FateV2.Predict.View19
@@ -101,7 +101,7 @@ theorem tail_block {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
 theorem ancestral_shadow {A T : Finset V} (hTA : T ⊆ A)
     {p f g : (V → α) → ℝ} (hfac : ∀ w, p w = f w * g w)
     (hf : ∀ w w', (∀ u ∈ T, w u = w' u) → f w = f w') :
-    ∀ x : V → α, Fate.DAGFactorization.mass A p x = f x * Fate.DAGFactorization.mass A g x :=
+    ∀ x : V → α, FateV2.Predict.DAGFactorization.mass A p x = f x * FateV2.Predict.DAGFactorization.mass A g x :=
   FateV2.Predict.GraphToProbView7.shadow_decomp hTA hfac hf
 
 end FateV2.Predict.GraphToProbView7

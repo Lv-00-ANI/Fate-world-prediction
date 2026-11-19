@@ -110,7 +110,7 @@ namespace BridgeStrategy4
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 universe u
 
@@ -201,7 +201,7 @@ section Collapse
 omit [Fintype V] [Fintype α] [DecidableEq α] in
 /-- `setAt` 与 `DAGFactorization.unpin` **定义相同**（只是命名空间不同）。 -/
 theorem setAt_eq_unpin (v : V) (x : V → α) (a : α) :
-    setAt v x a = Fate.DAGFactorization.unpin v x a := rfl
+    setAt v x a = FateV2.Predict.DAGFactorization.unpin v x a := rfl
 
 /-- `v ∉ S` 时，`mass S p (x[v:=a])` **与 `a` 无关**（纤维没钉死 `v`）。 -/
 theorem mass_setAt_eq_of_not_mem {v : V} {S : Finset V} (hvS : v ∉ S)

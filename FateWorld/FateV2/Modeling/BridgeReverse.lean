@@ -38,7 +38,7 @@ variable {α β γ : Type}
   [Countable α] [Countable β] [Countable γ]
   [MeasurableSingletonClass ((α × β) × γ)]
 
-open FateV2.Modeling.FinMeasureBridge Fate.FinalB3
+open FateV2.Modeling.FinMeasureBridge FateV2.Modeling.FinalB3
 
 /-- ⭐⭐ **`bridgeStatement` ⟹ `CondIndepFin`**（`hp` 非负 + 纤维非零）。 -/
 theorem bridge_to_condIndepFin
@@ -81,7 +81,7 @@ theorem bridge_to_condIndepFin
           * ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
             (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ) inferInstance))
             a) t2 :=
-    (@Fate.FinalB3.ae_iff_forall_or_zero ((α × β) × γ)
+    (@FateV2.Modeling.FinalB3.ae_iff_forall_or_zero ((α × β) × γ)
       (MeasurableSpace.comap (FateV2.Modeling.FinCondIndepMeasure.projZ : (α × β) × γ → γ)
         (inferInstance : MeasurableSpace γ))
       _
@@ -105,7 +105,7 @@ theorem bridge_to_condIndepFin
         (inferInstance : MeasurableSpace γ))
       (inferInstance : MeasurableSpace ((α × β) × γ)) (weightedCount p) hm')
       {((x, y), z)} ≠ 0 := by
-    rw [Fate.FinalB3.trim_singleton_eq_fiber]
+    rw [FateV2.Modeling.FinalB3.trim_singleton_eq_fiber]
     rw [FateV2.Modeling.FinMeasureBridge.fiber_ne_zero_iff p hp z]
     exact hz z
   have heq : ((condExpKernel (Ω := (α × β) × γ) (weightedCount p)
@@ -144,9 +144,9 @@ theorem bridge_to_condIndepFin
     rw [ht2def]
     exact FateV2.Modeling.FinCondIndepMeasure.measurable_projY (measurableSet_singleton y)
   have hAB : MeasurableSet (t1 ∩ t2) := hA.inter hB
-  have r1 := Fate.FinalB3.kernelValue_fiber_ratio p (t1 ∩ t2) hAB hp ((x, y), z) hF
-  have r2 := Fate.FinalB3.kernelValue_fiber_ratio p t1 hA hp ((x, y), z) hF
-  have r3 := Fate.FinalB3.kernelValue_fiber_ratio p t2 hB hp ((x, y), z) hF
+  have r1 := FateV2.Modeling.FinalB3.kernelValue_fiber_ratio p (t1 ∩ t2) hAB hp ((x, y), z) hF
+  have r2 := FateV2.Modeling.FinalB3.kernelValue_fiber_ratio p t1 hA hp ((x, y), z) hF
+  have r3 := FateV2.Modeling.FinalB3.kernelValue_fiber_ratio p t2 hB hp ((x, y), z) hF
   -- 简化三个分子
   have hn1 : (∑ x' : α, ∑ y' : β,
       (if ((x', y'), z) ∈ t1 ∩ t2 then p ((x', y'), z) else 0)) = p ((x, y), z) := by

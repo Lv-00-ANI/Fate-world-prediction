@@ -83,7 +83,7 @@ namespace FateV2.Predict.TowerAudit
 
 open FateV2.Modeling
 
-open Finset Fate.DAGFactorization
+open Finset FateV2.Predict.DAGFactorization
 
 /-! ===========================================================================
   §1 复核 A3：`mass` 非归一化 ⟹ 幂等失败（连「正确方向」的塔也假）

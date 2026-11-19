@@ -43,10 +43,10 @@ namespace FateV2.Predict.BridgeA4Fixed2
 open FateV2.Modeling
 
 theorem mass_single_zero_colliderP :
-    Fate.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
       (fun v : Fin 3 => if v = 0 then false else if v = 2 then true else false) = 2 := by
-  unfold Fate.DAGFactorization.mass FateV2.Predict.ThreeNodeFactorizes.colliderP
+  unfold FateV2.Predict.DAGFactorization.mass FateV2.Predict.ThreeNodeFactorizes.colliderP
   simp only [Finset.mem_singleton, forall_eq, Fin.isValue, if_true]
   rw [show (∑ w : Fin 3 → Bool, if w 0 = false then (if w 0 = w 2 then (1:ℝ) else 0) else 0)
       = ∑ w : Fin 3 → Bool, if (w 0 = false ∧ w 0 = w 2) then (1:ℝ) else 0 from by
@@ -59,10 +59,10 @@ theorem mass_single_zero_colliderP :
 
 -- mass ∅：直接枚举 8 项
 theorem mass_empty_colliderP :
-    Fate.DAGFactorization.mass (∅ : Finset (Fin 3))
+    FateV2.Predict.DAGFactorization.mass (∅ : Finset (Fin 3))
       (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool))
       (fun v : Fin 3 => if v = 0 then false else if v = 2 then true else false) = 4 := by
-  unfold Fate.DAGFactorization.mass FateV2.Predict.ThreeNodeFactorizes.colliderP
+  unfold FateV2.Predict.DAGFactorization.mass FateV2.Predict.ThreeNodeFactorizes.colliderP
   simp only [Finset.notMem_empty, IsEmpty.forall_iff, implies_true, if_true]
   -- 现在是 ∑ w : Bool³, (if w 0 = w 2 then 1 else 0) = 2
   have : (∑ w : Fin 3 → Bool, (if w 0 = w 2 then (1:ℝ) else 0)) = 4 := by

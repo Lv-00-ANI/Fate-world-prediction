@@ -5,7 +5,7 @@
 
 **任务**：为「图 ⟹ 概率」桥给出**第 12 种**证明策略的具体数学构造 + Lean 落地。
 **硬约束**：**不得使用 `mass` 塔性质**（该性质已被 `Fate.TowerAudit.mass_idempotent_fails`
-/ `Fate.DAGFactorizationGeneral.tower_property_false` 证伪）。
+/ `FateV2.Predict.DAGFactorizationGeneral.tower_property_false` 证伪）。
 
 **⟹ 本文件与 `mass` 塔彻底正交**：全程**不出现** `mass S (mass T p)` 这种嵌套。
 
@@ -74,7 +74,7 @@ namespace FateV2.Predict.Strategy12
 open FateV2.Modeling
 
 open Finset FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 open FateV2.Predict.FactorMarkov (Joint LocalTo Factorizes FactorNorm CondIndep Markov)
 
 universe u
@@ -111,11 +111,11 @@ theorem mass_eq_single_sum (S : Finset V) (p : (V → α) → ℝ) (x : V → α
 /-- ⭐ `mass` 只依赖 `S` 上的坐标（直接 `mass_congr`，塔无关）。 -/
 theorem mass_loc (S : Finset V) (p : (V → α) → ℝ) {x y : V → α}
     (h : ∀ u ∈ S, x u = y u) : mass S p x = mass S p y :=
-  Fate.DAGFactorization.mass_congr S p h
+  FateV2.Predict.DAGFactorization.mass_congr S p h
 
 /-- ⭐ `mass univ = p`（塔无关）。 -/
 theorem mass_univ_eq (p : (V → α) → ℝ) (x : V → α) : mass univ p x = p x :=
-  Fate.DAGFactorization.mass_univ p x
+  FateV2.Predict.DAGFactorization.mass_univ p x
 
 /-! ===========================================================================
   §2 块 ②：「读集 ⊆ `S` 的因子提出律」（**替代塔**）
@@ -128,7 +128,7 @@ theorem mass_univ_eq (p : (V → α) → ℝ) (x : V → α) : mass univ p x = p
 theorem mass_pull_out (S : Finset V) (f g : (V → α) → ℝ) (x : V → α)
     (hf : ∀ x y, (∀ u ∈ S, x u = y u) → f x = f y) :
     mass S (fun w => f w * g w) x = f x * mass S g x :=
-  Fate.DAGFactorization.mass_mul S f g x hf
+  FateV2.Predict.DAGFactorization.mass_mul S f g x hf
 
 /-- ⭐⭐ **块 ② 与图的接合**：`LocalTo` 因子在其读集 `{v} ∪ pa_G(v) ⊆ S` 时可提出。
 

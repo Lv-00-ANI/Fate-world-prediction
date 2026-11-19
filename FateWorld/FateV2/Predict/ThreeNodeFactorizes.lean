@@ -67,7 +67,7 @@ open FateV2.Modeling
 namespace ThreeNodeFactorizes
 
 open Finset
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorRecursionRouteB (Factorizes)
 open FateV2.Predict.FinCondIndep (FinJoint CondMul)
 

@@ -63,7 +63,7 @@ theorem mass_dcomp_tail {A S Z : Finset V} (hSA : S ⊆ A) (hZS : Z ⊆ S)
     (hOut : ∀ v, v ∉ A → R v ⊆ Z)
     (hPA : ∀ w w', (∀ u ∈ A, w u = w' u) → (∏ v ∈ A, ψ v w) = (∏ v ∈ A, ψ v w'))
     (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = (∏ v ∈ outSet A, ψ v x) *
         (((Fintype.card α : ℝ) ^ (Fintype.card V - A.card))
           * ∑ wA : (↥A → α),

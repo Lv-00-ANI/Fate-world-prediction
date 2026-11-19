@@ -91,7 +91,7 @@ open FateV2.Modeling
 
 set_option linter.unusedSectionVars false
 
-open Finset Fate.DAGFactorization FateV2.Modeling.Graph
+open Finset FateV2.Predict.DAGFactorization FateV2.Modeling.Graph
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 variable {α : Type} [Fintype α] [DecidableEq α]
@@ -267,7 +267,7 @@ theorem sink_marginal_constant {p : (V → α) → ℝ}
 
 namespace Demo
 
-open Fate.DAGFactorization
+open FateV2.Predict.DAGFactorization
 
 /-- 演示因子：`φ_0 ≡ 1`、`φ_1 = x_1 ↦ (if x_1 then 1 else 3)`、`φ_2 = (x_2,x_1) ↦ [x_2=x_1]`。 -/
 noncomputable def demoφ : Fin 3 → (Fin 3 → Bool) → ℝ

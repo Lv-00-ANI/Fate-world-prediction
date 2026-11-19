@@ -137,11 +137,11 @@ theorem r44_reweight_endpoints
     (hloc : FateV2.Predict.FactorMarkov.LocalTo G q)
     (p : FateV2.Predict.FactorMarkov.Joint V alpha) (hfac : ∀ x, p x = ∏ v, q v x)
     (S : Finset V) (x : V → alpha) :
-    Fate.DAGFactorization.mass S p x
-        = Fate.DAGFactorization.mass S (fun w => ∏ v, q v w) x
-      ∧ Fate.DAGFactorization.mass (Finset.univ : Finset V) p x
+    FateV2.Predict.DAGFactorization.mass S p x
+        = FateV2.Predict.DAGFactorization.mass S (fun w => ∏ v, q v w) x
+      ∧ FateV2.Predict.DAGFactorization.mass (Finset.univ : Finset V) p x
           = Fate.View14.cutWeight (Finset.univ : Finset V) q x
-            * Fate.DAGFactorization.mass (Finset.univ : Finset V)
+            * FateV2.Predict.DAGFactorization.mass (Finset.univ : Finset V)
                 (fun _ => (1 : ℝ)) x :=
   ⟨Fate.View14.cut_reweight_empty G hloc p hfac S x,
    Fate.View14.cut_reweight_univ G hloc p hfac x⟩

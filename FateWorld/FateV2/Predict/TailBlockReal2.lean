@@ -212,7 +212,7 @@ theorem mass_eq_sum_pair {A S : Finset V} (hSA : S ⊆ A)
     (hfac : ∀ w, p w = ∏ v, ψ v w) (hread : ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (hAll : ∀ v, v ∈ A → R v ⊆ A) (x : V → α) :
-    Fate.DAGFactorization.mass S p x
+    FateV2.Predict.DAGFactorization.mass S p x
       = ∑ q : (↥A → α) × (↥(A : Set V)ᶜ → α),
           if (∀ u ∈ sub A S hSA, q.1 u = x u.1)
             then (∏ v : ↥A, ψ v.1 (extEnd A x q.1))
@@ -238,7 +238,7 @@ theorem mass_eq_sum_pair {A S : Finset V} (hSA : S ⊆ A)
       have huA : u ∈ A := hSA hu
       rw [hval u huA]
       exact h ⟨u, huA⟩ ((mem_sub_iff A S hSA ⟨u, huA⟩).mpr hu)
-  unfold Fate.DAGFactorization.mass
+  unfold FateV2.Predict.DAGFactorization.mass
   rw [hp, ← Equiv.sum_comp (arrowEquivA A)
     (fun q : (↥A → α) × (↥(A : Set V)ᶜ → α) =>
       if (∀ u ∈ sub A S hSA, q.1 u = x u.1)
@@ -268,8 +268,8 @@ theorem mass_eq_PA_mul_Pout {A S : Finset V} (hSA : S ⊆ A)
     (hfac : ∀ w, p w = ∏ v, ψ v w) (hread : ReadSet ψ R)
     (hOut : ∀ v, v ∉ A → R v \ {v} ⊆ outSet A)
     (hAll : ∀ v, v ∈ A → R v ⊆ A) (x : V → α) :
-    Fate.DAGFactorization.mass S p x
-      = Fate.DAGFactorization.mass (sub A S hSA)
+    FateV2.Predict.DAGFactorization.mass S p x
+      = FateV2.Predict.DAGFactorization.mass (sub A S hSA)
           (fun w : ↥A → α => ∏ v : ↥A, ψ v.1 (extEnd A x w))
           (fun u : ↥A => x u.1)
         * (∑ wt : (↥(outSet A) → α), ∏ v ∈ outSet A, ψ v (extEnd (outSet A) x wt)) := by
@@ -594,7 +594,7 @@ V4 的 `mass_tail_const` 右端形式：
 theorem mass_tail_const_of_readSet {ψ : V → (V → α) → ℝ} {R : V → Finset V}
     (hread : ReadSet ψ R) {A S : Finset V} (hSA : S ⊆ A)
     (hAll : ∀ v, R v ⊆ A) (x : V → α) :
-    Fate.DAGFactorization.mass S (fun w => ∏ v, ψ v w) x
+    FateV2.Predict.DAGFactorization.mass S (fun w => ∏ v, ψ v w) x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card)) *
         ∑ r : ({u : V // u ∈ A ∧ u ∉ S} → α),
           (∏ v, ψ v (TailBlockV4.extA x A S r)) := by
@@ -610,7 +610,7 @@ theorem mass_tail_const_of_readSet {ψ : V → (V → α) → ℝ} {R : V → Fi
 （`massA A A p x = p x`）**串联**得到闭式；两模块此前都没有这个具体形态。 -/
 theorem massA_self_of_readSet {ψ : V → (V → α) → ℝ} {R : V → Finset V}
     (hread : ReadSet ψ R) {A : Finset V} (hAll : ∀ v, R v ⊆ A) (x : V → α) :
-    Fate.DAGFactorization.mass A (fun w => ∏ v, ψ v w) x
+    FateV2.Predict.DAGFactorization.mass A (fun w => ∏ v, ψ v w) x
       = ((Fintype.card α : ℝ) ^ (Fintype.card V - A.card)) * (∏ v, ψ v x) := by
   classical
   have h := mass_tail_const_of_readSet (S := A) hread (Finset.Subset.refl A) hAll x

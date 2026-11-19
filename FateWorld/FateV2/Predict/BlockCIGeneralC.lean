@@ -64,7 +64,7 @@ namespace FateV2.Predict.C5g
 
 open FateV2.Modeling
 
-open Finset FateV2.Error FateV2.Predict.View19 Fate.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
+open Finset FateV2.Error FateV2.Predict.View19 FateV2.Predict.DAGFactorization FateV2.Predict.AncestralInheritanceRouteB
 
 universe u
 
@@ -81,7 +81,7 @@ theorem blockCI_of_condIndep {p : (V → α) → ℝ} {G : FateV2.Modeling.Graph
   rw [hAC] at hz
   have hun : (Finset.univ ∪ C : Finset V) = Finset.univ := Finset.union_eq_left.mpr (Finset.subset_univ C)
   rw [hun] at hz
-  rw [Fate.DAGFactorization.mass_univ] at hz
+  rw [FateV2.Predict.DAGFactorization.mass_univ] at hz
   exact hz
 
 end FateV2.Predict.C5g

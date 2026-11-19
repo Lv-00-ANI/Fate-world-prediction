@@ -38,7 +38,7 @@ $$\text{因子分解} \;\Longleftrightarrow\; \text{有向局部 Markov} \;\Long
 
 | 陈述 | 谓词 | 载体来源 |
 |---|---|---|
-| **局部 Markov** | `LocalMarkov G p`（≡ `Fate.DAGFactorization.LM G p`） | `Fate/DAGFactorization.lean` |
+| **局部 Markov** | `LocalMarkov G p`（≡ `FateV2.Predict.DAGFactorization.LM G p`） | `Fate/DAGFactorization.lean` |
 | **因子分解** | `LocalMarkov` 的链式形式 / `Fate.T1A2.FactorizesOn` | `Fate/DAGFactorization.lean`、`Fate/T1A2.lean` |
 | **全局 Markov** | `GlobalMarkov G p`（`dSep ⟹ CondMulLike`） | `CausSeparation.lean` |
 
@@ -121,7 +121,7 @@ open FateV2.Modeling
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.DAGFactorization (mass unpin)
+open FateV2.Predict.DAGFactorization (mass unpin)
 
 universe u
 
@@ -131,18 +131,18 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
   §0 接缝：`pa` 与 `parents` 定义逐字相同
   =========================================================================== -/
 
-/-- ⭐ **`Fate.DAGFactorization.pa` 与 `Causalean.Graph.DAG.parents` 定义逐字相同。**
+/-- ⭐ **`FateV2.Predict.DAGFactorization.pa` 与 `Causalean.Graph.DAG.parents` 定义逐字相同。**
 
 两者都是 `univ.filter (fun u => G.edge u v)`，故 `rfl`。
 **这是本文件与既有 `Fate/DAGFactorization` 载体的唯一接缝**：
 所有 `LM` 相关的引理都经过它转写，不需要改动既有文件。 -/
 theorem pa_eq_parents (G : DAG V) (v : V) :
-    Fate.DAGFactorization.pa G v = G.parents v := rfl
+    FateV2.Predict.DAGFactorization.pa G v = G.parents v := rfl
 
 /-- ⭐ **父集不含自己**（`DAG.irrefl` 的推论；经 `not_mem_pa_self` 转写）。 -/
 theorem not_mem_parents_self (G : DAG V) (v : V) : v ∉ G.parents v := by
   rw [← pa_eq_parents G v]
-  exact Fate.DAGFactorization.not_mem_pa_self G v
+  exact FateV2.Predict.DAGFactorization.not_mem_pa_self G v
 
 /-! ===========================================================================
   §1 ⭐⭐⭐ **局部 Markov 的口径**（与既有 `LM` 逐字一致）
@@ -159,7 +159,7 @@ $$\forall v\,x\,y,\quad x|_{\mathrm{pa}(v)} = y|_{\mathrm{pa}(v)}
   \mathrm{mass}\,(\mathrm{pa}\,v)\,p\,x \cdot \mathrm{mass}\,(V\setminus\{v\})\,p\,y \cdot p\,x
   = \mathrm{mass}\,(\mathrm{pa}\,v)\,p\,y \cdot \mathrm{mass}\,(V\setminus\{v\})\,p\,x \cdot p\,y$$
 
-**⚠ 这是 `Fate.DAGFactorization.LM` 的逐字复制**；`localMarkov_iff_LM`（§1.1）
+**⚠ 这是 `FateV2.Predict.DAGFactorization.LM` 的逐字复制**；`localMarkov_iff_LM`（§1.1）
 证明两者互为充要，故**零漂移**。
 
 **⚠ 语义**：`V∖{v}` **包含** `pa v`（`parents_subset_compl`）。
@@ -171,16 +171,16 @@ def LocalMarkov (G : DAG V) (p : (V → α) → ℝ) : Prop :=
     mass (G.parents v) p x * mass ((univ : Finset V) \ {v}) p y * p x
       = mass (G.parents v) p y * mass ((univ : Finset V) \ {v}) p x * p y
 
-/-- ⭐⭐ **I1：`LocalMarkov` 与 `Fate.DAGFactorization.LM` 是同一个谓词。**
+/-- ⭐⭐ **I1：`LocalMarkov` 与 `FateV2.Predict.DAGFactorization.LM` 是同一个谓词。**
 
 `pa` 与 `parents` 定义逐字相同（§0），故 `Iff.rfl`。 -/
 theorem localMarkov_iff_LM {G : DAG V} {p : (V → α) → ℝ} :
-    LocalMarkov G p ↔ Fate.DAGFactorization.LM G p :=
+    LocalMarkov G p ↔ FateV2.Predict.DAGFactorization.LM G p :=
   Iff.rfl
 
 /-- ⭐⭐ **I2：`LocalMarkov` 与 `LocalMarkovGen` 是同一个谓词。** -/
 theorem localMarkov_iff_LocalMarkovGen {G : DAG V} {p : (V → α) → ℝ} :
-    LocalMarkov G p ↔ Fate.DAGFactorization.LocalMarkovGen G p :=
+    LocalMarkov G p ↔ FateV2.Predict.DAGFactorization.LocalMarkovGen G p :=
   Iff.rfl
 
 end LocalDef
@@ -353,17 +353,17 @@ $$\mathrm{mass}\,(V\setminus\{v\})\,p\,x = \sum_{a} p\,[x_v := a].$$
 与 `mass univ p = p`。 -/
 theorem mass_compl_eq_sum (v : V) (p : (V → α) → ℝ) (x : V → α) :
     mass ((univ : Finset V) \ {v}) p x = ∑ a : α, p (unpin v x a) := by
-  have h := Fate.DAGFactorization.mass_insert_sum v ((univ : Finset V) \ {v}) (by simp) p x
+  have h := FateV2.Predict.DAGFactorization.mass_insert_sum v ((univ : Finset V) \ {v}) (by simp) p x
   rw [insert_sdiff_univ] at h
   rw [← h]
-  simp only [Fate.DAGFactorization.mass_univ]
+  simp only [FateV2.Predict.DAGFactorization.mass_univ]
 
 /-- ⭐⭐⭐ **`pa v` 上的 `mass` 对「在 `pa v` 上一致」的两点相等**
 （`mass_congr` 的直接应用）。 -/
 theorem mass_parents_congr (G : DAG V) (p : (V → α) → ℝ) {x y : V → α}
     (h : ∀ u ∈ G.parents v, x u = y u) :
     mass (G.parents v) p x = mass (G.parents v) p y :=
-  Fate.DAGFactorization.mass_congr _ _ h
+  FateV2.Predict.DAGFactorization.mass_congr _ _ h
 
 /-- ⭐⭐⭐⭐ **`v` 无后代时 `V∖{v} = pa v`**（`pa v ∪ {v} = V` 的必要条件）。
 
@@ -459,7 +459,7 @@ theorem localMarkov_implies_factorization (p : (V → α) → ℝ)
       mass (insert v S) p x = q v x * mass S p x)
     (x : V → α) :
     p x = (∏ v : V, q v x) * mass (∅ : Finset V) p x :=
-  Fate.DAGFactorization.gen_factorization_univ q p step x
+  FateV2.Predict.DAGFactorization.gen_factorization_univ q p step x
 
 end LocalToFactorization
 
