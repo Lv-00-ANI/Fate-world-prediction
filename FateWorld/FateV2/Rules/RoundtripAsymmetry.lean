@@ -28,7 +28,7 @@
   ## 诚实标注
 
   - 本模块**只写 theorem，不写新的 def**；`lawDetToStep` / `stepToLaw`
-    分别 import 自 `Fate.DetFunToStepDraft` / `Fate.StepToLawDraft`。
+    分别 import 自 `FateV2.Predict` / `FateV2.Rules`。
   - 已存在模块（`DetFunToStep.lean` / `StepToLaw.lean`）**未被修改**。
   - 零 `sorry` / 零 `admit` / 零 `axiom`。
   - ⚠ **定理 3 只是定理 1 与定理 2 的合取**，其价值不在「新数学内容」，

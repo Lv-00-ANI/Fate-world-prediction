@@ -42,10 +42,10 @@
 该文件**已存在**且**编译通过**，内容与本文件高度重叠
 （同一定义 `ctxOf`、同一批单点目光定理、同一份语义诚实声明）。
 
-**但**：`grep -n 'CausalClassificationBridge' Fate.lean` **无结果**，
-即该文件**未被根模块 `Fate.lean` import**，**不在构建图中**。
+**但**：`grep -n 'CausalClassificationBridge' lean` **无结果**，
+即该文件**未被根模块 `lean` import**，**不在构建图中**。
 
-本文件按裁决 B-1 的指示**新建、自足、不改任何已有模块**（含不改 `Fate.lean`）。
+本文件按裁决 B-1 的指示**新建、自足、不改任何已有模块**（含不改 `lean`）。
 本文件**自带**命名空间 `CausalFCAAdjacency`，与上述文件的
 `CausalClassificationBridge` **不冲突**（同名不同命名空间）。
 **本文件不声称**取代或修正该文件；两者可并存，取舍由主控裁决。
@@ -113,7 +113,7 @@
 ===========================================================================
 
 两遍 `lake env lean Fate/CausalFCAAdjacency.lean`，两遍 EXIT=0（见交付说明）。
-不跑全量 `lake build`。不改任何已有文件（含 `Fate.lean`）。
+不跑全量 `lake build`。不改任何已有文件（含 `lean`）。
 -/
 
 import FateWorld.FateV2.Rules.FCA

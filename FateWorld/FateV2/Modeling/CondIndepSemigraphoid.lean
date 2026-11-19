@@ -122,7 +122,7 @@ $$\Big(\sum_{xs\in S} p(xs,z)\Big)\cdot M^{n-1}
   = \prod_i \sum_{a\in S_i} \mathrm{marg}\,p\,i\,a\,z$$
 
 **⟹ 这是 `Fate/NaryAlgebra.lean` 中 `condIndepN_sum_factorize` 的**再导出****：
-本文件不 `import Fate.NaryAlgebra`（避免卷入 `MeasureTheory` 的实例搜索开销），
+本文件不 `import FateV2.Modeling.GenC3`（避免卷入 `MeasureTheory` 的实例搜索开销），
 而是用同一行证明重建它。**证明只有三步**：
 逐点代入 `CondIndepN`、`Finset.sum_mul` 提出 $M^{n-1}$、
 `Fintype.prod_sum` 交换「乘积」与「求和」。 -/

@@ -38,7 +38,7 @@
    数学性质（非自动、单环境空真、非退化时等价于常函数），
    **不是**「某经验数据满足不变性」。
 3. 本文件**无** `sorry` / `admit` / `axiom`；全部定理均已证。
-4. 本文件**不修改**任何既有模块；只 `import Fate.Adjudication` 并新增声明。
+4. 本文件**不修改**任何既有模块；只 `import FateV2.Meta` 并新增声明。
 5. 方案 A（有限环境不变性 ⟺ 常函数）与方案 D（给 `ExtendedDataLayer`
    填有内容的 `invariance` 实例）在本文件中**已部分就绪**：
    `invariance_iff_const`（§3）即方案 A；方案 D 见 `contentfulDataLayer`（§4）。

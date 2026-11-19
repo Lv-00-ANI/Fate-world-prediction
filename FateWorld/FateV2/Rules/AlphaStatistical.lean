@@ -6,9 +6,9 @@
 阶段：**α 的统计版本 —— 经验条件核 + 置信带，及「何时 `IsPoint`」的判据**
 
 ---------------------------------------------------------------------------
-本文件补什么（与 `Fate.Alpha` / `LawRule` 的分工）
+本文件补什么（与 `FateV2.Rules` / `LawRule` 的分工）
 ---------------------------------------------------------------------------
-`Fate.Alpha`（裁决 D）把 α 做成 **FCA 取概念过程** `takeConcept`——
+`FateV2.Rules`（裁决 D）把 α 做成 **FCA 取概念过程** `takeConcept`——
 那是 α 在**属性侧/概念侧**的版本。
 
 `LawRule` 把规则的载体定为
@@ -61,7 +61,7 @@ $$
 2. **(E) 的可判定性本文件不主张**：`Ball` 的单点性依赖
    `d : Measure Y → Measure Y → ℝ≥0∞` 这个**外部给定的「距离」**。
    本文件**不指定** `d`（那是编码/度量方案的选择，规格未固定，
-   与 `Fate.Alpha` §4 E8 同一条纪律：**填数即为虚构**）。
+   与 `FateV2.Rules` §4 E8 同一条纪律：**填数即为虚构**）。
 3. §5 的**覆盖正确性**是**条件定理**：前件 `GoodEvent`
    （「真实核落在带内」）**显式写出**，其**概率界的成立性不在本文件**。
 4. 本文件**零 `sorry` / 零 `axiom`**。
@@ -87,7 +87,7 @@ namespace AlphaStatistical
 
 open MeasureTheory Set
 
-/- `LawRule` / `IsPoint` 定义在 `LawRule` 命名空间（`Fate.Frame` 的别名不在同名空间）。 -/
+/- `LawRule` / `IsPoint` 定义在 `LawRule` 命名空间（`FateV2.Model` 的别名不在同名空间）。 -/
 open FateV2.Rules.LawRule
 
 universe u
@@ -269,7 +269,7 @@ end Sample
 （判据的形式与度量无关，这正是判据的**稳健性**）。
 
 **为什么必须有 `nMin`**：没有它，`eps = 0` + 单样本也会给出 `IsPoint`——
-那是**过拟合**（见 `Fate.ErrorBound` 的「刚好拟合与过拟合的边界」裁决 K）。
+那是**过拟合**（见 `FateV2.Error` 的「刚好拟合与过拟合的边界」裁决 K）。
 `nMin` 是本文件对裁决 K 在**规则层**的落点。 -/
 structure Band (Out : OutSpace) [MeasurableSpace Out.Carrier] where
   /-- 测度之间的「距离」（外部给定的度量方案） -/
@@ -305,7 +305,7 @@ $$R^{\mathrm{stat}}_n(c,x) :=
 - α 的**输出**是一个 `LawRule`（"允许哪些下一状态分布"），
 - 该输出的**内容**由两项决定：**经验核**（中心）与**置信带**（半径 + 覆盖闸）。
 
-**⚠ 与 `Fate.Alpha.takeConcept` 的关系**：
+**⚠ 与 `FateV2.Rules.takeConcept` 的关系**：
 `takeConcept` 在 **FCA 属性侧**取闭包；本定义在 **测度侧**取**带球**。
 两者都是「把原始观测提升为一个**允许集**」，但**不同侧**。
 本文件**不主张**两者可交换（那需要 FCA–测度桥，见 `Bridge*` 的既有工作）。 -/

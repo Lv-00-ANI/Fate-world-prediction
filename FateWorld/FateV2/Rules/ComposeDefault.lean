@@ -94,7 +94,7 @@
   `two_semantics_incompatible`。
 * `FateV2.Rules.CompNotCommutative` —— `comp_not_commutative_witness`、
   `comp_not_commutative`（核复合的不可交换反例）。
-* `Fate.WiringFourOpFixed` —— `combClosure` 的定义（`closureOp (A ∪ B)`）。
+* `FateV2.Rules` —— `combClosure` 的定义（`closureOp (A ∪ B)`）。
 
 ---------------------------------------------------------------------------
 (f) 关于 Lean 的 `priority` 约定（实测记录，纠正任务提示中的假设）

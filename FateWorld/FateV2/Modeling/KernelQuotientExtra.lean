@@ -17,7 +17,7 @@ import FateWorld.FateV2.Modeling.KernelQuotient
 
   **背景**：`Fate/KernelQuotient.lean`（统一框架主体，27 条定理）与
   此前的 `Fate/KernelQuotientCore.lean`（11 条）**同命名空间、部分重名**，
-  无法同时进构建（实测：`environment already contains 'Fate.KernelQuotient.Faithful'`）。
+  无法同时进构建（实测：`environment already contains 'FateV2.Modeling.Faithful'`）。
 
   **处置**：以 `KernelQuotient.lean` 为**唯一权威主体**（更完整），
   本文件把 `KernelQuotientCore` 中**独有**的定理**并入同一命名空间**，

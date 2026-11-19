@@ -73,7 +73,7 @@ import Mathlib.Analysis.Normed.Ring.Basic
   它把「发散」从单个数值巧合提升为**结构性事实**，并**不**依赖 `ℝ` 的具体取值；
   (iii) 文件自带完整可编译性（不 import 那个反向依赖 `EndToEndBound` 的模块）。
 
-  ## 3 ⚠ 为什么不 `import Fate.EndToEndBound`
+  ## 3 ⚠ 为什么不 `import EndToEndBound`
 
   `Fate/EndToEndBound.lean` **当前编译失败**（实测第 514 行
   `Tactic rewrite failed`，且 `Fate/EndToEndBound.olean` **不存在**）。

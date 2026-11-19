@@ -58,7 +58,7 @@
 ---------------------------------------------------------------------------
 
 * `import FateV2.Predict.WorldModel` ⟹ `WorldModel`/`Frame`/`StateSpace` 的**当前**字段口径；
-* `import Fate.T43Abduction` ⟹ `cfWithAbduction` 及其 `[Fintype]`/`[DecidableEq]` 前件的**来源**。
+* `import FateV2.Predict` ⟹ `cfWithAbduction` 及其 `[Fintype]`/`[DecidableEq]` 前件的**来源**。
 
 **注意**：本文件**不**定义 `WorldModel.cf`（该字段在当前 `WorldModel` 中不存在，
 正是 `WiringCounterfactual` 的 22 处 `Invalid field` 的来源）。

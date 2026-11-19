@@ -789,10 +789,10 @@ end Concrete
 -/
 
 /-! ===========================================================================
-    § R35  ⭐ 接入通用版本 2 框架（`Fate.TwoVersions`）
+    § R35  ⭐ 接入通用版本 2 框架（`FateV2.Predict`）
     ===========================================================================
 
-本文件的 `iterMap (id) (id)` 迭代，与 `Fate.TwoVersions.BoundWriteBackV2.wbSeq`
+本文件的 `iterMap (id) (id)` 迭代，与 `FateV2.Predict.BoundWriteBackV2.wbSeq`
 （通用 `A / φ`）在 `A = φ = id` 上逐字一致（`wbSeq_eq_iterMap_gen`）。
 本节把本文件的收敛主定理（`tendsto_iter_id`）接到通用版本 2 的框架上，
 给出**通用 `wbSeq` 形态**的同一收敛，并验证两条路径的极限相合。

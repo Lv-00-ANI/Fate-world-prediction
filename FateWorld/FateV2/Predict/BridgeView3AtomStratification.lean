@@ -89,7 +89,7 @@ set_option linter.unusedSectionVars false
   * 定理数：**15 → 12**（删 4 条：2 空壳 + 1 假陈述 + 1 不可救的装配；新增 1 条 `const_form`）。
   * error：**10 → 0**；**零 `sorry` / 零 `admit` / 零 `axiom`**。
   * **无下游**：经两种 grep 模式（`FateV2.Predict.BridgeView3` 前缀、`BridgeView3.` 限定）
-    确认本模块**不在 `Fate.lean` 中、未被任何 `.lean` import**，改动零外部影响。
+    确认本模块**不在 `lean` 中、未被任何 `.lean` import**，改动零外部影响。
 
   ---
 

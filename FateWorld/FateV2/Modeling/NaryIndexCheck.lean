@@ -123,7 +123,7 @@ end FateV2.Modeling.GenN
 
 /-! ## §Wire2 `NaryFin2` 的声明进入核对链（R-27）
 
-`NaryFin2` 自身 `import Fate.NaryIndex`，故它**不能**被 `NaryIndex` 反向消费
+`NaryFin2` 自身 `import FateV2.Modeling.GenN`，故它**不能**被 `NaryIndex` 反向消费
 （会形成循环）。它的唯一自然下游是 `NaryIndex`，因此本文件是能引用它的
 最上层模块；下面把它唯一的定理纳入机器核对。
 -/

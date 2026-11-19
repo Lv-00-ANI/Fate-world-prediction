@@ -9,7 +9,7 @@
 　　　`Fate/Alpha.lean`（`takeConcept`、`Encoder`）。
 
 **⚠ 不依赖 `Fate/SCMLawBridge`**：该文件当前**编译失败**
-（`lake build Fate.SCMLawBridge` → `OutSpace := StateSpace` 统一后
+（`lake build FateV2.Rules` → `OutSpace := StateSpace` 统一后
 `Rule C X` 类型参数不匹配，3 error）。本文件**不 import 它、不引用其定理名**，
 故「`lawObs` 口径」在 §4a 里只作**形态登记**（`obsAlpha`，独立重写）。
 
@@ -272,7 +272,7 @@ $$\alpha\,e\,c\,x = \{\mu \mid \forall y,\ \mu\,\{y\} = \mathrm{obs}\ e\ x\ y\}.
 
 **⚠⚠ 依赖状态（必须如实登记）**：
 `Fate/SCMLawBridge` **当前编译失败**
-（`lake build Fate.SCMLawBridge` → `OutSpace := StateSpace` 统一后
+（`lake build FateV2.Rules` → `OutSpace := StateSpace` 统一后
 `Rule C X` 的类型参数不匹配，3 个 error）。
 **⟹ 本文件不 import 它，也不引用它的任何定理名。**
 下面的 `obsAlpha` 是**在 `LawRule` 侧独立重写**的同一个形态，

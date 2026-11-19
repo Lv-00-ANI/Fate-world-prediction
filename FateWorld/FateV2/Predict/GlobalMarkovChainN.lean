@@ -154,7 +154,7 @@ $X_0 = 0$ 与 $X_n = n$ **在给定中间段 $\{1,\dots,n-1\}$ 下 d-分离**。
 **交叉引用（重要）**：那个「与 `n` 无关的 BFS 不变量」后来已经做出来了。
 符号 `n` 的一般版本**已在** `Fate/Stage2/ChainDsepFull.lean` 的
 `chainDAG_dsep_n`（`(n : Nat) (hn : 2 <= n)`）**里证毕**，
-该文件自本次接线起已进入 `Fate.lean`。
+该文件自本次接线起已进入 `lean`。
 所以「一般 `n` 未证」是**本文**的局限，**不是项目的局限**。
 本文保留 `n = 2,3,4,5` 的 `decide` 版本作为独立的可执行交叉校验。 -/
 theorem chainDAG_dsep_2 :
@@ -593,7 +593,7 @@ end FateV2.Predict
 `GlobalMarkovChainNConsumer`（`LawRule` 层消费方）。
 
 **实测的接线缺口**：这 4 个模块之间**没有任何一处在正文里按名字
-（`Fate.GlobalMarkovXxx.foo`）互相引用** —— 判别命令为
+（`GlobalMarkovXxx.foo`）互相引用** —— 判别命令为
 `grep -oE 'Fate\.Global(MarkovMinimal|MarkovChain4|MarkovChainN|MarkovChainNConsumer)\.\w+'`
 在**其余三个文件**中计数，四者互相的计数**全部为 0**。
 它们之间的唯一联系是 `import`（依赖可见性），**没有一条定理把两个模块的

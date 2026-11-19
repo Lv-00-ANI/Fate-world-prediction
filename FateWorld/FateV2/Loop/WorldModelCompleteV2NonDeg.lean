@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.WorldModelCompleteV2NonDeg`
+模块：`FateV2.Loop`
 阶段：**审计 R423 次优先建议的落实 —— 给 `WorldModelCompleteV2` 一个非退化实例**
 
 ---------------------------------------------------------------------------
@@ -22,7 +22,7 @@
 **关于本文件的事实**：本文件**未构造**该实例。下文一律用具体项名
 （`nonDegRules` / `renderND` / `nonDegSim`），**不**使用 `nonDegWMC`。
 
-### (a) 与 `Fate.WorldModelCompleteV2.minWMC` 相比，本文件非退化在哪
+### (a) 与 `FateV2.Loop.minWMC` 相比，本文件非退化在哪
 
 | 项 | `minWMC`（`WorldModelCompleteV2.lean` §2） | 本文件（`nonDegFrame` 上的各项） |
 |---|---|---|

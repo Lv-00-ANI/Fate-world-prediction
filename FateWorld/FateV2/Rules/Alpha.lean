@@ -306,7 +306,7 @@ variable (K : FormalCtx.{u, v})
 > **取概念（导出算子不动点）过程**
 
 **本实现的具体构造**：给定属性集 $B$，取 $B''$。
-由 `Fate.FCA` 的幂等性（Mathlib 的 `upperPolar_lowerPolar_upperPolar`），
+由 `FateV2.Rules` 的幂等性（Mathlib 的 `upperPolar_lowerPolar_upperPolar`），
 $B''$ **确是一个不动点**（即闭集）——
 故「取概念」这一动作**有具体函数实现**，其**值域落在闭集内**。
 
@@ -530,7 +530,7 @@ def Encoder.Fiber {F : Frame} {K : FormalCtx.{u,v}} (enc : Encoder F K)
 /-- **E8 的误差量**：胞腔直径的上确界（**由调用者提供的度量**）。
 
 **为什么把度量做成参数**：$\mathcal{X}$ 上**未给定度量**
-（`StateSpace` 只要求拓扑 + 可测，见 `Fate.Basic`）。
+（`StateSpace` 只要求拓扑 + 可测，见 `FateV2.Modeling`）。
 **强行指定一个度量就是往定义里塞额外假设**——
 违反「定义与断言分离」（规格 §2.5.3）。
 

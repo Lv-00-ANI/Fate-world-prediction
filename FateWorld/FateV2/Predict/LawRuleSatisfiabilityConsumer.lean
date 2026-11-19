@@ -7,9 +7,9 @@
 
   | 上游模块 | 定理数 | 本模块用到的实质内容 |
   |---|---|---|
-  | `Fate.LawRuleSatisfiability` | 12 | `compatible_iff` / `mem_sInf_iff` / `Compatible` |
-  | `Fate.LawRulePointDecidability` | 15 | `not_isPoint_of_strict_generalize` / `IsPoint` 判据 |
-  | `Fate.PearlLawRuleBridge` | 19 | `SCM.toLawRule` / `isPoint_toLawRule` |
+  | `FateV2.Rules` | 12 | `compatible_iff` / `mem_sInf_iff` / `Compatible` |
+  | `FateV2.Rules` | 15 | `not_isPoint_of_strict_generalize` / `IsPoint` 判据 |
+  | `FateV2.Predict` | 19 | `SCM.toLawRule` / `isPoint_toLawRule` |
 
   ## 本模块证明的内容（非平凡的三条）
 

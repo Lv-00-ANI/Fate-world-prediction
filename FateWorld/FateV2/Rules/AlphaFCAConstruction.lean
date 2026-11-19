@@ -2,19 +2,19 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaFCAConstruction`
+模块：`FateV2.Rules`
 阶段：**α 的 FCA 版本 —— 端到端完整构造（实例集 → 形式背景 → DG 基 → 规则）**
 
 ---------------------------------------------------------------------------
 本文件补什么
 ---------------------------------------------------------------------------
-`Fate.Alpha`（裁决 D）给出 α 的**动作**：`takeConcept B := K.closureOp B`；
-`Fate.Implication` / `Fate.Completeness` 给出 **DG 基**与**完备性**。
-但**链条没有接通**：`Fate.Alpha.Encoder` 的两个字段是**自由参数**，
-`Fate.Implication` 的 DG 基不知道「实例」是什么。
+`FateV2.Rules`（裁决 D）给出 α 的**动作**：`takeConcept B := K.closureOp B`；
+`FateV2.Rules` / `FateV2.Export` 给出 **DG 基**与**完备性**。
+但**链条没有接通**：`FateV2.Rules.Encoder` 的两个字段是**自由参数**，
+`FateV2.Rules` 的 DG 基不知道「实例」是什么。
 
 本文件把四段接成**一条具体构造链**，并且**全部只用 `polarUp` / `polarDown`**
-（即 `Fate.FCA` 对 Mathlib `upperPolar` / `lowerPolar` 的绑定）：
+（即 `FateV2.Rules` 对 Mathlib `upperPolar` / `lowerPolar` 的绑定）：
 
 $$\underbrace{\mathcal{E}}_{\text{实例集}}
   \xrightarrow{\ \text{§1}\ }
@@ -54,7 +54,7 @@ $(\subseteq)$ **需要 `FiniteAttrs`**（`takeConcept_subset_rulesUnionClosure`�
 - **离散化误差（E8）不在本文件**：`obs` 被视为**给定**，
   「连续状态 → 二值观测」的误差量化仍属未完成项（见 `Fate/Alpha.lean` 文件头）。
 - **非冗余性**只对 `FiniteAttrs` 的背景陈述（结论继承自
-  `Fate.Completeness.dgbasisSelfRef_nonredundant`，本文件未重证）。
+  `FateV2.Export.dgbasisSelfRef_nonredundant`，本文件未重证）。
 - **基数最小性**（教材 Thm 3.49）**不在本文件**，见 `Fate/Minimality.lean` 的登记。
 -/
 
@@ -174,7 +174,7 @@ variable {E : InstSpace.{u}} {M : Type u}
 
 /-- **取概念（α 的动作）**：$B\mapsto B''$。
 
-就是 `Fate.Alpha.FormalCtx.takeConcept` 在 `ctx` 上的实例化，**不引入新运算**。 -/
+就是 `FateV2.Rules.FormalCtx.takeConcept` 在 `ctx` 上的实例化，**不引入新运算**。 -/
 abbrev takeConcept (D : AlphaData E M) (B : Set M) : Set M :=
   (D.ctx).takeConcept B
 
@@ -258,7 +258,7 @@ variable {E : InstSpace.{u}} {M : Type u}
 /-- **DG 基** $\mathcal{T}_{\mathbb{K}_{\mathcal{E}}}
 =\{P\Rightarrow P''\mid P\text{ 伪内涵}\}$。
 
-**复用** `Fate.Implication.DGBasisSelfRef`（自指 / 良基版本），**不重定义**：
+**复用** `FateV2.Rules.DGBasisSelfRef`（自指 / 良基版本），**不重定义**：
 核查脚本表明只有自指版本的基是**完备**的
 （见 `Implication.IsPseudoIntentCore` 的 doc-comment）。 -/
 abbrev dgBasis (D : AlphaData E M) : Set (Set M × Set M) :=
@@ -326,7 +326,7 @@ theorem dgBasis_entails_of_models (D : AlphaData E M) {A B : Set M}
     (h : (D.ctx).Models A B) {X : Set M} (hX : (D.ctx).IsModel X) (hA : A ⊆ X) : B ⊆ X :=
   (D.ctx).dgbasis_complete_semantic h hX hA
 
-/-- **DG 基非冗余**（有限属性集；结论继承自 `Fate.Completeness`）。 -/
+/-- **DG 基非冗余**（有限属性集；结论继承自 `FateV2.Export`）。 -/
 theorem dgBasis_nonredundant (D : AlphaData E M) [F : (D.ctx).FiniteAttrs] :
     (D.ctx).IsNonRedundant D.dgBasis :=
   @(D.ctx).dgbasisSelfRef_nonredundant F
@@ -377,7 +377,7 @@ def alpha (D : AlphaData E M) (e : E.Carrier) :
 theorem alpha_fst (D : AlphaData E M) (e : E.Carrier) :
     (D.alpha e).1 = D.instanceConcept e := rfl
 
-/-- 接口 ②：α 的第二分量就是 `Fate.Alpha` 的取概念（**不引入并行的 α**）。 -/
+/-- 接口 ②：α 的第二分量就是 `FateV2.Rules` 的取概念（**不引入并行的 α**）。 -/
 theorem alpha_snd_eq_takeConcept (D : AlphaData E M) (e : E.Carrier) :
     (D.alpha e).2 = (D.ctx).takeConcept (D.obs e) := rfl
 
@@ -662,7 +662,7 @@ theorem rulesUnionOf_eq_empty_of_dgBasis_empty (D : AlphaData E M)
 故化为 §6.2 的 `rulesUnionOf_subset_of_closed`。
 **⟹ 意义**：§6.2 只说 `rulesUnionOf C ⊆ C`，而 α 动作的输出是
 **`takeConcept C`**；本条把 §6.2 的结论**搬到 α 的语境**里，
-才是 `Fate.Alpha` 接口真正能消费的形式。 -/
+才是 `FateV2.Rules` 接口真正能消费的形式。 -/
 theorem rulesUnionOf_subset_takeConcept (D : AlphaData E M) {C : Set M}
     (hC : (D.ctx).IsClosedAttr C) : D.rulesUnionOf C ⊆ D.takeConcept C := by
   rw [show D.takeConcept C = C from hC]

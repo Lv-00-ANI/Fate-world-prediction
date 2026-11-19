@@ -19,7 +19,7 @@ import FateWorld.FateV2.Predict.ChainDSepCondMul
 
   ## 0 为什么需要这个文件
 
-  `grep -c "^import BridgeGeneralize$" Fate.lean` 早返回 `1`（说明它
+  `grep -c "^import BridgeGeneralize$" lean` 早返回 `1`（说明它
   **在链上**），但 `grep -rl "import BridgeGeneralize" Fate/*.lean` 返回空
   （说明它**没有任何消费者**）—— 即它是一个「编译进来但没人用」的**孤岛**。
 
@@ -123,7 +123,7 @@ theorem cover_condition_necessary :
 
 /-! ### W5 / W6 —— 接通 `ChainDSepCondMul`（P0-A2：消「已入库零消费」孤岛）
 
-`Fate/ChainDSepCondMul.lean` 早在 `Fate.lean` 里（`import FateV2.Predict.ChainDSepCondMul`），
+`Fate/ChainDSepCondMul.lean` 早在 `lean` 里（`import FateV2.Predict.ChainDSepCondMul`），
 但全库除**文档字符串**外无人引用其任何定理名 —— 审计 F2 判定它为
 **「已入库但零消费的孤岛」**。
 

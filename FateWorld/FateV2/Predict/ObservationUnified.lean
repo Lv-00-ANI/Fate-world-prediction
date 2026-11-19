@@ -59,9 +59,9 @@ set_option autoImplicit false
   ## 2 诚实边界（**必读**）
 
   1. **本文件不重复定义** `Setoid.ker`、`Quotient`、`PMF` 等基础构造 ——
-     全部复用 Mathlib 与仓内 `Fate.KernelQuotient` / `MiddleZoneDichotomy`。
-  2. **本文件不修改** `Fate.lean`（作者纪律）。若要接入构建，另行在
-     `Fate.lean` 加一行 `import ObservationUnified` —— **本文件不代做**。
+     全部复用 Mathlib 与仓内 `FateV2.Modeling` / `MiddleZoneDichotomy`。
+  2. **本文件不修改** `lean`（作者纪律）。若要接入构建，另行在
+     `lean` 加一行 `import ObservationUnified` —— **本文件不代做**。
   3. **三档的「统一」是接口层面的统一**，不是「把一个定理伪装成三个」：
      三档各自的结论类型不同（商商集 / `W → ENNReal` / `ℝ` 误差界），
      这正是 `A14-三档关系分析.md` §2 「三者量纲不同型」的 **Lean 侧证据**。
@@ -80,9 +80,9 @@ set_option autoImplicit false
 
   | 本文件 | 复用/对应 |
   |---|---|
-  | `InversionTier.quotient` | `Fate.KernelQuotient` 的「核–商」一般理论 |
-  | `classOf_eq_iff` | `Fate.KernelQuotient` 的 `Quotient.eq''`；`MiddleZoneDichotomy` 的 `middleZone_empty_iff_injective` |
-  | `post_*` | `Fate.T43Abduction` 的 `abduction_eq_doLaw_of_sg_indep` 的**形状**（无信息似然 ⟹ 信息被消去）|
+  | `InversionTier.quotient` | `FateV2.Modeling` 的「核–商」一般理论 |
+  | `classOf_eq_iff` | `FateV2.Modeling` 的 `Quotient.eq''`；`MiddleZoneDichotomy` 的 `middleZone_empty_iff_injective` |
+  | `post_*` | `FateV2.Predict` 的 `abduction_eq_doLaw_of_sg_indep` 的**形状**（无信息似然 ⟹ 信息被消去）|
   | `bounded_*` | `R250ErrorBound` 的 `error_bound_gives_correct_classification` 的**距离版** |
 
   ## 4 ⚠⚠ 第 619 轮修正：删除空洞定理 `tier_output_shape`
@@ -262,7 +262,7 @@ theorem post_eq_zero_of_lik_zero (P : PosteriorData W Y) (y : Y) (w : W)
 似然 `lik y` 恒等于常数 `c` 时，观测 `y` **不携带**关于 `w` 的信息，
 后验**完全退化**为先验（乘比例常数 `c`）。
 
-⟹ **这是 `Fate.T43Abduction.abduction_eq_doLaw_of_sg_indep` 的同形状陈述**：
+⟹ **这是 `FateV2.Predict.abduction_eq_doLaw_of_sg_indep` 的同形状陈述**：
 「去掉依赖 ⟹ 信息被消去」。 -/
 theorem post_eq_of_const_lik (P : PosteriorData W Y) (y : Y) (c : ENNReal)
     (h : ∀ w, P.lik y w = c) :

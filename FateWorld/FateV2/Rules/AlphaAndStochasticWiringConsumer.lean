@@ -2,24 +2,24 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaAndStochasticWiringConsumer`
-任务：**消费** `Fate.AlphaAndStochasticWiring` 的核心结论（P5 并行批次）
+模块：`FateV2.Rules`
+任务：**消费** `FateV2.Rules` 的核心结论（P5 并行批次）
 
 ---------------------------------------------------------------------------
 本文件做什么
 ---------------------------------------------------------------------------
-`Fate.AlphaAndStochasticWiring` 把两条孤岛接进主干：
+`FateV2.Rules` 把两条孤岛接进主干：
 
 * 阶段 1：`alphaDataOfInstances : Finset (InstanceChain.Instance O A) → AlphaData`
-* 阶段 2：`AlphaData.takeConcept` = `Fate.Adjunction` 的 `takeConcept`，
+* 阶段 2：`AlphaData.takeConcept` = `FateV2.Rules` 的 `takeConcept`，
   并把 Galois 连接 / hexagon 等式实例化到 `AlphaData.ctx`
-* 阶段 3：`Fate.detTraj = TrajGenDeterministic.detTraj`；
+* 阶段 3：`detTraj = TrajGenDeterministic.detTraj`；
   点质量输入下 `trajLaw` 塌缩为 `δ`（`trajLaw_dirac`）
 
 本文件**不重建**上述结论，而是把它们**接到新的下游用途上**，
 证明它们**有可消费的内容**（不是改名也不是同义反复）：
 
-* §1　**阶段 1 的消费**：把实例表桥接进 `Fate.Alpha.Encoder`。
+* §1　**阶段 1 的消费**：把实例表桥接进 `FateV2.Rules.Encoder`。
   给定实例表 `D`，构造一个 `Encoder`（背景 = `(alphaDataOfInstances D).ctx`），
   使 `toAttrs i = obs i`、`toObjects i = obs i '`，
   并证明它的 `Encoder.Coherent` **按构造成立**。
@@ -85,13 +85,13 @@ def instancesFrame (I : Type) : Frame where
 end FrameForInstances
 
 /-! ===========================================================================
-    §1  阶段 1 的消费：实例表 ⟶ `Fate.Alpha.Encoder`
+    §1  阶段 1 的消费：实例表 ⟶ `FateV2.Rules.Encoder`
     =========================================================================== -/
 
 /-! ### §1.0 为什么这是**消费**而不是重述
 
 `AlphaAndStochasticWiring` 阶段 1 给出 `alphaDataOfInstances D`（一个 `AlphaData`），
-但 `Fate.Alpha.Encoder` 的字段是 `toObjects` / `toAttrs`，**没有**「观测映射」这一位。
+但 `FateV2.Rules.Encoder` 的字段是 `toObjects` / `toAttrs`，**没有**「观测映射」这一位。
 故要把「α 有实例表来源」这件事**真正交给 α 的下游**，必须构造
 `Encoder F K`，并证明它的 `Coherent` 条件**可被 `obs` 直接判定**。
 本节做的正是这件事。**没有阶段 1 的 `obs` 定义就没有 `encoderAttrs` 的良定义性**。 -/
@@ -143,7 +143,7 @@ theorem encoderOfInstances_toObjects (D : Finset (InstanceChain.Instance O A))
 `Encoder.Coherent enc ≜ ∀ x, polarDown (toAttrs x) = toObjects x`。
 对 `encoderOfInstances D` 这条**恒成立**且**无任何前件**。
 
-**用途**：`Fate.Alpha` §1 把 `Coherent` 作为**可选前件**留给使用者；
+**用途**：`FateV2.Rules` §1 把 `Coherent` 作为**可选前件**留给使用者；
 本定理说明，**凡来自实例表的 encoder 都自动满足它**，
 故 α 的「编码自洽」这一负担在**实例表这条路上是零成本**的。
 
@@ -217,7 +217,7 @@ theorem AlphaData.takeConcept_instanceConcept_intent_idem (D : AlphaData E M)
 
 $$K\models A\Rightarrow B \iff (A',A'')\le (B',B'').$$
 
-⚠ **注意方向**：概念格序 $\le$ 是外延**包含**序（`Fate.FCA.concept_le_iff_extent_subset`
+⚠ **注意方向**：概念格序 $\le$ 是外延**包含**序（`FateV2.Rules.concept_le_iff_extent_subset`
 把 $c\le d$ 解为 $c.\mathrm{extent}\subseteq d.\mathrm{extent}$）。
 而 $\mathbb{K}\models A\Rightarrow B$ 意为 $B''\subseteq A''$，由极运算的
 单调反变性这**等价于** $A'\subseteq B'$，即 $\mathrm{toConcept}\ A\le \mathrm{toConcept}\ B$。
@@ -228,7 +228,7 @@ $$K\models A\Rightarrow B \iff (A',A'')\le (B',B'').$$
 
 三处展开缺一不可：`models_iff_takeConcept`（`AlphaAndStochasticWiring` §2）
 把蕴含解为 $B''\subseteq A''$；`toConcept_extent`（`AlphaFCAConstruction` §2）
-把外延解为 $B'$；`Fate.FCA.concept_le_iff_extent_subset` 把概念序解为外延包含。
+把外延解为 $B'$；`FateV2.Rules.concept_le_iff_extent_subset` 把概念序解为外延包含。
 中间那一步「$B''\subseteq A''\iff A'\subseteq B'$」由
 `polarUp`/`polarDown` 的单调反变性与幂等性给出。 -/
 theorem AlphaData.models_iff_toConcept_le (D : AlphaData E M) {A B : Set M} :
@@ -285,7 +285,7 @@ theorem trajGenSto_dirac (F : Frame) [MeasurableSpace F.Ν.Carrier]
 确定方案的 `detTraj`，两两相等。
 
 `AlphaAndStochasticWiring` 给出右边（`detTraj_sto_eq_det`），
-`Fate.TrajGenStochastic` 给出左边（`unfold_eq_detTraj`）；
+`FateV2.Model` 给出左边（`unfold_eq_detTraj`）；
 本定理把两者**串成一条合取**，使「④ 的每条样本 = ① 的轨迹」
 这一断言可**一步 `obtain`** 拿两段用于任何下游证明。 -/
 theorem unfold_eq_detTrajDet_full (F : Frame) (f : Step F) (T : ℕ)

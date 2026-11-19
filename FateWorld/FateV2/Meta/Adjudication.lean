@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.Adjudication
+模块：FateV2.Meta
 性质：**作者裁决在代码中的落点**（`作者裁决-Q1到Q6.md`）
 
 ---------------------------------------------------------------------------
@@ -50,8 +50,8 @@
 | 项 | 裁决 | 本文件的落点 |
 |---|---|---|
 | **Q-5** | A8 分 **T0（实现）/ T1（效率）** 两层，**先证 T0** | `A8Layer`、`A8T0IsCurrentTarget` |
-| **Q-1** | θ = **被提取的规律** | `Fate.Frame` 的 `ThetaIsExtracted`；新开放问题见 `OQ1` |
-| **Q-2** | 取 **(a) 状态可直接获取** | `Fate.Frame` 的 `currentRegime` |
+| **Q-1** | θ = **被提取的规律** | `FateV2.Model` 的 `ThetaIsExtracted`；新开放问题见 `OQ1` |
+| **Q-2** | 取 **(a) 状态可直接获取** | `FateV2.Model` 的 `currentRegime` |
 | **Q-4** | 先 (a) 落地（**排除有环**），(b) 登记待发展 | `AcyclicScope`、`AcyclicAssumption`、`OQ2` |
 | **Q-3** | **暂缓** | 见文末「暂缓项」 |
 | **Q-6** | **按后续情况来**（暂不定） | 见文末「暂缓项」 |
@@ -126,7 +126,7 @@ theorem currentA8Layer_eq_T0 : currentA8Layer = A8Layer.T0 := rfl
 （即「存在算法」的构造性表述）——**存在性由「写出来」证明**，
 而不是由存在性公理断言。
 
-**本实现的状态**：$\alpha$ 的具体构造已在 `Fate.Alpha` 的 `takeConcept` 中给出，
+**本实现的状态**：$\alpha$ 的具体构造已在 `FateV2.Rules` 的 `takeConcept` 中给出，
 故 **A8.T0 的「存在」部分已有落点**。
 
 **⚠ 本定义不声称**：
@@ -179,7 +179,7 @@ doc-comment 里的限制**不参与类型检查**，会被下游静默绕过；
 typeclass 则**强制**每一个使用者显式承担该前件。 -/
 class AcyclicScope where
   /-- 该作用域内的一切因果结构均**无环**（无有向环）。
-  **具体内容留待 SCM 定义层**（`Fate.Causal`，阶段 1A）填充——
+  **具体内容留待 SCM 定义层**（`Causal`，阶段 1A）填充——
   本文件只登记这一**范围限制本身**。 -/
   acyclic : Prop
 
@@ -304,7 +304,7 @@ $$\mathcal{E}\ \xrightarrow{\ \alpha_\theta\ }\ \theta,\qquad
   R_\theta\ \xrightarrow{\ \ }\ \text{预测}$$
 
 **⚠ 实现状态**：$\alpha_\theta$ 与 $\alpha_R$ **均为待构造的算子**
-（$\alpha$ 的 FCA 具体化见 `Fate.Alpha`；此处只登记**两条输出**这一结构）。
+（$\alpha$ 的 FCA 具体化见 `FateV2.Rules`；此处只登记**两条输出**这一结构）。
 本实现**不声称**二者已构造出来。 -/
 
 /-- **主线结构的登记**：$\alpha$ 的两路输出（裁决 J）。 -/

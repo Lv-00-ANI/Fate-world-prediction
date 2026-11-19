@@ -66,7 +66,7 @@
 * `FateV2.Error.ChainErrorBudgetBound`（`optEstimate`、`estGap`、`learnErr`、`steadyTerm`、
   `chain_est_budget`、`learnErr_closed`、`learnErr_nonneg`、`steadyTerm_nonneg`）
 * `ThetaConvergence`（`thetaN`、`thetaN_closed`、`linWorld`）
-* `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`）
+* `FateV2.Loop`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`）
 * `OptimalEta`（`c`、`err_eq_c_pow`）
 * `FateV2.Error.GaussMarkovScalar`（`est`、`est_variance`、`variance_nonneg`）
 

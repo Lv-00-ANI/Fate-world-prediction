@@ -24,7 +24,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
   > 「本轮唯一工程产出零消费零可执行（指标 1=0、指标 2=0）。」
 
   `Fate/EndToEndUnconditional.lean` 的 3 条定理在此之前**没有任何消费者**
-  （`grep EndToEndUnconditional Fate/*.lean` 只命中 `Fate.lean` 的 `import` 行）。
+  （`grep EndToEndUnconditional Fate/*.lean` 只命中 `lean` 的 `import` 行）。
   一个「只有定义者、没有用户」的定理，按本项目口径**不算工程产出**。
 
   本文件是它的**第一个真实消费者**：不重复陈述，而是**把它的结论用掉**，

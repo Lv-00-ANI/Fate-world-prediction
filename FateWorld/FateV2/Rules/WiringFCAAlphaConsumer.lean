@@ -57,7 +57,7 @@
 ---------------------------------------------------------------------------
 * `alphaRead_K3_empty` / `alphaRead_K3_singleton` 等：结论是**具体集合等式**
   （`= univ` / `= {0}`），前件只有 `B = ∅` 之类**输入侧**假设；
-  `α` 的取值由 `Fate.AlphaConcreteInstance` 的 6 条极运算算得，
+  `α` 的取值由 `FateV2.Rules` 的 6 条极运算算得，
   不是「假设结论」。
 * `alphaPartition_trans`：前件是两条**同类关系**，结论是第三条 ——
   这是定义展开后的 `Eq.trans`，内容虽浅但**不是**同义反复（前件不提第三条）。
@@ -121,7 +121,7 @@ namespace K3Read
 /-- **`α(∅)` 的读集**：`α(∅) = ∅`，故 `∅' = univ`（所有对象都落在空概念里）。
 
 这里**同时**消费 `WiringFCAAlpha.alphaRead`（读集的定义）与
-`Fate.AlphaConcreteInstance.takeConcept_eq_empty`（α 的取值）。 -/
+`FateV2.Rules.takeConcept_eq_empty`（α 的取值）。 -/
 theorem alphaRead_K3_empty :
     (FateV2.Rules.WiringFCAAlpha.FormalCtx.alphaRead K3 (∅ : Set M2)).1 = (univ : Set G3) := by
   show K3.polarDown (K3.takeConcept (∅ : Set M2)) = univ
@@ -154,7 +154,7 @@ theorem alphaRead_K3_ab :
 
 /-- ⭐ **`K3` 上 α 读集的完整值域**：只有 **3** 个可能值（`univ`、`{0,1}`、`{0}`）。
 
-由 `Fate.AlphaConcreteInstance.all_attr_subsets`（属性子集穷尽 4 个）
+由 `FateV2.Rules.all_attr_subsets`（属性子集穷尽 4 个）
 分类代入得出 —— **不是**假设。 -/
 theorem alphaRead_K3_range (B : Set M2) :
     (FateV2.Rules.WiringFCAAlpha.FormalCtx.alphaRead K3 B).1 = (univ : Set G3) ∨

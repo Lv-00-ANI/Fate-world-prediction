@@ -12,7 +12,7 @@
 `Disjoint Y Z`，且两处 `hcover` 的类型一致（都是 `X ∪ Y ∪ Z = Finset.univ`），
 因此无需任何类型转换。
 
-**本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `Fate.lean`。**
+**本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `lean`。**
 -/
 
 import FateWorld.FateV2.Predict.SplitFromDAG

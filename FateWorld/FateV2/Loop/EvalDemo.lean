@@ -3,22 +3,22 @@
 =====================================================
 
 模块：`EvalDemo`
-上游：`Fate.WorldModel`（`WorldModel`, `WorldModel.sim`, `WorldModel.sim_zero`,
+上游：`FateV2.Predict`（`WorldModel`, `WorldModel.sim`, `WorldModel.sim_zero`,
 　　　`WorldModel.sim_succ`, `WorldModel.x`, `WorldModel.f`）、
 　　　`FateV2.Model.TrajGenDeterministic`（`trajGen`）。
 
 ---------------------------------------------------------------------------
 ⚠ 本文件的修复记录（P0 修复批次，如实说明）
 ---------------------------------------------------------------------------
-本文件原 `import Fate.WorldModelMinimal`，但该模块**已被移出 `Fate/`**
+本文件原 `import WorldModelMinimal`，但该模块**已被移出 `Fate/`**
 （现存于 `_quarantine/WorldModelMinimal.lean`，且其 `zWorldModel_sim_two`
 一条定理本身编译不过），故 `.lake/build/lib/lean/Fate/WorldModelMinimal.olean`
 不存在，导致本文件报唯一错误
-`object file ... of module Fate.WorldModelMinimal does not exist`。
+`object file ... of module WorldModelMinimal does not exist`。
 
 **修复方式（只改 import 与证明，不改任何定理陈述）**：
 本文件**不再**依赖那个被隔离的模块，而是**在文件内**用可用模块
-（`Fate.WorldModel` / `FateV2.Model.TrajGenDeterministic`）**重建**同一个最小实例
+（`FateV2.Predict` / `FateV2.Model.TrajGenDeterministic`）**重建**同一个最小实例
 （状态空间 `Bool`、参数/输入/动作/噪声均为单点 `PUnit`、机制 `!x`、初值 `false`）。
 重建所用的每个定义与 `_quarantine/WorldModelMinimal.lean` 的对应定义**逐字同构**
 （`minFrame`、`stepFlip`、`minimalWorldModel`），故本文件所证的数值与语义

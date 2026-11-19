@@ -18,7 +18,7 @@ import FateWorld.FateV2.Loop.PipelineTendstoGen
 /-! ===========================================================================
   `FateV2.Predict.KK1NoiseAsymmetryConsumer` —— **`KK1NoiseAsymmetry` 的首个消费者**
 
-  （叶子接线 2；本文件由 `Fate.lean` 直接 import）
+  （叶子接线 2；本文件由 `lean` 直接 import）
 
   ## 0  一句话
 

@@ -16,7 +16,7 @@ import Mathlib.Data.Fintype.Basic
   - 状态：已迁移
 -/
 
-/-! **Verified, zero-sorry replacement** for `Fate.LawRulePointDecidability`.
+/-! **Verified, zero-sorry replacement** for `FateV2.Rules`.
   Kept under a separate module name so the in-progress edit of the original file is not clobbered.
   To promote: copy this file over `Fate/LawRulePointDecidability.lean`. -/
 

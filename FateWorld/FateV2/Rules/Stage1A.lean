@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.Stage1A
+模块：FateV2.Rules
 阶段：**阶段 1A —— 外部既有数学的蕴含式形式化**
 
 ---------------------------------------------------------------------------
@@ -40,12 +40,12 @@
 | T1A.6 | Lyapunov 稳定性判据 | 🟡 `Analysis.ODE` 有 ODE 基础，**无 Lyapunov 定理** | **部分**（见 §3） |
 | T1A.7 | 马尔可夫链收敛 $P^n\to\mathbf1\pi$ | ❌ **无 `MarkovChain` 模块** | **未实现**（登记） |
 | T1A.8 | 鞅收敛定理 | ✅ `Probability.Martingale.Convergence` **有** | **已转写**（§2） |
-| T1A.9 | FCA 基本定理 | ✅ `Order.Concept` **有** | **已转写**（`Fate.FCA` + §1） |
+| T1A.9 | FCA 基本定理 | ✅ `Order.Concept` **有** | **已转写**（`FateV2.Rules` + §1） |
 
-> **T1A.9 的实质补强**：`Fate.ConceptLatticeComplete` 给出「概念格是完备格」
+> **T1A.9 的实质补强**：`FateV2.Rules` 给出「概念格是完备格」
 > 的**非 `rfl` 级**证明——显式构造任意交（外延之交）与任意并（外延之并的闭包），
 > 并证各自的 `IsGLB`/`IsLUB` 泛性质（`T1A9_conceptLattice_complete_substantive`）。
-| T1A.10 | DG 基是最小完备蕴含基 | ❌ 无 | 🟡 **部分**（完备性为条件定理，见 `Fate.Completeness`） |
+| T1A.10 | DG 基是最小完备蕴含基 | ❌ 无 | 🟡 **部分**（完备性为条件定理，见 `FateV2.Export`） |
 
 **本实现不掩盖未实现项**：上表凡标「未实现」者，
 **不是「待办」而是「受 Mathlib 覆盖限制」**——
@@ -106,21 +106,21 @@ set_option linter.checkUnivs false
 **本文件的转写**：把该定理**拆成两条**，各自给出**具名前件**。
 
 **两条的前件均为「$\mathbb{K}$ 是形式背景」**——
-这**不是**匿名前提，而是 `Fate.FCA` 中已定义的 `FormalCtx` 类型。
+这**不是**匿名前提，而是 `FateV2.Rules` 中已定义的 `FormalCtx` 类型。
 
 **标 `[已知]`**：**外部既有结果，本框架内未证**。
-本实现只在 `Fate.FCA` 中把它**绑定到规格记号**（$A'$ ↔ `upperPolar`）。 -/
+本实现只在 `FateV2.Rules` 中把它**绑定到规格记号**（$A'$ ↔ `upperPolar`）。 -/
 
 /- **T1A.9(1)：形式上格是完备格**（前件：$\mathbb{K}$ 是形式背景）。
 
 **标 `[已知]`**——**外部既有结果（Mathlib），本框架内未证**。
 
-本实现只做**暴露**：把 `Fate.FCA` 中已建立的 `CompleteLattice` 实例
+本实现只做**暴露**：把 `FateV2.Rules` 中已建立的 `CompleteLattice` 实例
 在此以**具名定理**形式给出，使 T1A.9 的第一半在验收报告中有确定落点。
 
 **⚠ 实质补强**：原版本的证体只是 `⟨inferInstance⟩`——它断言
 「**实例存在**」，但没有说明**概念格为什么完备**。
-`Fate.ConceptLatticeComplete` 补上了实质内容（任意交 = 外延之交，
+`FateV2.Rules` 补上了实质内容（任意交 = 外延之交，
 任意并 = 外延之并的闭包，各自的泛性质 `IsGLB`/`IsLUB`），
 见 `T1A9_conceptLattice_complete_substantive`。
 本定理同时给出**实例存在**（由 `inferInstance`）与**实质刻画**（由该模块），
@@ -147,7 +147,7 @@ theorem T1A9_conceptLattice_complete (K : FormalCtx.{u, v}) :
 theorem T1A9_complete_substantive_alias (K : FormalCtx.{u, v}) :
     (∀ S : Set (ConceptLattice K), IsGLB S (K.sInfConcept S)) ∧
     (∀ S : Set (ConceptLattice K), IsLUB S (K.sSupConcept S)) :=
-  Fate.T1A9_conceptLattice_complete_substantive K
+  T1A9_conceptLattice_complete_substantive K
 
 /- **T1A.9(2)：形式概念是 Galois 连接的不动点**
 （前件：$\mathbb{K}$ 是形式背景）。
@@ -155,9 +155,9 @@ theorem T1A9_complete_substantive_alias (K : FormalCtx.{u, v}) :
 **标 `[已知]`**——**外部既有结果（Mathlib），本框架内未证**。
 
 **转写说明**：本实现用**基本对偶**形式
-$B\subseteq A'\iff A\subseteq B'$（`Fate.FCA` 的
+$B\subseteq A'\iff A\subseteq B'$（`FateV2.Rules` 的
 `subset_polarUp_iff_subset_polarDown`）而非 `GaloisConnection` 项——
-理由见 `Fate.FCA` 中该引理的 doc-comment（`OrderDual` 导致类型类合成卡住，
+理由见 `FateV2.Rules` 中该引理的 doc-comment（`OrderDual` 导致类型类合成卡住，
 二者数学等价）。 -/
 theorem T1A9_galois_fixpoint (K : FormalCtx.{u, v}) {A : Set K.GFCA}
     {B : Set K.MFCA} :
@@ -267,7 +267,7 @@ theorem T1A8_integrability_wellformed {Ω : Type*} [MeasurableSpace Ω]
 def DifferentiableMechanism (F : Frame) (_f : Step F) : Prop :=
   -- **本定义的内容是「占位」**：A27 的具体可微性条件
   -- 依赖 $\mathcal{X}$ 上的微分结构，而 `StateSpace` 只要求拓扑+可测
-  -- （见 `Fate.Basic`）。
+  -- （见 `FateV2.Modeling`）。
   -- **故本实现无法在此写出非平凡内容**——若强行写出
   -- （如要求 $\mathcal{X}$ 是流形），会把一条**额外假设**塞进定义，
   -- 违反「定义与断言分离」。
@@ -361,9 +361,9 @@ def t1aInventory : List T1AItem := [
   ⟨"T1A.8", "鞅收敛定理",
    "【已完成转写】Mathlib 有 Probability.Martingale.Convergence；前件已具名（MartingaleIntegrability）"⟩,
   ⟨"T1A.9", "FCA 基本定理：概念格完备格 + Galois 不动点",
-   "【已完成转写+实质补强】Mathlib 有 Order.Concept；Galois 不动点见 T1A9_galois_fixpoint；完备格的实质证明见 Fate.ConceptLatticeComplete 与 T1A9_conceptLattice_complete_substantive"⟩,
+   "【已完成转写+实质补强】Mathlib 有 Order.Concept；Galois 不动点见 T1A9_galois_fixpoint；完备格的实质证明见 FateV2.Rules 与 T1A9_conceptLattice_complete_substantive"⟩,
   ⟨"T1A.10", "DG 基是最小完备蕴含基",
-   "【部分完成】可靠性已证（dgbasis_sound）；完备性为条件定理（见 Fate.Completeness）；最小性未做"⟩
+   "【部分完成】可靠性已证（dgbasis_sound）；完备性为条件定理（见 FateV2.Export）；最小性未做"⟩
 ]
 
 /-- **已完成转写的条目数**（供验收报告统计）。

@@ -132,7 +132,7 @@
 ---------------------------------------------------------------------------
 本文件**零 `sorry`、零 `admit`、零 `axiom`**。
 所用引理全部为 Mathlib 已有定理或**已入链**模块
-（`FateV2.Rules.ComposeSemantics`、`FateV2.Rules.CompNotCommutative`、`Fate.WiringFourOpFixed`、
+（`FateV2.Rules.ComposeSemantics`、`FateV2.Rules.CompNotCommutative`、`FateV2.Rules`、
 `FateV2.Rules.ComposeOperator`）中的定理。
 -/
 

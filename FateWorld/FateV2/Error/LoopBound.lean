@@ -167,7 +167,7 @@ theorem ncard_lt_iterate_of_not_stable [K.FiniteAttrs] (B : Set K.MFCA) (n : ℕ
 - 结论的**界部分**（`N + B.ncard ≤ |univ|`）是**纯集合基数**性质，
   证明中 `round` / `Function.iterate` **一次都没出现**；
 - 若能取 `N = 1`，则「定量」= 「`N ≤ 1`」，而该陈述已在
-  `Fate.Completeness.loop_stabilizes_within_one` 中**无条件**给出。
+  `FateV2.Export.loop_stabilizes_within_one` 中**无条件**给出。
 
 **⟹ 本定理不是「存在性 → 定量」的进步，而是「幂等性 + 集合论」的拼装。**
 **⚠ 不应以它作为「稳定步数有界」的证据。**

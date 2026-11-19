@@ -2,19 +2,19 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.AlphaFourOp
-任务：**AA6 —— 把 `Fate.WiringFourOpFixed` 接进 `Fate.Alpha`**
+模块：FateV2.Rules
+任务：**AA6 —— 把 `FateV2.Rules` 接进 `FateV2.Rules`**
 
 ---------------------------------------------------------------------------
 本文件做什么（一句话）
 ---------------------------------------------------------------------------
-`Fate.WiringFourOpFixed` 在同**一个**实例 `K3` 上证明了 α／γ／υ／∘ 四算子的
+`FateV2.Rules` 在同**一个**实例 `K3` 上证明了 α／γ／υ／∘ 四算子的
 一致性（`four_operators_joint_compatibility` 等），但那些定理全部陈述在
-`AlphaInstance.WiringFixed` 命名空间里，**没有一条以 `Fate.Alpha` 的抽象接口
+`AlphaInstance.WiringFixed` 命名空间里，**没有一条以 `FateV2.Rules` 的抽象接口
 （`takeConcept` / `IsClosedAttr` / `Models`）为**主语**。
 
-本文件补上这一层：把四算子一致性的**一般结论**（来自 `Fate.Alpha` 与
-`Fate.WiringFourOpFixed`）落到 **α 的具体实例 `K3`** 上，并给出
+本文件补上这一层：把四算子一致性的**一般结论**（来自 `FateV2.Rules` 与
+`FateV2.Rules`）落到 **α 的具体实例 `K3`** 上，并给出
 「α 与另外三个算子的交互定理」——即 `alpha_*` 与 `upsilonK` / `gammaK` /
 `combClosure` 之间的代数关系。
 
@@ -23,14 +23,14 @@
 ---------------------------------------------------------------------------
 | # | 定理 | 前件 | 结论 | 判定 |
 |---|------|------|------|------|
-| 1 | `alpha_upsilon_agree` | **无** | `alphaK B = upsilonK B` | **`rfl` 级**（α、υ 在 `Fate.Alpha`／`UpsilonOperator` 中**都定义**为 `closureOp`）。**显式登记为定义重合，不冒充新数学**，仅作规范化引理 |
-| 2 | `alpha_upsilon_fixed_iff` | **无** | `IsClosedAttr B ↔ Saturated υ B` | **有内容**：两个谓词来自**不同模块**（`Fate.Implication` 的 `IsClosedAttr` 与 `UpsilonOperator` 的 `Saturated`），需经 `fca_saturated_iff_isClosedAttr` 转接；**不是 `rfl`**，也不是把结论写进前件 |
+| 1 | `alpha_upsilon_agree` | **无** | `alphaK B = upsilonK B` | **`rfl` 级**（α、υ 在 `FateV2.Rules`／`UpsilonOperator` 中**都定义**为 `closureOp`）。**显式登记为定义重合，不冒充新数学**，仅作规范化引理 |
+| 2 | `alpha_upsilon_fixed_iff` | **无** | `IsClosedAttr B ↔ Saturated υ B` | **有内容**：两个谓词来自**不同模块**（`FateV2.Rules` 的 `IsClosedAttr` 与 `UpsilonOperator` 的 `Saturated`），需经 `fca_saturated_iff_isClosedAttr` 转接；**不是 `rfl`**，也不是把结论写进前件 |
 | 3 | `alpha_of_saturated` | `Saturated υ B`（**只**说 υ 在 `B` 上不动） | `alphaK B = B`（α 在 `B` 上不动） | **真内容**：前件讲 **υ**，结论讲 **α**；两者是不同算子的不动点陈述，需借助 #1 的同一性 + 定义展开 |
 | 4 | `alpha_absorbs_upsilon` | **无** | `alphaK (upsilonK B) = upsilonK B` | **真内容**：一个**非** `rfl` 的等式，需 `closureOp_idem`（FCA Galois 连接）；前件空 |
 | 5 | `alpha_mono_upsilon` | **无** | `B₁ ⊆ B₂ → upsilonK B₁ ⊆ alphaK B₂` | **真内容**：单调性跨算子传递（`upsilonK` 出口 → `alphaK` 入口），需 `closureOp_mono` + `subset_closureOp` |
-| 6 | `alpha_gamma_galois` | **无** | `takeConcept B ⊆ C ↔ B ⊆ C`（`C` 闭） | **真内容**：这是 `Fate.GammaOperator` 的 `α ⊣ γ` Galois 连接在 `K3` 上的落点（γ 侧取闭集子类型嵌入）；前件仅「`C` 是闭集」，是**目标的结构前提**，不是结论的重述 |
+| 6 | `alpha_gamma_galois` | **无** | `takeConcept B ⊆ C ↔ B ⊆ C`（`C` 闭） | **真内容**：这是 `FateV2.Rules` 的 `α ⊣ γ` Galois 连接在 `K3` 上的落点（γ 侧取闭集子类型嵌入）；前件仅「`C` 是闭集」，是**目标的结构前提**，不是结论的重述 |
 | 7 | `alpha_gamma_section` | **无**（`C` 为闭集子类型元素） | `alphaFCA (gammaFCA C) = C` | **真内容**：γ 是 α 的**截面**（α∘γ = id），需 Galois 插入的两侧不等式；结论不在任何前件里 |
-| 8 | `alpha_comb_absorbs` | **无** | `alphaK (combClosure A B) = combClosure A B` | **真内容**：α 吸收 ∘（`Fate.WiringFourOpFixed.alpha_absorbs_comb` 在 `Fate.Alpha` 层的重述），走 `closureOp_idem`；前件空 |
+| 8 | `alpha_comb_absorbs` | **无** | `alphaK (combClosure A B) = combClosure A B` | **真内容**：α 吸收 ∘（`FateV2.Rules.alpha_absorbs_comb` 在 `FateV2.Rules` 层的重述），走 `closureOp_idem`；前件空 |
 | 9 | `alpha_comb_mono_left` / `_right` | **无** | `combClosure A B` 含 `alphaK A`（和 `alphaK B`） | **真内容**：`subset_closureOp` + 并集左/右单射；前件空 |
 | 10 | `alpha_chain_collapses` | **无** | 任意非空 `Step` 链 ＝ 一次 `alphaK` | **真内容**：链长归纳（消费 `runChain_collapses`），把结论从「`closureOp`」翻译成「**α**」——这是本文件把 Wiring 结论落回 Alpha 接口的**核心接线** |
 | 11 | `alpha_gamma_chain_idem` | **无** | `γ` 迭代 `n+1 ≥ 1` 次 ＝ 一次 | **真内容**：`GenOp.iterate_succ` 的应用，结论不在前件 |
@@ -44,12 +44,12 @@
 ---------------------------------------------------------------------------
 1. **零 `sorry` / `admit` / `axiom`**（已用 `#print axioms` 逐条核对，
    只出现 `propext` / `Classical.choice` / `Quot.sound` 三个标准公理）。
-2. 本文件是**消费方（consumer）**：α 的定义来自 `Fate.Alpha`，
-   四算子一致性来自 `Fate.WiringFourOpFixed`，γ 的 `GenOp` 律来自
-   `Fate.GammaOperator`，υ 的 `IsCompletion` 律来自 `UpsilonOperator`。
+2. 本文件是**消费方（consumer）**：α 的定义来自 `FateV2.Rules`，
+   四算子一致性来自 `FateV2.Rules`，γ 的 `GenOp` 律来自
+   `FateV2.Rules`，υ 的 `IsCompletion` 律来自 `UpsilonOperator`。
    **本文件不新造算子，不新造公理，不重证已有结论。**
 3. **不修改任何已有模块**：全部内容为新增。
-4. ∘ 仍取 `Fate.WiringFourOpFixed` 的 `combClosure`（规格开放问题 5.1 未定的
+4. ∘ 仍取 `FateV2.Rules` 的 `combClosure`（规格开放问题 5.1 未定的
    **一个**候选实现）；本文件**不**声称它是规格里的那个 ∘。
 5. **不填** θ、**不填** υ 的概率表达式、**不填** γ 的三条泛化判据
    （规格纪律「填数即为虚构」）。
@@ -94,51 +94,51 @@ namespace WiringFixed
 -/
 
 /-! ===========================================================================
-    §1  α 的 `Fate.Alpha` 接口在 `K3` 上的落点
+    §1  α 的 `FateV2.Rules` 接口在 `K3` 上的落点
     ===========================================================================
 
-α 在 `Fate.Alpha` 中是 `FormalCtx.takeConcept B = K.closureOp B`
+α 在 `FateV2.Rules` 中是 `FormalCtx.takeConcept B = K.closureOp B`
 （`def takeConcept (B : Set K.MFCA) : Set K.MFCA := K.closureOp B`）。
-本节把该定义**逐项**接到 `Fate.WiringFourOpFixed` 的四算子载体上，
+本节把该定义**逐项**接到 `FateV2.Rules` 的四算子载体上，
 使后者的定理可以用 `alphaK` 这一名字陈述。 -/
 
 /-- **（登记）α 与 υ 在 `K3` 上是同一个函数**。
 
-**⚠ 这不是新数学内容**：`Fate.Alpha.takeConcept` 与
+**⚠ 这不是新数学内容**：`FateV2.Rules.takeConcept` 与
 `UpsilonOperator.FCAInstance.fcaUpsilon` **都定义**为 `K.closureOp`
-（`Fate.Alpha` §2 的 `def takeConcept`、`UpsilonOperator` §4 的
+（`FateV2.Rules` §2 的 `def takeConcept`、`UpsilonOperator` §4 的
 `def fcaUpsilon`）。因此本等式经 `rfl` 可证。
 
-**它存在的理由**：下游（尤其 `Fate.AlphaFourOp` 以后的模块）需要一条
+**它存在的理由**：下游（尤其 `FateV2.Rules` 以后的模块）需要一条
 被命名的、可被 `rw` 使用的等式，以免每次都在目标里手工展开两个缩写。
 按项目纪律，`rfl` 级等式**必须**显式标注为「登记」，**不得**包装成定理。 -/
 theorem alpha_upsilon_agree (B : Set K3.MFCA) : alphaK B = upsilonK B := rfl
 
 /-- **（登记）α 与 γ 的底层函数重合**（`⊆` 序下）。
 
-γ 在 `Fate.GammaOperator` 的语义是**逆包含序**上的收缩算子 `GenOp`，
+γ 在 `FateV2.Rules` 的语义是**逆包含序**上的收缩算子 `GenOp`，
 其 `toFun` 在 `K3` 上取的是 `K3.closureOp`（见 `gammaK` 的定义）。
 把 `OrderDual` 剥掉之后即得本等式。**`rfl` 级，登记项。** -/
 theorem alpha_gamma_underlying (B : Set K3.MFCA) :
     OrderDual.ofDual (gammaK (OrderDual.toDual B)) = alphaK B := rfl
 
-/-- **α 的值域落在闭集内**（消费 `Fate.Alpha.takeConcept_isClosed`）。 -/
+/-- **α 的值域落在闭集内**（消费 `FateV2.Rules.takeConcept_isClosed`）。 -/
 theorem alphaK_isClosed' (B : Set K3.MFCA) : K3.IsClosedAttr (alphaK B) :=
   K3.takeConcept_isClosed B
 
-/-- **α 幂等**（消费 `Fate.Alpha.takeConcept_idem`）。 -/
+/-- **α 幂等**（消费 `FateV2.Rules.takeConcept_idem`）。 -/
 theorem alphaK_idem (B : Set K3.MFCA) : alphaK (alphaK B) = alphaK B :=
   K3.takeConcept_idem B
 
-/-- **α 扩张**（消费 `Fate.Alpha.subset_takeConcept`）。 -/
+/-- **α 扩张**（消费 `FateV2.Rules.subset_takeConcept`）。 -/
 theorem alphaK_extensive (B : Set K3.MFCA) : B ⊆ alphaK B :=
   K3.subset_takeConcept B
 
-/-- **α 单调**（消费 `Fate.Alpha.takeConcept_mono`）。 -/
+/-- **α 单调**（消费 `FateV2.Rules.takeConcept_mono`）。 -/
 theorem alphaK_mono {B₁ B₂ : Set K3.MFCA} (h : B₁ ⊆ B₂) : alphaK B₁ ⊆ alphaK B₂ :=
   K3.takeConcept_mono h
 
-/-- ⭐ **α 保蕴含**（消费 `Fate.Alpha.models_iff_takeConcept_subset`）。
+/-- ⭐ **α 保蕴含**（消费 `FateV2.Rules.models_iff_takeConcept_subset`）。
 
 $$\mathbb{K}\models A\Rightarrow B \iff \alpha B \subseteq \alpha A$$
 
@@ -161,7 +161,7 @@ theorem alphaK_models_iff {A B : Set K3.MFCA} :
 $$\texttt{IsClosedAttr}\,B \iff \texttt{Saturated}\ \upsilon\ B$$
 
 **为什么这不是同义反复**：两个谓词来源**完全不同** ——
-* `K3.IsClosedAttr` 定义在 `Fate.Implication`（FCA 语境：`closureOp B = B`）；
+* `K3.IsClosedAttr` 定义在 `FateV2.Rules`（FCA 语境：`closureOp B = B`）；
 * `UpsilonOperator.IsCompletion.Saturated` 定义在 `UpsilonOperator`
   （完善算子语境：`υ D R = R`）。
 
@@ -258,7 +258,7 @@ theorem alpha_upsilon_alternating (B : Set K3.MFCA) :
     §3  α 与 γ 的交互：Galois 连接 `α ⊣ γ`
     ===========================================================================
 
-`Fate.GammaOperator` §2 把「γ 是 α 的对偶」落成 Galois 连接
+`FateV2.Rules` §2 把「γ 是 α 的对偶」落成 Galois 连接
 `alphaFCA ⊣ gammaFCA`。本节把它**实例化到 `K3`**，
 给出 α 与 γ 的三条交互结论。 -/
 
@@ -332,7 +332,7 @@ $$B = \varnothing \text{ 时：}\quad \alpha\bigl(\gamma_{\text{top}}(\varnothin
   = \{\text{all attrs}\} \neq \varnothing = \alpha(\varnothing)$$
 
 **为什么是真内容**：这是**存在性**陈述 + **不等号**，是一个**构造性反例**
-（消费 `Fate.WiringFourOpFixed.gammaTop_breaks_joint_compatibility`）。
+（消费 `FateV2.Rules.gammaTop_breaks_joint_compatibility`）。
 它给出「四算子无条件是相容的」这一加强命题为**假**的数学证据 ——
 正是规格 §5.3.4「不得默认三者之间存在交换律／优先序」的落实。
 
@@ -348,11 +348,11 @@ theorem alpha_gammaTop_fails :
     §4  α 与 ∘ 的交互
     ===========================================================================
 
-∘ 取 `Fate.WiringFourOpFixed.combClosure`（`A ∘ B := (A ∪ B)''`）——
+∘ 取 `FateV2.Rules.combClosure`（`A ∘ B := (A ∪ B)''`）——
 规格开放问题 5.1 未定其语义，这**只是**一个候选实现，
 本文件**不**声称它是规格里的那个 ∘。 -/
 
-/-- ⭐ **α 吸收 ∘**（`Fate.WiringFourOpFixed.alpha_absorbs_comb` 的重述）。
+/-- ⭐ **α 吸收 ∘**（`FateV2.Rules.alpha_absorbs_comb` 的重述）。
 
 $$\alpha(A\circ B) = A\circ B$$
 
@@ -423,9 +423,9 @@ theorem alpha_comb_of_alpha (A B : Set K3.MFCA) :
     §5  ⭐ 主定理：α 在四算子复合链上的**统一归约**
     ===========================================================================
 
-`Fate.WiringFourOpFixed` 的 `runChain_collapses` 把任意非空 α/γ/υ 交替链
+`FateV2.Rules` 的 `runChain_collapses` 把任意非空 α/γ/υ 交替链
 归约成**一次** `K3.closureOp`。本节把它翻译成 **α 的接口形式**
-（结论写成 `alphaK X`），从而使该结论可以**直接用 `Fate.Alpha` 的名字陈述**。 -/
+（结论写成 `alphaK X`），从而使该结论可以**直接用 `FateV2.Rules` 的名字陈述**。 -/
 
 /-- ⭐⭐ **任意非空的 α／γ／υ 交替链 ＝ 一次 α**。
 
@@ -434,7 +434,7 @@ $$\texttt{runChain}\,(st :: rest)\,X = \alpha(X)$$
 **为什么是真内容**：
 * 结论是**整链**的归一化，前件为空；
 * 证明**不是** `rfl`：它需要 `runChain_collapses`（链长归纳 + `closureOp_idem`），
-  再加一次 `alphaK` 与 `closureOp` 的**定义搬运**（`Fate.Alpha` 层的展开）；
+  再加一次 `alphaK` 与 `closureOp` 的**定义搬运**（`FateV2.Rules` 层的展开）；
 * 结论中的 `alphaK` **不出现**在被消费的 `runChain_collapses` 的陈述里
   （那里是 `K3.closureOp`）—— **本定理的作用正是把两者接上**，
   这就是本任务「把 `WiringFourOpFixed` 接进 `Alpha`」的**核心一步**。
@@ -475,7 +475,7 @@ theorem alpha_chains_agree (st₁ : Step) (rest₁ : List Step)
 
 /-- ⭐ **γ 的迭代归约**：`n + 1 ≥ 1` 次泛化 ＝ 一次泛化。
 
-消费 `Fate.GammaOperator.GenOp.iterate_succ`。
+消费 `FateV2.Rules.GenOp.iterate_succ`。
 **为什么是真内容**：结论是 `n+1` 次迭代的归一化，需对 `n` 归纳
 （`GenOp.iterate_succ` 已做归纳，本定理是其 `K3` 落点）。**前件空**。 -/
 theorem alpha_gamma_chain_idem (n : ℕ) (B : Set K3.MFCA) :

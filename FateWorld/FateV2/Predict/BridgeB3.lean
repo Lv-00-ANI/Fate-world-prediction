@@ -50,14 +50,14 @@ import FateWorld.FateV2.Modeling.CausSeparation
   **(a) 提供合法的剥离顺序**（`dSep_peel_topological` 用 `sort` 排序后送进
   `dSep_peel_fold`），以及 **(b) 提供底层图论事实 `not_edge_of_topo_min/max`**
   （B4 组装「局部 Markov 乘起来」时需要「当前点在当时子图是 sink」，见
-  `Fate.BridgeStrategy1TopoPeel.peel` 的 sink 前提）。
+  `FateV2.Predict.peel` 的 sink 前提）。
   本文件**如实登记**这一点，而不假装拓扑序进入了 `dSep_peel_source` 的证明内部。
 
   ## 2 与 B4 的接口
 
   B4（`LMG ⟹ GM`）需要的正是本文件 §4 的 `dSep_peel_fold` / `dSep_peel_topological`：
   「沿拓扑序逐点把源点搬进条件集」。图侧的**逐点剥离顺序**由 `topoOrder` 给出，
-  与概率侧的 `Fate.BridgeStrategy1TopoPeel.peel`（sink 剥离）**方向相反、互为镜像**：
+  与概率侧的 `FateV2.Predict.peel`（sink 剥离）**方向相反、互为镜像**：
   概率侧剥 **sink**（拓扑大），图侧搬 **source**（拓扑小）—— 两边的合法性分别由
   `not_edge_of_topo_max`（sink 无出边）与 `not_edge_of_topo_min`（source 无入边）保证。
 
@@ -113,7 +113,7 @@ theorem not_edge_of_topo_min {S : Finset V} {l : V}
 
 /-- **B3.2（核心图论事实）**：`ℓ` 是 `S` 中拓扑序**最大**点 ⟹ **无出边**到 `S`。
 
-**这是「sink 剥离」的合法性来源**（`Fate.BridgeStrategy1TopoPeel.peel` 的
+**这是「sink 剥离」的合法性来源**（`FateV2.Predict.peel` 的
 `sink` 前提的图论源头）：在 `S` 内 `ℓ` 没有任何点被它指向，故是**汇**。 -/
 theorem not_edge_of_topo_max {S : Finset V} {l : V}
     (hmax : ∀ w ∈ S, G.topoOrder w ≤ G.topoOrder l) :
@@ -311,7 +311,7 @@ end FoldPeel
 /-! ===========================================================================
   §4 ⭐ 剥离顺序的图论意义（与 sink 剥离对偶）
 
-  B4 的概率侧在 `Fate.BridgeStrategy1TopoPeel.peel` 里剥 **sink**（拓扑最大点），
+  B4 的概率侧在 `FateV2.Predict.peel` 里剥 **sink**（拓扑最大点），
   因为它要求「`v` 在剩余变量中是 sink」。图侧的 `dSep` 剥离剥 **source**（拓扑最小点）。
   两者的图论合法性正好是本文件 §1 的 `not_edge_of_topo_max` 与 `not_edge_of_topo_min`。
   =========================================================================== -/
@@ -435,7 +435,7 @@ end AncestralReduction
 ## §6.2 纪律核对（逐条对照清单 §三）
 
 1. **单文件验证**：只用 `lake env lean Fate/BridgeB3.lean`。✅
-2. **不改 `Fate.lean`**：本文件不触碰。✅
+2. **不改 `lean`**：本文件不触碰。✅
 3. **不改已有模块**：只 `import`（`CausSeparation`、`Audit10Factorizes`）。✅
 4. **零 `sorry`**：无 `sorry`/`admit`/`axiom`；未落地部分为显式 `Prop`
    `AncestralReductionBackward_Gap` 并注明「不进下游」。✅

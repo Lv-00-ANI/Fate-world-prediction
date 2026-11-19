@@ -28,7 +28,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
   在此之前：
 
   * `Fate/EndToEndUnconditionalQ.lean` 的 6 条定理 / 6 个 `#eval`
-    **无任何跨文件消费者**（只有 `Fate.lean` 的 `import` 行）；
+    **无任何跨文件消费者**（只有 `lean` 的 `import` 行）；
   * `Fate/EndToEndUnconditionalConsumer.lean` 的 6 条定理**同样无消费者**。
 
   本文件是这两者的**第一个真实消费者**，并且按 R904 的要求

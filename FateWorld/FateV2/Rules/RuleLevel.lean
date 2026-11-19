@@ -2,7 +2,7 @@
 命运理论 · 规则层级（Rule Level）
 ======================================================================
 
-模块：`Fate.RuleLevel`
+模块：`FateV2.Rules`
 上游：`Fate/LawRule.lean`（`LawRule`，位于命名空间 `LawRule`）、
 　　　`Fate/Frame.lean`（`CtxSpace`、`OutSpace`）、
 　　　`Fate/Basic.lean`（`StateSpace`）。
@@ -25,7 +25,7 @@
 1. **层级不是数据，是函数。** `level` 由 `RuleBody` 的**构造子**决定，
    故「同一载体不属于两个不同层级」是 `rfl` 级事实（§3）。
 
-2. **命名冲突的处置（重要）。** 本库中 `Fate.Rule` **已被占用**
+2. **命名冲突的处置（重要）。** 本库中 `Rule` **已被占用**
    （`Fate/Frame.lean` 的「条件分布核」规则，见 `LawRule.Rule.toLaw`）。
    Lean 不允许同命名空间内二次声明 `Rule`，故本题所要求的别名
    落名为 **`RuleOF`**（`OF` = 本模块 `RuleLevel` 的 `Rule Body` 版），
@@ -120,7 +120,7 @@ theorem eq_transition_or_trajectory (ℓ : RuleTag) :
 一条轨迹可接受，当且仅当它的某前缀在 `pre` 中且其余部在 `post` 中。
 与 `LawRule` 一样，它**不计算**轨迹，只**约束**可能的轨迹。 -/
 structure TrajPattern (X : StateSpace) where
-  /-- 允许的起始段族（**构造谓词用**，见 `Fate.TrajPred` 一节）。 -/
+  /-- 允许的起始段族（**构造谓词用**，见 `TrajPred` 一节）。 -/
   pre : Set (Set X.Carrier)
   /-- 允许的后续段族（**构造谓词用**）。 -/
   post : Set (Set X.Carrier)
@@ -144,14 +144,14 @@ inductive RuleBody (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
 
 /-- 本题所要求的别名 `Rule := RuleBody`。
 
-⚠ 因 `Fate.Rule` 已被 `Fate/Frame.lean` 占用（条件分布核），
+⚠ 因 `Rule` 已被 `Fate/Frame.lean` 占用（条件分布核），
 此处落名为 `RuleOF`；需要「本模块的 `Rule`」时写 `RuleLevel.Rule`。 -/
 abbrev RuleOF (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     [MeasurableSpace Y.Carrier] : Type _ := RuleBody C X Y
 
 namespace RuleLevelAlias
 
-/-- `Rule` 的合格别名（限定在本命名空间内，不与 `Fate.Rule` 冲突）。 -/
+/-- `Rule` 的合格别名（限定在本命名空间内，不与 `Rule` 冲突）。 -/
 abbrev Rule (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     [MeasurableSpace Y.Carrier] : Type _ := RuleBody C X Y
 

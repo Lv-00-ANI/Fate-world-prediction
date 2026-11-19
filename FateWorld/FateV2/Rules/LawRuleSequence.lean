@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.LawRuleSequence
+模块：FateV2.Rules
 阶段：**规则层 · 组合语义之「前后相接」（时序复合）**
 
 ---------------------------------------------------------------------------
@@ -91,7 +91,7 @@ variable {C : CtxSpace} {X : StateSpace} [MeasurableSpace X.Carrier]
 /-- **确定性时序复合**：先按确定函数 `f` 走一步，再执行规则 `R`。
 
 ⚠ 需要 `X` 既是第一阶段的输出空间、又是第二阶段的输入空间 —— 这正是
-`Fate.Frame` 里 `abbrev OutSpace := StateSpace` 所保证的（规格 §2.3 规则 N3）。 -/
+`FateV2.Model` 里 `abbrev OutSpace := StateSpace` 所保证的（规格 §2.3 规则 N3）。 -/
 def seqDet (f : C.Carrier → X.Carrier → X.Carrier) (R : LawRule C X X) :
     LawRule C X X :=
   fun c x => R c (f c x)

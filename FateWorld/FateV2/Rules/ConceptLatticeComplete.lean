@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.ConceptLatticeComplete
+模块：FateV2.Rules
 阶段：**阶段 1A 的实质补强**（规格 `02-证明路线/02-定理清单.md` T1A.9）
 
 ---------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 > `FCA 基本定理：概念格是完备格；形式概念是 Galois 连接的不动点`
 > ｜前件：形式背景 $\mathbb{K}$ 给定｜类别 ①（几乎无条件）
 
-`Fate.Stage1A` 中的 `T1A9_conceptLattice_complete` 只断言
+`FateV2.Rules` 中的 `T1A9_conceptLattice_complete` 只断言
 `Nonempty (CompleteLattice (ConceptLattice K))`（证体为 `⟨inferInstance⟩`）。
 那**只是「实例存在」的暴露**，**不是**「概念格为什么完备」的证明。
 
@@ -230,7 +230,7 @@ theorem isLUB_sSupConcept (S : Set (ConceptLattice K)) :
   （`inferInstance`，它们是 `PartialOrder` + `Min`/`Max`/`⊤`/`⊥`）。
 
 **这不是 `inferInstance`**：证明体**具体给出了**任意交与任意并，
-并证了它们的泛性质。这与 `Fate.FCA` 中暴露的
+并证了它们的泛性质。这与 `FateV2.Rules` 中暴露的
 `instance : CompleteLattice (ConceptLattice K)`（Mathlib 提供）**相容**——
 二者给出同一个完备格结构（`sSup`/`sInf` 的外延公式一致）。 -/
 @[instance_reducible]
@@ -268,7 +268,7 @@ end FormalCtx
 
 规格 T1A.9：`FCA 基本定理：概念格是完备格`。
 
-`Fate.Stage1A` 的原陈述只断言**实例存在**（`Nonempty (CompleteLattice _)`）。
+`FateV2.Rules` 的原陈述只断言**实例存在**（`Nonempty (CompleteLattice _)`）。
 本定理给出**实质版本**：$\mathfrak{B}(\mathbb{K})$ 的**任意交与任意并**
 都由 §1、§2 的**显式构造**给出，并满足泛性质——
 即概念格**确实是**完备格，而不只是「有某个完备格实例」。

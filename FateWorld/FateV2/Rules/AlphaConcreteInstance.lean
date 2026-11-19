@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.AlphaConcreteInstance
+模块：FateV2.Rules
 阶段：**阶段 1B —— α（取概念过程）的完整具体实例**
 
 ---------------------------------------------------------------------------
 本文件做什么
 ---------------------------------------------------------------------------
-`Fate.Alpha` 里 α 是 `takeConcept B = closureOp B`——**一个具体函数**，
+`FateV2.Rules` 里 α 是 `takeConcept B = closureOp B`——**一个具体函数**，
 但该文件**没有给出任何一个具体的 (G, M, I)**。
 本文件补上这个缺口：给出**一个完整实例**，其规模为
 
@@ -53,9 +53,9 @@
 ```
 
 ———————————————————————————————————————————————————————————————
-⚠ 本文件**不是**「又一套定义」：`K3` 是 `Fate.Alpha` 的 `FormalCtx` 的
+⚠ 本文件**不是**「又一套定义」：`K3` 是 `FateV2.Rules` 的 `FormalCtx` 的
 一个**取值**，`takeConcept`/`isClosed`/`idem`/`mono`/`alpha_respects_equiv`
-**全部直接调用** `Fate.Alpha` 的定理。本文件是它的**消费方**（consumer）。
+**全部直接调用** `FateV2.Rules` 的定理。本文件是它的**消费方**（consumer）。
 
 ---------------------------------------------------------------------------
 诚实边界
@@ -63,7 +63,7 @@
 1. **不含** `sorry`、**不含** `axiom`；`#print axioms` 只出现 3 个标准公理
    （`propext`、`Classical.choice`、`Quot.sound`）。
 2. E8（离散化误差界）在本实例中**仍然不填** $g$ 的具体表达式——
-   依 `Fate.Alpha` §4 的登记，填数即为虚构。
+   依 `FateV2.Rules` §4 的登记，填数即为虚构。
    本文件只给出 `E8Holds` 在**空胞腔**上的可满足性（I9），并如实标注其弱。
 3. `∼_E` 的判据是待裁决项 Q-3；本文件取**最粗**的等价关系（`⊤`），
    目的是让 `RespectsEquiv` 的前件**在本实例上为真**——
@@ -374,7 +374,7 @@ def toAttrs3 (x : ℝ) : Set M2 :=
 /-- **编码算子** $(\mathrm{enc})$：`toObjects` 取 `toAttrs` 的**下极**。
 
 **这是刻意的选择**：它使 `Coherent` **按构造成立**（见 `enc_coherent`），
-而不是靠碰运气。这也正是 `Fate.Alpha` 的 `Coherent` 定义所说的
+而不是靠碰运气。这也正是 `FateV2.Rules` 的 `Coherent` 定义所说的
 「对象侧由属性侧的下极确定」的最自然实现。 -/
 def enc3 : Encoder frame3 K3 where
   toObjects := fun x => K3.polarDown (toAttrs3 x)
@@ -410,7 +410,7 @@ def Inst2 : InstSpace := ⟨Fin 2⟩
 
 /-- **抽象等价 ∼_E**：**全部**实例等价（最粗的商）。
 
-这是 `Fate.Alpha` 明确**参数化**的那一项（判据是待裁决项 Q-3），
+这是 `FateV2.Rules` 明确**参数化**的那一项（判据是待裁决项 Q-3），
 本实例取最粗者，理由是：它使 `RespectsEquiv` 的前件**在本实例上可真**。 -/
 @[instance_reducible]
 def eqv2 : AbstractEquiv Inst2 := ⊤
@@ -456,7 +456,7 @@ theorem alphaOnQuotient_instance :
 
 /-- **I9：`E8Holds` 在本实例的胞腔上可满足**（取空胞腔，`g ≡ 0`）。
 
-⚠ **本定理很弱**：依 `Fate.Alpha` §4 的登记，`g` 的具体表达式**不填**
+⚠ **本定理很弱**：依 `FateV2.Rules` §4 的登记，`g` 的具体表达式**不填**
 （填数即为虚构）。本定理只排除「谓词写空了」这一形式错误。 -/
 theorem e8_instance_satisfiable :
     ∃ (form : E8BoundForm) (g : E8BoundForm → ℝ),

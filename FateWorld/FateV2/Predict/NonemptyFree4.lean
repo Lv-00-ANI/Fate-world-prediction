@@ -119,8 +119,7 @@ namespace FateV2.Predict
 
 open FateV2.Loop
 open FateV2.Modeling
-namespace NonemptyFree4
-
+namespace FateV2.Predict.NonemptyFree4
 open FateV2.Loop.SCMEndToEnd
 
 set_option autoImplicit false
@@ -213,5 +212,5 @@ theorem endToEnd_scmWorldModel_noNonempty {X Y G : Type} (M : PearlHierarchy.SCM
   haveI : Nonempty Y := ⟨x⟩
   exact FateV2.Loop.SCMEndToEnd.endToEnd_scmWorldModel M h η φ y θ u ε a x
 
-end NonemptyFree4
+end FateV2.Predict.NonemptyFree4
 end FateV2.Predict

@@ -50,7 +50,7 @@ import FateWorld.FateV2.Predict.BridgeA1
   ## 2 纪律确认
 
   * 单文件、`lake env lean Fate/BridgeA1Prime.lean` 验证；
-  * 不改 `Fate.lean`，不改任何已有模块；
+  * 不改 `lean`，不改任何已有模块；
   * 零 `sorry` / `admit` / `axiom`；
   * 未使用 `mass` 塔性质；
   * 下面每条都是**无条件定理**，没有把结论写进前件。

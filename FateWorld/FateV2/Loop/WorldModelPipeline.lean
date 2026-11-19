@@ -9,8 +9,8 @@
 
   | 环 | 环节 | 落点模块 | 用到的既有结果 |
   |---|---|---|---|
-  | ① | **观测** $y = h\,x + \eta$ | `Fate.ObsEstimationStrong` | `LipschitzInvertibleOn`、`chooseEstimator` |
-  | ② | **估计** $\hat x = \hat x(y)$ | `Fate.ObsEstimationStrong` | `chooseEstimator_apply_of`、`inverse_estimate_error` |
+  | ① | **观测** $y = h\,x + \eta$ | `FateV2.Modeling` | `LipschitzInvertibleOn`、`chooseEstimator` |
+  | ② | **估计** $\hat x = \hat x(y)$ | `FateV2.Modeling` | `chooseEstimator_apply_of`、`inverse_estimate_error` |
   | ③ | **预测** $\hat y = f(x,u,\varepsilon;\theta,a)$ | `WorldModelReadsTheta` | `wmStep`、`wmWorldModel`、`predFrom_wmWorldModel` |
   | ④ | **残差** $r = \hat x^{\mathrm{obs}} - \hat x^{\mathrm{pred}}$ | `EndToEnd` | `e2eResidual`、`endToEnd_apply` |
   | ⑤ | **更新** $\theta' = \theta + \eta\,\varphi(r)$ | `EndToEnd` | `endToEnd`、`endToEnd_step_eq` |

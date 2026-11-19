@@ -1,7 +1,7 @@
 /-
 ===========================================================================
   `DeadPremiseAuditConsumer` —— 把「死前提审计器」接到主链上
-  （叶子接线 8；`Fate.lean` 直接 import，见本文件 §0.4 与报告）
+  （叶子接线 8；`lean` 直接 import，见本文件 §0.4 与报告）
 
   ## 0.1  一句话
 
@@ -66,8 +66,8 @@
 
   ## 0.4  口径 A（纪律 G12）
 
-  本文件在 `Fate.lean` 中**直接** `import DeadPremiseAuditConsumer`，
-  故它**不增加**口径 A（口径 A = 磁盘全部模块 − `Fate.lean` 直接 import 列表）。
+  本文件在 `lean` 中**直接** `import DeadPremiseAuditConsumer`，
+  故它**不增加**口径 A（口径 A = 磁盘全部模块 − `lean` 直接 import 列表）。
 
   ## 0.5  ⚠ 本文件**零** `sorry` / `admit` / `axiom` / `?_`
 
@@ -489,9 +489,9 @@ theorem selfCheck_pipeline_both
 | 5 | §3 的 `down1_separable_without_nonempty` 单独看只是别名 | 已在该定理的 docstring 中**如实声明**；它**只在**与 `down1_nonempty_premise_is_dead` 配对时才有意义（证明后者不是空的）。**未虚报价值**。|
 | 6 | 未使用 `FateV2.Predict.R259.backdoor_criterion`（主定理本身）作为连接 | 它**不以** `NoDescendant` 为前件（只以 `BackdoorBlocked` 为前件），故「删 (ii)」的结论**无法**在它的签名上体现。强行写会变成「把别的定理包一层」的假连接。**§1 的 `r259_backdoorConditions_ii_is_dead` 已在 `BackdoorConditions` 层给出真结论**。|
 
-### 本文件对 `Fate.lean` 的要求
+### 本文件对 `lean` 的要求
 
-`import DeadPremiseAuditConsumer` **必须**写进 `Fate.lean`（G12），
+`import DeadPremiseAuditConsumer` **必须**写进 `lean`（G12），
 否则本模块与 `DeadPremiseAudit` 会一起退回叶子表，**口径 A +1**。
 =========================================================================== -/
 

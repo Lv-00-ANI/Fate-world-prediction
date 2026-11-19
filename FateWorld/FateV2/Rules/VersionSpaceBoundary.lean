@@ -13,7 +13,7 @@ import FateWorld.FateV2.Rules.VersionSpace
 -/
 
 /-! ===========================================================================
-  §VSB  版本空间的**边界**与**终止性**：补上 `Fate.VersionSpace` 里
+  §VSB  版本空间的**边界**与**终止性**：补上 `FateV2.Rules` 里
         诚实边界中登记为「未形式化」的文献内容。
 
   ## 为什么要这个文件
@@ -45,7 +45,7 @@ import FateWorld.FateV2.Rules.VersionSpace
   文献的 $S$ 边界**不是** `fine`：$S$ 是「最特殊**成员**」，
   而 `fine` 是「**所有成员的共同下界**」。二者在**有限链**上重合，
   在一般有限偏序上**只满足 `fine ⊆ S`**。
-  这是 `Fate.VersionSpace.lean` 把 `fine` 称作「$S$ 边界的候选」时
+  这是 `FateV2.Rules.lean` 把 `fine` 称作「$S$ 边界的候选」时
   留下的那条缝 —— 本文件把它缝上：`fine` **是 $S$ 的下界，一般不相等**。
 
   ## 诚实边界
@@ -122,7 +122,7 @@ theorem exists_minimal_slice_of_finite (V : VersionSpace C X Y)
 在「切片有限且非空」下，版本空间**确实**有 $S$ 边界：
 一个**成员**，它比任何同切片的成员都窄（即最特殊）。
 
-**⟹** 这把 `Fate.VersionSpace.lean` 里 `fine`（「$S$ 边界的候选」）的
+**⟹** 这把 `FateV2.Rules.lean` 里 `fine`（「$S$ 边界的候选」）的
 候选身份落到实处：真正的 $S$ 边界是此处的**成员**，而不是 `fine`
 （`fine_mem_slice_iff_subsingleton` 证明后者一般不是成员）。 -/
 theorem exists_S_boundary_of_finite (V : VersionSpace C X Y)
@@ -195,7 +195,7 @@ theorem meet_eq_self_of_subset {V : VersionSpace C X Y} {D : Dataset C X Y}
 「全体数据的版本空间」上。
 
 ⚠ 本定理只给**单调性**；「有限步后稳定」需要数据链有限，
-由 `fromData_eq_iInter`（已在 `Fate.VersionSpace` 证）逐条导出，此处不重复。 -/
+由 `fromData_eq_iInter`（已在 `FateV2.Rules` 证）逐条导出，此处不重复。 -/
 theorem fromData_antitone_chain {ι : Type*} [Preorder ι]
     (D : ι → Dataset C X Y) (hmono : Monotone D) :
     Antitone (fun i => fromData (D i)) :=

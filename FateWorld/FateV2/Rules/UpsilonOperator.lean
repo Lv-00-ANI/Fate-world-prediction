@@ -66,8 +66,8 @@
 ---------------------------------------------------------------------------
 依赖与复用
 ---------------------------------------------------------------------------
-- `Fate.Frame`：规则 $R$、规则集 $\mathcal{R}$、`Refine` 类型别名。
-- `Fate.Implication`／`Fate.FCA`：$\mathbb{K}$ 上的闭包算子 `closureOp`
+- `FateV2.Model`：规则 $R$、规则集 $\mathcal{R}$、`Refine` 类型别名。
+- `FateV2.Rules`／`FateV2.Rules`：$\mathbb{K}$ 上的闭包算子 `closureOp`
   ——本文件在 §4 用它给出 υ 的**至少一个完整实例**（对应规格对
   T6.9／A5「须给出至少一个完整实例」的要求）。
 - Mathlib `Mathlib.Order.Closure`：闭包算子与不动点格。
@@ -119,7 +119,7 @@ namespace UpsilonOperator
 
 **两种记法的关系（本实现显式登记）**：
 - 规格定义 5.8 写在**规则集**层：$\upsilon:\mathcal{R}\times\mathcal{D}\to\mathcal{R}$；
-- `Fate.Frame` 的 `Refine` 写在**单条规则**层：
+- `FateV2.Model` 的 `Refine` 写在**单条规则**层：
   `Refine E C X Y = Rule C X Y → E.Carrier → Rule C X Y`。
 
 二者**不矛盾**：规则集层的 υ 可由单条层的 υ 逐点提升得到。
@@ -135,15 +135,15 @@ namespace UpsilonOperator
 abbrev Upsilon (Data : Type w) (α : Type u) : Type _ :=
   Data → α → α
 
-/-! ### §1.1 从一般 υ 到 `Fate.Frame` 的两种具体记法
+/-! ### §1.1 从一般 υ 到 `FateV2.Model` 的两种具体记法
 
 以下两个别名把 §1 的一般签名接到规格的两种记法上：**不给新语义**，
 只是**记法绑定**——使「单条规则层」与「规则集层」两个 υ 在 Lean 中
 都有唯一落点。 -/
 
-/-- **单条规则层**的 υ（＝ `Fate.Frame.Refine` 的记法复用）。
+/-- **单条规则层**的 υ（＝ `FateV2.Model.Refine` 的记法复用）。
 
-**这不是新定义**：`Refine E C X Y` 已在 `Fate.Frame` 冻结，
+**这不是新定义**：`Refine E C X Y` 已在 `FateV2.Model` 冻结，
 本别名只是在本命名空间下提供一个与规格符号对照的入口，
 避免下游重复声明。 -/
 abbrev RefineRule (E : InstSpace) (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
@@ -172,7 +172,7 @@ def toRuleSet (E : InstSpace) (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     **但那两个类型的参数顺序相反**，故 `rfl` **不成立**
     （实测报错「Not a definitional equality」）。
 
-    * `Fate.Frame.Refine` : `Rule C X Y → E.Carrier → Rule C X Y`
+    * `FateV2.Model.Refine` : `Rule C X Y → E.Carrier → Rule C X Y`
     * `Upsilon E.Carrier (Rule C X Y)` : `E.Carrier → Rule C X Y → Rule C X Y`
 
     **⟹ 二者只差参数顺序，故给出**显式转换**（而非伪称 `rfl`）。** -/
@@ -459,7 +459,7 @@ end SetCompletion
     §4  依主控解释：υ 的**完整实例**（FCA 闭包算子）
     ===========================================================================
 规格 T6.9／A5 的验收标准明写「**须给出至少一个完整实例**」。
-本节据此，用 `Fate.Implication` 提供的 FCA **闭包算子**
+本节据此，用 `FateV2.Rules` 提供的 FCA **闭包算子**
 给出 υ 的**一个具体、已证的完善算子实例**——
 它证明 §2 的公理组**可被满足**（非空、非矛盾），
 而不只是一个悬置的前件。
@@ -531,7 +531,7 @@ theorem fca_saturated_iff_isClosedAttr (B : Set K.MFCA) :
 `K.closureOp` 的幂等性把它接到 `IsCompletion.idem` 上。∎
 
 **实现说明**：本定理只登记「结构存在」，其**显式格运算**（交＝属性集并的闭包等）
-不在本文件展开——那属 `Fate.ConceptLatticeComplete` 的范围。 -/
+不在本文件展开——那属 `FateV2.Rules` 的范围。 -/
 theorem fca_saturated_isClosedAttr_of_closed (B : Set K.MFCA)
     (hB : K.IsClosedAttr B) : IsCompletion.Saturated (fcaUpsilon K) () B :=
   hB
@@ -1294,7 +1294,7 @@ end Iteration
 Refine E C X Y = Upsilon E.Carrier (Rule C X Y) := rfl
 ```
 **⚠ 但该等式**不成立**** —— **两者的参数顺序相反**：
-* `Fate.Frame.Refine` : `Rule C X Y → E.Carrier → Rule C X Y`
+* `FateV2.Model.Refine` : `Rule C X Y → E.Carrier → Rule C X Y`
 * `Upsilon E.Carrier (Rule C X Y)` : `E.Carrier → Rule C X Y → Rule C X Y`
 
 **⟹ 依第 86 轮评估的建议**（「reflexivity tactics can only be used on goals

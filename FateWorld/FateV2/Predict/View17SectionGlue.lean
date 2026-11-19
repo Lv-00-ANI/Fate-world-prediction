@@ -12,7 +12,7 @@
 
 | # | 已证伪 / 已裁定 | 本文件的规避 |
 |---|---|---|
-| C1 | `mass S (mass T p) = mass (S∪T) p` 为**假**（`Fate.DAGFactorizationGeneral.tower_property_false`） | **全程不出现 `mass`**；只有 `margZ/margXZ/margYZ` 的单层求和 |
+| C1 | `mass S (mass T p) = mass (S∪T) p` 为**假**（`FateV2.Predict.tower_property_false`） | **全程不出现 `mass`**；只有 `margZ/margXZ/margYZ` 的单层求和 |
 | C2 | 连 `S ⊆ T` 方向也假（`FateV2.Predict.TowerAudit.mass_idempotent_fails`） | 同上；**无任何嵌套求和** |
 | C3 | 图写进类型 = 类型系统替图论干活（M8 裁定） | `G` 是**显式形参**，且**进入证明体**（§3 主定理） |
 | C4 | `_G : DAG V` 哑变量化 | 去掉 `h : G.dSep X Y Z` 后 §3 主定理**不可证**（§4 给出反例结构） |

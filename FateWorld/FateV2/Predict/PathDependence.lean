@@ -2,7 +2,7 @@
 命运理论 · 「路径依赖」的三种形式化（开放问题 1.4）
 =============================================================================
 
-模块：Fate.PathDependence
+模块：FateV2.Predict
 上游：`Fate/Frame.lean`（`Frame`、`Step`）、
 　　　`Fate/TrajGenDeterministic.lean`（`trajGen`）、`Fate/Basic.lean`
 纯版原文：`10-命运理论-净版.md:404`

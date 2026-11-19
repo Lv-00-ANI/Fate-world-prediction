@@ -4,7 +4,7 @@
 
 模块：FateV2.Model.TrajGenMeasurable
 上游：`FateV2.Model.TrajGenDeterministic`（`trajGen`、`trajGen_zero`、`trajGen_succ`）、
-　　　`Fate.Frame`（`Frame`、`Step`）、`Fate.Basic`（`Traj` 及各 Space 的 `meas` 字段）。
+　　　`FateV2.Model`（`Frame`、`Step`）、`FateV2.Modeling`（`Traj` 及各 Space 的 `meas` 字段）。
 
 ---------------------------------------------------------------------------
 (a) 净版开放问题 1.2 原文（`10-命运理论-净版.md:158`）
@@ -20,7 +20,7 @@
 
   * `H_space`（实例前件，5 条）：`F.X.Carrier`、`F.U.Carrier`、`F.Ν.Carrier`、
     `F.Act.Carrier`、`F.Θ.Carrier` 上各取定一个 `MeasurableSpace`。
-    （`Fate.Basic` 的 `StateSpace` / `InputSpace` / `NoiseSpace` / `ActionSpace` /
+    （`FateV2.Modeling` 的 `StateSpace` / `InputSpace` / `NoiseSpace` / `ActionSpace` /
       `ThetaSpace` **已经各自带 `meas : MeasurableSpace Carrier` 字段**，
       但 Lean 的 instance 搜索**不会**自动把 `F.X.meas` 当作
       `MeasurableSpace F.X.Carrier` 的实例（实测 `synthInstanceFailed`），
@@ -60,7 +60,7 @@
 (c) 本文件**没有**做到什么（诚实标注）
 ---------------------------------------------------------------------------
   1. **没有**把 `Frame` 的 `meas` 字段变成 instance —— 那**需要改已入链的
-     `Fate.Basic`**，本文件不做。故 5 条 `MeasurableSpace` 前件是**显式变量**，
+     `FateV2.Modeling`**，本文件不做。故 5 条 `MeasurableSpace` 前件是**显式变量**，
      下游用户若想免去它们，必须自己在 `letI` 处补（本文件 §4 已给出
      `letI` 可用性的说明，但**不提供** `instance` 声明，以免污染全局实例）。
   2. **没有**证明 `H_f` 可由任何 `Frame` 的内生数据推出 —— `Step F` 是
@@ -90,7 +90,7 @@
 纪律
 ---------------------------------------------------------------------------
 - 全程零 `sorry` / 零 `admit` / 零 `axiom`；本文件不修改任何已存在模块。
-- `universe u`；`Traj` 用 `Fate.Basic` 的定义（本文件不改）。
+- `universe u`；`Traj` 用 `FateV2.Modeling` 的定义（本文件不改）。
 - 警示性块注释用普通块注释写法，不用 doc 注释（三斜杠）前缀。
 -/
 

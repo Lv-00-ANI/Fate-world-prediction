@@ -32,12 +32,12 @@ import FateWorld.FateV2.Rules.LawRule
 
   `LawRule` 把规则钉成**约束集**
   $\text{Rule}(c,x)\subseteq\mathcal{P}(\mathcal{M}(Y))$，并给出单点档判据
-  `LawRule.IsPoint`。`Fate.Alpha` 把 α 具体化为 FCA 取概念过程（裁决 D）。
+  `LawRule.IsPoint`。`FateV2.Rules` 把 α 具体化为 FCA 取概念过程（裁决 D）。
   本文件给出 α 的**第三种读法**：**从样本出发的经验 α**（频率层）。
 
   | | α 是什么 | 输入 | α 的像 |
   |---|---|---|
-  | `Fate.Alpha.takeConcept` | 形式背景上的闭包 | 属性集 | 闭集 |
+  | `FateV2.Rules.takeConcept` | 形式背景上的闭包 | 属性集 | 闭集 |
   | `FateV2.Rules.AlphaKernel.alphaKernel` | α 的核（Q-3） | 实例对 | 等价类 |
   | **本文件 `StatRule`** | **经验条件核 + 置信带** | **样本** | **带宽度的频率集** |
 

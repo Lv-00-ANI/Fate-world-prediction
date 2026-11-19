@@ -5,7 +5,7 @@
 模块：FateV2.Model.TrajGenMeasurableFull
 上游：`FateV2.Model.TrajGenMeasurable`（`trajGen_measurable_at`、`trajGen_measurable`）、
 　　　`FateV2.Model.TrajGenDeterministic`（`trajGen`、`trajGen_zero`、`trajGen_succ`）、
-　　　`Fate.Frame`（`Frame`、`Step`）。
+　　　`FateV2.Model`（`Frame`、`Step`）。
 
 ---------------------------------------------------------------------------
 (a) 净版开放问题 1.2 原文（`10-命运理论-净版.md:158`）
@@ -56,7 +56,7 @@
      净版开放问题 1.2 问的是「该取什么」，本文件**回答是「取这个能证」**，
      **不是**论证它是对的那个。
   2. **没有**把 `Frame` 的 `meas` 字段提升为 instance（那需改已入链的
-     `Fate.Basic`）；5 条 `MeasurableSpace` 前件仍是**显式变量**。
+     `FateV2.Modeling`）；5 条 `MeasurableSpace` 前件仍是**显式变量**。
   3. **没有**证明前件 `H_f`（`f` 在 5 元乘积上联合可测）可由任何 `Frame`
      的内生数据推出 —— `Step F` 是任意函数，可测性必须作为假设。
   4. **没有**处理 `u`、`ε`、`a` 作为**序列**（`ℕ → ·`）时的联合情形 ——

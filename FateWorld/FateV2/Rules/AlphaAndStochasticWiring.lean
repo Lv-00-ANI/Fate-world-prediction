@@ -2,24 +2,24 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaAndStochasticWiring`
+模块：`FateV2.Rules`
 任务：**② α（抽象侧）、④ 随机轨迹（生成侧）的接线**（不是造新模块）
 
 ---------------------------------------------------------------------------
 本文件做什么
 ---------------------------------------------------------------------------
-C6 主干地图实测：`Fate.AlphaFCAConstruction`（α 的 FCA 版本，41 定理）与
-`Fate.TrajGenStochastic`（方案二，7 定理）**内容完整但扇入 0**——
+C6 主干地图实测：`FateV2.Rules`（α 的 FCA 版本，41 定理）与
+`FateV2.Model`（方案二，7 定理）**内容完整但扇入 0**——
 它们没有被任何下游模块 import，因此在主干地图上表现为**孤岛**。
 
 本文件是**唯一的新建落点**，按三阶段把它们接到已有主件上：
 
 * **阶段 1**　`① 实例/数据` ⟶ `② AlphaData`：给出「一批实例 → `AlphaData`」的
   构造与良定义性定理。
-* **阶段 2**　`② AlphaData` ⟶ `Fate.Adjunction`：证明 `AlphaData.takeConcept`
+* **阶段 2**　`② AlphaData` ⟶ `FateV2.Rules`：证明 `AlphaData.takeConcept`
   与 `FormalCtx.takeConcept`（= `polarUp ∘ polarDown`）是**同一个算子**，
   并把 Galois 连接与 hexagon 等式**实例化**到 `AlphaData.ctx` 上。
-* **阶段 3**　`④ 随机轨迹` ⟶ `① 确定轨迹`：证明 `Fate.TrajGenStochastic.detTraj`
+* **阶段 3**　`④ 随机轨迹` ⟶ `① 确定轨迹`：证明 `FateV2.Model.detTraj`
   与 `FateV2.Model.TrajGenDeterministic.detTraj` 是**同一条轨迹**，并证明在噪声分布
   与初始分布皆为点质量时，`trajLaw`（测度层）**塌缩为**确定性轨迹上的点质量。
 * **§4**　让随机语义进主干的**建议**（只写建议、不改任何已有文件），
@@ -46,7 +46,7 @@ Fate/InstanceData.lean:294:25: error: Application type mismatch: The argument
    不能落在 `FormalCtx.{u,v}` 要求的固定层上。）
 ```
 
-同目录下也**没有** `Fate.InstanceData.olean`，故它**无法被 import**。
+同目录下也**没有** `InstanceData.olean`，故它**无法被 import**。
 本文件**不修改**它（纪律 2：不得改动已有模块内容），因此
 **「α ↔ InstanceData」这一条桥不可行**，缺的是：`InstanceData` 把
 `toFormalCtx` 改成 `FormalCtx.{max u v, max u v}`（或对 `Carrier` 加显式宇宙参数）。
@@ -66,12 +66,12 @@ Fate/InstanceData.lean:294:25: error: Application type mismatch: The argument
 * 阶段 1 的桥接对象是 `InstanceChain.Instance`，**不是** `InstanceData.DataSet`
   （后者不可编译，见上）。若日后 `InstanceData` 修好，§1 的定理可原样复制过去。
 * 阶段 2 的**数学内容**（Galois 连接、三角恒等式）来自 Mathlib
-  `Order.Concept` 经 `Fate.FCA` / `Fate.Adjunction` 转写；本文件的贡献是
+  `Order.Concept` 经 `FateV2.Rules` / `FateV2.Rules` 转写；本文件的贡献是
   **把 `AlphaData` 这一个具体背景实例化到那些定理上**，并给出**算子层等式**。
   这不是新数学，是**接线**——这正是本任务的定义。
 * 阶段 3 的测度层塌缩（`trajLaw_dirac`）**是本文件新证的**：它需要在
   Mathlib 中缺失的 `Measure.pi` 点质量等式 `pi_dirac_eq`（本文件 §3.1 自证），
-  故这一段确实补上了 `Fate.TrajGenStochastic` §5 中**只陈述未证明**的那条退化定理
+  故这一段确实补上了 `FateV2.Model` §5 中**只陈述未证明**的那条退化定理
   （原文件 §5 的 doc-comment 明写「本文件不在此强制证明整个测度层的点质量等式」）。
 * **不虚报**：本文件不声称已完成「随机语义进主干」；§4 只给**建议**。
 -/
@@ -176,7 +176,7 @@ theorem obs_eq_empty_of_notMem {i : InstanceChain.Instance O A} (hi : i ∉ D) :
 
 /-- **下极的实例侧读法**：若 `B` 被 `i` 的整个观测覆盖，则 `i` 属于 `B'`。
 
-即 `AlphaData` 的 `polarDown`（= `Fate.FCA` 的 `lowerPolar`）在这个具体背景上
+即 `AlphaData` 的 `polarDown`（= `FateV2.Rules` 的 `lowerPolar`）在这个具体背景上
 **由实例表直接算出**。 -/
 theorem mem_polarDown_of_obs_subset {i : InstanceChain.Instance O A}
     {B : Set A} (hB : B ⊆ (alphaDataOfInstances D).obs i) :
@@ -203,24 +203,24 @@ end AlphaDataOfInstances
 end Stage1
 
 /-! ===========================================================================
-    §2  阶段 2：`AlphaData.takeConcept` = `Fate.Adjunction` 的 `takeConcept`
+    §2  阶段 2：`AlphaData.takeConcept` = `FateV2.Rules` 的 `takeConcept`
     =========================================================================== -/
 
 /-! ### §2.1 算子层等式
 
-`Fate.AlphaFCAConstruction` 定义
+`FateV2.Rules` 定义
 
 ```
 AlphaData.takeConcept D B := (D.ctx).takeConcept B
 ```
 
-而 `Fate.Alpha.FormalCtx.takeConcept B := K.closureOp B`、
-`Fate.Adjunction.FormalCtx.takeConcept_eq_comp` 又证 `K.takeConcept B
+而 `FateV2.Rules.FormalCtx.takeConcept B := K.closureOp B`、
+`FateV2.Rules.FormalCtx.takeConcept_eq_comp` 又证 `K.takeConcept B
 = (K.polarUp ∘ K.polarDown) B`。故两者**是同一个算子**——
 这不是巧合，而是 `AlphaData` 刻意**不引入第二套极运算**的结果
 （`AlphaFCAConstruction` §2 的 `takeConcept_eq_closureOp` 已声明这一点）。
 
-下面把这条等式**显式钉到 `Fate.Adjunction` 的记法上**，使 α 从此
+下面把这条等式**显式钉到 `FateV2.Rules` 的记法上**，使 α 从此
 **继承 Galois 连接的依据**，而不再是一个孤立定义的函数。 -/
 
 section Stage2
@@ -228,23 +228,23 @@ section Stage2
 variable {E : InstSpace.{u}} {M : Type u}
 
 /-- ⭐ **阶段 2 主定理**：α 的 `takeConcept` **就是**
-`Fate.Adjunction` 意义下的 `takeConcept`（`= polarUp ∘ polarDown`）。
+`FateV2.Rules` 意义下的 `takeConcept`（`= polarUp ∘ polarDown`）。
 
-两个 `takeConcept`（`AlphaFCAConstruction` 的与 `Fate.Alpha`/`Fate.Adjunction`
+两个 `takeConcept`（`AlphaFCAConstruction` 的与 `FateV2.Rules`/`FateV2.Rules`
 的）是**同一个算子**的两种写法，不存在平行的两套 α。 -/
 theorem AlphaData.takeConcept_eq_adjunction (D : AlphaData E M) (B : Set M) :
     D.takeConcept B
       = (D.ctx).takeConcept B := rfl
 
 /-- 阶段 2 主定理的**复合形式**：`takeConcept = polarUp ∘ polarDown`
-（`Fate.Adjunction.FormalCtx.takeConcept_eq_comp` 在 `AlphaData.ctx` 上的实例）。 -/
+（`FateV2.Rules.FormalCtx.takeConcept_eq_comp` 在 `AlphaData.ctx` 上的实例）。 -/
 theorem AlphaData.takeConcept_eq_comp (D : AlphaData E M) (B : Set M) :
     D.takeConcept B = (D.ctx).polarUp ((D.ctx).polarDown B) :=
   (D.ctx).takeConcept_eq_comp B
 
 /-- **Galois 连接（α 版本）**：`D.ctx` 的两个导出算子构成 Galois 连接。
 
-即 `Fate.Adjunction.gc_polarUp_polarDown` 在 `AlphaData.ctx` 上的实例化——
+即 `FateV2.Rules.gc_polarUp_polarDown` 在 `AlphaData.ctx` 上的实例化——
 **「α 有伴随」这条断言的 Lean 落点**。 -/
 theorem AlphaData.gc_polarUp_polarDown (D : AlphaData E M) :
     GaloisConnection (OrderDual.toDual ∘ (D.ctx).polarUp)
@@ -302,13 +302,13 @@ end Stage2
 
 /-! ### §3.0 两个 `detTraj` 的分工
 
-`Fate.TrajGenStochastic` 与 `FateV2.Model.TrajGenDeterministic` **各自**定义了
+`FateV2.Model` 与 `FateV2.Model.TrajGenDeterministic` **各自**定义了
 `stateAt` 与 `detTraj`。两处的递推式**逐字相同**，但它们是**不同的常量**，
 故相等**不是** `rfl`，必须对步数归纳。本节的定理就是这座桥。
 
 | 模块 | 命名空间 | 有限视窗递推 |
 |---|---|---|
-| `Fate.TrajGenStochastic` | `Fate` | `Fate.stateAt` / `Fate.detTraj` |
+| `FateV2.Model` | `Fate` | `stateAt` / `detTraj` |
 | `FateV2.Model.TrajGenDeterministic` | `FateV2.Model.TrajGenDeterministic` | `TrajGenDeterministic.stateAt` / `TrajGenDeterministic.detTraj` | -/
 
 section Stage3
@@ -317,7 +317,7 @@ section Stage3
 
 证明：`0` 处两边都返回 `x₀`；`n+1` 处两边都调用同一个 `f`、同一个
 `u ⟨n,_⟩`、同一个 `ε ⟨n,_⟩`、同一个 `a ⟨n,_⟩`，故由归纳假设 + 全等即得。
-注意 `Fate.stateAt` 的实参次序是 `u a ω`，`TrajGenDeterministic.stateAt` 是 `u ε a`，
+注意 `stateAt` 的实参次序是 `u a ω`，`TrajGenDeterministic.stateAt` 是 `u ε a`，
 本定理把这一处**次序差异**也对齐了。 -/
 theorem stateAt_sto_eq_det (F : Frame) (f : Step F) (T : ℕ) (θ : F.Θ.Carrier)
     (u : Fin T → F.U.Carrier) (ε : Fin T → F.Ν.Carrier)
@@ -335,7 +335,7 @@ theorem stateAt_sto_eq_det (F : Frame) (f : Step F) (T : ℕ) (θ : F.Θ.Carrier
             (u _) (ε _) θ (a _)
       rw [ih]
 
-/-- ⭐ **阶段 3 主定理（轨迹层）**：`Fate.TrajGenStochastic.detTraj` 与
+/-- ⭐ **阶段 3 主定理（轨迹层）**：`FateV2.Model.detTraj` 与
 `FateV2.Model.TrajGenDeterministic.detTraj` 给出**同一条轨迹**。
 
 即：④（随机方案）里那条「给定噪声后的确定路径」与 ①（确定方案）的轨迹
@@ -348,9 +348,9 @@ theorem detTraj_sto_eq_det (F : Frame) (f : Step F) (T : ℕ) (θ : F.Θ.Carrier
   funext n
   exact stateAt_sto_eq_det F f T θ u ε a x₀ n.val (Nat.le_of_lt n.isLt)
 
-/-- **随机展开 = 确定轨迹**（消去 `Fate.detTraj` 这一中间层）。
+/-- **随机展开 = 确定轨迹**（消去 `detTraj` 这一中间层）。
 
-`Fate.unfold_eq_detTraj` 说 `unfold (x₀,ω) = FateV2.Model.detTraj …`，
+`unfold_eq_detTraj` 说 `unfold (x₀,ω) = FateV2.Model.detTraj …`，
 本定理把它接到 `TrajGenDeterministic.detTraj` 上：
 **④ 的展开映射每一条样本路径都落在 ① 的值域里，且就是那一条**。 -/
 theorem unfold_eq_detTrajDet (F : Frame) (f : Step F) (T : ℕ) (θ : F.Θ.Carrier)
@@ -372,7 +372,7 @@ $$\texttt{Measure.pi}\ (\lambda\_.\ \delta_{\varepsilon_0})
 **Mathlib 缺这条引理**（本文件写作时全库 `pi_dirac` / `dirac_pi` 零命中；
 只有 `Measure.pi_of_empty` 与 `Measure.dirac_prod_dirac`）。
 故本文件自证之（`pi_dirac_eq`）——这也是 §3.2 相比
-`Fate.TrajGenStochastic` §5 的**实质增量**（该处只陈述、未证明测度层塌缩）。 -/
+`FateV2.Model` §5 的**实质增量**（该处只陈述、未证明测度层塌缩）。 -/
 
 /-- **有限积的点质量等式**：$\mathcal{D}^{\otimes T}=\delta_{(\cdot\mapsto x)}$
 当 $\mathcal{D}=\delta_x$。
@@ -420,7 +420,7 @@ $$\mathcal{D}_0=\delta_{x_0},\ \mathcal{D}_\varepsilon=\delta_{\varepsilon_0}
    \;\Longrightarrow\;
    \rho=\delta_{\ \mathrm{detTraj}(x_0,\ \cdot\mapsto\varepsilon_0)} .$$
 
-**这是 `Fate.TrajGenStochastic` §5 只陈述、未证明的那条退化定理的完整证明**
+**这是 `FateV2.Model` §5 只陈述、未证明的那条退化定理的完整证明**
 （该处 doc-comment 明写「本文件不在此强制证明整个测度层的点质量等式」）。
 它使「方案一 = 方案二在确定性支上的特例」从**文字断言**变为**已证等式**。
 
@@ -429,7 +429,7 @@ $$\mathcal{D}_0=\delta_{x_0},\ \mathcal{D}_\varepsilon=\delta_{\varepsilon_0}
 
 **证明**：`pi_dirac_eq` 消去噪声积测度 → `Measure.dirac_prod_dirac` 合并
 成 `δ_{(x₀, ·↦ε₀)}` → `Measure.map_dirac` 推前得 `δ_{unfold …}` →
-`Fate.unfold_eq_detTraj` + `detTraj_sto_eq_det` 认出被推前的那个点。∎ -/
+`unfold_eq_detTraj` + `detTraj_sto_eq_det` 认出被推前的那个点。∎ -/
 theorem trajLaw_dirac (F : Frame) [MeasurableSpace F.Ν.Carrier]
     [MeasurableSpace F.X.Carrier] [MeasurableSingletonClass F.Ν.Carrier]
     [MeasurableSingletonClass F.X.Carrier]
@@ -446,7 +446,7 @@ open MeasureTheory in
 /-- **一步层塌缩（放到 α/④ 接线语境下重述）**：
 点质量噪声下，随机一步转移就是确定一步的转移。
 
-即 `Fate.TrajGenStochastic.xNextDist_dirac`——本文件把它与 §3.2 的
+即 `FateV2.Model.xNextDist_dirac`——本文件把它与 §3.2 的
 轨迹层塌缩**并置**，构成「一步 + 整条轨迹」两级的一致性。 -/
 theorem xNextDist_dirac_wired (F : Frame) [MeasurableSpace F.Ν.Carrier]
     [MeasurableSpace F.X.Carrier] [MeasurableSingletonClass F.Ν.Carrier]
@@ -492,8 +492,8 @@ end Stage3
 import FateWorld.FateV2.Model.TrajGenStochastic
 ```
 
-**为什么不改类型、不改 `TrajGen`**：`Fate.TrajGenStochastic` §7 已证明
-「④ 的值域是 `Measure (Traj ι X)`，与 `Fate.Frame.TrajGen` 的值域 `Traj ι X`
+**为什么不改类型、不改 `TrajGen`**：`FateV2.Model` §7 已证明
+「④ 的值域是 `Measure (Traj ι X)`，与 `FateV2.Model.TrajGen` 的值域 `Traj ι X`
 **不同型**」。把两者硬并入同一类型要么丢失分布信息、要么丢功能，
 两条路都在类型层撒谎。故**唯一**干净的接入方式是：
 
@@ -507,30 +507,30 @@ import FateWorld.FateV2.Model.TrajGenStochastic
 
 ### §4.2 BFS 验证：该 import **不会成环**
 
-验证方法：从 `Fate.TrajGenStochastic` 出发，沿 `import` 边做传递闭包
+验证方法：从 `FateV2.Model` 出发，沿 `import` 边做传递闭包
 （脚本 `/tmp/scr/bfs.py`，读 `.lean` 文件的 `^import` 行），检查是否到达
-`Fate.WorldModel`。输出原文：
+`FateV2.Predict`。输出原文：
 
 ```
 $ python3 /tmp/scr/bfs.py
 TrajGenStochastic reaches WorldModel? False
 TrajGenStochastic reaches TrajGenDeterministic? False
 #reachable: 16
-Fate.AlphaFCAConstruction reaches WorldModel? False | #deps: 22
+FateV2.Rules reaches WorldModel? False | #deps: 22
 InstanceChain reaches WorldModel? False | #deps: 14
-Fate.Adjunction reaches WorldModel? False | #deps: 20
-Fate.TrajGenStochastic reaches WorldModel? False | #deps: 16
+FateV2.Rules reaches WorldModel? False | #deps: 20
+FateV2.Model reaches WorldModel? False | #deps: 16
 FateV2.Model.TrajGenDeterministic reaches WorldModel? False | #deps: 13
 
-=== closure of Fate.TrajGenStochastic ===
-  Fate.Basic
+=== closure of FateV2.Model ===
+  FateV2.Modeling
   FateV2.Model.Frame
   Mathlib.Data.Matrix.Basic
   ...
   Mathlib.Topology.Basic
 
 === closure of FateV2.Predict.WorldModel ===
-  Fate.Basic
+  FateV2.Modeling
   FateV2.Model.Frame
   FateV2.Model.TrajGenDeterministic
   Mathlib.Data.Matrix.Basic
@@ -539,7 +539,7 @@ FateV2.Model.TrajGenDeterministic reaches WorldModel? False | #deps: 13
 ```
 
 **结论**：
-1. `Fate.TrajGenStochastic` 的传递闭包**不含** `Fate.WorldModel` ⟹ 加这条
+1. `FateV2.Model` 的传递闭包**不含** `FateV2.Predict` ⟹ 加这条
    import **不成环**；
 2. 更精细地，`WorldModel` 的闭包（13 个模块）**是** `TrajGenStochastic` 闭包
    （16 个模块）的**子集**——新增的只有

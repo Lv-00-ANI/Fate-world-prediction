@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.GammaOperator
+模块：FateV2.Rules
 阶段：**阶段 1C —— 泛化算子 γ 的类型签名与基本代数律**
 
 ---------------------------------------------------------------------------
@@ -49,7 +49,7 @@
 
 | # | 选择 | 理由 |
 |---|------|------|
-| **E1** | **γ 的代数语义取「泛化算子」= 预序上的收缩、单调、幂等映射**（即闭包算子的**对偶**／内蕴算子） | 规格 §5.3.1 已把 α 具体化为 FCA **取概念**过程，即**闭包算子** `takeConcept`（`Fate.Alpha`）。「γ 是 α 的对偶」在此有唯一自然落点：闭包算子的序对偶恰是**内蕴／收缩算子**。γ 把规则「泛化」＝在**特异性预序**下向**更一般**（更小）方向移动，故是收缩的。见 §1、§3。 |
+| **E1** | **γ 的代数语义取「泛化算子」= 预序上的收缩、单调、幂等映射**（即闭包算子的**对偶**／内蕴算子） | 规格 §5.3.1 已把 α 具体化为 FCA **取概念**过程，即**闭包算子** `takeConcept`（`FateV2.Rules`）。「γ 是 α 的对偶」在此有唯一自然落点：闭包算子的序对偶恰是**内蕴／收缩算子**。γ 把规则「泛化」＝在**特异性预序**下向**更一般**（更小）方向移动，故是收缩的。见 §1、§3。 |
 | **E2** | **α 与 γ 由 Galois 连接 `α ⊣ γ` 相连**（α 左伴随＝抽象，γ 右伴随＝具体化／泛化） | 规格文献综述 `命运/第24问-观测泛函-抽象解释文献综述.md` 明写抽象解释的核心结构是伴随对 `α ⊣ γ`，`α` 是左伴随所携带的抽象域。取 `α ⊣ γ` 使「γ 是 α 的逆向或对偶」成为**类型层可陈述**的命题。见 §2。 |
 | **E3** | **规则层的 γ 由「特异性预序」载体承载**（`RuleSpec`），γ 的泛化律相对该预序陈述 | 规格 A9（局部域 $\mathcal{X}_{\text{local}}$ 的划界）**原文未定义**、是「假设·不可证」。若把 γ 写成对具体 `X.Carrier` 的等式（如「定义域扩展」），就会**偷偷塞进 A9**。故本实现把「谁比谁更一般」做成**显式参数**（一个预序），使 A9 成为**可见前件**而非匿名假设。见 §3。 |
 
@@ -60,10 +60,10 @@
 ---------------------------------------------------------------------------
 与既有文件的关系（不重证，只调用）
 ---------------------------------------------------------------------------
-- `Fate.Basic`：`Rule`、`RuleWithTheta`、`Γ`（`Gamma`）等类型签名（阶段 0）。
-- `Fate.Frame`：`Gamma` 别名 `Rule C X Y → Rule C X Y`（规格 §1.4，03:460）。
-- `Fate.Alpha`：α 的 FCA 具体化 `takeConcept = closureOp`（裁决 D）。
-- `Fate.Implication`：`closureOp`、`IsClosedAttr`、`Models` 及其基本律。
+- `FateV2.Modeling`：`Rule`、`RuleWithTheta`、`Γ`（`Gamma`）等类型签名（阶段 0）。
+- `FateV2.Model`：`Gamma` 别名 `Rule C X Y → Rule C X Y`（规格 §1.4，03:460）。
+- `FateV2.Rules`：α 的 FCA 具体化 `takeConcept = closureOp`（裁决 D）。
+- `FateV2.Rules`：`closureOp`、`IsClosedAttr`、`Models` 及其基本律。
 -/
 
 import Mathlib.Order.Concept
@@ -96,8 +96,8 @@ set_option linter.checkUnivs false
 
 /-! ### §1.1 为什么取「收缩、单调、幂等」这三条
 
-α 在 `Fate.Alpha` 中具体化为 FCA 取概念过程 `takeConcept B = B''`，
-其三条代数性质是（`Fate.Alpha` §2 已证）：
+α 在 `FateV2.Rules` 中具体化为 FCA 取概念过程 `takeConcept B = B''`，
+其三条代数性质是（`FateV2.Rules` §2 已证）：
 
 | 性质 | α（`takeConcept`） | 对偶方向 |
 |---|---|---|
@@ -514,7 +514,7 @@ variable (K : FormalCtx.{u, v})
 /-- **闭集子类型**（intent 的载体）：满足 `IsClosedAttr` 的属性集。
 
 这是 Galois 连接 `α ⊣ γ` 的**具体化侧**定义域。
-由 `Fate.Alpha`，α 的值域落在闭集内（`takeConcept_isClosed`），
+由 `FateV2.Rules`，α 的值域落在闭集内（`takeConcept_isClosed`），
 故闭集子类型正是 α 的**像**。 -/
 abbrev GammaClosedAttr : Type v := { B : Set K.MFCA // K.IsClosedAttr B }
 
@@ -528,7 +528,7 @@ def gammaFCA : K.GammaClosedAttr → Set K.MFCA := Subtype.val
 
 /-- **抽象映射 α**：把属性集取到其闭包（`takeConcept`），再打包为闭集子类型。
 
-这是 α 的 FCA 具体化（`Fate.Alpha` 的 `takeConcept`），
+这是 α 的 FCA 具体化（`FateV2.Rules` 的 `takeConcept`），
 但其**值域**被显式限定到闭集子类型——这正是使伴随对成立的关键：
 右端必须落在 γ 的定义域（闭集）内。 -/
 def alphaFCA (B : Set K.MFCA) : K.GammaClosedAttr :=
@@ -548,7 +548,7 @@ $$\texttt{takeConcept}\,B\subseteq C \iff B\subseteq C .$$
 - 伴随律 `α B ≤ C ↔ B ≤ γ.toFun C` 把两者**唯一地**绑定。
 
 **证明**：`takeConcept = closureOp` 是闭包算子（扩张、单调、幂等，
-`Fate.Implication` 已证）。伴随律的两个方向：
+`FateV2.Rules` 已证）。伴随律的两个方向：
 - `→`：设 `takeConcept B ⊆ C`，由扩张性 `B ⊆ takeConcept B` 得 `B ⊆ C`；
 - `←`：设 `B ⊆ C`。由 `C` 闭（`takeConcept C = C`）与单调性
   `takeConcept B ⊆ takeConcept C = C`。
@@ -609,7 +609,7 @@ theorem gammaFCA_injective : Function.Injective K.gammaFCA := by
   have := congrArg K.alphaFCA h
   rwa [K.alpha_gamma_eq C, K.alpha_gamma_eq D] at this
 
-/-- **α 的像恰是闭集**（值域刻画，与 `Fate.Alpha` 的 `takeConcept_isClosed` 呼应）。
+/-- **α 的像恰是闭集**（值域刻画，与 `FateV2.Rules` 的 `takeConcept_isClosed` 呼应）。
 
 即：每个闭属性集都在 α 的像内（取 `C` 本身即可）。 -/
 theorem alphaFCA_surjective : Function.Surjective K.alphaFCA := by
@@ -687,7 +687,7 @@ end RuleSpec
 $$\gamma : \texttt{Rule}\to\texttt{Rule},\qquad
   \gamma R \le R,\quad \text{单调},\quad \gamma\gamma R = \gamma R .$$
 
-**这正是本文件对 `Fate.Frame` 中 `Gamma` 别名
+**这正是本文件对 `FateV2.Model` 中 `Gamma` 别名
 （`Rule C X Y → Rule C X Y`，规格 §1.4，03:460）的**代数载体**：
 `Gamma` 只给类型，`RuleGeneralization` 补上三条律。
 
@@ -880,7 +880,7 @@ theorem legitRule_has_more_specific (S : RuleSpec C X Y) {γ : Rule C X Y → Ru
 
 /-- **对偶律一（序对偶）**：α 扩张、γ 收缩。
 
-在 FCA 层：α 的扩张律 `B ⊆ takeConcept B`（`Fate.Implication` 已证）
+在 FCA 层：α 的扩张律 `B ⊆ takeConcept B`（`FateV2.Rules` 已证）
 与 γ 的收缩律一一对偶。
 
 **本定理**：在 Galois 连接 `α ⊣ γ` 下，两条律同时成立——
@@ -893,7 +893,7 @@ theorem duality_expand_contract (K : FormalCtx.{u,v}) (B : Set K.MFCA)
 
 /-- **对偶律二（值域对偶）**：α 的值域 = 闭集；γ 的像 = 泛化不动点。
 
-- α 侧：`takeConcept` 的值域落在闭集内（`Fate.Alpha.takeConcept_isClosed`）；
+- α 侧：`takeConcept` 的值域落在闭集内（`FateV2.Rules.takeConcept_isClosed`）；
 - γ 侧：泛化算子的像恰是不动点集（§1.2 `GenOp.range_eq_generalized`）。
 
 **本定理**把两侧并列：在规则层，`γ` 的像即 `IsGeneralized` 谓词。
@@ -916,10 +916,10 @@ theorem duality_inverse_on_closed (K : FormalCtx.{u,v}) (Cc : K.GammaClosedAttr)
   K.alpha_gamma_eq Cc
 
 /-! ===========================================================================
-    §5  与 `Fate.Frame` 的 `Gamma` 类型签名的对接
+    §5  与 `FateV2.Model` 的 `Gamma` 类型签名的对接
     =========================================================================== -/
 
-/-- **对接定理**：规则层 γ 的**底层函数**恰是 `Fate.Frame` 的 `Gamma` 别名类型
+/-- **对接定理**：规则层 γ 的**底层函数**恰是 `FateV2.Model` 的 `Gamma` 别名类型
 `Rule C X Y → Rule C X Y`（规格 §1.4，03:460）。
 
 **意义**：规格 §1.4 只给了 `Gamma` 的**类型**（阶段 0 冻结）。
@@ -939,7 +939,7 @@ theorem ruleGeneralization_coe_eq_gamma (S : RuleSpec C X Y)
 
 **这条给出「哪些 `Gamma` 元素是合法的 γ」的判据**——
 与规格 T6.7 关心的「γ 何时有定义」同侧。
-和 `Fate.Frame` 的 `degenerate_iff_thetaIndependent`（刻画 `Rule` 在
+和 `FateV2.Model` 的 `degenerate_iff_thetaIndependent`（刻画 `Rule` 在
 `RuleWithTheta` 中的纤维）**结构同型**：那里刻画「哪些 `RuleWithTheta` 其实是 `Rule`」，
 这里刻画「哪些 `Gamma` 元素其实是泛化算子」。 -/
 def IsGeneralization (S : RuleSpec C X Y) (g : Gamma C X Y) : Prop :=

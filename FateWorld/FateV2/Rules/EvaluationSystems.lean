@@ -715,7 +715,7 @@ class RuleSpec (C) (X) (Y) [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrie
 
 **为什么这重要**：`Fate/WorldModelCompleteV2.lean`（WMC）通过 `[RuleSpec C X Y]`
 合成 `Preorder (Rule C X Y)`（`Fate/GammaOperator.lean` 的 `RuleSpec.instPreorder`），
-其载体含单条规则 `Fate.Rule C F.X F.X`（WMC `:168`）与规则集 `FateV2.Rules`（WMC `:191`）。
+其载体含单条规则 `Rule C F.X F.X`（WMC `:168`）与规则集 `FateV2.Rules`（WMC `:191`）。
 于是「主干里的规则」自动成为一个评价体系里的**被评价量**，无需另造载体。
 -/
 
@@ -1409,7 +1409,7 @@ error: object file '.../Mathlib/MeasureTheory/Measure/Typeclasses.olean' does no
 
 **(c) 载体是 `C.Carrier × X.Carrier × Y.Carrier`（不用 `Instance`，避免 import）**：
 `Instance` 定义在 `Fate/InstanceChain.lean:52`，而
-`Fate/EvaluationSystems.lean` 目前只 import `Fate.RuleEvaluation` 与 `Fate.GammaOperator`。
+`Fate/EvaluationSystems.lean` 目前只 import `FateV2.Rules` 与 `FateV2.Rules`。
 实测依赖方向：`Fate/InstanceChain.lean` 的 `^import` 行只有 `import FateV2.Rules.LawRule`，
 而 `LawRule` 依赖链**不含** `EvaluationSystems`，故**理论上不成环**；
 但为**最小化风险**（纪律 (i)：成环就不 import），本节**不引入任何新 import**，

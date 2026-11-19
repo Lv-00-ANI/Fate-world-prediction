@@ -2,14 +2,14 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.WorldModelCompleteV2`
+模块：`FateV2.Loop`
 阶段：**⑦ 交接器重做（小步策略）—— 第一阶段：只建类型定义 + 最小实例**
 
 ---------------------------------------------------------------------------
 背景与本文件的**严格定位**（必读）
 ---------------------------------------------------------------------------
 C6 主干地图（第 376 轮实测）判定【⑦ 交接器不存在】：全库唯一的
-`Fate.WorldModel` 类型只有 7 个字段（`frame` / `ctx` / `state` / `rules` /
+`FateV2.Predict` 类型只有 7 个字段（`frame` / `ctx` / `state` / `rules` /
 `simulator` / `selector` / `state_consistent`），只覆盖 ①骨架 + ④生成，
 ②③⑤⑥ 全不含。
 
@@ -40,7 +40,7 @@ C6 同时指出一个**关键断点**：
    - `combine.gamma` 用 `GenOp (Rule C X X)`，**相对 `RuleSpec` 的预序**。
      本结构把 `[RuleSpec C X X]` 作为**参数**（不是隐藏前提），
      故「γ 的三条律」随 `GenOp` 自动生效，**不**是本文件的断言。
-   - `error` 用 `Fate.FateV2.Error.Core.ErrProfileWeak`，`sigma` 用
+   - `error` 用 `FateV2.Error.Core.ErrProfileWeak`，`sigma` 用
      `SigmaFromDomain.SigmaSource`（含 `unknown` 支）。
      二者**都是真接口**，**不是占位**。
 4. **规则 ⟹ 模拟器**（C6 的核心断点）由字段 `rules_determine_step` 表达：
@@ -86,7 +86,7 @@ C6 同时指出一个**关键断点**：
 - 名字用 `WorldModelCompleteV2`（**V2 后缀**），不覆盖旧的 `WorldModelComplete`
   （旧的 17 定理 101 error 已隔离在 `_quarantine/_broken/`）。
 - 每个被调用的既有名字都先 `#check` / `grep` 确认，**不猜字段名**。
-- 本文件**不**加入 `Fate.lean`（不在建图内）；可用单文件 `lake env lean` 验证。
+- 本文件**不**加入 `lean`（不在建图内）；可用单文件 `lake env lean` 验证。
 -/
 
 import FateWorld.FateV2.Modeling.Basic
@@ -142,14 +142,14 @@ noncomputable section
 
 | 环节 | 本文件字段 | 绑定的既有定义 |
 |---|---|---|
-| ① 骨架 + 输入 | `input` | `Fate.InstSpace`（字段 `Carrier : Type*`） |
+| ① 骨架 + 输入 | `input` | `InstSpace`（字段 `Carrier : Type*`） |
 | ② 抽象 α 的**数据** | `alpha` | `AlphaData`（字段 `obs : E.Carrier → Set M`） |
 | ③a 泛化 γ | `gamma` | `GenOp (Rule C F.X F.X)`（相对 `[RuleSpec]` 的预序） |
 | ③b 复合 ∘ | `compose` | `FateV2.Rules.ComposeOperator.MeasurableRule` 的复合 |
 | ③c 完善 υ | `upsilon` | `UpsilonOperator.Upsilon PUnit (Rule C F.X F.X)` |
-| ④ 生成 / 预测 | `simulator` | `Fate.WorldSimulator F`（字段 `step : Step F` / `horizon : ℕ`） |
+| ④ 生成 / 预测 | `simulator` | `WorldSimulator F`（字段 `step : Step F` / `horizon : ℕ`） |
 | ⑤ 因果 | `causal` | `ParamSCM.ParamSCM F.X.Carrier F.X.Carrier` |
-| ⑥a 误差剖面 | `error` | `Fate.FateV2.Error.Core.ErrProfileWeak` |
+| ⑥a 误差剖面 | `error` | `FateV2.Error.Core.ErrProfileWeak` |
 | ⑥b 签名 σ 来源 | `sigma` | `SigmaFromDomain.SigmaSource` |
 | **（C6 断点）** 规则集 | `rules` | `FateV2.Rules C F.X F.X` |
 | **（C6 断点）** 规则→机制 | `render` / `render_surj` | 本文件定义 |
@@ -170,7 +170,7 @@ noncomputable section
 标签：**[定义性约定]**（**不是**「⑦ 已完成」的证据）。 -/
 structure WorldModelCompleteV2 (F : Frame) [instX : MeasurableSpace F.X.Carrier]
     [S : RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X] where
-  /-- **① 输入**：实例集 $\mathcal{E}$（规格 §1.4；`Fate.Frame.InstSpace`）。
+  /-- **① 输入**：实例集 $\mathcal{E}$（规格 §1.4；`FateV2.Model.InstSpace`）。
 
   **为什么用 `InstSpace` 而不是 `CtxSpace` 占位**：`InstanceChain.Instance`
   （`(O : Type u) (A : Type v)`）与 `Frame` 之间**没有**直接参数对应，
@@ -184,7 +184,7 @@ structure WorldModelCompleteV2 (F : Frame) [instX : MeasurableSpace F.X.Carrier]
   alpha : AlphaData.{0} input PUnit
   /-- **③a 泛化 γ**：特异性预序上的收缩、单调、幂等映射（`GenOp`）。
 
-  载体取**单条规则层** `Fate.Rule C F.X F.X`（`[RuleSpec]` 给出其预序）。 -/
+  载体取**单条规则层** `Rule C F.X F.X`（`[RuleSpec]` 给出其预序）。 -/
   gamma : GenOp (Rule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X)
   /-- **③b 复合 ∘**：两条规则复合为一条（`FateV2.Rules.ComposeOperator.MeasurableRule`
   的复合接口，此处取其**两条可测规则 ↦ 一条可测规则**的裸形式）。 -/
@@ -196,13 +196,13 @@ structure WorldModelCompleteV2 (F : Frame) [instX : MeasurableSpace F.X.Carrier]
   **⚠ 只承载签名**：`IsCompletion` 的序论性质（扩张／单调／幂等）
   **未**作为字段断言（需具体预序，未被作者裁决；未完成项 U3）。 -/
   upsilon : UpsilonOperator.Upsilon.{0, 0} PUnit (Rule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X)
-  /-- **④ 生成 / 预测**：模拟器（`Fate.WorldSimulator F`，字段 `step : Step F` /
+  /-- **④ 生成 / 预测**：模拟器（`WorldSimulator F`，字段 `step : Step F` /
   `horizon : ℕ`）。 -/
   simulator : WorldSimulator F
   /-- **⑤ 因果**：参数化 SCM（`ParamSCM.ParamSCM X Y`，`Th` 位承载 θ）。 -/
   causal : ParamSCM.ParamSCM F.X.Carrier F.X.Carrier
   /-- **⑥a 误差剖面**：偏置 / 方差两分量 + 非负公理的**弱**剖面
-  （`Fate.FateV2.Error.Core.ErrProfileWeak`）。 -/
+  （`FateV2.Error.Core.ErrProfileWeak`）。 -/
   error : FateV2.Error.Core.ErrProfileWeak
   /-- **⑥b 签名 σ 的来源**：领域给定 / 估计 / 未给
   （`SigmaFromDomain.SigmaSource`，**含 `unknown` 支**）。 -/

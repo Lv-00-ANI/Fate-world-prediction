@@ -47,7 +47,7 @@ import FateWorld.FateV2.Predict.ChainMarkovExplicitAntecedent
   | 来源模块 | 被本文件调用的定理 | 被接线到的结论 |
   |---|---|---|
   | `FateV2.Predict.GlobalMarkovMinimal` | `global_markov_minimal`、`condMul_gives_separable_of_margZ_ne` | ①③⑥⑧ |
-  | `Fate.PearlMarkovBridgeG1` | `condMul_imp_condRatio` | ①②④⑤⑦⑧ |
+  | `FateV2.Predict` | `condMul_imp_condRatio` | ①②④⑤⑦⑧ |
   | `FateV2.Predict.MarkovBridgeReal` | `chain_markov_relative_condmul` | ②③ |
   | `FateV2.Modeling.MoralGraphMarkov` | `moral_factorization_condmul` | ④⑤ |
   | `FateV2.Predict.UndirectedGlobalMarkov` | `separable_of_three_factors` | ⑤ |

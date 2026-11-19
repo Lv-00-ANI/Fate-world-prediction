@@ -165,7 +165,7 @@ theorem closedPartition_spec (K : PatStruct G L) :
 * `AlphaRulesLocal` 是**下游**（`import AlphaMVFCA`），
   故本文件**不能**也**不需要**指向它——直接删除。
 
-若需要这两条定理，请 `import Fate.AlphaRulesLocal`。 -/
+若需要这两条定理，请 `import FateV2.Rules`。 -/
 
 end AlphaMVFCA
 

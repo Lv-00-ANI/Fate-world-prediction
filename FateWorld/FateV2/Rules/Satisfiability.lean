@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.Satisfiability
+模块：FateV2.Rules
 阶段：**阶段 1C —— 规则组合的完备性（交非空 / 可满足性）**
 
 ---------------------------------------------------------------------------
@@ -14,7 +14,7 @@
 > **$\Sigma$ 的「交」何时非空？** —— 即：是否存在属性集 $M$
 > **同时满足每条规则**？（可满足性 / 相容性）
 
-本文件把「$M$ 满足 $\Sigma$」按 `Fate.Completeness` 的 `IsModelOf` 语义
+本文件把「$M$ 满足 $\Sigma$」按 `FateV2.Export` 的 `IsModelOf` 语义
 展开：$M$ 满足 $(A,B)$ 当且仅当「$A\subseteq M\Rightarrow B\subseteq M$」。
 
 ---------------------------------------------------------------------------
@@ -46,7 +46,7 @@
 **结论 C 即可判定性来源**：$\mathrm{cl}_\Sigma$ 可由迭代闭包达到，
 故蕴涵问题 $\Sigma\models A\Rightarrow B$ 在属性有限时**可判定**。
 **步数界**：一般 $\Sigma$ 为 $\le2^{\lvert M\rvert}$（幂集链），
-DG 基特例为 $\le\lvert M\rvert$（`Fate.Completeness` 的 `loop_stabilizes_within_card`）。
+DG 基特例为 $\le\lvert M\rvert$（`FateV2.Export` 的 `loop_stabilizes_within_card`）。
 **本文件不形式化复杂度度量**（超出当前范围），只给出**可判定性**与
 **步数上界**这一结构性依据；经典闭包算法把它降到多项式时间的**出处见 §5**。
 
@@ -287,7 +287,7 @@ $$\exists n,\ \mathrm{cl}_\Sigma A=\Sigma^n(A).$$
 $n$ 的一个**通用**上界是 $\lvert\mathcal{P}(M_{\mathrm{FCA}})\rvert=2^{\lvert M\rvert}$
 （每次稳定步至少新增一个属性，包含链的最长长度为幂集基数）；
 **更细的界依赖 $\Sigma$ 的结构**（如 $\Sigma=\mathrm{DGBasis}$ 时可取
-$\le\lvert M\rvert$，见 `Fate.Completeness` 的 `loop_stabilizes_within_card`）。
+$\le\lvert M\rvert$，见 `FateV2.Export` 的 `loop_stabilizes_within_card`）。
 **本文件不把 $2^{\lvert M\rvert}$ 写成定理**——它只作为下文复杂度讨论的依据。
 
 **证明**：取稳定步数 $n$（`exists_synClosureIter_stabilize`，鸽巢式）。
@@ -316,7 +316,7 @@ theorem cl_eq_synClosureIter [K.FiniteAttrs]
 
 /-- **DG 基特例**：对 DG 基，$\mathrm{cl}$ 与语义闭包 $(\cdot)''$ 一致。
 
-**理由**：由 `Fate.Completeness` 的 `model_iff_closed`，
+**理由**：由 `FateV2.Export` 的 `model_iff_closed`，
 DG 基的模型**恰是闭集**。故 $\mathrm{cl}_{\mathrm{DGBasis}}A$
 （含 $A$ 的最小闭集）= $A''$。
 
@@ -342,7 +342,7 @@ theorem cl_dgbasis_eq_semClosure [K.FiniteAttrs] (A : Set K.MFCA) :
 
 $$⟨\mathbb{K}\models_{\mathrm{DGBasis}} M\u27e9\iff M''=M .$$
 
-**证明**：`Fate.Completeness` 的 `isModel_iff_isModelOf_dgbasis` 与
+**证明**：`FateV2.Export` 的 `isModel_iff_isModelOf_dgbasis` 与
 `model_iff_closed` 的复合。∎
 
 **为什么这是「交何时非空」的**结构性判据**：对 DG 基，
@@ -499,7 +499,7 @@ theorem closureOp_isClosed (A : Set K.MFCA) : K.IsClosedAttr (K.closureOp A) :=
 $$\mathrm{cl}_{\mathrm{DGBasis}}A \;=\; A'' \;=\; \mathrm{closureOp}\,A .$$
 
 **这不是同义反复**：左端 `cl` 是 §2 的**语义**最小模型（对模型族取任意交），
-右端 `closureOp` 是 `Fate.Implication` 的**代数**双重极性算子
+右端 `closureOp` 是 `FateV2.Rules` 的**代数**双重极性算子
 `polarUp ∘ polarDown`。等式本身**要证**，且两方向各有独立内容：
 
 * `cl A ⊆ closureOp A`：`closureOp A` 是 DG 基的**模型**（`closureOp_isClosed`

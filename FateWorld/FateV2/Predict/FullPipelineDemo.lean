@@ -33,7 +33,7 @@ import FateWorld.FateV2.Rules.LawRuleInstances
 
   ## 与语义侧的接线
 
-  `Fate.RuleExec` 是全仓唯一把规则跑成 `Bool` 的纯可执行引擎
+  `FateV2.Rules` 是全仓唯一把规则跑成 `Bool` 的纯可执行引擎
   （`Term.check : Term → EnvQ → Bool`，`RuleExec.lean:88`），
   且已有 `Term.check_iff_holds` / `run_iff_holds` 把它钉到
   `RuleTerm.holds`（`ℝ` / `Prop` 语义）。

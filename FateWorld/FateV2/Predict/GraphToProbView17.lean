@@ -130,8 +130,8 @@ import Mathlib.Tactic.Linarith
   | §8 「零 mass」对照表 | `no_mass_tower` / `single_layer_sums` | 同主张 |
 
   **关键事实**：`Fate/View17SectionGlue.lean` **编译通过（已验证 exit 0）**
-  且**已在链上**（`Fate.lean:531` 有 `import FateV2.Predict.View17SectionGlue`）；
-  而本文件 **不在链上**（`Fate.lean` 无 `import FateV2.Predict.GraphToProbView17`）。
+  且**已在链上**（`lean:531` 有 `import FateV2.Predict.View17SectionGlue`）；
+  而本文件 **不在链上**（`lean` 无 `import FateV2.Predict.GraphToProbView17`）。
 
   ⟹ **建议归档**（`View17SectionGlue` 是本文件的严格后继：`ScreenGlue` 的
   `σ` 不依赖 `z`，故其结论严格强于本文件的 `b y z`）。

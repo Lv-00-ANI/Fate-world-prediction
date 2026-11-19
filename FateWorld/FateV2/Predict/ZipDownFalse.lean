@@ -76,7 +76,7 @@ $$\texttt{mass }(S\setminus\{h\})\,p\,x=\sum_{a∈\texttt{Bool}}\texttt{mass }S\
 
 ### 0.4 纪律核对
 
-* ✅ 只**新增**本文件（`Fate_agent_staging/`）；**未改** `Fate/`、**未改** `Fate.lean`、
+* ✅ 只**新增**本文件（`Fate_agent_staging/`）；**未改** `Fate/`、**未改** `lean`、
   **未改**任何既有模块；
 * ✅ `ZipDown`/`CondIndep`/`mass` 全部 **import 既有定义**，未重定义；
 * ✅ 零 `sorry` / `admit` / `axiom`；

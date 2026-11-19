@@ -136,7 +136,7 @@ theorem cond_mul_implies_separable_chain
     (h : CondMul p) (hpos : ∀ x y z, 0 < p ((x, y), z)) :
     ∃ (f : α → γ → ℝ) (g : β → γ → ℝ),
       ∀ x y z, p ((x, y), z) = f x z * g y z :=
-  FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable p h hpos
+  FateV2.Predict.CondMulSeparable.condMul_implies_separable p h hpos
 
 /-! ## §3 ⭐⭐⭐ **本文件的**诚实边界****
 

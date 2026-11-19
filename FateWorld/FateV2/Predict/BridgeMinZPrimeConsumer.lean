@@ -52,7 +52,7 @@
 
 ## 4 纪律核对
 
-* ✅ 不改 `Fate.lean` 以外的任何既有文件（本文件只新增；`Fate.lean` 只加一行 import）。
+* ✅ 不改 `lean` 以外的任何既有文件（本文件只新增；`lean` 只加一行 import）。
 * ✅ **零 `sorry` / `admit` / `axiom`**。
 * ✅ 单文件验证：`lake env lean Fate/BridgeMinZPrimeConsumer.lean` 通过（见交付报告）。
 * ✅ 不涉及 `mass` 塔性质；C4 的 `mass` 消费全在 `BridgeFull` / `Strategy11Hull` 内。

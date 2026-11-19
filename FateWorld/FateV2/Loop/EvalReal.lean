@@ -4,7 +4,7 @@
 
 模块：`EvalReal`（先写在 `Fate/` 验证，再复制到 staging）
 
-上游：`Fate.WorldModel`（`WorldModel` 四部分）、`Fate.WorldModelMinimal`
+上游：`FateV2.Predict`（`WorldModel` 四部分）、`WorldModelMinimal`
 　　　（任务1 的实例：`minimalWorldModel` / `zWorldModel`）、
 　　　`EndToEnd`（`observe` / `predFrom` / `e2eResidual` / `endToEnd`）、
 　　　`ResidualLoop`（`residual` / `writeBack`）。
@@ -356,8 +356,8 @@ theorem e2eCalc_eq_endToEnd (xobs x θ : ℤ) :
 |---|---|
 | `.lake/build/lib/lean/Fate/WorldModelMinimal.olean` 时间戳 | `10月22日 14:16` |
 | `Fate/WorldModelMinimal.lean` 修改时间 | `10月22日 14:19` |
-| 实测 `#check @Fate.WorldModelMinimal.zWorldModel` | `unknown identifier` |
-| 实测 `#check @Fate.WorldModelMinimal.minimalWorldModel` | ✅ 可见 |
+| 实测 `#check @WorldModelMinimal.zWorldModel` | `unknown identifier` |
+| 实测 `#check @WorldModelMinimal.minimalWorldModel` | ✅ 可见 |
 
 ⟹ 已构建的 olean **不含** `zStep` / `zWorldModel`（它们是在源文件**之后**新增的）。
 `lake env lean` 只读现有 olean、**不重建**依赖，故本文件**引用不到**它们；
@@ -373,7 +373,7 @@ theorem e2eCalc_eq_endToEnd (xobs x θ : ℤ) :
 - ✅ 该实例的机制**与任务1实例的定义逐字相同**；
 - ⚠ 但「`zWorldModel` 本身被 `#eval`」这一步**未**在本文件里出现，
   因 olean 陈旧而**无法在本会话中做到**。修复方式是重建该模块的 olean
-  （`lake build Fate.WorldModelMinimal`，本会话纪律禁止全量构建），
+  （`lake build WorldModelMinimal`，本会话纪律禁止全量构建），
   届时 `§4.3` 的两条 `rfl` 桥接即可直接补上。 -/
 
 /-! ### §4.1  四组输入的数值结论（与 `#eval` 打印一致） -/

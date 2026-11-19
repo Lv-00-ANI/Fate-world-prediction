@@ -31,7 +31,7 @@ set_option linter.unusedSectionVars false
   > 是**最终定理的顶层重导出；只有 `#check` 使用，没有任何真实调用**。
 
   ⚠ 即：**桥的「有限骨架 → 测度」方向证通了，但这座桥从未被任何下游模块消费。**
-  它在依赖图上是一个**叶子**（`Fate.lean` 根 import 到它，然后终止）。
+  它在依赖图上是一个**叶子**（`lean` 根 import 到它，然后终止）。
 
   ---------------------------------------------------------------------------
   ## 本轮的核心判断：桥**确实**是主链的必需件，且必须由它（而非它的逆）供给
@@ -205,7 +205,7 @@ theorem indep_to_fiber_eq
     intro t₁ t₂ ht₁ ht₂
     exact hI t₁ t₂ ht₁ ht₂
   -- ⭐ 这里**真实调用**桥的逆方向（单纤维版 `BridgeSingleFiber`）。
-  exact Fate.bridge_to_condIndepFin_at (α := α) (β := β) (γ := γ) p hp z hz hb
+  exact bridge_to_condIndepFin_at (α := α) (β := β) (γ := γ) p hp z hz hb
 
 /-- ⭐⭐⭐ **桥在主链上的完整接口**：`CondIndepFin ⟺ Kernel.Indep`。
 

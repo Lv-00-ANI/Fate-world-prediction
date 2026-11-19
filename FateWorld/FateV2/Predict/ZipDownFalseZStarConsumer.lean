@@ -54,7 +54,7 @@
 
 | 腿 | 模块 | 本文件用到的符号 |
 |---|---|---|
-| A（反例源） | `Fate.ZipDownFalse` | `PjointB`、`condIndepB`、`not_condIndepB`（**不引用** `zipDown_false`） |
+| A（反例源） | `FateV2.Predict.ZipDownFalseFixed` | `PjointB`、`condIndepB`、`not_condIndepB`（**不引用** `zipDown_false`） |
 | B（主链） | `FateV2.Predict.BridgeMinZPrime` | `zStar`、`paBlock`、`req`、`readClosed_zStar`、`subset_zStar` |
 | B（主链） | `FateV2.Predict.BridgeFull` | `markov_of_readClosedBlocks`（**非** `BridgeFullFixed`） |
 | B（底座） | `FateV2.Predict.BridgeZipDown` | `ZipDown`、`gempty`、`gempty_parents` |
@@ -105,7 +105,7 @@
 ## 4 纪律核对
 
 * ✅ 只**新增**本文件（**不改**既有 `Fate/ZipDownFalseConsumer.lean`）；只**追加一行**
-  `import` 到 `Fate.lean`（G12），不改其中任何既有行；
+  `import` 到 `lean`（G12），不改其中任何既有行；
 * ✅ **零 `sorry` / `admit` / `axiom`**；
 * ✅ 单文件验证：`lake env lean Fate/ZipDownFalseZStarConsumer.lean` 两遍 EXIT=0；
 * ✅ 不重定义 `ZipDown` / `CondIndep` / `mass` / `zStar` / `paBlock` / `req`；

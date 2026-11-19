@@ -3,8 +3,8 @@
 ================================
 
 模块：WiringFCAAlpha
-任务：**W1-最高优先 接线** —— 把 `Fate.T112FCASpecific` 的具体 FCA 结果
-      接到规则层 α（`Fate.Alpha` / `FateV2.Rules.InstanceChain.AlphaOutput`）。
+任务：**W1-最高优先 接线** —— 把 `FateV2.Rules` 的具体 FCA 结果
+      接到规则层 α（`FateV2.Rules` / `FateV2.Rules.InstanceChain.AlphaOutput`）。
 
 ---------------------------------------------------------------------------
 本文件做什么
@@ -26,7 +26,7 @@
 | `Contrast.closure_four_eq_two`（一般对照） | 诚实性对照（防虚假声称）：`alphaRead_rankTwo_notFCA` |
 
 §5 再给出**真正的 α 实例**：`FateV2.Rules.InstanceChain.AlphaOutput` 的具体构造，
-其 `partition` 由 `K3`（`Fate.Alpha` 的取概念过程）的**读集（extent）**给出。
+其 `partition` 由 `K3`（`FateV2.Rules` 的取概念过程）的**读集（extent）**给出。
 
 ---------------------------------------------------------------------------
 🔧 P-006 修复记录（本次 = 修 `29 error`；按 `坏模块分诊.md` 判定为 **FIX**）
@@ -41,7 +41,7 @@
 | 2 | `alphaPartition : Set G3 → …` 里调 `K3.takeConcept y` | ⚠ **不是改名，是类型写错**：`takeConcept : Set K.MFCA → Set K.MFCA`，
 而 α 的输入本来就是**属性集**；写成 `Set G3`（对象集）类型不符 | 状态类型改为 `Set M2`（`= Set K3.MFCA`） |
 | 3 | `LawRule` / `Alpha` / `AlphaSpec` 未限定 | `LawRule` 在 `LawRule`，`Alpha`/`AlphaSpec` 在 `FateV2.Rules.InstanceChain`；
-且 `Fate.Frame.Alpha`（接 `InstSpace`）**与** `FateV2.Rules.InstanceChain.Alpha`（接 `Type u`）**同名**，非限定会歧义 | 加 `open FateV2.Rules.LawRule`；`Alpha`/`AlphaSpec` 显式限定为 `FateV2.Rules.InstanceChain.*` |
+且 `FateV2.Model.Alpha`（接 `InstSpace`）**与** `FateV2.Rules.InstanceChain.Alpha`（接 `Type u`）**同名**，非限定会歧义 | 加 `open FateV2.Rules.LawRule`；`Alpha`/`AlphaSpec` 显式限定为 `FateV2.Rules.InstanceChain.*` |
 | 4 | `MeasurableSpace K3Y.Carrier` 无法解析 | `StateSpace.meas` 是**结构字段**不是实例，
 而 `LawRule` 需要 `[MeasurableSpace Y.Carrier]` | 仿 `Fate/T1DegeneracyVerify.lean:232` 写
 `instance … := inferInstanceAs (MeasurableSpace (Set M2))` |
@@ -317,7 +317,7 @@ end RankTwo
   **P-006 修复说明（本次修复的实际内容）**：
 
   原文件本节按**旧版** `StateSpace` 书写（`⟨Carrier⟩` 单字段）。
-  新版 `Fate.Basic.StateSpace` 有 `Carrier` / `topo` / `meas` / `borel_le`
+  新版 `FateV2.Modeling.StateSpace` 有 `Carrier` / `topo` / `meas` / `borel_le`
   四个分量，故本节全部 `⟨Set G3⟩` 写法失效。
   修复另加两处**实质纠错**（不是纯改名）：
 
@@ -385,7 +385,7 @@ theorem alphaPartition_symm : PartitionSymm alphaPartition := by
 /-- **本实例唯一的规则**：常值规则 —— 无论状态如何，允许的分布集都是固定单点集。
 
 **为什么取常函数**：局部域把状态**按 α 读集分类**，同类状态读集相同但
-**状态本身可以不同**（`Fate.AlphaConcreteInstance.alpha_not_injective` 已证
+**状态本身可以不同**（`FateV2.Rules.alpha_not_injective` 已证
 α 不单射）。故要 (S4) 成立，规则**必须**在同类上取同值 —— 常函数是最简实现。
 
 **这不是空洞的退化**：规则输出取自 **`∅` 的取概念结果**（`takeConcept ∅ = ∅`，
@@ -470,7 +470,7 @@ end WiringFCAAlpha
 end FateV2.Rules
 -- ## §6  使用登记（供下游与审计）
 --
--- 本文件消费的 `Fate.T112FCASpecific` 定理清单（逐条 grep 可查）：
+-- 本文件消费的 `FateV2.Rules` 定理清单（逐条 grep 可查）：
 -- FormalCtx 的 toExtent 逆性质、toIntent 与 toExtent 的序等价；
 -- ClosureSep.NonSelfDual 的 no_selfDual_iso；
 -- Counterexample 的 KA_KC_lattice_iso、no_extent_preserving_iso、

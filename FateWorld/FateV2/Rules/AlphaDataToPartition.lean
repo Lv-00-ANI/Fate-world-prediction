@@ -106,7 +106,7 @@ def alphaQuot (D : AlphaData E M) :
 ---------------------------------------------------------------------------
 - 本文件**零 `sorry`、零 `admit`、零 `axiom`**（`#print axioms` 见文末）。
 - **不修改**任何既有模块；`Fate/AlphaDataConsumed.lean` 未触碰。
-- 仅依赖已编译的 `Fate.AlphaFCAConstruction`（其 `.olean` 已存在）。
+- 仅依赖已编译的 `FateV2.Rules`（其 `.olean` 已存在）。
 -/
 
 import Mathlib.Order.Concept

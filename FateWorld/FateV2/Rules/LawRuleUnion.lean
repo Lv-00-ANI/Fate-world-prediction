@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.LawRuleUnion
+模块：FateV2.Rules
 阶段：**「规则的并」—— 规格开放问题 5.1 的候选语义 #3**
 
 ---------------------------------------------------------------------------
@@ -45,7 +45,7 @@
   `unionLaw R1 (compose R2 R3) = compose (unionLaw R1 R2) (unionLaw R1 R3)`
   **不是定理**（`∪` 对 `∩` 不这样分配）。正确的分配律是
   「`∩` 对 `∪` 分配」(`interLaw_distrib_unionLaw`) 以及
-  「`∪` 对 `∪`、`∩` 对 `∩` 的分配（即 `compose_sup`，见 `Fate.LawRuleLattice`）」。
+  「`∪` 对 `∪`、`∩` 对 `∩` 的分配（即 `compose_sup`，见 `FateV2.Rules`）」。
   本文件给出**对偶方向上成立的那条**：`unionLaw R1 (compose R2 R3)` 与
   `compose (unionLaw R1 R2) (unionLaw R1 R3)` 之间只有**包含关系**
   （后者 ⊆ 前者），即 `unionLaw_inter_subset`。这条**不等式方向**才是真的。

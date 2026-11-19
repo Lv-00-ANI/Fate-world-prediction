@@ -2,8 +2,8 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.GaloisEmbedding
-阶段：**阶段 1A/1B —— 对 `Fate.FCA` 中导出算子对的判定与证明**
+模块：FateV2.Rules
+阶段：**阶段 1A/1B —— 对 `FateV2.Rules` 中导出算子对的判定与证明**
 
 ---------------------------------------------------------------------------
 本文件回答的问题
@@ -13,7 +13,7 @@
 > `polarUp` / `polarDown` 这对导出算子，**是否**诱导一个
 > **Galois 嵌入**（Galois embedding / Mathlib 的 `GaloisInsertion`）？
 
-`Fate.FCA` 已把 FCA 的导出算子对绑定到 Mathlib 的 `upperPolar`/`lowerPolar`，
+`FateV2.Rules` 已把 FCA 的导出算子对绑定到 Mathlib 的 `upperPolar`/`lowerPolar`，
 并保留了「协变包装会因 `OrderDual` 而类型类合成卡住」的记录，
 只给出**点式基本对偶** `B ⊆ A' ↔ A ⊆ B'`（`subset_polarUp_iff_subset_polarDown`）。
 本文件把这个「是否嵌入」的问题**判定清楚并逐条证明**，给出：
@@ -69,7 +69,7 @@ variable (K : FormalCtx)
     §1  判定 ①：该导出算子对**是**一个 Galois 连接（协变形式）
     ===========================================================================
 
-`Fate.FCA` 的记录指出：协变定义式 `l a ≤ b ↔ a ≤ u b` 不能在未加对偶的
+`FateV2.Rules` 的记录指出：协变定义式 `l a ≤ b ↔ a ≤ u b` 不能在未加对偶的
 `Set` 上直接给出，因为 FCA 的真关系是 `B ⊆ A' ↔ A ⊆ B'`，方向相反。
 
 **本节的判定**：把**属性侧**换成序对偶 `(Set M)ᵒᵈ`，
@@ -79,11 +79,11 @@ variable (K : FormalCtx)
 这是 P20 §4.1 中「不可包装为协变 `GaloisConnection`」的**精确更正**：
 不是「不能包装」，而是「必须在属性侧的序对偶上包装」。
 
-**本判定已在 `Fate.Adjunction` 中落实**（`FormalCtx.gc_polarUp_polarDown`
+**本判定已在 `FateV2.Rules` 中落实**（`FormalCtx.gc_polarUp_polarDown`
 与 `FormalCtx.polar_adjoint_iff`）。本文件**不重复定义**，
 只在此**引用**，并把判定 ① 作为后续判定 ②/③ 的起点。 -/
 
-/-- **判定 ①（是 Galois 连接）——引用**：`Fate.Adjunction` 已构造出
+/-- **判定 ①（是 Galois 连接）——引用**：`FateV2.Rules` 已构造出
 `l := toDual ∘ polarUp : Set G → (Set M)ᵒᵈ`、`u := polarDown ∘ ofDual : (Set M)ᵒᵈ → Set G`
 且 `l ⊣ u`。此处以本文件的记号**复核**该事实仍然成立（不作为新结果）。
 

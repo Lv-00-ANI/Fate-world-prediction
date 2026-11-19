@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaFourOpConsumer`
-阶段：**P5-甲 —— `Fate.AlphaFourOp` 的消费方**
+模块：`FateV2.Rules`
+阶段：**P5-甲 —— `FateV2.Rules` 的消费方**
 
 ---------------------------------------------------------------------------
 本文件做什么（一句话）
 ---------------------------------------------------------------------------
-`Fate.AlphaFourOp` 给出了 α／γ／υ／∘ 四算子交互的**一般**结论
+`FateV2.Rules` 给出了 α／γ／υ／∘ 四算子交互的**一般**结论
 （`alpha_chain_collapses`、`alphaK_absorbs_comb`、`alpha_upsilon_same_fixed_set`、
 `alphaK_models_iff` 等），但那些结论全部陈述在 `K3` 的**符号**上。
 本文件把它们**真正跑起来**：在 `K3` 的 4 个属性子集上**逐格算出**具体值，
@@ -33,7 +33,7 @@
 诚实边界（如实登记）
 ---------------------------------------------------------------------------
 1. **不含** `sorry` / `admit` / `axiom`。
-2. 本文件**不**声称「四算子一致」有任何**新**数学：它只是 `Fate.AlphaFourOp`
+2. 本文件**不**声称「四算子一致」有任何**新**数学：它只是 `FateV2.Rules`
    的**具体化**（`K3` 上 4 格穷举）。真正的一般结论在 `AlphaFourOp`。
 3. `AlphaFourOp.alpha_gammaTop_fails` 的**反例**（`gammaTop` 破坏相容）
    本文件**不复制**，只引用其值域结论 —— 该反例已在 `AlphaFourOp` 内登记。
@@ -295,7 +295,7 @@ theorem enc_one_alpha_and_comb :
     show K3.takeConcept BAB = BAB
     exact FateV2.Rules.AlphaInstance.takeConcept_eq_ab
 
-/-- ⭐⭐ **商上的 α 值落在四算子的不动点集内**（`Fate.Alpha` 的商 ⟶ 四算子）。
+/-- ⭐⭐ **商上的 α 值落在四算子的不动点集内**（`FateV2.Rules` 的商 ⟶ 四算子）。
 
 对任意商元素 `q : Quotient eqv2`：
 1. `αOnQuotient q = {a}` —— 商下降的**取值**（`alphaOnQuotient_instance`）；

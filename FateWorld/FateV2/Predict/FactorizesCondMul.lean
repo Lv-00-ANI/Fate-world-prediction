@@ -53,7 +53,7 @@ import Mathlib.Tactic
   ## 2. 与既有文件的关系（如实登记，**不冒充新定理**）
 
   本文件由 G1 任务指定的**文件名**（`Fate/FactorizesCondMul.lean`）创建。
-  仓库中已存在 `Fate/FactorizesToCondMul.lean`（先前轮次写成，且已在 `Fate.lean:181`
+  仓库中已存在 `Fate/FactorizesToCondMul.lean`（先前轮次写成，且已在 `lean:181`
   的导入图内），它已把**同一代数**写了三遍：`rebind`/`rebindZ`、反例
   `cexP_factorizes_not_condMul`、正定理 `factorizes_implies_condMul_Z`。
 

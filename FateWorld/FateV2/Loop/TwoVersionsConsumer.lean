@@ -3,10 +3,10 @@
 ================================
 
 模块：`TwoVersionsConsumer`
-任务：**P5-甲** —— 接入 `Fate.TwoVersions`
+任务：**P5-甲** —— 接入 `FateV2.Predict`
 
 本文件**只新增**，不修改任何既有模块。
-只 `import Fate.TwoVersions`（其本身已 import `BoundWriteBack`）。
+只 `import FateV2.Predict`（其本身已 import `BoundWriteBack`）。
 
 ===========================================================================
 一、被接入模块（实测，`Fate/TwoVersions.lean`，624 行）

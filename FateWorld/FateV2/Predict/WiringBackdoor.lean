@@ -27,11 +27,11 @@ import Mathlib.Tactic
   |---|---|---|
   | `FateV2.Predict.BackdoorGenuine`（41 条） | 1399 | `Vert` / `moralAdj` / **`IsDescendant` + `NoDescendant`（真版）** / **`BackdoorSep`（真 d-分离，端点剔除）** / `BackdoorConditions` |
   | `FateV2.Predict.BackdoorCriterion`（39 条） | 880 | `BackdoorSetup` / `condYobs` / `condYdo` / `doLaw` / **`backdoor_criterion`（调整公式 = 干预律）** / `BackdoorBlocked` |
-  | `Fate.BackdoorWithM`（38 条） | 1313 | `SetupWithM` / `MVert` / **`IsDescendantM` + `NoDescendantM`（真中介版）** / `adjust_Z_correct` / `demo_M_naive_wrong` |
+  | `Bad`（38 条） | 1313 | `SetupWithM` / `MVert` / **`IsDescendantM` + `NoDescendantM`（真中介版）** / `adjust_Z_correct` / `demo_M_naive_wrong` |
 
   ## 1. ⚠⚠ **陷阱登记（任务书点名的那一个）**
 
-  `Fate.FateV2.Predict.R259.BackdoorSetup.NoDescendant`（`BackdoorCriterion.lean:276`）的定义是
+  `FateV2.Predict.R259.BackdoorSetup.NoDescendant`（`BackdoorCriterion.lean:276`）的定义是
 
   ```
   def NoDescendant : Prop := ∀ (z : S.Z) (ux : S.Ux), S.fX z ux = S.fX z ux
@@ -90,7 +90,7 @@ import Mathlib.Tactic
   | 2 | `wmAdjustEst` 定义 | 外层多乘一次 `pz`（会变成 `∑ pz²D/condX`）| 删去 `* S.pz z`，使 `= ∑ P(y\|x,z)p_z(z)` 即 Pearl 后门公式 |
   | 3 | `wmNum_eq_condYnum` | 因 #1，陈述为**假**；`simp` 后剩恒等但不闭合的残目标 | rfl 后补 `rfl` 收尾 |
   | 4 | `wmAdjustEst_eq_backdoorFormula` | `field_simp` 后剩 `condYnum*pz = condYnum` | 拆 `by_cases hz : pz = 0`，零分支先证 `condYnum = 0` |
-  | 5 | `demoS_wmAdjustEst_00` / `…_eq_doLaw_00` | **`wmAdjustEst` 未知标识符**（命名空间未打开）| 全文限定名 `Fate.FateV2.Predict.R259.BackdoorSetup.wmAdjustEst` |
+  | 5 | `demoS_wmAdjustEst_00` / `…_eq_doLaw_00` | **`wmAdjustEst` 未知标识符**（命名空间未打开）| 全文限定名 `FateV2.Predict.R259.BackdoorSetup.wmAdjustEst` |
   | 6 | `demoS_wmAdjustEst_eq_doLaw_00` | `adjust_eq_do ▸ rfl`（`▸` 需要等式，但它是合取）| 改用 `adjust_eq_do.1`（第一个合取分量） |
   | 7 | §5.4 两个 demo 定理 | `Nonempty demoS.X` / `demoS.Y` 合成失败 | 两份局部 `instance`（X=Y=Bool，见证 `false`）|
 

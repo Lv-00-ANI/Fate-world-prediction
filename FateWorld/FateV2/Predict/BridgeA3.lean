@@ -74,7 +74,7 @@ import Mathlib.Tactic.LinearCombination
     给出它的**精确能力边界**。二者的差别正是 `φ_v` 是否读 `v` 自身；
   * 本文不依赖 `BridgeA4`（该文件当前另有语法错误，与本文件无关）。
 
-  **纪律**：单文件 `lake env lean Fate/BridgeA3.lean` 验证 · 不改 `Fate.lean` ·
+  **纪律**：单文件 `lake env lean Fate/BridgeA3.lean` 验证 · 不改 `lean` ·
   不改已有模块 · 零 `sorry` · 不用 `mass` 塔性质（`tower_*` 不出现）。
   =========================================================================== -/
 

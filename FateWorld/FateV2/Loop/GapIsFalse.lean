@@ -35,10 +35,10 @@ import Mathlib.Topology.MetricSpace.Basic
 
   **本文件证明：该全称命题为假。** 它不是「未证的缺口」，而是**错题**。
 
-  ## 1 为什么不能 `import Fate.EndToEndBound`
+  ## 1 为什么不能 `import EndToEndBound`
 
   `Fate/EndToEndBound.lean` 当前**编译失败**（3 处 error，且该模块**不在**
-  `Fate.lean` 依赖链上，无 `.olean`）。故 **不能** `import` 它。
+  `lean` 依赖链上，无 `.olean`）。故 **不能** `import` 它。
 
   **处置**：本文件只 `import FateV2.Loop.EndToEnd`
   （该模块**可以**编译，已实测），并在此**逐字重述** §8 的定义为

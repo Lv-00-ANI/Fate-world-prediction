@@ -9,7 +9,7 @@
 ---------------------------------------------------------------------------
 本文件补什么（一句话）
 ---------------------------------------------------------------------------
-`Fate.WorldModelCompleteV2` 的 `alpha` 字段**类型本来就是** `FateV2.Rules.AlphaData`
+`FateV2.Loop` 的 `alpha` 字段**类型本来就是** `FateV2.Rules.AlphaData`
 （原文件 `:164`：`alpha : AlphaData.{0} input PUnit`）。
 **类型早已接上**，缺的是「**用** `AlphaData` 的定理」：
 `grep -n '\.alpha\|\.obs' Fate/WorldModelCompleteV2.lean` 在其定理区**零命中**。
@@ -154,7 +154,7 @@ set_option linter.checkUnivs false
 #check @FateV2.Rules.AlphaData.alpha_snd_eq_thIter
 #check @FateV2.Rules.AlphaData.alpha_snd_isClosed
 #check @FateV2.Rules.AlphaData.alpha_respects_obs
-#check @Fate.WorldModelCompleteV2.alpha
+#check @FateV2.Loop.alpha
 
 /-! ===========================================================================
     §1  `W.alpha` 的有限性：`PUnit` 作属性类型时 `FiniteAttrs` 自动成立

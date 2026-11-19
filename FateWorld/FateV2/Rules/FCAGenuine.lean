@@ -8,7 +8,7 @@
 ---------------------------------------------------------------------------
 本文件做什么
 ---------------------------------------------------------------------------
-在 `Fate.FCA` 已有的 Galois 连接地基上，**真正建立对象侧的闭包算子**
+在 `FateV2.Rules` 已有的 Galois 连接地基上，**真正建立对象侧的闭包算子**
 `cl A = polarDown (polarUp A)` 的三条核心性质：
 
 1. `cl_mono`      —— 单调性（由导出算子的反单调两次复合得到）
@@ -24,7 +24,7 @@
 ---------------------------------------------------------------------------
 - 本文件**无** `sorry` / `admit` / `axiom`。
 - 所依赖的 Mathlib 事实（`upperPolar_anti`、`lowerPolar_anti`、
-  `lowerPolar_upperPolar_lowerPolar`、Galois 对偶）在 `Fate.FCA` 中
+  `lowerPolar_upperPolar_lowerPolar`、Galois 对偶）在 `FateV2.Rules` 中
   已各以其定理名显式暴露，本文件只**引用**。
 - 本文件**不修改**任何既有文件。
 -/
@@ -190,7 +190,7 @@ theorem isClosureSet_iff_exists_concept (K : FormalCtx) (A : Set K.GFCA) :
 /-- **闭集 ↔ 概念**：每个闭集都是某个 `(extent, intent)` 二元组的第一分量，
 且该二元组是形式概念。
 
-这条把 `isClosureSet_iff_exists_concept` 与 `Fate.FCA` 的 `extent`/`intent`
+这条把 `isClosureSet_iff_exists_concept` 与 `FateV2.Rules` 的 `extent`/`intent`
 绑定起来：对闭集 `A`，`(cl A, (cl A)')` 恰构成一个 `extent = A` 的概念。 -/
 theorem isClosureSet_iff_isConcept_extent (K : FormalCtx) (A : Set K.GFCA) :
     cl K A = A ↔

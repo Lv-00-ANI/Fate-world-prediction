@@ -20,7 +20,7 @@ import FateWorld.FateV2.Predict.PearlLawRuleBridge
 
   `grep -nE "^(theorem|def|noncomputable def|instance)"` 实测 **37 条声明**
   （`namespace FateV2.Predict.NonemptyFree2.T35Rule1Split`，import `SCMSemantics`、
-  `Fate.Rule1Semantic`）：
+  `FateV2.Predict`）：
 
   | 类别 | 声明 |
   |---|---|

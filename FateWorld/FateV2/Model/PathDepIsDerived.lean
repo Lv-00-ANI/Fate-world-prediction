@@ -2,9 +2,9 @@
 命运理论 · 「路径依赖」是 (f, θ, x₀) 的推论（开放问题 1.5）
 =============================================================================
 
-模块：Fate.PathDepIsDerived
-上游：`Fate.PathDependence`（开放问题 1.4 的三个方向）、
-　　　`FateV2.Model.TrajGenDeterministic`（`trajGen` 及其唯一性）、`Fate.Frame`、`Fate.Basic`
+模块：FateV2.Model
+上游：`FateV2.Predict`（开放问题 1.4 的三个方向）、
+　　　`FateV2.Model.TrajGenDeterministic`（`trajGen` 及其唯一性）、`FateV2.Model`、`FateV2.Modeling`
 
 ---------------------------------------------------------------------------
 (a) 净版原文（逐字）

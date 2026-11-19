@@ -652,7 +652,7 @@ theorem closure_eq_sInter_intents (K : FormalCtx.{u, v}) (A : Set K.MFCA) :
   | `closure_mono_apply` | 闭包算子单调性的**逐点**形式 |
   | `closure_eq_of_isIntent` / `isIntent_of_closure_eq` | 闭 ⟺ 内涵（双向拆件） |
 
-  **⚠ 诚实标注（与 `Fate/FCA.lean` 的关系）**：`Fate.FCA.FormalCtx` 中已有
+  **⚠ 诚实标注（与 `Fate/FCA.lean` 的关系）**：`FateV2.Rules.FormalCtx` 中已有
   `subset_polarDown_polarUp`（`⊆`，MFCA 侧）与 `polarDown_polarUp_polarDown`
   （**等式**，更强）。本节的对应条目因此**改名**为带 `_apply` / `_subset` 后缀，
   并**只**作为本文件的**规格内拆件**（`⊆` 版），**不是**新数学内容；
@@ -681,7 +681,7 @@ theorem polarDown_antitone_apply (K : FormalCtx.{u, v}) {A B : Set K.MFCA} (h : 
     K.polarDown B ⊆ K.polarDown A :=
   K.polarDown_antitone h
 
-/-- ⭐⭐ **往返后 `⊆` 收缩**（`⊆` 版；`Fate.FCA` 的等式版是其强化）。 -/
+/-- ⭐⭐ **往返后 `⊆` 收缩**（`⊆` 版；`FateV2.Rules` 的等式版是其强化）。 -/
 theorem polarDown_polarUp_polarDown_subset (K : FormalCtx.{u, v}) (A : Set K.MFCA) :
     K.polarDown (K.polarUp (K.polarDown A)) ⊆ K.polarDown A :=
   polarDown_polarUp_subset_of_subset K A (K.polarDown A) (subset_rfl)

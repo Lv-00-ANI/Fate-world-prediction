@@ -30,7 +30,7 @@ import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
   该文件 15 条定理全是**定义展开 / 零-非零二分 / 分解恒等式**，
   **没有一条范数意义上的界**。
 
-  仓库内另有一份 `Fate/EndToEndBound.lean`（**不在** `Fate.lean` 构建图内，
+  仓库内另有一份 `Fate/EndToEndBound.lean`（**不在** `lean` 构建图内，
   且**当前不可编译**，见 §7.2）。即便修好，它的核心恒等式
 
   $$\theta'(y) - \theta'(y') = \eta * \varphi\bigl(\hat{x}^{\mathrm{obs}}(y)
@@ -84,7 +84,7 @@ import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
   与 `[SeminormedRing W.frame.Θ.Carrier]`（`η * φ r` 用 `norm_mul_le`）。
   二者**逐条出现在定理签名里**，不是隐藏假设。
 
-  **2.5 本文件**不修改**任何既有模块**、**不 import** `Fate.EndToEndBound`
+  **2.5 本文件**不修改**任何既有模块**、**不 import** `EndToEndBound`
   （该文件当前不可编译），**零 `sorry` / 零 `admit` / 零 `axiom`。**
 
   ## 2.6  修复记录（本批次，2024 修复）

@@ -416,7 +416,7 @@ end FateV2.Predict
 /-! ===========================================================================
   §R36  **R-36 接线：干预选择的**紧性**（本文件）与 `InterventionSelection` 的 `Optimal` / `Dom` / `gain`**
 
-  * 本文件（`Fate.InterventionTight`）给出**紧性**：`bestScore := P.score (chooseOptimal P tree hne)`
+  * 本文件（`FateV2.Predict`）给出**紧性**：`bestScore := P.score (chooseOptimal P tree hne)`
     是得分集的**最大元**（`bestScore_isGreatest`）、**最小上界**（`bestScore_isLUB`）、
     **不可下调**（`bestScore_sharp`）。载体是 `WorldScenario.Policy` + `Finset` 树。
   * `InterventionSelection` 给出**选择代数**：`Optimal`（argmax 谓词）、`Dom`（弱支配）、

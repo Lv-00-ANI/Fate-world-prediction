@@ -69,7 +69,7 @@ $R_1\circ\cdots\circ R_n\in\mathcal{R}$。
    即 $(R_2\circ R_1)(c,x)(A)=\int_{y} R_2(c,y)(A)\ \mathrm{d}\bigl(R_1(c,x)\bigr)(y)$。
 
    **为什么这是可辩护的**：
-   * 规则的主形式是**条件分布核**（规格定义 5.2，`Fate.Frame.Rule`）；
+   * 规则的主形式是**条件分布核**（规格定义 5.2，`FateV2.Model.Rule`）；
    * 「两条规则前后相接」正是规格开放问题 5.1 列出的**第一个候选语义**；
    * 在测度论中，核的复合是唯一的**结合**复合（`Measure.bind` 的 monad 结构）；
    * 它与 `Mathlib.Probability.Kernel.comp` **逐字一致**（本文件 §4 给出桥接定理），
@@ -79,7 +79,7 @@ $R_1\circ\cdots\circ R_n\in\mathcal{R}$。
    **⚠ 关键取舍（诚实标注）**：本实现把「核复合」所需的最小解析性质
    ——**核在 $x$ 上的可测性**——做成**显式的结构字段**
    `MeasurableRule.measurable_kernel`，而**不**把它藏进 `Rule` 的定义
-   （那会破坏 `Fate.Frame` 已冻结的签名）。故本节的对象是
+   （那会破坏 `FateV2.Model` 已冻结的签名）。故本节的对象是
    **可测规则** `MeasurableRule`，即 `Rule` **加上**可测性见证。
    这不是限制：**转移核的定义本身就要求可测性**
    （`Mathlib.Probability.Kernel.Defs`：kernel 的可测性是其定义的一部分）。
@@ -146,7 +146,7 @@ variable {C : CtxSpace} {X Y Z W : StateSpace}
 规格符号表把 $\circ$ 写成 $\mathcal{R}\times\mathcal{R}\to\mathcal{R}$，
 表面上只是「同质二元运算」。但**规则带型别**：
 `Rule C X Y` 的输入空间 $X$ 与输出空间 $Y$ **一般不同**
-（`Fate.Frame` 的 `Rule` 是三参数结构）。
+（`FateV2.Model` 的 `Rule` 是三参数结构）。
 
 若强行取同质签名 `Rule C X Y → Rule C X Y → Rule C X Y`，
 则「前后相接」在两个规则输出/输入空间不匹配时**根本无法写出**——
@@ -157,7 +157,7 @@ variable {C : CtxSpace} {X Y Z W : StateSpace}
 $$\circ:\ \texttt{Rule}\ C\ X\ Y\ \longrightarrow\ \texttt{Rule}\ C\ Y\ Z
   \ \longrightarrow\ \texttt{Rule}\ C\ X\ Z .$$
 
-这是「类型错误在编译期即被拒绝」这一既有纪律（`Fate.Frame` §2 已用于
+这是「类型错误在编译期即被拒绝」这一既有纪律（`FateV2.Model` §2 已用于
 $do(a_t)$ 的处置）在组合算子上的直接复用。 -/
 
 /-- **组合算子的载体（异质签名）**：把 `Rule C X Y` 与 `Rule C Y Z` 复合为
@@ -167,7 +167,7 @@ $$\texttt{Comp}:\ (\mathcal{C}\to\mathcal{X}\to\mathrm{Measure}\,\mathcal{Y})
   \ \to\ (\mathcal{C}\to\mathcal{Y}\to\mathrm{Measure}\,\mathcal{Z})
   \ \to\ (\mathcal{C}\to\mathcal{X}\to\mathrm{Measure}\,\mathcal{Z}).$$
 
-**与 `Fate.Frame.Comb` 的关系**：`Comb C X Y` 是同质签名
+**与 `FateV2.Model.Comb` 的关系**：`Comb C X Y` 是同质签名
 `Rule C X Y → Rule C X Y → Rule C X Y`（阶段 0 冻结）。
 本别名是它的**异质推广**；当 $X=Y=Z$ 时二者可互相转换（见 §4.3 的
 `toComb` / `ofComb`）。**加法式变更，不破坏已冻结签名。** -/
@@ -265,15 +265,15 @@ def ComposeLaws
 `Measure.bind` **要求被积函数可测**（否则结果未必是良定义的测度），
 故「核在 $x$ 上可测」是核复合的**数学前提**，不是技术性规避。
 
-**为什么不把它加进 `Rule`**：`Fate.Frame` 已冻结 `Rule` 的签名
+**为什么不把它加进 `Rule`**：`FateV2.Model` 已冻结 `Rule` 的签名
 （`00-签名冻结.md` 的冻结纪律），且该文件明确「阶段 0 只做类型化」。
 故本实现按**加法式变更**另设 `MeasurableRule`——
-它是 `Rule` **加上**可测性见证，与 `Fate.Frame` 的 `RuleWithTheta`
+它是 `Rule` **加上**可测性见证，与 `FateV2.Model` 的 `RuleWithTheta`
 「加一个参数而不改原结构」的做法同构。
 
 **与 Mathlib 的一致性**：`ProbabilityTheory.Kernel` 的定义**本身就含可测性**
 （`structure Kernel` 的第二个字段 `measurable'`）。
-故「可测规则」正是把 `Fate.Frame.Rule` 逐字翻译到 Mathlib 的
+故「可测规则」正是把 `FateV2.Model.Rule` 逐字翻译到 Mathlib 的
 `Kernel` 所需的、且仅需的**最小附加条件**。 -/
 
 /-- **可测规则**：一条 `Rule` 连同「核在每个固定上下文 $c$ 上关于 $x$ 可测」的见证。
@@ -285,7 +285,7 @@ $$\texttt{MeasurableRule}::=\bigl(R,\
 故 §3.2 的 `toKernel` 是**恒等翻译**、**零信息损失**。 -/
 structure MeasurableRule (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrier] where
-  /-- 规则本体（沿用 `Fate.Frame.Rule`，主形式为条件分布核）。 -/
+  /-- 规则本体（沿用 `FateV2.Model.Rule`，主形式为条件分布核）。 -/
   rule : Rule C X Y
   /-- **可测性见证**：固定上下文 $c$ 后，核关于状态 $x$ 可测。
   **这是核复合的数学前提**（`Measure.bind` 需要可测的被积核）。 -/
@@ -318,7 +318,7 @@ theorem ext' {R S : MeasurableRule C X Y}
       subst hr_eq
       rfl
 
-/-- **底层 `Rule` 的投影**（把可测规则忘掉可测性，回到 `Fate.Frame.Rule`）。
+/-- **底层 `Rule` 的投影**（把可测规则忘掉可测性，回到 `FateV2.Model.Rule`）。
 
 **这是一个遗忘函子**：`MeasurableRule → Rule`。
 它单射（§3.3 `rule_injective`），故「可测规则」是「规则」的**子载体**。 -/
@@ -334,7 +334,7 @@ $$\texttt{toKernel}\,R\,c := \bigl(x\mapsto R.\mathrm{kernel}\,c\,x,\
   \text{可测性由 }R.\mathrm{measurable\_kernel}\,c\bigr).$$
 
 **这是恒等翻译**：`Kernel` 的定义恰好就是「可测的 `Measure` 值函数」，
-故本定义**不做任何变换**，只把 `Fate.Frame.Rule` 的核与可测性见证
+故本定义**不做任何变换**，只把 `FateV2.Model.Rule` 的核与可测性见证
 重打包为 `Kernel`，以便复用 Mathlib 的复合与三条律。 -/
 def toKernel (R : MeasurableRule C X Y) (c : C.Carrier) : ProbabilityTheory.Kernel X.Carrier Y.Carrier where
   toFun := fun x => R.rule.kernel c x
@@ -607,7 +607,7 @@ theorem pow_add (R : MeasurableRule C X X) (m n : ℕ) :
     =========================================================================== -/
 
 /-! 本节的目的是证明：本文件**不破坏**任何已冻结的签名——
-它只**新增**（对照 `Fate.Frame.Comb`、`Fate.Frame.Rules` 的既有类型）。 -/
+它只**新增**（对照 `FateV2.Model.Comb`、`FateV2.Model.Rules` 的既有类型）。 -/
 
 /-- **遗忘函子单射**：`MeasurableRule → Rule`（忘掉可测性见证）是单射。
 
@@ -621,7 +621,7 @@ theorem rule'_injective : Function.Injective (MeasurableRule.rule' (C := C) (X :
   rw [← h']
 
 /-- **同质特化**：当 $X=Y=Z$ 时，可测规则上的 `comp` 给出一个
-`Fate.Frame.Comb C X X`（即 `Rule C X X → Rule C X X → Rule C X X`）。
+`FateV2.Model.Comb C X X`（即 `Rule C X X → Rule C X X → Rule C X X`）。
 
 **这是与阶段 0 冻结签名 `Comb` 的对接点**：
 `Comb` 只要求**类型**，本文件补上其**具体实现**（核复合）。
@@ -643,7 +643,7 @@ theorem comp_coe_eq_comb (X : StateSpace) [MeasurableSpace X.Carrier] :
 /-- **判据谓词**：一个 `Comb` 类型的函数**何时是**本实现意义下的组合算子
 （即：它是否由核复合给出）。
 
-**与 `Fate.Frame.degenerate_iff_thetaIndependent` 结构同型**：
+**与 `FateV2.Model.degenerate_iff_thetaIndependent` 结构同型**：
 那里刻画「哪些 `RuleWithTheta` 其实是 `Rule`」，
 这里刻画「哪些 `Comb` 元素其实是核复合」。
 **本文件不主张**所有 `Comb` 元素都是核复合（规格允许其他候选语义），
@@ -667,7 +667,7 @@ theorem isKernelComposition_comp (R₂ R₁ : MeasurableRule C X X) :
 本节把该义务**显式登记**，使「还欠什么」可被机械列举（对照
 `FourOperators.pendingOperatorObligations`）。 -/
 
-/-- **子幺半群**：规则集 $\mathcal{R}$（`Fate.Frame.Rules`）对 `comp` 与 `idRule` 封闭。
+/-- **子幺半群**：规则集 $\mathcal{R}$（`FateV2.Model.Rules`）对 `comp` 与 `idRule` 封闭。
 
 **这是 A3 封闭性的精确形式化**：
 * `one_mem`：$\mathrm{id}\in\mathcal{R}$；

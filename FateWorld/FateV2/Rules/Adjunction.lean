@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.Adjunction
+模块：FateV2.Rules
 阶段：**阶段 1B —— `takeConcept` 与 `polarUp`/`polarDown` 的伴随性**
 
 ---------------------------------------------------------------------------
@@ -54,8 +54,8 @@
 
    $$B\subseteq A' \iff A\subseteq B'$$
 
-   已在 `Fate.FCA`（`subset_polarUp_iff_subset_polarDown`）与
-   `Fate.Stage1A`（T1A.9）中以**基本对偶**形式给出，并对 `[已知]`（Mathlib）。
+   已在 `FateV2.Rules`（`subset_polarUp_iff_subset_polarDown`）与
+   `FateV2.Rules`（T1A.9）中以**基本对偶**形式给出，并对 `[已知]`（Mathlib）。
 
 2. **本文的「hexagon 等式」指**：把上述 Galois 连接的**三角（zig-zag）
    恒等式**用 `takeConcept` 写出后，在 `takeConcept` / `polarUp` / `polarDown`
@@ -87,7 +87,7 @@
 诚实边界（**必须与结果同时阅读**）
 ---------------------------------------------------------------------------
 1. **核心等式并非本文新证的数学**：
-   (H1)/(H2) 分别是 `Fate.FCA` 的 `polarUp_polarDown_polarUp` /
+   (H1)/(H2) 分别是 `FateV2.Rules` 的 `polarUp_polarDown_polarUp` /
    `polarDown_polarUp_polarDown`，后两者是 Mathlib
    `upperPolar_lowerPolar_upperPolar` / `lowerPolar_upperPolar_lowerPolar`
    的记法绑定（`[外部已证·Mathlib 引用]`，**上游已证、本框架直接引用**
@@ -149,7 +149,7 @@ $$\texttt{toDual} \circ \texttt{polarUp} \ \dashv\ \texttt{polarDown} \circ \tex
 
 即 `polarUp` 是 `polarDown` 的**左伴随**（反变意义下）。
 
-**为什么写成 `OrderDual` 形式（技术理由，与 `Fate.FCA` 中同一理由）**：
+**为什么写成 `OrderDual` 形式（技术理由，与 `FateV2.Rules` 中同一理由）**：
 `GaloisConnection` 的定义要求两侧都单调，而 `polarUp`/`polarDown` 是**反变**的
 （`polarUp_antitone` / `polarDown_antitone`）。
 把其中一侧送进 `OrderDual` 后，反变变为单调，Galois 连接的定义即可适用。
@@ -157,7 +157,7 @@ Mathlib 的 `gc_upperPolar_lowerPolar` 正是此形式。
 
 **标 `[外部已证·Mathlib 引用]`**：**上游已证、本框架直接引用**——Mathlib `Order.Concept`
 的 `gc_upperPolar_lowerPolar`，`gc_polarUp_polarDown` 的证明体即 `gc_upperPolar_lowerPolar K.Irel` 一行。
-本引理只是把 `Fate.FCA` 中已绑定的 `gc_upperPolar_lowerPolar`
+本引理只是把 `FateV2.Rules` 中已绑定的 `gc_upperPolar_lowerPolar`
 以本框架的名字重述，**不重新证明**。 -/
 theorem gc_polarUp_polarDown :
     GaloisConnection (OrderDual.toDual ∘ K.polarUp)
@@ -168,7 +168,7 @@ theorem gc_polarUp_polarDown :
 
 $$B\subseteq A' \iff A\subseteq B'$$
 
-**与 `Fate.FCA` 的关系**：这是 `subset_polarUp_iff_subset_polarDown` 的
+**与 `FateV2.Rules` 的关系**：这是 `subset_polarUp_iff_subset_polarDown` 的
 同一陈述，此处给出 `GaloisConnection` 包装下的**逐点入口**，
 使下游既可引用「Galois 连接」这一整体事实，也可引用逐点的基本对偶。 -/
 theorem polar_adjoint_iff {A : Set K.GFCA} {B : Set K.MFCA} :
@@ -216,7 +216,7 @@ theorem takeConcept_map {B₁ B₂ : Set K.MFCA} (h : B₁ ⊆ B₂) :
 与「**只抽象**」结果相同——
 换句话说，**抽象的输出已经是概念**，取概念这一步在概念上**无所增益**。
 
-**证明**：`Fate.FCA` 的 `polarUp_polarDown_polarUp`（**`[已知]`**，
+**证明**：`FateV2.Rules` 的 `polarUp_polarDown_polarUp`（**`[已知]`**，
 Mathlib `upperPolar_lowerPolar_upperPolar`）。 -/
 theorem hexagon_left (A : Set K.GFCA) :
     K.takeConcept (K.polarUp A) = K.polarUp A :=
@@ -230,7 +230,7 @@ theorem hexagon_left (A : Set K.GFCA) :
 它说明：「**先取概念、再解构**」与「**只解构**」结果相同——
 即**取概念不改变解构的结果**（解构看到的只是概念的对象集）。
 
-**证明**：`Fate.FCA` 的 `polarDown_polarUp_polarDown`（**`[已知]`**，
+**证明**：`FateV2.Rules` 的 `polarDown_polarUp_polarDown`（**`[已知]`**，
 Mathlib `lowerPolar_upperPolar_lowerPolar`）。 -/
 theorem hexagon_right (B : Set K.MFCA) :
     K.polarDown (K.takeConcept B) = K.polarDown B :=
@@ -352,7 +352,7 @@ theorem polar_roundtrip_on_image :
 
 /-- **hexagon 等式在裁决 O 记法下的重述**（**接口引理，非新内容**）。
 
-`Fate.Completeness` §5 把向上目光记为 `abstractStep`、向下目光记为
+`FateV2.Export` §5 把向上目光记为 `abstractStep`、向下目光记为
 `deconstructStep`，并证了「两者构成伴随」（`abstract_deconstruct_adjoint`）。
 本引理说明：**同一条伴随**在 `takeConcept` 记法下**正是** hexagon (H1)/(H2)——
 即两处叙述指向同一件事实，**不构成两套平行理论**。
@@ -363,7 +363,7 @@ theorem polar_roundtrip_on_image :
 * `deconstructStep ∘ takeConcept = deconstructStep`
 
 **证明**：`abstractStep`/`deconstructStep` 与
-`polarUp`/`polarDown` 在 `Fate.Completeness` 中为 `rfl` 级相等
+`polarUp`/`polarDown` 在 `FateV2.Export` 中为 `rfl` 级相等
 （`def abstractStep ... := K.polarUp O'`），故 `hexagon_left/right` 直接适用。 -/
 theorem hexagon_in_loop_notation :
     K.takeConcept ∘ K.polarUp = K.polarUp

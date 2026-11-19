@@ -40,7 +40,7 @@
 
 ## 1 纪律
 
-* 单文件验证：`lake env lean Fate/BridgeZipA.lean`。不改 `Fate.lean`。
+* 单文件验证：`lake env lean Fate/BridgeZipA.lean`。不改 `lean`。
 * **零 `sorry`、零 `axiom`**。所有 \(\exists/\forall\) 的否命题都给出**显式见证**。
 * 未证部分以 `Prop` **登记**（`RouteAResidual`），**不进任何下游定理**。
 -/

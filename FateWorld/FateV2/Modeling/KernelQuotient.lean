@@ -78,7 +78,7 @@ set_option autoImplicit false
 namespace FateV2.Modeling
 /-! 本文件的理论置于 `KernelQuotientTheory` 命名空间下，
 以避免与 `Fate/KernelQuotientCore.lean`（**同一任务的并行产出**）
-的 `Fate.KernelQuotient.*` 名字冲突。
+的 `FateV2.Modeling.*` 名字冲突。
 
 ⚠ **诚实说明**：`Fate/KernelQuotientCore.lean` + `KernelQuotientRecovery.lean`
 + `KernelAdjunction.lean` 与本文件是**同一任务的并行解**。
@@ -92,7 +92,7 @@ namespace FateV2.Modeling
 | Galois 连接 | `compatible_iff_le_kernel`（原文写的 `le_kernel_iff_compatible` ⚠ 此名不存在，第 258 轮更正）| ✅ 含**方向反例** `ker_le_not_descend` |
 | 反例登记 | ✗ | ✅ 空集退化、`⊔` 不封闭、下降方向 |
 
-命名空间已分离，故两者**不冲突**（可由 `Fate.lean` 同时 import）。 -/
+命名空间已分离，故两者**不冲突**（可由 `lean` 同时 import）。 -/
 namespace KernelQuotientTheory
 
 universe u v w
@@ -723,7 +723,7 @@ def alphaKernel (enc : Encoder F K) (E : InstSpace) (embed : E.Carrier → F.X.C
   ⟨fun e₁ e₂ => K.takeConcept (enc.toAttrs (embed e₁)) = K.takeConcept (enc.toAttrs (embed e₂)), …⟩
 ```
 即 `alphaKernel enc E embed = kernel (K.takeConcept ∘ enc.toAttrs ∘ embed)`。
-下面**不引用 `AlphaKernel`**（避免依赖 `Fate.Alpha` 的重型 import），
+下面**不引用 `AlphaKernel`**（避免依赖 `FateV2.Rules` 的重型 import），
 而是**逐字重建同一个复合映射**再实例化 —— 这正是回收的意义所在。 -/
 
 variable (α : Type u) (β : Type v) (γ : Type w)

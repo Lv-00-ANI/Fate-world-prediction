@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.Minimality
+模块：FateV2.Rules
 阶段：**阶段 1B —— DG 基的最小性**（规格 T1A.10 的「最小」一半）
 
 ---------------------------------------------------------------------------
@@ -12,7 +12,7 @@
 
 > `DG 基是最小完备蕴含基`｜前件：**形式背景有限**｜类别 ①
 
-`Fate.Completeness` 已证其中的**完备性**（`completeness_Mod_eq_Int`）。
+`FateV2.Export` 已证其中的**完备性**（`completeness_Mod_eq_Int`）。
 本文件陈述并（在前置引理之下）证明**最小性**——
 
 > **教材 Theorem 3.49**（Guigues–Duquenne basis is the **smallest** one）.
@@ -39,9 +39,9 @@
   完整转写须先形式化那些结果——属**独立工作量**。
 - **`PseudoIntentClosureInjective`** 在**教材的伪内涵定义**下
   由「apply to $P$」一步立得；但在**本库为规避自指而采用的
-  良基递归定义**（`IsPseudoIntent`，见 `Fate.Implication` §2.1）下，
+  良基递归定义**（`IsPseudoIntent`，见 `FateV2.Rules` §2.1）下，
   该步需要「配对形 ⟹ 扁平形」——**已被实证否证**
-  （`Fate.Completeness` §5.1：114/952 反例）。
+  （`FateV2.Export` §5.1：114/952 反例）。
   故本文件**如实登记为具名前件**，而不写出一个假的证明。
 
 **本文件确已完整证明的部分**：从上述两条前置引理**推出** Theorem 3.49
@@ -92,12 +92,12 @@ variable (K : FormalCtx.{u, v})
 **本定义**：$\mathrm{Mod}(T)$ 是 $T$ 的模型类（`IsModelOf`），
 $\mathrm{Int}$ 是闭属性集类（`IsClosedAttr`）。完备即二者相等。
 
-**与 §4 的关系**：`Fate.Completeness.completeness_Mod_eq_Int` 证明
+**与 §4 的关系**：`FateV2.Export.completeness_Mod_eq_Int` 证明
 $\mathrm{DGBasisSelfRef}$ 满足本定义（见 `dgbasis_isComplete`）。 -/
 def IsComplete (Sig : Set (Set K.MFCA × Set K.MFCA)) : Prop :=
   {M : Set K.MFCA | K.IsModelOf Sig M} = {M : Set K.MFCA | K.IsClosedAttr M}
 
-/-- **DG 基是完备的**（`Fate.Completeness` §4 的结果的接口重述）。
+/-- **DG 基是完备的**（`FateV2.Export` §4 的结果的接口重述）。
 
 **证明**：由 `isModel_iff_isModelOf_dgbasis`，
 「$M$ 是 `DGBasisSelfRef` 的模型」$\iff$「$M$ 是 `IsModel`」；
@@ -141,7 +141,7 @@ $$\forall P,Q,\ P,Q\text{ 伪内涵}\ \Longrightarrow\ P''=Q''\ \Longrightarrow\
 **为何是具名前件**：在**教材的伪内涵定义**下它是「apply to $P$」一步；
 但在本库的**良基自指定义** `IsPseudoIntent` 下，
 该步需要「配对形 $\Rightarrow$ 扁平形」——**已被实证否证**
-（`Fate.Completeness` §5.1）。故如实登记为具名前件。
+（`FateV2.Export` §5.1）。故如实登记为具名前件。
 
 **注意它与最小性的关系**：本引理正是使
 「伪内涵 $\mapsto$（$T$ 中的覆盖规则）」这一段成为**单射**的关键，
@@ -319,7 +319,7 @@ theorem dgbasis_minimal_self [Fintype K.MFCA]
    =========================================================================== -/
 
 /-- **非冗余的完备基**：同时满足教材 Def 3.38（`IsNonRedundant`，
-在 `Fate.Completeness` 中）与 Thm 3.40（`IsComplete`）。
+在 `FateV2.Export` 中）与 Thm 3.40（`IsComplete`）。
 
 **用户所述「DG 基在非冗余基中基数最小」精确对应本谓词**：
 非冗余性保证「没有浪费的规则」，完备性保证「能推出一切真蕴含」。 -/

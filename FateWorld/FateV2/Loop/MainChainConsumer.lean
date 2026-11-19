@@ -9,7 +9,7 @@
 〇、为什么要这个文件（审计结论，非猜测）
 ---------------------------------------------------------------------------
 审计 R249 用 `grep -l "import Fate.<模块>$"` 实测确认：下列 7 个模块的
-**结构扇入全部 = 0** —— 它们只被根文件 `Fate.lean` 点名，**没有任何其他模块
+**结构扇入全部 = 0** —— 它们只被根文件 `lean` 点名，**没有任何其他模块
 `import` 它们**，因此它们虽可编译、有定理，却**不在任何依赖链的上游**：
 
 | # | 模块 | 本文件消费的内容 |
@@ -20,7 +20,7 @@
 | 4 | `FirstLayerCapstone`   | `linkLearn`、`linkSteady`、`capstone_concrete` |
 | 5 | `SharedThetaChain`     | `wTheta_sum`、`wTheta_sq_sum`、`sim_shared_value` |
 | 6 | `FateV2.Predict.SCMIdentifiabilityCorrect` | `not_identifiableObs_of_sg_eq`、`identifiableObs_of_subsingleton` |
-| 7 | `Fate.OptimalityThirdInstance`   | `no_point_unique_of_two_eq`、`fitExp_opt_unique` |
+| 7 | `FateV2.Error`   | `no_point_unique_of_two_eq`、`fitExp_opt_unique` |
 
 **⚠ 方向自查（第 225 轮的教训）**：本文件是「**被 import 的反面**」——
 它 `import` 上面 7 个模块，所以这 7 个模块的**结构扇入 +1**。
@@ -77,7 +77,7 @@
 **(2.3)** 本文件**不**主张这 7 个模块原先的定理有错或有假 —— 它们都是机检过的。
 本文件只改**扇入**这一件事。
 
-**(2.4)** 本文件**不**在 `Fate.lean` 里登记（指令禁止修改已有文件）；
+**(2.4)** 本文件**不**在 `lean` 里登记（指令禁止修改已有文件）；
 它自身可独立 `lake env lean` 编译通过（已在交付前跑两遍）。
 -/
 

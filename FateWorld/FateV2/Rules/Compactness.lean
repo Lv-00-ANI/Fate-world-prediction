@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.Compactness
+模块：FateV2.Rules
 阶段：**阶段 1B 延伸——属性蕴含的紧致性（compactness）**
 
 ---------------------------------------------------------------------------
 本文件回答的问题
 ---------------------------------------------------------------------------
-规格把属性蕴含 $A\Rightarrow B$ 做成**全称命题**（见 `Fate.Implication`
+规格把属性蕴含 $A\Rightarrow B$ 做成**全称命题**（见 `FateV2.Rules`
 的 `Models`）。全称命题的**紧致性**问题是自然的：
 
 > 若一个由可能无限的属性集 $A$ 表达的蕴含在背景 $\mathbb{K}$ 中成立，
@@ -27,7 +27,7 @@
 关键澄清：为什么「$A$ 有限」这一条本身**几乎不承载内容**
 ---------------------------------------------------------------------------
 `Models` 的定义是 $\mathrm{polarDown}\,A\subseteq\mathrm{polarDown}\,B$
-（`Fate.Implication`）。导出算子 $\mathrm{polarDown}$ 是**反变**的：
+（`FateV2.Rules`）。导出算子 $\mathrm{polarDown}$ 是**反变**的：
 $A_0\subseteq A\Rightarrow\mathrm{polarDown}\,A\subseteq\mathrm{polarDown}\,A_0$。
 于是把 $A$ 换成更小的 $A_0$，$\mathrm{polarDown}\,A_0$ **变大**，
 包含关系**更难**成立——**不是**自动保真的。
@@ -48,7 +48,7 @@ $A_0\subseteq A\Rightarrow\mathrm{polarDown}\,A\subseteq\mathrm{polarDown}\,A_0$
 - `compact_models_fails_without_finite_G` 是**否证**（反例），
   不是「本框架内未证」，而是**在本文件内显式证明其为假**。
 - 本实现**不虚构**文献、作者、年份与数字。
-- 依赖 Mathlib 的引理已在 `Fate.FCA` 中标 `[已知]`，本文件不重复证。
+- 依赖 Mathlib 的引理已在 `FateV2.Rules` 中标 `[已知]`，本文件不重复证。
 -/
 
 import Mathlib.Data.Set.Finite.Basic

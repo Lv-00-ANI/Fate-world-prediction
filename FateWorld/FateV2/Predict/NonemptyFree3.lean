@@ -11,8 +11,8 @@
   |---|---|---|---|---|
   | 1 | `FateV2.Rules.Adjacency.adjacent_universal` | `Adjacency` | `[Nonempty ι]` | `adjacent_universal_noNonempty` |
   | 2 | `InvarianceContentful.invariance_iff_const` | `InvarianceContentful` | `[Nonempty E]` | `invariance_iff_const_noNonempty` |
-  | 3 | `Fate.ObsEstimationStrong.chooseEstimator_of_exists` | `ObsEstimationStrong` | `[Nonempty X]` | `chooseEstimator_of_exists_noNonempty` |
-  | 3b | `Fate.ObsEstimationStrong.chooseEstimator_apply_of` | `ObsEstimationStrong` | `[Nonempty X]` | `chooseEstimator_apply_of_noNonempty` |
+  | 3 | `FateV2.Modeling.chooseEstimator_of_exists` | `ObsEstimationStrong` | `[Nonempty X]` | `chooseEstimator_of_exists_noNonempty` |
+  | 3b | `FateV2.Modeling.chooseEstimator_apply_of` | `ObsEstimationStrong` | `[Nonempty X]` | `chooseEstimator_apply_of_noNonempty` |
 
   ⚠ 本文件共交 **4 条**（任务要求 ≥3 条）。
 
@@ -86,8 +86,7 @@ namespace FateV2.Predict
 open FateV2.Meta
 open FateV2.Modeling
 open FateV2.Rules
-namespace NonemptyFree3
-
+namespace FateV2.Predict.NonemptyFree3
 open FateV2.Rules.Adjacency
 
 /-!
@@ -184,6 +183,5 @@ theorem chooseEstimator_apply_of_noNonempty {X Y : Type*}
   rw [hval]
   exact hinj (Classical.choose_spec hex)
 
-end NonemptyFree3
-
+end FateV2.Predict.NonemptyFree3
 end FateV2.Predict

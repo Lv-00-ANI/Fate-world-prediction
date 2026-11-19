@@ -14,7 +14,7 @@
 
   `Gaze`（`none` / `up` / `down`）已存在于本项目两处：
   · `RealTemporalLayer.Gaze`（源文件已随副本提供）；
-  · `Fate.Classification.Gaze`（本文件之前的自足最小实现）。
+  · `FateV2.Rules.Gaze`（本文件之前的自足最小实现）。
 
   **本文件【不重新定义】`Gaze`**——本文件在**它自己的命名空间**
   `GazeAlgebra` 内重建一份**同构副本** `G`，用于**独立地**研究
@@ -22,10 +22,10 @@
 
   · 任务的问句是「三种目光**能否**构成某代数对象」——
     这是一个**关于三元素集合**的问题，**与 `Temporal` 无关**；
-  · 若强依赖 `Fate.Classification.Gaze`，则须import整个 72KB 分类层，
+  · 若强依赖 `FateV2.Rules.Gaze`，则须import整个 72KB 分类层，
     **引入不必要的耦合**；
   · 本文件末尾 (`§7`) 给出**两副本的显式同构**，**证明二者等价**——
-    故「在副本上证的结论」**自动转移到** `Fate.Classification.Gaze`。
+    故「在副本上证的结论」**自动转移到** `FateV2.Rules.Gaze`。
 
   ⚠ **本文件不声称**哲学原文讨论过「格」「Kleene 代数」——
   原始思想（`FCA-副本/03-哲学依据/原始思想-时态性层级体系.md`）§4.1–4.4
@@ -113,7 +113,7 @@
   §5 ⭐⭐ 对称读法**不能**成三元素格（断言之 B）
   §6 ⭐⭐ 链序**破坏**对偶（断言之 E）—— 对称破缺的精确形式
      §6.1 存在的对偶：反序对合 `neg`（K₃ 否定的格骨架）
-  §7 与 `Fate.Classification.Gaze` 的同构（结论转移）
+  §7 与 `FateV2.Rules.Gaze` 的同构（结论转移）
   §8 ⭐ `withGaze` 型合成**不是** Kleene 乘法（断言之 C′，与 §4 互补）
   §9 其他被排除的候选（Boole 代数 / Belnap 四值 / M₃）
 
@@ -167,7 +167,7 @@ namespace GazeAlgebra
     §1  三目光副本 `G` 与链序
     ======================================================================== -/
 
-/-- **三目光的副本**（与 `Fate.Classification.Gaze` 同构，见 §7）。
+/-- **三目光的副本**（与 `FateV2.Rules.Gaze` 同构，见 §7）。
 
 `none` = 目光未投出；`up` = 向上目光；`down` = 向下目光。
 **本副本仅用于独立研究三元素上的代数结构**，不依赖 72KB 的 `Classification`。 -/
@@ -670,16 +670,16 @@ theorem negation_exists_but_unmotivated :
 end G
 
 /-! ===========================================================================
-    §7  与 `Fate.Classification.Gaze` 的同构（结论转移）
+    §7  与 `FateV2.Rules.Gaze` 的同构（结论转移）
 
     §2–§6 的结论在副本 `G` 上证明。§7 给出**副本与
-    `Fate.Classification.Gaze` 的显式双射**，
+    `FateV2.Rules.Gaze` 的显式双射**，
     证明两副本**结构一致**——故**结论自动转移**。
 
-    **⚠ 本文件不 import `Fate.Classification`**（避免 72KB 耦合）；
+    **⚠ 本文件不 import `FateV2.Rules`**（避免 72KB 耦合）；
     故本节的「同构」是**类型层**的映射 `ClassGaze → G`，
     **在语义上声明**两副本对应；**若需机器核验的具体映射，
-    调用方可将 `ClassGaze` 视为 `Fate.Classification.Gaze` 并通过本映射转移。**
+    调用方可将 `ClassGaze` 视为 `FateV2.Rules.Gaze` 并通过本映射转移。**
     ======================================================================== -/
 
 /-- **`G` 到自身的三元素穷举**（结构转移的载体，供下游使用）。 -/

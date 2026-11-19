@@ -17,7 +17,7 @@ import FateWorld.FateV2.Rules.RuleExec
 
   ## 本模块做什么
 
-  `Fate.RuleExec` 定义了可执行语法项 `Term`（10 个构造子）及其
+  `FateV2.Rules` 定义了可执行语法项 `Term`（10 个构造子）及其
 
   * `Term.eval  : Term → EnvQ → ℚ`
   * `Term.check : Term → EnvQ → Bool`

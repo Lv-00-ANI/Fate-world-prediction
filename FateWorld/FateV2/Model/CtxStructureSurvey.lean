@@ -38,12 +38,12 @@
 
 ⚠ 本文件的实测结论与审计 H1 的措辞**不完全一致**，此处如实登记：
 
-1. `Fate.CtxParts`（`Fate/InstanceChain.lean:73`）
+1. `CtxParts`（`Fate/InstanceChain.lean:73`）
    —— **是 `structure`**，字段 `Local / U / Act / Θ`。
    —— **但它不是 `CtxSpace`**：它是独立结构，**没有** `CtxSpace` 实例，
       也没有把 `Carrier` 交给 `CtxSpace`。它只是「上下文分量」的打包。
 
-2. `Fate.RichCtx`（`Fate/LawRuleToTraj.lean:411`）
+2. `RichCtx`（`Fate/LawRuleToTraj.lean:411`）
    —— **不是 structure，而是 `def RichCtx (F : Frame) : CtxSpace`**
       （`⟨F.U.Carrier × F.Ν.Carrier × F.Θ.Carrier × F.Act.Carrier⟩`）。
    —— 因此它**就是**一个 `CtxSpace` 族（四元积），是「具体 `C`」的正确例子。
@@ -136,10 +136,10 @@ namespace CtxStructureSurvey
 /-! ### §1 结构清单：以注释中的 `#check`/`#print` 结论为准（不进构建的实际调用）
 
 本文件**不** import `InstanceChain` / `FCA` / `TieredScheme`（避免重依赖）；
-其身份已在文件头 (a) 段逐条实测登记。此处仅给出与 `Fate.Frame` 相关的、
+其身份已在文件头 (a) 段逐条实测登记。此处仅给出与 `FateV2.Model` 相关的、
 **确实存在**的 `CtxSpace` 用法，以保证文件内所有引用都可编译。
 
-`Fate.CtxSpace` 的实测（`#print`）：
+`CtxSpace` 的实测（`#print`）：
 
 * `number of parameters: 0`，`fields: Carrier : Type u_1`
 * ⟹ 无任何结构约束。 -/

@@ -21,12 +21,12 @@
 **不用 `axiom` 造一个假对象**——占位是**可检出的缺口**，`axiom` 是**不可检出的谎言**。
 
 ---------------------------------------------------------------------------
-本文件与 `Fate.Basic` / `Fate.Frame` 的关系（务必区分，否则会以为存在两套定义）
+本文件与 `FateV2.Modeling` / `FateV2.Model` 的关系（务必区分，否则会以为存在两套定义）
 ---------------------------------------------------------------------------
-`Fate.Basic` 与 `Fate.Frame` 已经给出过一批阶段 0 定义。本文件**不覆盖、不替换**它们，
+`FateV2.Modeling` 与 `FateV2.Model` 已经给出过一批阶段 0 定义。本文件**不覆盖、不替换**它们，
 而是按任务要求**从零另建**一套，并用**命名空间隔离**：
 
-| 本文件（`Stage0.Core`） | `Fate.Basic` / `Fate.Frame` | 关系 |
+| 本文件（`Stage0.Core`） | `FateV2.Modeling` / `FateV2.Model` | 关系 |
 |---|---|---|
 | `ActionSpace`（`A : Type` + 结构字段） | `ActionSpace`（`Carrier : Type u` + 结构字段） | 同一对象的两种写法；本文件按任务书签名 |
 | `TimeIndex`（`discrete ℕ` / `continuous ℝ`，带 `0 ≤ t` 约束） | `TimeIdx.Discrete := ℕ`、`TimeIdx.Continuous := {t // 0 ≤ t}` | 本文件把两支**收进同一个归纳类型** |
@@ -191,7 +191,7 @@ inductive TimeIndex where
 原因：`ℝ` 的 `DecidableEq` 与 `Repr` 是 `noncomputable` / `unsafe` 的，
 派生会让 `TimeIndex` 的相等判定变成**不可执行**的，
 而「时刻相等」在本理论的下游（离散支的 $t+1$、连续支的 $t=s$）**需要可判定**。
-`Fate.Basic` 的 `TimeKind` 只 `deriving DecidableEq, Repr` 是因为它**不带 `ℝ` 载荷**；
+`FateV2.Modeling` 的 `TimeKind` 只 `deriving DecidableEq, Repr` 是因为它**不带 `ℝ` 载荷**；
 本类型带了，故不能照抄。
 若下游确实需要判定时刻相等，应**显式**在需要的定理上加 `[DecidableEq ℝ]` 前件，
 使「实数相等可判定」这一（实际上依赖经典选择的）假设**可见**。 -/
@@ -356,7 +356,7 @@ $x_t,u_t,\varepsilon_t,\theta$ 都有各自的空间名，**只有 $a_t$ 没有*
 - 要求 `TopologicalSpace A`（至少带拓扑）——支撑第 7 章「干预优化」
   $a_t^\star=\arg\min_{a_t}\mathbb{E}[L(x_{t+1}(a_t))]$ 所需的**连续性/紧性**语言；
 - 要求 `MeasurableSpace A` 且 `measure_le_borel`——支撑**随机干预**（$a_t$ 随机化）时
-  的转移核；这是 `StateSpace` 在 `Fate.Basic` 中已用的同一相容性要求（`≤` 而非 `=`，避免过度约束）。
+  的转移核；这是 `StateSpace` 在 `FateV2.Modeling` 中已用的同一相容性要求（`≤` 而非 `=`，避免过度约束）。
 - **不要求**紧性、不要求度量。二者是**干预优化定理的前件**，
   若在这里塞进定义，该前件就会**静默**变成「永远成立」，这正是项目反复失误的模式。
 
@@ -376,7 +376,7 @@ structure ActionSpace where
   [meas : MeasurableSpace A]
   /-- Borel 相容性前件：可测结构**弱于**由拓扑生成的 Borel 结构。
 
-  与 `Fate.Basic.StateSpace.borel_le` 同一要求、同一理由：
+  与 `FateV2.Modeling.StateSpace.borel_le` 同一要求、同一理由：
   转移核的可测性论证需要「可测集 ⊇ Borel 集」；不写出则它会成为匿名前提。
   取 `≤` 而非 `=`，以免过度约束（`=` 会把「Borel 结构粗于拓扑生成的」这种合法选择排除）。 -/
   measure_le_borel : ‹MeasurableSpace A› ≤ borel A
@@ -898,7 +898,7 @@ Do M a := M → M        -- 模型替换算子：一个模型进，一个被干�
   本定义**只**固定它的**类型**（`M → M`）。
   规范 §3.6 那两步操作（1. 删除指向 $X$ 的入边；2. 把 $X$ 的方程替换为常数方程；
   3. 其余方程不变）需要模型 $M$ 的**内部结构**才能写——本文件的 $M$ 是抽象载体。
-  语义实现在 `Fate.T33DoGraph` 等处，**本文件不重复**，也**不宣称**它们已符合 §3.6。
+  语义实现在 `FateV2.Predict` 等处，**本文件不重复**，也**不宣称**它们已符合 §3.6。
   （项目规划文件 `_pending/新总体规划-第313轮.md` G3′ 明确指出：
   「『do-律 = 删边 + 重归一』这条链式法则本身，**全库零字**」。本文件**不改变**该判定。）
 
@@ -1017,7 +1017,7 @@ def piO_placeholder : Unit := ()
 
 /-- `[Undefined 占位]` **$\mathcal{X}_{\text{local}}$（局部状态子空间）**：原文**从未定义其结构**。
 
-`Fate.Basic` 的说明（§规则层）已登记 $\mathcal{X}_{\text{local}}$ 为一个符号，
+`FateV2.Modeling` 的说明（§规则层）已登记 $\mathcal{X}_{\text{local}}$ 为一个符号，
 但**没有**给出它的结构（是子集？是子对象？是商？）。
 
 - **类型**：`[Undefined 占位]`
@@ -1029,7 +1029,7 @@ def Xlocal_placeholder : Unit := ()
 
 /-- `[Undefined 占位]` **$\mathcal{C}$（上下文／条件空间）**：原文**未定义其结构**。
 
-`Fate.Frame` 的 `CtxSpace` 已登记：「规格备注：**原文未定义其结构**（03:330）。
+`FateV2.Model` 的 `CtxSpace` 已登记：「规格备注：**原文未定义其结构**（03:330）。
 故本实现只给类型，**不施加任何结构约束**」。本占位与之一致。
 
 - **类型**：`[Undefined 占位]`

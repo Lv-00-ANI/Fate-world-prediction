@@ -31,7 +31,7 @@
 `DifferentiableMechanism`（`Fate/Stage1A.lean:253`）、
 `CondIndepNEmpty`（`Fate/CondIndepN.lean:173`）、
 `Yun`（`Fate/Frame.lean:111`）**原地保持不动** ——
-它们是阶段 0 已冻结的签名，且被 `Fate.lean` 的导入链依赖。
+它们是阶段 0 已冻结的签名，且被 `lean` 的导入链依赖。
 本文件以**加法方式**（additive change）给出 **Strict 版**，
 两者由 §4 的桥定理连接；`satisfiable` / `not_satisfiable` **由 Lean 自己判定**，
 **不由本文件的注释断言**。
@@ -70,7 +70,7 @@ import FateWorld.FateV2.Rules.FCA
 import FateWorld.FateV2.Rules.Alpha
 import FateWorld.FateV2.Modeling.CondIndepN
 import FateWorld.FateV2.Rules.Stage1A
--- **第 77 轮更新**：`Stage0.Core` 现**已可编译**（EXIT=0），并已加入 `Fate.lean`。
+-- **第 77 轮更新**：`Stage0.Core` 现**已可编译**（EXIT=0），并已加入 `lean`。
 -- 旧的 `Stage0.CorePrelude.lean`（72 行，与 `Core` 重复定义 `ActionSpace`）已归档，
 -- 因为它与 `Core` 构成重复声明冲突。
 --
@@ -153,8 +153,8 @@ def AssumptionKind.zh : AssumptionKind → String
 **类别**：`definitional` —— A1–A32 中**无对应项**（`05:192` 的第 1 章假设栏
 只列 A14/A15/A27/A29）。规格 `04-符号与方程规范.md` §1 把 $O$ 作为**原始对象**声明。
 
-**实现落点**：`Fate.Basic:152` `class Obj`。
-**⚠ 该 class 在 `Fate.Basic` 之外从未被实例化或引用** ——
+**实现落点**：`FateV2.Modeling:152` `class Obj`。
+**⚠ 该 class 在 `FateV2.Modeling` 之外从未被实例化或引用** ——
 主公式用的是 `Frame.X : StateSpace`，不是 `Obj`。
 即：**理论有「对象」，实现侧是一个空壳 class**。记入 §5。 -/
 def label_Obj : AssumptionKind := .definitional
@@ -163,7 +163,7 @@ def label_Obj : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 对应 **A28**（`05:65` 类型栏 = 定义性约定）。
 
-**实现落点**：`Fate.Basic:163` `structure StateSpace`
+**实现落点**：`FateV2.Modeling:163` `structure StateSpace`
 （`Carrier` + `TopologicalSpace` + `MeasurableSpace` + `borel_le`）。
 A28 的「拓扑／度量／流形**至少其一**」由 `TopologicalSpace` 满足。✅ 有对应。 -/
 def label_StateSpace : AssumptionKind := .definitional
@@ -172,17 +172,17 @@ def label_StateSpace : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 对应 **A29**（`05:66` = 定义性约定）。
 
-**实现落点**：`Fate.Basic:187` `inductive TimeKind` ＋ `Fate.Basic:194/200`
+**实现落点**：`FateV2.Modeling:187` `inductive TimeKind` ＋ `FateV2.Modeling:194/200`
 两套 `TimeIdx`。A29 要求的「**分别为两套定义**」确实分设了。✅ 有对应。 -/
 def label_TimeKind : AssumptionKind := .definitional
 
 /-- `label_Traj`：状态轨迹／命运 $\{x_t\}_{t\in\mathcal{T}}$。
 
 **类别**：`definitional` —— 规格明写 $\text{命运}_O$ **不引入新数学结构**、
-是**派生记号**（`Fate.Basic:220-226`）。
+是**派生记号**（`FateV2.Modeling:220-226`）。
 
 **⚠ 关键区分**：理论第 1 章还挂着 **A15（路径测度存在，待证命题）**。
-但 A15 **不在** `Traj` 上：`Fate.Basic:227` 的 `Traj` 是**纯函数类型**
+但 A15 **不在** `Traj` 上：`FateV2.Modeling:227` 的 `Traj` 是**纯函数类型**
 `ι → X.Carrier`，**不带任何测度**。
 ⟹ `Traj` 本身标 `definitional` 没错，**但「命运有路径测度」在本文件里完全缺席**。记入 §5。 -/
 def label_Traj : AssumptionKind := .definitional
@@ -190,15 +190,15 @@ def label_Traj : AssumptionKind := .definitional
 /-- `label_FateOf`：$\text{命运}_O$ 的类型别名。
 
 **类别**：`definitional` —— 规格 §1.1 明写它是**派生记号**。
-**实现落点**：`Fate.Basic:233` `abbrev FateOf`（= `Traj`，纯别名）。✅ 有对应。 -/
+**实现落点**：`FateV2.Modeling:233` `abbrev FateOf`（= `Traj`，纯别名）。✅ 有对应。 -/
 def label_FateOf : AssumptionKind := .definitional
 
 /-- `label_InitialState`：初始状态 $x_0$。
 
 **类别**：`definitional` —— 规格明写 $x_0$ **不属于「命」**，
-与 $\theta$ 并列为「给定条件」（`Fate.Basic:235-244`）。
+与 $\theta$ 并列为「给定条件」（`FateV2.Modeling:235-244`）。
 
-**实现落点**：`Fate.Basic:245` `structure InitialState`。
+**实现落点**：`FateV2.Modeling:245` `structure InitialState`。
 **⚠ 其 `isRandom : Bool` 是一个 `Bool`，不是 `Prop`** ——
 它「记录是否按 $\mathcal{D}_0$ 随机给定」，但**没有把 $\mathcal{D}_0$ 带进来**。
 即「$x_0$ 随机」在实现侧只是一个布尔开关，**没有分布载体**。记入 §5。 -/
@@ -211,16 +211,16 @@ def label_InitialState : AssumptionKind := .definitional
 /-- `label_ThetaSpace`：参数空间 $\Theta$（**命**的载体）。
 
 **类别**：`definitional` —— 对应 **A28**（`05:65`）。
-**实现落点**：`Fate.Basic:261` `structure ThetaSpace`。✅ 有对应。
+**实现落点**：`FateV2.Modeling:261` `structure ThetaSpace`。✅ 有对应。
 
 **⚠ A13 不在 `ThetaSpace` 上**：A13 原读法已被**作者裁决 Q-1 废除**，
-当前有效落点是 `Fate.Frame:600` `ThetaIsExtracted` + `Fate.Frame:627` `ThetaStableOn`。
+当前有效落点是 `FateV2.Model:600` `ThetaIsExtracted` + `FateV2.Model:627` `ThetaStableOn`。
 见 `label_A13`。 -/
 def label_ThetaSpace : AssumptionKind := .definitional
 
 /-- `label_InputSpace`：外生输入空间 $\mathcal{U}$。
 
-**类别**：`definitional` —— 对应 **A28**。**实现落点**：`Fate.Basic:303`。✅ 有对应。
+**类别**：`definitional` —— 对应 **A28**。**实现落点**：`FateV2.Modeling:303`。✅ 有对应。
 
 **⚠ A18（「运由来源而非变化快慢定义，且系统边界给定」，`05:55` = 定义性约定）
 是另一条假设，另列 `label_A18`。它在实现侧无落点。** -/
@@ -233,7 +233,7 @@ def label_InputSpace : AssumptionKind := .definitional
 ⟹ **补定 ⟹ 定义性约定**。
 
 **实现落点（⚠ 两套，须登记）**：
-1. `Fate.Basic:325` `structure ActionSpace`（字段 `Carrier`）
+1. `FateV2.Modeling:325` `structure ActionSpace`（字段 `Carrier`）
 2. `Stage0.Core:351` `structure ActionSpace`（字段 `A`）
 
 `Fate/Stage0/Core.lean:29-40` 自述这是「**两套定义的债务**」。本文件不合并，
@@ -242,10 +242,10 @@ def label_ActionSpace : AssumptionKind := .definitional
 
 /-- `label_NoiseSpace`：随机扰动 $\varepsilon_t$ 的取值空间 $\mathfrak{E}$。
 
-**类别**：`definitional` —— **规格未单列**（`Fate.Basic:330-336`）。
+**类别**：`definitional` —— **规格未单列**（`FateV2.Modeling:330-336`）。
 ⟹ 补定 ⟹ 定义性约定。
 
-**实现落点**：`Fate.Basic:337` `structure NoiseSpace`（**只带可测，不带拓扑**）。
+**实现落点**：`FateV2.Modeling:337` `structure NoiseSpace`（**只带可测，不带拓扑**）。
 **✅ 这一条不是缺口**：`Stage0.Core:312` 明写「$\mathfrak{E}$ 的 $\sigma$-代数
 **原文未定义**（因为 $\mathfrak{E}$ 本身未定义）」，要求把 `[MeasurableSpace E]`
 做成**可见的参数**；`NoiseSpace` 带 `MeasurableSpace` 字段正是该处置。 -/
@@ -254,10 +254,10 @@ def label_NoiseSpace : AssumptionKind := .definitional
 /-- `label_Dist`：扰动的分布 $\mathcal{D}_\varepsilon$。
 
 **类别**：`definitional` —— 只给**类型**（`Measure N.Carrier`），
-故意**不**假定是概率测度（`Fate.Basic:341-347`）。
+故意**不**假定是概率测度（`FateV2.Modeling:341-347`）。
 「是概率测度」须作为**显式前件**——这条纪律是对的。
 
-**⚠ 但**：`Fate.Basic` **没有**提供「`IsProbabilityMeasure` 前件」的具名对象，
+**⚠ 但**：`FateV2.Modeling` **没有**提供「`IsProbabilityMeasure` 前件」的具名对象，
 故该前件**只存在于注释里**。记入 §5（属「前件未具名化」，非标签错误）。 -/
 def label_Dist : AssumptionKind := .definitional
 
@@ -265,14 +265,14 @@ def label_Dist : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 纯打包，无真假。规格 `04` §3.3 裁定
 $f(\dots;\theta,do(a_t))$ 是**类型错误**；`Frame` 是使该错误**不可表示**的载体。
-**实现落点**：`Fate.Frame:73` `structure Frame`。✅ 有对应。 -/
+**实现落点**：`FateV2.Model:73` `structure Frame`。✅ 有对应。 -/
 def label_Frame : AssumptionKind := .definitional
 
 /-- `label_Ming`：**命** $\text{命}_O := \theta$。
 
 **类别**：`definitional` —— 规格 §1.2 明写「$\text{命}_O := \theta$」且「**不含 $x_0$**」。
 赋值式 ⟹ 定义性约定。
-**实现落点**：`Fate.Frame:98` `abbrev Ming (F : Frame) := F.Θ.Carrier`。✅ 有对应（纯别名）。
+**实现落点**：`FateV2.Model:98` `abbrev Ming (F : Frame) := F.Θ.Carrier`。✅ 有对应（纯别名）。
 
 **⚠ 「命」在实现侧只是一个 `abbrev`**，不携带 A13 的内容（见 `label_A13`）。 -/
 def label_Ming : AssumptionKind := .definitional
@@ -280,7 +280,7 @@ def label_Ming : AssumptionKind := .definitional
 /-- `label_Yun`：**运** $(u_t,\varepsilon_t)$。
 
 **类别**：`definitional` —— 规格 §一「理论速览」：`运 = (u_t, ε_t)`。
-**实现落点**：`Fate.Frame:111` `def Yun (F : Frame) : Type _ := F.U.Carrier × F.Ν.Carrier`
+**实现落点**：`FateV2.Model:111` `def Yun (F : Frame) : Type _ := F.U.Carrier × F.Ν.Carrier`
 
 **⚠⚠ 勘察 G 点名的第三处：「`Yun` 无 Σ-代数载体」—— 已核实，属实，但需精确化。**
 
@@ -303,7 +303,7 @@ def label_Yun : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 规格 §3.1 的**唯一权威离散方程**
 $x_{t+1}=f(x_t,u_t,\varepsilon_t;\theta,a_t)$；`Step` 就是该五元函数类型。
-**实现落点**：`Fate.Frame:146` `abbrev Step`。
+**实现落点**：`FateV2.Model:146` `abbrev Step`。
 **A12 的落地**：第 5 位就是 `F.Act.Carrier`，**删不掉**。✅ **实打实的类型强制**。
 
 **⚠ A10（轨迹存在性）不在 `Step` 上**：A10 是**待证命题**，其**前件**落点是
@@ -316,30 +316,30 @@ def label_Step : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 规格 §3.1 说明 1 明令「$f$ 是单步转移核，**不是**轨迹生成器」
 且「轨迹生成器**不得用 $f$ 命名**」。故分设是**记号裁定**。
-**实现落点**：`Fate.Frame:160` `abbrev TrajGen`。✅ 有对应。 -/
+**实现落点**：`FateV2.Model:160` `abbrev TrajGen`。✅ 有对应。 -/
 def label_TrajGen : AssumptionKind := .definitional
 
 /-- `label_Drift`：SDE 漂移系数 $\mu$。
 
 **类别**：`definitional` —— 规格 §3.2 给出连续方程；签名是语言层选择。
-**实现落点**：`Fate.Frame:186` `abbrev Drift`。✅ 有对应（**只是类型别名，无内容**）。
+**实现落点**：`FateV2.Model:186` `abbrev Drift`。✅ 有对应（**只是类型别名，无内容**）。
 
 **⚠ 「$\mu$ 是 Lipschitz 的」是 A10 的内容**，在 `Stage0.Core:625`，不在此。 -/
 def label_Drift : AssumptionKind := .definitional
 
 /-- `label_Diffusion`：SDE 扩散系数 $\sigma$。
 **类别**：`definitional` —— 同 `Drift`。
-**实现落点**：`Fate.Frame:197` `abbrev Diffusion`。
+**实现落点**：`FateV2.Model:197` `abbrev Diffusion`。
 本实现把 $a_t$ 作显式参数，故**不触发 A16**。 -/
 def label_Diffusion : AssumptionKind := .definitional
 
 /-- `label_DiffusionNoIntervention`：**A16** 的显式版本（$\partial\sigma/\partial a_t\equiv 0$）。
 
 **类别**：`definitional` —— 规格 `05:53` 类型栏原文 = **定义性约定（附加假设）**。
-**实现落点**：`Fate.Frame:217` `abbrev DiffusionNoIntervention`。
+**实现落点**：`FateV2.Model:217` `abbrev DiffusionNoIntervention`。
 
 **✅ 处置得当**：规格要求「采用 $\sigma(X_t,\theta)$ 写法**必须声明这是附加假设而非默认**」，
-`Fate.Frame:208-216` 正是**单设一个类型**使该选择**可见**。
+`FateV2.Model:208-216` 正是**单设一个类型**使该选择**可见**。
 **⚠ 但主路径用的是带 $a_t$ 的 `Diffusion`，故 A16 当前不生效** ——
 这是选项未启用，不是缺口。 -/
 def label_DiffusionNoIntervention : AssumptionKind := .definitional
@@ -349,10 +349,10 @@ def label_DiffusionNoIntervention : AssumptionKind := .definitional
 **⚠ 这一节有一处必须显式说明的错配。**
 
 A14 在规格 `05:51` 的类型栏是 **「不可证的经验假设」**。
-而 `Fate.Frame:242` 把 A14 做成 `inductive ObservationRegime`（`direct` / `invertible`），
-`Fate.Frame:258` **直接选定 `direct`**，`Fate.Frame:275` 还把观测层**退化成 `id`**。
+而 `FateV2.Model:242` 把 A14 做成 `inductive ObservationRegime`（`direct` / `invertible`），
+`FateV2.Model:258` **直接选定 `direct`**，`FateV2.Model:275` 还把观测层**退化成 `id`**。
 
-`Fate.Frame:239-241` 自己写明：「**⚠ A14 的经验假设身份仍须在阶段 2 显式承担** ——
+`FateV2.Model:239-241` 自己写明：「**⚠ A14 的经验假设身份仍须在阶段 2 显式承担** ——
 『世界是否真能直接观测状态』是**经验问题**，不是定义问题。
 本实现只落实**语言层选择**，**不主张该选择在世界上成立**。」
 
@@ -362,15 +362,15 @@ A14 在规格 `05:51` 的类型栏是 **「不可证的经验假设」**。
 
 /-- `label_ObservationRegime`：A14 的两条读法（枚举本身）。
 
-**类别**：`definitional`。**实现落点**：`Fate.Frame:242`。✅ 有对应。
+**类别**：`definitional`。**实现落点**：`FateV2.Model:242`。✅ 有对应。
 **⚠ 这个 `definitional` 不传递到 A14** —— A14 = `empirical`。 -/
 def label_ObservationRegime : AssumptionKind := .definitional
 
 /-- `label_CurrentRegime`：当前生效的读法（作者裁决 Q-2：取 `direct`）。
 
 **类别**：`definitional` —— 这是一条**裁决记录**，不是世界断言。
-`Fate.Frame:257` 原文：「这不是『假设』，而是**记录作者已作的裁决**」。
-**实现落点**：`Fate.Frame:258` ＋ `Fate.Frame:264`
+`FateV2.Model:257` 原文：「这不是『假设』，而是**记录作者已作的裁决**」。
+**实现落点**：`FateV2.Model:258` ＋ `FateV2.Model:264`
 `theorem currentRegime_eq_direct : ... := rfl`（**防无声改动的自检**）。✅ 处置得当。 -/
 def label_CurrentRegime : AssumptionKind := .definitional
 
@@ -380,8 +380,8 @@ def label_CurrentRegime : AssumptionKind := .definitional
 
 /-- `label_CtxSpace`：上下文空间 $\mathcal{C}$。
 
-**类别**：`definitional` —— 规格备注「**原文未定义其结构**」（`Fate.Frame:289`）。
-**实现落点**：`Fate.Frame:292` `structure CtxSpace`（**只有 `Carrier`**）。
+**类别**：`definitional` —— 规格备注「**原文未定义其结构**」（`FateV2.Model:289`）。
+**实现落点**：`FateV2.Model:292` `structure CtxSpace`（**只有 `Carrier`**）。
 ⚠ `Stage0.Core:1000` 另有 `Ctx_placeholder : Unit := ()` —— 那是**真占位**，见 §5。 -/
 def label_CtxSpace : AssumptionKind := .definitional
 
@@ -389,13 +389,13 @@ def label_CtxSpace : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 规格 §1.4 裁定「单个映射，不是集合」，
 正式形式取条件分布 $R:P(y\mid x,c)$。这是记法裁定。
-**实现落点**：`Fate.Frame:348` `structure Rule`（**以核为主形式**）。✅ 有对应。 -/
+**实现落点**：`FateV2.Model:348` `structure Rule`（**以核为主形式**）。✅ 有对应。 -/
 def label_Rule : AssumptionKind := .definitional
 
 /-- `label_Rules`：规则集 $\mathcal{R}$。
 
 **类别**：`definitional` —— 规格 §2.2 规则 S1 要求 $R$ 与 $\mathcal{R}$ **严格区分**。
-**实现落点**：`Fate.Frame:545` `abbrev Rules := Set (Rule C X Y)`。✅ 有对应。
+**实现落点**：`FateV2.Model:545` `abbrev Rules := Set (Rule C X Y)`。✅ 有对应。
 
 **⚠ `Set` 只让「$\subseteq$」有意义，不给 A3 的「$\circ$ 封闭」** ——
 `Set X` 对任意二元运算都不封闭，除非运算写回 `Set X`。见 `label_A3`。 -/
@@ -405,7 +405,7 @@ def label_Rules : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 规格 §2.3 规则 N3 裁定 $\mathcal{Y}$ **同时**是
 规则输出空间与观测取值空间，二者**数学上是同一空间**。
-**实现落点**：`Fate.Frame:316` `abbrev OutSpace : Type _ := StateSpace`。✅ 是「同一性」的
+**实现落点**：`FateV2.Model:316` `abbrev OutSpace : Type _ := StateSpace`。✅ 是「同一性」的
 **类型层直接落实**，且使链式组合 `Rule C X Y → Rule C Y Z` 变为类型正确。
 
 **⚠ 副作用**：合并后**无法表达**「输出空间 ≠ 状态空间」。对规格 N3 而言这是**对的**，
@@ -416,7 +416,7 @@ def label_OutSpace : AssumptionKind := .definitional
 
 **类别**：`definitional`（**这个类型**；**A9 本身**是 `empirical`，见 `label_A9`）。
 
-**为什么这个类型是 `definitional`**：`Fate.Frame:329` 的 `structure LocalDomain`
+**为什么这个类型是 `definitional`**：`FateV2.Model:329` 的 `structure LocalDomain`
 把「划界方式」做成**参数**（`assign : X.Carrier → Idx`）。
 「做一个参数位」是语言层选择 —— 它**不主张**存在某个划分。
 
@@ -424,7 +424,7 @@ def label_OutSpace : AssumptionKind := .definitional
 `LocalDomain` 只让它可以被**陈述**，不让它**成立**。
 ⟹ **「`LocalDomain` 存在」≠「A9 成立」。这是本文件要防的核心误读。**
 
-`Fate.Frame:326-328` 原文：「A9 不成立 ⟹ 这个参数无意义 ⟹
+`FateV2.Model:326-328` 原文：「A9 不成立 ⟹ 这个参数无意义 ⟹
 依赖它的定理全部失效。**这正是 A9 的承载性所在。**」✅ **后果已写出**。 -/
 def label_LocalDomain : AssumptionKind := .definitional
 
@@ -432,24 +432,24 @@ def label_LocalDomain : AssumptionKind := .definitional
 
 **类别**：`definitional` —— 规格 §2.2 规则 S1：裸 $E$ 归**图的边集**，
 实例集改花体 $\mathcal{E}$，Lean 记作 `Inst`。
-**实现落点**：`Fate.Frame:568` `structure InstSpace`。✅ 有对应。 -/
+**实现落点**：`FateV2.Model:568` `structure InstSpace`。✅ 有对应。 -/
 def label_InstSpace : AssumptionKind := .definitional
 
 /-- `label_FormalCtx`：FCA 形式背景 $\mathbb{K}=(G_{\mathrm{FCA}},M_{\mathrm{FCA}},I)$。
 
 **类别**：`definitional`。
-**实现落点**：`Fate.FCA:92` `structure FormalCtx`（`GFCA` / `MFCA` / `Irel`）。✅ 有对应。
+**实现落点**：`FateV2.Rules:92` `structure FormalCtx`（`GFCA` / `MFCA` / `Irel`）。✅ 有对应。
 **⚠ 规格 §2.2 规则 S1 的「裸 $G$ / 裸 $B$ 禁令」已落实**（字段名是 `GFCA`/`MFCA`）。✅ 合规。 -/
 def label_FormalCtx : AssumptionKind := .definitional
 
 /-- `label_polar`：导出算子对 $(\cdot)'$。
 
 **类别**：`definitional` —— 规格 §1.5 的双向导出算子。
-`Fate.FCA:112/121` **直接绑定 Mathlib 的 `upperPolar`/`lowerPolar`**（依裁决 R-002），
-并由 `Fate.FCA:130/134` 两条 `rfl` 引理给出**记法对照**。
+`FateV2.Rules:112/121` **直接绑定 Mathlib 的 `upperPolar`/`lowerPolar`**（依裁决 R-002），
+并由 `FateV2.Rules:130/134` 两条 `rfl` 引理给出**记法对照**。
 ✅ 处置得当：**规格的 $A'$ 与 `upperPolar` 是同一对象，不是两套**。
 
-**⚠ `[已知]` 边界**：引用的是 **Mathlib 的既有结果**（`Fate.FCA:129` 已标 `[已知]`），
+**⚠ `[已知]` 边界**：引用的是 **Mathlib 的既有结果**（`FateV2.Rules:129` 已标 `[已知]`），
 **不是本框架证成的**。本文件不把 Mathlib 的定理记为本框架成果。 -/
 def label_polar : AssumptionKind := .definitional
 
@@ -457,8 +457,8 @@ def label_polar : AssumptionKind := .definitional
 
 **类别**：`definitional`（**类型本身**）；**A32 本身**是 `existential`，见 `label_A32`。
 
-**⚠⚠ 这里最容易误判。** `Fate.Alpha:109` 写着
-「**本定义即 A32 的『存在』一半在定义层的落点**」，紧接着 `Fate.Alpha:110` 写
+**⚠⚠ 这里最容易误判。** `FateV2.Rules:109` 写着
+「**本定义即 A32 的『存在』一半在定义层的落点**」，紧接着 `FateV2.Rules:110` 写
 「**『误差有界』一半未做**（见文件头诚实边界 3）」。
 
 **「`Encoder` 这个结构存在 ⟺ A32 的『存在』成立」是假的**：
@@ -466,7 +466,7 @@ def label_polar : AssumptionKind := .definitional
 **不说明**这样的 `toObjects`/`toAttrs` 可从数据算出来（那是 A8.T0），
 也**不说明**离散化误差有界（A32 后半）。
 
-**实现落点**：`Fate.Alpha:111` `structure Encoder` ＋ `Fate.Alpha:134` `Encoder.Coherent`。
+**实现落点**：`FateV2.Rules:111` `structure Encoder` ＋ `FateV2.Rules:134` `Encoder.Coherent`。
 **A32 的完整落点应含误差界谓词 —— 后者不存在。** 记入 §5。 -/
 def label_Encoder : AssumptionKind := .definitional
 
@@ -498,7 +498,7 @@ def label_Alpha : AssumptionKind := .definitional
 **类别**：`definitional` —— 规格 `05:39` 类型栏 = **定义性约定**。原文：
 「第 31 轮把**定义写成了等式**，须改写为**类型声明**」。
 
-**实现落点**：`Fate.GammaOperator:511`
+**实现落点**：`FateV2.Rules:511`
 `abbrev RuleGeneralization (S : RuleSpec C X Y) : Type _ := GenOp (Rule C X Y)`。
 **⚠ 弱落点**：它是 `GenOp` 的别名，不是「把 $R_{\text{local}}$ 送到 $R_{\text{global}}$」
 的那个映射的**类型声明**。记入 §5。 -/
@@ -522,7 +522,7 @@ def label_Compose : AssumptionKind := .definitional
 「第 32 轮把『等价关系』列为**配置项**，但**未给相容性条件**；
 **无相容性则组合无良定义**」。
 
-**实现落点**：`Fate.Alpha:393` `abbrev AbstractEquiv (E : InstSpace) := Setoid E.Carrier`
+**实现落点**：`FateV2.Rules:393` `abbrev AbstractEquiv (E : InstSpace) := Setoid E.Carrier`
 ＋ `FateV2.Rules.AlphaKernel:58` `def alphaKernel`（把等价关系取为 α 的核）。
 **✅ 实质进展**：`FateV2.Rules.AlphaKernel:66-79` 把 `RespectsEquiv` 从**条件**降为**定理**
 （「α 保持自己的核」是定义的重言）——**这是把假设变成定理，不是换一个假设**。
@@ -532,7 +532,7 @@ def label_AbstractEquiv : AssumptionKind := .definitional
 /-- `label_A31dup`：A31 抽象 = 实例集的商。
 
 **类别**：`definitional` —— 规格 `05:69` 类型栏 = **定义性约定**。
-**实现落点**：`Fate.Alpha:393` ＋ `FateV2.Rules.AlphaKernel:58`。
+**实现落点**：`FateV2.Rules:393` ＋ `FateV2.Rules.AlphaKernel:58`。
 **✅ A31 的实质要求**是「抽象**不是**率失真的有损映射，而是**商**」——
 `Setoid` 载体确实表达「商」。 -/
 def label_A31dup : AssumptionKind := .definitional
@@ -550,11 +550,11 @@ def label_A31dup : AssumptionKind := .definitional
 /-! #### 定义性约定（15 条） -/
 
 /-- **A1** $\alpha(\mathcal{E})\subseteq\mathcal{R}$。类型栏（`05:38`）：定义性约定。
-落点：`Rules`（`Fate.Frame:545`）。⚠ **缺口：没有 `def alpha : InstSpace → Rules`**。 -/
+落点：`Rules`（`FateV2.Model:545`）。⚠ **缺口：没有 `def alpha : InstSpace → Rules`**。 -/
 def label_A1 : AssumptionKind := .definitional
 
 /-- **A2** $\gamma(R_{\text{local}})=R_{\text{global}}$。类型栏（`05:39`）：定义性约定。
-落点：`Fate.GammaOperator:511`。⚠ **弱落点**（不是「类型声明」的形式）。 -/
+落点：`FateV2.Rules:511`。⚠ **弱落点**（不是「类型声明」的形式）。 -/
 def label_A2 : AssumptionKind := .definitional
 
 /-- **A3** $\mathcal{R}$ 对 $\circ$ 封闭。类型栏（`05:40`）：定义性约定（封闭性）。
@@ -562,26 +562,26 @@ def label_A2 : AssumptionKind := .definitional
 def label_A3 : AssumptionKind := .definitional
 
 /-- **A4** $\sim$ 存在且与 $\circ$ 相容。类型栏（`05:41`）：定义性约定（同一性）。
-落点：`Fate.Alpha:393` + `FateV2.Rules.AlphaKernel:58`。⚠ 相容性只对「α 的核」证成。 -/
+落点：`FateV2.Rules:393` + `FateV2.Rules.AlphaKernel:58`。⚠ 相容性只对「α 的核」证成。 -/
 def label_A4 : AssumptionKind := .definitional
 
 /-- **A12** $a_t$ 是轨迹生成的**必要输入项**。类型栏（`05:49`）：定义性约定（结构性）。
-落点：`Fate.Frame:146` `Step` 第 5 位 = `F.Act.Carrier`。✅ **实打实的类型强制**。 -/
+落点：`FateV2.Model:146` `Step` 第 5 位 = `F.Act.Carrier`。✅ **实打实的类型强制**。 -/
 def label_A12 : AssumptionKind := .definitional
 
 /-- **A13** $\theta$ 在 $\mathcal{T}$ 内时不变／时间尺度分离。
 类型栏（`05:50`）：定义性约定（可转为待证）。
 
-**⚠ 原读法已被作者裁决 Q-1 废除**（`Fate.Frame:280-294`）：「θ **不是被给定的参数，
+**⚠ 原读法已被作者裁决 Q-1 废除**（`FateV2.Model:280-294`）：「θ **不是被给定的参数，
 而是从实例数据中提取出来的规律**」；「慢」改为「**在提取所覆盖的样本上稳定**」。
 
-**当前有效落点**：`Fate.Frame:600` `ThetaIsExtracted` ＋ `Fate.Frame:627` `ThetaStableOn`。
-`Fate.Frame:615-621` 用一张表并排写出「已废除的旧读法」与「本定义」，✅ 处置得当。
-⚠ 但「样本集 $S$ 的选取」**未被作者裁决**（`Fate.Frame:623`），A13 的**操作化仍未闭合**。 -/
+**当前有效落点**：`FateV2.Model:600` `ThetaIsExtracted` ＋ `FateV2.Model:627` `ThetaStableOn`。
+`FateV2.Model:615-621` 用一张表并排写出「已废除的旧读法」与「本定义」，✅ 处置得当。
+⚠ 但「样本集 $S$ 的选取」**未被作者裁决**（`FateV2.Model:623`），A13 的**操作化仍未闭合**。 -/
 def label_A13 : AssumptionKind := .definitional
 
 /-- **A16** 扩散项不依赖干预。类型栏（`05:53`）：定义性约定（附加假设）。
-落点：`Fate.Frame:217`。✅ 有对应（当前主路径未启用）。 -/
+落点：`FateV2.Model:217`。✅ 有对应（当前主路径未启用）。 -/
 def label_A16 : AssumptionKind := .definitional
 
 /-- **A17** 干预进入机制内部，`do` 仅作模型层算子。类型栏（`05:54`）：定义性约定（分层约定）。
@@ -608,7 +608,7 @@ def label_A26 : AssumptionKind := .definitional
 类型栏（`05:64`）：定义性约定。
 
 **⚠⚠ 三处恒真占位之一，勘察 G 点名，本文件 §4.1 重写。**
-原 `Fate.Stage1A:253` `def DifferentiableMechanism (F : Frame) (_f : Step F) : Prop := True`
+原 `FateV2.Rules:253` `def DifferentiableMechanism (F : Frame) (_f : Step F) : Prop := True`
 —— **`True`，无内容，`DifferentiableMechanism F f` 对任意 `f` 都成立**。
 
 **本文件的处置**：
@@ -623,16 +623,16 @@ def label_A27 : AssumptionKind := .definitional
 
 /-- **A28** $\Theta,\mathcal{X},\mathcal{U},\mathcal{A}$ 均为已有结构的空间。
 类型栏（`05:65`）：定义性约定。
-落点：`Fate.Basic` 的四个 `structure`（`163`/`261`/`303`/`325`），全带拓扑 + 可测。
+落点：`FateV2.Modeling` 的四个 `structure`（`163`/`261`/`303`/`325`），全带拓扑 + 可测。
 ✅ **有对应**。⚠ 但 `Stage0.Core:351` 另有一套 `ActionSpace`。记入 §5。 -/
 def label_A28 : AssumptionKind := .definitional
 
 /-- **A29** 时间索引集已指定。类型栏（`05:66`）：定义性约定。
-落点：`Fate.Basic:187` `TimeKind` ＋ `194`/`200` 两套 `TimeIdx`。✅ **有对应**。 -/
+落点：`FateV2.Modeling:187` `TimeKind` ＋ `194`/`200` 两套 `TimeIdx`。✅ **有对应**。 -/
 def label_A29 : AssumptionKind := .definitional
 
 /-- **A31** 抽象与压缩的数学含义已给定。类型栏（`05:69`）：定义性约定。
-落点：`Fate.Alpha:393` ＋ `FateV2.Rules.AlphaKernel:58`。⚠ 部分对应（见 `label_A31dup`）。 -/
+落点：`FateV2.Rules:393` ＋ `FateV2.Rules.AlphaKernel:58`。⚠ 部分对应（见 `label_A31dup`）。 -/
 def label_A31 : AssumptionKind := .definitional
 
 /-! #### 待证命题（11 条）
@@ -659,7 +659,7 @@ def label_A6 : AssumptionKind := .existential
 def label_A7 : AssumptionKind := .existential
 
 /-- **A8** 抽象算子 $\alpha$ 存在且**可计算**。类型栏（`05:45`）：待证命题（存在性）。
-落点：`Fate.Adjudication` 的 `A8Layer` / `A8_T0` / `A8_T1_Registered`（`SigCheck:388-391`）。
+落点：`FateV2.Meta` 的 `A8Layer` / `A8_T0` / `A8_T1_Registered`（`SigCheck:388-391`）。
 ⚠ **`A8_T1_Registered` 自述「登记挂载点（未填内容）」—— 这是空壳**。记入 §5。 -/
 def label_A8 : AssumptionKind := .existential
 
@@ -679,9 +679,9 @@ def label_A11 : AssumptionKind := .existential
 原文：「命运被定义为『样本路径』，但**原文从未给出路径空间与其上的测度**」。
 
 **⚠⚠ 这是勘察 G 第三处问题的近亲：**
-`Fate.Basic:227` `abbrev Traj := ι → X.Carrier` **不带任何测度**，
-`Fate.Basic:233` `FateOf` 只是它的别名。
-`Fate.Basic` 里唯一带测度的东西是 `Dist`（噪声分布，`Basic:348`），
+`FateV2.Modeling:227` `abbrev Traj := ι → X.Carrier` **不带任何测度**，
+`FateV2.Modeling:233` `FateOf` 只是它的别名。
+`FateV2.Modeling` 里唯一带测度的东西是 `Dist`（噪声分布，`Basic:348`），
 **不是**轨迹的路径测度。⟹ **A15 在实现侧完全缺席**。记入 §5。
 
 **⚠ 本文件不改判其类型**：规格判它是「待证命题」，本文件就标 `existential`，
@@ -699,8 +699,8 @@ def label_A25 : AssumptionKind := .existential
 
 /-- **A30** 收敛性分析的数学前提（马尔可夫链遍历性三条件／鞅可积性等）。
 类型栏（`05:67`）：待证命题。
-落点：`Fate.Stage1A` 的 `MartingaleIntegrability`（`SigCheck:417`）。
-**✅ 处置边界清楚**：`Fate.Stage1A:211-214` 的
+落点：`FateV2.Rules` 的 `MartingaleIntegrability`（`SigCheck:417`）。
+**✅ 处置边界清楚**：`FateV2.Rules:211-214` 的
 `T1A8_integrability_wellformed : MartingaleIntegrability μ f ↔ ∀ n, Integrable (f n) μ := Iff.rfl`
 **只断言「可积性是良定义的谓词」**，`Stage1A:204-206` 自写明**不给收敛结论**。
 ⚠ 但 **A30 的「遍历性三条件」在实现侧无对应**。记入 §5。 -/
@@ -709,9 +709,9 @@ def label_A30 : AssumptionKind := .existential
 /-- **A32** FCA 编码算子存在且**离散化误差有界**。类型栏（`05:69`）：待证命题。
 原文：「用二值形式背景承载连续动力学轨迹，**代价是一整层未量化的新误差**」。
 
-**实现落点（半数）**：`Fate.Alpha:111` `structure Encoder` ✅；
-`Fate.Alpha:134` `Encoder.Coherent` ✅。
-**❌ 「误差有界」一半：`Fate.Alpha:110` 自己写明「未做」**。记入 §5。 -/
+**实现落点（半数）**：`FateV2.Rules:111` `structure Encoder` ✅；
+`FateV2.Rules:134` `Encoder.Coherent` ✅。
+**❌ 「误差有界」一半：`FateV2.Rules:110` 自己写明「未做」**。记入 §5。 -/
 def label_A32 : AssumptionKind := .existential
 
 /-! #### 不可证的经验假设（6 条）
@@ -721,9 +721,9 @@ def label_A32 : AssumptionKind := .existential
 本文件对每条都标明**实现侧有没有把「后果」写出来**。 -/
 
 /-- **A9** 局部域的划分**存在且稳定**。类型栏（`05:46`）：不可证的经验假设（存在性）。
-落点：`Fate.Frame:329` `structure LocalDomain`（**参数位**）。
+落点：`FateV2.Model:329` `structure LocalDomain`（**参数位**）。
 **⚠ 关键区分**：`LocalDomain` 让 A9 **可陈述**，**不让** A9 **成立**。
-`Fate.Frame:326-328` 已写出后果：「A9 不成立 ⟹ 依赖它的定理全部失效」。
+`FateV2.Model:326-328` 已写出后果：「A9 不成立 ⟹ 依赖它的定理全部失效」。
 ✅ **后果已写出**。 -/
 def label_A9 : AssumptionKind := .empirical
 
@@ -732,9 +732,9 @@ def label_A9 : AssumptionKind := .empirical
 **若不显式声明 $x_t$ 可获取，则『命运』在观测上完全不可及**」。
 
 **⚠⚠ 本文件的立场（与实现侧的一处张力，必须写明）：**
-`Fate.Frame:258` **把 A14 选成 `currentRegime := .direct`**，
-`Fate.Frame:239-241` 承认「只落实**语言层选择**，**不主张该选择在世界上成立**」，
-`Fate.Frame:275` 还把观测层**直接退化成 `id`**（`ObservedState F := id`）。
+`FateV2.Model:258` **把 A14 选成 `currentRegime := .direct`**，
+`FateV2.Model:239-241` 承认「只落实**语言层选择**，**不主张该选择在世界上成立**」，
+`FateV2.Model:275` 还把观测层**直接退化成 `id`**（`ObservedState F := id`）。
 
 ⟹ **代码里的默认是「观测无损」，而规格说这是一条不可证的经验假设。**
 **本文件的标签判为 `empirical`，不因 `currentRegime = .direct` 而降级为 `definitional`。**
@@ -777,8 +777,8 @@ def label_A33_WellFoundedDeps : AssumptionKind := .existential
 /-! ### §3.1 对象层清单
 
 **⚠ 「26 个核心对象」这个数字的来源必须说清**：规格里**没有**「26 个核心对象」这张表，
-它是**任务书给定的计数**。本文件按 `Fate.Basic` / `Fate.Frame` / `Fate.FCA` /
-`Fate.Alpha` / `Fate.CondIndepN` / `Fate.Stage1A` / `Stage0.Core` 的**实际定义**枚举，
+它是**任务书给定的计数**。本文件按 `FateV2.Modeling` / `FateV2.Model` / `FateV2.Rules` /
+`FateV2.Rules` / `FateV2.Modeling` / `FateV2.Rules` / `Stage0.Core` 的**实际定义**枚举，
 得 **35** 个条目（含跨文件关键载体）。**若任务书本意是另一组 26 个，本清单须重列**——
 这一点显式登记，不假装凑数。 -/
 
@@ -945,7 +945,7 @@ def DifferentiableMechanism (F : Frame) (_f : Step F) : Prop := True
 （用于稳定性／分岔／线性化分析）」。
 
 **为什么写成「载体条件」而不是直接写「可微」**：
-`Fate.Basic:163` 的 `StateSpace` 只要求**拓扑 + 可测**（A28 的「至少其一」），
+`FateV2.Modeling:163` 的 `StateSpace` 只要求**拓扑 + 可测**（A28 的「至少其一」），
 **不要求**范数空间。而 `HasFDerivAt` 要求范数空间载体。
 ⟹ 「A27 在本载体上可陈述」**本身就是一个有真假的条件**。
 本定义把它写成 `Pending`，使「载体不够」成为一个**可在 Lean 里被反驳的事实**，
@@ -1005,7 +1005,7 @@ def DifferentiableMechanism_Pending_NotImplemented : Prop := False
 任何人在文档里说「`DifferentiableMechanism` 是占位」，都必须先过这一条。
 它**证明的不是 A27**，而是「这个定义**没有断言任何 A27 的内容**」。 -/
 theorem original_iff_true_fallback (F : Frame) (f : Step F) :
-    Fate.DifferentiableMechanism F f ↔ True :=
+    DifferentiableMechanism F f ↔ True :=
   Iff.rfl
 
 /-- ⚠⚠ **反证桥 2（诚实方向）**：**原 `DifferentiableMechanism` 由任何东西都能满足**。
@@ -1015,7 +1015,7 @@ theorem original_iff_true_fallback (F : Frame) (f : Step F) :
 它不接受任何 `f` 作为反例。若下游有任何定理以 `DifferentiableMechanism` 为前件，
 该前件**不排除任何 `f`**，故**不能**用它支撑 A27。 -/
 theorem original_holds_for_all (F : Frame) :
-    ∀ f : Step F, Fate.DifferentiableMechanism F f :=
+    ∀ f : Step F, DifferentiableMechanism F f :=
   fun _ => trivial
 
 /-- ⚠⚠ **反证桥 3（方向不可倒）**：**Strict 版 ⟹ 原占位**。
@@ -1027,7 +1027,7 @@ theorem strict_implies_original (F : Frame) [_nX : NormedAddCommGroup F.X.Carrie
     [_sX : NormedSpace ℝ F.X.Carrier] [_nU : NormedAddCommGroup F.U.Carrier]
     [_sU : NormedSpace ℝ F.U.Carrier] [_nN : NormedAddCommGroup F.Ν.Carrier]
     [_sN : NormedSpace ℝ F.Ν.Carrier] (f : Step F)
-    (_h : DifferentiableMechanism_Strict F f) : Fate.DifferentiableMechanism F f :=
+    (_h : DifferentiableMechanism_Strict F f) : DifferentiableMechanism F f :=
   trivial
 
 /-- ⚠⚠ **反证桥 4（`Pending` 的闸门作用）**：**`Pending_NotImplemented` 为真 ⟹ 一切命题成立**
@@ -1166,7 +1166,7 @@ def Yun (F : Frame) : Type _ := F.U.Carrier × F.Ν.Carrier
 「结构的存在性」隐式携带，成为**匿名前提**。做成字段则**每次使用时都可见**。
 本定义遵守该纪律。
 
-**⚠ 字段的默认值**取自 `F.U.meas` / `F.Ν.meas`（`Fate.Basic:165`/`264` 的
+**⚠ 字段的默认值**取自 `F.U.meas` / `F.Ν.meas`（`FateV2.Modeling:165`/`264` 的
 `StateSpace`/`ThetaSpace` 同款命名），故构造时可省略；需要替换时可显式给出。 -/
 structure YunMeasurable (F : Frame) where
   /-- 运的载体（与 `Yun` **逐位相同**，故严格版不丢信息） -/
@@ -1315,7 +1315,7 @@ def labeledGaps : List LabeledGap := [
 
   -- ===== 5. A15：路径测度完全缺席 =====
   { axiomId := "A15", specKind := .existential,
-    gap := "A15「路径测度存在（样本路径空间上已给定 σ-代数与概率测度）」（`05:52`）在实现侧**完全缺席**。`Fate.Basic:227` 的 `Traj` 是**纯函数类型** `ι → X.Carrier`，**不带任何测度**；`FateOf`（`Basic:233`）只是它的别名。`Fate.Basic` 里唯一带测度的是 `Dist`（噪声分布，`Basic:348`），**不是**轨迹的路径测度。⟹「命运」在实现侧**只是一个函数**，没有概率语义。",
+    gap := "A15「路径测度存在（样本路径空间上已给定 σ-代数与概率测度）」（`05:52`）在实现侧**完全缺席**。`FateV2.Modeling:227` 的 `Traj` 是**纯函数类型** `ι → X.Carrier`，**不带任何测度**；`FateOf`（`Basic:233`）只是它的别名。`FateV2.Modeling` 里唯一带测度的是 `Dist`（噪声分布，`Basic:348`），**不是**轨迹的路径测度。⟹「命运」在实现侧**只是一个函数**，没有概率语义。",
     severity := "blocks-proof" },
 
   -- ===== 6. A18/A24/A26：架构层假设，代码无载荷 =====
@@ -1341,7 +1341,7 @@ def labeledGaps : List LabeledGap := [
 
   -- ===== 9. A32：编码算子有，误差界无 =====
   { axiomId := "A32", specKind := .existential,
-    gap := "A32 = 「编码算子**存在**」∧「**离散化误差有界**」。实现侧只有前半：`Fate.Alpha:111` `structure Encoder` + `Fate.Alpha:134` `Encoder.Coherent`。**后半「误差有界」不存在**——`Fate.Alpha:110` 自写明「『误差有界』一半**未做**」。且 `Encoder` 作为 `structure` **不说明** toObjects/toAttrs 可从数据算出来（那是 A8.T0）。",
+    gap := "A32 = 「编码算子**存在**」∧「**离散化误差有界**」。实现侧只有前半：`FateV2.Rules:111` `structure Encoder` + `FateV2.Rules:134` `Encoder.Coherent`。**后半「误差有界」不存在**——`FateV2.Rules:110` 自写明「『误差有界』一半**未做**」。且 `Encoder` 作为 `structure` **不说明** toObjects/toAttrs 可从数据算出来（那是 A8.T0）。",
     severity := "blocks-proof" },
 
   -- ===== 10. CondIndepNEmpty：三处恒真占位之二 =====
@@ -1361,22 +1361,22 @@ def labeledGaps : List LabeledGap := [
 
   -- ===== 13. 两套 ActionSpace / 两套 Ctx =====
   { axiomId := "A28", specKind := .definitional,
-    gap := "⚠ **两套 ActionSpace。** `Fate.Basic:325`（字段 `Carrier`）与 `Stage0.Core:351`（字段 `A`）**各定义一次**，`Fate/Stage0/Core.lean:29-40` 自述这是「**两套定义的债务**」。本文件**不合并**（合须由后续轮次裁决权威载体），但「𝓐 是哪个」在实现侧**有歧义**。",
+    gap := "⚠ **两套 ActionSpace。** `FateV2.Modeling:325`（字段 `Carrier`）与 `Stage0.Core:351`（字段 `A`）**各定义一次**，`Fate/Stage0/Core.lean:29-40` 自述这是「**两套定义的债务**」。本文件**不合并**（合须由后续轮次裁决权威载体），但「𝓐 是哪个」在实现侧**有歧义**。",
     severity := "cosmetic" },
   { axiomId := "—（Obj / Ctx / Xlocal / piO）", specKind := .definitional,
-    gap := "⚠ **真占位（只返回 `()`）。** `Fate.Basic:152` `class Obj` 在 `Fate.Basic` 之外**从未被实例化或引用**（主公式用 `Frame.X`，不是 `Obj`）；`Fate/Stage0/Core.lean:990` `Xlocal_placeholder : Unit := ()`、`Core:1000` `Ctx_placeholder : Unit := ()`、`Core:978` `piO_placeholder : Unit := ()`、`Core:1011` `NoiseCarrier_placeholder : Unit := ()`、`Core:1022` `ModelCarrier_placeholder : Unit := ()`、`Core:924` `NoCoercionDoToAction : Unit := ()` —— **七个 `Unit` 型占位**，它们**不携带任何数学内容**，且**不会被编译器拒绝使用**（`Unit` 恒有元素 `()`）。⟹ 这是「**占位而非缺口暴露**」，与 §4 的 `:= False` 处置**相反**。",
+    gap := "⚠ **真占位（只返回 `()`）。** `FateV2.Modeling:152` `class Obj` 在 `FateV2.Modeling` 之外**从未被实例化或引用**（主公式用 `Frame.X`，不是 `Obj`）；`Fate/Stage0/Core.lean:990` `Xlocal_placeholder : Unit := ()`、`Core:1000` `Ctx_placeholder : Unit := ()`、`Core:978` `piO_placeholder : Unit := ()`、`Core:1011` `NoiseCarrier_placeholder : Unit := ()`、`Core:1022` `ModelCarrier_placeholder : Unit := ()`、`Core:924` `NoCoercionDoToAction : Unit := ()` —— **七个 `Unit` 型占位**，它们**不携带任何数学内容**，且**不会被编译器拒绝使用**（`Unit` 恒有元素 `()`）。⟹ 这是「**占位而非缺口暴露**」，与 §4 的 `:= False` 处置**相反**。",
     severity := "silent" },
   { axiomId := "A17", specKind := .definitional,
     gap := "A17 的「`do` 是算子、不能隐式转成动作」这条**分层约定**：`Fate/Stage0/Core.lean:856` `Do` 与 `Core:911` `DoIsOperator` 提供了载体 ✅，但 `Core:924` `NoCoercionDoToAction : Unit := ()` **只是 `Unit` 常量**——「`do` 不隐式转成动作」**没有被类型系统强制**。若要把这条约定变成编译期保证，须写一个 `Coe` 实例的**否定**（Lean 中不可表达为实例否定），故本条**只能靠 `Unit` 占位**。**这是能力边界，不是懈怠**。",
     severity := "cosmetic" },
   { axiomId := "—（Dist 的概率前件）", specKind := .definitional,
-    gap := "`Fate.Basic:341-347` 的 `Dist` **故意不假定是概率测度**（纪律正确），但 `Fate.Basic` **没有提供**「`IsProbabilityMeasure` 前件」的**具名对象**，故「𝒟_ε 是概率测度」这条前件**只存在于注释里**。",
+    gap := "`FateV2.Modeling:341-347` 的 `Dist` **故意不假定是概率测度**（纪律正确），但 `FateV2.Modeling` **没有提供**「`IsProbabilityMeasure` 前件」的**具名对象**，故「𝒟_ε 是概率测度」这条前件**只存在于注释里**。",
     severity := "cosmetic" },
   { axiomId := "—（InitialState 的 D₀）", specKind := .definitional,
-    gap := "`Fate.Basic:245` `structure InitialState` 的 `isRandom : Bool` **是 `Bool` 不是 `Prop`**，且**没有把 𝒟_0 带进来**。故「x_0 随机」在实现侧**只是一个布尔开关，没有分布载体**。",
+    gap := "`FateV2.Modeling:245` `structure InitialState` 的 `isRandom : Bool` **是 `Bool` 不是 `Prop`**，且**没有把 𝒟_0 带进来**。故「x_0 随机」在实现侧**只是一个布尔开关，没有分布载体**。",
     severity := "cosmetic" },
   { axiomId := "A2", specKind := .definitional,
-    gap := "A2 的规格要求是「把 `05:39` 的**等式**改写为**类型声明**」。实现侧 `Fate.GammaOperator:511` `RuleGeneralization := GenOp (Rule C X Y)` **是 `GenOp` 的别名**，不是「R_local → R_global」的**类型声明**。⟹ **弱落点**。",
+    gap := "A2 的规格要求是「把 `05:39` 的**等式**改写为**类型声明**」。实现侧 `FateV2.Rules:511` `RuleGeneralization := GenOp (Rule C X Y)` **是 `GenOp` 的别名**，不是「R_local → R_global」的**类型声明**。⟹ **弱落点**。",
     severity := "cosmetic" },
   { axiomId := "A4", specKind := .definitional,
     gap := "A4 的「与 ∘ **相容**」在实现侧只对「**α 的核**」这个特定等价关系证成（`FateV2.Rules.AlphaKernel:66-79`），**不是对任意 `Setoid`**。这是**实质进展**（把条件降为定理），但不是 A4 的全称内容。",
@@ -1392,15 +1392,15 @@ def labeledGapsCount : ℕ := labeledGaps.length
 /-- **已实现且处置得当的项**（`notes`，**非缺口**）—— 同样需要人读，
 但它们是**正向记录**，用于防止「把已做的也说成缺口」的另一种不诚实。 -/
 def notes : List (String × String) := [
-  ("A12", "✅ `Fate.Frame:146` `Step` 的第 5 位就是 `F.Act.Carrier`，**删不掉**——这是全仓库最实的一处 A12 落地。"),
-  ("A16", "✅ `Fate.Frame:217` `DiffusionNoIntervention` 单设一个类型，使「采用附加假设」成为**可见的类型选择**。当前主路径用带 a_t 的 `Diffusion`，故 A16 未生效——这是**选项未启用**，不是缺口。"),
-  ("A13", "✅ **处置得当的范例**：原读法（‖θ̇‖≪‖ẋ‖ / 阈值 ε）已被作者裁决 Q-1 **废除**，`Fate.Frame:615-621` 用一张表把「已废除的旧读法」与「本定义」**并排写出**，使「已废除的读法仍在代码中」不可能发生。⚠ 但「样本集 S 的选取」**未被作者裁决**（`Frame:623`），操作化仍未闭合。"),
+  ("A12", "✅ `FateV2.Model:146` `Step` 的第 5 位就是 `F.Act.Carrier`，**删不掉**——这是全仓库最实的一处 A12 落地。"),
+  ("A16", "✅ `FateV2.Model:217` `DiffusionNoIntervention` 单设一个类型，使「采用附加假设」成为**可见的类型选择**。当前主路径用带 a_t 的 `Diffusion`，故 A16 未生效——这是**选项未启用**，不是缺口。"),
+  ("A13", "✅ **处置得当的范例**：原读法（‖θ̇‖≪‖ẋ‖ / 阈值 ε）已被作者裁决 Q-1 **废除**，`FateV2.Model:615-621` 用一张表把「已废除的旧读法」与「本定义」**并排写出**，使「已废除的读法仍在代码中」不可能发生。⚠ 但「样本集 S 的选取」**未被作者裁决**（`Frame:623`），操作化仍未闭合。"),
   ("A10", "✅ **处置得最诚实的一条之一**：`Fate/Stage0/Core.lean:618-619` 原文「『满足本结构的具体 μ,σ 存在』是**待证**的，**不是本定义发明的**」。结构 = **把前件具名化**；解的存在性**未证**。`Core:605-611` 还**显式登记**了「一致 Lipschitz 是选型、比标准定理强」这一取舍。"),
-  ("A29", "✅ 两套 `TimeIdx`（`Basic:194`/`200`）**分设**，A29 要求的「分别为两套定义」已落实。⚠ `Fate.Basic:208` `structure Tmax` 用 `match kind with` 写**依赖消去值的字段**；本文件因此**不 `#eval` 它**。"),
-  ("—（A' 的记法）", "✅ 规格的 A' 与 Mathlib 的 `upperPolar` **显式绑定**（`Fate.FCA:130/134` 两条 `rfl`），**不出现两套并行记法**。⚠ 但 `Fate.FCA:129` 已标 `[已知]`——这是 **Mathlib 的既有结果，非本框架成果**。"),
+  ("A29", "✅ 两套 `TimeIdx`（`Basic:194`/`200`）**分设**，A29 要求的「分别为两套定义」已落实。⚠ `FateV2.Modeling:208` `structure Tmax` 用 `match kind with` 写**依赖消去值的字段**；本文件因此**不 `#eval` 它**。"),
+  ("—（A' 的记法）", "✅ 规格的 A' 与 Mathlib 的 `upperPolar` **显式绑定**（`FateV2.Rules:130/134` 两条 `rfl`），**不出现两套并行记法**。⚠ 但 `FateV2.Rules:129` 已标 `[已知]`——这是 **Mathlib 的既有结果，非本框架成果**。"),
   ("—（d-分离基础设施）", "✅ `CausDAG` / `CausBayesBall` / `CausActivePath` / `CausSeparation` 与 `Fate/DSeparation` / `CausalDirection` / `CausalPath` / `CausalDescendant` / `DoCalculus` / `GraphOps` / `DoCalculusRules` 七个模块（第 60–70 轮）**已建成**。⚠ 但 `Fate/Stage1A.lean:334-338` 指出的**剩余缺口 = 有限概率桥**（Mathlib 有 `CondIndepFun` 但是测度论谓词，而本项目 SCM 是 `Fintype U`）。"),
-  ("—（OutSpace 合并）", "✅ `Fate.Frame:316` `abbrev OutSpace := StateSpace` 使 `Rule C X Y → Rule C Y Z` 链式组合**类型正确**（`ComposeOperator` 101 个错误的根源已消）。⚠ 副作用：**无法表达**「输出空间 ≠ 状态空间」；若日后需要，必须撤销该合并。"),
-  ("—（T1A8 的边界）", "✅ `Fate.Stage1A:211-214` `T1A8_integrability_wellformed : ... := Iff.rfl` **只断言谓词良定义**，`Stage1A:204-206` 自写明**不给收敛结论**、「**重证一遍 Mathlib 的定理不属阶段 1A 的任务**」。这是**清晰的边界声明**，不是缺漏。"),
+  ("—（OutSpace 合并）", "✅ `FateV2.Model:316` `abbrev OutSpace := StateSpace` 使 `Rule C X Y → Rule C Y Z` 链式组合**类型正确**（`ComposeOperator` 101 个错误的根源已消）。⚠ 副作用：**无法表达**「输出空间 ≠ 状态空间」；若日后需要，必须撤销该合并。"),
+  ("—（T1A8 的边界）", "✅ `FateV2.Rules:211-214` `T1A8_integrability_wellformed : ... := Iff.rfl` **只断言谓词良定义**，`Stage1A:204-206` 自写明**不给收敛结论**、「**重证一遍 Mathlib 的定理不属阶段 1A 的任务**」。这是**清晰的边界声明**，不是缺漏。"),
   ("—（CondIndepN 空族）", "✅ `Fate/CondIndepN.lean:158` `draftN_false_empty` 给出了 `p ≡ 5` 的**具体反例**，证明「空族塞进 `CondIndepN` 会出错」。⚠ 但 `CondIndepNEmpty := True` 的**理由只在注释里**，见 `labeledGaps` 第 10 条。")
 ]
 

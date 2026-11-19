@@ -3,7 +3,7 @@
   `PearlHierarchy.SCM` 诱导 `LawRule` —— 构造 + 判别定理
 =============================================================================
 
-模块：`Fate.PearlLawRuleBridge`
+模块：`FateV2.Predict`
 上游：`Fate/PearlHierarchy.lean`（`SCM`、`push`、`SCM.L2_do`、`SCM.L2_family`、
 　　　`SCM.L3_cf`、`L3_determines_L2`、`L3_determines_L1`）、
 　　　`Fate/LawRule.lean`（`LawRule`、`IsPoint`、`IsPointDet`、`compose`、`compose_top`）

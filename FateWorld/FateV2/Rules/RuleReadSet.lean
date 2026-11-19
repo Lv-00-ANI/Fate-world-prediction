@@ -55,7 +55,7 @@ import FateWorld.FateV2.Predict.Ancestral
   ## 诚实边界
 
   1. **`Activation` 命名空间是本文件新建的** —— 全库原无 `Activation` 模块
-     （已 grep 确认）。本文件不修改 `Fate.lean`、不修改任何既有文件。
+     （已 grep 确认）。本文件不修改 `lean`、不修改任何既有文件。
   2. **`readSet` 是「单变量扰动敏感」的语义定义**：`v ∈ readSet R i` 当且仅当
      存在一对**仅在 `v` 上不同**的输入赋值使规则 `i` 输出不同。
      多变量**联合**扰动的不敏感性由 `DependsOn`（定义 §1.2）承担；

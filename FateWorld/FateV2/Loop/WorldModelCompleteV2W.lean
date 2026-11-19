@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.WorldModelCompleteV2W`
+模块：`FateV2.Loop`
 阶段：**G2 选项甲的可行情验证 —— 弱化版结构 `WorldModelCompleteV2W`**
 
 ---------------------------------------------------------------------------
@@ -20,7 +20,7 @@
 **(c) 本文件的**价值**：证明「若把 `render_surj` 换成 `render_nonconst`，
 非退化实例就**存在**」。具体地：**
 
-- 在 `Fin 2` 状态空间（`Fate.nonDegFrame`，非退化）上，
+- 在 `Fin 2` 状态空间（`nonDegFrame`，非退化）上，
   **整套 13 个字段全部填满**，构造出 `WorldModelCompleteV2W nonDegFrame`
   的**真实实例** `wmcW`（见 `wmcW_instance_exists`）。
 - 更强：本文件还**证明** `renderND` **不是满射**
@@ -150,7 +150,7 @@ noncomputable section
 
 /-- **G2 · 选项甲的结构：`WorldModelCompleteV2W`（W = Weak）**
 
-除 `render_nonconst` 外，字段与 `Fate.WorldModelCompleteV2` **逐字相同**
+除 `render_nonconst` 外，字段与 `FateV2.Loop` **逐字相同**
 （这是刻意的：使两者的差异**只有一处**，便于作者裁决时对照）。
 
 **⚠ 与前件是否同义反复（纪律 7）**：结构字段**不是**定理，**无前件**。
@@ -160,7 +160,7 @@ noncomputable section
 **不可互推**。 -/
 structure WorldModelCompleteV2W (F : Frame) [instX : MeasurableSpace F.X.Carrier]
     [S : RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X] where
-  /-- **① 输入**：实例集（`Fate.InstSpace`）。与 `WorldModelCompleteV2.input` 同。 -/
+  /-- **① 输入**：实例集（`InstSpace`）。与 `WorldModelCompleteV2.input` 同。 -/
   input : InstSpace.{0}
   /-- **② 抽象 α（数据层）**：观测映射。与 `WorldModelCompleteV2.alpha` 同。 -/
   alpha : AlphaData.{0} input PUnit

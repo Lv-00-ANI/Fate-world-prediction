@@ -118,9 +118,9 @@ machine-checked**：
 ## 3 ⚠ **纪律核对**
 
 1. ✅ **单文件验证**：`lake env lean Fate/BridgeExpanded.lean` 通过。
-2. ✅ **不改 `Fate.lean`**、不改 `BridgeFull.lean`（**本文件不 `import` `BridgeFull`**；
+2. ✅ **不改 `lean`**、不改 `BridgeFull.lean`（**本文件不 `import` `BridgeFull`**；
    原因见 §4：其 `factorizes_standard_implies_routeB` 有编译错，且该陈述**为假**；
-   本文件只 `import` `Fate.Strategy11AncestralHull` 与 `CausSeparation`，
+   本文件只 `import` `FateV2.Predict.Strategy11Hull` 与 `CausSeparation`，
    并**本地重定义** `ReadClosedBlocks` 与 `gex` 反例，保证独立可验）。
 3. ✅ **零 `sorry` / `admit` / `axiom`**（`#print axioms` 实测只依赖
    `propext`、`Classical.choice`、`Quot.sound`）。
@@ -604,7 +604,7 @@ theorem strong_enlargement_with_dsep_false :
 
 纪律核对：
 1. ✅ 单文件验证：`lake env lean Fate/BridgeExpanded.lean` 返回 0。
-2. ✅ 不改 `Fate.lean`，不改 `BridgeFull.lean`；本文件**不** `import` `BridgeFull`。
+2. ✅ 不改 `lean`，不改 `BridgeFull.lean`；本文件**不** `import` `BridgeFull`。
 3. ✅ **零 `sorry` / `admit` / `axiom`**；`#print axioms` 只给三条标准公理。
 4. ✅ **不用 `mass` 塔性质**。
 5. ✅ **前件消费点已逐条点名**（T6 的注释；T1/T2/T3 的 `dSep` 未消费已明写）。

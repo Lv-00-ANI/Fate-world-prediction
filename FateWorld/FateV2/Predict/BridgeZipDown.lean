@@ -119,9 +119,9 @@ X ∪ Y ∪ Z' = X ∪ Y ∪ Z,   X ∪ Z' = X ∪ Z,   Y ∪ Z' = Y ∪ Z,
 ### 0.4 纪律核对
 
 * ✅ **单文件验证**：`lake env lean Fate/BridgeZipDown.lean` 通过（§5）。
-* ✅ **不改 `Fate.lean`**、不改任何既有模块；**不 import** `BridgeFull`（无 `.olean`：
+* ✅ **不改 `lean`**、不改任何既有模块；**不 import** `BridgeFull`（无 `.olean`：
   编译失败）、**不 import** `BridgeB1Fixed`（含残余 `sorry`）；只 import
-  **已编译**的 `Fate.Strategy11AncestralHull`（含 `BridgeExpanded`/`BridgeMinZPrime`
+  **已编译**的 `FateV2.Predict.Strategy11Hull`（含 `BridgeExpanded`/`BridgeMinZPrime`
   所需的同一套底座）与 `CausSeparation`。
 * ✅ **零 `sorry` / `admit` / `axiom`**。
 * ✅ **不用 `mass` 的塔性质**：`mass` 的唯一操作是 `mass_congr`（读集替换）与

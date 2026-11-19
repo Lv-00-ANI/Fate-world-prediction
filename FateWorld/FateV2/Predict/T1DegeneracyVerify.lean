@@ -21,7 +21,7 @@ import FateWorld.FateV2.Loop.EndToEnd
 
   | 步 | 审计的说法 | 本文件判定 |
   |---|---|---|
-  | (a) | `Step` 的签名是 `f(x,u,ε,θ,a)`，θ **固死在最后一位** | ✅ 属实（`Fate.Frame.Step`） |
+  | (a) | `Step` 的签名是 `f(x,u,ε,θ,a)`，θ **固死在最后一位** | ✅ 属实（`FateV2.Model.Step`） |
   | (b) | `predFrom W θ u ε a x := W.f x u ε θ a`，对 θ 的依赖**完全由 `Step` 决定** | ✅ 属实（`EndToEnd.predFrom`，本文件 §2 用 `rfl` 钉住） |
   | (c) | `writeBack` 用 `φ : X →+ Θ`（**可加**），残差**线性地**进入 θ | ✅ 属实（`ResidualLoop.writeBack`） |
   | (d) | 若残差对 θ **线性**，零残差集是**超平面**，θ* **不唯一**，「逼近它」无意义 | ⚠ **部分成立、部分不成立 —— 本文件把它精确切开** |

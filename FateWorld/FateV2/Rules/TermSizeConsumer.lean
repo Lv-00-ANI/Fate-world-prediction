@@ -18,7 +18,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
 
   ## 背景
 
-  `Fate.TermSize` 给出可执行语法项 `Term`（`ℚ` / `EnvQ`）的规模度量
+  `FateV2.Rules` 给出可执行语法项 `Term`（`ℚ` / `EnvQ`）的规模度量
   `Term.size` 及 22 条结构性定理，但它是**叶子模块**（零消费者）。
   本模块是它的**第一个消费者**，且消费发生在**主链**
   （`FateV2.Rules.RuleSyntaxOps` 的四算子）上。

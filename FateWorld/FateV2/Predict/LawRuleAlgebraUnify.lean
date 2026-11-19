@@ -251,7 +251,7 @@ section WiringPart
 variable [MeasurableSpace Y.Carrier]
 
 /-- ⭐⭐ **W1：【并 = 泛化】×【严格放宽不是单点档】**
-（消费 `Fate.LawRuleUnion.unionLaw_eq_generalize` 与
+（消费 `FateV2.Rules.unionLaw_eq_generalize` 与
 `LawRule.not_isPoint_of_strict_generalize`）。
 
 **新内容**：`unionLaw` 的「选择语义」在**严格**情形下**破坏单点档** ——
@@ -271,7 +271,7 @@ theorem unionLaw_not_isPoint_of_strict_subset (R1 R2 : LawRule C X Y)
   exact not_isPoint_of_strict_generalize hsub hs
 
 /-- ⭐⭐ **W2：【并 = 泛化】×【单点规则塌缩 `sInf`】**
-（消费 `Fate.LawRuleUnion.unionLaw_eq_generalize` 与
+（消费 `FateV2.Rules.unionLaw_eq_generalize` 与
 `LawRuleSatisfiabilityConsumer.sInf_pair_eq_of_isPoint`）。
 
 **新内容**：设 `R1 ⊆ R2`（故 `unionLaw R1 R2 = generalize R1 R2 h`），
@@ -345,7 +345,7 @@ def PairCompatible (R1 R2 : LawRule C X Y) : Prop :=
 （a）二元相容；（b）`compose R1 R2` 逐点就是 `R1 c x`；（c）`sInf {R1,R2} = R1`。
 
 **真正的组合点**（三条来自**不同模块/不同节**的定理嵌在一条证明里）：
-1. `Fate.LawRuleSatisfiability.compose_nonempty_iff` 把「`compose` 非空」拆成
+1. `FateV2.Rules.compose_nonempty_iff` 把「`compose` 非空」拆成
    「存在公共成员」—— 用于 (a)；
 2. `LawRule.compat_iff_eq` 把 `ComposeCompat` 转成「逐点相同」—— 用于 (b)；
 3. `LawRuleSatisfiabilityConsumer.eq_sInf_of_isPoint_mem` 把族交塌缩到单点
@@ -373,14 +373,14 @@ theorem pairCompatible_and_compose_and_sInf_of_composeCompat {R1 R2 : LawRule C 
 
 设 `R ⊆ G` 逐点，则两元族 `{R, generalize R G h}` 的 `sInf` **恰是 `R`**。
 
-证明走 `Fate.LawRuleSatisfiability.mem_sInf_iff`（族交的成员判据），
+证明走 `FateV2.Rules.mem_sInf_iff`（族交的成员判据），
 「`sInf` 的左分量等于 `R`」由该引理与 `Set.mem_insert_iff` 直接收口；
 右向包含用 `hsub`。
 
 ⚠ **诚实标注（必读）**：`generalize R G h` 的**定义**就是 `R₂ = G`，
 故本条的结论**不是**关于 `unionLaw`/`generalize` 的实质代数性质，
 而只是「两元族交取其左分量」。它**不**消费
-`Fate.LawRuleLattice.compose_top_eq`，此处亦不主张消费。
+`FateV2.Rules.compose_top_eq`，此处亦不主张消费。
 **不计入实质接线**，仅登记为族交计算的基础引理。 -/
 theorem sInf_pair_eq_left_of_subset (R G : LawRule C X Y)
     (hsub : ∀ c x, R c x ⊆ G c x) :
@@ -400,9 +400,9 @@ theorem sInf_pair_eq_left_of_subset (R G : LawRule C X Y)
 
 `marginal (compose R1 R2) φ ⊆ marginal R1 φ ⊓ marginal R2 φ`。
 
-组合点：`Fate.LawRuleMarginal.marginal_inter_subset` 给出的是逐点 `⊆`
+组合点：`FateV2.Rules.marginal_inter_subset` 给出的是逐点 `⊆`
 `compose (marginal R1 φ) (marginal R2 φ)`；本定理再用
-`Fate.LawRuleLattice.compose_eq_inf` 把它翻译成格语言 `⊓`
+`FateV2.Rules.compose_eq_inf` 把它翻译成格语言 `⊓`
 （`≤` 在 `LawRule` 上就是逐点包含，见 `LawRuleTwoDomains.linRule_le_iff` 同一 `Iff.rfl`）。
 
 ⚠ **诚实标注**：本定理的数学**全部**来自 `marginal_inter_subset`；

@@ -147,7 +147,7 @@ $$\bigl|\,\mathrm{e2eResidual}\ \mathrm{linWorld}\ (\theta^*\hat x)\ \theta_n\,\
 `linkSteadyReplica`（§3），在**表达式层**做同一性核对；主定理**不**依赖它们。
 ⚠ `Fate/FirstLayerCapstone.lean` 的 4 处 error **已于第 264 轮复原**（`git checkout HEAD`）。以下登记保留为**历史记录**：
 新建 `FirstLayerBound.lean`），故**未修复**，在此如实登记。
-⚠ 另注：`Fate.lean` 的根文件里 `import FirstLayerCapstone`（第 856 行）存在，
+⚠ 另注：`lean` 的根文件里 `import FirstLayerCapstone`（第 856 行）存在，
 故**全量 `lake build` 当前会失败**——这是既有状态，非本文件造成。
 
 ## 3 依赖（只 `import`，不改）

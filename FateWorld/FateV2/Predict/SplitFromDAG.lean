@@ -64,7 +64,7 @@
   `CausBayesBall.lean`
 * `Causalean.Graph.DAG.parents` / `mem_parents` / `children` / `mem_children` —— `CausDAG.lean`
 
-**本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `Fate.lean`。**
+**本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `lean`。**
 -/
 
 import FateWorld.FateV2.Predict.FactorizesToHyper

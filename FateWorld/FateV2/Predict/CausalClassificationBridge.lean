@@ -10,8 +10,8 @@
 ===========================================================================
 
 本文件把 `Causalean.Graph.DAG V`（因果 DAG）喂进 `FormalCtx`
-（FCA 形式背景），从而使 `Fate.Classification` 的两种目光
-（`gazeUp` / `gazeDown`，本质即 `Fate.FCA` 的 `polarUp` / `polarDown`）
+（FCA 形式背景），从而使 `FateV2.Rules` 的两种目光
+（`gazeUp` / `gazeDown`，本质即 `FateV2.Rules` 的 `polarUp` / `polarDown`）
 **能作用在因果结构上**。
 
 **⚠⚠ 裁决 O 的裁决结论（诚实声明，务请先读）⚠⚠**
@@ -84,7 +84,7 @@ FCA 的导出算子 $(\cdot)'$ 对关系的唯一要求是「对象与属性之�
   gazeUp_empty                     gazeUp ∅ = univ
   gazeDown_empty                   gazeDown ∅ = univ
 
-  --- 结构性质（搬用 Fate.FCA 的既有结果）---
+  --- 结构性质（搬用 FateV2.Rules 的既有结果）---
   gaze_galois_causal               Galois 伴随律在 ctxOf G 上成立
   gazeUp_antitone                  gazeUp 反单调
   gazeDown_antitone                gazeDown 反单调
@@ -244,14 +244,14 @@ d-分离是 `dSep X Y Z` —— 关于**三个**集合的关系（「给定 $Z$�
    返回空（文件头中出现的这三个词**全部是散文说明**，不是代码）。
 5. **依赖**：`CausSeparation`（`dSep`、`bbReachableVertices_iff_activeWalk`）、
    `CausBayesBallEquiv`（Bayes-ball 与 active walk 的等价，供 `edge_not_dSep` 用）、
-   `Fate.Classification`（`gazeUp`/`gazeDown`/`Temporal`/`Gaze`）、
+   `FateV2.Rules`（`gazeUp`/`gazeDown`/`Temporal`/`Gaze`）、
    `FateV2.Loop.MainLoop`（`step_running_iff`）。
    所有被引用的外部结果**均标 `[已知]`**（指其来源，不是指本文件重证）。
 6. **前件自查（纪律第 7 条）**：本文件的定理前件中**没有**重复结论。
    最需警惕的是 `gaze_galois_causal`（它把 `FormalCtx.gaze_galois` 搬到因果数据上）：
    它的前件只有 `G` 与两个集合，结论是伴随律——**不是**同义反复
    （它之所以能证，是因为 `ctxOf G` 是**具体**的形式背景，而伴随律对其成立
-   由 `Fate.FCA` 的 `subset_polarUp_iff_subset_polarDown` 提供；
+   由 `FateV2.Rules` 的 `subset_polarUp_iff_subset_polarDown` 提供；
    若 `ctxOf` 构造不合法，此定理会失败——事实上它只在 `Irel` 是**任意**
    二元关系时成立，这正说明它**不承载因果内容**，是**形式**事实）。
    `gazeUp_singleton` 等**不是** `rfl`：右侧是 `Set` 抽象（`{w | …}`），
@@ -435,10 +435,10 @@ theorem gazeDown_empty (G : DAG V) :
   simp [FateV2.Rules.FormalCtx.gazeDown, FateV2.Rules.FormalCtx.polarDown]
 
 /-! ===========================================================================
-    §4  结构性质：伴随律与反单调（**搬用 `Fate.FCA` 的既有结果**）
+    §4  结构性质：伴随律与反单调（**搬用 `FateV2.Rules` 的既有结果**）
     ======================================================================== -/
 
-/-- **Galois 伴随律在因果数据上成立**（借 `Fate.FCA` 的既有结果）。
+/-- **Galois 伴随律在因果数据上成立**（借 `FateV2.Rules` 的既有结果）。
 
 措辞说明见文件头 §六.6：本定理**不是**同义反复（前件仅 `G` 与两个集合），
 但它之所以成立，**只因为** `Irel` 是**任意**二元关系——
@@ -462,7 +462,7 @@ theorem gazeDown_antitone (G : DAG V) : Antitone (ctxOf G).gazeDown :=
 
 /-- **因果顶点可以带上目光**（`Temporal` 外壳的 `base` 就是顶点）。
 
-这条只证类型层面的接通：`Fate.Classification.Temporal` 的基底类型
+这条只证类型层面的接通：`FateV2.Rules.Temporal` 的基底类型
 可以取成因果顶点集（因为 `ctxOf G` 的 `GFCA` 定义上就是 `V`）。
 `G` 在此**不参与**（`Temporal` 不读图），保留它只为标明「这是关于 `G` 的接入点」。 -/
 theorem temporal_on_causal (_G : DAG V) (v : V) (g : FateV2.Rules.FormalCtx.Gaze) :

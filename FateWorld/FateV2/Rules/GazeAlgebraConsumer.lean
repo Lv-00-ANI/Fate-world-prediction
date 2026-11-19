@@ -8,14 +8,14 @@
   `GazeAlgebra`（22 定理）此前是**叶子模块**（零消费者）。
   它在一个**自足副本** `GazeAlgebra.G` 上研究「三种目光的代数结构」，
   并在 §7 只给出 `G ≃ Fin 3` 的**类型层双射**，
-  **明确不 import `Fate.Classification`**（源文件 §7 原话：
-  「本文件不 import `Fate.Classification`（避免 72KB 耦合）」）。
+  **明确不 import `FateV2.Rules`**（源文件 §7 原话：
+  「本文件不 import `FateV2.Rules`（避免 72KB 耦合）」）。
 
   结果是：`GazeAlgebra` 里的**链 / 格 / Kleene / 反序对合**等结论
   **从未真正落到主链的 `Gaze` 上**。
 
   **本文件补上这条断线**，把 `GazeAlgebra.G` 的代数结论
-  **逐条搬运到主链 `FormalCtx.Gaze`**（`Fate.Classification` 里
+  **逐条搬运到主链 `FormalCtx.Gaze`**（`FateV2.Rules` 里
   那个「零序结构」的三目光类型）。
 
   ---
@@ -25,7 +25,7 @@
   · 源端：`GazeAlgebra.G`（`none < up < down` 链、
     `LinearOrder` 实例、`three_element_lattice_is_chain`、
     `no_duality_automorphism`、`neg` 反序对合）。
-  · 目标端：`FormalCtx.Gaze`（`Fate.Classification` 内，
+  · 目标端：`FormalCtx.Gaze`（`FateV2.Rules` 内，
     **原本没有任何序 / 格 / 实例**，只有 `DecidableEq, Repr`）
     与 `FormalCtx.Temporal` 的 `IsElement` / `suspend`。
 
@@ -59,7 +59,7 @@
 
   · 本文件的 `FormalCtx.Gaze` 序 / 格结构是**分析者的代数选择**
     （沿用 `GazeAlgebra` 的 `none < up < down`），
-    **不代表** `Fate.Classification` 原作者声称过序结构；
+    **不代表** `FateV2.Rules` 原作者声称过序结构；
     它此前**只有** `DecidableEq, Repr`。本文件新增的是**可计算的序**，
     其合法性由 `GazeAlgebra` 的定理（可证）承担。
   · `isElement_iff_bot` / `suspend_gaze_bot` 在给定上述序后是 `rfl` 级，
@@ -156,12 +156,12 @@ instance instOrderBot : OrderBot Gaze where
 theorem bot_eq_none : (⊥ : Gaze) = Gaze.none := rfl
 
 /-! ===========================================================================
-  §3  连接 `Fate.Classification` 的 `IsElement` / `suspend` 与序的底元
+  §3  连接 `FateV2.Rules` 的 `IsElement` / `suspend` 与序的底元
   ======================================================================== -/
 
 /-- ⭐ **真连接③：`IsElement` 恰是「目光落在底元」**（分类谓词 ⇄ 序论 `⊥`）。
 
-`Fate.Classification.IsElement t := t.gaze = Gaze.none`；
+`FateV2.Rules.IsElement t := t.gaze = Gaze.none`；
 本节 `⊥ = none`，故 `IsElement t ↔ t.gaze = ⊥`。
 **价值在陈述**：把分类层的「要素」谓词精确接到序的底元，使主链以 `⊥` 推理。 -/
 theorem isElement_iff_bot {O : Type u} (t : Temporal O) :

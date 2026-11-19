@@ -521,7 +521,7 @@ theorem condIndepNFull_iff (p : NJoint (ι := ι) α γ) :
 **⟹ 即：`condIndepN_split` **不足以**推出 N 元条件独立** ——
 它只把 `∏` 拆成两组，而条件独立需要**所有二分都分裂**。
 
-**⭐ 二元桥（`Fate.BridgeFinal.lean` 的 `condIndepFin_to_bridge`）**已完成**；
+**⭐ 二元桥（`FateV2.Modeling.lean` 的 `condIndepFin_to_bridge`）**已完成**；
 **N 元是它的推广，目前**只到代数层**。** -/
 
 end GenC3

@@ -111,7 +111,7 @@
 * `OptimalEta`（`c`、`c_nonneg`、`c_one`、`err_eq_c_pow`）
 * `WiringConvergence`（`iterMap`、`iterMap_zero`、`err_iterMap`）
 * `BoundWriteBack`（`errA`、`errA_nonneg`、`Corrects`）
-* `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`，仅 §5）
+* `FateV2.Loop`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`，仅 §5）
 
 ### 纪律
 

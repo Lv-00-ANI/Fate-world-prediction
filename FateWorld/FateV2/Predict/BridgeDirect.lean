@@ -60,7 +60,7 @@
 路线 B 的**前件**（`pa v ⊆ X ∪ Z` 对 `v ∈ X`）在下列情形**自动成立**，于是主定理**无条件**可用：
 
 1. **`X` 祖先闭**（`bridge_direct_of_ancClosed_X`）——
-   这是 `Fate.Strategy11AncestralHull` 的口径，与引擎 `condIndep_of_dSep_ancClosed` **完全吻合**；
+   这是 `FateV2.Predict.Strategy11Hull` 的口径，与引擎 `condIndep_of_dSep_ancClosed` **完全吻合**；
 2. **`X ⊆ Z`**（`bridge_direct_of_subset_Z`）：`pa v ⊆ X ⊆ Z ⊆ X ∪ Z`；
 3. **`X` 的每点都是源点**（`bridge_direct_of_sources`）：`pa v = ∅`。
 
@@ -105,8 +105,8 @@
 ### 0.4 纪律核对（见 §8 详表）
 
 * ✅ **单文件验证**：`lake env lean Fate/BridgeDirect.lean` 通过（零 `sorry`）。
-* ✅ **不改 `Fate.lean`**、不改任何既有模块；本文件只 `import`
-  **已编译**的 `Fate.Strategy11AncestralHull`（含 `FactorMarkov`、`DAGFactorization`）与
+* ✅ **不改 `lean`**、不改任何既有模块；本文件只 `import`
+  **已编译**的 `FateV2.Predict.Strategy11Hull`（含 `FactorMarkov`、`DAGFactorization`）与
   `CausSeparation`。**不 import** `BridgeFull` / `BridgeExpanded` / `BridgeMinZPrime` /
   `BridgeZipDown`（其 `gex` 反例在本文件**本地重述**，保证零外部缺陷依赖）。
 * ✅ **零 `sorry` / `admit` / `axiom`**。
@@ -646,7 +646,7 @@ theorem parents_subset_of_ancClosed {X Z : Finset V} (hX : AncClosed G X) :
 /-- ⭐⭐ **C1 — `bridge_direct_of_ancClosed_X`（适用域 1：`X` 祖先闭）**：
 
 `X` 父闭时 `hpeel` 免费（`parents_subset_of_ancClosed`），主定理**无条件**可用。
-**⟹ 这是路线 B 在 `Fate.Strategy11AncestralHull` 口径下真的成立的**标准情形**。** -/
+**⟹ 这是路线 B 在 `FateV2.Predict.Strategy11Hull` 口径下真的成立的**标准情形**。** -/
 theorem bridge_direct_of_ancClosed_X {α : Type u} [Fintype α] [DecidableEq α]
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : FateV2.Predict.FactorMarkov.LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)

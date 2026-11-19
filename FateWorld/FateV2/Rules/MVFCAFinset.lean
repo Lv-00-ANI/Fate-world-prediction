@@ -211,7 +211,7 @@ end AlphaMVFCA
   * `m` 由 `attr y : Set M` 筛出（`[Fintype M]` + 属性侧可判定）。
 
   本节放在 `FcaToRuleTerm` 命名空间下（`attrClosure` 所在处），
-  保证下游 `import Fate.MVFCAFinset` 后能直接替换 `Set` 版。
+  保证下游 `import FateV2.Rules` 后能直接替换 `Set` 版。
   =========================================================================== -/
 
 namespace FcaToRuleTerm

@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.VarsigmaScale
+模块：FateV2.Rules
 阶段：**E8a —— 定义 $\varsigma$ 并给出其基本性质（A32 尺度化算子）**
 
 ---------------------------------------------------------------------------
@@ -152,14 +152,14 @@ $\varsigma_k(\gamma) = |k| \cdot \varsigma(\gamma)$，即本定义是**尺度化
 
 | 既有对象 | 位置 | 本文件如何使用 |
 |---|---|---|
-| `Encoder` / `Encoder.Fiber` | `Fate.Alpha` §1 | 胞腔，`varsigma_fiber_diam_le_of_univ_bound` 的被界对象 |
-| `CellDiameter`（类型别名） | `Fate.Alpha` §4 | 与 `Metric.diam` 的接口 |
-| `E8BoundForm.gamma` | `Fate.Alpha` §4 | $\varsigma$ 的自变量语义来源（阈值间隔） |
-| `MetricCellDiameter` | `Fate.CellDiameter` §1 | 直径的度量版 |
-| `MetricState` | `Fate.CellDiameter` §1 | 度量前件的显式载体（本文件沿用其纪律） |
-| OQ-4 / Q-6 | `Fate.Adjudication` | 本文件**绕开**，不填完整 $g$ |
+| `Encoder` / `Encoder.Fiber` | `FateV2.Rules` §1 | 胞腔，`varsigma_fiber_diam_le_of_univ_bound` 的被界对象 |
+| `CellDiameter`（类型别名） | `FateV2.Rules` §4 | 与 `Metric.diam` 的接口 |
+| `E8BoundForm.gamma` | `FateV2.Rules` §4 | $\varsigma$ 的自变量语义来源（阈值间隔） |
+| `MetricCellDiameter` | `FateV2.Rules` §1 | 直径的度量版 |
+| `MetricState` | `FateV2.Rules` §1 | 度量前件的显式载体（本文件沿用其纪律） |
+| OQ-4 / Q-6 | `FateV2.Meta` | 本文件**绕开**，不填完整 $g$ |
 
-**本文件不 import `Fate.CellDiameter`**（只 import 它 import 的同一批基础模块），
+**本文件不 import `FateV2.Rules`**（只 import 它 import 的同一批基础模块），
 以免新增对上游模块的编译依赖；`MetricCellDiameter` 的等价定义在本文件内
 以 `varsigma` 语境重述为局部记号（见 §3 说明），**不改动** `CellDiameter.lean`。
 -/
@@ -199,7 +199,7 @@ noncomputable section
 
 /-- ⭐⭐⭐ **`ς`（varsigma）：FCA 尺度化算子 —— 把分辨参数 $\gamma$ 映为胞腔尺度。**
 
-**语义来源**（详见文件头 (a)(b)）：`Fate.Alpha` 的 `E8BoundForm` 把 E8 界的第一参数
+**语义来源**（详见文件头 (a)(b)）：`FateV2.Rules` 的 `E8BoundForm` 把 E8 界的第一参数
 原文记为
 
 > `/-- 参数一：阈值间隔 $\gamma$。 -/  gamma : ℝ`
@@ -220,7 +220,7 @@ $$\varsigma(\gamma) := \lvert\gamma\rvert$$
 **⚠ 规范化**：比例系数取 $1$ 属**约定**（「填数即为虚构」），
 本文件**不声称** $\varsigma$ 就是 E8 的正确界。一般比例系数见 `varsigmaAbsorbs`。
 
-**⚠ 本定义不填 E8 的完整界**：`Fate.Alpha` 原型实测（158/200 胞腔横跨盒下界）
+**⚠ 本定义不填 E8 的完整界**：`FateV2.Rules` 原型实测（158/200 胞腔横跨盒下界）
 表明 $\gamma$ **单独不足以**控制胞腔直径；完整界为
 $g(\gamma,\text{boxLo},\text{boxHi},|M_{\mathrm{FCA}}|)$。$\varsigma$ 是其中 $\gamma$ 一支。 -/
 def varsigma (γ : ℝ) : ℝ :=
@@ -364,7 +364,7 @@ theorem varsigma_of_univ_diam_bound (enc : Encoder F K)
   have hsub : enc.Fiber A B ⊆ (univ : Set F.X.Carrier) := subset_univ _
   exact le_trans (le_trans (Metric.diam_mono hsub hX) hγ) (le_abs_self γ)
 
-/-- **上条定理之于 `Encoder.Fiber` 的出口形式**（与 `Fate.CellDiameter` 的
+/-- **上条定理之于 `Encoder.Fiber` 的出口形式**（与 `FateV2.Rules` 的
 `MetricCellDiameter` 同一含义：后者即 `Metric.diam`，故本定理可直接接入该模块）。
 
 $$\mathrm{diam}\bigl(\mathrm{Fiber}\,A\,B\bigr)\ \le\ \varsigma(\gamma).$$

@@ -94,7 +94,7 @@ noncomputable def Marginal (S : Finset V) (p : (V → α) → ℝ) : (S → α) 
 
 | 项 | 评估 |
 |---|---|
-| **新增文件** | 仅本文件（+ 若采纳需 `import` 进 `Fate.lean`）|
+| **新增文件** | 仅本文件（+ 若采纳需 `import` 进 `lean`）|
 | **既有定理改动** | **0**——不修改 `mass`，`Marginal` 是**新增并行口径** |
 | **下游 `mass` 用户（26 个文件）** | **0 改动**——它们继续用 `mass` |
 | **与 `Marginal` 的桥接** | `marginal_restrict`（C1）单向：钉点处两口径一致 |

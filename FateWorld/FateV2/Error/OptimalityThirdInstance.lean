@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.OptimalityThirdInstance`
+模块：`FateV2.Error`
 任务：**把 `OptimalityPattern`（19 条定理）应用到第三个真实例上**，
 检验「界 + 可达 + 唯一」模式的普适性。
 
@@ -10,7 +10,7 @@
 本文件**实际声明**的定理/定义（与下文逐一对应，无宣传溢出）
 ===========================================================================
 
-§1  ⭐ **第三实例（正面）：`Fate.FitBoundary` 的 `profExp` @ `σ = 2`**
+§1  ⭐ **第三实例（正面）：`FateV2.Error` 的 `profExp` @ `σ = 2`**
     fitExpPattern                       ⭐⭐ `profExp.err` 在 `ℝ` 上以 `2` 为界紧唯一最小值
     fitExp_opt_unique                   达到 `2` 的 `γ` **必等于** `0`
     fitExp_opt_value_eq                 达到 `2` 的 `γ` 与最优点同值
@@ -19,7 +19,7 @@
     fitExp_lb_two                       `lb = 2`
     fitExp_opt_le                       `2 ≤ err γ`（经 `opt_le`）
 
-§2  ⚠⚠ **负面结果一：`Fate.InterventionTight` 不满足模式（点层）**
+§2  ⚠⚠ **负面结果一：`FateV2.Predict` 不满足模式（点层）**
     no_point_unique_of_two_eq           水平集有两点 ⟹ **不存在**带 `unique` 字段的模式
 
 §2.1 干预选择上的显式反例（承接 §2）
@@ -28,7 +28,7 @@
     intervention_no_point_unique        ⭐ `↑T2` 上**不存在**点层 `OptimalityPattern`
     intervention_only_value_layer       干预选择只满足「值层」最优性，不满足「点层」
 
-§3  ⚠ **负面结果二：`Fate.FitBoundary` 的 `profW` @ `σ = 0` 不满足模式**
+§3  ⚠ **负面结果二：`FateV2.Error` 的 `profW` @ `σ = 0` 不满足模式**
     fitW_no_pattern_profW               `profW` 有两边界点 ⟹ `unique` 为假
     fitW_two_boundary_points            两点反例的显式形态
     fitW_two_star_candidates            两个 `p_star` 候选都满足 `bound ∧ attained`
@@ -130,7 +130,7 @@ open FateV2.Error.Core
 
 /-- ⭐⭐⭐⭐⭐ **【实例 C：`profExp` 满足 `OptimalityPattern`】**
 
-`Fate.FitBoundary.profExp` 的误差为 $E(\gamma)=e^{\gamma}+e^{-\gamma}$。
+`FateV2.Error.profExp` 的误差为 $E(\gamma)=e^{\gamma}+e^{-\gamma}$。
 令
 
 * 参数空间 `ℝ`（分辨率粒度）；
@@ -138,7 +138,7 @@ open FateV2.Error.Core
 * `lb := 2`；
 * `p_star := 0`。
 
-三个字段的**来源**（**全部**来自 `Fate.FitBoundary`）：
+三个字段的**来源**（**全部**来自 `FateV2.Error`）：
 * `bound`    ← `IsFitBoundary` 的第二分量（`profExp.err 0 = 2` 提供边界点，
   于是 `∀ γ, 2 ≤ err γ`）；
 * `attained` ← `profExp_err 0` + `Real.exp_zero`（`exp 0 + exp 0 = 2`）；
@@ -212,13 +212,13 @@ theorem fitExp_opt_le (γ : ℝ) : fitExpPattern.f fitExpPattern.p_star ≤ fitE
 end FitExpThirdInstance
 
 /-! ===========================================================================
-    §2  ⚠⚠ **负面结果一：`Fate.InterventionTight` 不满足点层模式**
+    §2  ⚠⚠ **负面结果一：`FateV2.Predict` 不满足点层模式**
     =========================================================================== -/
 
 /-!
 ### 为什么必须给这条负面结果
 
-`Fate.InterventionTight` 提供了
+`FateV2.Predict` 提供了
 
 * `bestScore_isGreatest` —— 「取等 + 上界」，即模式的 `attained ∧ bound`；
 * `bestScore_no_better`  —— 「不存在更好的干预」，`bound` 的推论；

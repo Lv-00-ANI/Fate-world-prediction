@@ -18,7 +18,7 @@
 
 **⟹ 主控第 679 轮给的「符号真实位置」表是 `文件名:行号`，
 不是命名空间。v1–v4 把 `Fate/ScratchAssemblyLearns.lean` 读成了
-`Fate.ScratchAssemblyLearns.mulCLM` 的**前缀线索**，方向对但没实测。**
+`FateV2.Loop.mulCLM` 的**前缀线索**，方向对但没实测。**
 
 ## 实测确认的全名（第 680 轮 `#check` 输出）
 

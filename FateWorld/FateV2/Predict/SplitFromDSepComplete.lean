@@ -69,7 +69,7 @@
 * `FateV2.Predict.View19.Split`
 * `Causalean.Graph.DAG.dSep` / `mem_parents`
 
-**本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `Fate.lean`。**
+**本文件不修改任何既有模块；不写 `Fate/` 目录；不改 `lean`。**
 -/
 
 import FateWorld.FateV2.Predict.SplitFromDAG

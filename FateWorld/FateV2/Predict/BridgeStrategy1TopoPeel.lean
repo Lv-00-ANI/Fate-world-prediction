@@ -404,7 +404,7 @@ end Assemble
 /-! ===========================================================================
   §4 ⚠ **诚实边界：sink 前提不可去**（反例机检）
 
-  `arrowDAG : DAG (Fin 2)`，唯一一条边 `0 → 1`（`Fate.G1ParentNonDescendant`）。
+  `arrowDAG : DAG (Fin 2)`，唯一一条边 `0 → 1`（`FateV2.Predict`）。
   取 `v = 0`（`pa 0 = ∅ ⊆ ∅` ✅，`0 ∉ ∅` ✅）、`S = ∅`、`α = Bool`。
   取
   `f 0 z := 1/2`（常数）、`f 1 z := if z 0 then 1 else 0`（读 `z 0`，因 `0 ∈ pa 1`）。

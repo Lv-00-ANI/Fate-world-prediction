@@ -2,23 +2,23 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.CellDiameter
+模块：FateV2.Rules
 阶段：**阶段 1B —— E8（A32 / T1B.2a）的「有界性」部分**
 
 ---------------------------------------------------------------------------
 本文件做什么
 ---------------------------------------------------------------------------
-`Fate.Alpha` 已给出：
+`FateV2.Rules` 已给出：
 - `Encoder`（编码算子 $x\mapsto(A,B)$，A32）；
 - `Encoder.Fiber`（**胞腔**：被映到同一 $(A,B)$ 的状态集）；
 - `CellDiameter`（**类型**：度量 → 集合 → ℝ，度量做成参数）；
 - `E8Holds`（**条件形式的界谓词**）。
 
-但 `Fate.Alpha` **明写不做**「胞腔直径有界」这件事——
+但 `FateV2.Rules` **明写不做**「胞腔直径有界」这件事——
 它只登记「界的形式」，且**不填 $g$ 的具体表达式**
 （理由：填表达式须先固定编码方案，属 OQ-4）。
 
-**本文件补上的，正是「有界性」这一在 `Fate.Alpha` 中为空的环节**，
+**本文件补上的，正是「有界性」这一在 `FateV2.Rules` 中为空的环节**，
 且**只在不需要具体编码方案、也不需要填 $g$ 的层面上**推进：
 
 > **命题**：在**有限属性集**（`FormalCtx.FiniteAttrs`）上，
@@ -35,17 +35,17 @@
 诚实边界（**必须与结果同时阅读**）
 ---------------------------------------------------------------------------
 1. 本文件**不**证明、也**不**声称「$\mathrm{diam}\le g(\gamma,\ldots)$」——
-   那仍受 OQ-4 阻塞（见 `Fate.Adjudication`）。
+   那仍受 OQ-4 阻塞（见 `FateV2.Meta`）。
 2. 本文件的「有界」是**度量空间意义上的有界**
    （`Bornology.IsBounded` / `Metric.diam`），
    **这要求 $\mathcal{X}$ 上确有一个度量**——
-   而 `StateSpace` 只保证拓扑 + 可测（`Fate.Basic` §1）。
+   而 `StateSpace` 只保证拓扑 + 可测（`FateV2.Modeling` §1）。
    **故本文件把度量做成显式前件**（`MetricState` 结构），
    **不擅自往 `StateSpace` 里塞度量**——
    这与 `CellDiameter` 把度量做成参数是**同一条纪律**。
 3. 本文件的「有限」是**属性集 $M_{\mathrm{FCA}}$ 有限**（`FiniteAttrs`）
    ——**不是**对象集有限。这一点由 `FiniteAttrs` 的既有定义决定
-   （见 `Fate.Implication` §3）。
+   （见 `FateV2.Rules` §3）。
 4. 本文件**不填**「属性个数」一类的**具体数字上界**
    （如「$\le 2^{|M|}$」）——那会依赖具体编码，属 OQ-4；
    本文件只用「有限 ⟹ 存在最大」这一**非构造数值**的事实。
@@ -59,11 +59,11 @@
 ---------------------------------------------------------------------------
 | 既有对象 | 位置 | 本文件如何使用 |
 |---|---|---|
-| `Encoder` | `Fate.Alpha` §1 | `toAttrs` 的有限像给出有限多胞腔 |
-| `Encoder.Fiber` | `Fate.Alpha` §1 | **本文件即关于它的有界性** |
-| `CellDiameter` | `Fate.Alpha` §1 | 本文件给出其**度量版** `MetricCellDiameter` |
-| `FormalCtx.FiniteAttrs` | `Fate.Implication` §3 | **本文件的有限性前件** |
-| OQ-4 | `Fate.Adjudication` | 本文件**绕开**它（不填 $g$） |
+| `Encoder` | `FateV2.Rules` §1 | `toAttrs` 的有限像给出有限多胞腔 |
+| `Encoder.Fiber` | `FateV2.Rules` §1 | **本文件即关于它的有界性** |
+| `CellDiameter` | `FateV2.Rules` §1 | 本文件给出其**度量版** `MetricCellDiameter` |
+| `FormalCtx.FiniteAttrs` | `FateV2.Rules` §3 | **本文件的有限性前件** |
+| OQ-4 | `FateV2.Meta` | 本文件**绕开**它（不填 $g$） |
 -/
 
 import Mathlib.Topology.MetricSpace.Bounded
@@ -108,7 +108,7 @@ set_option linter.unusedSectionVars false
 
 /-- **带度量的状态空间**：把「$\mathcal{X}$ 上有一个度量」做成**显式结构**。
 
-**为什么必须显式**：`Fate.Basic` 的 `StateSpace` **只**要求拓扑 + 可测，
+**为什么必须显式**：`FateV2.Modeling` 的 `StateSpace` **只**要求拓扑 + 可测，
 **不含度量**；而「直径」只在度量下有意义。
 故本结构是**一个有前件的包装**——
 它**不修改** `StateSpace`（尊重签名冻结），
@@ -130,7 +130,7 @@ theorem MetricState.metric_usable {X : StateSpace} (M : MetricState X) :
 
 /-- **胞腔的度量版直径**：$\mathrm{diam}(C)=\sup_{x,y\in C} d(x,y)$。
 
-**与 `Fate.Alpha` 的 `CellDiameter` 的关系**：
+**与 `FateV2.Rules` 的 `CellDiameter` 的关系**：
 `CellDiameter` 把度量做成一个**参数** $d:\mathcal{X}\times\mathcal{X}\to\mathbb R$
 （**未要求它是度量**，只要求是一个二元实值函数）；
 本定义**取该参数为真正的度量** `dist`，并调用 Mathlib 的 `Metric.diam`。

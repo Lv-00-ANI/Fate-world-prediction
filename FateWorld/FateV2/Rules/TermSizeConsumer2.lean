@@ -18,7 +18,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
 
   ## 背景与目标
 
-  `Fate.TermSize` 给出可执行语法项 `Exec.Term`（`ℚ` / `EnvQ`）的规模度量
+  `FateV2.Rules` 给出可执行语法项 `Exec.Term`（`ℚ` / `EnvQ`）的规模度量
   `Term.size` 及 22 条结构性定理，但它是**叶子模块**（零消费者）。
   本模块把它接入主链 `FateV2.Rules.RuleSyntaxOps` 的四个算子。
 
@@ -34,7 +34,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
      即镜像算子在 `ℚ → ℝ` 嵌入下**恰好**落到主链算子上。
      这把 `Exec.Term` 上的尺寸话语**合法地转移到主链算子**上：
      镜像项的尺寸就是主链算子输入项的尺寸。
-  2. **尺寸界**（`*_size_bound`）：用 `Fate.TermSize` 的定理给出镜像算子的
+  2. **尺寸界**（`*_size_bound`）：用 `FateV2.Rules` 的定理给出镜像算子的
      尺寸上界 / 严格增长关系（`Term.size_lt_of_or_left`、`Term.size_not`、
      `Term.size_lt_of_add_left` 等）。
 
@@ -46,7 +46,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
   ## 与 v1 的区别
 
   ⚠ **文件名说明**：`Fate/TermSizeConsumer.lean`（v1，已入库于 91aff9d）
-  已存在且被 `Fate.lean` 直接 import。本任务纪律禁止修改既有模块，故本模块
+  已存在且被 `lean` 直接 import。本任务纪律禁止修改既有模块，故本模块
   以新文件名 `Fate/TermSizeConsumer2.lean` 交付，命名空间 `TermSizeConsumer2`，
   **不触碰** v1。v1 的连接方式是「语义事实 ∧ 尺寸事实」两个**不相关变量**
   上的合取（`A ∧ B`），两侧无共享对象；本模块（v2）中两侧**共享同一对象**。

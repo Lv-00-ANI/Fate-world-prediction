@@ -161,7 +161,7 @@ end WorldScenario
 
   **本节是「不可去」的实测记录，不写定理，只写结论与理由。**
 
-  1. `Fate.CondIndepIntersection.sum_pos_univ`（`[Nonempty σ]`）—— **不可去**。
+  1. `FateV2.Modeling.sum_pos_univ`（`[Nonempty σ]`）—— **不可去**。
      `σ` 为空时 `∑ x, f x = 0`，`h : ∀ x, 0 < f x` 空真，
      **结论 `0 < 0` 为假** ⟹ 在 `[Fintype σ]` 下**没有**无 `Nonempty` 形式。
 

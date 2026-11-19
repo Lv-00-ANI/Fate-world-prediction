@@ -122,7 +122,7 @@ nonDescendants v = univ \ (descendants v ∪ {v})
    本库的 `Finset.univ` 全部需要 `Fintype`/`Classical`，「跑分」从来不是
    本项目的能力范围。**故本文件不声称有任何实测加速比。**
 4. **不改任何既有模块**（`T21FiniteSearch` / `CausDAG` 逐字未动）；
-   `Fate.lean` 仅**追加**一行 `import FinsetUnivOpt1`（任务书要求）。
+   `lean` 仅**追加**一行 `import FinsetUnivOpt1`（任务书要求）。
 6. **本文件中 `rfl` 级（不承重）的定理共 4 条**：`stepFast_no_univ_scan`、
    `reachIterFast_zero`、`reachIterFast_succ`、`descendants_eq_filter`。
    **实质等价性只有 3 条**：`stepFast_eq_reachStep`、`reachIterFast_eq`、

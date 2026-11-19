@@ -23,7 +23,7 @@ import FateWorld.FateV2.Loop.ScratchAssemblyLearns
 目标定理：`swap2_ne_id : swap2 ≠ LinearMap.id`。
 
 - 零 `sorry` / `admit` / `axiom`。
-- 仅 import `Fate.ScratchAssemblyLearns`（提供 `Fate` 环境与 `ℝ` 线性代数）；
+- 仅 import `FateV2.Loop`（提供 `Fate` 环境与 `ℝ` 线性代数）；
   本文件不依赖其任何具体定理，`swap2` 独立定义。
 -/
 namespace FateV2.Loop

@@ -79,7 +79,7 @@ import Mathlib.MeasureTheory.Integral.Lebesgue.Map
      后者是**图侧**命题，需要的桥梁是 `CondIndepFun` 与 kernel 的对接，
      **本模块只提供 kernel 一侧的完备接口**（见 `§K.7` 的登记）。
   2. **只做二元 + N 元折叠**：`compProd` 是二元运算，N 元靠 `fold`
-     （见 `§K.8`），**拓扑序的正确性**取 `Fate.DAGFactorizationGen` 的既有结论
+     （见 `§K.8`），**拓扑序的正确性**取 `DAGFactorizationGen` 的既有结论
      （`Causalean.Graph.DAG` 一侧的 `pa` 已就绪）。
      **本模块不重新证明拓扑序存在性**。
   3. **⚠ 无硬编码**（依作者裁决 Q-1）：所有 `Kernel` 都由权重函数 `w` 产生，
@@ -526,7 +526,7 @@ $$
 $$\kappa = k_{v_1} \otimes_k \bigl(k_{v_2} \otimes_k (k_{v_3} \otimes_k \cdots)\bigr),$$
 
 其中 $v_1, \dots, v_n$ 是 `Causalean.Graph.DAG` 的**拓扑序**
-（`Fate.DAGFactorizationGen.topoEnum` 已给出其存在性）。
+（`DAGFactorizationGen.topoEnum` 已给出其存在性）。
 
 **⚠ 本轮处置（依纪律，不越过能证的边界）**：
 

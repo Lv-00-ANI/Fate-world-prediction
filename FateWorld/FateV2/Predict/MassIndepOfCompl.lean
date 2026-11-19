@@ -127,19 +127,19 @@ end FateV2.Predict.C17
 
   | # | 定理 | 组合的接口（全限定，模块名 + 标识符） |
   |---|---|---|
-  | 1 | `mass_sdiff_one` | `Fate.MassSdiffConst.mass_sdiff_of_const` |
-  | 2 | `multS_sdiff` | `Fate.MassSdiffConst.mass_sdiff_of_const` + `Fate.MassMultSBridge.mass_eq_multS_of_reads` |
-  | 3 | `multS_eq_card_pow` | `Fate.MassMultSBridge.mass_eq_multS_of_reads` + `Fate.MassBoundaryValues.b_one` |
-  | 4 | `mass_one_eq_multS` | `Fate.MassMultSBridge.mass_eq_multS_of_reads` + `Fate.MassBoundaryValues.b_one` |
-  | 5 | `multS_insert` | `Fate.MassMultSBridge.mass_eq_multS_of_reads` + `Fate.MassInsertCorrected.mass_insert_corrected` |
-  | 6 | `mass_prod_cover_one` | `Fate.MassProCover.mass_prod_cover` + `Fate.MassBoundaryValues.b_one` |
-  | 7 | `mass_const_indep` | `Fate.MassIndepOfCompl.mass_indep_of_reads_compl`（§0）|
-  | 8 | `mass_factor_of_reads_A` | `Fate.MassFactorOfReads.mass_factor_of_reads` |
-  | 9 | `mass_reads_cover_self_insert` | `Fate.MassOfReadsCover.mass_eq_of_reads_cover` + `Fate.MassInsertCorrected.mass_self_insert` |
-  | 10 | `mass_boundary_one_sdiff` | `Fate.MassBoundaryValues.b_one` + `Fate.MassSdiffConst.mass_sdiff_of_const` |
+  | 1 | `mass_sdiff_one` | `FateV2.Predict.C11.mass_sdiff_of_const` |
+  | 2 | `multS_sdiff` | `FateV2.Predict.C11.mass_sdiff_of_const` + `FateV2.Predict.C8.mass_eq_multS_of_reads` |
+  | 3 | `multS_eq_card_pow` | `FateV2.Predict.C8.mass_eq_multS_of_reads` + `FateV2.Predict.C7.b_one` |
+  | 4 | `mass_one_eq_multS` | `FateV2.Predict.C8.mass_eq_multS_of_reads` + `FateV2.Predict.C7.b_one` |
+  | 5 | `multS_insert` | `FateV2.Predict.C8.mass_eq_multS_of_reads` + `FateV2.Predict.S13HoistFixed.mass_insert_corrected` |
+  | 6 | `mass_prod_cover_one` | `FateV2.Predict.View19.mass_prod_cover` + `FateV2.Predict.C7.b_one` |
+  | 7 | `mass_const_indep` | `FateV2.Predict.C17.mass_indep_of_reads_compl`（§0）|
+  | 8 | `mass_factor_of_reads_A` | `FateV2.Predict.C5e.mass_factor_of_reads` |
+  | 9 | `mass_reads_cover_self_insert` | `FateV2.Predict.Direct.mass_eq_of_reads_cover` + `FateV2.Predict.S13HoistFixed.mass_self_insert` |
+  | 10 | `mass_boundary_one_sdiff` | `FateV2.Predict.C7.b_one` + `FateV2.Predict.C11.mass_sdiff_of_const` |
 
-  另用到 `Fate.MassADecompFinal.mass_eq_card_mul_massA`（经 `MassInsertCorrected` 传递）
-  与 `Fate.MassAEqCorrected.mass_A_eq_corrected`（同一 `mass` 框架的 A-分解修正版），
+  另用到 `FateV2.Predict.GraphToProbView7.mass_eq_card_mul_massA`（经 `MassInsertCorrected` 传递）
+  与 `FateV2.Predict.C6b.mass_A_eq_corrected`（同一 `mass` 框架的 A-分解修正版），
   二者的 `extEnd` / `sub` 记法在 §1 各定理的 `rw` 中复用。
 
   全部定理均为完整证明，无占位符。

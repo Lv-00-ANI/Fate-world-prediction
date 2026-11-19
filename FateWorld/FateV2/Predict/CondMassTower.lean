@@ -23,7 +23,7 @@ import FateWorld.FateV2.Error.ChainErrorBudget
 
   * `mass S (mass T p) x` 中 `mass T p` 仍是**完整的** `(V → α) → ℝ`，
     外层再对 `S` 之外求和 ⟹ 对 `T` 的坐标**重复**处理；
-  * `Fate.DAGFactorizationGeneral.tower_property_false`（T24）已给出
+  * `FateV2.Predict.tower_property_false`（T24）已给出
     具体反例（`V = α = Bool`，`S = {true}`、`T = {false}`：左 `1`、右 `0`）。
 
   ⟹ 「塔性质」在原 `mass` 上**为假**，不是数学事实，是口径错配：
@@ -239,7 +239,7 @@ end FateV2.Predict
 /-! ===========================================================================
   §4 ⭐⭐⭐⭐ **反例核对：`condMass` 口径下 T24 的数值不再互相矛盾**
 
-  在 `Fate.DAGFactorizationGeneral` 的 T24 反例中：
+  在 `FateV2.Predict` 的 T24 反例中：
 
   * `V = α = Bool`，`p w = 1` 当且仅当 `w true = w false = true`，
   * `S = {true}`、`T = {false}`、`y = fun _ => false`。
@@ -263,7 +263,7 @@ open FateV2.Predict.DAGFactorization
 variable {V : Type u} [DecidableEq V] [Fintype V]
 variable {α : Type u} [Fintype α] [DecidableEq α]
 
-/-- 反例密度（与 `Fate.DAGFactorizationGeneral.ptri` 定义相同）。 -/
+/-- 反例密度（与 `FateV2.Predict.ptri` 定义相同）。 -/
 noncomputable def ptriC : (Bool → Bool) → ℝ :=
   fun w => if w true = true ∧ w false = true then 1 else 0
 

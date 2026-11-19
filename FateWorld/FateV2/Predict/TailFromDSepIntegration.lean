@@ -77,7 +77,7 @@ G.dSep X Y Z → ∀ v, v ∉ A → readSetOf G v ⊆ Z
 
 ## 2 诚实边界
 
-* **不修改任何既有模块**；不写 `Fate/` 之外的内容；不改 `Fate.lean`。
+* **不修改任何既有模块**；不写 `Fate/` 之外的内容；不改 `lean`。
 * 本文件**不**声称 `condIndep_tail_block` 有缺陷 —— 它是真的；
   只是其 `hTail` 在 `readSetOf` 口径下只在**全覆盖**时可满足，
   此时主定理 D 与无尾块桥是同一件事。

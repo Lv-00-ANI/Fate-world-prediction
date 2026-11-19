@@ -1,9 +1,9 @@
 /-
 命运理论 · **T21FiniteSearch 的消费方**（有限搜索 ⟹ 可计算的 d-分离前置件）
 ================================================================================
-模块：`Fate.T21FiniteSearchConsumer`
+模块：`FateV2.Predict.T21Consumer`
 ## 上游（被消费）
-`Fate.T21FiniteSearch`（第 269 轮）提供：
+`FateV2.Predict.T21`（第 269 轮）提供：
 * `isDirPath_nodup`：无环 ⟹ 有向路径列表**无重复顶点**；
 * `isDirPath_length_le_card`：有向路径列表长度 `≤ card V`；
 * `reachIter` / `reachStep`：每轮沿 `Adj` 扩张一步的**有限迭代搜索**；
@@ -12,7 +12,7 @@
 * `decidableReach`、`decidableOpenAt'`、`decidableDOpen'`。
 **⚠ 实测（本轮 `grep -nE "^(theorem|def|instance)" Fate/T21FiniteSearch.lean`）**：
 该模块共 30 个声明（5 个 `def` + 25 个 `theorem`/`instance`），
-其中**没有任何 `sorry` / `axiom`**。**在 `Fate/` 与 `Fate.lean` 中，本模块此前无任何消费方**
+其中**没有任何 `sorry` / `axiom`**。**在 `Fate/` 与 `lean` 中，本模块此前无任何消费方**
 （`grep -rln "decidableReach\|mem_reachIter_card_iff_reach\|decidableDOpen'" Fate/`
 只命中 `Fate/T21FiniteSearch.lean` 自身）。
 ## 本文件交付（4 条消费定理 + 1 条具体计算）

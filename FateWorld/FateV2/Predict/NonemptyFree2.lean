@@ -383,7 +383,7 @@ end Strategy11Fiber
      同理 `peel_top_vertex`、`mass_prefix` **也可去**（§4 / §4b）。
      **⟹ 本条从「不可去名单」移入「已去名单」，保留记录以示更正。**
 
-  2. `Fate.PolicyAlgorithm.optimalPolicy_score` / `optimalPolicy_choose_mem` /
+  2. `FateV2.Predict.optimalPolicy_score` / `optimalPolicy_choose_mem` /
      `InterventionTight.optimalPolicy_isLUB` / `optimalPolicy_sharp`
      （`[Nonempty A] [Nonempty X]`）—— **不可去**。
      `optimalPolicy` 的 `choose : Set (Scenario A X) → Scenario A X` 是**全函数**，
@@ -395,11 +395,11 @@ end Strategy11Fiber
 
   3. `FateV2.Predict.WiringBackdoor.wmNum_eq_condYnum` / `wc_wmNum_is_condYnum`
      （`[Nonempty S.X] [Nonempty S.Y]`）—— **不可去**（同上 B 类）。
-     `wmNum` 的定义体是 `Fate.WorldModel.f (bdWorldModel S) ...`，
+     `wmNum` 的定义体是 `FateV2.Predict.f (bdWorldModel S) ...`，
      而 `bdWorldModel` 的 `state.cur : S.X × S.Y` 需要一个**具体取值**。
      机制 `f` 虽不读 `cur`，但 `WorldModel` 这个**结构**必须被构造出来。
 
-  4. `Fate.ObsEstimationStrong.chooseEstimator_apply_of` / `chooseEstimator_of_exists`
+  4. `FateV2.Modeling.chooseEstimator_apply_of` / `chooseEstimator_of_exists`
      / `EndToEnd.observe_apply_of` / `WorldModelPipeline.pipelineObserve_estimate`
      （`[Nonempty X]`）—— **不可去**（B 类，**不是**「只作默认值」）。
      `chooseEstimator : Y → X` 是**全函数**；若 `X` 空而 `Y` 非空，
@@ -409,7 +409,7 @@ end Strategy11Fiber
      取同一见证」的**相似陈述**（前几轮探针实测可编译），但那**换了一个函数**，
      不是在陈述 `observe`，**故本文件不收录**——按纪律，不用换对象来冒充「去掉前件」。
 
-  5. `Fate.Frame.exists_rule_of_thetaIndependent` / `degenerate_iff_thetaIndependent`
+  5. `FateV2.Model.exists_rule_of_thetaIndependent` / `degenerate_iff_thetaIndependent`
      （`[Nonempty Θ.Carrier]`）—— **不可去**，且**模块已自行如实记录**
      （`Fate/Frame.lean:847` 原话：「若 `Θ` 为空，则『核不依赖 `θ`』是**空洞真**，
      此时不能无条件构造出 `Rule`」）。这是**正确的断言**。
@@ -421,7 +421,7 @@ end Strategy11Fiber
      **⚠ 与之相对**，同文件的 `scmThetaSubsingleton_pred_eq`（§2 已去）虽然
      陈述里也写了 `[Nonempty Y]`，但其**证明体一次都没用** ⟹ 真的可去。
 
-  7. `Fate.CondIndepIntersection.sum_pos_univ`（`[Nonempty σ]`）—— **不可去**
+  7. `FateV2.Modeling.sum_pos_univ`（`[Nonempty σ]`）—— **不可去**
      （上一批已记录，这里复核）：`σ` 空时 `∑ x, f x = 0`，且 `h` 空真，
      结论 `0 < 0` **为假** ⟹ 无可去形式。
 

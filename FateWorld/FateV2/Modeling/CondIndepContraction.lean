@@ -87,8 +87,8 @@ import Mathlib.Tactic.Ring
 
   ## 4  修复记录（第 627 轮主控漏查的 2 个 error，本文件当时 `lake env lean` = EXIT 1）
 
-  本文件**不在** `Fate.lean` 的 import 链上
-  （`grep -c "^import Fate.CondIndepContraction$" Fate.lean` = 0），
+  本文件**不在** `lean` 的 import 链上
+  （`grep -c "^import FateV2.Modeling$" lean` = 0），
   所以 `lake build` 不编它；但 `lake env lean Fate/CondIndepContraction.lean` 曾报 2 个 error。
   本轮**只修这 2 个 error，未改任何定理陈述、未删除定理、未用 `sorry`/`trivial`/`→ True`**。
 
@@ -147,7 +147,7 @@ import Mathlib.Tactic.Ring
 
   ### (d) 不在链上的事实（如实声明）
 
-  * **本文件仍不在 `Fate.lean` 的 import 链上**，本任务**未改 `Fate.lean`**。
+  * **本文件仍不在 `lean` 的 import 链上**，本任务**未改 `lean`**。
     `lake build` 不编译本文件，故**不能**用 `lake build` 成功来冒充本文件通过；
     本文件通过的依据是上面 `lake env lean` 的 **EXIT=0**。
 

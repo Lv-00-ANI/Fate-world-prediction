@@ -2,12 +2,12 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.WiringFourOpFixed
-任务：**V6 —— 四算子（α／γ／∘／υ）联合一致性：修复 `Fate.WiringFourOperators`
+模块：FateV2.Rules
+任务：**V6 —— 四算子（α／γ／∘／υ）联合一致性：修复 `FateV2.Rules`
 中那 1 个编译错误，并使一致性定理成立**
 
 ---------------------------------------------------------------------------
-一、本文件相对 `Fate.WiringFourOperators` 的改动（只有一处"修复" + 加固）
+一、本文件相对 `FateV2.Rules` 的改动（只有一处"修复" + 加固）
 ---------------------------------------------------------------------------
 原文件 `Fate/WiringFourOperators.lean` 只有 **1 个 error**（其余全部通过）：
 
@@ -49,7 +49,7 @@ but is expected to have type
 
 **⚠ 特别声明（不重复历史错误）**：第 1 条（`step_apply_eq_closureOp`）的
 `alphaK`／`upsilonK`／§2 的 `gammaK` 在 `⊆` 序下**定义展开后就是** `K3.closureOp`
-（`Fate.Alpha` 把 `takeConcept` 定义为 `closureOp`，`UpsilonOperator`
+（`FateV2.Rules` 把 `takeConcept` 定义为 `closureOp`，`UpsilonOperator`
 把 `fcaUpsilon` 定义为 `closureOp`）。因此"三者相等"是**定义重合**，`rfl` 可证。
 本文件**不**把这类等式包装成"新定理"：凡属此类者一律标 `rfl` 登记并注明
 "α 与 υ 在同一载体上不冲突"的**登记价值**，不声称新数学内容。
@@ -59,9 +59,9 @@ but is expected to have type
 三、诚实边界
 ---------------------------------------------------------------------------
 1. **零 `sorry` / `admit` / `axiom`**。
-2. α、υ、γ 的语义**全部来自已有模块**（`Fate.Alpha`、`Fate.AlphaConcreteInstance`、
-   `Fate.GammaOperator`、`UpsilonOperator`），本文件只做**消费**与**接线**。
-3. ∘ 仍取 `Fate.WiringFourOperators` 的 `combClosure`（规格开放问题 5.1 未定的
+2. α、υ、γ 的语义**全部来自已有模块**（`FateV2.Rules`、`FateV2.Rules`、
+   `FateV2.Rules`、`UpsilonOperator`），本文件只做**消费**与**接线**。
+3. ∘ 仍取 `FateV2.Rules` 的 `combClosure`（规格开放问题 5.1 未定的
    **一个**候选实现），本文件**不**声称它是规格的那个 ∘。
 4. 不填 θ、不填 υ 的概率表达式（规格纪律"填数即为虚构"）。
 -/
@@ -102,12 +102,12 @@ namespace WiringFixed
 -/
 
 /-! ===========================================================================
-    §1  四算子在**同一载体** `K3`（`Fate.AlphaConcreteInstance`）上的落点
+    §1  四算子在**同一载体** `K3`（`FateV2.Rules`）上的落点
     =========================================================================== -/
 
 /-! ### §1.1  α 与 υ 的落点 -/
 
-/-- **α 在 `K3` 上的落点**：`Fate.Alpha.takeConcept`（取概念过程）。 -/
+/-- **α 在 `K3` 上的落点**：`FateV2.Rules.takeConcept`（取概念过程）。 -/
 abbrev alphaK : Set K3.MFCA → Set K3.MFCA := K3.takeConcept
 
 /-- **υ 在 `K3` 上的落点**：`UpsilonOperator.FCAInstance.fcaUpsilon K3`。 -/
@@ -119,13 +119,13 @@ theorem upsilonK_isCompletion :
     UpsilonOperator.IsCompletion (UpsilonOperator.FCAInstance.fcaUpsilon K3) :=
   UpsilonOperator.FCAInstance.fcaInstance_isCompletion K3
 
-/-- **α 与 υ 输出均在闭集内**（消费 `Fate.Alpha.takeConcept_isClosed`）。 -/
+/-- **α 与 υ 输出均在闭集内**（消费 `FateV2.Rules.takeConcept_isClosed`）。 -/
 theorem alphaK_isClosed (B : Set K3.MFCA) : K3.IsClosedAttr (alphaK B) :=
   K3.takeConcept_isClosed B
 
 /-! ### §1.2  γ 的落点：`(⊆)` 序下的对偶（`OrderDual`） -/
 
-/-- **γ 的载体**：`GenOp` 作用在逆包含序上（依 `Fate.GammaOperator` 的 E1：γ 是 α 的序对偶）。 -/
+/-- **γ 的载体**：`GenOp` 作用在逆包含序上（依 `FateV2.Rules` 的 E1：γ 是 α 的序对偶）。 -/
 abbrev GammaDual := GenOp (OrderDual (Set K3.MFCA))
 
 /-- **γ 的标准实现**：在 `OrderDual` 序下取 `closureOp`（即"泛化到其闭包"）。 -/
@@ -192,14 +192,14 @@ def apply : Step → Set K3.MFCA → Set K3.MFCA
 /-- ⚠ **登记（`rfl` 级，非新定理）**：三个来源不同的算子在 `K3` 上
 **于 `(⊆)` 序下落成同一个函数** `K3.closureOp`。
 
-本条是 `Fate.Alpha`（`takeConcept := closureOp`）与
+本条是 `FateV2.Rules`（`takeConcept := closureOp`）与
 `UpsilonOperator`（`fcaUpsilon := closureOp`）的**定义重合**，
 经 `rfl` 即可。**它的价值是登记"α、γ、υ 在同一载体上不冲突"，
 本文件不声称它证明了新数学内容。** 真正的数学内容在 §2 的归纳引理。 -/
 theorem apply_eq_closureOp (st : Step) (X : Set K3.MFCA) :
     st.apply X = K3.closureOp X := rfl
 
-/-- **`apply` 幂等**（真内容：调用 `Fate.Implication` 的 `closureOp_idem`）。 -/
+/-- **`apply` 幂等**（真内容：调用 `FateV2.Rules` 的 `closureOp_idem`）。 -/
 theorem apply_idem (st : Step) (X : Set K3.MFCA) :
     st.apply (st.apply X) = st.apply X := by
   rw [apply_eq_closureOp, apply_eq_closureOp, K3.closureOp_idem]
@@ -285,9 +285,9 @@ theorem runChain_isClosed (st : Step) (rest : List Step) (X : Set K3.MFCA) :
 
 | 算子 | 律 | 来源 |
 |---|---|---|
-| α | 扩张＋单调＋幂等（闭包算子） | `Fate.Alpha` / `Fate.Implication` |
+| α | 扩张＋单调＋幂等（闭包算子） | `FateV2.Rules` / `FateV2.Rules` |
 | υ | `IsCompletion`（扩张＋单调＋幂等） | `UpsilonOperator.FCAInstance` |
-| γ | `GenOp`（收缩＋单调＋幂等，逆包含序） | `Fate.GammaOperator` |
+| γ | `GenOp`（收缩＋单调＋幂等，逆包含序） | `FateV2.Rules` |
 | ∘ | 交换＋α 吸收 | §1.3 `combClosure` |
 
 主定理断言：**α、γ、υ 的任意交替复合穿透为一次 υ** —— 且**结论不在前件**。 -/
@@ -339,7 +339,7 @@ theorem four_operators_common_fixed_point (B : Set K3.MFCA) :
   ⟨K3.takeConcept_isClosed B, K3.takeConcept_isClosed B, K3.takeConcept_isClosed _⟩
 
 /-- **跨模块：α 与 υ 的"饱和"判据重合**
-（把 `Fate.Implication.IsClosedAttr` 与 `UpsilonOperator.IsCompletion.Saturated`
+（把 `FateV2.Rules.IsClosedAttr` 与 `UpsilonOperator.IsCompletion.Saturated`
 两个**来源不同**的谓词接上，调用的是已有模块的 `fca_saturated_iff_isClosedAttr`）。 -/
 theorem alpha_upsilon_same_fixed (B : Set K3.MFCA) :
     K3.IsClosedAttr B ↔ UpsilonOperator.IsCompletion.Saturated
@@ -386,7 +386,7 @@ theorem gammaTop_ne_id :
 /-- ⚠⚠ **反例（真内容）**：存在 `B` 使 `α (γ B) ≠ α B`。
 
 取 `B = ∅`：左边 `α (γ ∅) = closureOp univ = univ`，
-右边 `α ∅ = closureOp ∅ = ∅`（消费 `Fate.AlphaConcreteInstance.takeConcept_eq_empty`）。
+右边 `α ∅ = closureOp ∅ = ∅`（消费 `FateV2.Rules.takeConcept_eq_empty`）。
 二者不等。**故"四算子对任意 γ 无条件相容"为假** ——
 这正是规格 §5.3.4「不得默认三者之间存在交换律／优先序」的**数学证据**。 -/
 theorem gammaTop_breaks_joint_compatibility :

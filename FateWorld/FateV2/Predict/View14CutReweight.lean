@@ -26,7 +26,7 @@ import Mathlib.Tactic.Ring
 
 * `FateV2.Predict.DAGFactorizationGeneral.tower_property_false`（T24）：`mass S (mass T p) x ≠ mass (S∪T) p x`。
 * `FateV2.Predict.TowerAudit.mass_idempotent_fails`（A3）：连 `S ⊆ T` 方向的塔也假。
-* `Fate.View20GraphToProb.massCondMulLike_degenerate`：集合口径 `CondMulLike` 是**退化**终点
+* `FateV2.Predict.massCondMulLike_degenerate`：集合口径 `CondMulLike` 是**退化**终点
   （对任意图、含无边图都成立），不能停在那里。
 
 ⟹ 本文件**全程零** `mass S (mass T p)` 形态（§7 有机械自查），也**不使用 `DAG.induce`**。
@@ -341,7 +341,7 @@ theorem cut_ancestralSet (G : DAG V) (S : Finset V) : Cut G (G.ancestralSet S) :
   §7 视角交叉接线（R-14）：`Cut`（本文件）↔ `View21` 边界/暴露集
 
   本节把本文件的割集语言 `Cut`、重加权因子 `cutWeight`、提出律 `cut_reweight_mass`
-  与 `Fate.View21StableBorder` 的**边界/暴露集**语言 (`border` / `exposed` /
+  与 `FateV2.Predict.View21` 的**边界/暴露集**语言 (`border` / `exposed` /
   `AncestorStable`) 真实接起来。
 
   **全部为新增定理，不修改、不删除本文件任何既有条目。**

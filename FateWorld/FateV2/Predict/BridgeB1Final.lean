@@ -26,7 +26,7 @@ import Mathlib.Tactic
 
   | # | 原位置 | 症状 | 本文件处置 |
   |---|---|---|---|
-  | **E1** | 行 1 `import Fate.BridgeA4` | `object file '…/Fate/BridgeA4.olean' … does not exist`（`BridgeA4` 本身编译失败）| 改为 `import CausDAG`；`FactorizesL` **自足重写**（逐字照抄 `BridgeA4` §4.1a 的定义）|
+  | **E1** | 行 1 `import BridgeA4` | `object file '…/Fate/BridgeA4.olean' … does not exist`（`BridgeA4` 本身编译失败）| 改为 `import CausDAG`；`FactorizesL` **自足重写**（逐字照抄 `BridgeA4` §4.1a 的定义）|
   | **S1** | `mass_A_factorizesL`（2 处 `sorry`）| 该陈述**为假**（缺归一化因子）| ⛔ **已删除**（§5 说明原因），不留 `sorry` |
   | **S2** | `factorizesL_inherit` 的**乘积式**那一半 | 该乘积式**为假**（丢掉了 `A` 外的因子）| ⛔ **乘积式已删除**，只保留**为真**的读集那一半（`factorizesL_inherit_reads`）|
   | **J1** | `liftFun_reads` | 陈述是 `… → True := fun _ _ _ => trivial`，**无任何数学内容** | ⛔ 已删除 |
@@ -103,7 +103,7 @@ import Mathlib.Tactic
   * 本文件**不**声称「`mass A p` 在 `G[A]` 上因子分解 / 满足 `LGMC`」——
     该陈述为假（§2），已删除。
   * 本文件**不**声称原表头列出的 B1.4–B1.10（原文件中根本不存在）。
-  * 本文件**不改** `Fate.lean`、**不改**任何既有模块。
+  * 本文件**不改** `lean`、**不改**任何既有模块。
   * 与已入库模块的重复度：`AncClosed` / `ancestralSet_ancClosed` / `ancestralSet_finite_closure`
     与 `BridgeB1Fixed`、`BridgeZipA`、`BridgeMinZPrime` 同名但定理数远少（4 条），
     详见交付报告。

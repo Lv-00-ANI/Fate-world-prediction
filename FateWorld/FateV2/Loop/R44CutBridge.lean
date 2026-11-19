@@ -18,7 +18,7 @@
 
 ## ⚠ 防环
 
-本文件 `import Fate.View14CutReweight` 与 `import FateV2.Predict.BridgeDirect`。
+本文件 `import FateV2.Predict.View14` 与 `import FateV2.Predict.BridgeDirect`。
 两者均无 `import FateV2.Loop.R44CutBridge`（本文件是新建的），故不可能成环。
 
 ## ⚠ 前件检查

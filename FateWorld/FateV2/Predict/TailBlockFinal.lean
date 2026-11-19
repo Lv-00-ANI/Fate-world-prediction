@@ -68,7 +68,7 @@ theorem condIndep_tail_block (ψ : V → (V → α) → ℝ) (p : (V → α) →
   （反例：`S = ∅` 时要求 `Σ_w p w = |α|^|A| p x`）。本文件改用
   `mass S p x = |α|^|T| · mass (S ∪ T) p x`，**方向与指数都不同**，
   这才是正确的量纲。
-- 零 `sorry` / `admit` / `axiom`；不写 `Fate/`；不改 `Fate.lean`。
+- 零 `sorry` / `admit` / `axiom`；不写 `Fate/`；不改 `lean`。
 -/
 
 import Mathlib.Tactic.Ring

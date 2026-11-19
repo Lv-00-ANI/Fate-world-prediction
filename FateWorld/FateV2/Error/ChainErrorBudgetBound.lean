@@ -154,7 +154,7 @@
 * `OptimalEta`（`c`、`err_eq_c_pow`、`err_mono_in_n`）
 * `ClosedLoopNoisy`（`steadyErr`、`steadyErr_nonneg`、`noisy_limsup_bound`）
 * `ThetaConvergence`（`linWorld`、`thetaN`、`linWorld_endToEnd_apply`）
-* `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`、
+* `FateV2.Loop`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`、
   `endToEndIter_linWorld_eq_noisyIter`）—— 这是**唯一**一座已入库的、把
   `linWorld` 的端到端迭代与 `ClosedLoopNoisy.noisyIter` **逐值**等同起来的桥。
 

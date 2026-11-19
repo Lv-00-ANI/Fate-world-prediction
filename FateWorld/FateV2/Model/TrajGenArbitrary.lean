@@ -3,7 +3,7 @@
 =============================================================================
 
 模块：TrajGenArbitrary
-上游：`Fate.Frame`（`Frame`、`Step`、`TrajGen`）、`Fate.Basic`（`Traj`、`InitialState`）
+上游：`FateV2.Model`（`Frame`、`Step`、`TrajGen`）、`FateV2.Modeling`（`Traj`、`InitialState`）
 　　　`FateV2.Model.TrajGenDeterministic`（`trajGen`、`trajGen_succ`、`trajGenOfFrame`）
 依据：`_audit/GEN-1-泛化审计.md` §2.2 B-2、§4.2
 

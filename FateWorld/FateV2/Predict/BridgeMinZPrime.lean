@@ -64,7 +64,7 @@ markov_of_gap :  G.dSep X Y Z  +  ReadClosedBlocks G X Y Z  ⟹  CondIndep p X Y
 ### 0.5 纪律核对
 
 * ✅ 单文件验证：`lake env lean Fate/BridgeMinZPrime.lean` 通过。
-* ✅ 不改 `Fate.lean`，不改 `BridgeFull` / 任何既有模块。
+* ✅ 不改 `lean`，不改 `BridgeFull` / 任何既有模块。
 * ✅ **零 `sorry` / `admit` / `axiom`**。
 * ✅ **不用 `mass` 塔性质**（本文件完全不涉及 `mass`、`CondIndep`；
   只做**纯图论**：`Finset` + `parents` + `isAncestor` + `dSep`）。
@@ -564,7 +564,7 @@ theorem obstruction_no_feasible {X Y Z' : Finset V} {u x : V}
 纪律核对：
 
 1. ✅ 单文件验证：`lake env lean Fate/BridgeMinZPrime.lean` **通过**（见 §0.5）。
-2. ✅ 不改 `Fate.lean`；不改 `BridgeFull` / `BridgeThreeNode` / 任何既有模块
+2. ✅ 不改 `lean`；不改 `BridgeFull` / `BridgeThreeNode` / 任何既有模块
    （`ReadClosedBlocks` 等定义**逐字复制**，见 `readClosedBlocks_def_eq`）。
 3. ✅ **零 `sorry` / `admit` / `axiom`**（`grep` 为空）。
 4. ✅ **不用 `mass` 塔性质**：本文件**完全不涉及** `mass` / `CondIndep`，

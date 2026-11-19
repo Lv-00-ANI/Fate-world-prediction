@@ -70,7 +70,7 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
   * `A1`（`pa ∩ nd = ∅`）⟹ **丢弃**。任何用到它的推导必须重写。
   * `pa ∩ nd = pa` ⟹ `LMG` 定义里的 `nd ∪ pa` 等于 `nd`；
-    不需要不交性，写 `nd` 即可（`Fate.G1ParentNonDescendant` §5 已说明）。
+    不需要不交性，写 `nd` 即可（`FateV2.Predict` §5 已说明）。
   * A3「乘性 `φ` 的边缘化分离」真正的图论输入是 `A1.needed`：
   非后代 `w` 的因子 `φ_w` 的读集 `pa(w)` **不含** `v`，
   故沿 `v` 求和时 `φ_w` 是常数。该事实已由 `A1.needed` 无条件给出。

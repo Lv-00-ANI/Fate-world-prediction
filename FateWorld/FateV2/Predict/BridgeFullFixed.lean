@@ -596,7 +596,7 @@ theorem gap_false_in_general : ¬ DSepGivesReadClosed gex := by
 
 纪律核对：
 1. ✅ 单文件验证：`lake env lean Fate/BridgeFull.lean` 通过。
-2. ✅ 不改 `Fate.lean`，不改任何既有模块（`BridgeA4`/`BridgeB4` 的缺陷只**登记**，不修改）。
+2. ✅ 不改 `lean`，不改任何既有模块（`BridgeA4`/`BridgeB4` 的缺陷只**登记**，不修改）。
 3. ✅ **零 `sorry` / `admit` / `axiom`**（本文件内 `grep` 为空）。
 4. ✅ 不用 `mass` 塔性质；`mass` 展开只在 `Strategy11Hull.mass_ancClosed` 内部，单层。
 5. ✅ **真假证区分**：T2/T6 的 `hfac` 与 `hd` 消费点已在 §1 与各定理注释中逐条点名；

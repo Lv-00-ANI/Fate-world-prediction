@@ -58,7 +58,7 @@ $$X \subseteq Z' \wedge X \neq \varnothing \;\Longrightarrow\; X \cap Z' \neq \v
 ## 4 纪律
 
 * ✅ 单文件验证。
-* ✅ 不改 `Fate.lean`、不改 `BridgeExpanded` / `BridgeMinZPrime` / `BridgeFull` 等任何模块。
+* ✅ 不改 `lean`、不改 `BridgeExpanded` / `BridgeMinZPrime` / `BridgeFull` 等任何模块。
 * ✅ **零 `sorry` / `admit` / `axiom`**。
 * ✅ 每条定理的前件消费点在下文逐条点名。
 * ✅ 不虚构：所有 5 个反例/正例都由 Lean 内核检查。
@@ -348,7 +348,7 @@ theorem dSep_mono_of_noNewAncestors {X Y Z Z' : Finset V} (hZZ' : Z ⊆ Z')
 
 纪律核对：
 1. ✅ 单文件验证通过。
-2. ✅ 不改 `Fate.lean`，不改 `BridgeExpanded` / `BridgeMinZPrime` / `BridgeFull`。
+2. ✅ 不改 `lean`，不改 `BridgeExpanded` / `BridgeMinZPrime` / `BridgeFull`。
 3. ✅ 零 `sorry` / `admit` / `axiom`。
 4. ✅ 前件消费点已在各定理注释逐条点名（尤其 `D1` 的**诚实降级**）。
 5. ✅ 不虚构。

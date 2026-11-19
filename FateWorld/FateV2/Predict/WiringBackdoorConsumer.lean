@@ -30,7 +30,7 @@ import FateWorld.FateV2.Predict.WiringBackdoor
   | **（根，无 namespace）** | `r259_noDescendant_is_tautology`、`r259_noDescendant_not_refutable` |
   | `FateV2.Predict.R277`（§2–§3） | `w7_moralAdj_y_false`、`w7_moralAdj_x_step`、`w7_isDescendant_cases`、`w7_isDescendant_of_reachable`、`w7_y_descendant_iff`、`w7_noDescendant_iff`、`w7_noDescendant_imp_noOutcome`、`w7_noDescendant_mono`、`w7_noDescendant_of_no_Y`、`w7_backdoorSep_mono`、`w7_backdoorSep_forces_vertex`、`w7_backdoorSep_needs_third_vertex`、`w7_backdoorSep_not_vacuous` |
   | `FateV2.Predict.WiringBackdoor`（§4） | `bdStateSpace`、`bdInputSpace`、`bdActionSpace`、`bdNoiseSpace`、`bdThetaSpace`、`bdFrame`、`bdStep`、`bdCtxSpace`、`bdRule`、`bdRule_mem`、`bdRules_nonempty`、`bdWorldRules`、`bdSelector`、`bdSimulator`、`bdDefault`、`bdWorldModel`、`bdWorldModel_f`、`bdWorldModel_wellFormed` |
-  | `Fate.FateV2.Predict.R259.BackdoorSetup`（§5） | `wmNum`、`wmAdjustEst`、`wmNum_eq_condYnum`、`wmAdjustEst_eq_backdoorFormula`、`wmAdjustEst_eq_doLaw` |
+  | `FateV2.Predict.R259.BackdoorSetup`（§5） | `wmNum`、`wmAdjustEst`、`wmNum_eq_condYnum`、`wmAdjustEst_eq_backdoorFormula`、`wmAdjustEst_eq_doLaw` |
   | `FateV2.Predict.WiringBackdoor`（§5.4） | `demoS_wmAdjustEst_00`、`demoS_wmAdjustEst_eq_doLaw_00` |
 
   ### §0.1 ⚠ 实测的**命名空间陷阱**（本文件第一个发现）
@@ -253,7 +253,7 @@ theorem wc_wmNum_is_condYnum (S : FateV2.Predict.R259.BackdoorSetup) [Nonempty S
 S.wmAdjustEst x y = S.doLaw x y   ∧   (bdWorldModel S).WellFormed
 ```
 
-**⭐ 消费路径**：第一分量是 `Fate.FateV2.Predict.R259.BackdoorSetup.wmAdjustEst_eq_doLaw`
+**⭐ 消费路径**：第一分量是 `FateV2.Predict.R259.BackdoorSetup.wmAdjustEst_eq_doLaw`
 （它自己再走 `wmAdjustEst_eq_backdoorFormula` → `backdoor_criterion`，
 用到 `field_simp`/`ring`，**非 `rfl`**）；第二分量是
 `FateV2.Predict.WiringBackdoor.bdWorldModel_wellFormed`（**只**需 `[Nonempty S.X]`/`[Nonempty S.Y]`）。

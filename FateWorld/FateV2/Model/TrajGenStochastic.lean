@@ -2,7 +2,7 @@
 命运理论 · 方案二：随机递推（噪声按分布采样），轨迹是随机过程
 ============================================================
 
-模块：Fate.TrajGenStochastic
+模块：FateV2.Model
 上游：`第9问-TrajGen三种实现方案.md`（方案 A/B/C/D）、`Fate/Frame.lean`（`Step`、`TrajGen`）、
 　　　`Fate/Basic.lean`（`Traj`、`InitialState`、`Dist`、`Tmax`）。
 

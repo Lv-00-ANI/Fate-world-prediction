@@ -2,7 +2,7 @@
 ================================================================================
   TailBlockReal2Consumer.lean
 
-  **接入 `Fate.TailBlockReal2`**（本文件不修改 `TailBlockReal2.lean`，只消费它）。
+  **接入 `FateV2.Predict.GraphToProbView7`**（本文件不修改 `TailBlockReal2.lean`，只消费它）。
 
   `TailBlockReal2` 的核心结论是
 

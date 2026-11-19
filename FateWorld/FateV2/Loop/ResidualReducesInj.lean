@@ -13,7 +13,7 @@ import FateWorld.FateV2.Loop.ResidualReduces
 -/
 
 /-! ===========================================================================
-  `Fate.ResidualReducesInj` —— **G1 判决：`Hinv` 不可放松为「`A` 有左逆 / `A` 单射」**
+  `FateV2.Loop` —— **G1 判决：`Hinv` 不可放松为「`A` 有左逆 / `A` 单射」**
 
   ## 结论（先给判决）
 

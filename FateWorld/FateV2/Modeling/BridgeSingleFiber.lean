@@ -17,7 +17,7 @@ open MeasureTheory ProbabilityTheory
 /-! ===========================================================================
   §D2  ⭐⭐ **单纤维版逆方向**：`bridgeStatement p ⟹ CondIndepFin` 的逐 `z` 形式
 
-  第 174 轮代理 C1 的观察：`Fate.BridgeReverse.bridge_to_condIndepFin` 中的
+  第 174 轮代理 C1 的观察：`FateV2.Modeling.bridge_to_condIndepFin` 中的
   `hz : ∀ z, (∑ x ∑ y, p ((x,y),z)) ≠ 0` **够用但偏强**。
   真正必要的是**单纤维**条件：只需对要证的那条 `z` 有纤维非零。
 
@@ -25,7 +25,7 @@ open MeasureTheory ProbabilityTheory
   1. `bridge_to_condIndepFin_at`：单纤维版本（`hz` 只对一个 `z` 要求）；
   2. `bridge_to_condIndepFin'`：由 (1) **推出** `∀ z` 版本 —— 验证 (1) 是推广。
 
-  **证明**：逐点照搬 `Fate.BridgeReverse.lean` 的论证，唯一改动是把每一处
+  **证明**：逐点照搬 `FateV2.Modeling.lean` 的论证，唯一改动是把每一处
   `exact hz z` 换成 `exact hz`（因为 `z` 已经固定）。逐点等式在 `z` 处的
   两个 `≠ 0` 前提（`trim {a} ≠ 0` 与 `(weightedCount p).real (fiber z) ≠ 0`）
   都只依赖这一个纤维非零。

@@ -11,7 +11,7 @@ import FateWorld.FateV2.Predict.CausalPath
 -/
 
 /-! ===========================================================================
-  `Fate.PearlPathDecomp` —— **Pearl 1.2.4 第 3 步：路径分解**（**第 230 轮 B11**）
+  `FateV2.Predict` —— **Pearl 1.2.4 第 3 步：路径分解**（**第 230 轮 B11**）
 
   ## 文件来历
 

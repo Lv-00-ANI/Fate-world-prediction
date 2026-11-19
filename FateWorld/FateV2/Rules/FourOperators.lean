@@ -24,9 +24,9 @@ import FateWorld.FateV2.Rules.AlphaKernel
   | 算子 | 名称 | 规格类型 | 本实现载体 |
   |---|---|---|---|
   | $\alpha$ | 抽象算子 | $\alpha:\mathcal{E}\to\mathcal{R}$ | `FormalCtx.takeConcept`（裁决 D：取概念过程） |
-  | $\gamma$ | 泛化算子 | $\gamma:\mathcal{R}_{\mathrm{local}}\to\mathcal{R}_{\mathrm{global}}$ | `Gamma`（`Fate.Frame`，仅类型签名） |
-  | $\circ$ | 组合算子 | $\circ:\mathcal{R}\times\mathcal{R}\to\mathcal{R}$ | `Comb`（`Fate.Frame`，仅类型签名） |
-  | $\upsilon$ | 完善算子 | $\upsilon:\mathcal{R}\times\mathcal{D}\to\mathcal{R}$ | `Refine`（`Fate.Frame`，仅类型签名） |
+  | $\gamma$ | 泛化算子 | $\gamma:\mathcal{R}_{\mathrm{local}}\to\mathcal{R}_{\mathrm{global}}$ | `Gamma`（`FateV2.Model`，仅类型签名） |
+  | $\circ$ | 组合算子 | $\circ:\mathcal{R}\times\mathcal{R}\to\mathcal{R}$ | `Comb`（`FateV2.Model`，仅类型签名） |
+  | $\upsilon$ | 完善算子 | $\upsilon:\mathcal{R}\times\mathcal{D}\to\mathcal{R}$ | `Refine`（`FateV2.Model`，仅类型签名） |
 
   ## ⚠⚠ 依赖状态（**第 109 轮更正 —— 请务必读此**）
 
@@ -132,7 +132,7 @@ structure Framework (E : InstSpace) (C : CtxSpace) (X : StateSpace) (Y : OutSpac
 /-! ===========================================================================
     §2  **α 的部分**（**本次唯一完成的部分**）
 
-    α 的 FCA 具体化已在 `Fate.Alpha` 中给出（裁决 D：取概念过程）。
+    α 的 FCA 具体化已在 `FateV2.Rules` 中给出（裁决 D：取概念过程）。
     本节把 α 的**算子律**（规格意义上的「关系律」）在统一框架内**全部证明**。
 
     规格对 α 的律**没有明文规定**——它只给了类型（A1）与存在性（A8）。

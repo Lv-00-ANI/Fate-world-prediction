@@ -83,13 +83,13 @@ theorem margin_size_irrelevant_nonneg (noise : NoiseScale) (margin : ℝ)
 end FateV2.Loop.MainLoop
 
 /-! ===========================================================================
-  §R34  **R-34 追加接线**：把本文件 import 的 `Fate.LoopBoundReal`
+  §R34  **R-34 追加接线**：把本文件 import 的 `FateV2.Error.MainLoop`
   （19 条定理，**此前在本文件及全库 0 处真引用**）的“真·循环界”接到本节的
   “margin 大小无关”论证上。
 
   本文件原本只把 `MainLoop.not_needs_two_steps` 起了一个别名
   （`margin_size_irrelevant`），**一次也没有用上 `LoopBoundReal`** ——
-  尽管第 2 行就 `import Fate.LoopBoundReal`。本书补齐这个缺口：
+  尽管第 2 行就 `import FateV2.Error.MainLoop`。本书补齐这个缺口：
   下面 4 条定理**全部**真引用 `LoopBoundReal` 的定理。
 
   | 定理 | 左腿（`LoopBoundReal`） | 右腿 |
@@ -112,7 +112,7 @@ end FateV2.Loop.MainLoop
 
 namespace FateV2.Loop.MainLoop
 
-/-! ### §R34 真引用 `Fate.LoopBoundReal` 的 4 条定理 -/
+/-! ### §R34 真引用 `FateV2.Error.MainLoop` 的 4 条定理 -/
 
 -- 说明：必须回到 `namespace Fate` 才能写全名引用（`LoopBoundReal` 的定理在
 -- `FateV2.Loop.MainLoop` 命名空间内，与本文件相同， 故无需前缀；为避免与本节里的

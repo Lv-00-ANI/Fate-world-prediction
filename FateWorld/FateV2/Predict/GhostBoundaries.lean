@@ -281,7 +281,7 @@ end FateV2.Predict.C4Ghost
   `Fate/Strategy13FactorHoist.lean` 现编译失败（两处 `sorry`，
   `mass_insert_of_insensitive` 未完成）。本段**不 import 它**，而是把它 §1–§5
   的三条真定理（`hoist_prod`、`mass_InSet_factor`、`mass_block_factor`）在本地
-  **重述并证明**（用 `Fate.MassProCover` 的 `mass_prod_cover` 引擎，更短），
+  **重述并证明**（用 `FateV2.Predict.View19` 的 `mass_prod_cover` 引擎，更短），
   然后给出 §3 声称的 `CondMulLike` 主定理。
 
   **⚠ 修正（诚实登记）**：原文 §3 的散文「若 `X`、`Y` 的读集闭包落在 `Z` 的
