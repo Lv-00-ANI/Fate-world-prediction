@@ -154,7 +154,7 @@ set_option linter.checkUnivs false
 #check @FateV2.Rules.AlphaData.alpha_snd_eq_thIter
 #check @FateV2.Rules.AlphaData.alpha_snd_isClosed
 #check @FateV2.Rules.AlphaData.alpha_respects_obs
-#check @FateV2.Loop.alpha
+#check @FateV2.Rules.AlphaData.alpha
 
 /-! ===========================================================================
     §1  `W.alpha` 的有限性：`PUnit` 作属性类型时 `FiniteAttrs` 自动成立
