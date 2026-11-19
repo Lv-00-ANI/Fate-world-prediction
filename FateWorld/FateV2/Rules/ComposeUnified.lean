@@ -132,8 +132,8 @@
 ---------------------------------------------------------------------------
 本文件**零 `sorry`、零 `admit`、零 `axiom`**。
 所用引理全部为 Mathlib 已有定理或**已入链**模块
-（`FateV2.Rules.ComposeSemantics`、`Fate.CompNotCommutative`、`Fate.WiringFourOpFixed`、
-`Fate.ComposeOperator`）中的定理。
+（`FateV2.Rules.ComposeSemantics`、`FateV2.Rules.CompNotCommutative`、`Fate.WiringFourOpFixed`、
+`FateV2.Rules.ComposeOperator`）中的定理。
 -/
 
 import FateWorld.FateV2.Rules.ComposeSemantics
@@ -229,7 +229,7 @@ theorem B_is_commutative (A B : Set FateV2.Rules.AlphaInstance.K3.MFCA) :
     §3  A 族实例（特例分支）：`MeasurableRule.comp` on `MeasurableRule C X X`
     =========================================================================== -/
 
-open Fate.ComposeOperator
+open FateV2.Rules.ComposeOperator
 
 set_option warn.classDefReducibility false in
 /-- **A 族实例**：`MeasurableRule.comp` 使 `MeasurableRule C X X` 成为一个
@@ -270,14 +270,14 @@ theorem directedComp_eq {C : FateV2.Model.CtxSpace} {X : FateV2.Modeling.StateSp
 **前件检查**：结论即「不交换」，前件只有 `R₁ R₂` 的量化与实例的 `comp` 展开，
 **无任何「假设不交换」的隐藏前件**——证明是从已证的否命题直接搬运。 -/
 theorem A_not_commutative :
-    ¬ ∀ R₁ R₂ : MeasurableRule Fate.CompNotCommutative.CX
-        Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2,
-      (directedCompInstance (C := Fate.CompNotCommutative.CX)
-        (X := Fate.CompNotCommutative.SS2)).comp R₂ R₁
-      = (directedCompInstance (C := Fate.CompNotCommutative.CX)
-        (X := Fate.CompNotCommutative.SS2)).comp R₁ R₂ := by
+    ¬ ∀ R₁ R₂ : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+        FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2,
+      (directedCompInstance (C := FateV2.Rules.CompNotCommutative.CX)
+        (X := FateV2.Rules.CompNotCommutative.SS2)).comp R₂ R₁
+      = (directedCompInstance (C := FateV2.Rules.CompNotCommutative.CX)
+        (X := FateV2.Rules.CompNotCommutative.SS2)).comp R₁ R₂ := by
   intro h
-  exact Fate.CompNotCommutative.comp_not_commutative (fun a b => h a b)
+  exact FateV2.Rules.CompNotCommutative.comp_not_commutative (fun a b => h a b)
 
 /-- ⭐⭐ **B 主导的证据**：`combClosure` 可交换 ∧ 函数复合一般不交换。
 
@@ -314,14 +314,14 @@ theorem fusion_structure :
     (Nonempty (CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA)))
     -- (2) A 侧：存在复合，且它不交换
     ∧ (Nonempty (DirectedComposite
-          (MeasurableRule Fate.CompNotCommutative.CX
-            Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2)))
-    ∧ (¬ ∀ R₁ R₂ : MeasurableRule Fate.CompNotCommutative.CX
-          Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2,
-        (directedCompInstance (C := Fate.CompNotCommutative.CX)
-          (X := Fate.CompNotCommutative.SS2)).comp R₂ R₁
-        = (directedCompInstance (C := Fate.CompNotCommutative.CX)
-          (X := Fate.CompNotCommutative.SS2)).comp R₁ R₂) :=
+          (MeasurableRule FateV2.Rules.CompNotCommutative.CX
+            FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2)))
+    ∧ (¬ ∀ R₁ R₂ : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+          FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2,
+        (directedCompInstance (C := FateV2.Rules.CompNotCommutative.CX)
+          (X := FateV2.Rules.CompNotCommutative.SS2)).comp R₂ R₁
+        = (directedCompInstance (C := FateV2.Rules.CompNotCommutative.CX)
+          (X := FateV2.Rules.CompNotCommutative.SS2)).comp R₁ R₂) :=
   ⟨⟨instCommutativeCompositeAttrSet⟩,
    ⟨directedCompInstance⟩,
    A_not_commutative⟩
@@ -336,8 +336,8 @@ theorem two_instances_under_one_abstraction :
     Nonempty (Composite (Set FateV2.Rules.AlphaInstance.K3.MFCA))
       ∧ Nonempty (CommutativeComposite (Set FateV2.Rules.AlphaInstance.K3.MFCA))
       ∧ Nonempty (DirectedComposite
-          (MeasurableRule Fate.CompNotCommutative.CX
-            Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2)) :=
+          (MeasurableRule FateV2.Rules.CompNotCommutative.CX
+            FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2)) :=
   ⟨⟨instCommutativeCompositeAttrSet.toComposite⟩,
    ⟨instCommutativeCompositeAttrSet⟩,
    ⟨directedCompInstance⟩⟩

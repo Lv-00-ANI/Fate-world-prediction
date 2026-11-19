@@ -87,7 +87,7 @@ open FateV2.Modeling
 open FateV2.Modeling.Graph
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -172,13 +172,13 @@ theorem bridgeB4_mass_prod_compl_false :
 
 ```lean
 theorem factorizes_standard_implies_routeB (h : Factorizes p G) :
-    Fate.FactorRecursionRouteB.Factorizes p G
+    FactorRecursionRouteB.Factorizes p G
 ```
 
 **该陈述为假，已删除**（按修复纪律「证不出就删该定理并在文件头说明」，不用 `sorry` 占位）。
 
 **为何为假**：`FateV2.Predict.FactorMarkov.LocalTo` 的读集是 `{v} ∪ pa(v)`（**更大**），
-`Fate.FactorRecursionRouteB.Factorizes` 的读集是 `pa(v)`（**更小**）。
+`FactorRecursionRouteB.Factorizes` 的读集是 `pa(v)`（**更小**）。
 「函数对更大集合不敏感」**不蕴含**「对更小集合不敏感」，故方向弄反了：
 真方向是 **`RouteB.Factorizes ⟹ Factorizes`**（读集更小 ⟹ 也满足更大读集）。
 
@@ -368,7 +368,7 @@ theorem dSepGivesReadClosed_eq (G : FateV2.Modeling.Graph.DAG V) :
 «`Disjoint X Y ∧ Disjoint X Z ∧ Disjoint Y Z`» 与 `ReadClosedBlocks` **无关**
 （前者只谈基数关系，后者谈 `parents`）。这个反例把两者**在同一图上**分开。 -/
 -- 定义已收敛到 `Fate/Concrete/ThreeNode.lean`（原 4 份逐字相同，见 _audit/BRIDGE-1）
-def gex : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.Concrete.gex
+def gex : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Modeling.Concrete.gex
 
 /-- ⭐ **T5.a**：`gex` 上 `dSep {1} {2} ∅` **成立**（真图论事实，`decide` 判定）。 -/
 theorem gex_dsep : gex.dSep {(1 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3)) := by

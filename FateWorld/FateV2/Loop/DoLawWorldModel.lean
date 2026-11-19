@@ -85,7 +85,7 @@ import Mathlib.MeasureTheory.Measure.Dirac
   ## 三、诚实边界
 
   * **不碰图论**：不引用 `DSeparation` / `BridgeFullFixed` / 后门准则。
-  * **不虚构 SCM**：除 §5 的**见证实例**（复用已入库的 `Fate.T35.M`）外，
+  * **不虚构 SCM**：除 §5 的**见证实例**（复用已入库的 `FateV2.Predict.T35.M`）外，
     **不给出任何具体数值**。
   * **`scm_align` 的可满足性**由 §5 的 `demoCapable` **显式构造**保证（该字段非空）。
   * **§2 的 `doLaw_after_do` 在 SCM 层是 `rfl`**（与 `CausalRouteDo.doLaw_stable_under_do` 同源）；

@@ -7,7 +7,7 @@
 ### 0.0 ⚠ 与既有 `Fate/ZipDownFalseConsumer` 的分工（**先看这一段**）
 
 `Fate/ZipDownFalseConsumer.lean`（CHAIN-9，上一轮已交付并入库，9 声明）
-已把 `ZipDownFalse` 接到 **`Fate.BridgeFullFixed`** 口径，其主定理是
+已把 `ZipDownFalse` 接到 **`FateV2.Predict.BridgeFullFixed`** 口径，其主定理是
 
 * `not_markov_PjointB`（`¬ Markov PjointB gempty`）、
 * `no_factorization_cert_for_PjointB`（`FactorNorm` 前件不可满足）、
@@ -16,8 +16,8 @@
 **它覆盖的是「`Markov` / `FactorNorm` / `BridgeFullFixed`」这条线。**
 本文件**不重复**那条线，而是接**另一条**仍未接的主链：
 
-* `Fate.BridgeMinZPrime`（**MZP**）的 `zStar` / `paBlock` / `req` / `readClosed_zStar`；
-* `Fate.BridgeFull`（非 `Fixed`）的 `markov_of_readClosedBlocks`。
+* `FateV2.Predict.BridgeMinZPrime`（**MZP**）的 `zStar` / `paBlock` / `req` / `readClosed_zStar`；
+* `FateV2.Predict.BridgeFull`（非 `Fixed`）的 `markov_of_readClosedBlocks`。
 
 **本文件的独有内容**（既有文件完全没有）：
 
@@ -29,11 +29,11 @@
 5. `PjointB` + `gempty` 在 `zStar`-扩大路线上的具体反驳（C7/C7′）。
 
 **命名空间**：本文件用 `FateV2.Predict.ZipDownFalseZStarConsumer`，**与**
-`Fate.ZipDownFalseConsumer` **不冲突**（不重定义其任何符号）。
+`FateV2.Predict.ZipDownFalseConsumer` **不冲突**（不重定义其任何符号）。
 
 ### 0.1 数学内容
 
-叶子模块 `Fate/ZipDownFalse.lean`（namespace `Fate.ZipDownFalseFixed`，20 定理）
+叶子模块 `Fate/ZipDownFalse.lean`（namespace `FateV2.Predict.ZipDownFalseFixed`，20 定理）
 用**显式分布** `PjointB` 机器验证了
 
 ```
@@ -55,9 +55,9 @@
 | 腿 | 模块 | 本文件用到的符号 |
 |---|---|---|
 | A（反例源） | `Fate.ZipDownFalse` | `PjointB`、`condIndepB`、`not_condIndepB`（**不引用** `zipDown_false`） |
-| B（主链） | `Fate.BridgeMinZPrime` | `zStar`、`paBlock`、`req`、`readClosed_zStar`、`subset_zStar` |
-| B（主链） | `Fate.BridgeFull` | `markov_of_readClosedBlocks`（**非** `BridgeFullFixed`） |
-| B（底座） | `Fate.BridgeZipDown` | `ZipDown`、`gempty`、`gempty_parents` |
+| B（主链） | `FateV2.Predict.BridgeMinZPrime` | `zStar`、`paBlock`、`req`、`readClosed_zStar`、`subset_zStar` |
+| B（主链） | `FateV2.Predict.BridgeFull` | `markov_of_readClosedBlocks`（**非** `BridgeFullFixed`） |
+| B（底座） | `FateV2.Predict.BridgeZipDown` | `ZipDown`、`gempty`、`gempty_parents` |
 
 ## 1 本文件交付的定理（7 条，全部 machine-checked）
 
@@ -112,7 +112,7 @@
   本文件新引入的 `gempty_*` 是**引用** `BridgeZipDown.gempty` 的**新**引理
   （名字在 `FateV2.Predict.ZipDownFalseZStarConsumer` 命名空间内，不与任何既有符号冲突）；
 * ✅ 不用 `mass` 塔性质，不展开 `mass`（`PjointB` 的取值全部经
-  `Fate.ZipDownFalseFixed` 的既有引理）。
+  `FateV2.Predict.ZipDownFalseFixed` 的既有引理）。
 ================================================================================ -/
 
 import FateWorld.FateV2.Predict.ZipDownFalse
@@ -148,7 +148,7 @@ set_option linter.unusedSimpArgs false
   =========================================================================== -/
 
 /-- `gempty` 上任何两点都不构成祖先关系（无边 ⟹ `isAncestor` 归纳无据）。 -/
-theorem gempty_not_anc {u v : Fin 4} : ¬ Fate.BridgeZipDown.gempty.isAncestor u v := by
+theorem gempty_not_anc {u v : Fin 4} : ¬ FateV2.Predict.BridgeZipDown.gempty.isAncestor u v := by
   intro h
   induction h with
   | edge hab => exact hab
@@ -156,12 +156,12 @@ theorem gempty_not_anc {u v : Fin 4} : ¬ Fate.BridgeZipDown.gempty.isAncestor u
 
 /-- `gempty.parents` 作为函数恒为 `∅`（C1 的工具）。 -/
 theorem gempty_parents_fun :
-    Fate.BridgeZipDown.gempty.parents = fun _ => (∅ : Finset (Fin 4)) :=
-  funext Fate.BridgeZipDown.gempty_parents
+    FateV2.Predict.BridgeZipDown.gempty.parents = fun _ => (∅ : Finset (Fin 4)) :=
+  funext FateV2.Predict.BridgeZipDown.gempty_parents
 
 /-- `gempty` 的祖先集恒空（C2 的工具）。 -/
 theorem gempty_ancestorsSet_eq (S : Finset (Fin 4)) :
-    Fate.BridgeZipDown.gempty.ancestorsSet S = ∅ := by
+    FateV2.Predict.BridgeZipDown.gempty.ancestorsSet S = ∅ := by
   ext u
   unfold FateV2.Modeling.Graph.DAG.ancestorsSet
   simp only [Finset.mem_filter, Finset.mem_univ, true_and]
@@ -175,8 +175,8 @@ theorem gempty_ancestorsSet_eq (S : Finset (Fin 4)) :
 
 消费：`MZP.paBlock` 的定义 + `BridgeZipDown.gempty_parents`。 -/
 theorem gempty_paBlock_eq (S : Finset (Fin 4)) :
-    Fate.BridgeMinZPrime.paBlock Fate.BridgeZipDown.gempty S = ∅ := by
-  unfold Fate.BridgeMinZPrime.paBlock
+    FateV2.Predict.BridgeMinZPrime.paBlock FateV2.Predict.BridgeZipDown.gempty S = ∅ := by
+  unfold FateV2.Predict.BridgeMinZPrime.paBlock
   rw [gempty_parents_fun]
   ext u
   simp
@@ -185,7 +185,7 @@ theorem gempty_paBlock_eq (S : Finset (Fin 4)) :
 
 消费：`CausDAG.ancestralSet` 的定义 + `gempty_ancestorsSet_eq`。 -/
 theorem gempty_ancestralSet_eq (S : Finset (Fin 4)) :
-    Fate.BridgeZipDown.gempty.ancestralSet S = S := by
+    FateV2.Predict.BridgeZipDown.gempty.ancestralSet S = S := by
   unfold FateV2.Modeling.Graph.DAG.ancestralSet
   rw [gempty_ancestorsSet_eq, Finset.union_empty]
 
@@ -199,14 +199,14 @@ theorem gempty_ancestralSet_eq (S : Finset (Fin 4)) :
 非单调现象必须来自**非空图** —— 而 `PjointB` 的非单调是**纯概率**现象
 （见 `ZipDownFalse` 文件头 §0.2 的诚实声明），两者正交。 -/
 theorem gempty_zStar_eq (X Y Z : Finset (Fin 4)) :
-    Fate.BridgeMinZPrime.zStar Fate.BridgeZipDown.gempty X Y Z = Z := by
-  unfold Fate.BridgeMinZPrime.zStar Fate.BridgeMinZPrime.req
+    FateV2.Predict.BridgeMinZPrime.zStar FateV2.Predict.BridgeZipDown.gempty X Y Z = Z := by
+  unfold FateV2.Predict.BridgeMinZPrime.zStar FateV2.Predict.BridgeMinZPrime.req
   rw [gempty_paBlock_eq, gempty_paBlock_eq, Finset.empty_sdiff, Finset.empty_sdiff,
       Finset.union_empty, Finset.union_empty, gempty_ancestralSet_eq]
 
 /-- C3 的方向版本（`Z ⊆ zStar …`，与 `MZP.subset_zStar` 一致）。 -/
 theorem gempty_subset_zStar (X Y Z : Finset (Fin 4)) :
-    Z ⊆ Fate.BridgeMinZPrime.zStar Fate.BridgeZipDown.gempty X Y Z := by
+    Z ⊆ FateV2.Predict.BridgeMinZPrime.zStar FateV2.Predict.BridgeZipDown.gempty X Y Z := by
   rw [gempty_zStar_eq]
 
 /-! ===========================================================================
@@ -231,7 +231,7 @@ variable {β : Type} [Fintype β] [DecidableEq β]
 theorem zipDown_fails_of_witness
     (p : (W → β) → ℝ) (X Y Z Z' : Finset W)
     (hsub : Z ⊆ Z') (hZ' : CondIndep p X Y Z') (hZ : ¬ CondIndep p X Y Z) :
-    ¬ Fate.BridgeZipDown.ZipDown p X Y := by
+    ¬ FateV2.Predict.BridgeZipDown.ZipDown p X Y := by
   intro hzd
   exact hZ (hzd Z Z' hsub hZ')
 
@@ -246,10 +246,10 @@ theorem zipDown_fails_of_witness
 消费点：`hZ'`、`hZ`（与 C4 相同的极性对立），`zStar` 只是给 `Z'` 起名。 -/
 theorem zStar_zipDown_route_fails
     (G : FateV2.Modeling.Graph.DAG W) (p : (W → β) → ℝ) (X Y Z : Finset W)
-    (hZ' : CondIndep p X Y (Fate.BridgeMinZPrime.zStar G X Y Z))
+    (hZ' : CondIndep p X Y (FateV2.Predict.BridgeMinZPrime.zStar G X Y Z))
     (hZ : ¬ CondIndep p X Y Z) :
     ¬ (∀ Z : Finset W,
-        CondIndep p X Y (Fate.BridgeMinZPrime.zStar G X Y Z) → CondIndep p X Y Z) := by
+        CondIndep p X Y (FateV2.Predict.BridgeMinZPrime.zStar G X Y Z) → CondIndep p X Y Z) := by
   intro h
   exact hZ (h Z hZ')
 
@@ -286,14 +286,14 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 theorem markovAtZStar_cannot_zipDown
     {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x) (hnorm : FactorNorm f)
-    {X Y Z : Finset V} (hd : G.dSep X Y (Fate.BridgeMinZPrime.zStar G X Y Z))
+    {X Y Z : Finset V} (hd : G.dSep X Y (FateV2.Predict.BridgeMinZPrime.zStar G X Y Z))
     (hZ : ¬ CondIndep p X Y Z) :
     ¬ (∀ Z : Finset V,
-        CondIndep p X Y (Fate.BridgeMinZPrime.zStar G X Y Z) → CondIndep p X Y Z) := by
+        CondIndep p X Y (FateV2.Predict.BridgeMinZPrime.zStar G X Y Z) → CondIndep p X Y Z) := by
   -- 主链在 `zStar` 处的 `CondIndep`（**关键消费点**）
-  have hZ' : CondIndep p X Y (Fate.BridgeMinZPrime.zStar G X Y Z) :=
-    Fate.BridgeFull.markov_of_readClosedBlocks hloc hfac hnorm hd
-      (Fate.BridgeMinZPrime.readClosed_zStar X Y Z)
+  have hZ' : CondIndep p X Y (FateV2.Predict.BridgeMinZPrime.zStar G X Y Z) :=
+    FateV2.Predict.BridgeFull.markov_of_readClosedBlocks hloc hfac hnorm hd
+      (FateV2.Predict.BridgeMinZPrime.readClosed_zStar X Y Z)
   exact zStar_zipDown_route_fails G p X Y Z hZ' hZ
 
 end MainChain
@@ -329,20 +329,20 @@ section Concrete
 证明里引用 `ZipDownFalse` 的定理；不是 `:= ZipDownFalse.xxx` 的别名）。 -/
 theorem PjointB_not_zipDown_route :
     ¬ (∀ Z' : Finset (Fin 4),
-        CondIndep Fate.ZipDownFalseFixed.PjointB ({0} : Finset (Fin 4))
+        CondIndep FateV2.Predict.ZipDownFalseFixed.PjointB ({0} : Finset (Fin 4))
           ({1} : Finset (Fin 4))
-          (Fate.BridgeMinZPrime.zStar Fate.BridgeZipDown.gempty
+          (FateV2.Predict.BridgeMinZPrime.zStar FateV2.Predict.BridgeZipDown.gempty
             ({0} : Finset (Fin 4)) ({1} : Finset (Fin 4)) Z')
-        → CondIndep Fate.ZipDownFalseFixed.PjointB ({0} : Finset (Fin 4))
+        → CondIndep FateV2.Predict.ZipDownFalseFixed.PjointB ({0} : Finset (Fin 4))
             ({1} : Finset (Fin 4)) (∅ : Finset (Fin 4))) := by
   intro h
-  have h2 : CondIndep Fate.ZipDownFalseFixed.PjointB ({0} : Finset (Fin 4))
+  have h2 : CondIndep FateV2.Predict.ZipDownFalseFixed.PjointB ({0} : Finset (Fin 4))
       ({1} : Finset (Fin 4))
-      (Fate.BridgeMinZPrime.zStar Fate.BridgeZipDown.gempty
+      (FateV2.Predict.BridgeMinZPrime.zStar FateV2.Predict.BridgeZipDown.gempty
         ({0} : Finset (Fin 4)) ({1} : Finset (Fin 4)) ({2} : Finset (Fin 4))) := by
     rw [gempty_zStar_eq]
-    exact Fate.ZipDownFalseFixed.condIndepB
-  exact Fate.ZipDownFalseFixed.not_condIndepB (h {2} h2)
+    exact FateV2.Predict.ZipDownFalseFixed.condIndepB
+  exact FateV2.Predict.ZipDownFalseFixed.not_condIndepB (h {2} h2)
 
 /-- ⭐⭐ **C7′：`PjointB` 上 `ZipDown` 失败**（由 C4 模板从 `ZipDownFalse` 的两块拼图重推出）。
 
@@ -350,11 +350,11 @@ theorem PjointB_not_zipDown_route :
 而是走**抽象判据 C4**，用 `condIndepB` / `not_condIndepB` 作为两个见证。
 ⟹ 这验证了 C4 模板在具体分布上**确实可用**（模板非空）。 -/
 theorem PjointB_zipDown_fails_via_template :
-    ¬ Fate.BridgeZipDown.ZipDown Fate.ZipDownFalseFixed.PjointB
+    ¬ FateV2.Predict.BridgeZipDown.ZipDown FateV2.Predict.ZipDownFalseFixed.PjointB
         ({0} : Finset (Fin 4)) ({1} : Finset (Fin 4)) := by
-  exact zipDown_fails_of_witness Fate.ZipDownFalseFixed.PjointB
+  exact zipDown_fails_of_witness FateV2.Predict.ZipDownFalseFixed.PjointB
     ({0} : Finset (Fin 4)) ({1} : Finset (Fin 4)) (∅ : Finset (Fin 4)) {2}
-    (by decide) Fate.ZipDownFalseFixed.condIndepB Fate.ZipDownFalseFixed.not_condIndepB
+    (by decide) FateV2.Predict.ZipDownFalseFixed.condIndepB FateV2.Predict.ZipDownFalseFixed.not_condIndepB
 
 end Concrete
 

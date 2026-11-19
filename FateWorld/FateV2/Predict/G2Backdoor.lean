@@ -138,7 +138,7 @@ theorem noDescendant_raw_not_trivial
     (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y : S.Y) (z : S.Z)
     (ux : S.Ux) (uy : S.Uy) (hf : S.fY x z ux uy = y) :
     ¬ FateV2.Predict.R277.NoDescendant S ({FateV2.Predict.R277.Vert.y y} : Set (FateV2.Predict.R277.Vert S)) :=
-  Fate.NoDescendantWitness.noDescendant_singleton_false S x y z ux uy hf
+  FateV2.Predict.NoDescendantWitness.noDescendant_singleton_false S x y z ux uy hf
 
 /-- ⭐⭐ **对照：`W = {Z}` 满足 B 号 `NoDescendant`**（`Z` 不是 `X` 的后代）。
 
@@ -148,7 +148,7 @@ theorem noDescendant_raw_zig_true
     (S : FateV2.Predict.R259.BackdoorSetup) (z : S.Z) :
     ¬ FateV2.Predict.R277.IsDescendant S (FateV2.Predict.R277.Vert.z z) := by
   intro h
-  obtain ⟨y, hy⟩ := Fate.NoDescendantWitness.descendant_is_y S h
+  obtain ⟨y, hy⟩ := FateV2.Predict.NoDescendantWitness.descendant_is_y S h
   -- `hy : Vert.z z = Vert.y y` —— 两个不同构造子相等，直接矛盾
   cases hy
 
@@ -158,7 +158,7 @@ theorem noDescendant_raw_zig_true
 
 namespace G2M
 
-variable (S : Fate.R289.SetupWithM)
+variable (S : FateV2.Predict.R289.SetupWithM)
 
 /-- ⭐ **「中介通道畅通」**：`P(M = m | X = x) > 0` 对**所有** `(x,m)` 成立。
 
@@ -193,10 +193,10 @@ def MFreeOfX : Prop := ∀ (x₁ x₂ : S.X) (uy₁ uy₂ : S.Uy), S.fM x₁ uy�
 
 这是本文件 §3 全部结论的**基石**，也是原文件缺失的那块。 -/
 theorem m_in_descendant (x : S.X) (uy : S.Uy) :
-    Fate.R289.SetupWithM.IsDescendantM S (.m (S.fM x uy)) :=
-  Fate.R289.SetupWithM.IsDescendantM.step <| by
+    FateV2.Predict.R289.SetupWithM.IsDescendantM S (.m (S.fM x uy)) :=
+  FateV2.Predict.R289.SetupWithM.IsDescendantM.step <| by
     -- `moralAdjM (X x) (M (fM x uy))`：落在第三个析取支
-    unfold Fate.R289.SetupWithM.moralAdjM
+    unfold FateV2.Predict.R289.SetupWithM.moralAdjM
     exact Or.inr <| Or.inr <| Or.inl ⟨x, uy, S.fM x uy, rfl, rfl, rfl⟩
 
 /-- 辅助：**任何连到 `MVert.m m` 的边都给出 `m ∈ range fM`**。
@@ -204,8 +204,8 @@ theorem m_in_descendant (x : S.X) (uy : S.Uy) :
     `moralAdjM` 共有 **8** 个析取支（`Z→X`、`Ux→X`、`X→M`、`Uy→M`、
     `M→Y`、`Z→Y`、`Ux→Y`、`Uy→Y`）。其中只有 **第 3、4 支**的终点是 `M`，
     而两支都带条件 `fM x uy = m`。其余 6 支的终点是 `X` 或 `Y`，与 `M` 冲突。 -/
-theorem edge_to_m_implies_mem (v : Fate.R289.SetupWithM.MVert S) (m : S.M)
-    (h : Fate.R289.SetupWithM.moralAdjM S v (.m m)) :
+theorem edge_to_m_implies_mem (v : FateV2.Predict.R289.SetupWithM.MVert S) (m : S.M)
+    (h : FateV2.Predict.R289.SetupWithM.moralAdjM S v (.m m)) :
     ∃ (x : S.X) (uy : S.Uy), S.fM x uy = m := by
   rcases h with ⟨_, _, _, _, hb, _⟩ | ⟨_, _, _, _, hb, _⟩
     | ⟨x, uy, m', _, hb, hf⟩ | ⟨x, uy, m', _, hb, hf⟩
@@ -215,9 +215,9 @@ theorem edge_to_m_implies_mem (v : Fate.R289.SetupWithM.MVert S) (m : S.M)
   · exact absurd hb (by simp)
   · exact absurd hb (by simp)
   -- X→M / Uy→M：给出 `fM x uy = m'`，且 `MVert.m m = MVert.m m'` ⟹ `m = m'`
-  · obtain rfl : m = m' := Fate.R289.SetupWithM.MVert.m.inj hb
+  · obtain rfl : m = m' := FateV2.Predict.R289.SetupWithM.MVert.m.inj hb
     exact ⟨x, uy, hf⟩
-  · obtain rfl : m = m' := Fate.R289.SetupWithM.MVert.m.inj hb
+  · obtain rfl : m = m' := FateV2.Predict.R289.SetupWithM.MVert.m.inj hb
     exact ⟨x, uy, hf⟩
   -- M→Y / Z→Y / Ux→Y / Uy→Y：终点是 Y，冲突
   · exact absurd hb (by simp)
@@ -233,7 +233,7 @@ theorem edge_to_m_implies_mem (v : Fate.R289.SetupWithM.MVert S) (m : S.M)
     ⟹ 这个条件对「可达的 `m`」永远为假——**原文件想说的「中介是合法的调整集」
     在 `SetupWithM` 载体上不可能成立**。 -/
 theorem noDescendantM_singleton_iff (m : S.M) :
-    Fate.R289.SetupWithM.NoDescendantM S ({.m m} : Set (Fate.R289.SetupWithM.MVert S))
+    FateV2.Predict.R289.SetupWithM.NoDescendantM S ({.m m} : Set (FateV2.Predict.R289.SetupWithM.MVert S))
       ↔ ¬ ∃ (x : S.X) (uy : S.Uy), S.fM x uy = m := by
   constructor
   · -- (⟹) 若 m 可达，取 x uy，则 m 是后代，与 NoDescendantM 冲突
@@ -254,7 +254,7 @@ theorem noDescendantM_singleton_iff (m : S.M) :
     即便 `fM` 是常数，它取到的那个值仍然是 `X` 的后代。 -/
 theorem freeOfX_does_not_prevent_descendant (h : G2M.MFreeOfX S)
     (x : S.X) (uy : S.Uy) :
-    Fate.R289.SetupWithM.IsDescendantM S (.m (S.fM x uy)) :=
+    FateV2.Predict.R289.SetupWithM.IsDescendantM S (.m (S.fM x uy)) :=
   m_in_descendant S x uy
 
 /-! ### §3.2 **`⟹` 方向：满射条件才使结论成立**
@@ -284,7 +284,7 @@ namespace G2Demo
 
 /-- ⭐⭐⭐⭐ **在 `Demo.demo` 里 `M` 的取值**（`uy=0 ⟹ M=x`；`uy=1 ⟹ M=true`）。 -/
 theorem demo_fM_eq (x uy : Bool) :
-    Fate.R289.Demo.demo.fM x uy = if uy then true else x := rfl
+    FateV2.Predict.R289.Demo.demo.fM x uy = if uy then true else x := rfl
 
 /-- ⭐⭐⭐⭐⭐ **`M` **完全决定** `X`？—— 不，恰恰相反：`M = 0` 强制 `X = 0`，
 而 `M = 1` 时 `X` **丢失**（`x ∧ uy` 的两个分支都映到 `M=1`）。
@@ -292,7 +292,7 @@ theorem demo_fM_eq (x uy : Bool) :
 **⟹ 观测数据里的 `P(m)` 已被 `X` 混淆**，`∑_m P(y|x,m)P(m)` **不可辨识**
 （`recommend` 里 `adjustLawM` 的偏误无解）。** -/
 theorem demo_M_forces_X :
-    (∀ x uy : Bool, Fate.R289.Demo.demo.fM x uy = false → x = false) := by
+    (∀ x uy : Bool, FateV2.Predict.R289.Demo.demo.fM x uy = false → x = false) := by
   intro x uy h
   cases uy with
   | false =>
@@ -301,24 +301,24 @@ theorem demo_M_forces_X :
     exact h'
   | true =>
     -- `uy = true` 时 `fM x true = true`，与 `= false` 矛盾
-    exact absurd h (by simp [Fate.R289.Demo.demo])
+    exact absurd h (by simp [FateV2.Predict.R289.Demo.demo])
 
 /-- ⭐⭐⭐ **举例：`x=0` 与 `x=1` 在 `uy=1` 给出**同一个** `M`** ——
 故 `M` 不是 `X` 的忠实中介，`M` **不是** `X` 的后代的充分统计（对 `x` 而言）。** -/
 theorem demo_M_collapses :
-    Fate.R289.Demo.demo.fM false true = Fate.R289.Demo.demo.fM true true :=
+    FateV2.Predict.R289.Demo.demo.fM false true = FateV2.Predict.R289.Demo.demo.fM true true :=
   rfl
 
 /-- ⭐⭐⭐⭐ **但 `fM` **仍然**依赖 `x`（`uy=0` 时 `M=x`），故 `M` 确实是 `X` 的后代。**
 **⚠ 这两条（`demo_M_collapses` 与本条）合起来说明「中介」在 `demo` 里是**部分退化**的 ——
 这正是 §5 缺陷 2 指出的「`adjustLawM` 用均匀 `P(m)` 掩盖了纠缠」的根源。** -/
 theorem demo_M_depends_on_X :
-    ¬ G2M.MFreeOfX Fate.R289.Demo.demo := by
+    ¬ G2M.MFreeOfX FateV2.Predict.R289.Demo.demo := by
   intro h
   -- 取 x₁=false, x₂=true, uy₁=uy₂=false
   -- `MFreeOfX` 要求 `fM false false = fM true false`，即 `false = true`，矛盾
   have h1 := h false true false false
-  exact absurd h1 (by simp [Fate.R289.Demo.demo])
+  exact absurd h1 (by simp [FateV2.Predict.R289.Demo.demo])
 
 end G2Demo
 
@@ -335,11 +335,11 @@ end G2Demo
 | `(1,0)` | `2/5` |
 | `(1,1)` | `3/5` | -/
 theorem demo_doLaw_check :
-    Fate.R289.Demo.demo.doLaw false false = 1/2 ∧
-    Fate.R289.Demo.demo.doLaw false true = 1/2 ∧
-    Fate.R289.Demo.demo.doLaw true false = 2/5 ∧
-    Fate.R289.Demo.demo.doLaw true true = 3/5 :=
-  Fate.R289.Demo.demo_doLaw
+    FateV2.Predict.R289.Demo.demo.doLaw false false = 1/2 ∧
+    FateV2.Predict.R289.Demo.demo.doLaw false true = 1/2 ∧
+    FateV2.Predict.R289.Demo.demo.doLaw true false = 2/5 ∧
+    FateV2.Predict.R289.Demo.demo.doLaw true true = 3/5 :=
+  FateV2.Predict.R289.Demo.demo_doLaw
 
 /-- ⭐⭐⭐⭐⭐ **`adjustLawM ≠ doLaw`（数值反例，`x = 1` 两格）**。
 
@@ -347,14 +347,14 @@ theorem demo_doLaw_check :
 
 **⭐ 这是「`W` 含 `X` 的后代 ⟹ 调整公式算错」的**唯一**机器数值见证。** -/
 theorem demo_adjustLawM_ne_doLaw :
-    Fate.R289.Demo.demo.adjustLawM true false ≠ Fate.R289.Demo.demo.doLaw true false
-    ∧ Fate.R289.Demo.demo.adjustLawM true true ≠ Fate.R289.Demo.demo.doLaw true true :=
-  Fate.R289.Demo.demo_M_naive_wrong
+    FateV2.Predict.R289.Demo.demo.adjustLawM true false ≠ FateV2.Predict.R289.Demo.demo.doLaw true false
+    ∧ FateV2.Predict.R289.Demo.demo.adjustLawM true true ≠ FateV2.Predict.R289.Demo.demo.doLaw true true :=
+  FateV2.Predict.R289.Demo.demo_M_naive_wrong
 
 /-- ⭐⭐⭐ **而 `adjustLaw`（`{Z}`）在 `demo` 上等于 `doLaw`** —— 对照：正确的调整集。** -/
 theorem demo_adjustLaw_eq_doLaw (x y : Bool) :
-    Fate.R289.Demo.demo.adjustLaw x y = Fate.R289.Demo.demo.doLaw x y :=
-  Fate.R289.Demo.demo_Z_correct x y
+    FateV2.Predict.R289.Demo.demo.adjustLaw x y = FateV2.Predict.R289.Demo.demo.doLaw x y :=
+  FateV2.Predict.R289.Demo.demo_Z_correct x y
 
 end FateV2.Predict.Stage2.G2Backdoor
 

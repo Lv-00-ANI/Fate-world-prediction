@@ -113,12 +113,12 @@ theorem tier_monotone {α : Type u} {P Q : α → Prop} (h : ∀ a, P a → Q a)
 
 **真内容已被以下定理承担**（它们**不是**重言）：
 * `tier_trans`（下方）—— 两条逐点蕴含的**传递复合**，结论不平凡；
-* `Fate.TieredScheme.tier_chain` —— 三档构成**全序**（需 `cases` 枚举）；
-* `Fate.TieredScheme.tier_le_trans` —— 档序在**具体定义** `Tier.le` 上传递；
-* `Fate.TieredScheme.discriminates_of_refines` —— 塔的核心单向结论。
+* `TieredScheme.tier_chain` —— 三档构成**全序**（需 `cases` 枚举）；
+* `TieredScheme.tier_le_trans` —— 档序在**具体定义** `Tier.le` 上传递；
+* `TieredScheme.discriminates_of_refines` —— 塔的核心单向结论。
 
 **⟹ 本节关于「档位关系免费」的论断**由 `tier_trans` 与
-`Fate.TieredScheme.tier_le_trans` 支撑，**不再**引用已删除的 `tier_monotone`。 -/
+`TieredScheme.tier_le_trans` 支撑，**不再**引用已删除的 `tier_monotone`。 -/
 
 /-- ⭐⭐ **档位的传递性**（**纯逻辑**）。 -/
 theorem tier_trans {α : Type u} {P Q R : α → Prop}
@@ -147,7 +147,7 @@ theorem stratification_is_free :
 | 部分 | 是否免费 | 本项目的证据 |
 |---|---|---|
 | **档位穷尽性** | ⭐ **免费** | `stratification_exhaustive` |
-| **档位序关系** | ⭐ **免费** | `tier_trans` / `Fate.TieredScheme.tier_le_trans` |
+| **档位序关系** | ⭐ **免费** | `tier_trans` / `TieredScheme.tier_le_trans` |
 | **塌缩 ⟺ 商单点** | ⚠ **有代价** | 范畴层**无**无条件对应物（第 12 轮登记）|
 | **第一同构** | ⚠ **有代价** | 范畴层须 `HasImage`（`first_isomorphism_categorical`）|
 

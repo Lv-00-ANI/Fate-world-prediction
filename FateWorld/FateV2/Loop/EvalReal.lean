@@ -2,12 +2,12 @@
 命运理论 · 真正的 `#eval` 数值预测（端到端 θ' 更新）
 ======================================================
 
-模块：`Fate.EvalReal`（先写在 `Fate/` 验证，再复制到 staging）
+模块：`EvalReal`（先写在 `Fate/` 验证，再复制到 staging）
 
 上游：`Fate.WorldModel`（`WorldModel` 四部分）、`Fate.WorldModelMinimal`
 　　　（任务1 的实例：`minimalWorldModel` / `zWorldModel`）、
-　　　`Fate.EndToEnd`（`observe` / `predFrom` / `e2eResidual` / `endToEnd`）、
-　　　`Fate.ResidualLoop`（`residual` / `writeBack`）。
+　　　`EndToEnd`（`observe` / `predFrom` / `e2eResidual` / `endToEnd`）、
+　　　`ResidualLoop`（`residual` / `writeBack`）。
 
 ---------------------------------------------------------------------------
 本文件做什么（一句话）

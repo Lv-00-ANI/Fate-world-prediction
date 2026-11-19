@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ChainErrorBudgetPredN`
+模块：`ChainErrorBudgetPredN`
 ==================================
 
 ## 任务 G5：把 `ChainErrorBudgetBound` 的 `Measure ℝ` 基础推到 **`n` 步预测误差界**
@@ -65,10 +65,10 @@
 
 * `FateV2.Error.ChainErrorBudgetBound`（`optEstimate`、`estGap`、`learnErr`、`steadyTerm`、
   `chain_est_budget`、`learnErr_closed`、`learnErr_nonneg`、`steadyTerm_nonneg`）
-* `Fate.ThetaConvergence`（`thetaN`、`thetaN_closed`、`linWorld`）
+* `ThetaConvergence`（`thetaN`、`thetaN_closed`、`linWorld`）
 * `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`）
-* `Fate.OptimalEta`（`c`、`err_eq_c_pow`）
-* `Fate.GaussMarkovScalar`（`est`、`est_variance`、`variance_nonneg`）
+* `OptimalEta`（`c`、`err_eq_c_pow`）
+* `FateV2.Error.GaussMarkovScalar`（`est`、`est_variance`、`variance_nonneg`）
 
 ## 纪律
 

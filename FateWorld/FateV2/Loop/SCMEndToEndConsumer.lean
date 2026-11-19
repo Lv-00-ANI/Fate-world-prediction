@@ -2,24 +2,24 @@
 命运理论 · Lean 4 形式化实现
 ========================================================
 
-模块：`Fate.SCMEndToEndConsumer`
-定位：**`Fate.SCMEndToEnd` 的首个真实消费者** —— 把端到端链的三段
+模块：`SCMEndToEndConsumer`
+定位：**`SCMEndToEnd` 的首个真实消费者** —— 把端到端链的三段
 （预测 `predFrom` / 残差 `e2eResidual` / 参数回写 `endToEnd`）与
-`Fate.SCMResidual` 的误差收缩链、`Fate.SCMIdentifiability` 的辨识判据**接起来**。
+`SCMResidual` 的误差收缩链、`SCMIdentifiability` 的辨识判据**接起来**。
 
 ---------------------------------------------------------------------------
 〇、动机（扇入破局）
 ---------------------------------------------------------------------------
-审计 R194 指出：`Fate.SCMEndToEnd` 是全库**唯一扇入仍为 0** 的主干模块
+审计 R194 指出：`SCMEndToEnd` 是全库**唯一扇入仍为 0** 的主干模块
 （`SCMResidual` 已由 `SCMIdentifiability` 拉到 1，`ParamSCM` 已到 2）。
-本文件 `import Fate.SCMEndToEnd`，并给出**定理级**消费（不是只 `import` 凑扇入）。
+本文件 `import SCMEndToEnd`，并给出**定理级**消费（不是只 `import` 凑扇入）。
 
 **⚠ 命名空间遮蔽的处置（本文件的技术前提，如实登记）**：
-`Fate.SCMEndToEnd` / `Fate.SCMResidual` / `Fate.SCMIdentifiability` 各自打开了
-**同名命名空间** `Fate.SCMResidual` / `Fate.SCMIdentifiability` / `Fate.SCMEndToEnd`，
+`SCMEndToEnd` / `SCMResidual` / `SCMIdentifiability` 各自打开了
+**同名命名空间** `SCMResidual` / `SCMIdentifiability` / `SCMEndToEnd`，
 在 `namespace Fate` 内直接写 `ParamSCM X Y`、`EndToEnd.predFrom` 等**会被遮蔽**
-（`ParamSCM` 解析成未知标识符，`EndToEnd` 解析成 `Fate.SCMEndToEnd` 命名空间）。
-⟹ 本文件**一律写全限定名** `Fate.ParamSCM.ParamSCM`、`Fate.EndToEnd.predFrom`，
+（`ParamSCM` 解析成未知标识符，`EndToEnd` 解析成 `SCMEndToEnd` 命名空间）。
+⟹ 本文件**一律写全限定名** `ParamSCM.ParamSCM`、`EndToEnd.predFrom`，
 不依赖任何 `open`。这也使文件**对上游命名空间变动免疫**。
 
 ---------------------------------------------------------------------------
@@ -88,7 +88,7 @@
    **不声称**在裸 `[AddCommGroup Y]` 上成立。
 2. **§3 必须在 `ParamSCM` 上陈述**：`SCMEndToEnd` 的 `predFrom` 在
    `scmWorldModel M`（`Θ = PUnit`）上**恒**不区分 `θ`。故「端到端链何时有信息量」
-   只能在 `paramScmWorldModel M`（`Θ = M.Th`，来自 `Fate.ParamSCM`）上问。
+   只能在 `paramScmWorldModel M`（`Θ = M.Th`，来自 `ParamSCM`）上问。
    本文件据实这样做，**不把 `Θ = PUnit` 的空结论冒充成信息量结论**。
 3. **§4 的迭代是 `SCMResidual.scmIter`（载体 `Y`），不是 `EndToEnd.endToEndIter`**
    （载体 `Θ`，需 `[Ring Θ.Carrier]`，在 `PUnit` 上结构性退化）。
@@ -137,8 +137,8 @@ noncomputable section
 $$\mathrm{predFrom}\;(\mathrm{paramScmWorldModel}\,M)\;\theta\;u\;\varepsilon\;a\;x
   \;=\;(\mathrm{sg}\,\theta\,u).2\;a .$$
 
-**⚠ 与 `Fate.SCMEndToEnd.predFrom_scmWorldModel` 的差别**：那里 `θ : PUnit` 只能被丢，
-这里 `θ : M.Th` **真的进入右侧**（`Fate.ParamSCM.paramScmWorldStep` 读 `θ`）。
+**⚠ 与 `SCMEndToEnd.predFrom_scmWorldModel` 的差别**：那里 `θ : PUnit` 只能被丢，
+这里 `θ : M.Th` **真的进入右侧**（`ParamSCM.paramScmWorldStep` 读 `θ`）。
 ⟹ 本定理是 §3「端到端链何时有信息量」的**入口**。
 
 **⚠ 反同义反复**：前件只有 `[Nonempty Y]`（`paramScmWorldModel` 的构造前提）；
@@ -168,8 +168,8 @@ theorem e2eResidual_paramScm {X Y : Type} (M : FateV2.Predict.ParamSCM.ParamSCM 
 
 /-- ⭐⭐ **(a) 两条**独立上游公式**逐字相等**。
 
-`Fate.SCMEndToEnd.e2eResidual_scmWorldModel`（来自 `SCMEndToEnd` §2）与
-`Fate.SCMResidual.scmE2eResidual_apply`（来自 `SCMResidual` §4.1）是**两个模块
+`SCMEndToEnd.e2eResidual_scmWorldModel`（来自 `SCMEndToEnd` §2）与
+`SCMResidual.scmE2eResidual_apply`（来自 `SCMResidual` §4.1）是**两个模块
 各自独立**把 `e2eResidual` 在同一个 `scmWorldModel M` 上展开得到的公式。
 本定理机检它们是**同一个函数值**。
 
@@ -220,7 +220,7 @@ $$\bigl\|\,\theta_1 - x'\,\bigr\| \;<\; \bigl\|\,\theta_0 - x'\,\bigr\| ,
 左端**就是**端到端残差在取 `x_obs = x'` 之外的常态读数
 （`e2eResidual_norm_eq_scmPredErr` 给出两者同一套语言）。
 
-**证明**：`Fate.SCMResidual.scmPredErr_contract`（**直接复用**，不重证）。
+**证明**：`SCMResidual.scmPredErr_contract`（**直接复用**，不重证）。
 
 **⚠ 反同义反复**：前件是**窗口**与**非退化**（`θ₀ ≠ x'`），结论是**严格不等式**；
 证明调用的 `scmPredErr_contract` 本身由 `BoundWriteBack.err_wbW`（收缩率公式）
@@ -247,7 +247,7 @@ $$\exists\,\theta_1\,\theta_2\;u\;a\;\varepsilon\;x,\quad
   \;\neq\;
   \mathrm{predFrom}\;(\mathrm{paramScmWorldModel}\,M)\;\theta_2\;u\;\varepsilon\;a\;x .$$
 
-**⭐ 这是把辨识判据「搬运」到端到端链**：`Fate.SCMIdentifiability.Identifiable`
+**⭐ 这是把辨识判据「搬运」到端到端链**：`SCMIdentifiability.Identifiable`
 正是**同形**的存在式（它按 `Prediction := predFrom` 定义），
 本定理给出**不经由 `Identifiable` 包装**的 `predFrom` 直陈版本，
 供不熟悉 `SCMIdentifiability` 命名的下游直接引用。
@@ -274,7 +274,7 @@ $$\bigl(\exists\;\text{端到端预测分歧}\bigr)
 
 **读法**：端到端链**何时有信息量** —— 恰在参数空间**不是单点**时。
 左端是 `EndToEnd.predFrom`（链的环节 ②）的**存在式分歧**，右端是**纯基数**条件。
-**⟹ 这是 `Fate.SCMIdentifiability.identifiable_iff_not_subsingleton_of_reading`
+**⟹ 这是 `SCMIdentifiability.identifiable_iff_not_subsingleton_of_reading`
 （辨识判据）在端到端链上的**逐字落点**。
 
 **⚠ 反同义反复**：
@@ -313,8 +313,8 @@ $$\bigl\|\,\theta_n - x'\,\bigr\| \;=\; |1-\eta|^{\,n}\cdot\bigl\|\,\theta_0 - x
 **读法**：端到端迭代 `n` 步后，预测误差是初误差的 `|1-η|ⁿ` 倍 ——
 这是「界」的**精确形式**（不是估计，是等式）。
 
-**证明**：`Fate.SCMResidual.scmIter_err`（`n` 步误差公式，归纳自 `err_wbW`）
-+ `Fate.SCMResidual.scmPredErr`（`A = id` 口径的误差 = 差的范数）。
+**证明**：`SCMResidual.scmIter_err`（`n` 步误差公式，归纳自 `err_wbW`）
++ `SCMResidual.scmPredErr`（`A = id` 口径的误差 = 差的范数）。
 
 **⚠ 反同义反复**：前件是**窗口** `|1-η| < 1`（收缩率的一个实数条件）与初值 `θ₀`；
 结论是 `n` 步后的**等式**。由 `scmIter_err` 的**归纳**才能从单步走到 `n` 步 ——
@@ -414,8 +414,8 @@ theorem endToEndIter_const {X Y G : Type} (M : PearlHierarchy.SCM X Y)
 **本文件试过并失败的连接（如实登记）**：
 
 §4 的 `scmIter` 活在 `Y`（`SCMResidual` 的赋范回写层，参数载体 = 状态载体），
-而 `Fate.SCMEndToEnd.endToEndIter` 活在 `Θ`（`EndToEnd` 的代数回写层，
-要求 `[Ring Θ.Carrier]`）。在 `Fate.SCMWorldModel` 的设计下 `Θ := PUnit`
+而 `SCMEndToEnd.endToEndIter` 活在 `Θ`（`EndToEnd` 的代数回写层，
+要求 `[Ring Θ.Carrier]`）。在 `SCMWorldModel` 的设计下 `Θ := PUnit`
 （`SCMResidual.scmThetaCarrier_eq`，`rfl`），而 `PUnit` 是**单点集**，
 
 $$\mathrm{endToEndIter}\;(\mathrm{scmWorldModel}\,M)\;h\;\eta\;\varphi\;y\;u\;\varepsilon\;a\;x\;n\;\theta
@@ -428,7 +428,7 @@ $$\mathrm{endToEndIter}\;(\mathrm{scmWorldModel}\,M)\;h\;\eta\;\varphi\;y\;u\;\v
 **⚠ 缺什么（精确清单，与证明体对应）**：
 1. **缺一个 `Θ` 与 `Y` 同构的框架**：`SCMEndToEnd` 的 `Θ := PUnit` 使更新律
    `θ + η * φ r` 退化（`SCMResidual.scmEndToEnd_eq_star`）；
-   要做到 (d)，需要 `Θ := Y` 的 `WorldModel`（`Fate.SCMResidual` §6 的设定，
+   要做到 (d)，需要 `Θ := Y` 的 `WorldModel`（`SCMResidual` §6 的设定，
    即 `BoundWriteBack` 的 `E = F = Y`），**尚无上游模块提供**。
 2. **缺 `φ` 的类型升级**：`EndToEnd` 的 `φ : Y →+ Θ` 只知加法，
    `BoundWriteBack` 的 `ψ : Y →ₗ[ℝ] Y` 要求 ℝ-线性；

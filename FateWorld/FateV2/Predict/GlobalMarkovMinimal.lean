@@ -21,7 +21,7 @@ import Mathlib.Tactic.NormNum
 /-! ### ⭐ 接线登记（JJ3）：`import FateV2.Predict.PearlGlobalMarkov`
 
 **本行 import 由接线任务 JJ3 加入**，使本文件可访问
-`Fate.PearlGlobalMarkov` 的 23 条图论定理（其中 18 条非平凡：
+`PearlGlobalMarkov` 的 23 条图论定理（其中 18 条非平凡：
 `dsep_set_iff_pairwise`、`dsep_set_iff_all_walks_blocked`、
 `dopen'_append_cons_iff`、`dsepStd_of_forall_local_block`、
 `dsep_set_reduced_to_paths` 等）。

@@ -52,7 +52,7 @@ import FateWorld.FateV2.Predict.CausalDescendant
   * `mass` / `unpin` / `mass_univ` / `mass_insert_sum` —— `FateV2.Predict.DAGFactorization`
   * `pa` / `mem_pa` / `pa_lt_topo` / `topoOrder` / `topoOrder_lt` —— `FateV2.Predict.DAGFactorization` + `CausDAG`
   * `nonDescendants` / `descendants` / `isAncestor` —— `CausDAG`
-  * `CondMul` / `CondMul2` —— `Fate.CondIndep2`（本文件不下沉到 `CondMul`，
+  * `CondMul` / `CondMul2` —— `CondIndep2`（本文件不下沉到 `CondMul`，
     只用 `mass` 口径的乘性条件独立，最后 §4 说明如何接 `CondMul`）
   =========================================================================== -/
 
@@ -152,7 +152,7 @@ $$p(x) = \prod_v \varphi_v(x),\qquad
 * 读集由 `pa G v` 给出（`pa` 是 `FateV2.Predict.DAGFactorization.pa`，从 `edge` 算）；
 * 「只读」是**等式约束** `hφ`，不是类型编码（故 `dSep` 可对 `G` 说话）。
 
-**⚠ 与 `Fate.ChainMarkovExplicitAntecedent.Factorizes` 的关系**：
+**⚠ 与 `FateV2.Predict.ChainMarkovExplicitAntecedent.Factorizes` 的关系**：
 前者固定在 `Fin 3`/`Obs` 上；本定义对任意 `V, α` 一般化，且用同一个 `pa`。 -/
 def Factorizes (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : Prop :=
   ∃ (φ : V → (V → α) → ℝ),
@@ -306,7 +306,7 @@ theorem factorizes_implies_LMG_gap_unfold (p : (V → α) → ℝ) (G : FateV2.M
 /-! **⚠ 缺口登记（文字版，无 `Prop` 占位）**：`LMG p G ⟹ 全局 Markov`。
 
 **「全局 Markov」在 `dSep` 口径下的字面形式**本文件**不**落地（`dSep` 签名
-在 `Fate.CausalDescendant`，需在其上下文中定义 `GM`）。这里只登记**存在性**
+在 `CausalDescendant`，需在其上下文中定义 `GM`）。这里只登记**存在性**
 缺口：路线乙的第二步（局部→全局）**尚未完成**，需要 §6 步骤 2–5 的图论引理。
 
 **【第 6 条子代理审计 P0-3：删除原 `:- True` 占位】**

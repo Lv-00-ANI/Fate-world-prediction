@@ -118,7 +118,7 @@ open FateV2.Modeling
 open FateV2.Modeling.Graph
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -486,7 +486,7 @@ theorem dSepGivesReadClosed_eq (G : FateV2.Modeling.Graph.DAG V) :
 «`Disjoint X Y ∧ Disjoint X Z ∧ Disjoint Y Z`» 与 `ReadClosedBlocks` **无关**
 （前者只谈基数关系，后者谈 `parents`）。这个反例把两者**在同一图上**分开。 -/
 -- 定义已收敛到 `Fate/Concrete/ThreeNode.lean`（原 4 份逐字相同，见 _audit/BRIDGE-1）
-def gex : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.Concrete.gex
+def gex : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Modeling.Concrete.gex
 
 /-- ⭐ **T5.a**：`gex` 上 `dSep {1} {2} ∅` **成立**（真图论事实，`decide` 判定）。 -/
 theorem gex_dsep : gex.dSep {(1 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3)) := by

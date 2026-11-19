@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化
 ================================
 
-模块：Fate.EndToEndSelectorNotConstant
+模块：EndToEndSelectorNotConstant
 缺口 3 重写 · 任务 A：**非常函数 selector 存在性**
 
 ---------------------------------------------------------------------------

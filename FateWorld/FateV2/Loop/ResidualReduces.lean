@@ -3,7 +3,7 @@ import FateWorld.FateV2.Modeling.Basic
 import Mathlib.Analysis.InnerProductSpace.Adjoint
 
 /-! ===========================================================================
-  `Fate.ResidualReduces` —— **残差回写确实减小误差**（线2 · 任务A）
+  `ResidualReduces` —— **残差回写确实减小误差**（线2 · 任务A）
 
   ## 本文件要回答的问题
 

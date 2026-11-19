@@ -15,7 +15,7 @@ import Mathlib.MeasureTheory.Measure.MeasureSpace
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineAdaptiveEtaStochastic` —— **从确定性有界噪声到概率意义收敛**
+  `PipelineAdaptiveEtaStochastic` —— **从确定性有界噪声到概率意义收敛**
 
   ## 0  本文件补什么
 
@@ -78,7 +78,7 @@ import Mathlib.MeasureTheory.Measure.MeasureSpace
   **2.5 未证明的条目**：无。**零** `sorry` / `admit` / `axiom` /
   `native_decide` / `maxHeartbeats` / `?_`。
 
-  **2.6 不修改任何已有模块。** 只 `import Fate.PipelineAdaptiveEtaRobust`。
+  **2.6 不修改任何已有模块。** 只 `import PipelineAdaptiveEtaRobust`。
 -/
 
 namespace FateV2.Loop

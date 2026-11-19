@@ -3,8 +3,8 @@
 =====================================================================
 
 模块：FateV2.Model.TrajGenMeasurableFull
-上游：`Fate.TrajGenMeasurable`（`trajGen_measurable_at`、`trajGen_measurable`）、
-　　　`Fate.TrajGenDeterministic`（`trajGen`、`trajGen_zero`、`trajGen_succ`）、
+上游：`FateV2.Model.TrajGenMeasurable`（`trajGen_measurable_at`、`trajGen_measurable`）、
+　　　`FateV2.Model.TrajGenDeterministic`（`trajGen`、`trajGen_zero`、`trajGen_succ`）、
 　　　`Fate.Frame`（`Frame`、`Step`）。
 
 ---------------------------------------------------------------------------
@@ -110,7 +110,7 @@ open MeasureTheory
 /-- **完备定义域**：单步输入 `u_n`、噪声 `ε_n`、动作 `a_n`，
 连同参数 `θ` 与初值 `x₀`，共 5 个因子。
 
-（与 `Fate.TrajGenMeasurable.InputSeq` 不同：那里 `u`、`ε`、`a` 是**序列**，
+（与 `FateV2.Model.TrajGenMeasurable.InputSeq` 不同：那里 `u`、`ε`、`a` 是**序列**，
 `θ`、`x₀` 固定；这里 5 个都是**单步取值**，全部可变。） -/
 abbrev FullInput (F : Frame) : Type _ :=
   F.U.Carrier × F.Ν.Carrier × F.Act.Carrier × F.Θ.Carrier × F.X.Carrier
@@ -139,7 +139,7 @@ variable {f : Step F}
 那里 `θ`、`x₀` 是固定常数；**这里它们也是 `w` 的分量**。
 
 **关于 `u` / `ε` / `a` 的形态**：`trajGen` 的这三个参数在
-`Fate.TrajGenDeterministic` 里是**序列**（`ℕ → ·`）。本文件取
+`FateV2.Model.TrajGenDeterministic` 里是**序列**（`ℕ → ·`）。本文件取
 `w` 的单步取值提升为**常序列**（`fun _ => w.1` 等），故结论是
 「第 `n` 步状态」关于 `(u_n, ε_n, a_n, θ, x₀)` 五个**单步取值**可测。
 （序列 + `θ` + `x₀` 全变量的组合本文件未做，见文件头 (c.4)。）

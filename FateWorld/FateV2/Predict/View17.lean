@@ -12,9 +12,9 @@
   | # | 已证伪 / 已裁定的事实 | 本文件的规避方式 |
   |---|---|---|
   | C1 | `mass S (mass T p) ≠ mass (S∪T) p`（`Fate.DAGFactorizationGeneral.tower_property_false`）| **全程不用嵌套 `mass`**；只用 `margZ/margXZ/margYZ`（`p` 自身的单层求和）|
-  | C2 | 连 `S ⊆ T` 方向的幂等也假（`Fate.TowerAudit.mass_idempotent_fails`）| 同上 —— **不出现 `mass S (⋯)`** |
+  | C2 | 连 `S ⊆ T` 方向的幂等也假（`FateV2.Predict.TowerAudit.mass_idempotent_fails`）| 同上 —— **不出现 `mass S (⋯)`** |
   | C3 | 「图写进类型」= 类型系统替图论干活（M8 裁定，见 `PEARL_127_PROOF_ROADMAP` §5）| 图**不写在 `p` 的类型里**；图是**显式形参**，且在下文的屏障定理中**真正进入证明体** |
-  | C4 | `_G : DAG V` 哑变量化（`Fate.DAGFactorization` 的 `local_markov_factorization`）| 本文件的每条「图 ⟹ 概率」定理**都消费** `dSep` 的 `Disjoint` 子句；去掉它证明失败（§4 给出反例）|
+  | C4 | `_G : DAG V` 哑变量化（`DAGFactorization` 的 `local_markov_factorization`）| 本文件的每条「图 ⟹ 概率」定理**都消费** `dSep` 的 `Disjoint` 子句；去掉它证明失败（§4 给出反例）|
   | C5 | 前 16 条：`α β γ` 与顶点 `V` 无类型联系 ⟹ `dSep` 死掉 | **索引对齐** `α = β = γ = V`（§4 起）|
 
   ## 2  第 17 种策略的数学构造
@@ -111,7 +111,7 @@ section ProbSide
 
 variable {α β γ : Type*}
 
-/-- **三元联合律**（沿用全库唯一口径 `Fate.FinCondIndep.FinJoint`）。 -/
+/-- **三元联合律**（沿用全库唯一口径 `FinCondIndep.FinJoint`）。 -/
 abbrev Joint3 (α β γ : Type*) := FateV2.Predict.FinCondIndep.FinJoint α β γ
 
 /-- ⭐ **`KernelSplit`**：`p` 沿 `Z`-纤维的**三层乘积**分解

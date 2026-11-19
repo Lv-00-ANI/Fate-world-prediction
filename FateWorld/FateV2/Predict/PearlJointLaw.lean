@@ -6,7 +6,7 @@
 
 ## 0. 问题
 
-`Fate.PearlHierarchy` 给了一个**结构性有限 SCM** `M = ⟨U, pU, sg⟩`，
+`PearlHierarchy` 给了一个**结构性有限 SCM** `M = ⟨U, pU, sg⟩`，
 其中 `sg : U → X × (X → Y)`。三层读出（`L1_obs` / `L2_do` / `L3_cf`）
 全都是**某个映射**的 `push`（推前）：
 

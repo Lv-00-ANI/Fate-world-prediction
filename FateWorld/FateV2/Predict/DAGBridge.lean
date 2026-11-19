@@ -20,7 +20,7 @@ import FateWorld.FateV2.Predict.CausalDirection
 
   项目里**并存两套 DAG 结构**：
 
-  | | `Causalean.Graph.DAG V`（根目录 `CausDAG.lean`） | `Fate.CausalDirection.CausalGraph V`（`Fate/CausalDirection.lean`） |
+  | | `Causalean.Graph.DAG V`（根目录 `CausDAG.lean`） | `CausalDirection.CausalGraph V`（`Fate/CausalDirection.lean`） |
   |---|---|---|
   | 邻接 | `edge : V → V → Prop` | `Adj : V → V → Prop` |
   | 可判定性 | **字段** `decEdge : DecidableRel edge` | ❌ 无（靠下游局部 `classical`）|
@@ -367,7 +367,7 @@ theorem not_transGen_self {V : Type u} [Fintype V] (G : DAG V) (v : V) :
 **⚠⚠ 公理登记（**必须**登记的一处瑕疵，见 §69.0）**：
 上文凡以 `(G : DAG V)` 为参数且有结论的条目，`#print axioms` 显示
 除 `propext / Classical.choice / Quot.sound` 外**多出一条**
-`Fate.DAGBridge.fintypeFallback`。
+`DAGBridge.fintypeFallback`。
 **原因**：`DAG V` **是 `[DecidableEq V] [Fintype V]` 处的**索引类型族**，
 陈述一条以 `G : DAG V` 为前件的定理时，Lean 会先把 `G` 的**实例参数**填成
 本文件的 `local instance`，于是证明项**穿过**那条 `private axiom`。
@@ -380,7 +380,7 @@ theorem not_transGen_self {V : Type u} [Fintype V] (G : DAG V) (v : V) :
 
 **未做 —— 且**必须**先做完上一行才能做的**：
 * **`DWalk` / `DStep` / `openAt` / `DSeparated` 的搬运**。
-  **原因**：`Fate.CausalPath.DStep G` 的**构造子携带 `G.Adj` 的证明**
+  **原因**：`CausalPath.DStep G` 的**构造子携带 `G.Adj` 的证明**
   （`fwd : G.Adj a b → DStep G a b`），
   **故路径层是**索引于 `CausalGraph` 的类型族**，不是关于它的命题 ——
   搬运不是 `Iff` 变换，而是要**要么**把 `CausalPath` 重定义在 `DAG` 上，

@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.SCMEndToEndGeneral`
+模块：`SCMEndToEndGeneral`
 定位：**任务 G6 的核查与结论登记**——`scm_endtoend_general`（去 `[AddCommGroup Y]`）
 
 ===========================================================================
@@ -181,9 +181,9 @@ theorem scmEndToEnd_general_apply_eq_star {X Y : Type} (M : SCM X Y) [Nonempty Y
   rw [scmEndToEnd_general_apply]
 
 /-! ===========================================================================
-  §3  ⭐ **与 `Fate.SCMEndToEnd` 的等式对接**（任务 H，第 716 轮）
+  §3  ⭐ **与 `SCMEndToEnd` 的等式对接**（任务 H，第 716 轮）
 
-  本文件此前只 `import` 了 `Fate.SCMEndToEnd` 却**未真正消费**它的任何定理
+  本文件此前只 `import` 了 `SCMEndToEnd` 却**未真正消费**它的任何定理
   （§1 的 `scmEndToEnd_general_predFrom` 是**独立重证**，不是调用）。
   本节把 `SCMEndToEnd.predFrom_scmWorldModel_indep_start`
   （该文件 §1，前件仅 `[Nonempty Y]`）落到本文件语境，得到两条**新结论**：

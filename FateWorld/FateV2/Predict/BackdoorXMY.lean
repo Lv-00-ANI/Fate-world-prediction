@@ -22,7 +22,7 @@ import Mathlib.Tactic.NormNum
 /-! ===========================================================================
   `Fate/BackdoorXMY` —— ⭐⭐⭐⭐⭐ **`USeparated ⟹ adjustLaw(W) 正确`**
 
-  **第 297 轮**；载体 `Fate.SetupXMY`（第 296 轮）
+  **第 297 轮**；载体 `FateV2.Predict.SetupXMY`（第 296 轮）
 
   ## 一、题面
 
@@ -102,7 +102,7 @@ namespace FateV2.Predict.BackdoorXMY
 open FateV2.Modeling
 
 open Finset
-open Fate.SetupXMY
+open FateV2.Predict.SetupXMY
 open FateV2.Modeling.MoralGraphMarkov (USeparated)
 
 variable {S : Setup}

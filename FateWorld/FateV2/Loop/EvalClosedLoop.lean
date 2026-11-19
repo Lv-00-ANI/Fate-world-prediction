@@ -32,10 +32,10 @@
 上游（只 `import`，一字未改）
 ---------------------------------------------------------------------------
 
-* `Fate.WiringConvergence`：`stepMap` / `iterMap`（`BoundWriteBack.wbW` 的 `n` 步迭代）、
+* `WiringConvergence`：`stepMap` / `iterMap`（`BoundWriteBack.wbW` 的 `n` 步迭代）、
   `err_iterMap`（`err_n = |1-η|^n · err_0`）、`err_iterMap_le`、`err_iterMap_lt`、
   `closedLoop_rate`、`closedLoop_tendsto_zero`、`closedLoop_converges`。
-* `Fate.BoundWriteBack`：`wbW`、`errA`、`Corrects`、`errA_pos_iff`。
+* `BoundWriteBack`：`wbW`、`errA`、`Corrects`、`errA_pos_iff`。
 
 ---------------------------------------------------------------------------
 ⚠ 诚实边界（必读，不得含糊）
@@ -386,7 +386,7 @@ theorem errR_halves (n : ℕ) : errR (iterR (n + 1) theta0R) = (1 / 2) * errR (i
 /-!
 | # | 未做项 | 原因 |
 |---|---|---|
-| 1 | 在 `Fate.EvalReal.eWorldModel` 上把 `EndToEnd.endToEnd` **逐值**接成本实例 | 承 `WiringConvergence §8.3` 未做项 1：`EndToEnd` 的残差（观测 − 世界模型预测，`ℤ` 载体）与本文件的线性残差（`x' - A θ`，`ℝ` 载体）**语义与载体都不同**；逐值等同需要新的 `WorldModel` 实例，超出「最小可运行示例」范围 |
+| 1 | 在 `EvalReal.eWorldModel` 上把 `EndToEnd.endToEnd` **逐值**接成本实例 | 承 `WiringConvergence §8.3` 未做项 1：`EndToEnd` 的残差（观测 − 世界模型预测，`ℤ` 载体）与本文件的线性残差（`x' - A θ`，`ℝ` 载体）**语义与载体都不同**；逐值等同需要新的 `WorldModel` 实例，超出「最小可运行示例」范围 |
 | 2 | 「有限步归零」 | **数学上是假的**（§6 `errR_pos` 对一切 `n` 证 `err_n > 0`）；`η = 1/2` 只有几何收敛。`η = 1` 的一步归零见 `WiringConvergence.optimal_one_step` |
 | 3 | `#eval` 直接打印 `ℝ` 值且输出无 `sorry` | **Lean 层面不可能**：`Real.ofCauchy` 的打印必带 `sorry` 占位（H2）。故本文件用 `ℚ` 路 `#eval` + §4 的桥定理把数值搬到 `ℝ`，**不**假装 `ℝ` 可 `#eval` |
 | 4 | `chooseEstimator` 的可计算性 | 承 `Fate/EvalReal.lean` H1；本文件只把 `err_0 = 10` 当**已给定**的初始数值接入（H4）|

@@ -231,11 +231,11 @@ theorem blockCI_gap_congr {p q : (V → α) → ℝ} {G : FateV2.Modeling.Graph.
 
 下面三条真正**调用**别的 Block 模块的定理（不是重述），再叠上 §4.2 的传输律：
 
-* `R3`（`Fate/BlockCIUltimate.lean`，命名空间 `Fate.C5i`）：
+* `R3`（`Fate/BlockCIUltimate.lean`，命名空间 `FateV2.Predict.C5i`）：
   Pearl 因子化 + d-分离 ⟹ `BlockCI_Gap`；
-* `R1`（`Fate/BlockCIFactorization.lean`，命名空间 `Fate.C5h`）：
+* `R1`（`Fate/BlockCIFactorization.lean`，命名空间 `FateV2.Predict.C5h`）：
   显式因子分解 + `View19.Split` ⟹ `BlockCI_Gap`；
-* `R2`（`Fate/BlockCIOfBlockSplitFinal.lean`，命名空间 `Fate.C5f`）：
+* `R2`（`Fate/BlockCIOfBlockSplitFinal.lean`，命名空间 `FateV2.Predict.C5f`）：
   因子分解 + `Split ... ∅` ⟹ `BlockCI_Gap ... ∅`。
 -/
 
@@ -244,7 +244,7 @@ theorem blockCI_gap_congr {p q : (V → α) → ℝ} {G : FateV2.Modeling.Graph.
 Pearl 因子化 + d-分离 + `Z ⊆ X` 给出 `BlockCI_Gap`，再沿 `p ↦ c · p` 传输。
 
 **组合内容**：`blockCI_of_factorizes_dSep`（`Fate/BlockCIUltimate.lean` 的
-`Fate.C5i.blockCI_of_factorizes_dSep`）产出 `BlockCI_Gap p G X Y Z`，
+`FateV2.Predict.C5i.blockCI_of_factorizes_dSep`）产出 `BlockCI_Gap p G X Y Z`，
 然后 `blockCI_gap_smul`（§4.2）把它推到任意常数倍载体上。
 `blockCI_of_factorizes_dSep` 本身只能给出归一载体上的 gap；
 本定理说明**非归一载体**（`c ≠ 1`）同样成立，无需重走 `CondIndep` 全链。 -/
@@ -254,7 +254,7 @@ theorem blockCI_of_dSep_scaled [Nonempty α]
     (hdsep : G.dSep X Y Z) (hcover : X ∪ Y ∪ Z = Finset.univ) (hZX : Z ⊆ X)
     (c : ℝ) :
     BlockCI_Gap (fun w => c * p w) G X Y Z :=
-  blockCI_gap_smul c (Fate.C5i.blockCI_of_factorizes_dSep p G hfac hdsep hcover hZX)
+  blockCI_gap_smul c (FateV2.Predict.C5i.blockCI_of_factorizes_dSep p G hfac hdsep hcover hZX)
 
 /-- ⭐⭐ **`blockCI_of_factorization_neg`**（`R1` × §4.2）：
 
@@ -262,7 +262,7 @@ theorem blockCI_of_dSep_scaled [Nonempty α]
 再沿 `p ↦ -p` 传输。
 
 **组合内容**：`blockCI_of_factorization`（`Fate/BlockCIFactorization.lean` 的
-`Fate.C5h.blockCI_of_factorization`）产出 gap，再由 `blockCI_gap_neg`（§4.2）
+`FateV2.Predict.C5h.blockCI_of_factorization`）产出 gap，再由 `blockCI_gap_neg`（§4.2）
 给出负号版本。 -/
 theorem blockCI_of_factorization_neg [Nonempty α] {ψ : V → (V → α) → ℝ} {p : (V → α) → ℝ}
     {R : V → Finset V} {X Y Z : Finset V}
@@ -273,13 +273,13 @@ theorem blockCI_of_factorization_neg [Nonempty α] {ψ : V → (V → α) → �
     (hcover : X ∪ Y ∪ Z = Finset.univ) (hZX : Z ⊆ X)
     (G : FateV2.Modeling.Graph.DAG V) :
     BlockCI_Gap (fun w => -p w) G X Y Z :=
-  blockCI_gap_neg (Fate.C5h.blockCI_of_factorization hfac hread hsplit
+  blockCI_gap_neg (FateV2.Predict.C5h.blockCI_of_factorization hfac hread hsplit
     hXY hXZ hYZ hcover hZX G)
 
 /-- ⭐⭐ **`blockCI_empty_of_split_scaled`**（`R2` × §4.2）：
 
 `C = ∅` 路线（`Fate/BlockCIOfBlockSplitFinal.lean` 的
-`Fate.C5f.blockCI_of_block_split`）给出 `BlockCI_Gap p G A B ∅`，
+`FateV2.Predict.C5f.blockCI_of_block_split`）给出 `BlockCI_Gap p G A B ∅`，
 再沿 `p ↦ c · p` 传输。
 
 **组合内容**：`C5f` 的定理只覆盖 `C = ∅`；本定理把它推到任意常数倍载体，
@@ -292,6 +292,6 @@ theorem blockCI_empty_of_split_scaled [Nonempty α] {ψ : V → (V → α) → �
     (hAB : A ∪ B = Finset.univ) (hdisj : Disjoint A B)
     (G : FateV2.Modeling.Graph.DAG V) (c : ℝ) :
     BlockCI_Gap (fun w => c * p w) G A B ∅ :=
-  blockCI_gap_smul c (Fate.C5f.blockCI_of_block_split hfac hread hsplit hAB hdisj G)
+  blockCI_gap_smul c (FateV2.Predict.C5f.blockCI_of_block_split hfac hread hsplit hAB hdisj G)
 
 end FateV2.Predict.BlockCIDerivation

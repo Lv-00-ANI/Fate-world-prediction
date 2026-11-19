@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.T1VerifyStrong`
+模块：`T1VerifyStrong`
 任务：**【EE2】强化 T1Verify** —— 把 `Fate/T1Verify.lean` 的
 `fixed_iff_of_injective` 的**前提 `hφ : Function.Injective φ`**
 替换成**更强的形式** `h : Corrects A φ`。
@@ -62,7 +62,7 @@
   `A ∘ φ`，结论谈 `φ (x' - A θ)` 与 `A θ = x'`，两者不同）。
 * 零 `sorry` / `admit` / `axiom`。
 
-依赖：`Fate.T1Verify`（原定理）、`Fate.BoundWriteBack`（`Corrects`、`wbW`）。
+依赖：`T1Verify`（原定理）、`BoundWriteBack`（`Corrects`、`wbW`）。
 -/
 
 import FateWorld.FateV2.Loop.T1Verify
@@ -86,7 +86,7 @@ namespace T1VerifyStrong
 -/
 
 /-! ===========================================================================
-    §1  载体（与 `Fate.BoundWriteBack` 的 `Corrects` 签名一致）
+    §1  载体（与 `BoundWriteBack` 的 `Corrects` 签名一致）
     =========================================================================== -/
 
 section Basic
@@ -149,7 +149,7 @@ theorem fixed_iff_of_corrects' (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)
 
 /-- ⭐⭐⭐ **`wbW` 不动点 ⟺ `A θ = x'`（`Corrects` 下）。**
 
-`wbW A φ η x' θ = θ + η • φ (x' - A θ)`（见 `Fate.BoundWriteBack`），
+`wbW A φ η x' θ = θ + η • φ (x' - A θ)`（见 `BoundWriteBack`），
 当 `η ≠ 0` 时它不动 **当且仅当** `φ (x' - A θ) = 0`，
 再由 `fixed_iff_of_corrects` 换成 `A θ = x'`。 -/
 theorem wbW_fixed_iff_of_corrects (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E)

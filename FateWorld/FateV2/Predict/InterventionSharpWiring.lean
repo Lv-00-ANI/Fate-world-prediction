@@ -2,7 +2,7 @@
 命运理论 · 干预选择的「次优差距下界」在具体实例上的接入
 ===============================================================================
 
-模块：Fate.InterventionSharpWiring
+模块：InterventionSharpWiring
 上游：`Fate/InterventionSelection.lean`（`Plan`、`Good`）、
 　　　`Fate/InterventionSharp.lean`（`loss`、`suboptimality_gap_lower_bound`）。
 
@@ -134,7 +134,7 @@ theorem w_ne : (WSet.erase p2).Nonempty := by
 
 存在 `δ > 0`，使候选集内任何非最优计划 `q ≠ p2` 都比 `p2` 至少差 `δ`。
 
-证明直接调用 `Fate.InterventionSharp.suboptimality_gap_lower_bound`。
+证明直接调用 `InterventionSharp.suboptimality_gap_lower_bound`。
 这里 `δ` **只出现在结论**；前件 `w_opt` / `w_uniq` / `w_ne` 中**没有** `δ`。 -/
 theorem w_suboptimality_gap :
     ∃ δ : ℝ, 0 < δ ∧
@@ -166,7 +166,7 @@ theorem w_suboptimality_gap_one :
 
 在 `WSet` 上，「存在正下界」与「`p2` 严格优于所有其它候选」等价。
 
-证明直接调用 `Fate.InterventionSharp.gap_iff_strictly_better`。 -/
+证明直接调用 `InterventionSharp.gap_iff_strictly_better`。 -/
 theorem w_gap_iff :
     (∃ δ : ℝ, 0 < δ ∧
       ∀ q ∈ WSet, q ≠ p2 →

@@ -45,7 +45,7 @@ import Mathlib.Tactic.Ring
 
   ### 0.2  `CondRel` 上的交公理是**同义反复**（纪律第 7 条命中的情形）
 
-  `Fate.Semigraphoid.CondRel p A B C`（`CondIndepSemigraphoid.lean:401`）
+  `Semigraphoid.CondRel p A B C`（`CondIndepSemigraphoid.lean:401`）
   的 `cond` 字段是 `GenC3.CondIndepN (proj p (A ∪ B ∪ C))` ——
   它只说「**并集上全体坐标互相**条件独立」，**丢掉**了「$A$ 这块 vs $B$ 这块」
   的分工。于是在该定义下交公理
@@ -59,7 +59,7 @@ import Mathlib.Tactic.Ring
 
   ### 0.3  `BlockRel`（聚合集合质量层）**不足以**表达交公理
 
-  `Fate.Contraction.BlockRel`（`CondIndepContraction.lean:174`）是
+  `Contraction.BlockRel`（`CondIndepContraction.lean:174`）是
 
       BlockRel mass A B C  :=  ∀ z,
         mass (A∪B∪C) z * mass C z = mass (A∪C) z * mass (B∪C) z

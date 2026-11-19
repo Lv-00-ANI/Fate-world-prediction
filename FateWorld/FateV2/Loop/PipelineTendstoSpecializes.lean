@@ -9,7 +9,7 @@
   `pipeline_tendsto_gen_specializes`，证明取 `V := ℝ` 回落到原版」。
 
   **⚠ 直接写进 `Fate/WorldModelPipeline.lean` 会造成循环 import**：
-  `Fate/PipelineTendstoGen.lean` 的首行就是 `import Fate.WorldModelPipeline`
+  `Fate/PipelineTendstoGen.lean` 的首行就是 `import WorldModelPipeline`
   （它需要 `thetaN` / `linWorld` / `pipelineN` 等来陈述「ℝ 回落」）。
   若反过来让 `WorldModelPipeline` import `PipelineTendstoGen`，则
   `WorldModelPipeline → PipelineTendstoGen → WorldModelPipeline` 成环，
@@ -18,9 +18,9 @@
   `already declared` 错误 —— **即破坏构建**（本项目历史教训之一）。
 
   **⟹ 本文件的处置**：新建本模块（不修改任何既有文件），
-  **在 `Fate.WorldModelPipeline` 命名空间内**声明该定理，
+  **在 `WorldModelPipeline` 命名空间内**声明该定理，
   于是它的**全限定名正是**
-  `Fate.WorldModelPipeline.pipeline_tendsto_gen_specializes`
+  `WorldModelPipeline.pipeline_tendsto_gen_specializes`
   —— 与「写进 `WorldModelPipeline`」在**名称与语义上完全等价**，
   且依赖方向 `本文件 → PipelineTendstoGen → WorldModelPipeline` 是**无环**的。
 
@@ -32,7 +32,7 @@
   | `pipeline_tendsto_gen_specializes` ⭐ | 取 `V := ℝ` 调 `pipelineTendstoGen`，得 `pipeline_tendsto` 的同一陈述 |
 
   **本文件不重证收敛**：收敛由
-  `Fate.PipelineTendstoGen.pipeline_tendsto_gen`（其证明用 `pipelineNGen_closed`
+  `FateV2.Loop.PipelineTendstoGen.pipeline_tendsto_gen`（其证明用 `pipelineNGen_closed`
   + `(1-η)^n → 0`）提供；本文件只做「轨迹对齐 + 结论搬运」。
 
   ## 2  ⚠ 前件是否把结论包进去（纪律 7 自查）
@@ -105,7 +105,7 @@ theorem pipelineN_eq_pipelineNGen (η θstar x θ₀ : ℝ) (hx : x ≠ 0) (n : 
 
 /-- ⭐⭐⭐⭐ **【G3 与特化版的一致性】**：一般版主定理取 `V := ℝ` **即回落**。
 
-**陈述**（与 `Fate.WorldModelPipeline.pipeline_tendsto` **逐字同形**）：
+**陈述**（与 `WorldModelPipeline.pipeline_tendsto` **逐字同形**）：
 
 $$x \ne 0 \;\wedge\; |1-\eta| < 1 \;\Longrightarrow\;
   \mathrm{Tendsto}\ \bigl(n \mapsto \mathrm{pipelineN}\ \dots\ n\ \theta_0\bigr)

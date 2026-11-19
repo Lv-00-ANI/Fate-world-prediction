@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.UpsilonIterationConsumer`
-阶段：**P5-甲（批 1）—— `Fate.UpsilonIteration` 的消费方**
+模块：`UpsilonIterationConsumer`
+阶段：**P5-甲（批 1）—— `UpsilonIteration` 的消费方**
 
 ---------------------------------------------------------------------------
 本文件做什么（一句话）
 ---------------------------------------------------------------------------
-`Fate.UpsilonIteration` 给出了「信息不断注入」下的 υ 迭代
+`UpsilonIteration` 给出了「信息不断注入」下的 υ 迭代
 $x_{t+1}=\upsilon_{\mathrm{inj}(t)}(x_t)$，以及两条**互不替代**的收敛定理：
 
 * **A 型**（度量 + 压缩 + 数据最终恒定）⟹ 收敛到唯一不动点，带几何速率；
@@ -33,8 +33,8 @@ $x_{t+1}=\upsilon_{\mathrm{inj}(t)}(x_t)$，以及两条**互不替代**的收�
 | §6 FCA | `fca_upsilonIter_stabilizes` `fca_upsilonIter_mono` |
 | §7 分离 | `cex_B_not_A` `cex_B_holds` |
 
-（以上全部位于 `Fate.UpsilonIteration` 命名空间内；`cexUpsilon` 等经
-`open Fate.UpsilonIteration` 后可直接引用。）
+（以上全部位于 `UpsilonIteration` 命名空间内；`cexUpsilon` 等经
+`open UpsilonIteration` 后可直接引用。）
 
 ---------------------------------------------------------------------------
 ⚠⚠ 同义反复自检（纪律 7：逐条核对「前件是否已把结论包进去」）

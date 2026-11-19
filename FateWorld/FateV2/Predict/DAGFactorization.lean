@@ -198,7 +198,7 @@ variable {V : Type u} [DecidableEq V] [Fintype V]
 
 $$\mathrm{pa}_G(v):=\{u\mid \mathrm{edge}_G\,u\,v\}.$$
 
-**⚠ 与 `Fate.ParentMap.pa` 的关系**：后者在 `CausalDirection.CausalGraph` 上、
+**⚠ 与 `ParentMap.pa` 的关系**：后者在 `CausalDirection.CausalGraph` 上、
 返回 `Set V`；本文件在 `Causalean.Graph.DAG` 上重写为 `Finset V`
 （`Finset.prod` / `Finset.sum` 需要）。语义完全一致。 -/
 def pa (G : FateV2.Modeling.Graph.DAG V) (v : V) : Finset V :=

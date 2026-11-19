@@ -47,7 +47,7 @@ import FateWorld.FateV2.Rules.RuleSyntax
 
   ## 诚实边界（务必先读）
 
-  1. **`Fate.LawRule.LawRule` 只是函数别名**
+  1. **`LawRule.LawRule` 只是函数别名**
      `LawRule C X Y := C.Carrier → X.Carrier → Set (Measure Y.Carrier)`，
      **没有 `Inf` 实例、没有 `⊆` 实例**（`⊆` 是 `Set` 的，不是 `LawRule` 的）。
      因此本模块**不**写 `toLawRuleWith interp (compose a b)

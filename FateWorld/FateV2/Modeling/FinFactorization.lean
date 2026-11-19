@@ -13,7 +13,7 @@ import FateWorld.FateV2.Modeling.FiniteCondIndep
 -/
 
 /-! ===========================================================================
-  ⭐⭐⭐ **因子化 ⟹ 条件独立** —— `Fate.FinFactorization`
+  ⭐⭐⭐ **因子化 ⟹ 条件独立** —— `FinFactorization`
 
   ## 0. 本节的任务（一句话）
 
@@ -29,12 +29,12 @@ import FateWorld.FateV2.Modeling.FiniteCondIndep
 
   ## 1. 依赖与命名空间
 
-  - **底层机器全部复用** `Fate.FiniteCondIndep`（§69）：
+  - **底层机器全部复用** `FiniteCondIndep`（§69）：
     * `FinJoint α β γ` —— 有限联合律 $(\alpha\times\beta)\times\gamma \to \mathbb{R}$；
     * `margZ` / `margXZ` / `margYZ` —— 三个边缘律；
     * `CondIndepFin` —— 条件独立的**乘性形式**。
   - **本模块只加一条主定理**（外加若干配套的分解引理），
-    **落在独立命名空间 `Fate.FinFactorization`**，
+    **落在独立命名空间 `FinFactorization`**，
     **不改动、不遮蔽上游任何定义**（**避免与 §69 的名字冲突**）。
 
   ## 2. ⚠⚠ Lean v4.33.0-rc1 的**两个语法陷阱**（本模块必须绕开）
@@ -253,12 +253,12 @@ theorem condIndepFin_of_factorization (p : FiniteCondIndep.FinJoint α β γ)
 
 /-- ⭐⭐ **主定理的「上游直通」入口**（**对接口**）。
 
-**`Fate.FiniteCondIndep`（§69）里已经证过一条同名结论
+**`FiniteCondIndep`（§69）里已经证过一条同名结论
 `FiniteCondIndep.condIndepFin_of_indep`，假设形态与本模块完全一致。**
 
 **⟹ 本引理**不是重复造轮子，而是**显式登记二者的等价接口**：
 它把 §69 的定理**重新导出到本命名空间下**，
-**使得只用 `Fate.FinFactorization` 的读者不必再穿透到 §69 的名字。**
+**使得只用 `FinFactorization` 的读者不必再穿透到 §69 的名字。**
 **同时它也是一次**一致性自检**：若上游将来改了定义，此处会立刻编译失败。** -/
 theorem condIndepFin_of_fac3_via_upstream (p : FiniteCondIndep.FinJoint α β γ)
     (f : α → ℝ) (g : β → ℝ) (h : γ → ℝ) (hfac : Fac3 p f g h) :

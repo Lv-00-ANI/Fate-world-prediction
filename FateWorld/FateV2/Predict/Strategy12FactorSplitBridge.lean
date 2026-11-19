@@ -4,7 +4,7 @@
 ## 0 定位
 
 **任务**：为「图 ⟹ 概率」桥给出**第 12 种**证明策略的具体数学构造 + Lean 落地。
-**硬约束**：**不得使用 `mass` 塔性质**（该性质已被 `Fate.TowerAudit.mass_idempotent_fails`
+**硬约束**：**不得使用 `mass` 塔性质**（该性质已被 `FateV2.Predict.TowerAudit.mass_idempotent_fails`
 / `FateV2.Predict.DAGFactorizationGeneral.tower_property_false` 证伪）。
 
 **⟹ 本文件与 `mass` 塔彻底正交**：全程**不出现** `mass S (mass T p)` 这种嵌套。

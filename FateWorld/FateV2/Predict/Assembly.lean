@@ -316,7 +316,7 @@ theorem joint_injective_iff (obsDir : SCM → Dir) (obsFun : SCM → Fun)
 
 /-! ### §7.6 ⭐⭐ 与既有 `Counterfactual` 商结构的对接 -/
 
-/-- 联合观测诱导的 `Model`（组装在 `Fate.Counterfactual` 框架里的落点）。 -/
+/-- 联合观测诱导的 `Model`（组装在 `Counterfactual` 框架里的落点）。 -/
 def jointModel (obsDir : SCM → Dir) (obsFun : SCM → Fun) : Counterfactual.Model where
   SCM := SCM
   CF := Dir × Fun

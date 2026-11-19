@@ -2,17 +2,17 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.TwoVersionsConsumer`
+模块：`TwoVersionsConsumer`
 任务：**P5-甲** —— 接入 `Fate.TwoVersions`
 
 本文件**只新增**，不修改任何既有模块。
-只 `import Fate.TwoVersions`（其本身已 import `Fate.BoundWriteBack`）。
+只 `import Fate.TwoVersions`（其本身已 import `BoundWriteBack`）。
 
 ===========================================================================
 一、被接入模块（实测，`Fate/TwoVersions.lean`，624 行）
 ===========================================================================
 
-namespace `Fate.BoundWriteBackV2`。核心内容（逐条实测）：
+namespace `BoundWriteBackV2`。核心内容（逐条实测）：
 
 | 声明 | 类型 |
 |---|---|
@@ -246,7 +246,7 @@ theorem inst_one_step_exact (x' θ₀ : ℝ) :
     θ_{n+1}(x) = θ_n(x) + η (y - θ_n(x))     -- `LearnFunction.tN_succ`
     ```
 
-    `Fate.BoundWriteBackV2.wbSeq`（本文件的 `TwoVersions` 一方）的轨迹是
+    `BoundWriteBackV2.wbSeq`（本文件的 `TwoVersions` 一方）的轨迹是
 
     ```
     θ_{n+1} = θ_n + η • φ (x' - A θ_n)       -- `wbSeq_succ`

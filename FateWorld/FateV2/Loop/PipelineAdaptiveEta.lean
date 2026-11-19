@@ -13,7 +13,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineAdaptiveEta` —— **变步长（自适应步长）的端到端收敛**
+  `PipelineAdaptiveEta` —— **变步长（自适应步长）的端到端收敛**
 
   ## 0  本文件补什么
 

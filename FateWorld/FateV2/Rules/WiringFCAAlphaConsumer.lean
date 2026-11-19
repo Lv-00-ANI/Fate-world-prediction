@@ -425,7 +425,7 @@ theorem alphaRead_K3_a_ne_ab :
 
 /-- ⭐⭐⭐ **规则与其自身组合后**仍是**同一个规则**（`k3Rule` 的幂等性）。
 
-**为什么这是新内容**：`Fate.LawRule.compose` 的语义是**取交**
+**为什么这是新内容**：`LawRule.compose` 的语义是**取交**
 （`compose R₁ R₂ c x = R₁ c x ∩ R₂ c x`），不是「同一规则」。
 `k3Rule` 恰是**常值单元素集**，故其自交退化为自身——
 这是 `k3Rule` 的具体结构（`fun _ _ => {dirac ∅}`）带来的，

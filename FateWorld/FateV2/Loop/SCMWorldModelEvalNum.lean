@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.SCMWorldModelEvalNum`
+模块：`SCMWorldModelEvalNum`
 定位：**第 3 层「可运行」—— SCM 主干上的数值世界模型（θ 真的被迭代）**
 
 ---------------------------------------------------------------------------
@@ -11,7 +11,7 @@
 `Fate/SCMWorldModelEval`（第 234 轮入库）已在 SCM 主干上补了 8 个 `#eval`，
 但它在**参数位**上有一个**结构性**限制（该文件 §五 边界 1 自己登记了）：
 
-> `Fate.SCMWorldModel.scmFrame` 的 `Θ.Carrier = PUnit`。
+> `SCMWorldModel.scmFrame` 的 `Θ.Carrier = PUnit`。
 
 `PUnit` 上的 `Ring` 只有 `0`，故「端到端一步后 θ 变成什么」在该文件里
 **必然退化**：`θ' = θ + η * φ r = 0 + 0 * 0 = 0`，**没有数值内容**。
@@ -83,7 +83,7 @@ $r = \hat x^{\mathrm{obs}} - f(x,\dots)$ 非零 ⟹ **θ 真的动**，且能被
 * **本文件没有任何定理的结论出现在自己的前件里**。
   §3 四条桥定理的前件**只有**结构性的 `[Nonempty]`／`Function.Injective h`
   与具体取值（`ℚ`/`Bool`/`ℕ`），结论是**两个不同定义之间的等式**
-  （左边是 `Fate.EndToEnd.*` 的 `noncomputable def`，右边是本文件的可计算 `def`）。
+  （左边是 `EndToEnd.*` 的 `noncomputable def`，右边是本文件的可计算 `def`）。
 * `theta_moves` / `theta_fixed_when_u_false` **无前件**，
   左式是 `e2eD`（= `endToEnd` 的镜像），右式是 `ℚ` 字面量 `-1/2` / `1`。
   若机制不读 `θ`（如 `stepQ x u _ _ = x`），两条**同时失败** ⟹ 实质约束。
@@ -415,9 +415,9 @@ theorem iterD_false_fixed (k : ℕ) :
         (1/2, e2eD 10 (1/2:ℚ) phiId 1 true 3 10)] : List (ℚ × ℚ))
 
 /-! ===========================================================================
-  §6  ⭐ **与 `Fate.SCMEndToEnd` 的等式对接**（任务 H，第 716 轮）
+  §6  ⭐ **与 `SCMEndToEnd` 的等式对接**（任务 H，第 716 轮）
 
-  本文件此前只 `import` 了 `Fate.SCMEndToEnd` 却**未真正消费**它的任何定理。
+  本文件此前只 `import` 了 `SCMEndToEnd` 却**未真正消费**它的任何定理。
   本节新建一个具体 SCM `scmQ : SCM ℚ ℚ`（`U := Bool`，
   `sg u = (0, x ↦ x + (if u then 1 else 0))`），并**调用**
   `SCMEndToEnd.predFrom_scmWorldModel`（`Fate/SCMEndToEnd.lean` §1，

@@ -246,8 +246,8 @@ theorem marginal_tower_self (S : Finset V) (p : (V → α) → ℝ) (y : S → �
 
 /-- **C5**：旧 `mass` 口径的幂等**只在 `multS = 1` 时**成立（转发，作对比）。 -/
 theorem old_mass_idempotent_mult (S : Finset V) (p : (V → α) → ℝ) (x : V → α) :
-    mass S (fun w => mass S p w) x = Fate.TowerExactLaw.multS S x * mass S p x :=
-  Fate.TowerExactLaw.mass_self_eq S p x
+    mass S (fun w => mass S p w) x = FateV2.Predict.TowerExactLaw.multS S x * mass S p x :=
+  FateV2.Predict.TowerExactLaw.mass_self_eq S p x
 
 /-! ===========================================================================
   §4 **C4：放开一个坐标再求和（`mass_insert_sum` 的类型层对应物）**

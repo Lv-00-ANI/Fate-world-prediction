@@ -444,7 +444,7 @@ $$\texttt{ChainMarkovHom}\ P \;:=\;
   \exists \alpha\,\beta\,\gamma,\ \forall x,\
     P\,x = \alpha(x_0)\,\beta(x_0,x_1)\,\gamma(x_1,x_2).$$
 
-**⚠ 这是 `Fate.P213B1.ChainMarkov`（异构 3 类型版）的**同值域改写**：
+**⚠ 这是 `P213B1.ChainMarkov`（异构 3 类型版）的**同值域改写**：
 把 3 个不同值域 `A × B × C` 换成统一 `Fin 3 → α`。
 它与 `ChainMarkov` **结构完全一致**（3 个因子、$\gamma$ 不读 $x_0$）。 -/
 def ChainMarkovHom (P : (Fin 3 → α) → ℝ) : Prop :=

@@ -17,7 +17,7 @@ import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndBounds` —— **②③④ 三个环节各自的「界」**（界 + 紧 + 下界）
+  `EndToEndBounds` —— **②③④ 三个环节各自的「界」**（界 + 紧 + 下界）
 
   ## 0  本文件要解决的问题
 

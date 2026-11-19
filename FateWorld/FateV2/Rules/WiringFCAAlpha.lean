@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.WiringFCAAlpha
+模块：WiringFCAAlpha
 任务：**W1-最高优先 接线** —— 把 `Fate.T112FCASpecific` 的具体 FCA 结果
       接到规则层 α（`Fate.Alpha` / `FateV2.Rules.InstanceChain.AlphaOutput`）。
 
@@ -40,7 +40,7 @@
 `Carrier` / `topo` / `meas` / `borel_le` 四分量 | 逐字段构造，`meas := @borel _ ⊤`、`borel_le := le_rfl` |
 | 2 | `alphaPartition : Set G3 → …` 里调 `K3.takeConcept y` | ⚠ **不是改名，是类型写错**：`takeConcept : Set K.MFCA → Set K.MFCA`，
 而 α 的输入本来就是**属性集**；写成 `Set G3`（对象集）类型不符 | 状态类型改为 `Set M2`（`= Set K3.MFCA`） |
-| 3 | `LawRule` / `Alpha` / `AlphaSpec` 未限定 | `LawRule` 在 `Fate.LawRule`，`Alpha`/`AlphaSpec` 在 `FateV2.Rules.InstanceChain`；
+| 3 | `LawRule` / `Alpha` / `AlphaSpec` 未限定 | `LawRule` 在 `LawRule`，`Alpha`/`AlphaSpec` 在 `FateV2.Rules.InstanceChain`；
 且 `Fate.Frame.Alpha`（接 `InstSpace`）**与** `FateV2.Rules.InstanceChain.Alpha`（接 `Type u`）**同名**，非限定会歧义 | 加 `open FateV2.Rules.LawRule`；`Alpha`/`AlphaSpec` 显式限定为 `FateV2.Rules.InstanceChain.*` |
 | 4 | `MeasurableSpace K3Y.Carrier` 无法解析 | `StateSpace.meas` 是**结构字段**不是实例，
 而 `LawRule` 需要 `[MeasurableSpace Y.Carrier]` | 仿 `Fate/T1DegeneracyVerify.lean:232` 写
@@ -244,7 +244,7 @@ end NonSelfDual
 
 namespace ExtentLoses
 
-open Fate.Counterexample
+open Counterexample
 
 /-- ⭐⭐ **α 的读集划分丢失外延信息**（消费 `no_extent_preserving_iso`）。
 
@@ -254,7 +254,7 @@ theorem alphaRead_partition_lost
     (e : ConceptLattice KA ≃o ConceptLattice KC)
     (hpres : ∀ c : ConceptLattice KA, (e c).extent.Nonempty ↔ c.extent.Nonempty) :
     False :=
-  Fate.Counterexample.no_extent_preserving_iso ⟨e, hpres⟩
+  Counterexample.no_extent_preserving_iso ⟨e, hpres⟩
 
 /-- ⭐ **加强形式**：连「外延是否为空」都不能保。 -/
 theorem alphaRead_extent_iso_impossible
@@ -262,24 +262,24 @@ theorem alphaRead_extent_iso_impossible
     (hpres : ∀ c : ConceptLattice KA,
       (e c).extent = (∅ : Set KC.GFCA) ↔ c.extent = (∅ : Set KA.GFCA)) :
     False :=
-  Fate.Counterexample.no_extent_card_preserving_iso ⟨e, hpres⟩
+  Counterexample.no_extent_card_preserving_iso ⟨e, hpres⟩
 
 /-- ⭐ **划分本身仍然存在**：两侧的 α 读集格**可以**序同构。 -/
 theorem alphaRead_lattice_iso_exists :
     Nonempty (ConceptLattice KA ≃o ConceptLattice KC) :=
-  Fate.Counterexample.KA_KC_lattice_iso
+  Counterexample.KA_KC_lattice_iso
 
 /-- ⭐ **差异定位在 `⊥` 侧**：`⊤` 的外延两侧相同。 -/
 theorem alphaRead_top_agree :
     (⊤ : ConceptLattice KA).extent = (univ : Set KA.GFCA) ∧
     (⊤ : ConceptLattice KC).extent = (univ : Set KC.GFCA) :=
-  ⟨Fate.Counterexample.KA_top_extent, Fate.Counterexample.KC_top_extent⟩
+  ⟨Counterexample.KA_top_extent, Counterexample.KC_top_extent⟩
 
 /-- ⭐ **`⊥` 侧差异是实质的**（两侧外延空性相反）。 -/
 theorem alphaRead_bot_disagree :
     (⊥ : ConceptLattice KA).extent.Nonempty ∧
     (⊥ : ConceptLattice KC).extent = (∅ : Set KC.GFCA) :=
-  ⟨Fate.Counterexample.KA_bot_extent_nonempty, Fate.Counterexample.KC_bot_extent_empty⟩
+  ⟨Counterexample.KA_bot_extent_nonempty, Counterexample.KC_bot_extent_empty⟩
 
 end ExtentLoses
 
@@ -293,7 +293,7 @@ namespace RankTwo
 theorem alphaRead_four_eq_two (K : FormalCtx) (A : Set K.GFCA) :
     K.polarDown (K.polarUp (K.polarDown (K.polarUp A)))
       = K.polarDown (K.polarUp A) :=
-  Fate.RankTwo.polarUp_polarDown_polarUp_polarDown_idem K A
+  RankTwo.polarUp_polarDown_polarUp_polarDown_idem K A
 
 /-- ⭐ **具体实例上落地**：`K3` 的 α 读集两次即稳定。 -/
 theorem alphaRead_four_eq_two_K3 (A : Set G3) :
@@ -326,7 +326,7 @@ end RankTwo
      与 `takeConcept : Set K.MFCA → Set K.MFCA` 的输入类型不符 ——
      这不是重命名问题，是**类型写错**。本次改为 `Set M2`（= `Set K3.MFCA`）。
   2. 规则取值空间 `Y` 必须是**可测空间**；`Set G3` 配 `⊤` 拓扑 + Borel
-     以取得 `MeasurableSpace`（与 `Fate.LawRuleCondMul.discreteSpace` 同一模式）。
+     以取得 `MeasurableSpace`（与 `LawRuleCondMul.discreteSpace` 同一模式）。
 
   ⚠ (S3) `part_trans` **仍然未证**（见下方登记），
   本文件仍**不**声称 `AlphaSpec`，只声称 `AlphaSpecPartial`。

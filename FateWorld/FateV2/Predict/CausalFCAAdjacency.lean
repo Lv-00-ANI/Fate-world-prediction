@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.CausalFCAAdjacency
+模块：CausalFCAAdjacency
 定位：**裁决 B-1 · 邻接级** —— 把因果 DAG 装进 FCA 形式背景，
       使 `gazeUp` / `gazeDown` 能作用在因果图上。
 
@@ -20,7 +20,7 @@
   故「同一 `Irel`、不同 DAG」是可能的（`ctxOf_forgets_direction` 给出形式证据：
   两个方向相反的双点 DAG 给出**逐点相同**的 `Irel`）。
 * **d-分离是三元关系**：`dSep X Y Z` 有**三个**参数，
-  而 `Fate.FormalCtx.Irel` 是**二元**关系（`GFCA → MFCA → Prop`）。
+  而 `FormalCtx.Irel` 是**二元**关系（`GFCA → MFCA → Prop`）。
   ⟹ 用 `FormalCtx` 装 d-分离语义在**类型层就装不下**。
   这是本文件最重要的技术边界，**不是实现偷懒**。
 * **两种目光在本构造下同形**：因 `Irel` 对称，
@@ -46,8 +46,8 @@
 即该文件**未被根模块 `Fate.lean` import**，**不在构建图中**。
 
 本文件按裁决 B-1 的指示**新建、自足、不改任何已有模块**（含不改 `Fate.lean`）。
-本文件**自带**命名空间 `Fate.CausalFCAAdjacency`，与上述文件的
-`Fate.CausalClassificationBridge` **不冲突**（同名不同命名空间）。
+本文件**自带**命名空间 `CausalFCAAdjacency`，与上述文件的
+`CausalClassificationBridge` **不冲突**（同名不同命名空间）。
 **本文件不声称**取代或修正该文件；两者可并存，取舍由主控裁决。
 
 ===========================================================================

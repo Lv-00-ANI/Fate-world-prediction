@@ -19,7 +19,7 @@ import FateWorld.FateV2.Predict.TowerAudit
 
   ## 0 本文定位
 
-  `Fate.TowerAudit` 已独立复核并给出结论「根因是 `mass` 非归一化」。
+  `FateV2.Predict.TowerAudit` 已独立复核并给出结论「根因是 `mass` 非归一化」。
   `FateV2.Predict.TowerExactLaw` 把这条结论**严格化、定量化**：不只是「不相等」，
   而是**精确相等于一个乘子**：
 

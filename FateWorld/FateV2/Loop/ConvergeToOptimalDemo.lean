@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ConvergeToOptimalDemo`
+模块：`ConvergeToOptimalDemo`
 任务：**【DD2】版本 2 的有限维实例** —— 在 `E = F = ℝ`（1 维）上，
 取 `φ = id`（单射）、`A = id`（满射），证明
 

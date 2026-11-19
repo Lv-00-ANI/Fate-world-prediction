@@ -103,7 +103,7 @@ namespace FateV2.Predict.T1A2Fin
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
+open FateV2.Predict.T1A2
 open FateV2.Predict.FinCondIndep
 
 /-! ## §1 乘积分解（`FinJoint` 版本） -/
@@ -282,7 +282,7 @@ theorem finJoint_separable_mul_eq
 
 /-- ⭐⭐ **缺口登记表**（**可机械列举**，使验收报告可核对）。
 
-**⚠ 这是「据实登记」，不是「定理」**（与 `Fate.FinJoint.FinJointGap` 同体例）。 -/
+**⚠ 这是「据实登记」，不是「定理」**（与 `FinJoint.FinJointGap` 同体例）。 -/
 structure T1A2FinGap where
   /-- 缺口编号。 -/
   id : String

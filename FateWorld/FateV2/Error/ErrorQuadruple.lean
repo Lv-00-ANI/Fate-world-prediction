@@ -81,16 +81,16 @@ theorem E1_proof (X : Type) [NormedAddCommGroup X] (M L T h : ℝ) (x_n x_T : X)
 | `E8Statement` | E8 FCA 编码 | `sup_x diam ς⁻¹(ς(x)) ≤ g(γ,m)` | `[待证]`（⚠ A32 未定义） |
 
 ---------------------------------------------------------------------------
-与 `Fate.Stage0.Core` 的关系
+与 `Stage0.Core` 的关系
 ---------------------------------------------------------------------------
-`Fate.Stage0.Core` 冻结的是**阶段 0 的对象与签名**（`ActionSpace`、`TimeIndex`、
+`Stage0.Core` 冻结的是**阶段 0 的对象与签名**（`ActionSpace`、`TimeIndex`、
 `SDERegularity`、`WellFoundedDeps`、`Do` 算子 …）。
 本文件冻结的是**阶段 2 的误差量纲与界的形式**，二者**不重叠**：
 
 - 阶段 0 回答「有哪些对象」；
 - 阶段 2 回答「这些对象上的误差**用哪个量纲度量、写成什么界**」。
 
-本文件**不依赖** `Fate.Stage0.Core`（保持零耦合，便于独立编译与独立验收）：
+本文件**不依赖** `Stage0.Core`（保持零耦合，便于独立编译与独立验收）：
 E1–E8 的形式只需 `ℝ`、范数空间与一般度量，不需要 Stage 0 的具体对象。
 这一**解耦**是刻意的——若日后 Stage 0 的定义被裁决修改，
 本文件（阶段 2 的形式冻结）**不应随之失效**。
@@ -236,7 +236,7 @@ structure WellFormed (E : ErrorQuadruple) : Prop where
 2. `hL`：$L > 0$（下方公式的分母，必须非零）；
 3. `hhL`：$hL$ **小**（即步长与 Lipschitz 常数之积足够小，保证离散流不爆）；
 4. `hM`：$M < \infty$，且 $M := \sup\|f'\|$（本形式把它作为参数 `M` 传入）；
-5. `hA10`：**A10 解存在唯一**（`Fate.Stage0.Core.SDERegularity` / `DiscreteRegularity`）。
+5. `hA10`：**A10 解存在唯一**（`Stage0.Core.SDERegularity` / `DiscreteRegularity`）。
 
 **关于 $T = nh$ 的处理（一个显式选型）**：本形式**把 `T` 作为独立参数**传入，
 **不**令 `T := n * h`。理由：若把 `T` 定义性地绑定为 `n * h`，

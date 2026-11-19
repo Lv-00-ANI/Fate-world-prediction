@@ -125,8 +125,8 @@ theorem bestScore_def {A X : Type u} [Fintype A] [Fintype X]
 仅靠「上界」无法得到。
 
 ⚠ **本条的「紧性」由 `bestScore` 的定义（含 `chooseOptimal`）直接得出，属定义投射。**
-真紧性见 `Fate.WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
-且 `Fate.WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
+真紧性见 `WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
+且 `WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
 故这些陈述在 `bestScoreSup` 上同样成立且证明更干净（走 `Finset.sup'` 而非选择函数）。 -/
 theorem bestScore_mem_image {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty) :
@@ -139,8 +139,8 @@ theorem bestScore_mem_image {A X : Type u} [Fintype A] [Fintype X]
 这是「取等 + 上界」的**合取式**，即紧性的完整形式。
 
 ⚠ **本条的「紧性」由 `bestScore` 的定义（含 `chooseOptimal`）直接得出，属定义投射。**
-真紧性见 `Fate.WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
-且 `Fate.WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
+真紧性见 `WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
+且 `WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
 故这些陈述在 `bestScoreSup` 上同样成立且证明更干净（走 `Finset.sup'` 而非选择函数）。 -/
 theorem bestScore_isGreatest {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty) :
@@ -155,8 +155,8 @@ theorem bestScore_isGreatest {A X : Type u} [Fintype A] [Fintype X]
 /-- ⭐ **下界（不存在更好的干预）**：树中没有任何场景的得分**严格高于**最优值。
 
 ⚠ **本条的「紧性」由 `bestScore` 的定义（含 `chooseOptimal`）直接得出，属定义投射。**
-真紧性见 `Fate.WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
-且 `Fate.WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
+真紧性见 `WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
+且 `WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
 故这些陈述在 `bestScoreSup` 上同样成立且证明更干净（走 `Finset.sup'` 而非选择函数）。 -/
 theorem bestScore_no_better {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
@@ -184,8 +184,8 @@ theorem bestScore_isLUB {A X : Type u} [Fintype A] [Fintype X]
 ⟹ `bestScore` **不是**「某个可行的小上界」，而是**恰好**的最小上界。
 
 ⚠ **本条的「紧性」由 `bestScore` 的定义（含 `chooseOptimal`）直接得出，属定义投射。**
-真紧性见 `Fate.WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
-且 `Fate.WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
+真紧性见 `WorldScenario.InterventionSup.bestScoreSup_sharp`（不依赖任何选择函数）。
+且 `WorldScenario.InterventionSup.bestScore_eq_bestScoreSup` 已证两者无条件恒等，
 故这些陈述在 `bestScoreSup` 上同样成立且证明更干净（走 `Finset.sup'` 而非选择函数）。 -/
 theorem bestScore_sharp {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
@@ -419,7 +419,7 @@ end FateV2.Predict
   * 本文件（`Fate.InterventionTight`）给出**紧性**：`bestScore := P.score (chooseOptimal P tree hne)`
     是得分集的**最大元**（`bestScore_isGreatest`）、**最小上界**（`bestScore_isLUB`）、
     **不可下调**（`bestScore_sharp`）。载体是 `WorldScenario.Policy` + `Finset` 树。
-  * `Fate.InterventionSelection` 给出**选择代数**：`Optimal`（argmax 谓词）、`Dom`（弱支配）、
+  * `InterventionSelection` 给出**选择代数**：`Optimal`（argmax 谓词）、`Dom`（弱支配）、
     `gain`（单点分支改进量）、`optimal_value_unique`（argmax 唯一值）。
 
   两个模块**此前互不引用**。本节把每个场景 `s : Scenario A X` 编码成一个

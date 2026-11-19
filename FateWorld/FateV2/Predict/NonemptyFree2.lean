@@ -12,8 +12,8 @@
   | 2 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
   | 3 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.noConfounding_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
   | 4 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_normalized` | `T35Rule1Split` | 同上 | ✅ 可去 |
-  | 5 | `Fate.SCMIdentifiability.scmThetaSubsingleton_pred_eq` | `SCMIdentifiability` | `[Nonempty Y]` | ✅ 可去（**完全未用**）|
-  | 6 | `Fate.LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one` | `LawRulePointDecidabilityConsumer` | `[Nonempty C.Carrier] [Nonempty X.Carrier]` | ✅ 可去（空型时空真）|
+  | 5 | `SCMIdentifiability.scmThetaSubsingleton_pred_eq` | `SCMIdentifiability` | `[Nonempty Y]` | ✅ 可去（**完全未用**）|
+  | 6 | `LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one` | `LawRulePointDecidabilityConsumer` | `[Nonempty C.Carrier] [Nonempty X.Carrier]` | ✅ 可去（空型时空真）|
   | 7 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
   | 8 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_univ_minus` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
   | 9 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_top_vertex` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
@@ -209,7 +209,7 @@ namespace SCMIdentifiability
 open FateV2.Predict.ParamSCM
 
 /-- ⭐ **【无 `[Nonempty Y]` 版】**：
-`Fate.SCMIdentifiability.scmThetaSubsingleton_pred_eq` 去掉 `[Nonempty Y]` 后
+`SCMIdentifiability.scmThetaSubsingleton_pred_eq` 去掉 `[Nonempty Y]` 后
 **仍然成立**。
 
 **为什么可去**：原证的证明体是 `rw [Subsingleton.elim θ₁ θ₂]`，
@@ -232,7 +232,7 @@ end SCMIdentifiability
 namespace LawRulePointDecidabilityConsumer
 
 /-- ⭐ **【无 `[Nonempty C.Carrier] [Nonempty X.Carrier]` 版】**：
-`Fate.LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one`
+`LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one`
 去掉两个 `Nonempty` 后**仍然成立**。
 
 **为什么可去**：`IsPoint R := ∀ c x, ∃ μ, R c x = {μ}` 的量化域是
@@ -393,14 +393,14 @@ end Strategy11Fiber
      让 `dif_pos hne` 分支**不可达**、故绕开了 else；而 `optimalPolicy` 本身
      **必须构造出来**，else 分支无法绕过。
 
-  3. `Fate.WiringBackdoor.wmNum_eq_condYnum` / `wc_wmNum_is_condYnum`
+  3. `FateV2.Predict.WiringBackdoor.wmNum_eq_condYnum` / `wc_wmNum_is_condYnum`
      （`[Nonempty S.X] [Nonempty S.Y]`）—— **不可去**（同上 B 类）。
      `wmNum` 的定义体是 `Fate.WorldModel.f (bdWorldModel S) ...`，
      而 `bdWorldModel` 的 `state.cur : S.X × S.Y` 需要一个**具体取值**。
      机制 `f` 虽不读 `cur`，但 `WorldModel` 这个**结构**必须被构造出来。
 
   4. `Fate.ObsEstimationStrong.chooseEstimator_apply_of` / `chooseEstimator_of_exists`
-     / `Fate.EndToEnd.observe_apply_of` / `Fate.WorldModelPipeline.pipelineObserve_estimate`
+     / `EndToEnd.observe_apply_of` / `WorldModelPipeline.pipelineObserve_estimate`
      （`[Nonempty X]`）—— **不可去**（B 类，**不是**「只作默认值」）。
      `chooseEstimator : Y → X` 是**全函数**；若 `X` 空而 `Y` 非空，
      `Y → X` **本身不存在**。故 `[Nonempty X]` 是该**定义**的存在性前提，
@@ -414,7 +414,7 @@ end Strategy11Fiber
      （`Fate/Frame.lean:847` 原话：「若 `Θ` 为空，则『核不依赖 `θ`』是**空洞真**，
      此时不能无条件构造出 `Rule`」）。这是**正确的断言**。
 
-  6. `Fate.SCMIdentifiability.Prediction` / `prediction_eq` 等（`[Nonempty Y]`）
+  6. `SCMIdentifiability.Prediction` / `prediction_eq` 等（`[Nonempty Y]`）
      —— **不可去**（B 类）。`Prediction` 的定义是
      `EndToEnd.predFrom (paramScmWorldModel M) ...`，
      而 `paramScmWorldModel` 的 `state.cur` 需要一个具体 `Y` 值。
@@ -425,7 +425,7 @@ end Strategy11Fiber
      （上一批已记录，这里复核）：`σ` 空时 `∑ x, f x = 0`，且 `h` 空真，
      结论 `0 < 0` **为假** ⟹ 无可去形式。
 
-  8. `Fate.CondMulSeparable` / `Fate.MarkovBridgeTheorem` 的 `[Nonempty]`
+  8. `FateV2.Predict.CondMulSeparable` / `FateV2.Predict.MarkovBridgeTheorem` 的 `[Nonempty]`
      —— 上一批已去；本轮**不重复**。
 
   **⟹ 结论**：本批实测的候选中，**10 条真的可去**

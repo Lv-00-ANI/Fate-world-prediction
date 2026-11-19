@@ -104,7 +104,7 @@ import FateWorld.FateV2.Predict.ThreeNodeFactorizes
   * `FateV2.Predict.SplitFromDAG.split_of_dSep`（`dSep + 覆盖 ⟹ Split`，零 `sorry`）
   * `FateV2.Predict.BridgeIntegrated.condIndep_of_factorizes_general`（`Factorizes + Split ⟹ CondIndep`）
   * `FateV2.Predict.FactorizesToHyper.readSetOf` / `localTo_iff_readSet`
-  * `Fate.PearlCondIndepBridge.separable_implies_condMul`（纯代数收尾）
+  * `PearlCondIndepBridge.separable_implies_condMul`（纯代数收尾）
   * `FateV2.Predict.ThreeNodeFactorizes.jointXZ` / `CondMul`
   =========================================================================== -/
 

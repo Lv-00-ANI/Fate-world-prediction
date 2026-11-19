@@ -13,7 +13,7 @@ import FateWorld.FateV2.Predict.TailBlockV4
 -/
 
 /-! ===========================================================================
-  `Fate.TailBlockV4Consumer` —— 接入 `TailBlockV4` 的消费层
+  `FateV2.Predict.TailBlockV4Consumer` —— 接入 `TailBlockV4` 的消费层
 
   ## 0 目标
 

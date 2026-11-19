@@ -19,7 +19,7 @@ import FateWorld.FateV2.Predict.PearlLawRuleBridge
   ## 0. 上游模块实测（`Fate/T35Rule1Split.lean`，657 行）
 
   `grep -nE "^(theorem|def|noncomputable def|instance)"` 实测 **37 条声明**
-  （`namespace FateV2.Predict.NonemptyFree2.T35Rule1Split`，import `Fate.SCMSemantics`、
+  （`namespace FateV2.Predict.NonemptyFree2.T35Rule1Split`，import `SCMSemantics`、
   `Fate.Rule1Semantic`）：
 
   | 类别 | 声明 |

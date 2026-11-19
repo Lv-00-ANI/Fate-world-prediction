@@ -2,7 +2,7 @@
 命运理论 · **多评价体系并存**（EvaluationSystems）
 ================================================================
 
-模块：`Fate.EvaluationSystems`
+模块：`EvaluationSystems`
 
 ---------------------------------------------------------------------------
 (a) 作者第 537 轮裁决原话
@@ -57,7 +57,7 @@
 2. `structure EvaluationSystem`：一个**评价体系** =
    名字 + 评价量载体 `Eval` + `eval` + 前序 `le`（自反 + 传递）；
 3. `EvaluationSystem.toRuleEvaluation`：把体系**桥接**到
-   `Fate.RuleEval.RuleEvaluation`（`structure` → `class` 实例），
+   `RuleEval.RuleEvaluation`（`structure` → `class` 实例），
    使 `Better` 及其三条定理**自动可用**；
 4. 三个具体体系：`popperSystem`（只读 `falsifiability`）、
    `occamSystem`（只读 `simplicity`）、
@@ -215,7 +215,7 @@
    不可比 ⟹ `1`，可比 ⟹ `0`。
 2. `theorem independenceOf_mem_Icc`——值域 `[0,1]`。
 3. `noncomputable def simplicityOfSet`——**第 3 个有真公式的维度**，落在**规则集**
-   `Fate.Rules C X Y` 上（`Rule` 只有 `kernel`、**无文本**，故单条规则的「简洁度」无处可取）：
+   `FateV2.Rules C X Y` 上（`Rule` 只有 `kernel`、**无文本**，故单条规则的「简洁度」无处可取）：
    规则集若 `Set.Finite` 则 `1`，否则 `0`。
 4. `theorem simplicityOfSet_mem_Icc`——值域 `[0,1]`。
 
@@ -368,7 +368,7 @@ class RuleCovers (C) (X) (Y) (I) [MeasurableSpace X.Carrier] [MeasurableSpace Y.
 
 **(i-b) `Measure` 的拓扑是否可用 —— `#check` 实测结果（裁决书 (b) 条要求）**
 
-在 `import Fate.EvaluationSystems` + `open MeasureTheory` 下，裁决书列的 9 个 API 实测：
+在 `import EvaluationSystems` + `open MeasureTheory` 下，裁决书列的 9 个 API 实测：
 
 | API | 结果 |
 |---|---|
@@ -550,7 +550,7 @@ structure EvaluationSystem (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
 
 /-- ⭐ **桥**：任何评价体系**都是**一个 `RuleEvaluation` 实例。
 
-**⟹ 效果**：`Fate.RuleEval.Better` 及其 `better_irrefl` / `better_trans` /
+**⟹ 效果**：`RuleEval.Better` 及其 `better_irrefl` / `better_trans` /
 `better_asymm` **自动在每个体系里可用**，无需重复证明。
 **⟹ 这**不**是把一个体系强加给全局**：调用时用
 `letI := EvaluationSystem.toRuleEvaluation S` 局部注册即可。
@@ -715,7 +715,7 @@ class RuleSpec (C) (X) (Y) [MeasurableSpace X.Carrier] [MeasurableSpace Y.Carrie
 
 **为什么这重要**：`Fate/WorldModelCompleteV2.lean`（WMC）通过 `[RuleSpec C X Y]`
 合成 `Preorder (Rule C X Y)`（`Fate/GammaOperator.lean` 的 `RuleSpec.instPreorder`），
-其载体含单条规则 `Fate.Rule C F.X F.X`（WMC `:168`）与规则集 `Fate.Rules`（WMC `:191`）。
+其载体含单条规则 `Fate.Rule C F.X F.X`（WMC `:168`）与规则集 `FateV2.Rules`（WMC `:191`）。
 于是「主干里的规则」自动成为一个评价体系里的**被评价量**，无需另造载体。
 -/
 
@@ -968,7 +968,7 @@ theorem independenceOf_mem_Icc {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
 （`Fate/Frame.lean:348-351`），**无文本**。
 ⟹ 所以本定义**只覆盖「规则条数」这一个侧面**。
 
-**⚠ 它用的是【已有的】** `Fate.Rules`（`Fate/Frame.lean:545-547` 的 `abbrev ... := Set (Rule C X Y)`），
+**⚠ 它用的是【已有的】** `FateV2.Rules`（`Fate/Frame.lean:545-547` 的 `abbrev ... := Set (Rule C X Y)`），
 本 `def` **不新建结构层**。
 
 **⚠ 前件与结论的关系（自审，防同义反复）**：
@@ -1396,7 +1396,7 @@ end RuleCoversFormulas
 error: object file '.../Mathlib/MeasureTheory/Measure/Typeclasses.olean' does not exist
 ```
 
-且 `import Fate.EvaluationSystems` 后 `#check @Measure.support` 报
+且 `import EvaluationSystems` 后 `#check @Measure.support` 报
 `Unknown identifier \`Measure.support\``。⟹ **`support` 不能用**。
 
 **(b) 为什么改用「单点集测度非零」**：
@@ -1411,7 +1411,7 @@ error: object file '.../Mathlib/MeasureTheory/Measure/Typeclasses.olean' does no
 `Instance` 定义在 `Fate/InstanceChain.lean:52`，而
 `Fate/EvaluationSystems.lean` 目前只 import `Fate.RuleEvaluation` 与 `Fate.GammaOperator`。
 实测依赖方向：`Fate/InstanceChain.lean` 的 `^import` 行只有 `import FateV2.Rules.LawRule`，
-而 `Fate.LawRule` 依赖链**不含** `EvaluationSystems`，故**理论上不成环**；
+而 `LawRule` 依赖链**不含** `EvaluationSystems`，故**理论上不成环**；
 但为**最小化风险**（纪律 (i)：成环就不 import），本节**不引入任何新 import**，
 直接用乘积类型作为 `InstSpace.Carrier`。
 `InstSpace`（`Fate/Frame.lean:568-570`）只有 `Carrier : Type*`，
@@ -1555,7 +1555,7 @@ theorem covers_triple_of_isDet {C : CtxSpace} {X : StateSpace} {Y : OutSpace}
 -----------------------------------------------------------------------------
 (a) `Measure` 的拓扑 / 度量的 **`#check` 实测结果**（裁决书要求的 (b) 条）
 -----------------------------------------------------------------------------
-在 `import Fate.EvaluationSystems` + `open MeasureTheory` 之下，实测：
+在 `import EvaluationSystems` + `open MeasureTheory` 之下，实测：
 
 ```
 #check @MeasureTheory.Measure.instTopologicalSpace

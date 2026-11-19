@@ -13,7 +13,7 @@
 | # | 已证伪 / 已裁定 | 本文件的规避 |
 |---|---|---|
 | C1 | `mass S (mass T p) = mass (S∪T) p` 为**假**（`Fate.DAGFactorizationGeneral.tower_property_false`） | **全程不出现 `mass`**；只有 `margZ/margXZ/margYZ` 的单层求和 |
-| C2 | 连 `S ⊆ T` 方向也假（`Fate.TowerAudit.mass_idempotent_fails`） | 同上；**无任何嵌套求和** |
+| C2 | 连 `S ⊆ T` 方向也假（`FateV2.Predict.TowerAudit.mass_idempotent_fails`） | 同上；**无任何嵌套求和** |
 | C3 | 图写进类型 = 类型系统替图论干活（M8 裁定） | `G` 是**显式形参**，且**进入证明体**（§3 主定理） |
 | C4 | `_G : DAG V` 哑变量化 | 去掉 `h : G.dSep X Y Z` 后 §3 主定理**不可证**（§4 给出反例结构） |
 | C5 | `α β γ` 与顶点 `V` 无类型联系 ⟹ `dSep` 死掉 | **索引对齐** `α = β = γ = V`（全文件） |
@@ -85,7 +85,7 @@ open Finset FateV2.Modeling.Graph FateV2.Modeling.Graph.DAG FateV2.Predict.FinCo
 
 variable {V : Type*} [DecidableEq V] [Fintype V]
 
-/-- 三元联合律，**沿用全库唯一口径** `Fate.FinCondIndep.FinJoint`。 -/
+/-- 三元联合律，**沿用全库唯一口径** `FinCondIndep.FinJoint`。 -/
 abbrev J3 (V : Type*) := FinCondIndep.FinJoint V V V
 
 /-!
@@ -258,7 +258,7 @@ def CondRatioOn (p : J3 V) (Y : Finset V) : Prop :=
 
 /-- ⭐⭐⭐ **V17G-6：截面胶合 + 非零 `Z`-边缘 ⟹ 字面条件分布相等（`Y`-相对）。**
 
-由 V17G-4 与 `Fate.FinCondIndep.condMulGuard_iff_condRatio` 的逐点代数转写。 -/
+由 V17G-4 与 `FinCondIndep.condMulGuard_iff_condRatio` 的逐点代数转写。 -/
 theorem screenGlue_condRatioOn (G : DAG V) {X Y Z : Finset V}
     (h : G.dSep X Y Z) (p : J3 V) (hg : ScreenGlue G X Z p)
     : CondRatioOn p Y := by
@@ -394,7 +394,7 @@ end Necessity
 /-! ===========================================================================
   §6 **零 `mass` 塔**：形式化登记
 
-  本文件**不导入** `Fate.DAGFactorization`（`mass` 的定义处），
+  本文件**不导入** `DAGFactorization`（`mass` 的定义处），
   故 `mass` 在**名字层面**就不可达 —— 这比「声称不用」更强。
   本节的定理把这件事**钉死在类型系统里**。
   =========================================================================== -/
@@ -482,7 +482,7 @@ end NoMass
    （条件分布只在正质量处有定义），不是本视角的弱点。V17G-6 把该守卫
    **内建进 `CondRatioOn` 的定义**，故不需要额外的全局假设。
 
-4. **零 `mass` 是结构性的，不是自述。** 本文件未导入 `Fate.DAGFactorization`，
+4. **零 `mass` 是结构性的，不是自述。** 本文件未导入 `DAGFactorization`，
    故 `mass` 在名字层面不可达；§6 的 `no_mass_tower` 把「两层求和 = 单层之积
    （分配律）」这一形状机检出来，与塔性质（**已证伪**）形成对照。
 -/

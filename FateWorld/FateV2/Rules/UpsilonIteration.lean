@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.UpsilonIteration
+模块：UpsilonIteration
 阶段：**阶段 1B 补充 —— 「信息不断注入」作为 υ 的迭代**
 
 ---------------------------------------------------------------------------
@@ -68,11 +68,11 @@ $\forall N\le|\rho|,\ x_N=x_{N+1}$。
 ---------------------------------------------------------------------------
 - 本文件**零 `sorry`、零 `admit`、零 `axiom`**。
 - **不主张**任何具体 υ 满足压缩性（T6.10 的显式前件，见
-  `Fate.UpsilonOperator` §5 与本文件 §3）。
+  `UpsilonOperator` §5 与本文件 §3）。
 - **不构造**具体的数据流 `inj`——那属开放问题 6.8「先验来源未答」，
   规格纪律「填数即为虚构」。§4.1 的反例**只用于证伪定量界**，
   **不冒充**任何现实数据模型。
-- 依赖：`Fate.UpsilonOperator`（υ 的类型、`IsCompletion` 三公理、
+- 依赖：`UpsilonOperator`（υ 的类型、`IsCompletion` 三公理、
   §5 的 Banach 定理、FCA 实例）。
 -/
 
@@ -121,7 +121,7 @@ $$x_0:=R_0,\qquad x_{t+1}:=\upsilon\bigl(\mathrm{inj}(t),\,x_t\bigr)$$
 - `Nat.rec` 使**每一步只依赖上一步**（Markov 性），
   这正是「不断注入」的形式含义：**信息按时间顺序、逐步累积进状态**。
 
-**为什么用 `Data → α → α`**：与 `Fate.UpsilonOperator.Upsilon` 的签名一致，
+**为什么用 `Data → α → α`**：与 `UpsilonOperator.Upsilon` 的签名一致，
 使「固定数据 $D$ 时 $\upsilon_D$ 是一个 `α → α`」在类型层可见——
 这是 A 型收敛定理（§3）能直接调用 Banach 不动点定理的**类型层前提**。
 
@@ -309,7 +309,7 @@ $x^\star=\mathrm{fixedPoint}\,(\upsilon_D)$。
 3. **指标平移**：$\{k+t_0\}$ 与 $\{n\}$ 在 `atTop` 下等价
    （`tendsto_add_atTop_iff_nat`），故原序列收敛到同一点。∎
 
-**与 T6.10 的关系**：T6.10（`Fate.UpsilonOperator.Convergence.t6_10_*`）
+**与 T6.10 的关系**：T6.10（`UpsilonOperator.Convergence.t6_10_*`）
 说的是**固定数据下** `(υ D)^[n]` 的收敛；**本条把结论提升到
 「数据流最终恒定」的时变迭代上**——这是「信息不断注入」场景下
 真正需要的定理，且它是 T6.10 的**直接推论**（不是重新假设）。 -/
@@ -659,7 +659,7 @@ variable (K : FormalCtx.{u, v})
 
 **这是本文件唯一的「常数级」实例**：把 §4 的
 `upsilonIter_stabilizes_of_finite` 落到
-`Fate.UpsilonOperator.FCAInstance.fcaUpsilon`（属性集闭包 $B\mapsto B''$）上，
+`UpsilonOperator.FCAInstance.fcaUpsilon`（属性集闭包 $B\mapsto B''$）上，
 并借 `K.FiniteAttrs` 提供「有限高度」前件。
 
 **结论**：在**有限**形式背景下，属性集的完善迭代**必在有限步内饱和**。

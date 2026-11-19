@@ -15,7 +15,7 @@ import FateWorld.FateV2.Rules.LawRule
 /-! ===========================================================================
   §VS  在线学习与规则收窄：**版本空间 / 候选消除**（Mitchell 1977/1982）
 
-  **动机**：`Fate.LawRule` 把「规则」定为「允许的下一状态分布之集合」，
+  **动机**：`LawRule` 把「规则」定为「允许的下一状态分布之集合」，
   并把「完善（`υ`）」定为**收窄**。Mitchell 的 candidate elimination
   正是「用数据把假设空间**逐步收窄**」的算法 ——
   两者是**同一件事的两种说法**。本文件把文献层面的这个对应**形式化**。
@@ -30,7 +30,7 @@ import FateWorld.FateV2.Rules.LawRule
   | 版本空间**单调收缩** | 同上（$D\subseteq D' \Rightarrow VS_{H,D'}\subseteq VS_{H,D}$）| `fromData_antitone` |
   | 「$S$ 边界 / $G$ 边界」 | 同上 §2.2 | `VersionSpace.fine`（§3 给出边界类比与其**失败点**）|
   | 数据**无信息**（VS 不收缩） | 同上 | `fromData_eq_univ_iff` |
-  | 数据融合 ⟹ 取交 | 本项目 `Fate.Fusion`（命题 15.1–15.5）| `fromData_iInter` |
+  | 数据融合 ⟹ 取交 | 本项目 `Fusion`（命题 15.1–15.5）| `fromData_iInter` |
 
   ## ⭐ 与 `LawRule` 的关键差异（本文件的**实质发现**，非文献搬运）
 
@@ -211,7 +211,7 @@ theorem fromData_empty : fromData (∅ : Dataset C X Y) = Set.univ := by
 $$VS_{H,D} = H \iff \forall p\in D,\ \forall R\in H,\ p.\text{pred} \in R(p)$$
 
 **⟹** 这是「**数据必须有鉴别力才收窄**」的精确形式 ——
-与 `Fate.Fusion` 命题 15.2（来源全同 ⟹ 融合零增益）**同一现象**。 -/
+与 `Fusion` 命题 15.2（来源全同 ⟹ 融合零增益）**同一现象**。 -/
 theorem fromData_eq_univ_iff (D : Dataset C X Y) :
     fromData D = Set.univ ↔
       ∀ p ∈ D, ∀ R : LawRule C X Y, p.2.2 ∈ R p.1 p.2.1 := by

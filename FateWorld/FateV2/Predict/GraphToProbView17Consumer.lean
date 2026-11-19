@@ -45,7 +45,7 @@ open FateV2.Modeling
 
 open Finset
 open FateV2.Modeling.Graph
-open Fate.GraphToProbView17
+open FateV2.Predict.GraphToProbView17
 
 variable {V : Type*} [DecidableEq V] [Fintype V]
 
@@ -105,7 +105,7 @@ theorem screen_split_Y_law_invariant (G : DAG V) {X Y Z : Finset V}
 /-- ⭐⭐⭐ **V17C-3：求和层版本** —— `Y` 内 `margYZ` 与 `y` 无关。
 
 对 `x` 求和把 §2 提升到边缘层。**注意** `margYZ` 的求和变量是 `x`
-（`margYZ p y z = ∑ x, p ((x,y),z)`，见 `Fate.FinCondIndep`）。 -/
+（`margYZ p y z = ∑ x, p ((x,y),z)`，见 `FinCondIndep`）。 -/
 theorem screen_split_Y_margYZ_invariant (G : DAG V) {X Y Z : Finset V}
     (h : G.dSep X Y Z) (p : (V × V) × V → ℝ)
     (hsp : ScreenSplit G X Y Z p) :

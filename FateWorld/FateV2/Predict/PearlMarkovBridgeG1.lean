@@ -25,8 +25,8 @@ import Mathlib.Tactic.IntervalCases
 
   | 目标 | 现状 | 出处 / 本文件 |
   |---|---|---|
-  | `CondMulGuard ⟹ CondRatio` | **✅ 已有（无条件）** | `Fate.FinCondIndep.condMulGuard_iff_condRatio` |
-  | `CondMul ⟹ CondRatio`（在 `margZ ≠ 0` 处处）| **✅ 已有** | `Fate.FinCondIndep.condMul_iff_condRatio_of_ne_zero` |
+  | `CondMulGuard ⟹ CondRatio` | **✅ 已有（无条件）** | `FinCondIndep.condMulGuard_iff_condRatio` |
+  | `CondMul ⟹ CondRatio`（在 `margZ ≠ 0` 处处）| **✅ 已有** | `FinCondIndep.condMul_iff_condRatio_of_ne_zero` |
   | `CondMul ⟹ CondRatio`（**无条件**）| **本文件补**（此前无处陈述）| §1 `condMul_imp_condRatio` |
   | 链 $X\to Z\to Y$ 的条件独立，`FinJoint`/`CondMul` 口径 | **❌ 此前未做** | §2 |
   | 混合图（链 ＋ 对撞 $X\to W\leftarrow Y$，$W\notin Z$）| **❌ 此前未做** | §3 |
@@ -42,7 +42,7 @@ import Mathlib.Tactic.IntervalCases
   机器核查 + 随机搜索（20 万组整值 `Fin 2` 联合律）确认：
   **`CondMul ∧ ¬CondRatio` 不可满足**，故方向是 `CondMul ⟹ CondRatio`。**§1 给出证明。**
 
-  ## 1. 记号（沿用 `Fate.FinCondIndep` 的**唯一口径**）
+  ## 1. 记号（沿用 `FinCondIndep` 的**唯一口径**）
 
   * `FinJoint α β γ = (α × β) × γ → ℝ`，其中 $\gamma$ 槽是**条件变量 $Z$**；
   * `margZ`、`margXZ`、`margYZ` —— 三个边缘律；

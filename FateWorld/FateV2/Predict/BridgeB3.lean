@@ -436,7 +436,7 @@ end AncestralReduction
 
 1. **单文件验证**：只用 `lake env lean Fate/BridgeB3.lean`。✅
 2. **不改 `Fate.lean`**：本文件不触碰。✅
-3. **不改已有模块**：只 `import`（`CausSeparation`、`Fate.Audit10Factorizes`）。✅
+3. **不改已有模块**：只 `import`（`CausSeparation`、`Audit10Factorizes`）。✅
 4. **零 `sorry`**：无 `sorry`/`admit`/`axiom`；未落地部分为显式 `Prop`
    `AncestralReductionBackward_Gap` 并注明「不进下游」。✅
 5. **不用 `mass` 塔性质**：本文件是纯图论层（`dSep` + `topoOrder`），**不出现 `mass`**。✅

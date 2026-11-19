@@ -130,7 +130,7 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 /-- **B1.5a（因子分解，读集 `{v} ∪ pa_G(v)`）**：逐字照抄 `BridgeA4` §4.1a
 （`BridgeA4` 本身编译失败，故不 `import` 它）。
 
-⚠ 与 `Fate.FactorMarkov.Factorizes`（`LocalTo` 即同一读集条件）是**同一个**谓词。 -/
+⚠ 与 `FactorMarkov.Factorizes`（`LocalTo` 即同一读集条件）是**同一个**谓词。 -/
 def FactorizesL (p : (V → α) → ℝ) (G : FateV2.Modeling.Graph.DAG V) : Prop :=
   ∃ (φ : V → (V → α) → ℝ),
     (∀ v x y, (∀ u ∈ insert v (pa G v), x u = y u) → φ v x = φ v y) ∧

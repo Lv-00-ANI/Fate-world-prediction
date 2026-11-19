@@ -106,8 +106,8 @@ theorem mass_sdiff_of_reads {T : Finset V} {s : V} (hsT : s ∈ T)
     exact h u (Finset.mem_sdiff.mp hu).1
   -- 两边用 mass_self_insert 展开
   have hgS : ∀ w w', (∀ u ∈ T \ {s}, w u = w' u) → g w = g w' := hg
-  rw [Fate.S13HoistFixed.mass_self_insert hgS x,
-      Fate.S13HoistFixed.mass_self_insert hgT x]
+  rw [FateV2.Predict.S13HoistFixed.mass_self_insert hgS x,
+      FateV2.Predict.S13HoistFixed.mass_self_insert hgT x]
   -- 关键：两个 extEnd 处的 g 值相等
   have hgeq : g (FateV2.Predict.GraphToProbView7.extEnd (T \ {s}) x (fun u : ↥(T \ {s}) => x u.1))
       = g (FateV2.Predict.GraphToProbView7.extEnd T x (fun u : ↥T => x u.1)) := by

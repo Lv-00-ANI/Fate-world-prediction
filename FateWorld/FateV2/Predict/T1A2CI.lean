@@ -36,7 +36,7 @@ namespace FateV2.Predict.T1A2CI
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
+open FateV2.Predict.T1A2
 
 variable {V : Type*} [DecidableEq V] [Fintype V]
 

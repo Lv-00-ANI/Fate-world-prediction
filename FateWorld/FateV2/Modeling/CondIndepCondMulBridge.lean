@@ -29,9 +29,9 @@ import Mathlib.Tactic.Ring
   * `factorizesOn_implies_condMul_fork`
 
   都声称「无正性因子分解 ⟹ 条件独立」。它们的实质已在一般空间上由
-  `Fate.GraphToProbView7.condIndep_general` 实现，但它用的是
+  `GraphToProbView7.condIndep_general` 实现，但它用的是
   `FateV2.Predict.FactorMarkov.CondIndep`（`mass` 口径），而文档用的是有限版
-  `Fate.FinCondIndep.CondMul`。**本文件证明两者在 `Fin 3` 上是同一命题**，
+  `FinCondIndep.CondMul`。**本文件证明两者在 `Fin 3` 上是同一命题**，
   从而把「幽灵的一般化」真正落地。
 
   主定理（**B6**）：
@@ -65,7 +65,7 @@ import Mathlib.Tactic.Ring
     **完全一致**，故该幽灵的「条件独立」一侧没有信息损失。
 
   一般空间（任意 `V`、任意 `A B Z`）上的对应结论由
-  `Fate.GraphToProbView7.condIndep_general` 给出；B8/B9 是它在 `Fin 3` 上
+  `GraphToProbView7.condIndep_general` 给出；B8/B9 是它在 `Fin 3` 上
   **可以独立验证**的实例。
 
   ## 诚实边界
@@ -230,7 +230,7 @@ theorem condIndep_of_condMul {p : (Fin 3 → α) → ℝ}
 /-- ⭐⭐⭐ **B9**：**无正性因子分解 ⟹ `CondMul`**
 （`factorizesOn_implies_condMul_fork` 的 `Fin 3` 形态）。
 
-直接调用 `Fate.FinCondIndep.condMul_of_factorization`，
+直接调用 `FinCondIndep.condMul_of_factorization`，
 **不假设** `f, g, h ≥ 0`、**不假设**任何归一化。 -/
 theorem condMul_fin3_of_factorization (p : (Fin 3 → α) → ℝ)
     (f g h : α → ℝ)

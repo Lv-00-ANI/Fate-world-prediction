@@ -69,7 +69,7 @@ import Mathlib.Tactic.NormNum
 
   ## ⭐⭐⭐ 三、载体与 `W`
 
-  `Fate.PearlHierarchy.SCM X Y` **只有两个**观测变量 `X`、`Y`，
+  `PearlHierarchy.SCM X Y` **只有两个**观测变量 `X`、`Y`，
   **没有放 `W`（协变量集）的位置**（`Fate/Rule2Genuine.lean` §7.3 已登记同样局限）。
   **故本文件取 `W := ∅`**，即规则 1 的「**无调整集**」情形：
 
@@ -1428,7 +1428,7 @@ end R1G
 
   ## 防环检查（第 237 条）
 
-  * `grep -c "^import Fate.InterventionSup$" Fate/Rule1Genuine.lean` = 0（本节前）
+  * `grep -c "^import InterventionSup$" Fate/Rule1Genuine.lean` = 0（本节前）
   * `InterventionSup`（及其上游 `InterventionTight` → `PolicyAlgorithm` /
     `InterventionSelection`）中**不出现** `Rule1Genuine`：
     `grep -E "Rule1Genuine" Fate/InterventionSup.lean Fate/InterventionTight.lean
@@ -1456,7 +1456,7 @@ universe u
 /-- ⭐⭐⭐ **【真实消费者】规则 1 删除方向的候选方案上界**
 
 在候选干预方案树 `tree` 上，任何方案 `s` 的得分都不超过最优值。
-证明体直接引用 `Fate.WorldScenario.InterventionSup.le_bestScoreSup`（该文件此前零外部引用）。 -/
+证明体直接引用 `WorldScenario.InterventionSup.le_bestScoreSup`（该文件此前零外部引用）。 -/
 theorem del_direction_score_le_sup {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
     (s : Scenario A X) (hs : s ∈ tree) :
@@ -1466,7 +1466,7 @@ theorem del_direction_score_le_sup {A X : Type u} [Fintype A] [Fintype X]
 /-- ⭐⭐⭐⭐ **【真实消费者】最优删除方案确实存在**
 
 `bestScoreSup` 被树中某场景**达到**，即「存在一条候选方案取到最优得分」。
-证明体消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_mem_image`（真紧性，来自
+证明体消费 `WorldScenario.InterventionSup.bestScoreSup_mem_image`（真紧性，来自
 `Finset.exists_mem_eq_sup'`）。 -/
 theorem exists_del_direction_attains_sup {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty) :
@@ -1480,7 +1480,7 @@ theorem exists_del_direction_attains_sup {A X : Type u} [Fintype A] [Fintype X]
 /-- ⭐⭐⭐ **【真实消费者】安全阈值判据**
 
 `beta` 是候选方案树的安全上界，当且仅当最优值不超过 `beta`。
-证明体消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_isLUB`。 -/
+证明体消费 `WorldScenario.InterventionSup.bestScoreSup_isLUB`。 -/
 theorem del_direction_threshold_iff {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
     (beta : ℝ) :
@@ -1491,7 +1491,7 @@ theorem del_direction_threshold_iff {A X : Type u} [Fintype A] [Fintype X]
 /-- ⭐⭐⭐⭐ **【真实消费者】最优值不可改进（锐利性）**
 
 任一把最优值下调 `eps > 0` 的阈值都被突破。
-证明体消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_sharp`（来自 `Finset.lt_sup'_iff`）。 -/
+证明体消费 `WorldScenario.InterventionSup.bestScoreSup_sharp`（来自 `Finset.lt_sup'_iff`）。 -/
 theorem del_direction_sup_sharp {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
     {eps : ℝ} (heps : 0 < eps) :
@@ -1501,7 +1501,7 @@ theorem del_direction_sup_sharp {A X : Type u} [Fintype A] [Fintype X]
 /-- ⭐⭐⭐ **【主结论：组合形式】最优删除方案存在且最优**
 
 合取「存在」与「其余都不超过它」，是本节的收尾判据。
-消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_mem_image` 与 `le_bestScoreSup`。 -/
+消费 `WorldScenario.InterventionSup.bestScoreSup_mem_image` 与 `le_bestScoreSup`。 -/
 theorem del_direction_exists_max {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty) :
     ∃ s ∈ tree, P.score s = FateV2.Predict.WorldScenario.InterventionSup.bestScoreSup P tree hne ∧

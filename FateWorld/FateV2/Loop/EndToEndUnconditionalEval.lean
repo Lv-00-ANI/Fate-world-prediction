@@ -13,7 +13,7 @@ import FateWorld.FateV2.Loop.EndToEndUnconditionalQ
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndUnconditionalEval` —— **给 3 条无前件 `ℝ` 定理配 `ℚ` 数值实例**
+  `EndToEndUnconditionalEval` —— **给 3 条无前件 `ℝ` 定理配 `ℚ` 数值实例**
 
   ## 0  为什么需要这个文件
 

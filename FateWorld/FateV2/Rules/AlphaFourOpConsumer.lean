@@ -262,7 +262,7 @@ theorem toAttrs3_one : toAttrs3 (1 : ℝ) = BAB := by
 /-- ⭐⭐ **编码值经 α 后是四算子的不动点**（编码器链 ⟶ 四算子）。
 
 对**任意**实例 `e`，把 `enc3` 读出的属性集送进 `α`，其像**同时**满足：
-1. FCA 侧闭（`IsClosedAttr`，来自 `Fate.FormalCtx.takeConcept_isClosed`）；
+1. FCA 侧闭（`IsClosedAttr`，来自 `FormalCtx.takeConcept_isClosed`）；
 2. 四算子侧不动（`alphaK _ = _`，来自 `AlphaFourOp.alpha_upsilon_same_fixed_set`）。
 
 **为什么不是同义反复**：两个合取项来自**两个不同模块**的定理；

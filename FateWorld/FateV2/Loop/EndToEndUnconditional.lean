@@ -14,7 +14,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndUnconditional` —— **拆退化分支：`x = 0` 时不声称收敛到 `θ*`**
+  `EndToEndUnconditional` —— **拆退化分支：`x = 0` 时不声称收敛到 `θ*`**
 
   ## 0  本文件补的到底是哪一条缺口
 

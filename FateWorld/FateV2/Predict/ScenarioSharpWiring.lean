@@ -2,9 +2,9 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ScenarioSharpWiring`
-任务：**【C】把 `Fate.ScenarioSharp` 接进 ③ 多分支模拟的主链模块**
-（`Fate.ScenarioConvergence` 的「界（上界）⇄ 紧 ⇄ 下界」三段式汇总）。
+模块：`ScenarioSharpWiring`
+任务：**【C】把 `ScenarioSharp` 接进 ③ 多分支模拟的主链模块**
+（`ScenarioConvergence` 的「界（上界）⇄ 紧 ⇄ 下界」三段式汇总）。
 
 ===========================================================================
 为什么要新建文件（而不是改 `ScenarioConvergence.lean`）
@@ -22,7 +22,7 @@ FateV2.Loop.ScenarioConvergence  ──import──▶  FateV2.Loop.ScenarioShar
 那会造成 import 环。本文件位于依赖链的**最上游**：
 
 ```
-FateV2.Loop.ScenarioConvergence ──▶ FateV2.Loop.ScenarioSharp ──▶ Fate.ScenarioSharpWiring
+FateV2.Loop.ScenarioConvergence ──▶ FateV2.Loop.ScenarioSharp ──▶ ScenarioSharpWiring
 ```
 
 并且**逐字**按任务书给出的「三条独立引用型定理」方案落地：

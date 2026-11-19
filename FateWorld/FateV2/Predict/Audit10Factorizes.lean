@@ -33,7 +33,7 @@ import FateWorld.FateV2.Predict.GlobalMarkovMinimal
 
   **读集 = `pa G v`（仅父集，不含 `v` 自身）。**
 
-  对照 `Fate.FactorMarkov.Factorizes`（正确口径）：
+  对照 `FactorMarkov.Factorizes`（正确口径）：
   ```
   def LocalTo G f := ∀ v x y, (∀ u, u = v ∨ u ∈ G.parents v → x u = y u) → f v x = f v y
   ```
@@ -211,7 +211,7 @@ theorem chain_dep_on_two_not_factorizes :
 
 /-- ⭐⭐⭐⭐ **A1（决定性对照）**：同一个 `p x = if x₂ then 1 else 0`
 * **不满足** RouteB `Factorizes`（上一行）
-* **满足** `Fate.FactorMarkov.Factorizes`（读集 `{v} ∪ pa(v)`，本行）
+* **满足** `FactorMarkov.Factorizes`（读集 `{v} ∪ pa(v)`，本行）
 
 ⟹ 两者的差异**就是** `{v}` 该不该读。`FactorMarkov` 口径**接受**的
 合法链式分布，被 RouteB 口径**排除**。**这机检了「读集缺 `{v}`」这一缺陷。** -/
@@ -253,7 +253,7 @@ theorem routeB_rejects_what_FactorMarkov_accepts :
   它是「沿祖先集的**门乘积**」，比真因子分解**严格更弱**（漏掉 `x_v` 项），
   同时又**过松**（`p ≡ 1` 恒成立），故**不可作为 Pearl 1.2.7 的前件**。
 
-  **正确口径**：`Fate.FactorMarkov.LocalTo`（读集 `{v} ∪ pa(v)`），
+  **正确口径**：`FactorMarkov.LocalTo`（读集 `{v} ∪ pa(v)`），
   其 `sink_peel`（T4）已零缺口证明了真正的 sink 剥离。
   =========================================================================== -/
 

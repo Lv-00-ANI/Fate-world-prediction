@@ -67,7 +67,7 @@ theorem sum_const_of_cond {Z C : Finset V} (hCZ : C ⊆ Z) (y : ↥Z → α) (c 
   have hcard : (Finset.univ.filter (fun wZ : (↥Z → α) =>
       ∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C hCZ, wZ u = y u)).card
       = Fintype.card α ^ (Z.card - C.card) := by
-    rw [← Fate.C5d.card_sub_fib' hCZ y]
+    rw [← FateV2.Predict.C5d.card_sub_fib' hCZ y]
     exact (Fintype.card_subtype (fun wZ : (↥Z → α) =>
       ∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C hCZ, wZ u = y u)).symm
   rw [Finset.sum_const, hcard]
@@ -83,7 +83,7 @@ theorem mass_factor_of_reads {A C Z : Finset V} (hAZ : A ⊆ Z) (hCA : C ⊆ A)
       = ((Fintype.card α : ℝ) ^ (Z.card - C.card)) * mass Z f x := by
   have hfZ : ∀ w w', (∀ u ∈ Z, w u = w' u) → f w = f w' :=
     fun w w' h => hf w w' (fun u hu => h u (hAZ hu))
-  rw [Fate.C5b.mass_self hfZ ω₀ x]
+  rw [FateV2.Predict.C5b.mass_self hfZ ω₀ x]
   rw [FateV2.Predict.GraphToProbView7.mass_eq_card_mul_massA (A := Z) (S := C)
     (Finset.Subset.trans hCA hAZ) hfZ ω₀ x]
   -- 求和化为常数
@@ -92,7 +92,7 @@ theorem mass_factor_of_reads {A C Z : Finset V} (hAZ : A ⊆ Z) (hCA : C ⊆ A)
       (∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ), wZ u = x u.1) →
       f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ wZ)
         = f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ (fun u : ↥Z => x u.1)) :=
-    fun wZ hag => Fate.C5b.f_eq_of_agree_C hAZ hCA hC hf ω₀ x wZ hag
+    fun wZ hag => FateV2.Predict.C5b.f_eq_of_agree_C hAZ hCA hC hf ω₀ x wZ hag
   have hsum : (∑ wZ : (↥Z → α),
       if (∀ u ∈ FateV2.Predict.GraphToProbView7.sub Z C (Finset.Subset.trans hCA hAZ), wZ u = x u.1)
         then f (FateV2.Predict.GraphToProbView7.extEnd Z ω₀ wZ) else 0)

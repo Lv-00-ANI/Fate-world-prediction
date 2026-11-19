@@ -56,7 +56,7 @@
   是**独立前件**，不是结论的改写。
 * 零 `sorry` / `admit` / `axiom`。
 
-依赖：`FateV2.Loop.ConvergeToOptimalDemo`、`Fate.WiringConvergence`（`Aid`/`Aid_injective`
+依赖：`FateV2.Loop.ConvergeToOptimalDemo`、`WiringConvergence`（`Aid`/`Aid_injective`
 来自 Demo；`errA` 来自 `BoundWriteBack`，经 `WiringConvergence` 已 `open`）。
 -/
 

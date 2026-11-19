@@ -82,7 +82,7 @@ variable {A B C : Type u}
 
 /-- 重绑定：三元组 `A × B × C` → 嵌套 `(A × B) × C`（`Z` 槽 = `C`）。
 
-**⚠ 与 `Fate.FinMarkov.rebind`（`Fate/FactorizesToCondMul.lean:117`）逐字相同**；
+**⚠ 与 `FinMarkov.rebind`（`Fate/FactorizesToCondMul.lean:117`）逐字相同**；
 这里用 `abbrev` 别名复用既有名字，避免同一函数两个 `def`。 -/
 abbrev rebind (P : A × B × C → ℝ) : FateV2.Predict.FinCondIndep.FinJoint A B C :=
   FateV2.Predict.FinMarkov.rebind P
@@ -92,7 +92,7 @@ abbrev rebind (P : A × B × C → ℝ) : FateV2.Predict.FinCondIndep.FinJoint A
 
 /-- 对齐重绑定：`Z` 槽 = `A`（`Factorizes` 的公共父），`X` 槽 = `B`，`Y` 槽 = `C`。
 
-**⚠ 本定义与 `Fate.FinMarkov.rebindZ`（`Fate/FactorizesToCondMul.lean:121`）逐字相同。**
+**⚠ 本定义与 `FinMarkov.rebindZ`（`Fate/FactorizesToCondMul.lean:121`）逐字相同。**
 这里**不重复实现**：直接用既有名字，避免「同一函数两个 `def`」的 identity 分裂。 -/
 abbrev rebindZ (P : A × B × C → ℝ) : FateV2.Predict.FinCondIndep.FinJoint B C A :=
   FateV2.Predict.FinMarkov.rebindZ P
@@ -104,7 +104,7 @@ abbrev rebindZ (P : A × B × C → ℝ) : FateV2.Predict.FinCondIndep.FinJoint 
   §2 ⭐⭐⭐ **先求值（N3）**：`Bool` 上的具体数值表
   ===========================================================================
 
-  **口径逐字对齐 `Fate.FinCondIndep`**：
+  **口径逐字对齐 `FinCondIndep`**：
 
   ```
   margZ  p z   = ∑ x, ∑ y, p ((x,y), z)
@@ -125,7 +125,7 @@ abbrev rebindZ (P : A × B × C → ℝ) : FateV2.Predict.FinCondIndep.FinJoint 
 | `z = true`  | 同上（`γ` 忽略 `c`） |
 
 ⚠ **为什么要写成 8 格 `match` 而不是 `α a * β (a,b) * γ (a,c)`**：
-`Fate.FinCondIndep.margZ` 等是 `noncomputable`，`Fintype.sum_bool` 展开后
+`FinCondIndep.margZ` 等是 `noncomputable`，`Fintype.sum_bool` 展开后
 `norm_num` 无法归约 `Real` 上的 `noncomputable` 项（实测 `⊢ False`）；
 逐格 `match` 使每一格**定义上**等于一个有理数字面量，故 `simp only [witnessP]`
 即可把 8 项和化为具体数字。**因子形式在 `match` 表里保持可读**（每格的值即乘积）。 -/

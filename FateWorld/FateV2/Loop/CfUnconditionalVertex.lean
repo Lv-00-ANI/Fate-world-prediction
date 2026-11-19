@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.CfUnconditionalVertex
+模块：CfUnconditionalVertex
 来源：**`Fate/WiringCounterfactual.lean` 的归档内容回收**（P-006 分诊判定 ARCHIVE）
 
 ---------------------------------------------------------------------------

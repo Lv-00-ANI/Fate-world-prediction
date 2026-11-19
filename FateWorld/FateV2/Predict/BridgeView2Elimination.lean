@@ -140,7 +140,7 @@ theorem peel (v : V) (φ : V → (V → α) → ℝ) (x : V → α)
       (∀ u ∈ (Finset.univ \ {v} : Finset V), a u = b u) → φ w a = φ w b) :
     mass (Finset.univ \ {v}) (fun y => ∏ u, φ u y) x
       = (∑ a : α, φ v (unpin v x a)) * ∏ u ∈ (Finset.univ \ {v} : Finset V), φ u x := by
-  rw [Fate.TowerAudit.mass_compl_singleton_eq v (fun y => ∏ u, φ u y) x, Finset.sum_mul]
+  rw [FateV2.Predict.TowerAudit.mass_compl_singleton_eq v (fun y => ∏ u, φ u y) x, Finset.sum_mul]
   refine Finset.sum_congr rfl fun a _ => ?_
   rw [← Finset.prod_sdiff (show ({v} : Finset V) ⊆ Finset.univ from Finset.subset_univ _)]
   rw [Finset.prod_singleton, mul_comm]

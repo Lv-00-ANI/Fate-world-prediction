@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ErrIterGeneral`
+模块：`ErrIterGeneral`
 任务：**【G2】`err_iter` 的存在性判定 + 泛化**
 
 ===========================================================================
@@ -18,8 +18,8 @@
       **无**任何单独的 `err_iter` 定义。
 2. `grep -rnwE "err_iter|errIter|iterErr|errorIter" Fate/ --include="*.lean"`
    ⟹ 真实名字只有两个：
-      * `Fate.WiringConvergence.err_iterMap`（`theorem`，`WiringConvergence.lean:140`）
-      * `Fate.EndToEndConverge.errIter`（`noncomputable def`，`EndToEndConverge.lean:310`）
+      * `WiringConvergence.err_iterMap`（`theorem`，`WiringConvergence.lean:140`）
+      * `EndToEndConverge.errIter`（`noncomputable def`，`EndToEndConverge.lean:310`）
 3. `grep -nE "^(theorem|def|noncomputable def|variable|structure)" Fate/ErrorCriterion.lean`
    ⟹ `ErrorCriterion` 里只有 `ErrorAcceptable ε σ := σ/2 ≤ ε ∧ ε ≤ 2σ`
       及其代数（区间、单调、尺度不变、与 `AttrAcceptable` 等价）。

@@ -3,7 +3,7 @@
 =====================================================================
 
 模块：FateV2.Model.TrajGenMeasurable
-上游：`Fate.TrajGenDeterministic`（`trajGen`、`trajGen_zero`、`trajGen_succ`）、
+上游：`FateV2.Model.TrajGenDeterministic`（`trajGen`、`trajGen_zero`、`trajGen_succ`）、
 　　　`Fate.Frame`（`Frame`、`Step`）、`Fate.Basic`（`Traj` 及各 Space 的 `meas` 字段）。
 
 ---------------------------------------------------------------------------

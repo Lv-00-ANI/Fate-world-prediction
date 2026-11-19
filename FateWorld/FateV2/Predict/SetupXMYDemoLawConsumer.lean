@@ -18,7 +18,7 @@
 | **C1** | `demoX_backdoor_fails_everywhere` | 否证的**全称化** | `demoX` 上 `{Z}` 调整在 `(0,0)` 与 `(1,0)` **两行都错**（`¬ ZAdjusts false false ∧ ¬ ZAdjusts true false`）|
 | **C2** | `demoX_not_forall_zAdjusts` + `demoX_zAdjusts_mixed` | 主否证的**推论** | 「`{Z}` 非处处正确」；且「`(1,1)` 重合」与「`(0,0)` 偏离」**并存**（机器形式地否证「重合 ⟹ 一般成立」）|
 | **C2'** | `demoX_M_ne_Z_witness` | 两条否证的**并置** | `¬ MAdjusts true true ∧ ¬ ZAdjusts false false` |
-| **C3** | `demoX_toPearlSCM_L2_00` / `_L2_11` | ⭐ **跨层接入** | 把 `demoX` 的结构方程装进 `Fate.PearlHierarchy.SCM`，证其 `L2_do` 在 `(0,0)` 与 `(1,1)` **数值等于** `doLaw`（`1/2` 与 `29/50`）|
+| **C3** | `demoX_toPearlSCM_L2_00` / `_L2_11` | ⭐ **跨层接入** | 把 `demoX` 的结构方程装进 `PearlHierarchy.SCM`，证其 `L2_do` 在 `(0,0)` 与 `(1,1)` **数值等于** `doLaw`（`1/2` 与 `29/50`）|
 | **C4** | `demoXSCM_adjustLawZ_ne_L2` / `demoXSCM_adjustLawM_ne_L2` | ⭐ **否证穿透到 `SCM` 层** | 两条否证在 `SCM` 语境下**同样成立**（`21/100 ≠ 1/2`、`29/100 ≠ 29/50`）|
 | **C5** | `demoXSCM_L2_not_constant` | 非平凡性 | 该 `SCM` 的 `L2_do` **不是**常数律（否则 C3/C4 全部无内容）|
 
@@ -72,7 +72,7 @@ open Finset
   - 状态：已迁移
 -/
 
-/-! ## §1 调整判据（本地定义，避免与 `Fate.BackdoorXMY.ZAdj` 撞名）
+/-! ## §1 调整判据（本地定义，避免与 `FateV2.Predict.BackdoorXMY.ZAdj` 撞名）
 
 ⚠ 第 95 条：**同名 `def` 不能同时 import**。`Fate/BackdoorXMY.lean` 已有
 `ZAdj`（对**任意** `S : Setup`），本文件不复用它（那需要额外 import
@@ -151,7 +151,7 @@ noncomputable def demoXSCM : FateV2.Modeling.PearlHierarchy.SCM Bool Bool where
 
 /-- ⭐⭐ **C3：`L2_do false false` 与 `doLaw false false` 数值一致**（都 `= 1/2`）。
 
-左端是 `Fate.PearlHierarchy.push` 的**一般推前**，右端是
+左端是 `PearlHierarchy.push` 的**一般推前**，右端是
 `SetupXMYDemo` 的**指示函数 `∑∑` 展开**；两条定义形式不同，
 本定理给出 `demoX` 上的**数值桥**。 -/
 theorem demoX_toPearlSCM_L2_00 :

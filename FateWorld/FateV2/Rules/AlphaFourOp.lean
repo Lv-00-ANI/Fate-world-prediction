@@ -23,8 +23,8 @@
 ---------------------------------------------------------------------------
 | # | 定理 | 前件 | 结论 | 判定 |
 |---|------|------|------|------|
-| 1 | `alpha_upsilon_agree` | **无** | `alphaK B = upsilonK B` | **`rfl` 级**（α、υ 在 `Fate.Alpha`／`Fate.UpsilonOperator` 中**都定义**为 `closureOp`）。**显式登记为定义重合，不冒充新数学**，仅作规范化引理 |
-| 2 | `alpha_upsilon_fixed_iff` | **无** | `IsClosedAttr B ↔ Saturated υ B` | **有内容**：两个谓词来自**不同模块**（`Fate.Implication` 的 `IsClosedAttr` 与 `Fate.UpsilonOperator` 的 `Saturated`），需经 `fca_saturated_iff_isClosedAttr` 转接；**不是 `rfl`**，也不是把结论写进前件 |
+| 1 | `alpha_upsilon_agree` | **无** | `alphaK B = upsilonK B` | **`rfl` 级**（α、υ 在 `Fate.Alpha`／`UpsilonOperator` 中**都定义**为 `closureOp`）。**显式登记为定义重合，不冒充新数学**，仅作规范化引理 |
+| 2 | `alpha_upsilon_fixed_iff` | **无** | `IsClosedAttr B ↔ Saturated υ B` | **有内容**：两个谓词来自**不同模块**（`Fate.Implication` 的 `IsClosedAttr` 与 `UpsilonOperator` 的 `Saturated`），需经 `fca_saturated_iff_isClosedAttr` 转接；**不是 `rfl`**，也不是把结论写进前件 |
 | 3 | `alpha_of_saturated` | `Saturated υ B`（**只**说 υ 在 `B` 上不动） | `alphaK B = B`（α 在 `B` 上不动） | **真内容**：前件讲 **υ**，结论讲 **α**；两者是不同算子的不动点陈述，需借助 #1 的同一性 + 定义展开 |
 | 4 | `alpha_absorbs_upsilon` | **无** | `alphaK (upsilonK B) = upsilonK B` | **真内容**：一个**非** `rfl` 的等式，需 `closureOp_idem`（FCA Galois 连接）；前件空 |
 | 5 | `alpha_mono_upsilon` | **无** | `B₁ ⊆ B₂ → upsilonK B₁ ⊆ alphaK B₂` | **真内容**：单调性跨算子传递（`upsilonK` 出口 → `alphaK` 入口），需 `closureOp_mono` + `subset_closureOp` |
@@ -46,7 +46,7 @@
    只出现 `propext` / `Classical.choice` / `Quot.sound` 三个标准公理）。
 2. 本文件是**消费方（consumer）**：α 的定义来自 `Fate.Alpha`，
    四算子一致性来自 `Fate.WiringFourOpFixed`，γ 的 `GenOp` 律来自
-   `Fate.GammaOperator`，υ 的 `IsCompletion` 律来自 `Fate.UpsilonOperator`。
+   `Fate.GammaOperator`，υ 的 `IsCompletion` 律来自 `UpsilonOperator`。
    **本文件不新造算子，不新造公理，不重证已有结论。**
 3. **不修改任何已有模块**：全部内容为新增。
 4. ∘ 仍取 `Fate.WiringFourOpFixed` 的 `combClosure`（规格开放问题 5.1 未定的
@@ -105,8 +105,8 @@ namespace WiringFixed
 /-- **（登记）α 与 υ 在 `K3` 上是同一个函数**。
 
 **⚠ 这不是新数学内容**：`Fate.Alpha.takeConcept` 与
-`Fate.UpsilonOperator.FCAInstance.fcaUpsilon` **都定义**为 `K.closureOp`
-（`Fate.Alpha` §2 的 `def takeConcept`、`Fate.UpsilonOperator` §4 的
+`UpsilonOperator.FCAInstance.fcaUpsilon` **都定义**为 `K.closureOp`
+（`Fate.Alpha` §2 的 `def takeConcept`、`UpsilonOperator` §4 的
 `def fcaUpsilon`）。因此本等式经 `rfl` 可证。
 
 **它存在的理由**：下游（尤其 `Fate.AlphaFourOp` 以后的模块）需要一条
@@ -152,7 +152,7 @@ theorem alphaK_models_iff {A B : Set K3.MFCA} :
     §2  α 与 υ 的交互
     ===========================================================================
 
-υ 在 `Fate.UpsilonOperator` 中是 `IsCompletion`（扩张 + 单调 + 幂等）型算子，
+υ 在 `UpsilonOperator` 中是 `IsCompletion`（扩张 + 单调 + 幂等）型算子，
 其在 FCA 侧的完整实例是 `fcaUpsilon K = closureOp`。
 本节给出 α 与 υ 的**不动点重合**与**吸收**两条交互定理。 -/
 
@@ -162,11 +162,11 @@ $$\texttt{IsClosedAttr}\,B \iff \texttt{Saturated}\ \upsilon\ B$$
 
 **为什么这不是同义反复**：两个谓词来源**完全不同** ——
 * `K3.IsClosedAttr` 定义在 `Fate.Implication`（FCA 语境：`closureOp B = B`）；
-* `UpsilonOperator.IsCompletion.Saturated` 定义在 `Fate.UpsilonOperator`
+* `UpsilonOperator.IsCompletion.Saturated` 定义在 `UpsilonOperator`
   （完善算子语境：`υ D R = R`）。
 
 二者**恰好**重合，是 `fcaUpsilon` 被选为 FCA 侧 υ 实例的**后果**
-（`Fate.UpsilonOperator.FCAInstance.fca_saturated_iff_isClosedAttr`），
+（`UpsilonOperator.FCAInstance.fca_saturated_iff_isClosedAttr`），
 **不是**定义上的同一件事。本定理把该重合在 `K3` 上显式陈述，
 供下游**按需选用任一侧的判据**。 -/
 theorem alpha_upsilon_fixed_iff (B : Set K3.MFCA) :

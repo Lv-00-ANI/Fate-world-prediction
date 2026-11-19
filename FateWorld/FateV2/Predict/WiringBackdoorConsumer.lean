@@ -13,10 +13,10 @@ import FateWorld.FateV2.Predict.WiringBackdoor
 -/
 
 /-! ===========================================================================
-  `FateV2.Predict.WiringBackdoorConsumer` —— **【甲-批3 / P5】`Fate.WiringBackdoor` 的下游消费者**
+  `FateV2.Predict.WiringBackdoorConsumer` —— **【甲-批3 / P5】`FateV2.Predict.WiringBackdoor` 的下游消费者**
 
   本文件**只 `import FateV2.Predict.WiringBackdoor`**，不改任何既有模块一行。
-  目标：给 `Fate.WiringBackdoor` 的核结论挂上**第一批真实下游消费者**
+  目标：给 `FateV2.Predict.WiringBackdoor` 的核结论挂上**第一批真实下游消费者**
   （经核查，在此之前全库**没有任何模块** `import FateV2.Predict.WiringBackdoor`，
   它是一条**叶子**；见 §0 的核查说明）。
 
@@ -28,19 +28,19 @@ import FateWorld.FateV2.Predict.WiringBackdoor
   | 命名空间 | 声明 |
   |---|---|
   | **（根，无 namespace）** | `r259_noDescendant_is_tautology`、`r259_noDescendant_not_refutable` |
-  | `Fate.R277`（§2–§3） | `w7_moralAdj_y_false`、`w7_moralAdj_x_step`、`w7_isDescendant_cases`、`w7_isDescendant_of_reachable`、`w7_y_descendant_iff`、`w7_noDescendant_iff`、`w7_noDescendant_imp_noOutcome`、`w7_noDescendant_mono`、`w7_noDescendant_of_no_Y`、`w7_backdoorSep_mono`、`w7_backdoorSep_forces_vertex`、`w7_backdoorSep_needs_third_vertex`、`w7_backdoorSep_not_vacuous` |
-  | `Fate.WiringBackdoor`（§4） | `bdStateSpace`、`bdInputSpace`、`bdActionSpace`、`bdNoiseSpace`、`bdThetaSpace`、`bdFrame`、`bdStep`、`bdCtxSpace`、`bdRule`、`bdRule_mem`、`bdRules_nonempty`、`bdWorldRules`、`bdSelector`、`bdSimulator`、`bdDefault`、`bdWorldModel`、`bdWorldModel_f`、`bdWorldModel_wellFormed` |
+  | `FateV2.Predict.R277`（§2–§3） | `w7_moralAdj_y_false`、`w7_moralAdj_x_step`、`w7_isDescendant_cases`、`w7_isDescendant_of_reachable`、`w7_y_descendant_iff`、`w7_noDescendant_iff`、`w7_noDescendant_imp_noOutcome`、`w7_noDescendant_mono`、`w7_noDescendant_of_no_Y`、`w7_backdoorSep_mono`、`w7_backdoorSep_forces_vertex`、`w7_backdoorSep_needs_third_vertex`、`w7_backdoorSep_not_vacuous` |
+  | `FateV2.Predict.WiringBackdoor`（§4） | `bdStateSpace`、`bdInputSpace`、`bdActionSpace`、`bdNoiseSpace`、`bdThetaSpace`、`bdFrame`、`bdStep`、`bdCtxSpace`、`bdRule`、`bdRule_mem`、`bdRules_nonempty`、`bdWorldRules`、`bdSelector`、`bdSimulator`、`bdDefault`、`bdWorldModel`、`bdWorldModel_f`、`bdWorldModel_wellFormed` |
   | `Fate.FateV2.Predict.R259.BackdoorSetup`（§5） | `wmNum`、`wmAdjustEst`、`wmNum_eq_condYnum`、`wmAdjustEst_eq_backdoorFormula`、`wmAdjustEst_eq_doLaw` |
-  | `Fate.WiringBackdoor`（§5.4） | `demoS_wmAdjustEst_00`、`demoS_wmAdjustEst_eq_doLaw_00` |
+  | `FateV2.Predict.WiringBackdoor`（§5.4） | `demoS_wmAdjustEst_00`、`demoS_wmAdjustEst_eq_doLaw_00` |
 
   ### §0.1 ⚠ 实测的**命名空间陷阱**（本文件第一个发现）
 
   **§1 的两条定理在文件里位于第一个 `namespace` 之前**（`WiringBackdoor.lean:119`/`128`
-  早于 `:153` 的 `namespace FateV2.Predict.R277`），故它们**不在** `Fate.WiringBackdoor` 下，
+  早于 `:153` 的 `namespace FateV2.Predict.R277`），故它们**不在** `FateV2.Predict.WiringBackdoor` 下，
   而在**根命名空间**：正确引用是 `r259_noDescendant_is_tautology`，
-  **不是** `Fate.WiringBackdoor.r259_noDescendant_is_tautology`。
+  **不是** `FateV2.Predict.WiringBackdoor.r259_noDescendant_is_tautology`。
 
-  同理 §2–§3 的 13 条 `w7_*` 定理在 **`Fate.R277`** 下（**不是** `Fate.WiringBackdoor`）。
+  同理 §2–§3 的 13 条 `w7_*` 定理在 **`FateV2.Predict.R277`** 下（**不是** `FateV2.Predict.WiringBackdoor`）。
   本文件 §1 的 `wc_namespace_layout` 把这一事实**证成定理式的见证**
   （用 `#check` 级的类型引用 + `Iff.rfl` 呈现），避免下游再踩。
 
@@ -64,8 +64,8 @@ import FateWorld.FateV2.Predict.WiringBackdoor
   | # | 定理 | 消费的 `WiringBackdoor` 声明 |
   |---|---|---|
   | §2 | `wc_noDescendant_hypothesis_is_vacuous` | `r259_noDescendant_is_tautology`（根） |
-  | §3 | `wc_noDescendant_tower` | `Fate.R277.w7_noDescendant_imp_noOutcome` + `w7_noDescendant_mono` + `w7_y_descendant_iff` |
-  | §4 | `wc_worldModel_mechanism_is_scm` | `Fate.WiringBackdoor.bdWorldModel_f` + `wmNum_eq_condYnum` |
+  | §3 | `wc_noDescendant_tower` | `FateV2.Predict.R277.w7_noDescendant_imp_noOutcome` + `w7_noDescendant_mono` + `w7_y_descendant_iff` |
+  | §4 | `wc_worldModel_mechanism_is_scm` | `FateV2.Predict.WiringBackdoor.bdWorldModel_f` + `wmNum_eq_condYnum` |
   | §5 | `wc_worldModel_adjust_eq_doLaw` | `wmAdjustEst_eq_doLaw` + `bdWorldModel_wellFormed` |
 
   ### §1.1 ⚠⚠ **反同义反复自查**（本项目最高频问题，逐条交代）
@@ -133,7 +133,7 @@ theorem wc_no_one_violates_noDescendant :
   exact hS (r259_noDescendant_is_tautology S)
 
 /-! ===========================================================================
-  §3 【消费 `Fate.R277.w7_noDescendant_imp_noOutcome` + `w7_noDescendant_mono`】
+  §3 【消费 `FateV2.Predict.R277.w7_noDescendant_imp_noOutcome` + `w7_noDescendant_mono`】
       把两条 `w7_*` 串成一个**真的推理链**
   =========================================================================== -/
 
@@ -185,7 +185,7 @@ theorem wc_noDescendant_iff_all_Y {S : FateV2.Predict.R259.BackdoorSetup} {W : S
     exact h y
 
 /-! ===========================================================================
-  §4 【消费 `Fate.WiringBackdoor.bdWorldModel_f`】世界模型的机制 = SCM 的两条结构方程
+  §4 【消费 `FateV2.Predict.WiringBackdoor.bdWorldModel_f`】世界模型的机制 = SCM 的两条结构方程
   =========================================================================== -/
 
 /-- ⭐⭐⭐⭐ **`bdWorldModel` 的 `f` 在任意点上都等于 `(fX, fY)`，并且它**只依赖 `(z, ux, uy)`
@@ -256,7 +256,7 @@ S.wmAdjustEst x y = S.doLaw x y   ∧   (bdWorldModel S).WellFormed
 **⭐ 消费路径**：第一分量是 `Fate.FateV2.Predict.R259.BackdoorSetup.wmAdjustEst_eq_doLaw`
 （它自己再走 `wmAdjustEst_eq_backdoorFormula` → `backdoor_criterion`，
 用到 `field_simp`/`ring`，**非 `rfl`**）；第二分量是
-`Fate.WiringBackdoor.bdWorldModel_wellFormed`（**只**需 `[Nonempty S.X]`/`[Nonempty S.Y]`）。
+`FateV2.Predict.WiringBackdoor.bdWorldModel_wellFormed`（**只**需 `[Nonempty S.X]`/`[Nonempty S.Y]`）。
 
 **⭐ 为什么两条合取在一起才有意思**：单说「估计 = 干预律」可能是在一个
 **不是世界模型**的对象上空转；单说「是合法世界模型」则没有任何后门内容。
@@ -278,11 +278,11 @@ theorem wc_worldModel_adjust_eq_doLaw (S : FateV2.Predict.R259.BackdoorSetup)
 
 /-- ⭐⭐⭐⭐ **具体实例上：世界模型的调整估计 = `17/20`，且它等于干预律**。
 
-在 `Fate.R259.Demo.demoS` 的 `(x=false, y=false)` 格上，把 §5 主定理的
+在 `FateV2.Predict.R259.Demo.demoS` 的 `(x=false, y=false)` 格上，把 §5 主定理的
 **数值落地**与 `WiringBackdoor` §5.4 的两条 demo 定理合起来。
 
-**⭐ 消费**：`Fate.WiringBackdoor.demoS_wmAdjustEst_00`（`= 17/20`）与
-`Fate.WiringBackdoor.demoS_wmAdjustEst_eq_doLaw_00`（`= doLaw`）。
+**⭐ 消费**：`FateV2.Predict.WiringBackdoor.demoS_wmAdjustEst_00`（`= 17/20`）与
+`FateV2.Predict.WiringBackdoor.demoS_wmAdjustEst_eq_doLaw_00`（`= doLaw`）。
 
 **⚠ 反同义反复**：`demoS` 是 `BackdoorCriterion` 里的**固定结构**，两处数值
 （`17/20` 与 `doLaw false false`）都是**独立可求值**的量；本条只是把它们并列，
@@ -300,7 +300,7 @@ end FateV2.Predict.WiringBackdoorConsumer
   §9 ⭐⭐⭐⭐⭐ **R-48 消费出口：`Fate/BackdoorCriterion` 与 `Fate/BackdoorGenuine`**
 
   `Fate/WiringBackdoor.lean` §7 已把两模块的定理组合进
-  `Fate.BackdoorCriterion` / `Fate.BackdoorGenuine` 命名空间的定理里。
+  `FateV2.Predict.BackdoorCriterion` / `FateV2.Predict.BackdoorGenuine` 命名空间的定理里。
   **本节**以**全限定名**调用它们 —— 一旦被消费模块的定理改名/失效，
   `lake build` 立刻失败，这就是第 245 条要求的**编译器闭环**。
 
@@ -308,13 +308,13 @@ end FateV2.Predict.WiringBackdoorConsumer
 
   | # | 名字 | 消费的模块定理 |
   |---|---|---|
-  | 1 | `bc_criterion_wired` | `Fate.BackdoorCriterion.criterion_via_blocked` |
-  | 2 | `bc_conditions_wired` | `Fate.BackdoorCriterion.conditions_give_criterion` |
-  | 3 | `bc_unit_wired` | `Fate.BackdoorCriterion.formula_degenerate_unit` |
-  | 4 | `bg_conditions_wired` | `Fate.BackdoorGenuine.conditions_decompose` |
-  | 5 | `bg_paths_wired` | `Fate.BackdoorGenuine.sep_iff_paths` |
-  | 6 | `bg_roundtrip_wired` | `Fate.BackdoorGenuine.enc_roundtrip` |
-  | 7 | `bg_irrefl_wired` | `Fate.BackdoorGenuine.moral_irrefl` |
+  | 1 | `bc_criterion_wired` | `FateV2.Predict.BackdoorCriterion.criterion_via_blocked` |
+  | 2 | `bc_conditions_wired` | `FateV2.Predict.BackdoorCriterion.conditions_give_criterion` |
+  | 3 | `bc_unit_wired` | `FateV2.Predict.BackdoorCriterion.formula_degenerate_unit` |
+  | 4 | `bg_conditions_wired` | `FateV2.Predict.BackdoorGenuine.conditions_decompose` |
+  | 5 | `bg_paths_wired` | `FateV2.Predict.BackdoorGenuine.sep_iff_paths` |
+  | 6 | `bg_roundtrip_wired` | `FateV2.Predict.BackdoorGenuine.enc_roundtrip` |
+  | 7 | `bg_irrefl_wired` | `FateV2.Predict.BackdoorGenuine.moral_irrefl` |
 
   **零 `sorry` / 零 `admit` / 零 `axiom` / 零 `native_decide`。**
 -/
@@ -323,7 +323,7 @@ namespace FateV2.Predict.WiringBackdoorConsumer
 
 open FateV2.Error
 
-/-- **出口 1**：backdoor 主定理（经 `Fate.BackdoorCriterion.criterion_via_blocked`）。 -/
+/-- **出口 1**：backdoor 主定理（经 `FateV2.Predict.BackdoorCriterion.criterion_via_blocked`）。 -/
 theorem bc_criterion_wired (S : FateV2.Predict.R259.BackdoorSetup)
     (h : S.BackdoorBlocked) (hpx : ∑ ux, S.px ux = 1) (hne : Nonempty S.Ux)
     (x : S.X) (hpos : ∀ z : S.Z, S.margXZ x z ≠ 0) (y : S.Y) :
@@ -331,7 +331,7 @@ theorem bc_criterion_wired (S : FateV2.Predict.R259.BackdoorSetup)
   FateV2.Predict.BackdoorCriterion.criterion_via_blocked S h hpx hne x hpos y
 
 /-- **出口 2**：Pearl 四条件 ⟹ 调整公式（经
-`Fate.BackdoorCriterion.conditions_give_criterion`）。 -/
+`FateV2.Predict.BackdoorCriterion.conditions_give_criterion`）。 -/
 theorem bc_conditions_wired (S : FateV2.Predict.R259.BackdoorSetup)
     (c : R259.BackdoorConditions S)
     (hpx : ∑ ux, S.px ux = 1) (hne : Nonempty S.Ux)
@@ -339,13 +339,13 @@ theorem bc_conditions_wired (S : FateV2.Predict.R259.BackdoorSetup)
     FateV2.Predict.R259.backdoorFormula S.condYobs (fun z => S.pz z) x y = S.doLaw x y :=
   FateV2.Predict.BackdoorCriterion.conditions_give_criterion S c hpx hne x hpos y
 
-/-- **出口 3**：空调整集退化式（经 `Fate.BackdoorCriterion.formula_degenerate_unit`）。 -/
+/-- **出口 3**：空调整集退化式（经 `FateV2.Predict.BackdoorCriterion.formula_degenerate_unit`）。 -/
 theorem bc_unit_wired {X Y : Type*} (condY : X → Unit → Y → ℝ)
     (margZ : Unit → ℝ) (x : X) (y : Y) (h : margZ () = 1) :
     FateV2.Predict.R259.backdoorFormula condY margZ x y = condY x () y :=
   FateV2.Predict.BackdoorCriterion.formula_degenerate_unit condY margZ x y h
 
-/-- **出口 4**：四条件分解（经 `Fate.BackdoorGenuine.conditions_decompose`）。 -/
+/-- **出口 4**：四条件分解（经 `FateV2.Predict.BackdoorGenuine.conditions_decompose`）。 -/
 theorem bg_conditions_wired (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y : S.Y)
     (W : Set (R277.Vert S)) :
     R277.BackdoorConditions S x y W ↔
@@ -353,7 +353,7 @@ theorem bg_conditions_wired (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y
         ∧ FateV2.Predict.R277.NoOutcome S W ∧ FateV2.Predict.R277.ObservableOnly S W :=
   FateV2.Predict.BackdoorGenuine.conditions_decompose S x y W
 
-/-- **出口 5**：`BackdoorSep` 路径判定（经 `Fate.BackdoorGenuine.sep_iff_paths`）。 -/
+/-- **出口 5**：`BackdoorSep` 路径判定（经 `FateV2.Predict.BackdoorGenuine.sep_iff_paths`）。 -/
 theorem bg_paths_wired (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y : S.Y)
     (W : Set (R277.Vert S)) :
     FateV2.Predict.R277.BackdoorSep S x y W ↔
@@ -364,14 +364,14 @@ theorem bg_paths_wired (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y : S.
         ∃ i, w i ∈ W \ {R277.Vert.x x} :=
   FateV2.Predict.BackdoorGenuine.sep_iff_paths S x y W
 
-/-- **出口 6**：顶点编码往返（经 `Fate.BackdoorGenuine.enc_roundtrip`）。 -/
+/-- **出口 6**：顶点编码往返（经 `FateV2.Predict.BackdoorGenuine.enc_roundtrip`）。 -/
 theorem bg_roundtrip_wired (S : FateV2.Predict.R259.BackdoorSetup) :
     (∀ v : R277.Vert S, FateV2.Predict.R277.sumToVert (S := S) (FateV2.Predict.R277.vertToSum v) = v)
       ∧ (∀ v : (S.Z ⊕ S.Ux) ⊕ (S.Uy ⊕ S.X ⊕ S.Y),
           FateV2.Predict.R277.vertToSum (S := S) (FateV2.Predict.R277.sumToVert v) = v) :=
   FateV2.Predict.BackdoorGenuine.enc_roundtrip S
 
-/-- **出口 7**：道德图无自环（经 `Fate.BackdoorGenuine.moral_irrefl`）。 -/
+/-- **出口 7**：道德图无自环（经 `FateV2.Predict.BackdoorGenuine.moral_irrefl`）。 -/
 theorem bg_irrefl_wired (S : FateV2.Predict.R259.BackdoorSetup) (v : R277.Vert S) :
     ¬ FateV2.Predict.R277.moralAdj S v v :=
   FateV2.Predict.BackdoorGenuine.moral_irrefl S v

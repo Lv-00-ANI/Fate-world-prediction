@@ -89,7 +89,7 @@ open FateV2.Modeling
 
 open FateV2.Predict.FinCondIndep
 open FateV2.Modeling.MoralGraphMarkov
-open Fate.SeparatedImpliesSide
+open FateV2.Predict.SeparatedImpliesSide
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 
@@ -140,8 +140,8 @@ theorem uns_separable_of_clique_side
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn {x} F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn {y} G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn {x} F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn {y} G := by
   classical
   refine ⟨fun σ => ∏ C ∈ N.filter (fun C => ∀ w ∈ C, w = x), ψ C σ,
           fun σ => ∏ C ∈ N.filter (fun C => ¬ ∀ w ∈ C, w = x), ψ C σ, ?_, ?_, ?_⟩
@@ -151,14 +151,14 @@ theorem uns_separable_of_clique_side
       (fun C => ψ C σ)).symm
   · -- F 只依赖 {x}
     intro σ τ hagree
-    exact Fate.CliqueSideSeparable.prod_dependsOn (S := ({x} : Finset V)) hread
+    exact FateV2.Predict.CliqueSideSeparable.prod_dependsOn (S := ({x} : Finset V)) hread
       (fun C hC w hw => by
         have hw_x : w = x := (Finset.mem_filter.mp hC).2 w hw
         rw [hw_x]
         exact Finset.mem_singleton_self x) σ τ hagree
   · -- G 只依赖 {y}
     intro σ τ hagree
-    exact Fate.CliqueSideSeparable.prod_dependsOn (S := ({y} : Finset V)) hread
+    exact FateV2.Predict.CliqueSideSeparable.prod_dependsOn (S := ({y} : Finset V)) hread
       (fun C hC w hw => by
         have hCN : C ∈ N := (Finset.mem_filter.mp hC).1
         have hnotx : ¬ (∀ w ∈ C, w = x) := (Finset.mem_filter.mp hC).2

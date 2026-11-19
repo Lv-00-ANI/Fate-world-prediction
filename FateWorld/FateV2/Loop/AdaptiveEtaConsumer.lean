@@ -20,7 +20,7 @@ import FateWorld.FateV2.Loop.EndToEndUnconditionalEval
 -/
 
 /-! ===========================================================================
-  `Fate.AdaptiveEtaConsumer` —— `PipelineAdaptiveEta` 的**真实消费者**
+  `AdaptiveEtaConsumer` —— `PipelineAdaptiveEta` 的**真实消费者**
 
   ## 本文件做什么（R921 建议 1 修复）
 
@@ -220,7 +220,7 @@ theorem measure_zero_consumed {Om : Type*} [MeasurableSpace Om]
 
 本节**真消费**三个此前扇入为 0 的收敛侧模块：
 
-* `Fate.BanachFixedPoint`（度量空间上的 Banach 不动点，第 8 层）；
+* `BanachFixedPoint`（度量空间上的 Banach 不动点，第 8 层）；
 * `FateV2.Loop.PipelineEndToEndCapstone`（端到端组合定理）；
 * `FateV2.Loop.PipelineComplexityOptimal`（最优步长 / 最小 `N`）。
 

@@ -70,6 +70,6 @@ theorem blockCI_of_factorizes_dSep
     have hZsub : Z ⊆ X ∪ Y := fun u hu => Finset.mem_union.mpr (Or.inl (hZX hu))
     have hunion : (X ∪ Y) ∪ Z = X ∪ Y := Finset.union_eq_left.mpr hZsub
     rw [← hunion, hcover]
-  exact Fate.C5g.blockCI_of_condIndep hXYuni hZX hci
+  exact FateV2.Predict.C5g.blockCI_of_condIndep hXYuni hZX hci
 
 end FateV2.Predict.C5i

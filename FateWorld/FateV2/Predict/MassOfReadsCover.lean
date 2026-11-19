@@ -70,7 +70,7 @@ theorem mass_eq_of_reads_cover {S : Finset V} {ψ : V → (V → α) → ℝ}
     exact Finset.prod_congr rfl fun v _ => hread v w w' h
   -- 把 mass S p x 换成 mass S (∏ ψ) x
   have hpeq : p = fun w => ∏ v, ψ v w := funext hfac
-  rw [hpeq, Fate.S13HoistFixed.mass_self_insert hg x]
+  rw [hpeq, FateV2.Predict.S13HoistFixed.mass_self_insert hg x]
   congr 1
   -- extEnd S x (x|_S) 与 x 在 S 上一致，故 ∏ ψ 相等
   refine Finset.prod_congr rfl fun v _ => ?_

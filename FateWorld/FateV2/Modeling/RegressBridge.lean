@@ -152,7 +152,7 @@ theorem regress_fiber_ne_zero_iff [Fintype α] [Fintype β] [Fintype γ]
 
   ## ⚠ 防环
 
-  本文件只 `import Fate.FinMeasureBridge`；`FinMeasureBridge` 没有
+  本文件只 `import FinMeasureBridge`；`FinMeasureBridge` 没有
   `import FateV2.Modeling.RegressBridge`，故不可能成环。
 
   ## ⚠ 前件检查（逐条，防同义反复）

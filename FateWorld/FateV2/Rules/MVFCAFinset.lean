@@ -210,7 +210,7 @@ end AlphaMVFCA
   * `y` 由 `minClosedFinset` 枚举（`[Fintype X.Carrier]`）；
   * `m` 由 `attr y : Set M` 筛出（`[Fintype M]` + 属性侧可判定）。
 
-  本节放在 `Fate.FcaToRuleTerm` 命名空间下（`attrClosure` 所在处），
+  本节放在 `FcaToRuleTerm` 命名空间下（`attrClosure` 所在处），
   保证下游 `import Fate.MVFCAFinset` 后能直接替换 `Set` 版。
   =========================================================================== -/
 

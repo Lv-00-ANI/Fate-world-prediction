@@ -17,7 +17,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 
 ## 目的
 
-`Fate.ThetaConvergence.linWorld_tendsto_thetaStar` 有两条前件：
+`ThetaConvergence.linWorld_tendsto_thetaStar` 有两条前件：
 
 * `hx : x ≠ 0`（观测非零）
 * `hη : |1 - η| < 1`（步长条件）

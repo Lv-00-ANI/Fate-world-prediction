@@ -5,7 +5,7 @@
 模块：`EvalDemo`
 上游：`Fate.WorldModel`（`WorldModel`, `WorldModel.sim`, `WorldModel.sim_zero`,
 　　　`WorldModel.sim_succ`, `WorldModel.x`, `WorldModel.f`）、
-　　　`Fate.TrajGenDeterministic`（`trajGen`）。
+　　　`FateV2.Model.TrajGenDeterministic`（`trajGen`）。
 
 ---------------------------------------------------------------------------
 ⚠ 本文件的修复记录（P0 修复批次，如实说明）
@@ -18,7 +18,7 @@
 
 **修复方式（只改 import 与证明，不改任何定理陈述）**：
 本文件**不再**依赖那个被隔离的模块，而是**在文件内**用可用模块
-（`Fate.WorldModel` / `Fate.TrajGenDeterministic`）**重建**同一个最小实例
+（`Fate.WorldModel` / `FateV2.Model.TrajGenDeterministic`）**重建**同一个最小实例
 （状态空间 `Bool`、参数/输入/动作/噪声均为单点 `PUnit`、机制 `!x`、初值 `false`）。
 重建所用的每个定义与 `_quarantine/WorldModelMinimal.lean` 的对应定义**逐字同构**
 （`minFrame`、`stepFlip`、`minimalWorldModel`），故本文件所证的数值与语义

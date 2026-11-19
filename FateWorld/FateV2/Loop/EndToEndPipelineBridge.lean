@@ -47,7 +47,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 本模块在它上面把等价证死。
 
 - 不声称一般 `W` 上一阶等价（见上）。
-- 不声称收敛——收敛已在 `Fate.ThetaConvergence` 中独立给出。
+- 不声称收敛——收敛已在 `ThetaConvergence` 中独立给出。
 - 零 `sorry` / 零 `admit` / 零 `axiom` / 零 `?_`。
 -/
 

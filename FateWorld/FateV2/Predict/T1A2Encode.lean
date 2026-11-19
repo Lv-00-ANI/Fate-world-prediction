@@ -88,7 +88,7 @@ theta 解决了这个问题（Z 槽对准共同原因）          ← 已由 Fat
 
 namespace FateV2.Predict.T1A2Encode
 
-open Fintype Fate.T1A2Theta
+open Fintype FateV2.Predict.T1A2Theta
 
 /-! ## §1 基数计算 -/
 
@@ -294,15 +294,15 @@ theorem funcEquivExplicit_apply (f : (Fin 3 → Bool) → ℝ) :
 `CondMul` 在编码层之上的成立性已由既有机检文件覆盖，本文件**不重证**，
 只在此**指向**它们，说明编码层不打断那条链：
 
-- `Fate.T1A2Theta.condMul_of_separable` —— 三因子可分离 ⟹ `CondMul`（`theta` 载体）
-- `Fate.T1A2Fin` / `Fate.T1A2Substance` —— 同方向的其他机检版本
+- `FateV2.Predict.T1A2Theta.condMul_of_separable` —— 三因子可分离 ⟹ `CondMul`（`theta` 载体）
+- `FateV2.Predict.T1A2Fin` / `FateV2.Predict.T1A2Substance` —— 同方向的其他机检版本
 
 本文件的贡献是：**给出 `theta` 背后那个 `Equiv` 项**，
 使下游可以把对 `((Fin 2 × Fin 2) × Fin 2)` 的求和/结构
 **机械地**搬到 `(Fin 3 → Bool)` 上，无需每次重跑双射论证。 -/
 
-#check @Fate.T1A2Theta.condMul_of_separable
-#check @Fate.T1A2Theta.theta
+#check @FateV2.Predict.T1A2Theta.condMul_of_separable
+#check @FateV2.Predict.T1A2Theta.theta
 
 /-! ## §6 公理审计 -/
 

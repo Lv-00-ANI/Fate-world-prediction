@@ -39,9 +39,9 @@ namespace FateV2.Predict.T1A2CI3
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
-open Fate.T1A2CI
-open Fate.T1A2Substance
+open FateV2.Predict.T1A2
+open FateV2.Predict.T1A2CI
+open FateV2.Predict.T1A2Substance
 
 /-!
   # Predict · T1A2CI3
@@ -114,7 +114,7 @@ theorem fork_product_explicit
 于是三个读集 `{v} ∪ pa(v)` 分别是 `{0,1}`、`{1,2}`、`{2}`。
 
 **⚠ 下面的 `by decide` 真的在算**：它必须展开 `insert`、`forkDAG`
-（`= Fate.T1A1Graphs.commonCauseDAG`）与 `parents` 的定义，
+（`= FateV2.Predict.T1A1Graphs.commonCauseDAG`）与 `parents` 的定义，
 才能确认三条集合包含关系。若 `forkDAG` 的边写错，`decide` 立刻失败。 -/
 
 /-- ⭐⭐⭐ **读集的具体化**：在叉图上，
@@ -149,7 +149,7 @@ theorem fork_parents_card :
 
 /-! ## §3 ⚠ 说明：本文件不宣称完整的 `CondMul`
 
-`Fate.FinCondIndep.CondMul p` 的定义是
+`FinCondIndep.CondMul p` 的定义是
 
 $$\forall x\,y\,z,\quad p((x,y),z)\cdot \mathrm{margZ}(z)
   = \mathrm{margXZ}(x,z)\cdot \mathrm{margYZ}(y,z),$$
@@ -180,7 +180,7 @@ $$p(x_0, x_1, x_2)\cdot m(x_1) = a(x_0, x_1)\cdot b(x_2, x_1),\qquad
 
 ## ⚠ 防环
 
-本文件 `import Fate.T1A2CI` 与 `import Fate.T1A2Substance`，
+本文件 `import FateV2.Predict.T1A2CI` 与 `import FateV2.Predict.T1A2Substance`，
 两者均**没有** `import FateV2.Predict.T1A2CI3`，故不可能成环。
 
 ## ⚠ 前件检查（逐条）

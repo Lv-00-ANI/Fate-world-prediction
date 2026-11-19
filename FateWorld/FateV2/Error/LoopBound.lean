@@ -74,7 +74,7 @@ import FateWorld.FateV2.Rules.Completeness
   「主循环」的语义在 `Fate/MainLoop.lean`，本节与之**类型上无关**。
 
   **⭐⭐ 第 291 轮在 `MainLoop` 侧给出了 `margin` 的**真实收敛判决**
-  （`Fate.MainLoop` §6）：**
+  （`FateV2.Error.MainLoop` §6）：**
 
   | 定理 | 内容 |
   |---|---|

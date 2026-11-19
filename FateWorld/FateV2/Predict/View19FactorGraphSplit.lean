@@ -6,7 +6,7 @@
 **任务**：给出「图 ⟹ 概率」桥（`Factorizes ⟹ Markov`）的**第 19 种**证明策略，
 具体数学构造 + Lean 落地。**硬约束：不使用 `mass` 塔性质**（已证伪：
 `FateV2.Predict.DAGFactorizationGeneral.tower_property_false`、
-`Fate.TowerAudit.mass_idempotent_fails`）。
+`FateV2.Predict.TowerAudit.mass_idempotent_fails`）。
 
 ### 0.1 与前 18 / 20 / 21 / 22 种策略的**结构性区别**
 

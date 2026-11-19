@@ -20,7 +20,7 @@ C6 主干地图实测：`Fate.AlphaFCAConstruction`（α 的 FCA 版本，41 定
   与 `FormalCtx.takeConcept`（= `polarUp ∘ polarDown`）是**同一个算子**，
   并把 Galois 连接与 hexagon 等式**实例化**到 `AlphaData.ctx` 上。
 * **阶段 3**　`④ 随机轨迹` ⟶ `① 确定轨迹`：证明 `Fate.TrajGenStochastic.detTraj`
-  与 `Fate.TrajGenDeterministic.detTraj` 是**同一条轨迹**，并证明在噪声分布
+  与 `FateV2.Model.TrajGenDeterministic.detTraj` 是**同一条轨迹**，并证明在噪声分布
   与初始分布皆为点质量时，`trajLaw`（测度层）**塌缩为**确定性轨迹上的点质量。
 * **§4**　让随机语义进主干的**建议**（只写建议、不改任何已有文件），
   含 BFS 验证的无环性证据。
@@ -52,7 +52,7 @@ Fate/InstanceData.lean:294:25: error: Application type mismatch: The argument
 `toFormalCtx` 改成 `FormalCtx.{max u v, max u v}`（或对 `Carrier` 加显式宇宙参数）。
 这两处改动都在**已有文件**里，本任务无权做，据实登记为**阻塞项**。
 
-**替代做法（本文件实际采用的）**：改接 `Fate.InstanceChain`——
+**替代做法（本文件实际采用的）**：改接 `InstanceChain`——
 它**可编译**（`Fate/InstanceChain.olean` 存在），且其 `Instance O A`（字段
 `obj`/`attrs`）正是「实例 = 对象 + 提取出的属性」这一语义的合法落点。
 故阶段 1 建的是 **`Finset (InstanceChain.Instance O A)` → `AlphaData`** 的桥，
@@ -302,14 +302,14 @@ end Stage2
 
 /-! ### §3.0 两个 `detTraj` 的分工
 
-`Fate.TrajGenStochastic` 与 `Fate.TrajGenDeterministic` **各自**定义了
+`Fate.TrajGenStochastic` 与 `FateV2.Model.TrajGenDeterministic` **各自**定义了
 `stateAt` 与 `detTraj`。两处的递推式**逐字相同**，但它们是**不同的常量**，
 故相等**不是** `rfl`，必须对步数归纳。本节的定理就是这座桥。
 
 | 模块 | 命名空间 | 有限视窗递推 |
 |---|---|---|
 | `Fate.TrajGenStochastic` | `Fate` | `Fate.stateAt` / `Fate.detTraj` |
-| `Fate.TrajGenDeterministic` | `Fate.TrajGenDeterministic` | `TrajGenDeterministic.stateAt` / `TrajGenDeterministic.detTraj` | -/
+| `FateV2.Model.TrajGenDeterministic` | `FateV2.Model.TrajGenDeterministic` | `TrajGenDeterministic.stateAt` / `TrajGenDeterministic.detTraj` | -/
 
 section Stage3
 
@@ -336,7 +336,7 @@ theorem stateAt_sto_eq_det (F : Frame) (f : Step F) (T : ℕ) (θ : F.Θ.Carrier
       rw [ih]
 
 /-- ⭐ **阶段 3 主定理（轨迹层）**：`Fate.TrajGenStochastic.detTraj` 与
-`Fate.TrajGenDeterministic.detTraj` 给出**同一条轨迹**。
+`FateV2.Model.TrajGenDeterministic.detTraj` 给出**同一条轨迹**。
 
 即：④（随机方案）里那条「给定噪声后的确定路径」与 ①（确定方案）的轨迹
 **逐点相等**——两者是同一条样本路径，只是被两个模块各写了一遍。 -/
@@ -517,7 +517,7 @@ TrajGenStochastic reaches WorldModel? False
 TrajGenStochastic reaches TrajGenDeterministic? False
 #reachable: 16
 Fate.AlphaFCAConstruction reaches WorldModel? False | #deps: 22
-Fate.InstanceChain reaches WorldModel? False | #deps: 14
+InstanceChain reaches WorldModel? False | #deps: 14
 Fate.Adjunction reaches WorldModel? False | #deps: 20
 Fate.TrajGenStochastic reaches WorldModel? False | #deps: 16
 FateV2.Model.TrajGenDeterministic reaches WorldModel? False | #deps: 13
@@ -566,7 +566,7 @@ FateV2.Model.TrajGenDeterministic reaches WorldModel? False | #deps: 13
 **另一条未落地的建议（阶段 1 的前置）**：`Fate/InstanceData.lean`
 当前 17 条 error（宇宙层不匹配，见文件头）。若要让「α ↔ `DataSet`」这条桥
 按任务书原样成立，需先修该文件（`FormalCtx.{max u v, max u v}`
-或给 `CtxSpace.Carrier` 加显式宇宙参数）。本文件用 `Fate.InstanceChain`
+或给 `CtxSpace.Carrier` 加显式宇宙参数）。本文件用 `InstanceChain`
 的可编译版本代替，**不假装那条桥已存在**。
 -/
 

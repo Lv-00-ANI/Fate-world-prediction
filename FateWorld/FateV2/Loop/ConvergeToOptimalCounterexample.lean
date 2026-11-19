@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ConvergeToOptimalCounterexample`
+模块：`ConvergeToOptimalCounterexample`
 任务：**【DD4】版本 2 的非单射反例（诚实登记）**
 
 ===========================================================================
@@ -105,13 +105,13 @@ DD4 给出的两个具体例子：本文件全部形式化（§3）
 
 * **零 `sorry` / `admit` / `axiom`**。
 * 只新建，不修改任何已有模块。
-* 全部定理在 `Fate.BoundWriteBack`（`Corrects` 定义）之上，无额外假设，
+* 全部定理在 `BoundWriteBack`（`Corrects` 定义）之上，无额外假设，
   **不依赖有限维/内积/坐标**（除 §3 具体例子外）。
 * 失败即删：本文件所有定理均已通过 `lake env lean`，无降级/占位。
 
 ===========================================================================
 
-依赖：`Fate.BoundWriteBack`（`Corrects` 与 `errA` 的定义）。
+依赖：`BoundWriteBack`（`Corrects` 与 `errA` 的定义）。
 -/
 
 import FateWorld.FateV2.Loop.BoundWriteBack

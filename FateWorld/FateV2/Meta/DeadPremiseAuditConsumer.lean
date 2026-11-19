@@ -1,6 +1,6 @@
 /-
 ===========================================================================
-  `Fate.DeadPremiseAuditConsumer` —— 把「死前提审计器」接到主链上
+  `DeadPremiseAuditConsumer` —— 把「死前提审计器」接到主链上
   （叶子接线 8；`Fate.lean` 直接 import，见本文件 §0.4 与报告）
 
   ## 0.1  一句话
@@ -19,10 +19,10 @@
 
   | # | 目标链 | 被审计的前件 | 判决 |
   |---|---|---|---|
-  | 1 | `Fate.R259`（`BackdoorCriterion.lean`）| `S.NoDescendant`（Pearl (ii)）| ⭐ **死**（`rfl` 级恒真，**由本文件证明**）|
-  | 2 | `Fate.R277`（`BackdoorGenuine.lean`）| `NoDescendant S W`（图侧 Pearl (ii)）| ✅ **活**（有可假见证，**由本文件证明**）|
-  | 3 | `Fate.NonemptyFree`（DOWN-1 降假设链）| `[Nonempty α]` | ✅ **可去** = 死前提（**由本文件证明**）|
-  | 4 | `Fate.PipelineTendstoGen` | `hx : x ≠ 0` | ⭐ **死**（在 `V := ℝ`、`θstar = θ₀ = 0` 的具体格上）|
+  | 1 | `FateV2.Predict.R259`（`BackdoorCriterion.lean`）| `S.NoDescendant`（Pearl (ii)）| ⭐ **死**（`rfl` 级恒真，**由本文件证明**）|
+  | 2 | `FateV2.Predict.R277`（`BackdoorGenuine.lean`）| `NoDescendant S W`（图侧 Pearl (ii)）| ✅ **活**（有可假见证，**由本文件证明**）|
+  | 3 | `FateV2.Predict.NonemptyFree`（DOWN-1 降假设链）| `[Nonempty α]` | ✅ **可去** = 死前提（**由本文件证明**）|
+  | 4 | `FateV2.Loop.PipelineTendstoGen` | `hx : x ≠ 0` | ⭐ **死**（在 `V := ℝ`、`θstar = θ₀ = 0` 的具体格上）|
 
   ### ⭐ 为什么 1 与 2 合起来才是**审计**而不是**断言**
 
@@ -66,7 +66,7 @@
 
   ## 0.4  口径 A（纪律 G12）
 
-  本文件在 `Fate.lean` 中**直接** `import Fate.DeadPremiseAuditConsumer`，
+  本文件在 `Fate.lean` 中**直接** `import DeadPremiseAuditConsumer`，
   故它**不增加**口径 A（口径 A = 磁盘全部模块 − `Fate.lean` 直接 import 列表）。
 
   ## 0.5  ⚠ 本文件**零** `sorry` / `admit` / `axiom` / `?_`
@@ -107,13 +107,13 @@ open FateV2.Meta.DeadPremiseAudit
   **两侧符号**
   * `DPA` 侧：`TautologicallyTrue` / `imp_iff_right_of_tautologicallyTrue` /
     `MiniBackdoorSetup.NoDescendant` / `eliminate_dead_premise`
-  * `R259` 侧：`Fate.R259.BackdoorSetup.NoDescendant`（`BackdoorCriterion.lean:276`）
+  * `R259` 侧：`FateV2.Predict.R259.BackdoorSetup.NoDescendant`（`BackdoorCriterion.lean:276`）
   =========================================================================== -/
 
 /-- ⭐⭐⭐ **语义桥：`R259` 的 `NoDescendant` 与 `DPA` 的 `NoDescendant` 同一陈述式**。
 
 **⚠⚠ 为什么需要它**：`DPA` 明文声明**不导入** `Fate/`，它复刻的
-`MiniBackdoorSetup` 与本仓库的 `Fate.R259.BackdoorSetup` **不是同一个结构**
+`MiniBackdoorSetup` 与本仓库的 `FateV2.Predict.R259.BackdoorSetup` **不是同一个结构**
 （字段少、无 `Fintype`/`DecidableEq`、无 `pz`/`px`/`py`/`fY`）。
 故「`DPA` 证明了 `R259` 的 `NoDescendant` 恒真」这句话**不能**靠导入关系成立，
 **必须**把两个**前件的陈述式**逐字对上。
@@ -135,7 +135,7 @@ theorem r259_noDescendant_iff_dpa (S : FateV2.Predict.R259.BackdoorSetup) :
 
 **`DPA` 侧**：`tautologicallyTrue_intro` 与
 `MiniBackdoorSetup.noDescendant_tautologically_true_for_any_fX`。
-**`R259` 侧**：`Fate.R259.BackdoorSetup.NoDescendant`。 -/
+**`R259` 侧**：`FateV2.Predict.R259.BackdoorSetup.NoDescendant`。 -/
 theorem r259_noDescendant_tautologicallyTrue (S : FateV2.Predict.R259.BackdoorSetup) :
     TautologicallyTrue S.NoDescendant :=
   tautologicallyTrue_intro
@@ -217,7 +217,7 @@ theorem r259_backdoorConditions_ii_is_dead
 前件里**没有**任何东西可被当作「`S.NoDescendant` 恒真」用 —— 它需要被**证明**。
 
 **`DPA` 侧**：`auditVerdict_exclusive` / `HasContent` / `TautologicallyTrue`。
-**主链侧**：`Fate.R259.BackdoorSetup.NoDescendant`。 -/
+**主链侧**：`FateV2.Predict.R259.BackdoorSetup.NoDescendant`。 -/
 theorem r259_noDescendant_not_hasContent (S : FateV2.Predict.R259.BackdoorSetup) :
     ¬ HasContent S.NoDescendant :=
   fun hnP => auditVerdict_exclusive (r259_noDescendant_tautologicallyTrue S) hnP
@@ -226,7 +226,7 @@ theorem r259_noDescendant_not_hasContent (S : FateV2.Predict.R259.BackdoorSetup)
   §2  ⭐⭐⭐⭐ 连接 2：图侧 `NoDescendant` **是活前提**（阳性对照）
 
   §1 说线性载体的 `NoDescendant` 是死的。本节给出**同名但活**的一条：
-  `Fate.R277`（`BackdoorGenuine.lean:526`）的图侧
+  `FateV2.Predict.R277`（`BackdoorGenuine.lean:526`）的图侧
 
   ```lean
   def NoDescendant (S) (W : Set (Vert S)) : Prop := ∀ v ∈ W, ¬ IsDescendant S v
@@ -263,7 +263,7 @@ theorem r277_noDescendant_has_content
 把 `DPA` 的 `not_tautologicallyTrue_of_hasContent` 喂给上一条的 `HasContent`。
 
 **两侧符号**：`TautologicallyTrue` / `not_tautologicallyTrue_of_hasContent`（`DPA`）
-× `Fate.R277.NoDescendant`（`R277`）。
+× `FateV2.Predict.R277.NoDescendant`（`R277`）。
 
 **⚠ 反同义反复**：前件是 `hXY`（边存在性）；
 结论是 `¬ TautologicallyTrue (NoDescendant S {Y})` —— **否定**形态，
@@ -293,7 +293,7 @@ theorem r277_noDescendant_not_tautologicallyTrue
 
 **`DPA` 侧**：`AuditVerdict.ofTautologicallyTrue` / `AuditVerdict.ofHasContent` /
 `AuditVerdict` 的 `DecidableEq` 实例 / `auditVerdict_exclusive`。
-**主链侧**：`Fate.R259.BackdoorSetup.NoDescendant` × `Fate.R277.NoDescendant`。 -/
+**主链侧**：`FateV2.Predict.R259.BackdoorSetup.NoDescendant` × `FateV2.Predict.R277.NoDescendant`。 -/
 theorem auditVerdict_distinguishes_two_noDescendants
     (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y : S.Y)
     (hXY : FateV2.Predict.R277.moralAdj S (FateV2.Predict.R277.Vert.x x) (FateV2.Predict.R277.Vert.y y)) :
@@ -337,7 +337,7 @@ theorem auditVerdict_distinguishes_two_noDescendants
 即：`hne` **不能**给可分离结论增加任何内容（**死前提**）。
 
 **`DPA` 侧**：`imp_iff_right_of_tautologicallyTrue`（经 `tautologicallyTrue_intro`）。
-**DOWN-1 侧**：`Fate.NonemptyFree.CondMulSeparable.condMul_implies_separable_noNonempty`
+**DOWN-1 侧**：`FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable_noNonempty`
 （**已删除** `[Nonempty α] [Nonempty β]`）—— 它给出**右支**的证明。
 
 **⚠ 反同义反复（纪律 7，已实测）**：本定理的结论是**合取**：
@@ -345,7 +345,7 @@ theorem auditVerdict_distinguishes_two_noDescendants
 1. **第一支** `(Nonempty α → Sep) ↔ Sep` —— 这条**本身**是 `hne` 的纯逻辑后果
    （由 `DPA` 的元定理给出）。若结论**只有**这一支，它就是「给定 `hne` 后
    `P → Q ↔ Q`」的恒等式，**接不上** `CondMul` 链（`h`、`hpos` 会成为死参数）。
-2. **第二支** 直接断言 `Sep` —— 由 `Fate.NonemptyFree` 的**无实例版**给出，
+2. **第二支** 直接断言 `Sep` —— 由 `FateV2.Predict.NonemptyFree` 的**无实例版**给出，
    **证明体里真的调用了它并消费 `h`、`hpos`**。
 
 两支合起来才构成「`hne` 是死前提」的**有内容**陈述：
@@ -373,7 +373,7 @@ theorem down1_nonempty_premise_is_dead
   -- 这条 `have` 使结论第二支有内容，也使 `h`、`hpos` 成为**真被消费**的参数。
   have hSep : ∃ (f : α → γ → ℝ) (g : β → γ → ℝ),
       ∀ x y z, p ((x, y), z) = f x z * g y z :=
-    Fate.NonemptyFree.CondMulSeparable.condMul_implies_separable_noNonempty p h hpos
+    FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable_noNonempty p h hpos
   -- ⭐ (1) `DPA` 元定理：`hne` 使 `Nonempty α` 恒真，故 `Nonempty α → Sep` 与 `Sep` 等价。
   refine ⟨imp_iff_right_of_tautologicallyTrue (tautologicallyTrue_intro hne), hSep⟩
 
@@ -487,11 +487,11 @@ theorem selfCheck_pipeline_both
 | 3 | 不声称 `R259` 与 `R277` 的 `NoDescendant` 是「同一条件」 | 它们**不是**：前者是线性签名上的自反等式，后者是图侧「`W` 不含后代」。§2 的阳性对照**依赖**它们不同。|
 | 4 | 不把 §3 写成「`[Nonempty α]` 永不需要」 | `NonemptyFree` 只实测 3 条具体定理，本文件**只**形式化 `CondMul` 那一条，**范围与上游相同**。|
 | 5 | §3 的 `down1_separable_without_nonempty` 单独看只是别名 | 已在该定理的 docstring 中**如实声明**；它**只在**与 `down1_nonempty_premise_is_dead` 配对时才有意义（证明后者不是空的）。**未虚报价值**。|
-| 6 | 未使用 `Fate.R259.backdoor_criterion`（主定理本身）作为连接 | 它**不以** `NoDescendant` 为前件（只以 `BackdoorBlocked` 为前件），故「删 (ii)」的结论**无法**在它的签名上体现。强行写会变成「把别的定理包一层」的假连接。**§1 的 `r259_backdoorConditions_ii_is_dead` 已在 `BackdoorConditions` 层给出真结论**。|
+| 6 | 未使用 `FateV2.Predict.R259.backdoor_criterion`（主定理本身）作为连接 | 它**不以** `NoDescendant` 为前件（只以 `BackdoorBlocked` 为前件），故「删 (ii)」的结论**无法**在它的签名上体现。强行写会变成「把别的定理包一层」的假连接。**§1 的 `r259_backdoorConditions_ii_is_dead` 已在 `BackdoorConditions` 层给出真结论**。|
 
 ### 本文件对 `Fate.lean` 的要求
 
-`import Fate.DeadPremiseAuditConsumer` **必须**写进 `Fate.lean`（G12），
+`import DeadPremiseAuditConsumer` **必须**写进 `Fate.lean`（G12），
 否则本模块与 `DeadPremiseAudit` 会一起退回叶子表，**口径 A +1**。
 =========================================================================== -/
 

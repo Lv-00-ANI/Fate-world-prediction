@@ -11,10 +11,10 @@
   |---|---|---|---|
   | ① | **观测** $y = h\,x + \eta$ | `Fate.ObsEstimationStrong` | `LipschitzInvertibleOn`、`chooseEstimator` |
   | ② | **估计** $\hat x = \hat x(y)$ | `Fate.ObsEstimationStrong` | `chooseEstimator_apply_of`、`inverse_estimate_error` |
-  | ③ | **预测** $\hat y = f(x,u,\varepsilon;\theta,a)$ | `Fate.WorldModelReadsTheta` | `wmStep`、`wmWorldModel`、`predFrom_wmWorldModel` |
-  | ④ | **残差** $r = \hat x^{\mathrm{obs}} - \hat x^{\mathrm{pred}}$ | `Fate.EndToEnd` | `e2eResidual`、`endToEnd_apply` |
-  | ⑤ | **更新** $\theta' = \theta + \eta\,\varphi(r)$ | `Fate.EndToEnd` | `endToEnd`、`endToEnd_step_eq` |
-  | ⑥ | **学习** $\theta_n \to \theta^*$ | `Fate.ThetaConvergence` | `thetaN`、`linWorld_tendsto_thetaStar`、`thetaN_closed` |
+  | ③ | **预测** $\hat y = f(x,u,\varepsilon;\theta,a)$ | `WorldModelReadsTheta` | `wmStep`、`wmWorldModel`、`predFrom_wmWorldModel` |
+  | ④ | **残差** $r = \hat x^{\mathrm{obs}} - \hat x^{\mathrm{pred}}$ | `EndToEnd` | `e2eResidual`、`endToEnd_apply` |
+  | ⑤ | **更新** $\theta' = \theta + \eta\,\varphi(r)$ | `EndToEnd` | `endToEnd`、`endToEnd_step_eq` |
+  | ⑥ | **学习** $\theta_n \to \theta^*$ | `ThetaConvergence` | `thetaN`、`linWorld_tendsto_thetaStar`、`thetaN_closed` |
 
   **本文件不重证任何一环的数学内容**——每一环都**引用**上面列的既有定理。
   本文件的**新增内容**只有「**串**」：
@@ -49,7 +49,7 @@
   **不在本文件范围**）。
 
   **2.2 「学习」环的收敛只在 `linWorld`（机制 `f x = θ * x`）上成立。**
-  这是 `Fate.ThetaConvergence` 的既有边界（其 §1.1）。本文件的管线用
+  这是 `ThetaConvergence` 的既有边界（其 §1.1）。本文件的管线用
   `linWorld` 作为预测环的实例，故收敛结论**继承**同一限制。
   **本文件不声称**非线性机制下管线收敛。
 
@@ -126,7 +126,7 @@ def pipelineObserve (h : X → Y) (x : X) : Y := h x
 
 /-- ⭐⭐ **环 ② 的估计**：由观测 `y` 经 `RA14Strong.chooseEstimator` 得到状态估计。
 
-**本定义是 `Fate.EndToEnd.observe` 的逐字别名**（在 `h` 上），
+**本定义是 `EndToEnd.observe` 的逐字别名**（在 `h` 上），
 而其数学内容在 `Fate/ObsEstimationStrong` 中已证。 -/
 noncomputable def pipelineEstimate [Nonempty X] (h : X → Y) (y : Y) : X :=
   observe h y
@@ -159,7 +159,7 @@ end PipelineBasics
 /-! ===========================================================================
     §2  预测环（③）含 θ：`pipelinePredict`
 
-    用 `Fate.WorldModelReadsTheta` 的**真正读 θ** 的实例 `wmWorldModel`，
+    用 `WorldModelReadsTheta` 的**真正读 θ** 的实例 `wmWorldModel`，
     其机制为 $f(x,u,\varepsilon;\theta,a) = \theta\cdot x + u + \varepsilon + a$。
     =========================================================================== -/
 

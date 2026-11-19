@@ -23,10 +23,10 @@
 
 | 需要的东西 | 库里现成形式 | 位置 |
 |---|---|---|
-| 图 `g2`（`Fin 4`，唯一边 `1 → 3`）| `Fate.BridgeExpanded.g2` | `BridgeExpanded.lean:530` |
-| 祖先闭集 `AncClosed` | `Fate.Strategy11Hull.AncClosed`（`∀ v ∈ A, G.parents v ⊆ A`）| `Strategy11AncestralHull.lean:82` |
-| `pa(3) = {1}`（`g2` 上）| `Fate.BridgeExpanded.g2_pa` | `BridgeExpanded.lean:543` |
-| T7.a（`3 ∈ Z'` + 祖先闭 ⟹ `1 ∈ Z'`）| `Fate.BridgeExpanded.g2_ancClosed_forces_X` | `BridgeExpanded.lean:547` |
+| 图 `g2`（`Fin 4`，唯一边 `1 → 3`）| `FateV2.Predict.BridgeExpanded.g2` | `BridgeExpanded.lean:530` |
+| 祖先闭集 `AncClosed` | `FateV2.Predict.Strategy11Hull.AncClosed`（`∀ v ∈ A, G.parents v ⊆ A`）| `Strategy11AncestralHull.lean:82` |
+| `pa(3) = {1}`（`g2` 上）| `FateV2.Predict.BridgeExpanded.g2_pa` | `BridgeExpanded.lean:543` |
+| T7.a（`3 ∈ Z'` + 祖先闭 ⟹ `1 ∈ Z'`）| `FateV2.Predict.BridgeExpanded.g2_ancClosed_forces_X` | `BridgeExpanded.lean:547` |
 
 ⟹ **不缺任何定义**；`AncClosed`、`parents`、`Disjoint`、`⊆` 全部是库内/Mathlib 现成的。
 
@@ -48,7 +48,7 @@ namespace FateV2.Predict.BridgeExpandedT7
 
 open FateV2.Modeling
 
-open Fate.BridgeExpanded
+open FateV2.Predict.BridgeExpanded
 open FateV2.Modeling.Graph
 
 /-!
@@ -77,7 +77,7 @@ theorem step1_mem_three {Z' : Finset (Fin 4)}
 
 /-- **步骤 2**：`Z'` 祖先闭且 `3 ∈ Z'` ⟹ `pa(3) = {1} ⊆ Z'`，从而 `1 ∈ Z'`（即 T7.a）。 -/
 theorem step2_mem_one {Z' : Finset (Fin 4)}
-    (hanc : Fate.Strategy11Hull.AncClosed g2 Z') (h3 : (3 : Fin 4) ∈ Z') :
+    (hanc : FateV2.Predict.Strategy11Hull.AncClosed g2 Z') (h3 : (3 : Fin 4) ∈ Z') :
     (1 : Fin 4) ∈ Z' :=
   g2_ancClosed_forces_X hanc h3
 
@@ -102,7 +102,7 @@ theorem step3_not_disjoint {Z' : Finset (Fin 4)} (h1 : (1 : Fin 4) ∈ Z') :
 但任何祖先闭的 `Z' ⊇ {3}` 必含 `pa(3) = {1} ⊆ X`，与 `Disjoint X Z'` 冲突。 -/
 theorem strong_enlargement_false :
     ¬ ∃ Z' : Finset (Fin 4), ({(3 : Fin 4)} : Finset (Fin 4)) ⊆ Z'
-        ∧ Fate.Strategy11Hull.AncClosed g2 Z'
+        ∧ FateV2.Predict.Strategy11Hull.AncClosed g2 Z'
         ∧ Disjoint ({(1 : Fin 4)} : Finset (Fin 4)) Z' := by
   rintro ⟨Z', hsub, hanc, hdis⟩
   -- 步骤 1：`3 ∈ Z'`
@@ -121,14 +121,14 @@ theorem strong_enlargement_false :
 这是「名字对齐」的证据：注释里的论证早已被 machine-check（只是叫另一个名字）。 -/
 theorem strong_enlargement_false_from_existing :
     ¬ ∃ Z' : Finset (Fin 4), ({(3 : Fin 4)} : Finset (Fin 4)) ⊆ Z'
-        ∧ Fate.Strategy11Hull.AncClosed g2 Z'
+        ∧ FateV2.Predict.Strategy11Hull.AncClosed g2 Z'
         ∧ Disjoint ({(1 : Fin 4)} : Finset (Fin 4)) Z' :=
   disjoint_ancClosed_superset_false
 
 /-- 核对 1 的另一方向：既有名字也可直接由新名字给出。 -/
 theorem existing_from_strong_enlargement_false :
     ¬ ∃ Z' : Finset (Fin 4), ({(3 : Fin 4)} : Finset (Fin 4)) ⊆ Z'
-        ∧ Fate.Strategy11Hull.AncClosed g2 Z'
+        ∧ FateV2.Predict.Strategy11Hull.AncClosed g2 Z'
         ∧ Disjoint ({(1 : Fin 4)} : Finset (Fin 4)) Z' :=
   strong_enlargement_false
 
@@ -137,7 +137,7 @@ theorem existing_from_strong_enlargement_false :
 theorem strong_enlargement_false_with_dsep :
     g2.dSep {(1 : Fin 4)} {(2 : Fin 4)} {(3 : Fin 4)}
       ∧ ¬ ∃ Z' : Finset (Fin 4), ({(3 : Fin 4)} : Finset (Fin 4)) ⊆ Z'
-          ∧ Fate.Strategy11Hull.AncClosed g2 Z'
+          ∧ FateV2.Predict.Strategy11Hull.AncClosed g2 Z'
           ∧ Disjoint ({(1 : Fin 4)} : Finset (Fin 4)) Z' :=
   ⟨g2_dsep, strong_enlargement_false⟩
 
@@ -148,7 +148,7 @@ theorem strong_enlargement_false_with_dsep :
 /-- **`{3}` 自身不是祖先闭**（`pa(3) = {1} ⊄ {3}`）：这说明 T7 的张力
 **不是** `Z' = Z` 特例，而是在 `Z' ⊇ Z` 的每一个候选上都生效。 -/
 theorem not_ancClosed_singleton_three :
-    ¬ Fate.Strategy11Hull.AncClosed g2 ({(3 : Fin 4)} : Finset (Fin 4)) := by
+    ¬ FateV2.Predict.Strategy11Hull.AncClosed g2 ({(3 : Fin 4)} : Finset (Fin 4)) := by
   intro hanc
   have h1 : (1 : Fin 4) ∈ ({(3 : Fin 4)} : Finset (Fin 4)) :=
     step2_mem_one hanc (mem_singleton_self 3)

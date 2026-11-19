@@ -3,7 +3,7 @@
 
 ## 0 本文件做什么（**先读这一节**）
 
-`Fate/BridgeMinZPrime.lean`（下称 **MZP**）独立地（在自己的 namespace `Fate.BridgeMinZPrime`
+`Fate/BridgeMinZPrime.lean`（下称 **MZP**）独立地（在自己的 namespace `FateV2.Predict.BridgeMinZPrime`
 里）把 `ReadClosedBlocks` / `paBlock` / `req` / `zStar` **逐字复制**了一遍，
 理由写在 MZP 文件头 §0.4：**当时** `Fate/BridgeFull.lean` 因
 `factorizes_standard_implies_routeB` 报 `Application type mismatch` 而**不编译**，
@@ -68,8 +68,8 @@ namespace FateV2.Predict.BridgeMinZPrimeConsumer
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.Strategy11Hull
-open Fate.BridgeMinZPrime
+open FateV2.Predict.Strategy11Hull
+open FateV2.Predict.BridgeMinZPrime
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -93,8 +93,8 @@ variable {G : FateV2.Modeling.Graph.DAG V}
   §1 **两份 `ReadClosedBlocks` 是同一个谓词**（C1）
   =========================================================================== -/
 
-/-- ⭐ **C1**：`Fate.BridgeMinZPrime.ReadClosedBlocks` 与
-`Fate.BridgeFull.ReadClosedBlocks` **逐字相同**（两个独立定义，`unfold` 后同形）。
+/-- ⭐ **C1**：`FateV2.Predict.BridgeMinZPrime.ReadClosedBlocks` 与
+`FateV2.Predict.BridgeFull.ReadClosedBlocks` **逐字相同**（两个独立定义，`unfold` 后同形）。
 
 **意义**：MZP 关于 `ReadClosedBlocks` 的全部结论（`zStar_minimal`、`req_subset_of_readClosed`、
 `readClosed_zStar` ……）可以**无条件**搬到 `BridgeFull` 的口径上，
@@ -103,15 +103,15 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 **不是同义反复**：两边是**各自独立** `def` 出来的 `Prop`（分别写在两个模块里），
 本定理证明它们的**可证等价**，不是 `P ↔ P`。 -/
 theorem readClosedBlocks_iff (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V) :
-    Fate.BridgeMinZPrime.ReadClosedBlocks G X Y Z ↔
-      Fate.BridgeFull.ReadClosedBlocks G X Y Z := by
-  unfold Fate.BridgeMinZPrime.ReadClosedBlocks Fate.BridgeFull.ReadClosedBlocks
+    FateV2.Predict.BridgeMinZPrime.ReadClosedBlocks G X Y Z ↔
+      FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z := by
+  unfold FateV2.Predict.BridgeMinZPrime.ReadClosedBlocks FateV2.Predict.BridgeFull.ReadClosedBlocks
   exact Iff.rfl
 
 /-- C1 的**等式**版（`Prop` 的外延相等）——便于 `rw`。 -/
 theorem readClosedBlocks_eq (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V) :
-    Fate.BridgeMinZPrime.ReadClosedBlocks G X Y Z =
-      Fate.BridgeFull.ReadClosedBlocks G X Y Z :=
+    FateV2.Predict.BridgeMinZPrime.ReadClosedBlocks G X Y Z =
+      FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z :=
   propext (readClosedBlocks_iff G X Y Z)
 
 /-! ===========================================================================
@@ -129,17 +129,17 @@ theorem readClosedBlocks_eq (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V)
 
 **⟹ 结论 `zStar ⊆ Z'` 不出现在任何前件里**（纪律 7 核对通过）。 -/
 theorem zStar_minimal_full {X Y Z Z' : Finset V} (hZZ' : Z ⊆ Z')
-    (h : Fate.BridgeFull.ReadClosedBlocks G X Y Z') : zStar G X Y Z ⊆ Z' :=
+    (h : FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z') : zStar G X Y Z ⊆ Z' :=
   zStar_minimal hZZ' ((readClosedBlocks_iff G X Y Z').mpr h)
 
 /-- C2 的**反向**用法：`BridgeFull` 口径下的可行 `Z'` 与 `zStar` 的**差距**刻画。 -/
 theorem zStar_subset_of_full {X Y Z Z' : Finset V} (hZZ' : Z ⊆ Z')
-    (h : Fate.BridgeFull.ReadClosedBlocks G X Y Z') : zStar G X Y Z ⊆ Z' :=
+    (h : FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z') : zStar G X Y Z ⊆ Z' :=
   zStar_minimal_full hZZ' h
 
 /-- ⭐ **C2′**：`zStar` 在 `BridgeFull` 口径下**总是**可行（无条件）。 -/
 theorem readClosed_zStar_full (X Y Z : Finset V) :
-    Fate.BridgeFull.ReadClosedBlocks G X Y (zStar G X Y Z) :=
+    FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y (zStar G X Y Z) :=
   (readClosedBlocks_iff G X Y (zStar G X Y Z)).mp (readClosed_zStar X Y Z)
 
 /-! ===========================================================================
@@ -154,9 +154,9 @@ theorem readClosed_zStar_full (X Y Z : Finset V) :
 **消费链**：`MZP.existsUnique_min_readClosed`（MZP 口径）+ **C1**（口径搬运）。 -/
 theorem existsUnique_min_readClosed_full (X Y Z : Finset V) :
     ∃! Zs : Finset V,
-      Z ⊆ Zs ∧ Fate.BridgeFull.ReadClosedBlocks G X Y Zs ∧
+      Z ⊆ Zs ∧ FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Zs ∧
       (∀ Z' : Finset V, Z ⊆ Z' →
-        Fate.BridgeFull.ReadClosedBlocks G X Y Z' → Zs ⊆ Z') := by
+        FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z' → Zs ⊆ Z') := by
   obtain ⟨Zs, ⟨hsub, hRC, hmin⟩, huniq⟩ := existsUnique_min_readClosed (G := G) X Y Z
   refine ⟨Zs, ⟨hsub, (readClosedBlocks_iff G X Y Zs).mp hRC, ?_⟩, ?_⟩
   · intro Z' hZZ' hRC'
@@ -167,9 +167,9 @@ theorem existsUnique_min_readClosed_full (X Y Z : Finset V) :
 
 /-- C3 的**具体化**：`zStar` 本身是 `BridgeFull` 口径的唯一最小元。 -/
 theorem zStar_is_min_full (X Y Z : Finset V) :
-    Z ⊆ zStar G X Y Z ∧ Fate.BridgeFull.ReadClosedBlocks G X Y (zStar G X Y Z) ∧
+    Z ⊆ zStar G X Y Z ∧ FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y (zStar G X Y Z) ∧
       (∀ Z' : Finset V, Z ⊆ Z' →
-        Fate.BridgeFull.ReadClosedBlocks G X Y Z' → zStar G X Y Z ⊆ Z') :=
+        FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z' → zStar G X Y Z ⊆ Z') :=
   ⟨subset_zStar X Y Z, readClosed_zStar_full X Y Z,
     fun Z' hZZ' h => zStar_minimal_full hZZ' h⟩
 
@@ -206,7 +206,7 @@ theorem markov_at_zStar {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hnorm : FateV2.Predict.FactorMarkov.FactorNorm f)
     (X Y Z : Finset V) (hd : G.dSep X Y (zStar G X Y Z)) :
     FateV2.Predict.FactorMarkov.CondIndep p X Y (zStar G X Y Z) :=
-  Fate.BridgeFull.markov_of_readClosedBlocks hloc hfac hnorm hd
+  FateV2.Predict.BridgeFull.markov_of_readClosedBlocks hloc hfac hnorm hd
     (readClosed_zStar_full X Y Z)
 
 /-- ⭐ **C4′**：**只差 `dSep` 一条**的版本 —— 把 `dSep` 义务显式留在前提里，
@@ -228,7 +228,7 @@ theorem markov_of_dSep_zStar {p : (V → α) → ℝ} {f : V → (V → α) → 
 （不是「没证完」，而是**不存在**这样的 `Z`）。
 
 **证明链（逐前件点名）**：
-1. 假设 `hg : Fate.BridgeFull.DSepGivesReadClosed gch`；
+1. 假设 `hg : FateV2.Predict.BridgeFull.DSepGivesReadClosed gch`；
 2. **`MZP.gch_dsep`**（`decide` 证出 `gch.dSep {0}{2}{1}`）⟹ 取 `X={0}, Y={2}, Z={1}`；
 3. `hg …` 给出 `BridgeFull.ReadClosedBlocks gch {0}{2}{1}`；
 4. **C1** 搬到 MZP 口径，再用 **`MZP.zStar_eq_iff_readClosed`** 得 `zStar = {1}`；
@@ -236,9 +236,9 @@ theorem markov_of_dSep_zStar {p : (V → α) → ℝ} {f : V → (V → α) → 
 
 **⟹ 这不是「某条引理没证完」，而是 MZP 的 `gch` 反例在 `BridgeFull` 的 `def` 上有直接落点。** -/
 theorem not_dSepGivesReadClosed_gch :
-    ¬ Fate.BridgeFull.DSepGivesReadClosed gch := by
+    ¬ FateV2.Predict.BridgeFull.DSepGivesReadClosed gch := by
   intro hg
-  have hRC : Fate.BridgeFull.ReadClosedBlocks gch {(0 : Fin 3)} {(2 : Fin 3)}
+  have hRC : FateV2.Predict.BridgeFull.ReadClosedBlocks gch {(0 : Fin 3)} {(2 : Fin 3)}
       {(1 : Fin 3)} := hg {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} gch_dsep
   have hz : zStar gch {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)} = {(1 : Fin 3)} :=
     (zStar_eq_iff_readClosed (G := gch) _ _ _).mp
@@ -253,9 +253,9 @@ theorem not_dSepGivesReadClosed_gch :
 （`Z` 本身可行 ⟺ `zStar` 不增长，见 `MZP.zStar_eq_iff_readClosed`。） -/
 theorem not_dSepGivesReadClosed_of_zStar_ne {X Y Z : Finset V}
     (hd : G.dSep X Y Z) (hz : zStar G X Y Z ≠ Z) :
-    ¬ Fate.BridgeFull.DSepGivesReadClosed G := by
+    ¬ FateV2.Predict.BridgeFull.DSepGivesReadClosed G := by
   intro hg
-  have hRC : Fate.BridgeFull.ReadClosedBlocks G X Y Z := hg X Y Z hd
+  have hRC : FateV2.Predict.BridgeFull.ReadClosedBlocks G X Y Z := hg X Y Z hd
   exact hz ((zStar_eq_iff_readClosed (G := G) X Y Z).mp
     ((readClosedBlocks_iff G X Y Z).mpr hRC))
 
@@ -270,7 +270,7 @@ theorem not_dSepGivesReadClosed_of_zStar_ne {X Y Z : Finset V}
 其价值在于：`zStar` 是**有限可算**的（`Finset` 上 `decide` 可判），
 故 G1 的**每个实例**都是可机械检验的（`gch` 上即为假，见 C5）。 -/
 theorem dSepGivesReadClosed_iff_zStar_eq :
-    Fate.BridgeFull.DSepGivesReadClosed G ↔
+    FateV2.Predict.BridgeFull.DSepGivesReadClosed G ↔
       ∀ X Y Z : Finset V, G.dSep X Y Z → zStar G X Y Z = Z := by
   constructor
   · intro hg X Y Z hd

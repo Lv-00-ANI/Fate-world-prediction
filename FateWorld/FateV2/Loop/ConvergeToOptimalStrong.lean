@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ConvergeToOptimalStrong`
+模块：`ConvergeToOptimalStrong`
 任务：**【EE1】强化版本 2：去掉 `hφ : Function.Injective φ` 前件**
 
 ===========================================================================

@@ -38,7 +38,7 @@ import Mathlib.Data.Real.Basic
   ## 本模块的任务（最小、可编译、非空）
 
   构造一个**具体的线性机制类型** `LinSEM`，在其上**定义** `obsDir` / `obsFun`，
-  并**证明** `FunSingleOnFiber` **确实成立**，从而让 `Fate.Assembly` 的全部定理
+  并**证明** `FunSingleOnFiber` **确实成立**，从而让 `Assembly` 的全部定理
   **有一个非真空的实例**。
 
   ### 关键设计：`obsFun` 是 `obsDir` 的函数（在这次参数化里）
@@ -212,7 +212,7 @@ theorem linSem_joint_faithful {F : Set (LinSEM n)} :
   simp_all
 
 omit [Fintype n] [DecidableEq n] in
-/-- ⭐ **组装落于 `Fate.Counterfactual` 三情形**（穷尽性的实例化）。 -/
+/-- ⭐ **组装落于 `Counterfactual` 三情形**（穷尽性的实例化）。 -/
 theorem linSem_trichotomy (F : Set (LinSEM n)) :
     Counterfactual.Collapse
         (Assembly.jointModel (obsDirFull (n := n)) obsFun) F

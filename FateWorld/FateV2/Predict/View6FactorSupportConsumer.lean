@@ -150,7 +150,7 @@ theorem chain4_dsep_but_no_cut :
 `FactorizesOn` 仍是实质概率论假设。 -/
 theorem chain3_condMul_of_factorizesOn
     (p : (Fin 3 → Bool) → ℝ)
-    (hfac : Fate.T1A2.FactorizesOn FateV2.Predict.GlobalMarkovMinimal.chainDAG3 p) :
+    (hfac : FateV2.Predict.T1A2.FactorizesOn FateV2.Predict.GlobalMarkovMinimal.chainDAG3 p) :
     FateV2.Predict.FinCondIndep.CondMul
       (fun q : (Bool × Bool) × Bool =>
         p (FateV2.Predict.View6FactorSupport.Chain.unpack q.1.1 q.2 q.1.2)) :=
@@ -163,7 +163,7 @@ theorem chain3_condMul_of_factorizesOn
 也不需要 `f`/`g` 的中间数据）。 -/
 theorem chain3_condMul_of_supportCut
     (p : (Fin 3 → Bool) → ℝ)
-    (hfac : Fate.T1A2.FactorizesOn FateV2.Predict.GlobalMarkovMinimal.chainDAG3 p)
+    (hfac : FateV2.Predict.T1A2.FactorizesOn FateV2.Predict.GlobalMarkovMinimal.chainDAG3 p)
     (_hcut : SupportCut FateV2.Predict.GlobalMarkovMinimal.chainDAG3
       {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)}) :
     FateV2.Predict.FinCondIndep.CondMul

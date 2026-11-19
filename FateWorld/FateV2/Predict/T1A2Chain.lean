@@ -23,14 +23,14 @@ import Mathlib.Tactic
 
 `T1A.2` 的已有成果：
 
-- `Fate.T1A2`：读集谓词 `ReadsOnlyOn` 与因子分解 `FactorizesOn` 的定义；
-- `Fate.T1A2CI`：可分离性 `factorizesOn_separable`；
+- `FateV2.Predict.T1A2`：读集谓词 `ReadsOnlyOn` 与因子分解 `FactorizesOn` 的定义；
+- `FateV2.Predict.T1A2CI`：可分离性 `factorizesOn_separable`；
 - `T1A2Substance`：**叉图**（`2 → 1 → 0`）的具体实例；
-- `Fate.T1A2N`：**任意 DAG** 上的抽象推广
-  （**⚠ 注意**：本文件的证明**不依赖** `Fate.T1A2N` —— 服务器上
-  `T1A2N.olean` 尚未构建，`Fate.T1A2N.lean` 仅有源码；
+- `FateV2.Predict.T1A2N`：**任意 DAG** 上的抽象推广
+  （**⚠ 注意**：本文件的证明**不依赖** `FateV2.Predict.T1A2N` —— 服务器上
+  `T1A2N.olean` 尚未构建，`FateV2.Predict.T1A2N.lean` 仅有源码；
   且三条目标定理均为纯组合事实，不需要 `T1A2N` 的任何结论，
-  故本文件只 `import Fate.T1A2`、`Fate.T1A2CI`、`CausDAG`）。
+  故本文件只 `import FateV2.Predict.T1A2`、`FateV2.Predict.T1A2CI`、`CausDAG`）。
 
 本文件补上**链图**（形如 `2 → 1 → 0` 的线性链）这一档 specialize 所缺的
 **读集分析**部分，全部是 `V` 上的**纯组合**事实（不涉及概率/测度）：
@@ -45,7 +45,7 @@ namespace FateV2.Predict.T1A2Chain
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
+open FateV2.Predict.T1A2
 
 variable {V : Type*} [DecidableEq V] [Fintype V]
 
@@ -76,7 +76,7 @@ theorem chain_reads_single_parent
 
 若 `π v` 只读 `S` 且 `S ⊆ T`，则 `π v` 只读 `T`。
 
-这是 `Fate.T1A2.ReadsOnlyOn.mono` 的显式命名版（**⚠ 注意其参数顺序是
+这是 `FateV2.Predict.T1A2.ReadsOnlyOn.mono` 的显式命名版（**⚠ 注意其参数顺序是
 `mono (hST : S ⊆ T) (h : ReadsOnlyOn S f)`**，即子集关系在前）：
 与 `chain_reads_single_parent` 配合，可把 `{v, u}` 扩大为任意包含它的集合
 （例如整条链的顶点集）。 -/

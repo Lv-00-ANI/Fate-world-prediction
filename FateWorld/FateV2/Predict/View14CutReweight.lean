@@ -25,7 +25,7 @@ import Mathlib.Tactic.Ring
 ## 0 硬约束（已证伪的路线，本文件**一次也不用**）
 
 * `FateV2.Predict.DAGFactorizationGeneral.tower_property_false`（T24）：`mass S (mass T p) x ≠ mass (S∪T) p x`。
-* `Fate.TowerAudit.mass_idempotent_fails`（A3）：连 `S ⊆ T` 方向的塔也假。
+* `FateV2.Predict.TowerAudit.mass_idempotent_fails`（A3）：连 `S ⊆ T` 方向的塔也假。
 * `Fate.View20GraphToProb.massCondMulLike_degenerate`：集合口径 `CondMulLike` 是**退化**终点
   （对任意图、含无边图都成立），不能停在那里。
 
@@ -253,7 +253,7 @@ theorem residualCondMul (G : DAG V) {q : V → (V → α) → ℝ} (hloc : Local
         * mass Z (fun w => ∏ v ∈ (univ \ A), q v w) x
       = mass (X ∪ Z) (fun w => ∏ v ∈ (univ \ A), q v w) x
         * mass (Y ∪ Z) (fun w => ∏ v ∈ (univ \ A), q v w) x) :
-    Fate.MarkovEquivalence.CondMulLike X Y Z p := by
+    FateV2.Predict.MarkovEquivalence.CondMulLike X Y Z p := by
   intro x
   -- 四个 `mass` 同时用 T14.2 展开（`A ⊆ Z ⊆ X∪Z, Y∪Z, X∪Y∪Z`）
   have hXYZ : A ⊆ X ∪ Y ∪ Z := by
@@ -358,17 +358,17 @@ $$\mathrm{Cut}\;G\;A \iff \mathrm{exposed}\;G\;A = \emptyset .$$
 （`univ.filter (fun a => a ∈ A ∧ ¬ pa a ⊆ A)` 的成员刻画）。二者定义不同，
 结论由 `mem_exposed` 与 `Finset.filter_eq_empty_iff` 桥接，非把结论塞进前件。 -/
 theorem exposed_eq_empty_iff_cut (G : DAG V) (A : Finset V) :
-    Cut G A ↔ Fate.View21.exposed G A = ∅ := by
+    Cut G A ↔ FateV2.Predict.View21.exposed G A = ∅ := by
   classical
   rw [← Finset.not_nonempty_iff_eq_empty]
   constructor
   · intro hcut hne
     obtain ⟨a, ha⟩ := hne
-    rw [Fate.View21.mem_exposed] at ha
+    rw [FateV2.Predict.View21.mem_exposed] at ha
     exact ha.2 (hcut a ha.1)
   · intro h a a_mem
     by_contra hpa
-    exact h ⟨a, (Fate.View21.mem_exposed G A).mpr ⟨a_mem, hpa⟩⟩
+    exact h ⟨a, (FateV2.Predict.View21.mem_exposed G A).mpr ⟨a_mem, hpa⟩⟩
 
 /-- ⭐⭐⭐ **`R14.2`：`AncestorStable` ⟹ `border` 补集刻画。**
 
@@ -383,11 +383,11 @@ theorem exposed_eq_empty_iff_cut (G : DAG V) (A : Finset V) :
 **⚠ 已删除冗余前件**：原稿额外挂了 `Cut G A`，但证明不需要它（`Cut` 讲 `A` **内**点，
 与 `border` 只看 `A` **外**点互补），留着只会虚增前件，故去之。 -/
 theorem border_eq_compl_of_stable (G : DAG V) {A : Finset V}
-    (hstab : Fate.View21.AncestorStable G A) :
-    Fate.View21.border G A = univ \ A := by
+    (hstab : FateV2.Predict.View21.AncestorStable G A) :
+    FateV2.Predict.View21.border G A = univ \ A := by
   classical
   ext c
-  rw [Fate.View21.mem_border, Finset.mem_sdiff]
+  rw [FateV2.Predict.View21.mem_border, Finset.mem_sdiff]
   constructor
   · rintro ⟨hcA, -⟩
     exact ⟨Finset.mem_univ c, hcA⟩
@@ -472,7 +472,7 @@ theorem Cut.union_of (G : DAG V) {A B : Finset V}
 **⚠ 非循环**：前件是 `Cut G A`；结论是两条**不同**命题（子集 + 空集）的合取，
 分别由 `exposed_subset` 与 `R14.1` 供给，非同一命题。 -/
 theorem exposed_subset_and_eq_empty_of_cut (G : DAG V) {A : Finset V} (hcut : Cut G A) :
-    Fate.View21.exposed G A ⊆ A ∧ Fate.View21.exposed G A = ∅ :=
-  ⟨Fate.View21.exposed_subset G A, (exposed_eq_empty_iff_cut G A).mp hcut⟩
+    FateV2.Predict.View21.exposed G A ⊆ A ∧ FateV2.Predict.View21.exposed G A = ∅ :=
+  ⟨FateV2.Predict.View21.exposed_subset G A, (exposed_eq_empty_iff_cut G A).mp hcut⟩
 
 end FateV2.Predict.View14

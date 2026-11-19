@@ -2,14 +2,14 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.CausalClassificationBridge
+模块：CausalClassificationBridge
 定位：**B1 · 因果 ⇄ 分类 的（形式）接入点**
 
 ===========================================================================
 〇、本文件是什么（先说清楚，免得被标题误导）
 ===========================================================================
 
-本文件把 `Causalean.Graph.DAG V`（因果 DAG）喂进 `Fate.FormalCtx`
+本文件把 `Causalean.Graph.DAG V`（因果 DAG）喂进 `FormalCtx`
 （FCA 形式背景），从而使 `Fate.Classification` 的两种目光
 （`gazeUp` / `gazeDown`，本质即 `Fate.FCA` 的 `polarUp` / `polarDown`）
 **能作用在因果结构上**。
@@ -197,7 +197,7 @@ FCA 的导出算子 $(\cdot)'$ 对关系的唯一要求是「对象与属性之�
 五、⭐ 第二个技术发现：`FormalCtx.Irel` 是**二元**关系，装不下 d-分离
 ===========================================================================
 
-`Fate.FormalCtx.Irel : GFCA → MFCA → Prop` —— **二元**。
+`FormalCtx.Irel : GFCA → MFCA → Prop` —— **二元**。
 d-分离是 `dSep X Y Z` —— 关于**三个**集合的关系（「给定 $Z$」是必要成分）。
 
 **二者类型不同，故不存在「忠实的」`ctxOf`。**
@@ -245,7 +245,7 @@ d-分离是 `dSep X Y Z` —— 关于**三个**集合的关系（「给定 $Z$�
 5. **依赖**：`CausSeparation`（`dSep`、`bbReachableVertices_iff_activeWalk`）、
    `CausBayesBallEquiv`（Bayes-ball 与 active walk 的等价，供 `edge_not_dSep` 用）、
    `Fate.Classification`（`gazeUp`/`gazeDown`/`Temporal`/`Gaze`）、
-   `Fate.MainLoop`（`step_running_iff`）。
+   `FateV2.Loop.MainLoop`（`step_running_iff`）。
    所有被引用的外部结果**均标 `[已知]`**（指其来源，不是指本文件重证）。
 6. **前件自查（纪律第 7 条）**：本文件的定理前件中**没有**重复结论。
    最需警惕的是 `gaze_galois_causal`（它把 `FormalCtx.gaze_galois` 搬到因果数据上）：
@@ -470,7 +470,7 @@ theorem temporal_on_causal (_G : DAG V) (v : V) (g : FateV2.Rules.FormalCtx.Gaze
 
 /-- **`MainLoop` 的运行判据在因果数据上照常**（循环本身不读图结构）。
 
-**意义**：`Fate.MainLoop` 的循环是**图无关**的——它的 `step` 只依赖
+**意义**：`FateV2.Loop.MainLoop` 的循环是**图无关**的——它的 `step` 只依赖
 `info`/`noise`/`margin` 三个实数与状态。故「循环可跑在因果数据上」
 是**平凡**的（`rfl` 级搬用）。**这进一步说明**：所谓「因果进入循环」
 若不修改循环读取的数据，就只是**把因果数据当作被动标签**。 -/

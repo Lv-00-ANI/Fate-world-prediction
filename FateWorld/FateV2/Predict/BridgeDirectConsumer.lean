@@ -56,7 +56,7 @@ namespace FateV2.Predict.BridgeDirect
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]

@@ -97,7 +97,7 @@ namespace CfPartialIdent
 
 open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics Set
 
--- `obsSet` / `postZ` / `cfWithAbduction` 定义在 `Fate.T43` 命名空间内。
+-- `obsSet` / `postZ` / `cfWithAbduction` 定义在 `T43` 命名空间内。
 open FateV2.Predict.T43
 
 variable {X Y : Type} [Fintype X] [DecidableEq X] [Fintype Y] [DecidableEq Y]

@@ -14,7 +14,7 @@ import FateWorld.FateV2.Rules.LawRule
 -/
 
 /-! ===========================================================================
-  `Fate.T1DegeneracyVerifyConsumer` —— **T-1 退化判据接入 `LawRule.IsPoint`**
+  `T1DegeneracyVerifyConsumer` —— **T-1 退化判据接入 `LawRule.IsPoint`**
 
   ## 0  接入方向（任务书「激活 → `IsPoint` 判定」+「反例 → 反例登记」）
 
@@ -22,7 +22,7 @@ import FateWorld.FateV2.Rules.LawRule
   **形状判据**（纤维 / 单点 / 直线），但这个判据在框架里**没有下家**：
   它停在 `Set Θ` 这一层，没有接上任何**规则层**的类型。
 
-  本文件把它接到 `Fate.LawRule.IsPoint`
+  本文件把它接到 `LawRule.IsPoint`
   （「允许集是单点集」，即**规律唯一确定一个分布**）。
 
   **桥的语义**：把「零残差 θ 的集合」编码成一条 `LawRule` 的**允许分布集** ——
@@ -67,7 +67,7 @@ import FateWorld.FateV2.Rules.LawRule
 
   ## 3  ⚠ 诚实边界
 
-  **3.1** 本文件只 `import FateV2.Predict.T1DegeneracyVerify` 与 `Fate.LawRule`，
+  **3.1** 本文件只 `import FateV2.Predict.T1DegeneracyVerify` 与 `LawRule`，
   **不改任何已有模块**，不引入公理，零 `sorry`。
 
   **3.2** **C4 是「空集 ⟹ 非 `IsPoint`」**，它消费的是 T-1 §0.5 明确登记的语义修正
@@ -91,9 +91,9 @@ import FateWorld.FateV2.Rules.LawRule
   T-1 判据边界（「无解」第三态不在 T-1 的 iff 覆盖范围内），
   不是为通过编译而加的技术前提 —— 去掉它命题**为假**（空集反例）。
 
-  **3.6 命名提示**：`LawRule` 既是**命名空间**（`Fate.LawRule`）又是**定义**
-  （`Fate.LawRule.LawRule`）。在 `namespace Fate` 内裸写 `LawRule` 解析为**命名空间**，
-  故本文件一律写全名 `Fate.LawRule.LawRule` / `Fate.LawRule.IsPoint`。
+  **3.6 命名提示**：`LawRule` 既是**命名空间**（`LawRule`）又是**定义**
+  （`LawRule.LawRule`）。在 `namespace Fate` 内裸写 `LawRule` 解析为**命名空间**，
+  故本文件一律写全名 `LawRule.LawRule` / `LawRule.IsPoint`。
 
   纪律：零 `sorry` / 零 `admit` / 零 `axiom`。
   =========================================================================== -/

@@ -14,7 +14,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndUnconditionalQ` —— `EndToEndUnconditional` 的 **`ℚ` 数值镜像**
+  `EndToEndUnconditionalQ` —— `EndToEndUnconditional` 的 **`ℚ` 数值镜像**
 
   ## 0  为什么需要这个文件（R897 建议 2）
 
@@ -26,7 +26,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
   >  3 条定理全停在 `ℝ`+`Tendsto` 抽象层，无 `ℚ` 数值镜像。」
 
   本文件把**同一条算法**（单步更新 `θ' = (1-η)θ + η θ*`，即
-  `Fate.ThetaConvergence.fstep` 的 `ℚ` 版）落到 `ℚ` 上，
+  `ThetaConvergence.fstep` 的 `ℚ` 版）落到 `ℚ` 上，
   从而**每一步都是精确有理数**，并且可以直接 `#eval` 出具体数字。
 
   ## 1  本模块证明什么
@@ -55,9 +55,9 @@ import FateWorld.FateV2.Loop.ThetaConvergence
   * **`#eval` 的数字是真的算出来的**：`thetaNQ` 用 `ℚ` 的精确算术，
     没有任何浮点。
 
-  ## 3  与 `Fate.ThetaConvergence` 的关系
+  ## 3  与 `ThetaConvergence` 的关系
 
-  `Fate.ThetaConvergence.fstep η θstar θ = (1-η)*θ + η*θstar`（`ℝ` 版）。
+  `ThetaConvergence.fstep η θstar θ = (1-η)*θ + η*θstar`（`ℝ` 版）。
   本文件的 `fstepQ` 是它的 `ℚ` 版，**逐字同构**，仅换域。
   这里**重新定义**而不复用，是因为 `ThetaConvergence.fstep` 的签名钉死在 `ℝ` 上。
 -/
@@ -71,7 +71,7 @@ namespace EndToEndUnconditionalQ
 
 /-- ⭐⭐ **`ℚ` 版的一步更新**：`θ' = (1 - η) θ + η θ*`。
 
-这是 `Fate.ThetaConvergence.fstep` 的 `ℚ` 版（`ℝ` → `ℚ`）。
+这是 `ThetaConvergence.fstep` 的 `ℚ` 版（`ℝ` → `ℚ`）。
 `η` 是学习率，`θ*` 是真值。 -/
 def fstepQ (η θstar θ : ℚ) : ℚ := (1 - η) * θ + η * θstar
 
@@ -84,7 +84,7 @@ def thetaNQ (η θstar θ₀ : ℚ) : ℕ → ℚ
 
 /-- ⭐⭐⭐ **【`ℚ` 闭式】**：`θ_n - θ* = (1 - η)^n (θ₀ - θ*)`。
 
-这是 `Fate.ThetaConvergence.thetaN_closed`（`ℝ` 版）的 `ℚ` 版。
+这是 `ThetaConvergence.thetaN_closed`（`ℝ` 版）的 `ℚ` 版。
 **前件为空**：对一切 `η θ* θ₀ : ℚ` 与 `n : ℕ` 成立。
 
 **不是同义反复**：`thetaNQ` 的定义里只有递归（`fstepQ`），

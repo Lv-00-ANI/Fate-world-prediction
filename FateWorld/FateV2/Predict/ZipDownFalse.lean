@@ -93,7 +93,7 @@ open FateV2.Modeling
 
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
-open Fate.BridgeZipDown (ZipDown zipDown_def)
+open FateV2.Predict.BridgeZipDown (ZipDown zipDown_def)
 
 set_option linter.unnecessarySeqFocus false
 set_option linter.unusedSimpArgs false

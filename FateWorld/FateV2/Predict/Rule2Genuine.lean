@@ -1246,7 +1246,7 @@ theorem exchange_score_le_sup {A X : Type u} [Fintype A] [Fintype X]
 
 /-- ⭐⭐⭐⭐ **【真实消费者】最优交换顺序存在**
 
-消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_mem_image`（真紧性）。 -/
+消费 `WorldScenario.InterventionSup.bestScoreSup_mem_image`（真紧性）。 -/
 theorem exists_exchange_order_attains_sup {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty) :
     ∃ s ∈ tree, P.score s = FateV2.Predict.WorldScenario.InterventionSup.bestScoreSup P tree hne := by
@@ -1255,7 +1255,7 @@ theorem exists_exchange_order_attains_sup {A X : Type u} [Fintype A] [Fintype X]
 
 /-- ⭐⭐⭐ **【真实消费者】交换方案树的阈值判据**
 
-消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_isLUB`：验证 `beta` 是安全阈值
+消费 `WorldScenario.InterventionSup.bestScoreSup_isLUB`：验证 `beta` 是安全阈值
 等价于验证最优值不超过 `beta`，**无需遍历树**。 -/
 theorem exchange_threshold_iff {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
@@ -1266,7 +1266,7 @@ theorem exchange_threshold_iff {A X : Type u} [Fintype A] [Fintype X]
 
 /-- ⭐⭐⭐ **【真实消费者】最优交换顺序的锐利性**
 
-消费 `Fate.WorldScenario.InterventionSup.bestScoreSup_sharp`：任一下调都失效。 -/
+消费 `WorldScenario.InterventionSup.bestScoreSup_sharp`：任一下调都失效。 -/
 theorem exchange_sup_sharp {A X : Type u} [Fintype A] [Fintype X]
     (P : Policy A X) (tree : Finset (Scenario A X)) (hne : tree.Nonempty)
     {eps : ℝ} (heps : 0 < eps) :

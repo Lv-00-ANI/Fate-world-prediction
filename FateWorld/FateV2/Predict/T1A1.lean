@@ -41,7 +41,7 @@ p 相对 G 马尔可夫  ⟹  dSep X Y Z  ⟹  CondMul p
 
 * `CausDAG.lean` / `CausBayesBall.lean` / `CausActivePath.lean` / `CausSeparation.lean`
   —— Causalean 真源码（逐字节复制，只改 `import` 路径）。
-* `Fate.MarkovBridgeReal.chain_markov_relative_condmul`
+* `FateV2.Predict.MarkovBridgeReal.chain_markov_relative_condmul`
   —— 「链因子分解 ⟹ `CondMul`」，**已在仓库中**且不含 `dSep`。
 * **本文件新增的**：把上面两者的**前件**真正接到 `Causalean.Graph.DAG.dSep` 上，
   并**首次机检证明无条件版为假**。
@@ -243,9 +243,9 @@ variable {α β γ : Type} [Fintype α] [Fintype β] [Fintype γ]
 |---|---|
 | `(G : DAG V)` | ✅ `chainDAG : DAG (Fin 3)`（§1.1，真图） |
 | `(p : (V → ℕ) → ℝ)` | ⚠ `p : α × β × γ → ℝ`（见 §4 的载体说明） |
-| `(hMarkov : MarkovCompat G p)` | ✅ `ChainMarkovRelative p`（`Fate.MarkovBridgeReal`） |
+| `(hMarkov : MarkovCompat G p)` | ✅ `ChainMarkovRelative p`（`FateV2.Predict.MarkovBridgeReal`） |
 | `(hSep : G.dSep X Y Z)` | ❌ **已删除** —— 见下 |
-| `CondMul ...` | ✅ 同 `Fate.FinCondIndep.CondMul` |
+| `CondMul ...` | ✅ 同 `FinCondIndep.CondMul` |
 
 **⚠ 为什么没有 `hSep` 参数**（第 84 轮修正）：
 
@@ -265,9 +265,9 @@ variable {α β γ : Type} [Fintype α] [Fintype β] [Fintype γ]
 （因 `dSep` 是闭命题，`chain_dsep` 已无条件证明），故它是**包装式空转**，已删除。 -/
 theorem chain_markov_implies_condMul
     (p : α × β × γ → ℝ)
-    (hMarkov : Fate.MarkovBridgeReal.ChainMarkovRelative (α := α) (β := β) (γ := γ) p) :
+    (hMarkov : FateV2.Predict.MarkovBridgeReal.ChainMarkovRelative (α := α) (β := β) (γ := γ) p) :
     CondMul (fun q : (α × γ) × β => p (q.1.1, q.2, q.1.2)) :=
-  Fate.MarkovBridgeReal.chain_markov_relative_condmul p hMarkov
+  FateV2.Predict.MarkovBridgeReal.chain_markov_relative_condmul p hMarkov
 
 
 /-! ## §3 dSep 的基本性质（用 Causalean 现成定理）
@@ -333,7 +333,7 @@ theorem dSep_subgraph {V : Type*} [DecidableEq V] [Fintype V]
 1. **图侧**：`Causalean.Graph.DAG.dSep` ✅ **直接可用，无需任何修改**。
    这是本次接入的**最大价值** —— 330 轮里图侧一直是**错的**（无向 / 定义反了）。
 
-2. **概率侧**：`Fate.FinCondIndep.CondMul` ✅ 可用，但**载体是 `FinJoint`**，
+2. **概率侧**：`FinCondIndep.CondMul` ✅ 可用，但**载体是 `FinJoint`**，
    不是 `(V → ℕ) → ℝ`。**每个图实例都要手工写一次重排**（本文件 §2 示范了）。
 
 3. **桥**：❌ **不存在通用桥**。可行的路径只有：

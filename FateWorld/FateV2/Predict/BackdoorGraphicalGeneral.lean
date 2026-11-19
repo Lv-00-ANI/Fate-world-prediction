@@ -43,7 +43,7 @@ namespace FateV2.Predict.BackdoorGraphicalGeneral
 
 open FateV2.Modeling
 
-open Fate.R289 Fate.R289.Demo SetupWithM
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM
 
 variable (S : SetupWithM)
 
@@ -159,7 +159,7 @@ namespace FateV2.Predict.BackdoorGraphicalGeneral
   的证明体，而不是只在 `import` 图上相邻。
 =========================================================================== -/
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐ **集合桥**：`⋃ z, {Z=z}` 与内涵式 `{v | ∃ z, v = Z=z}` 相等。
 
 **用途**：`BackdoorGraphicalGeneral.adjust_Z_of_noDescendant` 的假设用**内涵式**，
@@ -170,7 +170,7 @@ theorem iUnion_z_eq_setOf (S : SetupWithM) :
   ext v
   simp only [Set.mem_iUnion, Set.mem_singleton_iff, Set.mem_setOf_eq]
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐ **`Z` 的**全集 `⋃ z, {Z=z}` 满足 `NoDescendantM`**
 （由 **`BackdoorZGraphical.z_satisfies_noDescendant`** 逐 `z` 拼成）。
 
@@ -181,10 +181,10 @@ theorem iUnion_Z_satisfies_noDescendant (S : SetupWithM) :
   intro v hv hdesc
   simp only [Set.mem_iUnion, Set.mem_singleton_iff] at hv
   obtain ⟨z, rfl⟩ := hv
-  exact Fate.BackdoorZGraphical.z_satisfies_noDescendant S z _
+  exact FateV2.Predict.BackdoorZGraphical.z_satisfies_noDescendant S z _
     (Set.mem_singleton _) hdesc
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐⭐⭐ **接线**：`⋃ z, {Z=z}` 的 `NoDescendantM` ⟹ `adjustLaw = doLaw`。
 
 **⭐⭐ 本定理是本节的核心接线**：它把
@@ -201,7 +201,7 @@ theorem adjust_Z_graphical_via_union (S : SetupWithM) (x : S.X) (y : S.Y) :
   rw [← iUnion_z_eq_setOf S]
   exact iUnion_Z_satisfies_noDescendant S
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐⭐ **`Z` 不是后代、`M` 是后代**（两者**同时**，形成对照）。
 
 **⭐ 消费**：`SetupWithM.M_in_descendant`（`M` 是后代）与
@@ -218,7 +218,7 @@ theorem Z_not_descendant_M_is_descendant (S : SetupWithM) (z : S.Z) (x : S.X) (u
   · cases hm
   · cases hy
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐⭐ **`X ↛ Y` 直达边不存在，但 `Y` 仍是（经 `M` 的）后代**。
 
 **⭐ 消费两个模块**：
@@ -230,10 +230,10 @@ open Fate.R289 SetupWithM in
 theorem no_direct_edge_but_descendant (S : SetupWithM) (x : S.X) (u0 : S.Uy)
     (z : S.Z) (ux : S.Ux) (y : S.Y) (hy : S.fY (S.fM x u0) z ux u0 = y) :
     ¬ S.moralAdjM (MVert.x x) (MVert.y y) ∧ S.IsDescendantM (MVert.y y) :=
-  ⟨Fate.BackdoorZGraphical.no_direct_edge_X_Y S x y,
+  ⟨FateV2.Predict.BackdoorZGraphical.no_direct_edge_X_Y S x y,
    SetupWithM.Y_is_descendant S x u0 z ux y hy⟩
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐ **`NoDescendantM S W` ⟹ `W` 不含任何 `M = fM x u0` 顶点**。
 
 **⭐ 消费**：`SetupWithM.M_in_descendant`（`M` 是后代）与
@@ -248,7 +248,7 @@ theorem not_mem_of_noDescendantM (S : SetupWithM) (W : Set (MVert S))
   intro hmem
   exact hND _ hmem (SetupWithM.M_in_descendant S x u0)
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐ **`{Z=z}` 单点**同时**满足 `NoDescendantM` 与 `NoOutcomeM`**。
 
 **⭐ 消费 `BackdoorZGraphical` 的两条定理**
@@ -258,10 +258,10 @@ open Fate.R289 SetupWithM in
 （`Z` 既不是后代也不是 `Y`），**但**对 `{M}` 会**分离**（见 #8）。 -/
 theorem Z_singleton_both_conditions (S : SetupWithM) (z : S.Z) :
     S.NoDescendantM ({MVert.z z} : Set (MVert S)) ∧ S.NoOutcomeM ({MVert.z z} : Set (MVert S)) :=
-  ⟨Fate.BackdoorZGraphical.z_satisfies_noDescendant S z,
-   Fate.BackdoorZGraphical.z_satisfies_noOutcome S z⟩
+  ⟨FateV2.Predict.BackdoorZGraphical.z_satisfies_noDescendant S z,
+   FateV2.Predict.BackdoorZGraphical.z_satisfies_noOutcome S z⟩
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐⭐ **Pearl (ii) 的**独立性见证**：`{M}` 满足 `NoOutcomeM` 但**不**满足 `NoDescendantM`。
 
 **⭐ 消费**：`SetupWithM.Pearl_ii_independent`。
@@ -287,7 +287,7 @@ theorem Pearl_ii_noOutcome_not_noDescendant (S : SetupWithM) (x : S.X) (u0 : S.U
     SetupWithM.Pearl_ii_independent S x u0
   exact ⟨hNO, hND⟩
 
-open Fate.R289 SetupWithM in
+open FateV2.Predict.R289 SetupWithM in
 /-- ⭐⭐⭐ **`{M = fM x u0}` 违反 Pearl (ii)**（**两个模块给出同一否定**）。
 
 **⭐ 消费**：

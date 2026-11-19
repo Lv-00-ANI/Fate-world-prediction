@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.SCMUnificationA`
+模块：`SCMUnificationA`
 
 **执行规划 T1.3（A5 第 5 次）—— 前提经实测修正后的落地。**
 
@@ -26,7 +26,7 @@ docstring（`/- ... -/` 注释块）**，第 120 行才开始 `import`。也就�
 
 `grep -rn '^structure [A-Za-z]*SCM' Fate/*.lean` 的真正命中（排除 docstring）
 只有 6 个**互不相同**的结构，其中单结果变量、二参数 `SCM (X Y : Type*)`
-的**只有** `Fate.PearlHierarchy.SCM` 一个。`Fate/SCMUnificationA.lean` 里
+的**只有** `PearlHierarchy.SCM` 一个。`Fate/SCMUnificationA.lean` 里
 `:19`、`:27` 两处 `structure SCM` 同样在 docstring 里。
 
 **⟹ 「两个 `SCM` 命名空间不同」是误判；不存在第二个可合并的 `SCM`。**

@@ -3,7 +3,7 @@
 
   ## 迁移登记
   - 来源：`FateWorld/Legacy/DeadPremiseAudit.lean`（原 `Fate/DeadPremiseAudit.lean`）
-  - 动作：B 适配（改命名空间 `Fate.DeadPremiseAudit` → `FateV2.Meta.DeadPremiseAudit`）
+  - 动作：B 适配（改命名空间 `FateV2.Meta.DeadPremiseAudit` → `FateV2.Meta.DeadPremiseAudit`）
   - 对应环节：元层 · 反空泛判据（D-022）
   - 依赖裁决：**D-022**（撤销空泛证明）、**D-001**（验收判据）
   - 改动：仅命名空间。全部定义、定理、证明体**逐字保留**。
@@ -111,7 +111,7 @@ theorem not_tautologicallyTrue_imp_of_false {P Q : Prop}
   | `def NoDescendant : Prop := ∀ (z : S.Z) (ux : S.Ux), S.fX z ux = S.fX z ux` | 同（一字不差） |
 =========================================================================== -/
 
-/-- **与 `Fate.R259.BackdoorSetup` **签名同形**的极小载体**（仅保留 `Z`、`Ux`、`X`、`fX`
+/-- **与 `FateV2.Predict.R259.BackdoorSetup` **签名同形**的极小载体**（仅保留 `Z`、`Ux`、`X`、`fX`
   这四项 —— 这正是 `NoDescendant` 的**全部**依赖）。
 
   ⚠ 这里**故意**不加 `Fintype` / `DecidableEq` 等实例要求：
@@ -131,7 +131,7 @@ namespace MiniBackdoorSetup
 
 variable (S : MiniBackdoorSetup)
 
-/-- ⭐⭐⭐ **`NoDescendant`（与 `Fate.R259.BackdoorSetup.NoDescendant` 一字不差）**：
+/-- ⭐⭐⭐ **`NoDescendant`（与 `FateV2.Predict.R259.BackdoorSetup.NoDescendant` 一字不差）**：
   `Z` 不是 `X` 的后代。
 
   **注意**：右端全是 `fX z ux = fX z ux` —— 同一项与自身比较。 -/

@@ -47,8 +47,8 @@
 | 已证伪 / 已否决的对象 | 本文件是否使用 |
 |---|---|
 | `mass` 塔性质 `mass S (mass T p) = mass (S∪T) p` | ❌ 不使用（`Fate/DAGFactorizationGeneral.tower_property_false` 的反例与本文件无关，见 §2.4 为什么本文件**不会**踩到它）|
-| `Fate.FactorRecursionRouteB.LMG` | ❌ 不使用（`LMG_false`） |
-| `Fate.FactorRecursionRouteB.Factorizes` | ❌ 不使用（读集缺 `{v}`，见 `ROAD4_REPORT.md` §1.1）|
+| `FactorRecursionRouteB.LMG` | ❌ 不使用（`LMG_false`） |
+| `FactorRecursionRouteB.Factorizes` | ❌ 不使用（读集缺 `{v}`，见 `ROAD4_REPORT.md` §1.1）|
 | `Factorizes_implies_LMG_Gap` | ❌ 不使用（`routeB_gap_segment1_is_false`） |
 | `G1` 即 `pa(v) ∩ nd(v) = ∅` | ❌ 不使用（`g1_false`）|
 | `DAG.induce` | ❌ 不需要（本文件**不剥离顶点**，见 §1.2） |
@@ -525,8 +525,8 @@ end CondIndepAlgebra
 
 /-! ===========================================================================
   §6 **R-30 真接线**：本节的 `mass` 代数（§2–§5）与
-  View 系剩余视角模块（`Fate.View2ElimIterate` / `Fate.View21` /
-  `Fate.View17` / `Fate.View17SectionGlue` / `Fate.View17Consumer`）的**组合定理**。
+  View 系剩余视角模块（`FateV2.Predict.View2ElimIterate` / `FateV2.Predict.View21` /
+  `FateV2.Predict.View17` / `FateV2.Predict.View17SectionGlue` / `FateV2.Predict.View17Consumer`）的**组合定理**。
 
   **⚠ 只追加，不改动 §1–§5 的任何内容。**
   **⚠ 每条定理都真正消费被引模块的既有结论（不是转发、不是同义反复）。**
@@ -534,11 +534,11 @@ end CondIndepAlgebra
 
 section R30Wiring
 
-open Fate.View2ElimIterate (ElimReads)
+open FateV2.Predict.View2ElimIterate (ElimReads)
 
 /-- ⭐⭐⭐ **R30-1（View2 × 本文件 §2）：切片消元的 `ev` 展开形式。**
 
-`Fate.View2ElimIterate.topSlice_elim` 给出 `mass` 层恒等式；本文件 §2 的
+`FateV2.Predict.View2ElimIterate.topSlice_elim` 给出 `mass` 层恒等式；本文件 §2 的
 `mass_eq_sum_ev` 把它**展开到 `ev`（指示函数）层**：
 
 $$\sum_{w}\mathrm{ev}_{S\cup L}\,x\,w\,p\,w
@@ -563,7 +563,7 @@ theorem peel_ev_form {G : FateV2.Modeling.Graph.DAG V} {p : (V → α) → ℝ}
     (∑ w : V → α, ev (S ∪ L) x w * p w)
       = (∏ v ∈ L, ψ v x) * (∑ w : V → α, ev S x w * p w) := by
   rw [← mass_eq_sum_ev, ← mass_eq_sum_ev]
-  exact Fate.View2ElimIterate.topSlice_elim (G := G) hψ hfac hout hin hSL hreadL hnorm x
+  exact FateV2.Predict.View2ElimIterate.topSlice_elim (G := G) hψ hfac hout hin hSL hreadL hnorm x
 
 /-- ⭐⭐⭐ **R30-2（View2 `ElimReads` × 本文件 `mass` 约定）：读集型消元也走 `ev` 层。**
 
@@ -577,18 +577,18 @@ theorem peel_ev_form_of_elimReads {p : (V → α) → ℝ} {ψ : V → (V → α
     (hfac : ∀ x, p x = ∏ w, ψ w x)
     {S L : Finset V} (hSL : Disjoint S L)
     (hreads : ElimReads L ψ)
-    (hreadL : ∀ v ∈ L, Fate.View2ElimIterate.ReadsSub (S ∪ L) (ψ v))
+    (hreadL : ∀ v ∈ L, FateV2.Predict.View2ElimIterate.ReadsSub (S ∪ L) (ψ v))
     (hnorm : ∀ v ∈ L, ∀ x : V → α, (∑ a : α, ψ v (unpin v x a)) = 1)
     (x : V → α) :
     (∑ w : V → α, ev (S ∪ L) x w * p w)
       = (∏ v ∈ L, ψ v x) * (∑ w : V → α, ev S x w * p w) := by
   rw [← mass_eq_sum_ev, ← mass_eq_sum_ev]
   rw [funext hfac]
-  exact Fate.View2ElimIterate.elim_iterate_reads (S := S) ψ hSL hreads hreadL hnorm x
+  exact FateV2.Predict.View2ElimIterate.elim_iterate_reads (S := S) ψ hSL hreads hreadL hnorm x
 
 /-- ⭐⭐⭐⭐ **R30-3（View21 × 本文件 `shadow_decomp`）：祖先稳定 + `A` 内父闭 ⟹ 声影分裂。**
 
-`Fate.View21.factorSplit_inner_local` 给出 `p = f · g`，其中
+`FateV2.Predict.View21.factorSplit_inner_local` 给出 `p = f · g`，其中
 `f = ∏_{v∈A} φ_v` 只读 `A ∪ pa(A)`。本文件补上它的**概率侧代价**：
 
 若 `A` **父闭**（`∀ v ∈ A, G.parents v ⊆ A`），则 `f` 只读 `A`，于是
@@ -606,7 +606,7 @@ theorem mass_split_of_inner_stable {G : FateV2.Modeling.Graph.DAG V} {A : Finset
       (∀ x, p x = f x * g x) ∧
       (∀ x, mass A p x = f x * mass A g x) := by
   obtain ⟨f, g, hf, hfacfg⟩ :=
-    Fate.View21.factorSplit_inner_local (G := G) A p hfac
+    FateV2.Predict.View21.factorSplit_inner_local (G := G) A p hfac
   refine ⟨f, g, ?_, hfacfg, ?_⟩
   · intro x y hxy
     refine hf x y fun u hu => hxy u ?_
@@ -628,9 +628,9 @@ theorem mass_split_of_inner_stable {G : FateV2.Modeling.Graph.DAG V} {A : Finset
 `mass_univ` 是**概率侧**恒等式。本条把两者接起来，得到「边界为空」在
 概率侧的可观测后果（无需 `Factorizes`、无需 `AncestorStable`）。 -/
 theorem mass_eq_self_of_border_empty (G : FateV2.Modeling.Graph.DAG V) {A : Finset V}
-    (hborder : Fate.View21.border G A = ∅) (p : (V → α) → ℝ) (x : V → α) :
+    (hborder : FateV2.Predict.View21.border G A = ∅) (p : (V → α) → ℝ) (x : V → α) :
     mass A p x = p x := by
-  rw [(Fate.View21.border_eq_empty_iff G A).mp hborder]
+  rw [(FateV2.Predict.View21.border_eq_empty_iff G A).mp hborder]
   exact FateV2.Predict.DAGFactorization.mass_univ p x
 
 /-- ⭐⭐⭐ **R30-5（View21 `prod_split_compl` × 本文件 `mass_univ`）：全集的边缘 = 两侧乘积。**
@@ -648,32 +648,32 @@ theorem mass_univ_factor_split {A : Finset V} (φ : V → (V → α) → ℝ) (x
     mass (univ : Finset V) (fun z => ∏ v, φ v z) x
       = (∏ v ∈ A, φ v x) * (∏ v ∈ ((univ : Finset V) \ A), φ v x) := by
   rw [FateV2.Predict.DAGFactorization.mass_univ]
-  exact Fate.View21.prod_split_compl A φ x
+  exact FateV2.Predict.View21.prod_split_compl A φ x
 
 /-- ⭐⭐⭐⭐ **R30-6（View17 × View17SectionGlue）：链图的 `dSep` 与对撞图的不成立。**
 
-* `Fate.View17.chain_dSep`：三元链 `0 → 1 → 2` 上 `{0} ⟂ {2} | {1}` **成立**；
-* `Fate.View17SectionGlue.collider_not_dSep_selfcond`：对撞图上
+* `FateV2.Predict.View17.chain_dSep`：三元链 `0 → 1 → 2` 上 `{0} ⟂ {2} | {1}` **成立**；
+* `FateV2.Predict.View17SectionGlue.collider_not_dSep_selfcond`：对撞图上
   `{0} ⟂ {1} | {1}` **不成立**（`1` 在对撞点上，自条件化打开路径）。
 
 **⟹ 两条合起来说明库里的 `dSep` **不是**真空谓词**（既可真也可假），
 故任何以 `dSep` 为前提的桥定理都**不是**「前提恒假」的空洞定理。
 **⚠ 这是两个独立模块的图侧见证，不是同一命题的两种写法。** -/
 theorem dSep_not_vacuous :
-    Fate.View17.chainDAG3.dSep {0} {2} {1} ∧
-      ¬ Fate.View17SectionGlue.colliderDAG3.dSep {0} {1} {1} :=
-  ⟨Fate.View17.chain_dSep, Fate.View17SectionGlue.collider_not_dSep_selfcond⟩
+    FateV2.Predict.View17.chainDAG3.dSep {0} {2} {1} ∧
+      ¬ FateV2.Predict.View17SectionGlue.colliderDAG3.dSep {0} {1} {1} :=
+  ⟨FateV2.Predict.View17.chain_dSep, FateV2.Predict.View17SectionGlue.collider_not_dSep_selfcond⟩
 
 /-- ⭐⭐⭐⭐ **R30-7（View17SectionGlue × View17）：截面胶合的特例上，两个视角的结论同时成立。**
 
 前件：`p ((x,y),z) = m x z · σ y` 且 `σ ≡ 1`。结论**同时**给出三件：
 
-1. `Fate.FinCondIndep.CondMul p`（`Fate.View17SectionGlue.screenGlue_condMul`）；
-2. `Fate.View17.KernelSplit p`（**本文件构造见证** `λ ≡ 1`、`a = m`、`b = σ`）；
+1. `FinCondIndep.CondMul p`（`FateV2.Predict.View17SectionGlue.screenGlue_condMul`）；
+2. `FateV2.Predict.View17.KernelSplit p`（**本文件构造见证** `λ ≡ 1`、`a = m`、`b = σ`）；
 3. `∀ z, margZ p z = (|V| : ℝ) · ∑ x, m x z`（`margZ_of_screenGlue` + `σ ≡ 1` 求和）。
 
 **为什么这不是转发**：三条的陈述对象不同（独立谓词 / 剖分见证 / 边缘数值），
-且 (2) 不是任何一条被引定理的实例 —— `Fate.View17` 里没有「由
+且 (2) 不是任何一条被引定理的实例 —— `FateV2.Predict.View17` 里没有「由
 `m · σ` 型律构造 `KernelSplit`」的定理，见证必须**显式给出**。
 (3) 是**数值等式**（注意因子 `|V|`：`σ ≡ 1` 时 `∑_y σ y = |V|`，
 而非 `1` —— 这里不把 `|V| = 1` 偷偷省略）。 -/
@@ -681,12 +681,12 @@ theorem screenGlue_kernelSplit_and_margZ {V : Type u} [DecidableEq V] [Fintype V
     (p : (V × V) × V → ℝ) (m : V → V → ℝ) (sigma : V → ℝ)
     (hp : ∀ x y z, p ((x, y), z) = m x z * sigma y)
     (hσ : ∀ y, sigma y = 1) :
-    FateV2.Predict.FinCondIndep.CondMul p ∧ Fate.View17.KernelSplit p ∧
+    FateV2.Predict.FinCondIndep.CondMul p ∧ FateV2.Predict.View17.KernelSplit p ∧
       ∀ z, FateV2.Predict.FinCondIndep.margZ p z = ((Finset.univ : Finset V).card : ℝ) * ∑ x, m x z := by
-  refine ⟨Fate.View17SectionGlue.screenGlue_condMul p m sigma hp hσ, ?_, ?_⟩
+  refine ⟨FateV2.Predict.View17SectionGlue.screenGlue_condMul p m sigma hp hσ, ?_, ?_⟩
   · exact ⟨fun _ => 1, m, fun y _ => sigma y, fun x y z => by rw [hp x y z]; ring⟩
   · intro z
-    rw [Fate.View17SectionGlue.margZ_of_screenGlue p m sigma hp z]
+    rw [FateV2.Predict.View17SectionGlue.margZ_of_screenGlue p m sigma hp z]
     have hsum : (∑ y : V, sigma y) = ((Finset.univ : Finset V).card : ℝ) := by
       rw [Finset.sum_congr rfl (fun y _ => hσ y)]
       simp
@@ -697,8 +697,8 @@ theorem screenGlue_kernelSplit_and_margZ {V : Type u} [DecidableEq V] [Fintype V
 前件：`G.dSep X Y Z`、`X' ⊆ X`、`BarrierSplit G X' Y Z p`（**小**源集上的屏障）。
 结论**同时**给出：
 
-1. `Fate.FinCondIndep.CondMul p` —— 走 `Fate.View17Consumer.view17_bridge_of_smaller_barrier`；
-2. `Fate.View17.BarrierSplit G X Y Z p` —— 走 `Fate.View17Consumer.barrier_antitone_source`（屏障**升级**到 `X`）。
+1. `FinCondIndep.CondMul p` —— 走 `FateV2.Predict.View17Consumer.view17_bridge_of_smaller_barrier`；
+2. `FateV2.Predict.View17.BarrierSplit G X Y Z p` —— 走 `FateV2.Predict.View17Consumer.barrier_antitone_source`（屏障**升级**到 `X`）。
 
 **为什么这不是转发**：两条的结论方向**相反**（一个把屏障**收缩**以得概率结论，
 一个把屏障**扩张**回 `dSep` 的源集），共同点仅是前件；
@@ -706,10 +706,10 @@ theorem screenGlue_kernelSplit_and_margZ {V : Type u} [DecidableEq V] [Fintype V
 故合取**严格强于**任一条单独结论。 -/
 theorem smaller_barrier_bridge_and_upgrade {G : FateV2.Modeling.Graph.DAG V} {X X' Y Z : Finset V}
     (hsep : G.dSep X Y Z) (hXX' : X' ⊆ X)
-    (p : (V × V) × V → ℝ) (hsp : Fate.View17.BarrierSplit G X' Y Z p) :
-    FateV2.Predict.FinCondIndep.CondMul p ∧ Fate.View17.BarrierSplit G X Y Z p :=
-  ⟨Fate.View17Consumer.view17_bridge_of_smaller_barrier G hsep hXX' p hsp,
-   Fate.View17Consumer.barrier_antitone_source G hXX' hsp⟩
+    (p : (V × V) × V → ℝ) (hsp : FateV2.Predict.View17.BarrierSplit G X' Y Z p) :
+    FateV2.Predict.FinCondIndep.CondMul p ∧ FateV2.Predict.View17.BarrierSplit G X Y Z p :=
+  ⟨FateV2.Predict.View17Consumer.view17_bridge_of_smaller_barrier G hsep hXX' p hsp,
+   FateV2.Predict.View17Consumer.barrier_antitone_source G hXX' hsp⟩
 
 end R30Wiring
 

@@ -24,7 +24,7 @@ import Mathlib.Tactic
 ## 载体回顾（`Fate/R259`，`Fate/BackdoorCriterion.lean`）
 
 * `adjustLaw` 在本文件里**不**以这个名字存在；R259 提供的对应物是
-  `Fate.R259.backdoorFormula S.condYobs (fun z => S.pz z) x y`
+  `FateV2.Predict.R259.backdoorFormula S.condYobs (fun z => S.pz z) x y`
   （`= ∑ z, P(y|x,z)·P(z)`，**Pearl 调整公式**）。
   本文件因此用 `adjustLaw` 作为它的**局部别名**（定义，见 §2），
   从而任务书第 3 条 `exampleSetup.adjustLaw ≠ exampleSetup.doLaw`
@@ -123,7 +123,7 @@ theorem not_backdoorBlocked :
 noncomputable def adjustLaw (S : BackdoorSetup) (x : S.X) (y : S.Y) : ℝ :=
   ∑ z, S.condYobs x z y * S.pz z
 
-/-- 别名与本库 `Fate.R259.backdoorFormula` `S.condYobs` `S.pz` **定义相等**。 -/
+/-- 别名与本库 `FateV2.Predict.R259.backdoorFormula` `S.condYobs` `S.pz` **定义相等**。 -/
 theorem adjustLaw_eq_backdoorFormula (S : BackdoorSetup) (x : S.X) (y : S.Y) :
     adjustLaw S x y = FateV2.Predict.R259.backdoorFormula S.condYobs (fun z => S.pz z) x y :=
   rfl

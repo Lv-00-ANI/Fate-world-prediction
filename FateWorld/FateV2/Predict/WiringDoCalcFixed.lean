@@ -549,15 +549,15 @@ end FateV2.Predict
 /-! ===========================================================================
   §6 ⭐⭐⭐⭐⭐ **R-48：把 `Fate/Rule1Genuine` 与 `Fate/Rule2Genuine` 接进编译器可见的消费面**
 
-  ## 6.0 为什么本节的命名空间叫 `Fate.Rule1Genuine` / `Fate.Rule2Genuine`
+  ## 6.0 为什么本节的命名空间叫 `FateV2.Predict.Rule1Genuine` / `FateV2.Predict.Rule2Genuine`
 
-  这两个模块的**真实命名空间**是 `Fate.R1G`（`Fate/Rule1Genuine.lean:235`）与
-  `Fate.R248`（`Fate/Rule2Genuine.lean:146`），**都不等于模块名**。
+  这两个模块的**真实命名空间**是 `R1G`（`Fate/Rule1Genuine.lean:235`）与
+  `R248`（`Fate/Rule2Genuine.lean:146`），**都不等于模块名**。
   `_audit/count_metrics.ps1` 的 **G46 真消费口径**是**纯文本**匹配
   `Fate\.<模块基名>\.\w+`（`count_metrics.ps1:62`），故仅写 `R1G.xxx` **不计入消费**。
 
   **本节的处置**：新建**以模块名为名的命名空间**，在其中**只放真正调用
-  `Fate.R1G.*` / `Fate.R248.Sem.*` 定理的组合定理** ——
+  `R1G.*` / `R248.Sem.*` 定理的组合定理** ——
   **不复制、不重述、不用 `:= rfl` 假装**。每一条的证明体里都能看到
   **对被消费模块定理的真实调用**（`FateV2.Predict.R1G.ZSCM.doCondZ_indep_of_readsX`、
   `R248.Sem.rule2_genuine` 等）。

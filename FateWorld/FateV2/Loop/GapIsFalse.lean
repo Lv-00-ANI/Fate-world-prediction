@@ -16,7 +16,7 @@ import Mathlib.Topology.MetricSpace.Basic
 -/
 
 /-! ===========================================================================
-  `Fate.GapIsFalse` —— **`dist_to_optimum_Gap` 的全称形式为假**（负面结论）
+  `GapIsFalse` —— **`dist_to_optimum_Gap` 的全称形式为假**（负面结论）
 
   ## 0 本文件做什么
 

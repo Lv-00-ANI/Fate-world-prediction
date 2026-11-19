@@ -99,8 +99,8 @@ namespace FateV2.Predict.SeparatedCondMulZ
 open FateV2.Modeling
 
 open FateV2.Modeling.MoralGraphMarkov
-open Fate.SeparatedImpliesSide
-open Fate.CliqueSideSeparable
+open FateV2.Predict.SeparatedImpliesSide
+open FateV2.Predict.CliqueSideSeparable
 open Finset
 
 variable {V : Type} [DecidableEq V] [Fintype V]
@@ -163,8 +163,8 @@ theorem uns_separable_chain
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
   clique_side_implies_separable' x y z N ψ
     (fun C hC => side_z_of_uns_side adj x y z C hxy hxz hyz hUS (hcl C hC) (hsub C hC))
     hread p hp
@@ -199,8 +199,8 @@ theorem degenerate_xz
     (p : (V → V) → ℝ) (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, x} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, x} : Finset V) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, x} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, x} : Finset V) G := by
   refine ⟨fun _ => 1, p, fun σ => by ring, fun _ _ _ => rfl, ?_⟩
   intro σ τ hagree
   rw [hp σ, hp τ]
@@ -221,8 +221,8 @@ theorem degenerate_yz
     (p : (V → V) → ℝ) (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, y} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, y} : Finset V) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, y} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, y} : Finset V) G := by
   refine ⟨p, fun _ => 1, fun σ => by ring, ?_, fun _ _ _ => rfl⟩
   intro σ τ hagree
   rw [hp σ, hp τ]
@@ -243,8 +243,8 @@ theorem degenerate_xy
     (p : (V → V) → ℝ) (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) G := by
   refine ⟨p, fun _ => 1, fun σ => by ring, ?_, fun _ _ _ => rfl⟩
   intro σ τ hagree
   rw [hp σ, hp τ]
@@ -271,8 +271,8 @@ theorem uns_separable_chain_slim
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G := by
   by_cases hxz : x = z
   · subst hxz
     exact degenerate_xz N ψ x y hsub hread p hp
@@ -297,8 +297,8 @@ theorem uns_separable_chain_from_slim
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
   uns_separable_chain_slim adj x y z N ψ hUS hcl hsub hread p hp
 
 
@@ -336,8 +336,8 @@ theorem not_separable_of_witness
     (hne : p σ ≠ p τ) :
     ¬ ∃ (F G : (Fin 4 → Fin 4) → ℝ),
       (∀ s, p s = F s * G s)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset (Fin 4)) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset (Fin 4)) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset (Fin 4)) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset (Fin 4)) G := by
   rintro ⟨F, G, hFG, hF, hG⟩
   apply hne
   rw [hFG σ, hFG τ, hF σ τ hσ, hG σ τ hτ]
@@ -347,8 +347,8 @@ theorem not_separable_012
     (p : (Fin 4 → Fin 4) → ℝ) (hne : p st0 ≠ p st1) :
     ¬ ∃ (F G : (Fin 4 → Fin 4) → ℝ),
       (∀ s, p s = F s * G s)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G :=
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G :=
   not_separable_of_witness p st0 st1 0 1 2 st_agree_xz st_agree_yz hne
 
 /-- ⭐ 星形图 `0—2—1`、`2—3`：`{2}` **真的**分离 `{0}` 与 `{1}`。 -/
@@ -439,8 +439,8 @@ theorem hp_zero_fails : ¬ (∀ σ, pBad3 σ = ∏ C ∈ N02, psiZero C σ) := b
 theorem pBad3_not_separable :
     ¬ ∃ (F G : (Fin 4 → Fin 4) → ℝ),
       (∀ s, pBad3 s = F s * G s)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G :=
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G :=
   not_separable_012 pBad3 (by simp [pBad3, st0, st1])
 
 /-! ## §6 ⭐⭐⭐⭐ D7：**`hread` 语义必要**
@@ -511,8 +511,8 @@ theorem hsub_23_fails :
 theorem pSum23_not_separable :
     ¬ ∃ (F G : (Fin 4 → Fin 4) → ℝ),
       (∀ s, pSum23 s = F s * G s)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G := by
   refine not_separable_012 pSum23 ?_
   simp only [pSum23, st0, st1]; norm_num
 
@@ -568,8 +568,8 @@ def e01 : Fin 4 → Fin 4 := fun v => if v = 0 then 1 else if v = 1 then 1 else 
 　　`p z0 · p e01 = p e0 · p e1`。 -/
 theorem sep_rect
     (F G : (Fin 4 → Fin 4) → ℝ)
-    (hF : Fate.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F)
-    (hG : Fate.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G) :
+    (hF : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F)
+    (hG : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G) :
     F st0 * G st0 * (F e01 * G e01) = F e0 * G e0 * (F e1 * G e1) := by
   have hFz0e1 : F st0 = F e1 := hF st0 e1 (by
     intro v hv; rw [Finset.mem_insert, Finset.mem_singleton] at hv
@@ -589,8 +589,8 @@ theorem sep_rect
 theorem pAdd_not_separable :
     ¬ ∃ (F G : (Fin 4 → Fin 4) → ℝ),
       (∀ s, pAdd s = F s * G s)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(0:Fin 4), 2} : Finset (Fin 4)) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({(1:Fin 4), 2} : Finset (Fin 4)) G := by
   rintro ⟨F, G, hFG, hF, hG⟩
   have hrect := sep_rect F G hF hG
   have h1 : F st0 * G st0 = pAdd st0 := (hFG st0).symm

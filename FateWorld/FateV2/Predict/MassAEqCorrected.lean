@@ -64,7 +64,7 @@ theorem mass_A_eq_corrected (ψ : V → (V → α) → ℝ) {R : V → Finset V}
     intro w w' h
     refine Finset.prod_congr rfl fun v _ => ?_
     exact hread v w w' (fun u hu => h u (hRA v hu))
-  rw [Fate.S13HoistFixed.mass_self_insert hg x]
+  rw [FateV2.Predict.S13HoistFixed.mass_self_insert hg x]
   ring
 
 end FateV2.Predict.C6b

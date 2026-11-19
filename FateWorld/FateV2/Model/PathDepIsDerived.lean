@@ -4,7 +4,7 @@
 
 模块：Fate.PathDepIsDerived
 上游：`Fate.PathDependence`（开放问题 1.4 的三个方向）、
-　　　`Fate.TrajGenDeterministic`（`trajGen` 及其唯一性）、`Fate.Frame`、`Fate.Basic`
+　　　`FateV2.Model.TrajGenDeterministic`（`trajGen` 及其唯一性）、`Fate.Frame`、`Fate.Basic`
 
 ---------------------------------------------------------------------------
 (a) 净版原文（逐字）

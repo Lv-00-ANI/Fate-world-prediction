@@ -59,7 +59,7 @@ import FateWorld.FateV2.Predict.CausalDescendant
 
 
 /-! ===========================================================================
-  `Fate.PearlGlobalMarkov` —— **Pearl 1.2.4 第 4 步：全局 Markov 性**
+  `PearlGlobalMarkov` —— **Pearl 1.2.4 第 4 步：全局 Markov 性**
   （**第 232 轮**）
 
   ## 位置与承接

@@ -23,7 +23,7 @@ import FateWorld.FateV2.Rules.InstanceChain
 
   ## 本节做什么（作者裁决「建构的建构」）
 
-  把 `MVFCA4.PatStruct` 的闭包结构接到 `Fate.InstanceChain` 的 `AlphaOutput` 上，
+  把 `MVFCA4.PatStruct` 的闭包结构接到 `InstanceChain` 的 `AlphaOutput` 上，
   给出**第一个有内容的局部域划分**：
 
   $$\text{minClosed}(g) := \mathrm{cl}\,\{g\}$$
@@ -50,7 +50,7 @@ import FateWorld.FateV2.Rules.InstanceChain
   * **`RulesLocal` / `RulesInhabited` 不在本文件内证** —— 本文件只提供划分。
     **✅ 二者已由下游 `Fate/AlphaRulesLocal` 证毕**（`theorem rulesLocal`、
     `theorem rulesInhabited`、`theorem alphaStructure`，第 618 轮）：该文件
-    `import Fate.AlphaMVFCA`，在 `G := X.Carrier` 口径下用
+    `import AlphaMVFCA`，在 `G := X.Carrier` 口径下用
     `localRuleAsLaw` 把 `LawRule` 接到 `PatStruct` 上。
     （注：§0.4 的 `:- True` 占位 `RulesLocalGap` 已在本轮 A-4/A-5 真正删除，
     此前说明段曾错误地声称已删、而定义仍存，见该处说明段。）
@@ -162,7 +162,7 @@ theorem closedPartition_spec (K : PatStruct G L) :
 * 真实的 `RulesLocal` / `RulesInhabited` **已由下游 `Fate/AlphaRulesLocal`
   证毕**（`rulesLocal` / `rulesInhabited` / `alphaStructure`），
   无需任何「缺口」占位。
-* `AlphaRulesLocal` 是**下游**（`import Fate.AlphaMVFCA`），
+* `AlphaRulesLocal` 是**下游**（`import AlphaMVFCA`），
   故本文件**不能**也**不需要**指向它——直接删除。
 
 若需要这两条定理，请 `import Fate.AlphaRulesLocal`。 -/

@@ -18,7 +18,7 @@ import FateWorld.FateV2.Rules.RuleSyntaxOps
 
   ## 本模块证明什么
 
-  `T68ComposeSemantics`（namespace `Fate.R230B4`）证明的是**元层面**陈述：
+  `T68ComposeSemantics`（namespace `FateV2.Meta.R230B4`）证明的是**元层面**陈述：
   「组合算子被要求的四条公理（`ComposeAxioms`：结合律、左右幺元律、封闭性）
   **不足以唯一确定**一个二元运算」，因而 `R₁ ∘ R₂` 无由公理确定的计算含义。
 

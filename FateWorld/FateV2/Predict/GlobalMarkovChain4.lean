@@ -197,7 +197,7 @@ theorem parents_eq :
 
 $$p\,(x,z_1,z_2,y) = \alpha(x)\,\beta(x,z_1)\,\gamma(z_1,z_2)\,\delta(z_2,y)$$
 
-**⚠ 这是 `Fate.P213B1.ChainMarkov`（三节点）的真推广**：
+**⚠ 这是 `P213B1.ChainMarkov`（三节点）的真推广**：
 三节点版是 $\alpha(a)\beta(a,b)\gamma(b,c)$，本版的第四因子 $\delta(z_2,y)$
 **不读 $x, z_1$** —— 这是 $X \perp Y \mid (Z_1,Z_2)$ 能成立的**唯一原因**。 -/
 def ChainMarkov4 {A C D B : Type u} (p : A × C × D × B → ℝ) : Prop :=
@@ -699,7 +699,7 @@ $$\big(X \perp_d Y \mid Z\big) \Longrightarrow \big(X \perp Y \mid Z\big)$$
   `PearlPathCompose` / `PearlPathDecomp` / `PearlMarkov` / `PearlMarkovCrossFrameworks`。
 
   **本文件（`GlobalMarkovChain4`）不是 Pearl 模块本身**，而是把上述模块的
-  **共享口径**（`Fate.FinCondIndep.CondMul`）已经接入的那条链
+  **共享口径**（`FinCondIndep.CondMul`）已经接入的那条链
   **再用足**：把 §1 的**真的图论**（`chainDAG4.dSep`，`decide` 判定）、
   §2 的**真的概率**（`ChainMarkov4 ⟹ CondMul`）与
   **`PearlChain` / `PearlMarkov` 的退化关系**、以及
@@ -932,12 +932,12 @@ theorem r28_chainMarkov4_to_chainMarkov3
 
 | 模块 | 实际命名空间 |
 |---|---|
-| `PearlChain` | `Fate.P213B1` |
-| `PearlFork` | `Fate.Fork213` |
-| `PearlJointLaw` | `Fate.PearlHierarchy` |
-| `PearlPathDecomp` | `Fate.CausalPath` |
-| `PearlLawRuleBridge` | `Fate.PearlHierarchy` |
-| `PearlMarkovBridgeG1` | `Fate.R242G1` |
+| `PearlChain` | `P213B1` |
+| `PearlFork` | `Fork213` |
+| `PearlJointLaw` | `PearlHierarchy` |
+| `PearlPathDecomp` | `CausalPath` |
+| `PearlLawRuleBridge` | `PearlHierarchy` |
+| `PearlMarkovBridgeG1` | `R242G1` |
 
 **⟹ 按 `Fate\.<模块名>\.` 做外部引用扫描，这 6 个模块**永远**不可能被计为「已引用」
 （它们**实质已被消费**：`P213B1` 被 8 个文件引用，`Fork213` 被 2 个文件引用）。
@@ -945,9 +945,9 @@ theorem r28_chainMarkov4_to_chainMarkov3
 而是在报告里如实登记（见 `_audit/R28-Pearl剩余.md` §3）。
 
 **本节真接的是命名空间与模块名一致的三个模块**：
-`PearlMarkov`（`Fate.PearlMarkov`）、
-`PearlMarkovCrossFrameworks`（`Fate.PearlMarkovCrossFrameworks`）、
-`PearlGlobalMarkov`（`Fate.PearlGlobalMarkov`）。
+`PearlMarkov`（`FateV2.Predict.PearlMarkov`）、
+`PearlMarkovCrossFrameworks`（`FateV2.Predict.PearlMarkovCrossFrameworks`）、
+`PearlGlobalMarkov`（`PearlGlobalMarkov`）。
 -/
 
 /-- ⭐⭐ **`PearlMarkov` 的三结构判据被消费**：「条件独立失效 ⟹ 必是对撞」。
@@ -955,20 +955,20 @@ theorem r28_chainMarkov4_to_chainMarkov3
 **⚠ 这不是同义反复**：前提是 `givesConditionalIndependence S = false`（一个 `Bool` 等式），
 结论是 `S = collider`（一个 `TripleStructure` 等式）。`PearlMarkov.collider_unique`
 用 `cases S <;> simp` 完成 —— 三个构造子里**只有 collider** 给出 `false`。 -/
-theorem r28_pearlMarkov_collider_iff {S : Fate.PearlMarkov.TripleStructure}
-    (h : Fate.PearlMarkov.givesConditionalIndependence S = false) :
-    S = Fate.PearlMarkov.TripleStructure.collider :=
-  Fate.PearlMarkov.collider_unique h
+theorem r28_pearlMarkov_collider_iff {S : FateV2.Predict.PearlMarkov.TripleStructure}
+    (h : FateV2.Predict.PearlMarkov.givesConditionalIndependence S = false) :
+    S = FateV2.Predict.PearlMarkov.TripleStructure.collider :=
+  FateV2.Predict.PearlMarkov.collider_unique h
 
 /-- ⭐⭐ **与 `PearlMarkovCrossFrameworks` 的同名结论对齐**（跨框架侧也有一份）。
 
 ⟹ 本条把「`PearlMarkovCrossFrameworks.collider_excluded`」与
 「`PearlMarkov.collider_unique`」**钉成同一个断言**，
-使两条引用链在 `Fate.GlobalMarkovChain4` 内合流。 -/
-theorem r28_cross_collider_excluded {S : Fate.PearlMarkov.TripleStructure}
-    (h : Fate.PearlMarkov.givesConditionalIndependence S = false) :
-    S = Fate.PearlMarkov.TripleStructure.collider :=
-  Fate.PearlMarkovCrossFrameworks.collider_excluded h
+使两条引用链在 `GlobalMarkovChain4` 内合流。 -/
+theorem r28_cross_collider_excluded {S : FateV2.Predict.PearlMarkov.TripleStructure}
+    (h : FateV2.Predict.PearlMarkov.givesConditionalIndependence S = false) :
+    S = FateV2.Predict.PearlMarkov.TripleStructure.collider :=
+  FateV2.Predict.PearlMarkovCrossFrameworks.collider_excluded h
 
 /-- ⭐⭐⭐ **`PearlGlobalMarkov`：简化版 `DOpen` ⟹ 标准版 `DOpen'`**（整条路径）。
 

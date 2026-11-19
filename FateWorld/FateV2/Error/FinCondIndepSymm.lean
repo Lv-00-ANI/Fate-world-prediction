@@ -27,7 +27,7 @@ import Mathlib.Tactic.LinearCombination
 -/
 
 /-! ===========================================================================
-  §70  ⭐⭐⭐ **有限条件独立的对称性**（`Fate.FinCondIndepSymm`）
+  §70  ⭐⭐⭐ **有限条件独立的对称性**（`FinCondIndepSymm`）
 
   ## 目标
 
@@ -48,9 +48,9 @@ import Mathlib.Tactic.LinearCombination
 
   ## ⚠ 与既有模块的关系（**本文件是独立复现，便于单独验收**）
 
-  `Fate/FiniteCondIndep.lean`（命名空间 `Fate.FiniteCondIndep`）
+  `Fate/FiniteCondIndep.lean`（命名空间 `FiniteCondIndep`）
   已用 `swapXY` 证过同一结论。**本文件把该结论在独立命名空间
-  `Fate.FinCondIndepSymm` 下**重新陈述并证明**（操作名改为 `swap`），
+  `FinCondIndepSymm` 下**重新陈述并证明**（操作名改为 `swap`），
   **不依赖前者** —— 使本文件**可单独编译、单独审计**。
 
   ## ⚠ 边界（诚实声明）

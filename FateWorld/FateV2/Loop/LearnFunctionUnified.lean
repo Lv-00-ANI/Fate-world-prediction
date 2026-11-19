@@ -25,8 +25,8 @@ import FateWorld.FateV2.Loop.WorldModelReadsTheta
   |---|---|
   | `FateV2.Loop.LearnFunction` | 「θ 是**函数**」的**逐点（Dirac）**学习：`stepFun` / `stepFunN` / `tN`；主定理 `tendsto_stepFunN_apply`（在 `x` 处收敛）、`stepFunN_apply_of_ne`（其他点不动）|
   | `FateV2.Model.ThetaExpressiveness` | 「θ 是**点**」`Θ := ℝ` 与「θ 是**函数**」`Θ := ℝ → ℝ` 的**表达力**对比；反例 `counterexample : ℝ → ℝ` 与 `not_point_expressible_counterexample` |
-  | `Fate.WorldModelReadsTheta` | 一个**真正读 θ** 的 `WorldModel` 实例 `wmWorldModel`（`step = θ*x+u+ε+a`）与其 `predFrom` 闭式 |
-  | `Fate.EndToEnd` | 端到端全链 `endToEnd`（`θ' = θ + η * φ (x̂_obs − x̂_pred)`）|
+  | `WorldModelReadsTheta` | 一个**真正读 θ** 的 `WorldModel` 实例 `wmWorldModel`（`step = θ*x+u+ε+a`）与其 `predFrom` 闭式 |
+  | `EndToEnd` | 端到端全链 `endToEnd`（`θ' = θ + η * φ (x̂_obs − x̂_pred)`）|
 
   **本文件交付的主定理**（全部是**跨模块**的，即每条定理的证明都至少用到两个上游模块）：
 
@@ -129,7 +129,7 @@ def cstFun (r : ℝ) : ℝ → ℝ := fun _ => r
 theorem cstFun_eq_constTheta (r : ℝ) : cstFun r = constTheta r := rfl
 
 /-- ⭐⭐ **`cgh : ℝ →+ (ℝ → ℝ)`，`r ↦` 常函数 `r`**：把「标量残差」送进**函数空间**的
-可加同态。这是 `Fate.EndToEnd.endToEnd` 在 `ptWorld` 上需要的 `φ` 位。 -/
+可加同态。这是 `EndToEnd.endToEnd` 在 `ptWorld` 上需要的 `φ` 位。 -/
 def cgh : ℝ →+ (ℝ → ℝ) where
   toFun := cstFun
   map_zero' := rfl

@@ -51,7 +51,7 @@ import Mathlib.Tactic.NormNum
   第 2 步**单独**（`P(U)` 不做更新，只做 `do(x′)`）给出的正是**干预律** `P(y | do(x′))`。
   **于是**：**反事实律 = 干预律 ⟺ 溯因步骤是「空」的**（后验 = 先验）。
 
-  这与 `Fate.PearlHierarchy` 的分层口径**完全对齐**：
+  这与 `PearlHierarchy` 的分层口径**完全对齐**：
   `L2_do`（干预律）与 `L3_1`（反事实律）在 `u` 上的差别**只在那个 `[x_u = x]` 因子**。
 
   ## 1. 本文件交付
@@ -67,7 +67,7 @@ import Mathlib.Tactic.NormNum
 
   ### 2.1 第 1 条（`cf_no_abduction_eq_doLaw`）**确实**是 D4 型（定义展开）
 
-  **用户已预先警告过这一点，我确认警告正确。** `Fate.SCMSemantics.doLaw` 的定义**本身**
+  **用户已预先警告过这一点，我确认警告正确。** `SCMSemantics.doLaw` 的定义**本身**
   就是「用先验 `pU` 求和」：`doLaw M x y = ∑ u, pU u * [h_u(x) = y]`。
   所以「不做溯因」与 `doLaw` **是同一件事**，等式**由 `rfl` 关闭**。
   **我不把它包装成深刻定理**：它在 §2 中**只用来把 `CFAlgorithm` 的字段语义钉死**，

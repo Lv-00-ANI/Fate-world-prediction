@@ -25,7 +25,7 @@
 **关键事实（任务书里最需要核实的点）**：任务书推测
 「`ChainErrorBudgetPredN` 用了 `mulCLM x`（`ℝ` 上的乘法算子）⟹ 本质上是一维的
 ⟹ 无法直接泛化到 `V`」。**这个推测对「学习项」不成立**：
-`mulCLM x` 只是把 `Fate.WiringConvergence.iterMap` / `OptimalEta.err_eq_c_pow`
+`mulCLM x` 只是把 `WiringConvergence.iterMap` / `OptimalEta.err_eq_c_pow`
 **特化**到 `E = F = ℝ` 的**实例**；底层的 `iterMap` / `errA` / `err_eq_c_pow`
 **已经是**任意实赋范空间上的定理（见 §2 逐条 `#check` 对照与证明）。
 所以泛化**不需要**在 `V` 上造 `θstar * x` 的替代、也**不需要** `V` 是代数：
@@ -108,9 +108,9 @@
 
 * `FateV2.Error.ChainErrorBudgetPredN`（`pred_n_error_bound` 的原版，用于 `genErr_mulCLM` 对照）
 * `FateV2.Error.ChainErrorBudgetBound`（`steadyTerm`）
-* `Fate.OptimalEta`（`c`、`c_nonneg`、`c_one`、`err_eq_c_pow`）
-* `Fate.WiringConvergence`（`iterMap`、`iterMap_zero`、`err_iterMap`）
-* `Fate.BoundWriteBack`（`errA`、`errA_nonneg`、`Corrects`）
+* `OptimalEta`（`c`、`c_nonneg`、`c_one`、`err_eq_c_pow`）
+* `WiringConvergence`（`iterMap`、`iterMap_zero`、`err_iterMap`）
+* `BoundWriteBack`（`errA`、`errA_nonneg`、`Corrects`）
 * `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`，仅 §5）
 
 ### 纪律
@@ -176,7 +176,7 @@ universe u
 
 variable {E F : Type u}
 
-/-- ⭐ **【核实】`iterMap` 的载体**：`Fate.WiringConvergence.iterMap` 声明在
+/-- ⭐ **【核实】`iterMap` 的载体**：`WiringConvergence.iterMap` 声明在
 任意实赋范空间上（与 `E = F = ℝ` 无关，但 `E`、`F` 同 universe）。 -/
 theorem iterMap_universe_check [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]

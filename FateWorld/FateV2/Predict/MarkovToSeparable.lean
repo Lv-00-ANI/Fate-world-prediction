@@ -53,7 +53,7 @@ variable {α β γ : Type} [Fintype α] [Fintype β] [Fintype γ]
 **⭐⭐ 证明**（非平凡）：把 `pX(x)·pZX(x, z)` 合并为 `ψ₁(x, z)`。 -/
 theorem chainMarkov_double_factor
     (p : α × β × γ → ℝ)
-    (h : Fate.MarkovBridgeReal.ChainMarkovRelative p) :
+    (h : FateV2.Predict.MarkovBridgeReal.ChainMarkovRelative p) :
     ∃ (ψ₁ : α → β → ℝ) (ψ₂ : β → γ → ℝ),
       ∀ x z y, p (x, z, y) = ψ₁ x z * ψ₂ z y := by
   obtain ⟨pX, pZX, pYZ, hP⟩ := h

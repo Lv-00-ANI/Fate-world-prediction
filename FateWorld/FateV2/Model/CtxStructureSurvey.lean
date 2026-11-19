@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.CtxStructureSurvey
+模块：CtxStructureSurvey
 主题：**开放问题 5.6（`C` 的结构）**的结构清单核查 + 一条非退化构造定理
 
 ---------------------------------------------------------------------------
@@ -47,14 +47,14 @@
    —— **不是 structure，而是 `def RichCtx (F : Frame) : CtxSpace`**
       （`⟨F.U.Carrier × F.Ν.Carrier × F.Θ.Carrier × F.Act.Carrier⟩`）。
    —— 因此它**就是**一个 `CtxSpace` 族（四元积），是「具体 `C`」的正确例子。
-   —— 但它的 `Carrier` 依赖 `Frame F`，本文件不 import `Fate.LawRuleToTraj`
+   —— 但它的 `Carrier` 依赖 `Frame F`，本文件不 import `LawRuleToTraj`
       （避免引入重依赖），故**本文件不引用它**，仅在此登记其身份。
 
-3. `Fate.FormalCtx`（`Fate/FCA.lean:92`）
+3. `FormalCtx`（`Fate/FCA.lean:92`）
    —— **是 `structure`**，字段 `GFCA / MFCA / Irel`（FCA 形式背景）。
    —— **但它不是 `CtxSpace`**：无 `CtxSpace` 实例。（故任务 (C) 按纪律不做。）
 
-4. `Fate.TieredScheme`
+4. `TieredScheme`
    —— **不存在 `structure TieredScheme`**；`TieredScheme` 是
       `Fate/TieredScheme.lean:36` 的**命名空间**（`namespace TieredScheme`），
       其中定义 `inductive Tier`（`predict / intervene / counterfactual`）

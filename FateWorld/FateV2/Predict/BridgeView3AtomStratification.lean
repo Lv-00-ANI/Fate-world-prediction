@@ -107,7 +107,7 @@ set_option linter.unusedSectionVars false
     卡在**库缺口 `DAG.induce`**。
   * **策略 2**（`BridgeView2Elimination`）：把 `mass (V∖{v})` 一次性算成「对 `v` 求和」
     （`peel`）—— 落点是 **sink 处的消元定律**，终点仍是集合口径 `mass`；
-    而集合口径已被判定 **退化**（`Fate.View20.facstep_globalMarkov_anyGraph`）。
+    而集合口径已被判定 **退化**（`View20.facstep_globalMarkov_anyGraph`）。
   * **策略 3（本文件）**：**不归纳、不用诱导子图、不复合 `mass`**。
     概率侧只保留「一个因子族如何被 `prod_union` 拆成两块」。
 

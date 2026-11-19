@@ -17,7 +17,7 @@ import FateWorld.FateV2.Rules.StatAlpha
 
   ## 被消费的模块
 
-  `Fate.StatAlpha`（见其文件头）：经验条件核 + 置信带 α，主判据
+  `StatAlpha`（见其文件头）：经验条件核 + 置信带 α，主判据
   `isPoint_iff_all_zero_radius`、`diracRule_iff_zero_and_pure`。
   其 §6 明确登记一**缺口**：`freqToMeasure` 的**单射性未证**，
   「频率层 `IsPointFreq` 与 `LawRule.IsPoint` 的等价」属未闭合项。

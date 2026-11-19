@@ -60,7 +60,7 @@ theorem card_balance_lmgc (G : FateV2.Modeling.Graph.DAG V) (v : V) :
       = (pa G v).card + ({(v)} ∪ G.nonDescendants v).card := by
   have hPS : pa G v ⊆ G.nonDescendants v := FateV2.Predict.BridgeA1.pa_subset_nonDescendants G v
   have hvS : v ∉ G.nonDescendants v := by
-    rw [Fate.NDMem.mem_nd_iff]
+    rw [FateV2.Predict.NDMem.mem_nd_iff]
     intro h
     exact h.2 rfl
   have hvP : v ∉ pa G v := FateV2.Predict.DAGFactorization.not_mem_pa_self G v

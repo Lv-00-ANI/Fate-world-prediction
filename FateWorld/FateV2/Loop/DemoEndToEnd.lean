@@ -13,11 +13,11 @@ import FateWorld.FateV2.Predict.RuleDrivesEndToEnd
 -/
 
 /-! ===========================================================================
-  `Fate.Demo.EndToEnd` —— **端到端可执行演示：μ 世界模型跑 N 步、`norm_num` 出数字**
+  `Demo.EndToEnd` —— **端到端可执行演示：μ 世界模型跑 N 步、`norm_num` 出数字**
 
   ## 0  本模块演示什么
 
-  一个**最小、完全具体**的 `WorldModel`，把 `Fate.EndToEnd.endToEndIter`
+  一个**最小、完全具体**的 `WorldModel`，把 `EndToEnd.endToEndIter`
   真正跑起来，并**逐位算出**每步参数 —— 回答「这个系统真的能预测吗？」
 
   四环节链条（`Fate/EndToEnd.lean` 的 §1–§4）：

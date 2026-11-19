@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ClosedLoopWiring`
+模块：`ClosedLoopWiring`
 任务：**P0-F3 闭环 ↔ 收敛理论打通（诚实版）**
 
 ===========================================================================
@@ -134,7 +134,7 @@ theorem geom_squeeze_zero {a : ℕ → ℝ} {c C : ℝ}
 
 /-- ⭐ **【`err_iter_tendsto_zero` 的通用引理版】**
 
-与 `Fate.ClosedLoopGeneral.err_iter_tendsto_zero` **陈述完全相同**，
+与 `ClosedLoopGeneral.err_iter_tendsto_zero` **陈述完全相同**，
 但证明不再是「内联几何界 + 夹逼」，而是直接把
 `err_iter_le`（几何界）与 `err_n ≥ 0`（非负）喂给 §1 的 `geom_squeeze_zero`。
 

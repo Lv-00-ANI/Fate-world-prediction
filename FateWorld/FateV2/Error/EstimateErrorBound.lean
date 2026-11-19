@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.EstimateErrorBound`（**新建**，不修改任何已有模块）
+模块：`EstimateErrorBound`（**新建**，不修改任何已有模块）
 
 ## 0  本文件要回答的问题（审计 R249 第 2 件）
 
 `Fate/FirstLayerBound.lean` 的主定理 `first_layer_bound_real` 已经入库（该文件 21 条
 定理），它把第 1 层的 `Ω` 换成了 `linWorld` 上的**具体**端到端残差
-`Fate.EndToEnd.e2eResidual`，因此「`Ω` 是自由变量」这一缺陷已经修掉。
+`EndToEnd.e2eResidual`，因此「`Ω` 是自由变量」这一缺陷已经修掉。
 
 但它的前件里还留着一个**未证**的假设：
 
@@ -182,12 +182,12 @@
 
 ## 3  依赖（只 `import`，不改）
 
-`Fate.GaussMarkovScalar`（`varOf`、`est`、`est_variance`、`gauss_markov_lower_bound`、
+`FateV2.Error.GaussMarkovScalar`（`varOf`、`est`、`est_variance`、`gauss_markov_lower_bound`、
 `variance_coord_pi`、`est_integral`）、
-`Fate.ChainBudgetBound`（`sigmaEst`、`sigmaLearn`、`sigmaSteady`、`learnErr_le`、
+`ChainBudgetBound`（`sigmaEst`、`sigmaLearn`、`sigmaSteady`、`learnErr_le`、
 `e2e_abs_eq`）、
-`Fate.ThetaConvergence`（`linWorld`、`thetaN`）、
-`Fate.FirstLayerBound`（只用于 `first_layer_bound_real` 的对照，本文件**不**修改它）。
+`ThetaConvergence`（`linWorld`、`thetaN`）、
+`FirstLayerBound`（只用于 `first_layer_bound_real` 的对照，本文件**不**修改它）。
 
 纪律：零 `sorry` / 零 `admit` / 零 `axiom`；只新增本文件，不改任何已有模块。
 

@@ -72,7 +72,7 @@ $$\underbrace{\mathcal{E}}_{\text{实例集}}
 
 1. **`AlphaData.alpha → AlphaOutput` 的桥仍不存在。**
    `AlphaData.alpha e : Concept E.Carrier M (D.ctx).Irel × Set M`
-   （概念 × 闭属性集），而 `Fate.InstanceChain.AlphaOutput` 是
+   （概念 × 闭属性集），而 `InstanceChain.AlphaOutput` 是
    **局部域划分 × `LawRule` 集**。二者**形状不同**：
    - 「概念格元素 ↦ 划分的一块」需要一项**商化**构造
      （`AlphaData.alphaQuot` 只在 `ker(obs)` 上做了 **α 值的**下降，
@@ -81,7 +81,7 @@ $$\underbrace{\mathcal{E}}_{\text{实例集}}
      （`dgBasis` 给的是 `Set M × Set M` 的**伪内涵对**，
      与 `LawRule` 的字段**未做对齐**，见 `Fate/AlphaRulesLocal.lean` 一系）。
 2. **形状不同**：`AlphaData.alpha e : Concept E.Carrier M (D.ctx).Irel × Set M`，
-   而 `Fate.InstanceChain.AlphaOutput` 是「局部域划分 × `LawRule` 集」；
+   而 `InstanceChain.AlphaOutput` 是「局部域划分 × `LawRule` 集」；
    两者之间需要一个**商化**（`alphaQuot` 只在 `ker(obs)` 上下降，
    且下降后的**值**仍是「概念 × 闭属性集」，**不**给出「划分」这个对象本身）
    与一个**规则提取**（`dgBasis` → `LawRule`），

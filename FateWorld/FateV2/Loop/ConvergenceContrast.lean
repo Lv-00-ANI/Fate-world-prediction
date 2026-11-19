@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ConvergenceContrast`
+模块：`ConvergenceContrast`
 任务：**【GG3】补 D 裁决要的「对照定理」：为什么必须两个版本并存**
 
 ===========================================================================
@@ -123,7 +123,7 @@ noncomputable def linA : (ℝ × ℝ) →L[ℝ] ℝ :=
 **⚠ 为什么第二坐标必须是 0**：若 `φ` 在第二坐标上发力，就会出现
 `A (φ t) = t + 0 = t` 之外的分量，`Corrects` 会被破坏（因为 `A` 看不见第二坐标）。
 取 0 是 `Corrects` **唯一**的选择（在给定的 `A` 下 `φ` 由 `Corrects` **唯一确定**，
-见 `Fate.ConvergeToOptimalCounterexample` 的 `corrects_unique_of_injective` 之对偶直觉）。 -/
+见 `ConvergeToOptimalCounterexample` 的 `corrects_unique_of_injective` 之对偶直觉）。 -/
 def linPhi : ℝ →ₗ[ℝ] (ℝ × ℝ) where
   toFun t := (t, 0)
   map_add' a b := by ext <;> simp
@@ -146,7 +146,7 @@ theorem linPhi_apply (t : ℝ) : linPhi t = (t, 0) := rfl
 /-- ⭐⭐ **`A` 满射**：每个 `r : ℝ` 都有原像 `(r, 0)`。
 
 **意义**：满射是 `Corrects` **可被满足**的必要条件（`∃ φ, Corrects A φ ⟺ Surjective A`，
-见 `Fate.CorrectsProperties.exists_corrects_iff_surjective`）。本实例正好卡在
+见 `CorrectsProperties.exists_corrects_iff_surjective`）。本实例正好卡在
 「满射但非单射」这条**缝隙**上 —— 这是「两版本分离」的唯一缝隙。 -/
 theorem linA_surjective : Function.Surjective linA := by
   intro r
@@ -281,7 +281,7 @@ $$\exists\, A\ \varphi,\quad \mathrm{Corrects}(A,\varphi)\ \wedge\ \neg\,\mathrm
 但右逆的**存在性**与 `A` 的**单射性**是两个独立条件 ——
 满射非单射的 `A` **照样有**右逆。本例就是这个缝隙的显式填充。
 
-**⚠ 与 `Fate.ConvergeToOptimalCounterexample.corrects_injective` 的关系**：
+**⚠ 与 `ConvergeToOptimalCounterexample.corrects_injective` 的关系**：
 后者保证 `ker φ = ⊥`；本定理说明 `ker A` **不受约束**。两条**同时**可用、**互不矛盾**。 -/
 theorem corrects_needs_injective_A_for_version2 :
     ∃ (A : (ℝ × ℝ) →L[ℝ] ℝ) (φ : ℝ →ₗ[ℝ] (ℝ × ℝ)),

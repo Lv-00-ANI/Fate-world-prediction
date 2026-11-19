@@ -2,7 +2,7 @@
 命运理论 · 开放问题 1.3 的形式化：因果事件 = 变量子集上的赋值
 =============================================================================
 
-模块：Fate.CausalEventFormal
+模块：CausalEventFormal
 上游：`Fate/TrajGenDeterministic.lean`（`Traj`、`trajGen`）
 　　　`Fate/CausalDirection.lean`（`CausalGraph`）
 　　　`Fate/ParamSCM.lean`（`ParamSCM`）

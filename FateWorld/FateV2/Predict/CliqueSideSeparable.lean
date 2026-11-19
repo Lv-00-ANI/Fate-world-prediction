@@ -128,7 +128,7 @@ theorem not_cA_and_cB {x y z : V} {C : Finset V} (h : cB x y z C) : ¬ cA x z C 
 theorem prod_dependsOn {S : Finset V} {N : Finset (Finset V)} {ψ : Finset V → (V → V) → ℝ}
     (hread : ∀ (C : Finset V), ∀ σ τ : V → V, (∀ w ∈ C, σ w = τ w) → ψ C σ = ψ C τ)
     (hsub : ∀ C ∈ N, ∀ w ∈ C, w ∈ S) :
-    Fate.CliqueGrouping.DependsOnlyOn S (fun σ => ∏ C ∈ N, ψ C σ) := by
+    FateV2.Predict.CliqueGrouping.DependsOnlyOn S (fun σ => ∏ C ∈ N, ψ C σ) := by
   intro σ τ hagree
   refine Finset.prod_congr rfl (fun C hC => ?_)
   exact hread C σ τ (fun w hw => hagree w (hsub C hC w hw))
@@ -227,8 +227,8 @@ theorem clique_side_implies_separable
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G := by
   classical
   -- ⭐ 关键：`{z}`-型团（`cA ∧ cB`）的因子恒为 1，故可整体提出
   set Z : Finset (Finset V) := N.filter (fun C => cA x z C ∧ cB x y z C) with hZ
@@ -238,7 +238,7 @@ theorem clique_side_implies_separable
   · -- (1) **乘积分组 ⟹ 可分离**（`prod_grouping_by_filter` 的唯一使用点）
     intro σ
     rw [hp σ,
-      Fate.CliqueGrouping.prod_grouping_by_filter N (cA x z) (fun C => ψ C σ)]
+      FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N (cA x z) (fun C => ψ C σ)]
   · -- (2) `∏_A ψ` 只依赖 `{x,z}`
     exact prod_dependsOn hread (fun C hC w hw => (Finset.mem_filter.mp hC).2 w hw)
   · -- (3) ⭐ **`∏_B ψ` 只依赖 `{y,z}`** —— `hside` 在这里被**实质使用**
@@ -280,14 +280,14 @@ theorem clique_side_implies_separable'
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G := by
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G := by
   classical
   refine ⟨fun σ => ∏ C ∈ N.filter (cA x z), ψ C σ,
           fun σ => ∏ C ∈ N.filter (fun C => ¬ cA x z C), ψ C σ, ?_, ?_, ?_⟩
   · intro σ
     rw [hp σ,
-      Fate.CliqueGrouping.prod_grouping_by_filter N (cA x z) (fun C => ψ C σ)]
+      FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N (cA x z) (fun C => ψ C σ)]
   · exact prod_dependsOn hread (fun C hC w hw => (Finset.mem_filter.mp hC).2 w hw)
   · intro σ τ hagree
     refine Finset.prod_congr rfl (fun C hC => ?_)
@@ -307,8 +307,8 @@ theorem clique_side_implies_separable_from'
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
   clique_side_implies_separable' x y z N ψ hside hread p hp
 
 
@@ -338,7 +338,7 @@ theorem clique_not_meet_both
     (C : Finset V) (hcl : FateV2.Predict.SeparationDecomposition.IsClique adj (C : Set V))
     (hC : ∀ w ∈ C, w = x ∨ w = y ∨ w = z) :
     ¬ ((x : V) ∈ (C : Set V) ∧ (y : V) ∈ (C : Set V)) :=
-  ((Fate.CliqueChain.clique_grouping_and_separation_together adj x y z hx hy hxy hUS C hcl hC).2)
+  ((FateV2.Predict.CliqueChain.clique_grouping_and_separation_together adj x y z hx hy hxy hUS C hcl hC).2)
 
 /-- ⭐⭐ **消费 2**：单点团 `{x}` 整体归入 `{x,z}` 侧
 （`CliqueChain` 的 `singleton_clique_in_xz`）。
@@ -352,6 +352,6 @@ theorem singleton_in_A_side
     (hcl : FateV2.Predict.SeparationDecomposition.IsClique adj (({x} : Finset V) : Set V)) :
     (∀ w ∈ ({x} : Finset V), w ∈ ({x, z} : Finset V))
       ∧ ((y : V) ∈ (({x} : Finset V) : Set V) → False) :=
-  Fate.CliqueChain.singleton_clique_in_xz adj x y z hx hy hxy hUS hcl
+  FateV2.Predict.CliqueChain.singleton_clique_in_xz adj x y z hx hy hxy hUS hcl
 
 end FateV2.Predict.CliqueSideSeparable

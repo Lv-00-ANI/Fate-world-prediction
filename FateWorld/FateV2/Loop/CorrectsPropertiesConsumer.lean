@@ -2,8 +2,8 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.CorrectsPropertiesConsumer`
-任务：**【乙-P5 / 甲-批3】消费 `Fate.CorrectsProperties` 的「前提强度卡」**
+模块：`CorrectsPropertiesConsumer`
+任务：**【乙-P5 / 甲-批3】消费 `CorrectsProperties` 的「前提强度卡」**
 
 ===========================================================================
 本文件做什么
@@ -69,9 +69,9 @@
   **没有**一条只是「把卡上的定理换个名字再陈述一遍」：
   每条都引入了卡上没有的新对象（`iterMap` / `Tendsto` / 具体实例 `linA` / 右逆唯一性）。
 
-依赖：`Fate.CorrectsProperties`（被消费的卡）、
-      `Fate.WiringConvergence`（`iterMap` 与 `n` 步几何缩放的引擎）、
-      `Fate.ConvergenceContrast`（`linA` / `linPhi` 具体实例）。
+依赖：`CorrectsProperties`（被消费的卡）、
+      `WiringConvergence`（`iterMap` 与 `n` 步几何缩放的引擎）、
+      `ConvergenceContrast`（`linA` / `linPhi` 具体实例）。
 -/
 
 import FateWorld.FateV2.Loop.CorrectsProperties

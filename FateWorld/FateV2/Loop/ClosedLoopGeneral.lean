@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ClosedLoopGeneral`
+模块：`ClosedLoopGeneral`
 任务：**【Y3-最高优先】`ClosedLoopGeneral` 重做 —— 最小可交付版本**：
 **非线性情形下单步收缩的充分条件**。
 
@@ -848,7 +848,7 @@ Lipschitz 常数有限、`φ 0 = 0`、但 `(E)` 不成立、不等式**失败**�
 | 1 | `(E)` 的**必要性** | **不是**必要的（只是充分的）。例如线性 `Corrects` 是另一条充分条件（`corrects_imp_exactOneStep` 证明它蕴含 `(E)`，但理论上可能有别的不蕴含 `(E)` 的充分条件）。本文件**只**声称充分性。 |
 | 2 | `φ 0 = 0` 的**必要性** | 未证。但它显然**不可删为「无约束」**：若 `φ` 可任意平移，`‖φ r‖` 无界，任何「误差 ≤ 常数 × 误差」都不可能。**已登记为开放项**，未做必要性定理。 |
 | 3 | 「`φ` 平移即失效」的**显式反例** | 未做。理由：需要构造一个 `φ`（Lipschitz、`(E)` 不满足或满足）使 `φ 0 ≠ 0` 且误差界失败；技术上可做但会引入 `C + L‖r‖` 形式的界，超出「最小可交付」范围。**如实登记**。 |
-| 4 | 噪声 / 稳态误差 | **不重复**：已入库 `Fate.ClosedLoopNoisy` 处理（`steadyErr` / `noisy_limsup_bound`）。本文件是它的**确定性骨架**。 |
+| 4 | 噪声 / 稳态误差 | **不重复**：已入库 `ClosedLoopNoisy` 处理（`steadyErr` / `noisy_limsup_bound`）。本文件是它的**确定性骨架**。 |
 | 5 | 非线性下 `(E)` 的**数值可检验性** | 未做形式化。`(E)` 说的是「满步一步可解」，实践中对应 Newton 型 / 打靶型求解器的**一步精确性**；把「求解器实现」形式化超出本文件范围。 |
 | 6 | 多维下把 `L_φ L_A` 换成更细的谱量 | 未做。需 `A` 自伴/正规等结构，超出「最小版本」。 |
 
@@ -875,9 +875,9 @@ Lipschitz 常数有限、`φ 0 = 0`、但 `(E)` 不成立、不等式**失败**�
 
 | 模块 | 关系 |
 |---|---|
-| `Fate.BoundWriteBack` | `nlStep` **公式逐字等于** `wbW`（`nlStep_eq_wbW`）；`errN` 等于 `errA`（`errN_eq_errA`）；`Corrects ⟹ ExactOneStep`（`corrects_imp_exactOneStep`）；`Corrects` 架构代入主定理（`corrects_lin_iter_bound`）。**未修改一行。** |
-| `Fate.ClosedLoopNoisy` | 互补：那边是**随机/有噪**稳态，这边是**确定性收缩**。不重复、不冲突。 |
-| `Fate.WiringConvergence` | 那边用**线性**恒等式得 `err_n = \|1-η\|^n err_0`（等式）；本文件在**非线性**下只能得 `≤ (|1-η| L_φ L_A)^n`（不等式），系数多出 `L_φ L_A`，这正是非线性的代价（§9.2）。 |
+| `BoundWriteBack` | `nlStep` **公式逐字等于** `wbW`（`nlStep_eq_wbW`）；`errN` 等于 `errA`（`errN_eq_errA`）；`Corrects ⟹ ExactOneStep`（`corrects_imp_exactOneStep`）；`Corrects` 架构代入主定理（`corrects_lin_iter_bound`）。**未修改一行。** |
+| `ClosedLoopNoisy` | 互补：那边是**随机/有噪**稳态，这边是**确定性收缩**。不重复、不冲突。 |
+| `WiringConvergence` | 那边用**线性**恒等式得 `err_n = \|1-η\|^n err_0`（等式）；本文件在**非线性**下只能得 `≤ (|1-η| L_φ L_A)^n`（不等式），系数多出 `L_φ L_A`，这正是非线性的代价（§9.2）。 |
 
 **⚠ 明确一句**：本文件的界**不**改进 `WiringConvergence` 的等式
 （在 `L_A = L_φ = 1` 时二者一致）。它的价值**只在** `A`、`φ` **非线性**的

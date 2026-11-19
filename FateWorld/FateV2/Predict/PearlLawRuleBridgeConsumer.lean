@@ -3,7 +3,7 @@
   消费方：`PearlLawRuleBridge` —— Dirac 单点档识别 × 组合不可约性
 =============================================================================
 
-模块：`Fate.PearlLawRuleBridgeConsumer`
+模块：`PearlLawRuleBridgeConsumer`
 上游：`Fate/PearlLawRuleBridge.lean`（`SCM.toLawRule`、`finLawToMeasure`、
 　　　`isPoint_toLawRule`、`toLawRule_apply`、`toLawRule_dirac_iff_pointmass` 等）、
 　　　`Fate/LawRule.lean`（`IsPoint`、`IsPointDet`、`compose`、`compose_point_or_empty`、

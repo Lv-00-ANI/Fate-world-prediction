@@ -10,7 +10,7 @@
   | # | 原定理（**未改动**） | 所在模块 | 原 `[Nonempty]` | 本批定理 |
   |---|---|---|---|---|
   | 1 | `FateV2.Rules.Adjacency.adjacent_universal` | `Adjacency` | `[Nonempty ι]` | `adjacent_universal_noNonempty` |
-  | 2 | `Fate.InvarianceContentful.invariance_iff_const` | `InvarianceContentful` | `[Nonempty E]` | `invariance_iff_const_noNonempty` |
+  | 2 | `InvarianceContentful.invariance_iff_const` | `InvarianceContentful` | `[Nonempty E]` | `invariance_iff_const_noNonempty` |
   | 3 | `Fate.ObsEstimationStrong.chooseEstimator_of_exists` | `ObsEstimationStrong` | `[Nonempty X]` | `chooseEstimator_of_exists_noNonempty` |
   | 3b | `Fate.ObsEstimationStrong.chooseEstimator_apply_of` | `ObsEstimationStrong` | `[Nonempty X]` | `chooseEstimator_apply_of_noNonempty` |
 

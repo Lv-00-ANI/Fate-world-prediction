@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.WorldModelCapstoneConsumer`
-任务：**【SS1-最高优先】**给 `Fate.WorldModelCapstone` 建立**真正的下游消费者**
+模块：`WorldModelCapstoneConsumer`
+任务：**【SS1-最高优先】**给 `WorldModelCapstone` 建立**真正的下游消费者**
 
 ---------------------------------------------------------------------------
 ## 0  问题陈述（实测，不含糊）
 ---------------------------------------------------------------------------
-`Fate.WorldModelCapstone` 已入库（`Fate.lean` 有 `import`）、能编译、扇出 12
+`WorldModelCapstone` 已入库（`Fate.lean` 有 `import`）、能编译、扇出 12
 （它 import 并**在证明体内调用**了 12 个世界模型相关模块），但**扇入 = 0**：
 全库没有任何模块 `import` 它，也没有任何模块的定理**在陈述或证明体里**用到
 `WorldModelCapstone.xxx`。审计（R72）判定：这是「组装完成的成品没人认领」，
@@ -420,17 +420,17 @@ end CapstoneDownstream
 
 ### §12.2 扇入变化
 
-* `Fate.WorldModelCapstone` 的 **import 扇入**：0 → **1**（本文件）。
+* `WorldModelCapstone` 的 **import 扇入**：0 → **1**（本文件）。
   再加上 `Fate.lean` 作为库根 import 它（审计口径不含库根），
   从「静态依赖图上无人 import」变为「有上游、且该上游在**证明体**里
   实际调用其定理，并有 1 处出现在**类型签名**」。
 * **定理级扇入**：20 条中 **8 条**现在有下游消费者（此前 0 条），
   另加 `ClosedLoopWorld` 结构及其 2 条字段引理。
-* `Fate.WorldModelCapstoneConsumer` 自身扇入 = 0（预期；它是最下游收口点）。
+* `WorldModelCapstoneConsumer` 自身扇入 = 0（预期；它是最下游收口点）。
 
 ### §12.4 `wiring_level.py` 实测（本轮的诚实裁决）
 
-    src = FateV2.Loop.WorldModelCapstone,  tgt = Fate.WorldModelCapstoneConsumer
+    src = FateV2.Loop.WorldModelCapstone,  tgt = WorldModelCapstoneConsumer
     level = "L3"
     l3_hits = [ {"decl":"ClosedLoopWorld", "as":"WorldModelCapstone.ClosedLoopWorld", "kind":"structure"} ]
     l2_hits = [ lin_contraction_eq_c, eta_one_iff_one_step_exact,

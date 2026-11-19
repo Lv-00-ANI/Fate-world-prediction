@@ -103,7 +103,7 @@ open FateV2.Modeling
 namespace RuleSyntaxExt
 
 open FateV2.Rules.RuleSyntax
-/- `LawRule` 活在下游命名空间 `Fate.LawRule` 内（与 `RuleSyntax.lean:51` 一致）。 -/
+/- `LawRule` 活在下游命名空间 `LawRule` 内（与 `RuleSyntax.lean:51` 一致）。 -/
 open FateV2.Rules.LawRule
 
 /-! ### §1  扩展语法项 -/

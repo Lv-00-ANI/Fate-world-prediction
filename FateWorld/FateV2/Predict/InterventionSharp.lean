@@ -2,7 +2,7 @@
 命运理论 · 干预选择最优：次优差距下界与「紧」
 ===============================================================================
 
-模块：`Fate.InterventionSharp`
+模块：`InterventionSharp`
 上游：`Fate/InterventionSelection.lean`（`Plan`、`Good`、`alter`、`gain`、`Optimal`、
 　　　`exists_optimal_finset`、`optimal_value_unique`）
 

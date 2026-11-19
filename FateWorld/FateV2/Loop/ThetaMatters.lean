@@ -14,7 +14,7 @@ import FateWorld.FateV2.Modeling.Basic
 -/
 
 /-! ===========================================================================
-  `Fate.ThetaMatters` —— **【Z2】θ 有作用：最小见证**
+  `ThetaMatters` —— **【Z2】θ 有作用：最小见证**
 
   ## 0  任务与背景
 
@@ -59,10 +59,10 @@ import FateWorld.FateV2.Modeling.Basic
     见 §6.2 `theta_blind_mechanism_exists`：常数机制对本见证里的 `x` 无差别）。
 
   **2.3 为什么不能沿用仓库里既有的具体实例。**
-  仓库中的 `Fate.EndToEndBounds.mulWorldModel` / `Fate.EndToEndConverge.mulWorld`
+  仓库中的 `EndToEndBounds.mulWorldModel` / `EndToEndConverge.mulWorld`
   **当前不可编译**（`Fate/EndToEndBounds.lean` 报 4 处 error、
   `Fate/EndToEndConverge.lean` 报 12 处 error，均与 `abbrev`/`def` 投影与
-  `StateSpace` 字段不符有关）。`Fate.EvalReal.eWorldModel` 的机制是 `x ↦ x + 1`，
+  `StateSpace` 字段不符有关）。`EvalReal.eWorldModel` 的机制是 `x ↦ x + 1`，
   **恰好丢弃 `θ`**（其 `predCalc_eq_predFrom` 在 `θ = 0` 处取 `rfl`），
   故它**不能**作为「θ 有作用」的见证。
   **⟹ 本文件**另建**一个最小实例 `addThetaWorld`（不改动任何既有模块）。
@@ -395,10 +395,10 @@ theorem theta_matters_gap_one :
 
     `≠` 只是一个否定命题；把「θ 有作用」变成**度量**形式
     （`0 < dist (pred θ₁) (pred θ₂)`）后，它可与
-    `Fate.EndToEndBounds` 的 `PredLipschitz`（「界」）以及
+    `EndToEndBounds` 的 `PredLipschitz`（「界」）以及
     「无前件则任何有限 `K` 都假」的**必要性**结论直接对接。
 
-    注：本文件**不** import `Fate.EndToEndBounds`（该文件当前不可编译，见 §2.3），
+    注：本文件**不** import `EndToEndBounds`（该文件当前不可编译，见 §2.3），
     故这里只用 `dist` 的**一般事实**（`dist_pos`），不引用其 `PredLipschitz`。
     =========================================================================== -/
 

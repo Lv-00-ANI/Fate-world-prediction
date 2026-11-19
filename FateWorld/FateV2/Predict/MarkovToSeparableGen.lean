@@ -73,7 +73,7 @@ open FateV2.Modeling
 
 open FateV2.Predict.SeparationDecomposition (IsClique ATilde BTilde StepRel)
 open FateV2.Modeling.MoralGraphMarkov (USeparated)
-open Fate.CliqueGrouping (DependsOnlyOn)
+open FateV2.Predict.CliqueGrouping (DependsOnlyOn)
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 
@@ -226,7 +226,7 @@ theorem clique_decomposition_no_USeparated (adj : V → V → Prop) (S A C : Set
 /-- ⭐⭐⭐⭐ **证词 2（更硬）**：`useparated_implies_separable` 的 `B` 参数**在类型里已不存在**。
 
 本定理只是**重述**：结论的 `G` 只依赖 `BTilde adj Sset A ∪ Sset`，
-**`B` 出现不了**。对照 `Fate.MoralGraphMarkov.USeparated adj Sset A B` 的定义，
+**`B` 出现不了**。对照 `FateV2.Modeling.MoralGraphMarkov.USeparated adj Sset A B` 的定义，
 `B` 是分离性的**另一半**，而它在可分离的证明里**一个符号都没用到**。
 **⟹ `USeparated` 断言「`S` 分离 `A`、`B`」这件事，对分解毫无贡献。** -/
 theorem conclusion_independent_of_B {adj : V → V → Prop} {A Sset : Set V}

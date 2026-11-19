@@ -51,7 +51,7 @@ import Mathlib.Tactic.Ring
   ## 1  非空洞版本：`BlockRel`
 
   真正的「两块条件独立」必须携带**两块的分工**。本文件采用「块状因子分解」定义
-  （与 `Fate.FactorMarkov.CondIndep`、`Fate.C5g.BlockCI_Gap` 同一形式）：
+  （与 `FactorMarkov.CondIndep`、`FateV2.Predict.C5g.BlockCI_Gap` 同一形式）：
 
       BlockRel mass A B C  :=  ∀ z, mass (A ∪ B ∪ C) z * mass C z
                                   = mass (A ∪ C) z * mass (B ∪ C) z
@@ -245,9 +245,9 @@ $$\mathrm{BlockRel}\,\mathrm{mass}\,A\,B\,C
 —— 交换 `A`、`B` 恒等（`BlockRel.comm`），但**换掉 `B` 会改变命题内容**；
 `CondRel` 的 `cond` 只说「并集上全体互相独立」，**丢掉**了这块分工。
 
-**⟹ 与既有定义的关系**：形式与 `Fate.FactorMarkov.CondIndep`
+**⟹ 与既有定义的关系**：形式与 `FactorMarkov.CondIndep`
 （`mass (A ∪ B ∪ Z) * mass Z = mass (A ∪ Z) * mass (B ∪ Z)`）一致，
-也与 `Fate.C5g.BlockCI_Gap`（`p x * mass C = mass A * mass (B ∪ C)`）同族；
+也与 `FateV2.Predict.C5g.BlockCI_Gap`（`p x * mass C = mass A * mass (B ∪ C)`）同族；
 但那两者绑定在 `(V → α) → ℝ` 的 `mass` 上，本定义对 `mass` **完全抽象**。 -/
 def BlockRel (mass : Finset ι → γ → ℝ) (A B C : Finset ι) : Prop :=
   ∀ z, mass (A ∪ B ∪ C) z * mass C z = mass (A ∪ C) z * mass (B ∪ C) z

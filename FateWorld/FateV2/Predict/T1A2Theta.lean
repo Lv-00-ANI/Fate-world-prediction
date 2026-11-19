@@ -49,7 +49,7 @@ $$\theta\,((x,y),z) : \mathrm{Fin}\ 3 \to \mathsf{Bool}$$
 ## 与既有设施的关系
 
 `condMul_of_separable` 的**数学内核**是既有的
-`Fate.SeparableCondMul.separable_implies_condMul`（可分离 ⟹ 条件乘性，
+`FateV2.Predict.SeparableCondMul.separable_implies_condMul`（可分离 ⟹ 条件乘性，
 已机检、无 `sorry`）。本文件在其上**只做一层包装**：把三因子形式
 $a(z)\,b(x,z)\,c(y,z)$ 打包成「可分离」所需的二因子形式
 $f(x,z)=b(x,z)$、$g(y,z)=a(z)\,c(y,z)$。这一步是**纯代数重结合**，
@@ -86,7 +86,7 @@ open Finset
 
 /-! ## §1 ⭐⭐⭐ **正确载体 `theta`**
 
-**⚠ 类型核对**：`Fate.FinCondIndep.FinJoint α β γ` 是 `abbrev`，
+**⚠ 类型核对**：`FinCondIndep.FinJoint α β γ` 是 `abbrev`，
 展开为 `(α × β) × γ → ℝ`。故
 `FinJoint (Fin 2) (Fin 2) (Fin 2) = (Fin 2 × Fin 2) × Fin 2 → ℝ`。
 本文件直接使用**展开后的形式**书写 `theta` 的定义域。 -/
@@ -181,14 +181,14 @@ theorem theta_bijective : Function.Bijective theta := by
 
 ### 统一口径
 
-`Fate.FinCondIndep.CondMul p` 的定义是
+`FinCondIndep.CondMul p` 的定义是
 
 $$\forall x\,y\,z,\quad p\,((x,y),z)\cdot \mathrm{margZ}\ p\ z
   = \mathrm{margXZ}\ p\ x\ z \cdot \mathrm{margYZ}\ p\ y\ z .$$
 
 ### 归约到既有定理
 
-既有 `Fate.SeparableCondMul.separable_implies_condMul` 断言：
+既有 `FateV2.Predict.SeparableCondMul.separable_implies_condMul` 断言：
 若 $p((x,y),z) = f(x,z)\cdot g(y,z)$，则 `CondMul p`。
 
 本定理的前件是**三因子**形式 $p((x,y),z) = a(z)\cdot b(x,z)\cdot c(y,z)$。
@@ -214,7 +214,7 @@ $$p((x,y),z) = a(z)\cdot b(x,z)\cdot c(y,z),$$
 故 `p` 可以直接写成 `p : (Fin 2 × Fin 2) × Fin 2 → ℝ`。
 
 **证明**：把三因子打包成二因子（`f := b`、`g := fun y z => a z * c y z`），
-交给已机检的 `Fate.SeparableCondMul.separable_implies_condMul`。 -/
+交给已机检的 `FateV2.Predict.SeparableCondMul.separable_implies_condMul`。 -/
 theorem condMul_of_separable
     (p : (Fin 2 × Fin 2) × Fin 2 → ℝ)
     (a : Fin 2 → ℝ) (b : Fin 2 → Fin 2 → ℝ) (c : Fin 2 → Fin 2 → ℝ)

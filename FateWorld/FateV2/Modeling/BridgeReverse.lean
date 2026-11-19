@@ -18,7 +18,7 @@ open MeasureTheory ProbabilityTheory
   §D1  ⭐⭐ **`bridgeStatement p` ⟹ `CondIndepFin p`**（**逆方向**，重建版）
 
   （原 C1 生成文件 `Fate/_gen_C1.lean` 丢失，本文件为其独立重建；
-   证明内容与已入库的 `Fate.GenC2.bridge_to_condIndepFin` 一致。）
+   证明内容与已入库的 `GenC2.bridge_to_condIndepFin` 一致。）
 
   **思路**：
   1. `bridgeStatement_unfold_def`：桥化为 `μ.trim hm'` 上的逐点乘积等式；

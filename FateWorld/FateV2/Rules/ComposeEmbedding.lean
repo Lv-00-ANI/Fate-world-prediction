@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ComposeEmbedding`
+模块：`ComposeEmbedding`
 阶段：**裁决 1 要件 3「A 是 B（推广后）的特例」—— 读法三（嵌入）的判定**
 
 ---------------------------------------------------------------------------
@@ -81,7 +81,7 @@ namespace FateV2.Rules
 open FateV2.Modeling
 namespace ComposeEmbedding
 
-open Fate.ComposeOperator
+open FateV2.Rules.ComposeOperator
 
 /-!
   # Rules · ComposeEmbedding
@@ -100,7 +100,7 @@ open Fate.ComposeOperator
     §1  ⭐⭐⭐ 主定理：忠实的嵌入不存在
     =========================================================================== -/
 
-/- ⚠ 下文用具体载体 `CX`、`SS2`（来自 `Fate.CompNotCommutative`），
+/- ⚠ 下文用具体载体 `CX`、`SS2`（来自 `FateV2.Rules.CompNotCommutative`），
    因为「不可交换」这一事实就在这两个载体上被证实。 -/
 
 /-- ⭐⭐⭐ **【裁决 1 要件 3 的判定：读法三（忠实嵌入）不可能】**
@@ -119,17 +119,17 @@ open Fate.ComposeOperator
 ——事实上它存在，见 §2 的 `trivial_embedding_exists`（常函数 `fun _ => ∅`）。
 两者 **不矛盾**：本定理说的就是「非单射的编码必然丢失全部或部分信息」。见文件头 (d)。 -/
 theorem no_faithful_embedding :
-    ¬ ∃ (enc : MeasurableRule Fate.CompNotCommutative.CX
-        Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2
+    ¬ ∃ (enc : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+        FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2
         → Set FateV2.Rules.AlphaInstance.K3.MFCA),
         Function.Injective enc
-        ∧ (∀ (a b : MeasurableRule Fate.CompNotCommutative.CX
-              Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2),
+        ∧ (∀ (a b : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+              FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2),
             enc (a.comp b)
               = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc a) (enc b)) := by
   rintro ⟨enc, hinj, hhom⟩
   -- 反证：若有这样的 `enc`，则核复合必可交换
-  apply Fate.CompNotCommutative.comp_not_commutative
+  apply FateV2.Rules.CompNotCommutative.comp_not_commutative
   intro R₁ R₂
   -- 目标：`R₂.comp R₁ = R₁.comp R₂`
   apply hinj
@@ -174,11 +174,11 @@ theorem combClosure_empty_empty :
 
 **证明**：两边都归约为 `∅ = combClosure ∅ ∅`，由 `combClosure_empty_empty` 得证。 -/
 theorem trivial_embedding_exists :
-    ∃ (enc : MeasurableRule Fate.CompNotCommutative.CX
-        Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2
+    ∃ (enc : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+        FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2
         → Set FateV2.Rules.AlphaInstance.K3.MFCA),
-        ∀ (a b : MeasurableRule Fate.CompNotCommutative.CX
-              Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2),
+        ∀ (a b : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+              FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2),
             enc (a.comp b)
               = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc a) (enc b) := by
   refine ⟨fun _ => ∅, ?_⟩
@@ -194,11 +194,11 @@ theorem trivial_embedding_exists :
 
 这是 `no_faithful_embedding` 的直接重写，便于下游引用。 -/
 theorem hom_encoding_not_injective
-    (enc : MeasurableRule Fate.CompNotCommutative.CX
-        Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2
+    (enc : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+        FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2
         → Set FateV2.Rules.AlphaInstance.K3.MFCA)
-    (hhom : ∀ (a b : MeasurableRule Fate.CompNotCommutative.CX
-              Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2),
+    (hhom : ∀ (a b : MeasurableRule FateV2.Rules.CompNotCommutative.CX
+              FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2),
             enc (a.comp b)
               = FateV2.Rules.AlphaInstance.WiringFixed.combClosure (enc a) (enc b)) :
     ¬ Function.Injective enc := by

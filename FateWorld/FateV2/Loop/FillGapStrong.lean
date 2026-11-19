@@ -38,12 +38,12 @@ import FateWorld.FateV2.Loop.EndToEndBoundFixed
   本文件**不修**、也**不改**该文件）。
   `Fate/EndToEndBoundFixed.lean` 是同一内容**可编译**的版本，
   其中 `endToEnd_error_bound_of_noise` / `endToEnd_distance_to_optimum`
-  与原文件**逐字相同**（仅 `PhiBound` 落在 `Fate.EndToEndBoundFixed` 命名空间）。
-  故本文件对 `Fate.EndToEndBoundFixed` 做**同一件事**：把 `hfix` 换成 `hpred`。
+  与原文件**逐字相同**（仅 `PhiBound` 落在 `EndToEndBoundFixed` 命名空间）。
+  故本文件对 `EndToEndBoundFixed` 做**同一件事**：把 `hfix` 换成 `hpred`。
 
   ## 0.3 本文件证明什么
 
-  `Fate.EndToEndBoundFixed.endToEnd_distance_to_optimum` 把
+  `EndToEndBoundFixed.endToEnd_distance_to_optimum` 把
   `hfix : endToEnd W h η φ (h xt) θstar u ε a x = θstar`
   当作**前件**。本文件把它换成**可验证的代数条件**
 
@@ -81,7 +81,7 @@ import FateWorld.FateV2.Loop.EndToEndBoundFixed
   `hfix` 不可直接验证（是复合算子 `endToEnd` 的等式）。
 
   **5.3 定理 6 **不是** `dist_to_optimum_Gap` 本身 —— 后者**已被证伪**。**
-  `Fate.EndToEndBoundFixed.lean` §9 的 `gap_is_false` **证明**
+  `EndToEndBoundFixed.lean` §9 的 `gap_is_false` **证明**
   `¬ dist_to_optimum_Gap`（反例 `dModel`：一步预测恒为 `1`，`θ_k = -k` 发散）。
   故 §8 所谓「缺口」**不是**「未证但可能真」，而是**错题**：无任何命中条件的
   全称形式**假**。定理 6 因此在**唯一能成立的形式**上给出正面结果：
@@ -90,8 +90,8 @@ import FateWorld.FateV2.Loop.EndToEndBoundFixed
   定理 7 显式登记「`hpred` 不可省」。
 
   **5.4 定理 5/6 的实质内容是真的，不是空转。**
-  `hpred` ⟹ `endToEnd` 不动（定理 1，用 `Fate.EndToEnd.endToEnd_fixed`），
-  再由 `Fate.EndToEnd.endToEndIter_fixed` 的**归纳**传导到**任意**步数。
+  `hpred` ⟹ `endToEnd` 不动（定理 1，用 `EndToEnd.endToEnd_fixed`），
+  再由 `EndToEnd.endToEndIter_fixed` 的**归纳**传导到**任意**步数。
   真的用了 `endToEnd_fixed` 与一条归纳定理；**没有**把结论写进前件。
   **⚠ 但这是「收敛」的**退化情形**：误差从第 0 步就是 `0`。
   它**不**证明「非零误差衰减」—— 后者仍需学习率调度或 Lyapunov 势
@@ -115,13 +115,13 @@ universe v
 noncomputable section
 
 /-! ===========================================================================
-    §1  `hpred` ⟹ 不动：桥接（承 `Fate.EndToEnd.endToEnd_fixed`）
+    §1  `hpred` ⟹ 不动：桥接（承 `EndToEnd.endToEnd_fixed`）
     =========================================================================== -/
 
 /-- ⭐⭐ **【桥 1】`hpred` ⟹ `endToEnd` 在 `θ` 处不动。**
 
 `hpred : predFrom W θ u ε a x = observe h y` 正是
-`Fate.EndToEnd.endToEnd_fixed` 的前件 `observe h y = predFrom ...` 的**反写**。
+`EndToEnd.endToEnd_fixed` 的前件 `observe h y = predFrom ...` 的**反写**。
 
 **⚠ 本引理**不需要** `η ≠ 0`、不需要 `φ` 单射、不需要 `NoZeroDivisors`**：
 `endToEnd_fixed` 是**定义性**的（残差为零 ⟹ 写回为零），
@@ -231,7 +231,7 @@ theorem noiseless_step_of_hpred
 
 /-- ⭐⭐ **【多步 1】**：`hpred` ⟹ **任意** `n` 步闭环迭代都停在 `θstar`。
 
-用 `Fate.EndToEnd.endToEndIter_fixed`（**归纳**：一步不动 ⟹ 步步不动）。
+用 `EndToEnd.endToEndIter_fixed`（**归纳**：一步不动 ⟹ 步步不动）。
 **⚠ 这是「收敛」的**退化情形**：误差从第 0 步起就是 `0`，
 故它**不**证明「非零误差衰减」——那仍需学习率调度或 Lyapunov 结构（见 §0.5 5.4）。 -/
 theorem iter_stays_at_optimum_of_hpred
@@ -258,7 +258,7 @@ theorem iter_stays_at_optimum_of_hpred
 **⚠ 诚实标注（三重）**：
 1. 这是**实例形式**（`W`、`θstar`、`hpred` 给定时），**不是** §8 那条
    **无命中条件的全称** `Prop` —— 后者已被
-   `Fate.EndToEndBoundFixed.gap_is_false` **证伪**（定理 7）；
+   `EndToEndBoundFixed.gap_is_false` **证伪**（定理 7）；
 2. 它证明「**精确解**给出后闭环**不漂移**」，**不是**「从任意初值收敛」；
 3. 因此它是 §8 那个「缺口」在**唯一能成立的形式**上的正面回答 ——
    缺的**不是**证明技巧，而是 `hpred` 这个结构条件（发明者必须提供）。 -/
@@ -283,7 +283,7 @@ theorem gap_conclusion_of_hpred
 
 /-- ⭐⭐ **【`hpred` 不可省】**：`dist_to_optimum_Gap` 的**全称形式为假**。
 
-直接引用 `Fate.EndToEndBoundFixed.gap_is_false`（反例 `dModel`：
+直接引用 `EndToEndBoundFixed.gap_is_false`（反例 `dModel`：
 一步预测恒为 `1`，`θ_k = θ - k` 发散）。
 
 **⟹ 本文件的意义**：§8 的「缺口」**不是**「未证但可能真」，而是**错题**

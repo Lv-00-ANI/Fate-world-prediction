@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.ConvergeToOptimalND
 -/
 
 /-! ===========================================================================
-  `Fate.LearnFunction` —— **GG2：学习一个函数（不是学习一个参数）**
+  `LearnFunction` —— **GG2：学习一个函数（不是学习一个参数）**
 
   ## 0  任务与交付
 
@@ -123,7 +123,7 @@ import FateWorld.FateV2.Loop.ConvergeToOptimalND
   | `not_converges_globally` | `θ₀z ≠ g*z`、`z≠x` | `¬ (θ_n z → g* z)` | ✅ 前件谈 `θ₀`，结论谈**收敛性**（否定），非同一命题 |
 
   纪律：零 `sorry` / 零 `admit` / 零 `axiom`；**未修改任何既有模块**；
-  本文件导入且只导入 `Fate.EndToEnd`。
+  本文件导入且只导入 `EndToEnd`。
   =========================================================================== -/
 
 namespace FateV2.Loop
@@ -728,7 +728,7 @@ theorem tN_eq_nd_iter (η y x : ℝ) (θ₀ : ℝ → ℝ) (n : ℕ) :
   rw [tN_eq_wbSeq_id, BoundWriteBackV2.wbSeq_eq_iterMap_gen]
 
 /-- ⭐⭐ **【逐点学习收敛接到 ND 主定理】**：`|1-η| < 1` 时 `tN` 收敛到 `y`，
-直接消费 `Fate.ConvergeToOptimalND.tendsto_iter_id`（经两座桥）。 -/
+直接消费 `ConvergeToOptimalND.tendsto_iter_id`（经两座桥）。 -/
 theorem tN_tendsto_via_nd (η y x : ℝ) (θ₀ : ℝ → ℝ) (hη : |1 - η| < 1) :
     Tendsto (fun n => tN η y x θ₀ n) atTop (nhds y) := by
   have h := FateV2.Loop.ConvergeToOptimalND.tendsto_iter_id η hη y (θ₀ x)

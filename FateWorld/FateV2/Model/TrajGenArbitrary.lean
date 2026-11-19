@@ -2,9 +2,9 @@
 命运理论 · GEN-1 排名 2：`Traj ℕ` → `Traj ι` 的**递推腿**泛化
 =============================================================================
 
-模块：Fate.TrajGenArbitrary
+模块：TrajGenArbitrary
 上游：`Fate.Frame`（`Frame`、`Step`、`TrajGen`）、`Fate.Basic`（`Traj`、`InitialState`）
-　　　`Fate.TrajGenDeterministic`（`trajGen`、`trajGen_succ`、`trajGenOfFrame`）
+　　　`FateV2.Model.TrajGenDeterministic`（`trajGen`、`trajGen_succ`、`trajGenOfFrame`）
 依据：`_audit/GEN-1-泛化审计.md` §2.2 B-2、§4.2
 
 ---------------------------------------------------------------------------

@@ -29,10 +29,10 @@
   （字符长度？前件文字数？描述长度？）」⟹ 登记为开放问题 5.7。
 
 **⚠ 关于那三个「已给公式」的本仓库状态**（必须先说清，否则会造出虚假接口）：
-主控给出的 `#check` 探针（`Fate.ScoreK.bandLoss`、`Fate.FitBoundary.IsFitBoundary`）
+主控给出的 `#check` 探针（`ScoreK.bandLoss`、`Fate.FitBoundary.IsFitBoundary`）
 **本仓库不存在**；`supp` / `conf` / `lift` 在 `Fate/` 下也**只有同名但不相关的对象**
-（`Fate.R_SupportBound.supp : ℝ → ℝ` 是**分辨率 ↦ 有效样本数**的支持度剖面，
-`Fate.R246G3.conf` 是一个**具体的 SCM 实例**，`Fate.liftFun` / `Fate.liftRule` /
+（`R_SupportBound.supp : ℝ → ℝ` 是**分辨率 ↦ 有效样本数**的支持度剖面，
+`R246G3.conf` 是一个**具体的 SCM 实例**，`Fate.liftFun` / `Fate.liftRule` /
 `Fate.liftPred` / `Fate.liftH` 等都是别的构造）。
 **⟹ 净版的 `supp/conf/lift` 在 Lean 里不存在**（净版只是符号）。
 **⟹ 按任务书的兜底条款**：本文件**不做那四个 `def`**（`simplicity` /

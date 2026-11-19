@@ -59,7 +59,7 @@ set_option autoImplicit false
 
   它**缺少前置的注释定界符**，故被 Lean 当作**命令**解析，在 `==` 处报
   `unexpected token '=='; expected command`。
-  **⟹ 当前 HEAD 的 `lake build` 是失败的**（EXIT=1），失败点正是 `Fate.CFLatticeGen`。
+  **⟹ 当前 HEAD 的 `lake build` 是失败的**（EXIT=1），失败点正是 `CFLatticeGen`。
 
   因为本任务硬性要求「**不要改现有文件**」且「`lake build` EXIT=0」，
   这两条**在存在该语法错误时互相冲突**。本文件的处理是：
@@ -723,7 +723,7 @@ def alphaKernel (enc : Encoder F K) (E : InstSpace) (embed : E.Carrier → F.X.C
   ⟨fun e₁ e₂ => K.takeConcept (enc.toAttrs (embed e₁)) = K.takeConcept (enc.toAttrs (embed e₂)), …⟩
 ```
 即 `alphaKernel enc E embed = kernel (K.takeConcept ∘ enc.toAttrs ∘ embed)`。
-下面**不引用 `Fate.AlphaKernel`**（避免依赖 `Fate.Alpha` 的重型 import），
+下面**不引用 `AlphaKernel`**（避免依赖 `Fate.Alpha` 的重型 import），
 而是**逐字重建同一个复合映射**再实例化 —— 这正是回收的意义所在。 -/
 
 variable (α : Type u) (β : Type v) (γ : Type w)

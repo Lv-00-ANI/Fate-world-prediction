@@ -5,7 +5,7 @@
   本文件做什么 / 诚实边界
   ============================================================================
 
-  `Fate.GazeAlgebra`（22 定理）此前是**叶子模块**（零消费者）。
+  `GazeAlgebra`（22 定理）此前是**叶子模块**（零消费者）。
   它在一个**自足副本** `GazeAlgebra.G` 上研究「三种目光的代数结构」，
   并在 §7 只给出 `G ≃ Fin 3` 的**类型层双射**，
   **明确不 import `Fate.Classification`**（源文件 §7 原话：
@@ -15,19 +15,19 @@
   **从未真正落到主链的 `Gaze` 上**。
 
   **本文件补上这条断线**，把 `GazeAlgebra.G` 的代数结论
-  **逐条搬运到主链 `Fate.FormalCtx.Gaze`**（`Fate.Classification` 里
+  **逐条搬运到主链 `FormalCtx.Gaze`**（`Fate.Classification` 里
   那个「零序结构」的三目光类型）。
 
   ---
   一、被接的两端（都来自已有模块，本文件不重定义）
   ---
 
-  · 源端：`Fate.GazeAlgebra.G`（`none < up < down` 链、
+  · 源端：`GazeAlgebra.G`（`none < up < down` 链、
     `LinearOrder` 实例、`three_element_lattice_is_chain`、
     `no_duality_automorphism`、`neg` 反序对合）。
-  · 目标端：`Fate.FormalCtx.Gaze`（`Fate.Classification` 内，
+  · 目标端：`FormalCtx.Gaze`（`Fate.Classification` 内，
     **原本没有任何序 / 格 / 实例**，只有 `DecidableEq, Repr`）
-    与 `Fate.FormalCtx.Temporal` 的 `IsElement` / `suspend`。
+    与 `FormalCtx.Temporal` 的 `IsElement` / `suspend`。
 
   本模块的 `toG : Gaze → GazeAlgebra.G` 是**显式同构映射**
   （`none↦none, up↦up, down↦down`），由此把源的**代数结构转运到目标**。

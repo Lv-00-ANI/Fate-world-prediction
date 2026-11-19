@@ -1,6 +1,6 @@
 /-
 ===============================================================================
-  `Fate.CausalOnWorldModel` —— **因果 × 世界模型的接线层**
+  `CausalOnWorldModel` —— **因果 × 世界模型的接线层**
 
   ⚠⚠ **本文件是 P0 修复后的版本。原文件 8 个编译错误，且原头部声明与代码严重不符。
   修复内容与删除的定理在下面「⚠ 修复日志」逐条登记，不掩饰。**
@@ -34,7 +34,7 @@
   ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = SCMSemantics.marginalX M x * FateV2.Predict.R277.pZ T z₁
   ```
 
-  但 `Fate.R277.pZ : Z₁ → Z₂t → ℝ`（**柯里化二元**，实测
+  但 `FateV2.Predict.R277.pZ : Z₁ → Z₂t → ℝ`（**柯里化二元**，实测
   `Fate/BackdoorGenuine.lean:739`）。故 `pZ T z₁ : Z₂t → ℝ` 是一个**函数**，
   与 `ℝ` 相乘不存在实例 ⟹ 该结构体**根本无法声明**。
   修复：改为 `marginalX M x * T.pz₁ z₁`（`pz₁ : Z₁ → ℝ`，正是该字段原本注释
@@ -53,7 +53,7 @@
 
   **【错误 8｜307 `Invalid name after end: Expected CausalOnWorldModel, but found Generic`】
   —— 纯笔误，已删**
-  文件在 `namespace Fate.CausalOnWorldModel` 内，却写了 `end Generic`。
+  文件在 `namespace CausalOnWorldModel` 内，却写了 `end Generic`。
 
 -------------------------------------------------------------------------------
   ⚠⚠⚠ 删除清单（证不出 / 陈述为假 ⟹ 按纪律 6 删除，**绝不 `sorry` 占位**）
@@ -93,7 +93,7 @@
   **(3) `DoLawOn_fails_on_zb_T35`** —— 陈述
   `¬ DoLawOn zb (fun _ _ => 0) FateV2.Predict.T35.M`。
   **为什么删**：**类型不符，无法陈述**。`DoLawOn T d M` 要求
-  `M : SCM T.Xt T.Yt`，而 `Fate.T35.M : SCM (Fin 2) (Fin 2)`
+  `M : SCM T.Xt T.Yt`，而 `FateV2.Predict.T35.M : SCM (Fin 2) (Fin 2)`
   （`Fate/T35Confounding.lean:49`），`zb` 的 `Xt = Yt = Bool`。
   `Fin 2 ≠ Bool` ⟹ 该类型归属失败（这正是错误 7 里目标退化为 `⊢ False` 的原因）。
   **替代**：本文件用**同型但类型正确**的见证 `DoLawOn_fails_on_badd`（§4），
@@ -155,7 +155,7 @@ open Finset
   §1  **载体与记号**
   =========================================================================== -/
 
-/-- **世界模型侧的 `doLaw`**：`Fate.CausalRouteDo` / `Fate.SCMSemantics` 的 `doLaw`。
+/-- **世界模型侧的 `doLaw`**：`CausalRouteDo` / `SCMSemantics` 的 `doLaw`。
 
 ⭐ 显式取带命名空间的全名，使读者一眼看到本文件用的是 `SCMSemantics.doLaw`
 （干预律），而**不是** `FrontdoorSetup.doLaw`。

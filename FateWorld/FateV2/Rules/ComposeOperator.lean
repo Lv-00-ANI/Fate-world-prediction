@@ -184,7 +184,7 @@ abbrev Comp (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
 它们**不依赖** $\circ$ 的任何具体语义（规格开放问题 5.1 未决），
 而是给出「一个函数要被称为组合算子，须满足什么」。
 
-**这是既有 `Fate.FourOperators` 的 `comp_assoc_conditional`
+**这是既有 `FourOperators` 的 `comp_assoc_conditional`
 所要求的「待证义务」的正式接口化**——
 那里只对**单个三元等式**作条件化，本节的 Prop 给出**全称形式**，
 使「结合律」成为一个可被下游引用的**性质**（而非一次性的定理）。 -/
@@ -443,7 +443,7 @@ theorem toKernel_comp (R₂ : MeasurableRule C Y Z) (R₁ : MeasurableRule C X Y
 **证明**：由 `toKernel` 桥与 `Kernel.comp_assoc` 逐字翻译——
 两条复合核相等，故底层核相等，故可测规则相等（`MeasurableRule.ext'`）。
 
-**这兑现了 `Fate.FourOperators.comp_assoc_conditional` 登记的待证义务**
+**这兑现了 `FourOperators.comp_assoc_conditional` 登记的待证义务**
 （那里只能条件化，因为当时无实现；此处给出**无条件证明**）。
 
 **⚠ 诚实标注**：本定理证明的是**本实现 `comp`（核复合）**满足结合律，
@@ -539,7 +539,7 @@ theorem comp_laws :
 
 这是结合律的**唯一实质推论**（规格 §5.3.3 的动机：
 「$n$ 元组合记作 $R_1\circ\cdots\circ R_n$」需要它才无歧义）。
-本定理给出 `Fate.FourOperators.comp_reassoc4_conditional` 的**无条件版本**。 -/
+本定理给出 `FourOperators.comp_reassoc4_conditional` 的**无条件版本**。 -/
 theorem comp_reassoc4 (R₄ : MeasurableRule C W W) (R₃ : MeasurableRule C Z W)
     (R₂ : MeasurableRule C Y Z) (R₁ : MeasurableRule C X Y) :
     comp R₄ (comp R₃ (comp R₂ R₁)) = comp (comp (comp R₄ R₃) R₂) R₁ := by
@@ -665,7 +665,7 @@ theorem isKernelComposition_comp (R₂ R₁ : MeasurableRule C X X) :
 **不**主张任意规则集 $\mathcal{R}$ 对 $\circ$ 封闭——
 因为那不是类型能表达的，而是需要 $\mathcal{R}$ 具有**子幺半群结构**的额外断言。
 本节把该义务**显式登记**，使「还欠什么」可被机械列举（对照
-`Fate.FourOperators.pendingOperatorObligations`）。 -/
+`FourOperators.pendingOperatorObligations`）。 -/
 
 /-- **子幺半群**：规则集 $\mathcal{R}$（`Fate.Frame.Rules`）对 `comp` 与 `idRule` 封闭。
 

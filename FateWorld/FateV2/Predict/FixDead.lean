@@ -66,7 +66,7 @@ theorem noDescendant_vacuous (S : BackdoorSetup) :
 theorem noDescendant_new_is_not_trivial (S : BackdoorSetup) (x : S.X) (y : S.Y)
     (z : S.Z) (ux : S.Ux) (uy : S.Uy) (hf : S.fY x z ux uy = y) :
     FateV2.Predict.R277.IsDescendant S (FateV2.Predict.R277.Vert.y y) :=
-  Fate.NoDescendantWitness.y_is_descendant S x y z ux uy hf
+  FateV2.Predict.NoDescendantWitness.y_is_descendant S x y z ux uy hf
 
 -- ⭐⭐⭐⭐⭐ **第 1 条主定理**：旧定义恒真、新定义在同一 `S`/`W` 上**给出真约束**。
 -- 与 `noDescendant_new_definition_differs`（`Iff.rfl`）相比，这条**真的需要证明**。
@@ -76,8 +76,8 @@ theorem noDescendant_old_vacuous_and_new_bites (S : BackdoorSetup) (x : S.X) (y 
     ∧ FateV2.Predict.R277.IsDescendant S (FateV2.Predict.R277.Vert.y y)
     ∧ ¬ FateV2.Predict.R277.NoDescendant S ({FateV2.Predict.R277.Vert.y y} : Set (FateV2.Predict.R277.Vert S)) := by
   refine ⟨fun z ux => rfl, ?_, ?_⟩
-  · exact Fate.NoDescendantWitness.y_is_descendant S x y z ux uy hf
-  · exact Fate.NoDescendantWitness.noDescendant_singleton_false S x y z ux uy hf
+  · exact FateV2.Predict.NoDescendantWitness.y_is_descendant S x y z ux uy hf
+  · exact FateV2.Predict.NoDescendantWitness.noDescendant_singleton_false S x y z ux uy hf
 
 /-! ## §2 第 2 条：`backdoor_adjustment` 的真版本（逐点代数） -/
 
@@ -112,9 +112,9 @@ theorem backdoor_adjustment_genuine
 theorem graph_probability_bridge_minimal_genuine
     {V : Type*} [DecidableEq V] [Fintype V]
     {G : FateV2.Modeling.Graph.DAG V} {p : (V → Bool) → ℝ}
-    (hfac : Fate.T1A2.FactorizesOn G p) :
+    (hfac : FateV2.Predict.T1A2.FactorizesOn G p) :
     ∃ π : V → (V → Bool) → ℝ,
-      (∀ v, Fate.T1A2.ReadsOnlyOn (insert v (G.parents v)) (π v)) ∧
+      (∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (insert v (G.parents v)) (π v)) ∧
       (∀ v (ω : V → Bool), 0 < π v ω) ∧
       (∀ ω, p ω = ∏ v, π v ω) ∧
       -- ⭐ 真正被消费的部分：`Pa(v) ∪ {v}` 之外的自由度**被约束掉**

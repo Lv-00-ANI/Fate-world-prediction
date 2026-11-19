@@ -131,9 +131,9 @@ machine-checked**：
 
 ---
 
-## 4 ⚠ 为什么不 `import Fate.BridgeFull`（**必须说清**）
+## 4 ⚠ 为什么不 `import FateV2.Predict.BridgeFull`（**必须说清**）
 
-`lake build Fate.BridgeFull` **失败**（实测）：
+`lake build FateV2.Predict.BridgeFull` **失败**（实测）：
 
 ```
 error: Fate/BridgeFull.lean:187:20: Application type mismatch:
@@ -166,7 +166,7 @@ namespace FateV2.Predict.BridgeExpanded
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -188,7 +188,7 @@ set_option linter.unusedSectionVars false
 -/
 
 /-! ===========================================================================
-  §1 `ReadClosedBlocks`（与 `Fate.BridgeFull` 逐字相同的定义，本地复刻）
+  §1 `ReadClosedBlocks`（与 `FateV2.Predict.BridgeFull` 逐字相同的定义，本地复刻）
   =========================================================================== -/
 
 /-- ⭐ **`ReadClosedBlocks G X Y Z`**：「`X` 块与 `Y` 块在 `Z` 下各自读封闭」。
@@ -197,7 +197,7 @@ set_option linter.unusedSectionVars false
 2. `X` 的每个点的父代都在 `X ∪ Z` 内；
 3. `Y` 的每个点的父代都在 `Y ∪ Z` 内。
 
-（定义与 `Fate.BridgeFull.ReadClosedBlocks` **逐字相同**。） -/
+（定义与 `FateV2.Predict.BridgeFull.ReadClosedBlocks` **逐字相同**。） -/
 def ReadClosedBlocks (G : FateV2.Modeling.Graph.DAG V) (X Y Z : Finset V) : Prop :=
   AncClosed G Z
   ∧ (∀ v ∈ X, G.parents v ⊆ X ∪ Z)
@@ -301,7 +301,7 @@ theorem gap_gives_readClosed (G : FateV2.Modeling.Graph.DAG V) :
 
 /-- ⭐ 反例图：`0 → 1`，`2` 孤立。 -/
 -- 定义已收敛到 `Fate/Concrete/ThreeNode.lean`（原 4 份逐字相同，见 _audit/BRIDGE-1）
-def gex : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.Concrete.gex
+def gex : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Modeling.Concrete.gex
 
 /-- ⭐ `gex` 上 `dSep {1} {2} ∅` **成立**。 -/
 theorem gex_dsep : gex.dSep {(1 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3)) := by decide
@@ -423,7 +423,7 @@ theorem exists_superset_readClosed_paBlock (X Y Z : Finset V) :
 
 /-! ### 6.0 本地复刻（T6 的前置）：`ReadClosedBlocks ⟹ 四个 AncClosed`
 
-（与 `Fate.BridgeFull.readClosedBlocks_ancClosed` 同形；因本文件不 `import` `BridgeFull`
+（与 `FateV2.Predict.BridgeFull.readClosedBlocks_ancClosed` 同形；因本文件不 `import` `BridgeFull`
 （它有编译错，见 §4），此处独立提供，**零 sorry**。） -/
 
 /-- `X ∪ Z ⊆ X ∪ Y ∪ Z`。 -/
@@ -481,7 +481,7 @@ theorem readClosedBlocks_ancClosed {X Y Z : Finset V}
 则 `CondIndep p X Y Z'`。
 
 **⟹ 这就是桥的全部残余义务的精确形态。** 本文件不需要、也不重证引擎：
-`hRC → 四个 AncClosed` 用 `Fate.BridgeFull.readClosedBlocks_ancClosed` 的同形证明
+`hRC → 四个 AncClosed` 用 `FateV2.Predict.BridgeFull.readClosedBlocks_ancClosed` 的同形证明
 （本文件 §6.1 本地复刻），其余直接调用 `condIndep_of_dSep_ancClosed`。
 
 **逐条前件消费**：
@@ -500,7 +500,7 @@ theorem bridge_reduced_to_disjoint {α : Type u} [Fintype α] [DecidableEq α]
     {X Y Z Z' : Finset V} (_hZ' : Z ⊆ Z')
     (hRC : ReadClosedBlocks G X Y Z') (hd' : G.dSep X Y Z') :
     FateV2.Predict.FactorMarkov.CondIndep p X Y Z' :=
-  Fate.Strategy11Hull.condIndep_of_dSep_ancClosed hloc hfac hnorm hd'
+  FateV2.Predict.Strategy11Hull.condIndep_of_dSep_ancClosed hloc hfac hnorm hd'
     (readClosedBlocks_ancClosed hRC).1
     (readClosedBlocks_ancClosed hRC).2.1
     (readClosedBlocks_ancClosed hRC).2.2.1

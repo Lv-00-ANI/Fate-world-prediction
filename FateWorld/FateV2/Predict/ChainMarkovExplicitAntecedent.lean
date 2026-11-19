@@ -286,7 +286,7 @@ theorem chain_dsep_factorizes_condMul
   §6 与 `ChainMarkovRelative` 的**机检对比**（证明本文不是改名）
   =========================================================================== -/
 
-open Fate.MarkovBridgeReal in
+open FateV2.Predict.MarkovBridgeReal in
 /-- ⭐⭐⭐⭐ **`ChainMarkovRelative` 与 `Factorizes` 的关系：等价式的**不成立**。**
 
 **机检内容（三条 `example`，见 §6.1–§6.3）：**
@@ -301,9 +301,9 @@ open Fate.MarkovBridgeReal in
 ⚠ 这一节**只做陈述层面的机检**，不给任何「等价性」的最强声称。 -/
 theorem chainMarkovRelative_abstract_form (α β γ : Type) [Fintype α] [Fintype β]
     [Fintype γ] (p : α × β × γ → ℝ)
-    (h : Fate.MarkovBridgeReal.ChainMarkovRelative p) :
+    (h : FateV2.Predict.MarkovBridgeReal.ChainMarkovRelative p) :
     CondMul (fun q : (α × γ) × β => p (q.1.1, q.2, q.1.2)) :=
-  Fate.MarkovBridgeReal.chain_markov_relative_condmul p h
+  FateV2.Predict.MarkovBridgeReal.chain_markov_relative_condmul p h
 
 /-! ===========================================================================
   §7 ⚠ 缺口登记（诚实边界，逐条列出）

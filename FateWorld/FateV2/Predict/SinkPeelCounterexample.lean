@@ -59,8 +59,8 @@ abbrev U := Fin 1
 def f1 : U → (U → Bool) → ℝ := fun _ _ => 1
 
 -- 左边 = 1
-theorem lhs_eq (x : U → Bool) : Fate.S9Fixed.bar ({0} : Finset U) f1 x = 1 := by
-  unfold Fate.S9Fixed.bar Fate.S9Fixed.tail
+theorem lhs_eq (x : U → Bool) : FateV2.Predict.S9Fixed.bar ({0} : Finset U) f1 x = 1 := by
+  unfold FateV2.Predict.S9Fixed.bar FateV2.Predict.S9Fixed.tail
   -- 目标：mass {0} (fun w => ∏ v ∈ univ \ {0}, f1 v w) x = 1
   have h : (univ \ ({0} : Finset U)) = ∅ := by
     ext u; simp [Fin.eq_zero]
@@ -73,8 +73,8 @@ theorem lhs_eq (x : U → Bool) : Fate.S9Fixed.bar ({0} : Finset U) f1 x = 1 := 
 
 -- 右边 = 2
 theorem rhs_eq (x : U → Bool) (a : Bool) :
-    Fate.S9Fixed.bar (∅ : Finset U) f1 (FateV2.Predict.DAGFactorization.unpin 0 x a) * f1 0 x = 2 := by
-  unfold Fate.S9Fixed.bar Fate.S9Fixed.tail
+    FateV2.Predict.S9Fixed.bar (∅ : Finset U) f1 (FateV2.Predict.DAGFactorization.unpin 0 x a) * f1 0 x = 2 := by
+  unfold FateV2.Predict.S9Fixed.bar FateV2.Predict.S9Fixed.tail
   have h : (univ \ (∅ : Finset U)) = univ := Finset.sdiff_empty
   rw [h]
   rw [FateV2.Predict.DAGFactorization.mass_empty]

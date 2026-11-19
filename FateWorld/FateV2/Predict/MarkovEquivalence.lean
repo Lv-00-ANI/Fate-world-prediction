@@ -39,7 +39,7 @@ $$\text{因子分解} \;\Longleftrightarrow\; \text{有向局部 Markov} \;\Long
 | 陈述 | 谓词 | 载体来源 |
 |---|---|---|
 | **局部 Markov** | `LocalMarkov G p`（≡ `FateV2.Predict.DAGFactorization.LM G p`） | `Fate/DAGFactorization.lean` |
-| **因子分解** | `LocalMarkov` 的链式形式 / `Fate.T1A2.FactorizesOn` | `Fate/DAGFactorization.lean`、`Fate/T1A2.lean` |
+| **因子分解** | `LocalMarkov` 的链式形式 / `FateV2.Predict.T1A2.FactorizesOn` | `Fate/DAGFactorization.lean`、`Fate/T1A2.lean` |
 | **全局 Markov** | `GlobalMarkov G p`（`dSep ⟹ CondMulLike`） | `CausSeparation.lean` |
 
 ## 交付清单（逐条标注状态）

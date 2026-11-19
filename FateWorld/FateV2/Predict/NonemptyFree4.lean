@@ -92,7 +92,7 @@
     3) 前件只有 `[AddCommGroup Y]`（做减法用的代数结构，**显式参数**）；
     4) 前件只有 `[AddCommGroup Y]`；
     5) 前件只有 `[AddCommGroup Y] [Ring PUnit]` + 参数 `h η φ y θ u ε a x`。
-  * **结论**把 `Fate.EndToEnd.predFrom` / `e2eResidual` / `endToEnd`
+  * **结论**把 `EndToEnd.predFrom` / `e2eResidual` / `endToEnd`
     在 SCM 实例上**求值**成含 `(M.sg u).2 a` 的表达式——
     两侧分属不同模块（`Fate/EndToEnd.lean` 与 `Fate/SCMWorldModel.lean`
     / `Fate/PearlHierarchy.lean`）的**定义**，由定理首次相等。
@@ -201,7 +201,7 @@ theorem e2eResidual_scmWorldModel_eq_zero_iff_noNonempty {X Y : Type}
 `endToEnd … = θ + η * φ (observe h y - (M.sg u).2 a)`。
 `[Nonempty Y]` 由出发状态 `(x : Y)` 给出。
 
-⚠ **附加注意**：原定理的结论里还有 `Fate.EndToEnd.observe h y`，
+⚠ **附加注意**：原定理的结论里还有 `EndToEnd.observe h y`，
 其定义要求 `[Nonempty W.frame.X.Carrier]`（即 `[Nonempty Y]`）。
 它与 `scmWorldModel` 用的是**同一个**局部实例 `⟨x⟩`，因此一并去掉。 -/
 theorem endToEnd_scmWorldModel_noNonempty {X Y G : Type} (M : PearlHierarchy.SCM X Y)

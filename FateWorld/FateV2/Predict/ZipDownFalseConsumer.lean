@@ -15,10 +15,10 @@ open FateV2.Modeling
 
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
-open Fate.ZipDownFalseFixed
-open Fate.BridgeFullFixed
-open Fate.BridgeZipDown (gempty gempty_parents)
-open Fate.Strategy11Hull
+open FateV2.Predict.ZipDownFalseFixed
+open FateV2.Predict.BridgeFullFixed
+open FateV2.Predict.BridgeZipDown (gempty gempty_parents)
+open FateV2.Predict.Strategy11Hull
 
 /-!
   # Predict · ZipDownFalseConsumer
@@ -104,7 +104,7 @@ theorem gempty_readClosedBlocks (X Y Z : Finset (Fin 4)) :
     exact Finset.empty_subset _
 
 /-- ⭐ **C3.3 —— `gempty_gap_holds`**：缺口 `DSepGivesReadClosed gempty` 成立。 -/
-theorem gempty_gap_holds : Fate.BridgeFullFixed.DSepGivesReadClosed gempty :=
+theorem gempty_gap_holds : FateV2.Predict.BridgeFullFixed.DSepGivesReadClosed gempty :=
   fun X Y Z _ => gempty_readClosedBlocks X Y Z
 
 /-- ⭐⭐⭐ **C3（主定理）—— `no_factorization_cert_for_PjointB`**。
@@ -114,7 +114,7 @@ theorem gempty_gap_holds : Fate.BridgeFullFixed.DSepGivesReadClosed gempty :=
 
 **证明**（三步，全部消费既有定理）：
 1. 若存在这样的 `f`，由 C3.3（`DSepGivesReadClosed gempty`）与
-   `Fate.BridgeFullFixed.markov_of_gap_markov` 得 `Markov PjointB gempty`；
+   `FateV2.Predict.BridgeFullFixed.markov_of_gap_markov` 得 `Markov PjointB gempty`；
 2. 但 C1（`not_markov_PjointB`，消费 `ZipDownFalse.not_condIndepB`）给出其否定；
 3. 矛盾。
 
@@ -135,7 +135,7 @@ theorem no_factorization_cert_for_PjointB :
         FactorNorm f := by
   rintro ⟨f, hloc, hfac, hnorm⟩
   exact not_markov_PjointB
-    (Fate.BridgeFullFixed.markov_of_gap_markov hloc hfac hnorm gempty_gap_holds)
+    (FateV2.Predict.BridgeFullFixed.markov_of_gap_markov hloc hfac hnorm gempty_gap_holds)
 
 /-! ===========================================================================
   §4 C4：`ZipDown` 的失败**不可**由「换更小的 `X ∪ Y`」修补
@@ -199,6 +199,6 @@ theorem no_engine_cert_for_PjointB :
       ({(1 : Fin 4)} : Finset (Fin 4)) (∅ : Finset (Fin 4)) :=
     gempty_readClosedBlocks _ _ _
   exact not_condIndepB
-    (Fate.BridgeFullFixed.markov_of_readClosedBlocks hloc hfac hnorm hd hrc)
+    (FateV2.Predict.BridgeFullFixed.markov_of_readClosedBlocks hloc hfac hnorm hd hrc)
 
 end FateV2.Predict.ZipDownFalseConsumer

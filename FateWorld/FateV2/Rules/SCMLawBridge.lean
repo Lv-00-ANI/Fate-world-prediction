@@ -116,7 +116,7 @@ variable {Y : Type} [Fintype Y]
 $$\mu = \sum_{y \in Y} \mathrm{ofReal}\bigl(p(y)\bigr)\cdot\delta_{\varphi(y)} .$$
 
 **这是桥的第一半**（把裸 `Y` 上的 `ℝ`-值律装进 `Measure`）。
-它与 `Fate.FinMeasureBridge.weightedCount` **同一口径**，此处只把三元组换成单变量 `Y`。 -/
+它与 `FinMeasureBridge.weightedCount` **同一口径**，此处只把三元组换成单变量 `Y`。 -/
 noncomputable def pushMeasure (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (p : Y → ℝ) : Measure Yb.Carrier :=
   ∑ y : Y, ENNReal.ofReal (p y) • Measure.dirac (φ y)

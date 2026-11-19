@@ -2,16 +2,16 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.AlphaStatistical`
+模块：`AlphaStatistical`
 阶段：**α 的统计版本 —— 经验条件核 + 置信带，及「何时 `IsPoint`」的判据**
 
 ---------------------------------------------------------------------------
-本文件补什么（与 `Fate.Alpha` / `Fate.LawRule` 的分工）
+本文件补什么（与 `Fate.Alpha` / `LawRule` 的分工）
 ---------------------------------------------------------------------------
 `Fate.Alpha`（裁决 D）把 α 做成 **FCA 取概念过程** `takeConcept`——
 那是 α 在**属性侧/概念侧**的版本。
 
-`Fate.LawRule` 把规则的载体定为
+`LawRule` 把规则的载体定为
 
 $$\text{Rule} := C \to X \to \mathcal{P}(\mathrm{Measure}\ Y),$$
 
@@ -47,7 +47,7 @@ $$\varepsilon>0\ \wedge\ |Y|\ge 2 \ \Longrightarrow\ \neg\,\texttt{IsPoint}\ R^{
 $$
 
 **故统计版 α 在「有不确定性」时必然不是单点规则**，
-这正是 `Fate.LawRuleToTraj` 所说「`IsPoint` 是额外一道闸」的**统计侧来源**：
+这正是 `LawRuleToTraj` 所说「`IsPoint` 是额外一道闸」的**统计侧来源**：
 **闸就是置信带宽度 ε**。
 
 ---------------------------------------------------------------------------
@@ -79,7 +79,7 @@ namespace FateV2.Rules
 open FateV2.Model
 open FateV2.Modeling
 /- 本仓既有约定：`Sample` 的参数里有些字段只用于文档/类型指标，
-不影响定理陈述，故关闭 unusedSectionVars 噪音（与 `Fate.BackdoorCriterion` 等同）。 -/
+不影响定理陈述，故关闭 unusedSectionVars 噪音（与 `FateV2.Predict.BackdoorCriterion` 等同）。 -/
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
@@ -87,7 +87,7 @@ namespace AlphaStatistical
 
 open MeasureTheory Set
 
-/- `LawRule` / `IsPoint` 定义在 `Fate.LawRule` 命名空间（`Fate.Frame` 的别名不在同名空间）。 -/
+/- `LawRule` / `IsPoint` 定义在 `LawRule` 命名空间（`Fate.Frame` 的别名不在同名空间）。 -/
 open FateV2.Rules.LawRule
 
 universe u
@@ -308,7 +308,7 @@ $$R^{\mathrm{stat}}_n(c,x) :=
 **⚠ 与 `Fate.Alpha.takeConcept` 的关系**：
 `takeConcept` 在 **FCA 属性侧**取闭包；本定义在 **测度侧**取**带球**。
 两者都是「把原始观测提升为一个**允许集**」，但**不同侧**。
-本文件**不主张**两者可交换（那需要 FCA–测度桥，见 `Fate.Bridge*` 的既有工作）。 -/
+本文件**不主张**两者可交换（那需要 FCA–测度桥，见 `Bridge*` 的既有工作）。 -/
 noncomputable def statAlpha (B : Band Y) (S : Sample C X Y ι)
     [DecidableEq C.Carrier] [DecidableEq X.Carrier]
     (s : Finset ι) : LawRule C X Y :=

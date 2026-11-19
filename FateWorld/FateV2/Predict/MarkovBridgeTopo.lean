@@ -132,6 +132,6 @@ theorem chainMarkov3_condmul
     (h : ∃ (p0 : α → ℝ) (p10 : α → β → ℝ) (p21 : β → γ → ℝ),
       ∀ x0 x1 x2, p (x0, x1, x2) = p0 x0 * p10 x0 x1 * p21 x1 x2) :
     FateV2.Predict.FinCondIndep.CondMul (fun q : (α × γ) × β => p (q.1.1, q.2, q.1.2)) :=
-  Fate.MarkovBridgeReal.chain_markov_relative_condmul p h
+  FateV2.Predict.MarkovBridgeReal.chain_markov_relative_condmul p h
 
 end FateV2.Predict.MarkovBridgeTopo

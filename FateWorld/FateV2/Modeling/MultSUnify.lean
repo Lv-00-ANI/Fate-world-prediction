@@ -50,8 +50,8 @@ variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [De
 
 -- ⭐ 统一：multS 就是 |α|^(|V|-|S|)
 theorem multS_eq_card_pow (S : Finset V) (x : V → α) :
-    Fate.TowerExactLaw.multS S x = ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) := by
-  unfold Fate.TowerExactLaw.multS
+    FateV2.Predict.TowerExactLaw.multS S x = ((Fintype.card α : ℝ) ^ (Fintype.card V - S.card)) := by
+  unfold FateV2.Predict.TowerExactLaw.multS
   rw [Finset.sum_boole]
   have h1 : (Finset.univ.filter (fun w : V → α => ∀ u ∈ S, w u = x u)).card
       = Fintype.card α ^ (Fintype.card V - S.card) := by

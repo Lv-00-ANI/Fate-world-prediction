@@ -19,8 +19,8 @@ import FateWorld.FateV2.Predict.ChainDSepCondMul
 
   ## 0 为什么需要这个文件
 
-  `grep -c "^import Fate.BridgeGeneralize$" Fate.lean` 早返回 `1`（说明它
-  **在链上**），但 `grep -rl "import Fate.BridgeGeneralize" Fate/*.lean` 返回空
+  `grep -c "^import BridgeGeneralize$" Fate.lean` 早返回 `1`（说明它
+  **在链上**），但 `grep -rl "import BridgeGeneralize" Fate/*.lean` 返回空
   （说明它**没有任何消费者**）—— 即它是一个「编译进来但没人用」的**孤岛**。
 
   本文件是该岛的第一个（也是唯一一个）消费者：把 `BridgeGeneralize` 的四条
@@ -43,7 +43,7 @@ import FateWorld.FateV2.Predict.ChainDSepCondMul
   ⚠ **任务草稿与本文件的偏差（诚实登记）**：任务说明里写的
   `cover_condition_necessary := @SplitFromDAG.dSep_not_implies_split` **无法通过**
   —— `#check` 探针报
-  `error(lean.unknownIdentifier): Unknown identifier 'Fate.SplitFromDAG.dSep_not_implies_split'`。
+  `error(lean.unknownIdentifier): Unknown identifier 'SplitFromDAG.dSep_not_implies_split'`。
   在 `Fate/SplitFromDAG.lean` 中仅有 `dSep_not_implies_split_fin3`（两种 `grep`
   模式均确认：`dSep_not_implies_split` 只出现在 `Fate_agent_staging/SplitFromDAG.lean`
   与本仓的**文档字符串**里，正式定理名带 `_fin3` 后缀）。
@@ -123,13 +123,13 @@ theorem cover_condition_necessary :
 
 /-! ### W5 / W6 —— 接通 `ChainDSepCondMul`（P0-A2：消「已入库零消费」孤岛）
 
-`Fate/ChainDSepCondMul.lean` 早在 `Fate.lean` 里（`import Fate.ChainDSepCondMul`），
+`Fate/ChainDSepCondMul.lean` 早在 `Fate.lean` 里（`import FateV2.Predict.ChainDSepCondMul`），
 但全库除**文档字符串**外无人引用其任何定理名 —— 审计 F2 判定它为
 **「已入库但零消费的孤岛」**。
 
 下面两条定理是该模块的**第一批名字级消费者**（G46）：
-定理体里**出现** `Fate.ChainDSepCondMul.dsep_blocks_chain_walk` 与
-`Fate.ChainDSepCondMul.dsep_depends_on_Z`，删掉 `import` 会**编译失败**。
+定理体里**出现** `FateV2.Predict.ChainDSepCondMul.dsep_blocks_chain_walk` 与
+`FateV2.Predict.ChainDSepCondMul.dsep_depends_on_Z`，删掉 `import` 会**编译失败**。
 
 **⚠ 前件检查（防同义反复 / D6）**：
 * W5 的前件是 `ChainDSepCondMul.G3.dSep {0} {2} {1}` —— 一个**图论**命题；
@@ -147,12 +147,12 @@ theorem cover_condition_necessary :
 
 即 `ChainDSepCondMul.dsep_blocks_chain_walk` 的转发。
 
-**G46**：证明项中含 `Fate.ChainDSepCondMul.dsep_blocks_chain_walk`。 -/
+**G46**：证明项中含 `FateV2.Predict.ChainDSepCondMul.dsep_blocks_chain_walk`。 -/
 theorem chain_dsep_consumed :
-    ¬ Fate.ChainDSepCondMul.G3.IsActiveWalk ({1} : Finset (Fin 3)) [0, 1, 2] := by
+    ¬ FateV2.Predict.ChainDSepCondMul.G3.IsActiveWalk ({1} : Finset (Fin 3)) [0, 1, 2] := by
   -- 真消费链：先取 `dSep {0} {2} {1}`，再用它推出阻断结论。
-  exact Fate.ChainDSepCondMul.dsep_blocks_chain_walk
-    Fate.ChainDSepCondMul.chain_dsep_true
+  exact FateV2.Predict.ChainDSepCondMul.dsep_blocks_chain_walk
+    FateV2.Predict.ChainDSepCondMul.chain_dsep_true
 
 /-- ⭐⭐⭐ **W6：`dSep` 的取值随条件集 `Z` 变化（非恒定谓词）**
 
@@ -161,11 +161,11 @@ theorem chain_dsep_consumed :
 
 即 `ChainDSepCondMul.dsep_depends_on_Z` 的转发。
 
-**G46**：证明项中含 `Fate.ChainDSepCondMul.dsep_depends_on_Z`。 -/
+**G46**：证明项中含 `FateV2.Predict.ChainDSepCondMul.dsep_depends_on_Z`。 -/
 theorem chain_dsep_selects_Z :
-    Fate.ChainDSepCondMul.G3.dSep {0} {2} {1} ∧
-      ¬ Fate.ChainDSepCondMul.G3.dSep {0} {2} (∅ : Finset (Fin 3)) :=
-  Fate.ChainDSepCondMul.dsep_depends_on_Z
+    FateV2.Predict.ChainDSepCondMul.G3.dSep {0} {2} {1} ∧
+      ¬ FateV2.Predict.ChainDSepCondMul.G3.dSep {0} {2} (∅ : Finset (Fin 3)) :=
+  FateV2.Predict.ChainDSepCondMul.dsep_depends_on_Z
 
 end BridgeGeneralizeWiring
 end FateV2.Predict

@@ -352,7 +352,7 @@ variable {V A ι : Type u}
 /-- ⭐ **把 WMC 的一个索引解碼成 `LawRule`**：
 先用 `dec` 从 `(σ, i)` 选出 `Rule`，再 `Rule.toLaw` 升为规律。
 
-`Rule.toLaw` 来自 `Fate.LawRule`：
+`Rule.toLaw` 来自 `LawRule`：
 `fun c x => {r.kernel c x}`（单点允许集）。 -/
 def lawRuleOf {F : Frame} [MeasurableSpace F.X.Carrier]
     (dec : ι → Rule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X) (i : ι) :

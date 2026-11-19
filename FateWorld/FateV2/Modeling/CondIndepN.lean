@@ -27,7 +27,7 @@ import Mathlib.Tactic.FieldSimp
 
   ## 目的
 
-  `Fate.FiniteCondIndep.CondIndepFin` 只处理**二元**情形
+  `FiniteCondIndep.CondIndepFin` 只处理**二元**情形
   $X \perp\!\!\!\perp Y \mid Z$（联合律定义在 $(\alpha \times \beta) \times \gamma$ 上）。
   **本文件把它推广到任意有限下标族 $\iota$**：
 
@@ -326,7 +326,7 @@ def mkBoolFam {α β : Type} (p : α × β) : (i : Bool) → boolFam α β i :=
 $$\mathrm{toFin}\ p\ ((x,y), z) := p\big(\mathrm{mkBoolFam}(x,y), z\big)$$
 
 **⟹ 这是「`Bool` 族 = 二元」的桥**，使 `condIndepN_bool_iff`
-能把 `CondIndepN` 连到 `Fate.FiniteCondIndep.CondIndepFin`。 -/
+能把 `CondIndepN` 连到 `FiniteCondIndep.CondIndepFin`。 -/
 def toFin {α β γ : Type} (p : ((i : Bool) → boolFam α β i) → γ → ℝ) :
     FateV2.Modeling.FiniteCondIndep.FinJoint α β γ :=
   fun xyz => p (mkBoolFam xyz.1) xyz.2

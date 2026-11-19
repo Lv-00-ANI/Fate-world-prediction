@@ -11,7 +11,7 @@
 | 模块 | 内容 | 本文件用法 |
 |---|---|---|
 | `Fate.AlphaConcreteInstance` | α 的完整具体实例 `K3 = (Fin 3, Fin 2, I3)` | 取 `K3` 作「同一实例」 |
-| `Fate.UpsilonOperator` | υ 的闭包三律 `IsCompletion`、`fcaUpsilon` | υ 侧前件与其 FCA 实例 |
+| `UpsilonOperator` | υ 的闭包三律 `IsCompletion`、`fcaUpsilon` | υ 侧前件与其 FCA 实例 |
 | `Fate.GammaOperator` | γ 的（对偶）内蕴三律 `GenOp`、`RuleSpec` | γ 侧前件 |
 
 四个算子 = α（抽象）／γ（泛化）／∘（组合）／υ（完善）。
@@ -100,18 +100,18 @@ namespace Wiring
 「作用于同一实例」即「三者共用**同一个** `K3`，共用同一个闭包算子」。
 
 **⚠ 不新造算子**：α 用 `K3.takeConcept`，υ 用 `UpsilonOperator.fcaUpsilon K3`，
-二者**分别**来自 `Fate.Alpha` 与 `Fate.UpsilonOperator`。 -/
+二者**分别**来自 `Fate.Alpha` 与 `UpsilonOperator`。 -/
 
 /-- **α 在 `K3` 上的落点**：`Fate.Alpha.takeConcept`（取概念过程）。 -/
 abbrev alphaK : Set K3.MFCA → Set K3.MFCA := K3.takeConcept
 
-/-- **υ 在 `K3` 上的落点**：`Fate.UpsilonOperator.FCAInstance.fcaUpsilon K3`（数据参数固定）。 -/
+/-- **υ 在 `K3` 上的落点**：`UpsilonOperator.FCAInstance.fcaUpsilon K3`（数据参数固定）。 -/
 abbrev upsilonK : Set K3.MFCA → Set K3.MFCA :=
   UpsilonOperator.FCAInstance.fcaUpsilon K3 ()
 
-/-- **υ 满足 `Fate.UpsilonOperator.IsCompletion`**（完整实例的三条律）。
+/-- **υ 满足 `UpsilonOperator.IsCompletion`**（完整实例的三条律）。
 
-直接引用 `Fate.UpsilonOperator.FCAInstance.fcaInstance_isCompletion`，
+直接引用 `UpsilonOperator.FCAInstance.fcaInstance_isCompletion`，
 本文件**不重证**。 -/
 theorem upsilonK_isCompletion : UpsilonOperator.IsCompletion
     (UpsilonOperator.FCAInstance.fcaUpsilon K3) :=
@@ -137,7 +137,7 @@ theorem takeConcept_univ : K3.takeConcept (Set.univ : Set K3.MFCA) = Set.univ :=
 /-! ### §1.2  **桥**：α 与 υ 在同一载体上给出同一个函数
 
 `Fate.Alpha` 把 α 具体化为 `takeConcept := closureOp`；
-`Fate.UpsilonOperator` 把 υ 的 FCA 实例取为 `fcaUpsilon _ := closureOp`。
+`UpsilonOperator` 把 υ 的 FCA 实例取为 `fcaUpsilon _ := closureOp`。
 故二者在 `K3` 上**逐点相等**。
 
 **⚠ 诚实说明**：由于 `takeConcept` 是 `closureOp` 的**定义性别名**，
@@ -159,7 +159,7 @@ upsilonK B ⊆ alphaK B`，证明是 `exact ⟨fun x hx => hx, fun x hx => hx⟩
 * **扩张性** `B ⊆ α B`（等价地 `B ⊆ υ B`）：由 `FormalCtx.subset_closureOp` 得出，
   它的证明走的是 FCA 的 Galois 连接，**不是** 定义展开；
 * **不动点集重合**（见下 `alpha_upsilon_same_fixed`）：把
-  `Fate.Implication.IsClosedAttr` 与 `Fate.UpsilonOperator.IsCompletion.Saturated`
+  `Fate.Implication.IsClosedAttr` 与 `UpsilonOperator.IsCompletion.Saturated`
   两个**来源不同**的谓词接上。
 
 这正是「α 与 υ 不冲突」的**可审计**内容。 -/
@@ -182,7 +182,7 @@ theorem alpha_upsilon_same_fixed (B : Set K3.MFCA) :
 **为什么序反向**：`Fate.GammaOperator` 的 E1 规定 γ 是 α 的**序对偶**
 （α 扩张、γ 收缩）。α 在 `(⊆)` 下扩张，故 γ 应在「逆包含序」下扩张——
 这等价于在 `(⊆)` 下**收缩**。本节用 `OrderDual` 使该对偶**在类型上可见**，
-从而可以直接复用 `Fate.UpsilonOperator`／`Fate.GammaOperator` 的现有基础设施。 -/
+从而可以直接复用 `UpsilonOperator`／`Fate.GammaOperator` 的现有基础设施。 -/
 abbrev GammaDual := GenOp (OrderDual (Set K3.MFCA))
 
 /-- **γ 的标准实现**：`closureOp` 在逆包含序下是内蕴（收缩、单调、幂等）算子。
@@ -277,7 +277,7 @@ theorem gamma_comb_compatible (A B : Set K3.MFCA) :
 | 算子 | 律 | 来源 |
 |---|---|---|
 | α | 扩张 + 单调 + 幂等（闭包算子） | `Fate.AlphaConcreteInstance`（`K3`）+ `Fate.Implication` |
-| υ | `IsCompletion`（扩张 + 单调 + 幂等） | `Fate.UpsilonOperator.FCAInstance` |
+| υ | `IsCompletion`（扩张 + 单调 + 幂等） | `UpsilonOperator.FCAInstance` |
 | γ | `GenOp`（收缩 + 单调 + 幂等） | `Fate.GammaOperator` |
 | ∘ | 交换 + 吸收（α 吸收 ∘） | §3 `combClosure` |
 

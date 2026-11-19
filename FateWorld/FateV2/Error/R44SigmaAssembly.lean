@@ -3,8 +3,8 @@
 
 ## 本文件做什么
 
-`Fate/SigmaLandscape.lean`（真实 namespace `Fate.SigmaLandscape`，27 条定理）
-与 `Fate/AssemblyGainShared.lean`（真实 namespace `Fate.AssemblyGainShared`，17 条定理）
+`Fate/SigmaLandscape.lean`（真实 namespace `FateV2.Error.SigmaLandscape`，27 条定理）
+与 `Fate/AssemblyGainShared.lean`（真实 namespace `FateV2.Meta.AssemblyGainShared`，17 条定理）
 在真实 `external_refs` 口径下**双双为 0**。
 
 本文件把「sigma 估计链条」与「共享变量约束下的收益」两条独立线索的结论
@@ -12,8 +12,8 @@
 
 ## ⚠ 防环
 
-本文件 `import FateV2.Error.SigmaLandscape` 与 `import Fate.AssemblyGainShared`。
-两者均无 `import Fate.R44SigmaAssembly`（本文件是新建的），故不可能成环。
+本文件 `import FateV2.Error.SigmaLandscape` 与 `import FateV2.Meta.AssemblyGainShared`。
+两者均无 `import FateV2.Error.R44SigmaAssembly`（本文件是新建的），故不可能成环。
 
 ## ⚠ 前件检查
 
@@ -55,7 +55,7 @@ import FateWorld.FateV2.Meta.AssemblyGainShared
 非退化性、收缩窗，都是关于测度与参数的条件，**没有**任何一条是关于
 `variance` 的等式。
 
-**⚠ 与 `Fate.SigmaLandscape.sigma_three_faces` 的关系**：本定理是它的**两支抽取**
+**⚠ 与 `FateV2.Error.SigmaLandscape.sigma_three_faces` 的关系**：本定理是它的**两支抽取**
 （第 1 支与第 4 支），并把第 4 支右端的 `Var[meanOf n]` 用第 1 支**替换成**
 `varOf P / n` —— 这一步替换需要 `rw`，不是投影。 -/
 
@@ -85,7 +85,7 @@ theorem r44_sigma_two_faces_same_number
 **等于**样本均值的方差。
 
 **⚠ 前件只有 `MemLp id 2 P` 与 `0 < n`**；两条结论分别靠
-`Fate.SteadyErrEstimate.gain_one` 与 `variance_const_mul` 得到，**不是**前件的一部分。 -/
+`FateV2.Error.SteadyErrEstimate.gain_one` 与 `variance_const_mul` 得到，**不是**前件的一部分。 -/
 theorem r44_eta_one_gauss_markov_equality
     {P : MeasureTheory.Measure ℝ} [MeasureTheory.IsProbabilityMeasure P]
     (hP : MeasureTheory.MemLp (fun x : ℝ => x) 2 P) (n : ℕ) (hn : 0 < n) :

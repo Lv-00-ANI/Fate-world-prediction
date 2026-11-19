@@ -1,11 +1,11 @@
 ﻿模块,原文,应为
 Predict.FcaRuleEntersWorldModel,Fate.AlphaMVFCA,AMBIGUOUS: FateV2.Predict.AlphaMVFCA | FateV2.Rules.AlphaMVFCA
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample | FateV2.Rules.Counterexample
-Rules.WiringFCAAlpha,Fate.RankTwo,AMBIGUOUS: FateV2.Rules.RankTwo | FateV2.Rules.WiringFCAAlpha.RankTwo
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.Counterexample,AMBIGUOUS: Counterexample | FateV2.Predict.BackdoorSepAlgSep.Counterexample
+Rules.WiringFCAAlpha,Fate.RankTwo,AMBIGUOUS: FateV2.Rules.WiringFCAAlpha.RankTwo | RankTwo

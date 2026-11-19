@@ -28,7 +28,7 @@ import Mathlib.Tactic
 
 ## 记号说明
 
-本文件用局部缩写 `Fate.T1A2.FactorizesOn` 的原样写法，不引入任何新记号。
+本文件用局部缩写 `FateV2.Predict.T1A2.FactorizesOn` 的原样写法，不引入任何新记号。
 -/
 
 namespace FateV2.Predict.Stage2.CoreBridge
@@ -36,7 +36,7 @@ namespace FateV2.Predict.Stage2.CoreBridge
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
+open FateV2.Predict.T1A2
 open FateV2.Predict.FinCondIndep
 
 variable {V : Type*} [DecidableEq V] [Fintype V]

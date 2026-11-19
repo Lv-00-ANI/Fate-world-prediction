@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.MainChainConsumer`
+模块：`MainChainConsumer`
 任务：**审计 R249 第 2 件 —— 扇入处置（结构扇入 0 → ≥ 1）**
 
 ---------------------------------------------------------------------------
@@ -14,11 +14,11 @@
 
 | # | 模块 | 本文件消费的内容 |
 |---|---|---|
-| 1 | `Fate.WorldModelSynthesis`  | `linModels_agree` |
+| 1 | `WorldModelSynthesis`  | `linModels_agree` |
 | 2 | `FateV2.Loop.SharedParamGain`      | `ThetaCons1_eq`、`ThetaCons2_eq` |
-| 3 | `Fate.SCMWorldModelEval`    | `scmStep_eq_stepD`、`scmSim_succ_eq_stepD` |
-| 4 | `Fate.FirstLayerCapstone`   | `linkLearn`、`linkSteady`、`capstone_concrete` |
-| 5 | `Fate.SharedThetaChain`     | `wTheta_sum`、`wTheta_sq_sum`、`sim_shared_value` |
+| 3 | `SCMWorldModelEval`    | `scmStep_eq_stepD`、`scmSim_succ_eq_stepD` |
+| 4 | `FirstLayerCapstone`   | `linkLearn`、`linkSteady`、`capstone_concrete` |
+| 5 | `SharedThetaChain`     | `wTheta_sum`、`wTheta_sq_sum`、`sim_shared_value` |
 | 6 | `FateV2.Predict.SCMIdentifiabilityCorrect` | `not_identifiableObs_of_sg_eq`、`identifiableObs_of_subsingleton` |
 | 7 | `Fate.OptimalityThirdInstance`   | `no_point_unique_of_two_eq`、`fitExp_opt_unique` |
 

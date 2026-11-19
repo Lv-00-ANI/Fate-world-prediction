@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndQConsumer` —— **`ℚ` 版迭代的真实消费者：桥到 `thetaN_closed`**
+  `EndToEndQConsumer` —— **`ℚ` 版迭代的真实消费者：桥到 `thetaN_closed`**
 
   ## 0  为什么需要这个文件（R904 建议 3）
 

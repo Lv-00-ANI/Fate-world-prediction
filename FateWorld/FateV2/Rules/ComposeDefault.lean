@@ -88,11 +88,11 @@
 ---------------------------------------------------------------------------
 (e) 诚实：本文件依赖的已入链模块
 ---------------------------------------------------------------------------
-* `Fate.ComposeUnified` —— `Composite` / `CommutativeComposite` /
+* `FateV2.Rules.ComposeUnified` —— `Composite` / `CommutativeComposite` /
   `DirectedComposite` 三层抽象，`instCommutativeCompositeAttrSet`（B 族实例）。
 * `FateV2.Rules.ComposeSemantics` —— `combClosure_commutable`、
   `two_semantics_incompatible`。
-* `Fate.CompNotCommutative` —— `comp_not_commutative_witness`、
+* `FateV2.Rules.CompNotCommutative` —— `comp_not_commutative_witness`、
   `comp_not_commutative`（核复合的不可交换反例）。
 * `Fate.WiringFourOpFixed` —— `combClosure` 的定义（`closureOp (A ∪ B)`）。
 
@@ -132,8 +132,8 @@ namespace FateV2.Rules.ComposeDefault
 
 open FateV2.Modeling
 
-open Fate.ComposeUnified
-open Fate.ComposeOperator
+open FateV2.Rules.ComposeUnified
+open FateV2.Rules.ComposeOperator
 
 /-!
   # Rules · ComposeDefault
@@ -167,8 +167,8 @@ set_option warn.classDefReducibility false in
 本节只在**显式传参**下引用它（`@Composite.comp _ measurableRuleComposite`）。 -/
 noncomputable def measurableRuleComposite :
     Composite
-      (MeasurableRule Fate.CompNotCommutative.CX
-        Fate.CompNotCommutative.SS2 Fate.CompNotCommutative.SS2) where
+      (MeasurableRule FateV2.Rules.CompNotCommutative.CX
+        FateV2.Rules.CompNotCommutative.SS2 FateV2.Rules.CompNotCommutative.SS2) where
   comp := fun x y => x.comp y
 
 /-- ⭐⭐ **(甲) 更强**：`CommutativeComposite` 是 `Composite` 的**严格**加强。
@@ -199,7 +199,7 @@ theorem commutative_is_strictly_stronger :
   refine ⟨_, measurableRuleComposite, ?_⟩
   intro h
   -- `h`：`measurableRuleComposite.comp` 可交换；其 `comp` 定义上即 `MeasurableRule.comp`
-  exact Fate.CompNotCommutative.comp_not_commutative
+  exact FateV2.Rules.CompNotCommutative.comp_not_commutative
     (fun R₁ R₂ => h R₂ R₁)
 
 /-- (甲) 的推论：`CommutativeComposite` 的「加强」部分**逐字**成立 ——

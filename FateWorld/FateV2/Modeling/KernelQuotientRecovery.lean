@@ -24,9 +24,9 @@ import FateWorld.FateV2.Predict.CFLatticeGen
 
   | 来源 | 一般理论的哪个实例 |
   |---|---|
-  | `Fate.Counterfactual` | `f := M.Obs`，`F := ` 桥的纤维 |
-  | `Fate.AlphaKernel` | `f := α ∘ enc` |
-  | `Fate.CFLatticeGen` | `f := R.Obs` |
+  | `Counterfactual` | `f := M.Obs`，`F := ` 桥的纤维 |
+  | `AlphaKernel` | `f := α ∘ enc` |
+  | `CFLatticeGen` | `f := R.Obs` |
 
   **⚠ 无硬编码**（依作者裁决 Q-1）。
   =========================================================================== -/

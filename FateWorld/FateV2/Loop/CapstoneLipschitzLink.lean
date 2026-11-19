@@ -1,13 +1,13 @@
 /-
-  `Fate.CapstoneLipschitzLink`
+  `CapstoneLipschitzLink`
   ========================================================================
 
   ## 目的
-  `Fate.PipelineLipschitz`（第 708 轮）给出了「`K`-Lipschitz 收缩（`K < 1`）的
+  `PipelineLipschitz`（第 708 轮）给出了「`K`-Lipschitz 收缩（`K < 1`）的
   迭代，相邻两项偏差按 `K^n` 几何衰减」这一**纯分析核心**。但它此前是
   **孤立**的：没有任何主链模块 import 它。
 
-  `Fate.WorldModelCapstone` 的**两条链**（学习链 `linWorld`、闭环链
+  `WorldModelCapstone` 的**两条链**（学习链 `linWorld`、闭环链
   `iterMap`/`noisyIter`）共用同一个**标量收缩因子** `c(η) = |1-η|`
   （见 capstone 文件头 §1.2 与 `:360 lin_contraction_eq_c`）。
   但 capstone **从未说明**这个标量因子满足 `PipelineLipschitz` 所要求的
@@ -264,11 +264,11 @@ end ClosedLoop
   ===========================================================================
 
   * **本文件扇入 = 0**。按 `TopTheoremSink0OK` 判据，桥模块自身不需要下游：
-    它的价值在于把 `Fate.PipelineLipschitz` 的扇入从 **0 提升到 1**
+    它的价值在于把 `PipelineLipschitz` 的扇入从 **0 提升到 1**
     （此前无任何模块 import 它），并让 `PipelineLipschitz` 的定理在
     capstone 的载体 `ClosedLoopWorld` 上**被实际使用**。
-  * **`Fate.PipelineLipschitz` 扇入**：0 → 1（本文件）。
-  * **`Fate.WorldModelCapstone` 扇入**：不变（本文件是下游，不改上游）。
+  * **`PipelineLipschitz` 扇入**：0 → 1（本文件）。
+  * **`WorldModelCapstone` 扇入**：不变（本文件是下游，不改上游）。
   * **未修改任何既有模块**（纪律 2 满足）。
   * **不构成循环**：本文件同时 import 两个上游，两者都不 import 本文件。
 

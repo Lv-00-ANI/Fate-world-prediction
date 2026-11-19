@@ -15,11 +15,11 @@ import Mathlib.Topology.Order.MonotoneConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineAdaptiveEtaMartingale` —— **第 7 层：鞅收敛（Martingale convergence）**
+  `PipelineAdaptiveEtaMartingale` —— **第 7 层：鞅收敛（Martingale convergence）**
 
   ## 0  本文件补什么
 
-  第 ⑥ 层 `Fate.PipelineAdaptiveEtaStochastic` 证明的是**概率意义**的收敛
+  第 ⑥ 层 `PipelineAdaptiveEtaStochastic` 证明的是**概率意义**的收敛
   （`∀ᵐ ω`，几乎必然），它的关键输入是**逐样本**的单步不等式。
 
   本文件走完全不同的一条路：**不用测度，不用条件期望**，而是把 Doob 鞅收敛定理
@@ -82,7 +82,7 @@ import Mathlib.Topology.Order.MonotoneConvergence
 
   ## 3  依赖
 
-  * `Fate.PipelineAdaptiveEtaStochastic`（仅为了"第 7 层接线第 6 层"的语义连贯，
+  * `PipelineAdaptiveEtaStochastic`（仅为了"第 7 层接线第 6 层"的语义连贯，
     定理本身不依赖其中任何声明）
   * `Mathlib.Topology.Order.MonotoneConvergence`
     （`tendsto_atTop_ciSup`, `tendsto_atTop_ciInf`）

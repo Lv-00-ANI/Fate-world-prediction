@@ -15,7 +15,7 @@ import Mathlib
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineAdaptiveEtaComplexity` —— **O(1) 收敛判据（免迭代）**
+  `PipelineAdaptiveEtaComplexity` —— **O(1) 收敛判据（免迭代）**
 
   ## 0  本文件补什么
 

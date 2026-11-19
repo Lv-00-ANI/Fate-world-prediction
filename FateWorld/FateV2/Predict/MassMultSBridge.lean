@@ -48,16 +48,16 @@ open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 
-open Fate.S9Fixed
+open FateV2.Predict.S9Fixed
 
 -- ⭐ 正确版本：若 g 只读 S，则 mass S g x = multS S x * g x
 -- 注意：g 只读 S 时，在 S-纤维上 g 是常数，所以每项都是 g x
 -- 而纤维大小 = multS S x
 theorem mass_eq_multS_of_reads {S : Finset V} {g : (V → α) → ℝ}
     (hg : ∀ w w', (∀ u ∈ S, w u = w' u) → g w = g w') (x : V → α) :
-    mass S g x = Fate.TowerExactLaw.multS S x * g x := by
+    mass S g x = FateV2.Predict.TowerExactLaw.multS S x * g x := by
   classical
-  unfold FateV2.Predict.DAGFactorization.mass Fate.TowerExactLaw.multS
+  unfold FateV2.Predict.DAGFactorization.mass FateV2.Predict.TowerExactLaw.multS
   rw [Finset.sum_mul]
   refine Finset.sum_congr rfl fun w _ => ?_
   by_cases hw : ∀ u ∈ S, w u = x u

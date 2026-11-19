@@ -3,8 +3,8 @@
 
 ## 本文件做什么
 
-`Fate/T1A2Substance.lean`（真实 namespace `Fate.T1A2Substance`，36 条定理）
-与 `Fate/BridgeDirect.lean`（真实 namespace `Fate.BridgeDirect`，34 条定理）
+`Fate/T1A2Substance.lean`（真实 namespace `FateV2.Predict.T1A2Substance`，36 条定理）
+与 `Fate/BridgeDirect.lean`（真实 namespace `FateV2.Predict.BridgeDirect`，34 条定理）
 在真实 `external_refs` 口径下**双双为 0**：没有别的模块用它们的 namespace
 引用过它们的任何定理。
 
@@ -12,8 +12,8 @@
 
 ## ⚠ 防环
 
-本文件 `import Fate.T1A2Substance` 与 `import Fate.BridgeDirect`。
-被消费方**没有** `import Fate.R44SubstanceBridge`（本文件是新建的），
+本文件 `import FateV2.Predict.T1A2Substance` 与 `import FateV2.Predict.BridgeDirect`。
+被消费方**没有** `import FateV2.Loop.R44SubstanceBridge`（本文件是新建的），
 故不可能成环。
 
 ## ⚠ 前件检查
@@ -56,7 +56,7 @@ import FateWorld.FateV2.Predict.BridgeDirect
 3. 任意 `S` 上可拆成 `S` 与 `Sᶜ` 两部分（`fork_separable_and_components` 的左支）。
 
 **⚠ 前件只有 `FactorizesOn forkDAG p`**，结论是三条彼此独立的性质之合取。
-三条分别来自 `Fate.T1A2.FactorizesOn.pos`、§4.1 的降维、
+三条分别来自 `FateV2.Predict.T1A2.FactorizesOn.pos`、§4.1 的降维、
 以及 `Finset.prod_mul_prod_compl` 的拆分 —— 任一条都不是前件的改写。 -/
 
 namespace FateV2.Loop.R44SubstanceBridge
@@ -65,18 +65,18 @@ open FateV2.Modeling
 open FateV2.Predict
 
 theorem r44_factorizes_three_way (p : (Fin 3 → Bool) → ℝ)
-    (h : Fate.T1A2.FactorizesOn Fate.T1A2Substance.forkDAG p) (x : Fin 3 → Bool) :
+    (h : FateV2.Predict.T1A2.FactorizesOn FateV2.Predict.T1A2Substance.forkDAG p) (x : Fin 3 → Bool) :
     (∀ x, 0 < p x)
-      ∧ Fate.T1A2Substance.Components p
+      ∧ FateV2.Predict.T1A2Substance.Components p
       ∧ (∃ pi : Fin 3 → (Fin 3 → Bool) → ℝ,
-          (∀ v, Fate.T1A2.ReadsOnlyOn
-                  (insert v (Fate.T1A2Substance.forkDAG.parents v)) (pi v))
+          (∀ v, FateV2.Predict.T1A2.ReadsOnlyOn
+                  (insert v (FateV2.Predict.T1A2Substance.forkDAG.parents v)) (pi v))
             ∧ (∀ v x, 0 < pi v x)
             ∧ ∀ S : Finset (Fin 3),
                 p x = (∏ v ∈ S, pi v x) * (∏ v ∈ Sᶜ, pi v x)) := by
-  obtain ⟨hpos, hcomp⟩ := Fate.T1A2Substance.fork_pos_and_components p h
+  obtain ⟨hpos, hcomp⟩ := FateV2.Predict.T1A2Substance.fork_pos_and_components p h
   exact ⟨hpos, hcomp,
-    Fate.T1A2CI.factorizesOn_separable (p := p) h x⟩
+    FateV2.Predict.T1A2CI.factorizesOn_separable (p := p) h x⟩
 
 /-- ⭐ **【一处取零 ⟹ 两个谓词同时失败】**
 
@@ -85,12 +85,12 @@ theorem r44_factorizes_three_way (p : (Fin 3 → Bool) → ℝ)
 
 **⚠ 前件只钉了一个点** `hx : p x = 0`；结论的第一支是否定整个
 `FactorizesOn` 谓词，第二支是否定全称正性命题 —— 两者都由
-`Fate.T1A2.FactorizesOn.pos` 推出，不是前件的展开。 -/
+`FateV2.Predict.T1A2.FactorizesOn.pos` 推出，不是前件的展开。 -/
 theorem r44_zero_point_kills_both (p : (Fin 3 → Bool) → ℝ)
     (x : Fin 3 → Bool) (hx : p x = 0) :
-    ¬ Fate.T1A2.FactorizesOn Fate.T1A2Substance.forkDAG p
+    ¬ FateV2.Predict.T1A2.FactorizesOn FateV2.Predict.T1A2Substance.forkDAG p
       ∧ ¬ (∀ y, 0 < p y) :=
-  ⟨Fate.T1A2Substance.forkDAG_not_factorizesOn_of_zero p x hx,
+  ⟨FateV2.Predict.T1A2Substance.forkDAG_not_factorizesOn_of_zero p x hx,
    fun hpos => absurd hx (ne_of_gt (hpos x))⟩
 
 /-- ⭐⭐ **【非空洞性 + 零函数不可分解 的对照】**（`factorizesOn_fork_summary`
@@ -102,11 +102,11 @@ theorem r44_zero_point_kills_both (p : (Fin 3 → Bool) → ℝ)
 
 两条一起说明 `FactorizesOn` 在叉图上**既不空也不全**。 -/
 theorem r44_nonvacuous_and_excludes_zero :
-    Fate.T1A2Substance.Components (fun _ : Fin 3 → Bool => (1 : ℝ))
-      ∧ ¬ Fate.T1A2.FactorizesOn Fate.T1A2Substance.forkDAG
+    FateV2.Predict.T1A2Substance.Components (fun _ : Fin 3 → Bool => (1 : ℝ))
+      ∧ ¬ FateV2.Predict.T1A2.FactorizesOn FateV2.Predict.T1A2Substance.forkDAG
             (fun _ : Fin 3 → Bool => (0 : ℝ)) :=
-  ⟨Fate.T1A2Substance.factorizesOn_fork_summary.2,
-   Fate.T1A2Substance.forkDAG_no_zero_factorization⟩
+  ⟨FateV2.Predict.T1A2Substance.factorizesOn_fork_summary.2,
+   FateV2.Predict.T1A2Substance.forkDAG_no_zero_factorization⟩
 
 /-! ## §2 `BridgeDirect` 侧：`gex` 上的两层判定 -/
 
@@ -118,13 +118,13 @@ theorem r44_nonvacuous_and_excludes_zero :
 这正是 `routeB_verdict` 的内容 —— 本文件把它作为**原料引用**，
 用于与上文 §1 的 `Fin 3` 图结论并置（**同一顶点类型 `Fin 3`** 上两个不同 DAG 的对照）。 -/
 theorem r44_gex_verdict :
-    Fate.BridgeDirect.gex.dSep
+    FateV2.Predict.BridgeDirect.gex.dSep
         ({(1 : Fin 3)} : Finset (Fin 3)) {(2 : Fin 3)} (∅ : Finset (Fin 3))
-      ∧ ¬ Fate.BridgeDirect.ReadClosedBlocks Fate.BridgeDirect.gex
+      ∧ ¬ FateV2.Predict.BridgeDirect.ReadClosedBlocks FateV2.Predict.BridgeDirect.gex
             {(1 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3))
-      ∧ ¬ Fate.BridgeDirect.gex.dSep
+      ∧ ¬ FateV2.Predict.BridgeDirect.gex.dSep
             {(1 : Fin 3)} {(1 : Fin 3)} (∅ : Finset (Fin 3)) :=
-  Fate.BridgeDirect.routeB_verdict
+  FateV2.Predict.BridgeDirect.routeB_verdict
 
 /-- ⭐ **【`gex` 的父集是具体单点/空集】**
 
@@ -132,9 +132,9 @@ theorem r44_gex_verdict :
 
 下游若需把 `ReadClosedBlocks` 展开成对 `parents` 的具体约束，这两条是入口。 -/
 theorem r44_gex_parents :
-    Fate.BridgeDirect.gex.parents (1 : Fin 3) = {(0 : Fin 3)}
-      ∧ Fate.BridgeDirect.gex.parents (2 : Fin 3) = (∅ : Finset (Fin 3)) :=
-  ⟨Fate.BridgeDirect.gex_pa, Fate.BridgeDirect.gex_pa2⟩
+    FateV2.Predict.BridgeDirect.gex.parents (1 : Fin 3) = {(0 : Fin 3)}
+      ∧ FateV2.Predict.BridgeDirect.gex.parents (2 : Fin 3) = (∅ : Finset (Fin 3)) :=
+  ⟨FateV2.Predict.BridgeDirect.gex_pa, FateV2.Predict.BridgeDirect.gex_pa2⟩
 
 /-! ## §3 跨模块并置：`Fin 3` 上两个 DAG，一族共享的辅助事实 -/
 
@@ -151,14 +151,14 @@ theorem r44_gex_parents :
 **⚠ 前件为空**（都是 `decide` 级事实的合取），但**不是** `rfl`：四条分属两个
 不同模块的 `parents` 定义，两侧各自需要 `decide`。 -/
 theorem r44_two_dags_parents :
-    Fate.T1A2Substance.forkDAG.parents (2 : Fin 3) = ∅
-      ∧ Fate.T1A2Substance.forkDAG.parents (1 : Fin 3) = {(2 : Fin 3)}
-      ∧ Fate.BridgeDirect.gex.parents (2 : Fin 3) = (∅ : Finset (Fin 3))
-      ∧ Fate.BridgeDirect.gex.parents (1 : Fin 3) = {(0 : Fin 3)} :=
-  ⟨Fate.T1A2Substance.forkDAG_parents_two,
-   Fate.T1A2Substance.forkDAG_parents_one,
-   Fate.BridgeDirect.gex_pa2,
-   Fate.BridgeDirect.gex_pa⟩
+    FateV2.Predict.T1A2Substance.forkDAG.parents (2 : Fin 3) = ∅
+      ∧ FateV2.Predict.T1A2Substance.forkDAG.parents (1 : Fin 3) = {(2 : Fin 3)}
+      ∧ FateV2.Predict.BridgeDirect.gex.parents (2 : Fin 3) = (∅ : Finset (Fin 3))
+      ∧ FateV2.Predict.BridgeDirect.gex.parents (1 : Fin 3) = {(0 : Fin 3)} :=
+  ⟨FateV2.Predict.T1A2Substance.forkDAG_parents_two,
+   FateV2.Predict.T1A2Substance.forkDAG_parents_one,
+   FateV2.Predict.BridgeDirect.gex_pa2,
+   FateV2.Predict.BridgeDirect.gex_pa⟩
 
 /-- ⭐⭐ **【`Fin 3` 上：叉图因子分解 ⟹ 正性；`gex` 上：`dSep` 不读闭】**
 
@@ -170,11 +170,11 @@ theorem r44_two_dags_parents :
 两条合取后仍无重复：前者是概率论事实（`FactorizesOn.pos`），
 后者是图论事实（`routeB_verdict`）。 -/
 theorem r44_fork_pos_and_gex_gap (p : (Fin 3 → Bool) → ℝ)
-    (h : Fate.T1A2.FactorizesOn Fate.T1A2Substance.forkDAG p) :
+    (h : FateV2.Predict.T1A2.FactorizesOn FateV2.Predict.T1A2Substance.forkDAG p) :
     (∀ x, 0 < p x)
-      ∧ ¬ Fate.BridgeDirect.ReadClosedBlocks Fate.BridgeDirect.gex
+      ∧ ¬ FateV2.Predict.BridgeDirect.ReadClosedBlocks FateV2.Predict.BridgeDirect.gex
             {(1 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3)) :=
-  ⟨Fate.T1A2Substance.factorizesOn_fork_pos p h,
-   Fate.BridgeDirect.gap_false_gex⟩
+  ⟨FateV2.Predict.T1A2Substance.factorizesOn_fork_pos p h,
+   FateV2.Predict.BridgeDirect.gap_false_gex⟩
 
 end FateV2.Loop.R44SubstanceBridge

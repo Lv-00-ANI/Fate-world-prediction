@@ -7,13 +7,13 @@
 
 前序 machine-checked 事实（本文件**消费/引用**它们，不重证）：
 
-* `Fate.BridgeExpanded.exists_superset_readClosed`：
+* `FateV2.Predict.BridgeExpanded.exists_superset_readClosed`：
   `∀ X Y Z, ∃ Z' ⊇ Z, ReadClosedBlocks G X Y Z'`（**无条件**，`Z' := Trunc G (X∪Y∪Z)`）；
-* `Fate.BridgeMinZPrime`：`zStar G X Y Z = an_G(req)` 是 `ReadClosedBlocks` 的**唯一最小**
+* `FateV2.Predict.BridgeMinZPrime`：`zStar G X Y Z = an_G(req)` 是 `ReadClosedBlocks` 的**唯一最小**
   可行元；⚠ 但它**不保证** `dSep X Y zStar`（`no_feasible_Z'`：可行集可以为**空**）；
-* `Fate.BridgeZipDown`：`CondIndep` 对条件集**不单调**（`zipDown_false`）⟹
+* `FateV2.Predict.BridgeZipDown`：`CondIndep` 对条件集**不单调**（`zipDown_false`）⟹
   「先撑大 `Z'` 再压回 `Z`」走不通；唯一的分析型出路是 `mass_congr`（读集不敏感）；
-* `Fate.BridgeFull.exists_dsep_not_readClosed`：`Z' = Z` 版 `ReadClosedBlocks` **是假命题**。
+* `FateV2.Predict.BridgeFull.exists_dsep_not_readClosed`：`Z' = Z` 版 `ReadClosedBlocks` **是假命题**。
 
 **路线 B 的口号**：**不扩大条件集**。直接对**原始 `Z`** 沿拓扑序归纳，
 逐点剥离，每步用「该点的父要么在 `Z` 里、要么已被剥离」维持条件独立。
@@ -126,7 +126,7 @@ namespace FateV2.Predict.BridgeDirect
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -151,7 +151,7 @@ set_option linter.unusedSectionVars false
   §1 `ReadClosedBlocks`（与 `BridgeFull` / `BridgeExpanded` **逐字相同**的定义）
   =========================================================================== -/
 
-/-- ⭐ **`ReadClosedBlocks G X Y Z`**（本地复刻，逐字同 `Fate.BridgeFull`）。
+/-- ⭐ **`ReadClosedBlocks G X Y Z`**（本地复刻，逐字同 `FateV2.Predict.BridgeFull`）。
 
 1. `Z` 父闭；
 2. `X` 中每点的父代 ⊆ `X ∪ Z`；
@@ -448,7 +448,7 @@ theorem peel_safety_criterion {X Z : Finset V} {a u v : V}
 
 /-- **反例图 `gex`：`0 → 1`，顶点 `2` 孤立**（与 `BridgeFull` / `BridgeExpanded` 逐字相同）。 -/
 -- 定义已收敛到 `Fate/Concrete/ThreeNode.lean`（原 4 份逐字相同，见 _audit/BRIDGE-1）
-def gex : FateV2.Modeling.Graph.DAG (Fin 3) := Fate.Concrete.gex
+def gex : FateV2.Modeling.Graph.DAG (Fin 3) := FateV2.Modeling.Concrete.gex
 
 /-- ⭐ `gex` 上 `dSep {1} {2} ∅` **成立**。 -/
 theorem gex_dsep : gex.dSep {(1 : Fin 3)} {(2 : Fin 3)} (∅ : Finset (Fin 3)) := by decide
@@ -610,7 +610,7 @@ theorem bridge_direct_of_peel {α : Type u} [Fintype α] [DecidableEq α]
     rcases Finset.mem_union.mp hv with h' | h'
     · exact hY v h'
     · exact fun u hu => Finset.mem_union.mpr (Or.inr (hZ v h' hu))
-  exact Fate.Strategy11Hull.condIndep_of_dSep_ancClosed hloc hfac hnorm hd h1 h2 h3 hZ
+  exact FateV2.Predict.Strategy11Hull.condIndep_of_dSep_ancClosed hloc hfac hnorm hd h1 h2 h3 hZ
 
 /-- ⭐⭐ **B2 — `bridge_direct_iff`（路线 B 的价值判定）**：
 
@@ -733,7 +733,7 @@ theorem mass_congr_peel {α : Type u} [Fintype α] [DecidableEq α]
   rw [if_neg hua]
 
 /-- ⭐ **`paBlock G S = ⋃_{v∈S} pa_G(v)`**：块 `S` 的**父代并**（本地复刻，
-与 `Fate.BridgeMinZPrime.paBlock` 逐字相同）。 -/
+与 `FateV2.Predict.BridgeMinZPrime.paBlock` 逐字相同）。 -/
 def paBlock (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) : Finset V :=
   S.biUnion (fun v => G.parents v)
 

@@ -29,7 +29,7 @@ namespace FateV2.Predict.T1A2N
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
+open FateV2.Predict.T1A2
 
 /-- ⭐⭐⭐⭐ **`T1A.2` 的**完全抽象版**（对任意 DAG、任意 `S`）：
 
@@ -45,7 +45,7 @@ theorem t1a2_abstract
       (∀ v, ReadsOnlyOn (insert v (G.parents v)) (π v)) ∧
       (∀ v x, 0 < π v x) ∧
       ∀ S : Finset V, p x = (∏ v ∈ S, π v x) * (∏ v ∈ Sᶜ, π v x) :=
-  Fate.T1A2CI.factorizesOn_separable h x
+  FateV2.Predict.T1A2CI.factorizesOn_separable h x
 
 /-- ⭐⭐⭐ **任意 `S` 的真子集情形也成立**（对 `S = ∅` 与 `S = univ` 的退化检查）。 -/
 theorem t1a2_abstract_degenerate
@@ -57,7 +57,7 @@ theorem t1a2_abstract_degenerate
       (∀ v x, 0 < π v x) ∧
       p x = (∏ v ∈ (∅ : Finset V), π v x) * (∏ v ∈ (∅ : Finset V)ᶜ, π v x) ∧
       p x = (∏ v ∈ (univ : Finset V), π v x) * (∏ v ∈ (univ : Finset V)ᶜ, π v x) := by
-  obtain ⟨π, hreads, hpos, hsep⟩ := Fate.T1A2CI.factorizesOn_separable h x
+  obtain ⟨π, hreads, hpos, hsep⟩ := FateV2.Predict.T1A2CI.factorizesOn_separable h x
   exact ⟨π, hreads, hpos, hsep ∅, hsep univ⟩
 
 -- ⭐ **公理审计**

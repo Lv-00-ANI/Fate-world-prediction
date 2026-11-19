@@ -21,7 +21,7 @@
 
     ⟹ `adjustLaw` **确实**可以完全由 `hZ` 决定，但**不是** `= condY`
     （除非**修正因子** `∑ pZ²/pXZ` 恰为 `1`）。
-  * §3 `zb_adjustLaw_factor`：在具体载体 `Fate.R277.zb` 上算出修正因子
+  * §3 `zb_adjustLaw_factor`：在具体载体 `FateV2.Predict.R277.zb` 上算出修正因子
     （`x = true` 时 `73/48`，`x = false` 时 `145/16`）。
   * §4 `zb_correction_ne_one`：⚠ **修正因子 ≠ 1**（机检）。
     ⟹ 被删的旧命题 `bd_adjustLaw_sum_eq_condY` / `bd_adjustLaw_eq`
@@ -36,7 +36,7 @@
 
   **`hZ` 不可省**：§4 直接用 §3 的数值（`73/48`、`145/16`）说明：
   若没有 (★)，`adjustLaw` 与 `condY` 之间不存在这个确定的比例关系。
-  且 `hZ` **可失败**（`Fate.CausalOnWorldModel.DoLawOn_fails_on_badd`，
+  且 `hZ` **可失败**（`CausalOnWorldModel.DoLawOn_fails_on_badd`，
   机检）⟹ 前件非空转。
 
   额外前件 `hpos : ∀ z₁ z₂, pXZ T x z₁ z₂ ≠ 0` 是**真需要的**：
@@ -157,7 +157,7 @@ theorem adjustLaw_eq_condY_mul_correction (M : PearlHierarchy.SCM T.Xt T.Yt)
   rw [hpy]; ring
 
 /-! ===========================================================================
-  §3  具体载体 `Fate.R277.zb` 上的修正因子（真数值，`norm_num`）
+  §3  具体载体 `FateV2.Predict.R277.zb` 上的修正因子（真数值，`norm_num`）
   =========================================================================== -/
 
 /-- ⭐ `zb` 的**修正因子**：`x = true` 时 `73/48`，`x = false` 时 `145/16`。

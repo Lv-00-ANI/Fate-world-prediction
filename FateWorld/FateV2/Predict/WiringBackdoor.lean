@@ -25,8 +25,8 @@ import Mathlib.Tactic
 
   | 模块 | 行数 | 本文件接入的部分 |
   |---|---|---|
-  | `Fate.BackdoorGenuine`（41 条） | 1399 | `Vert` / `moralAdj` / **`IsDescendant` + `NoDescendant`（真版）** / **`BackdoorSep`（真 d-分离，端点剔除）** / `BackdoorConditions` |
-  | `Fate.BackdoorCriterion`（39 条） | 880 | `BackdoorSetup` / `condYobs` / `condYdo` / `doLaw` / **`backdoor_criterion`（调整公式 = 干预律）** / `BackdoorBlocked` |
+  | `FateV2.Predict.BackdoorGenuine`（41 条） | 1399 | `Vert` / `moralAdj` / **`IsDescendant` + `NoDescendant`（真版）** / **`BackdoorSep`（真 d-分离，端点剔除）** / `BackdoorConditions` |
+  | `FateV2.Predict.BackdoorCriterion`（39 条） | 880 | `BackdoorSetup` / `condYobs` / `condYdo` / `doLaw` / **`backdoor_criterion`（调整公式 = 干预律）** / `BackdoorBlocked` |
   | `Fate.BackdoorWithM`（38 条） | 1313 | `SetupWithM` / `MVert` / **`IsDescendantM` + `NoDescendantM`（真中介版）** / `adjust_Z_correct` / `demo_M_naive_wrong` |
 
   ## 1. ⚠⚠ **陷阱登记（任务书点名的那一个）**
@@ -41,8 +41,8 @@ import Mathlib.Tactic
   下面 **§1 把这件事证成定理**（`r259_noDescendant_is_tautology`），
   并在 **§1.2** 给出「它因此不可用作 Pearl (ii)」的机器证据。
 
-  **⟹ 本文件全部使用 `Fate.R277.NoDescendant`（真版）与
-  `Fate.SetupWithM.NoDescendantM`（中介真版）**，一次也不用 `R259` 的那个。
+  **⟹ 本文件全部使用 `FateV2.Predict.R277.NoDescendant`（真版）与
+  `SetupWithM.NoDescendantM`（中介真版）**，一次也不用 `R259` 的那个。
 
   ## 2. ⭐ 本文件交付
 
@@ -146,8 +146,8 @@ theorem r259_noDescendant_not_refutable (S : FateV2.Predict.R259.BackdoorSetup) 
   fun h => h (r259_noDescendant_is_tautology S)
 
 /-- ⭐⭐ **同一恒真缺陷也出现在 `FateV2.Predict.R259.BackdoorSetup` 的 `NoDescendant` 上，
-而 `Fate.R277.NoDescendant` 是「不恒真」的** —— 下面用
-`Fate.R277.NoDescendant S ∅` 之外的实例来证明它有内容（见 §2、§6）。
+而 `FateV2.Predict.R277.NoDescendant` 是「不恒真」的** —— 下面用
+`FateV2.Predict.R277.NoDescendant S ∅` 之外的实例来证明它有内容（见 §2、§6）。
 
 本节只登记：**本文件零处使用 `FateV2.Predict.R259.BackdoorSetup.NoDescendant` 作为假设**
 （可用 `grep NoDescendant Fate/WiringBackdoor.lean` 核对：
@@ -158,7 +158,7 @@ example (S : FateV2.Predict.R259.BackdoorSetup) : S.NoDescendant :=
 /-! ===========================================================================
   §2 ⭐⭐⭐⭐⭐ **【`BackdoorGenuine` 接入】真 `IsDescendant` 的完整表征**
 
-  `Fate.R277.IsDescendant S v` 由 `moralAdj S (Vert.x x) ·` 生成。
+  `FateV2.Predict.R277.IsDescendant S v` 由 `moralAdj S (Vert.x x) ·` 生成。
   本节证明它在五元素载体上**恰好**刻画「可达的 `Y` 顶点」。
 
   **⭐ 这一表征是 Pearl (ii) 在本载体上唯一的真实内容**：
@@ -672,8 +672,8 @@ theorem demoS_wmAdjustEst_eq_doLaw_00 :
 end FateV2.Predict.WiringBackdoor
 
 /-! ===========================================================================
-  §7 ⭐⭐⭐⭐⭐ **R-48：把 `Fate/BackdoorCriterion`（真实 ns `Fate.R259`）与
-  `Fate/BackdoorGenuine`（真实 ns `Fate.R277`）接进编译器可见的消费面**
+  §7 ⭐⭐⭐⭐⭐ **R-48：把 `Fate/BackdoorCriterion`（真实 ns `FateV2.Predict.R259`）与
+  `Fate/BackdoorGenuine`（真实 ns `FateV2.Predict.R277`）接进编译器可见的消费面**
 
   ## 7.0 口径
 
@@ -683,7 +683,7 @@ end FateV2.Predict.WiringBackdoor
   `Fate/BackdoorGenuine.lean:86 → FateV2.Predict.R277`），故**纯 `import` 计 0 消费**。
 
   **本节**建**以模块名为名的组合层命名空间**，其中的定理**全部真实调用**
-  `Fate.R259.*` / `Fate.R277.*` 的定理。**不复制、不重述、不修改被消费模块。**
+  `FateV2.Predict.R259.*` / `FateV2.Predict.R277.*` 的定理。**不复制、不重述、不修改被消费模块。**
 
   ## 7.1 清单
 

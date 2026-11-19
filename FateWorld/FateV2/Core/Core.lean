@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.Stage0.Core`
+模块：`Stage0.Core`
 阶段：**阶段 0 —— 定义与签名冻结**
 
 ---------------------------------------------------------------------------
@@ -26,7 +26,7 @@
 `Fate.Basic` 与 `Fate.Frame` 已经给出过一批阶段 0 定义。本文件**不覆盖、不替换**它们，
 而是按任务要求**从零另建**一套，并用**命名空间隔离**：
 
-| 本文件（`Fate.Stage0.Core`） | `Fate.Basic` / `Fate.Frame` | 关系 |
+| 本文件（`Stage0.Core`） | `Fate.Basic` / `Fate.Frame` | 关系 |
 |---|---|---|
 | `ActionSpace`（`A : Type` + 结构字段） | `ActionSpace`（`Carrier : Type u` + 结构字段） | 同一对象的两种写法；本文件按任务书签名 |
 | `TimeIndex`（`discrete ℕ` / `continuous ℝ`，带 `0 ≤ t` 约束） | `TimeIdx.Discrete := ℕ`、`TimeIdx.Continuous := {t // 0 ≤ t}` | 本文件把两支**收进同一个归纳类型** |
@@ -800,7 +800,7 @@ A33 **不是经验假设**，而是**定义性约定**——它是「我们选�
 它把「无环」变成一个**可计算的整数赋值**，使「SCM 诱导 DAG」这条 T3.1
 有了一个**构造性**的起点（用 `rank` 排序即可得拓扑序）。
 
-**与本项目已有 `ParentMap` 的关系**：`Fate.ParentMap` 只给了 `pa : V → Set V`，
+**与本项目已有 `ParentMap` 的关系**：`ParentMap` 只给了 `pa : V → Set V`，
 **没有**任何良基字段。故「依赖良基」此前**从未**被类型化——
 A33 在被正式登记之后**仍是一句自然语言**。本结构是它的**第一个类型层落点**。
 
@@ -857,7 +857,7 @@ section DoOperator
 - **类型**：`[定义性约定]`
 - **出处**：规范 §1.3、§3.6；理论第 3 章
 - **⚠ 未定义项**：**$\mathcal{M}$ 的内部结构原文有，但本文件不复述**——
-  它是四元组 $\langle V,U,F,P(U)\rangle$，其形式化在 `Fate.ParentMap` / `Fate.GraphOps`
+  它是四元组 $\langle V,U,F,P(U)\rangle$，其形式化在 `ParentMap` / `GraphOps`
   已有图侧部分（`pa`、`delIn`、`delOut`）。
   本文件**只**给出 `do` 的**类型层**约定，把 $M$ 当作**任意模型载体**。
   这是**有意**的抽象：类型律（`do` 是算子）与模型的内部结构**无关**，
@@ -1132,7 +1132,7 @@ end FateV2.Core
 即**标准三条**，无任何自定义公理。
 
 **本文件整体不引入任何公理**：全文无 `axiom` 声明（§7 的占位全部是 `def ... : Unit := ()`）。
-故任何 `#print axioms Fate.Stage0.Core.<name>` 的输出都**不会**出现标准三条之外的名字。
+故任何 `#print axioms Stage0.Core.<name>` 的输出都**不会**出现标准三条之外的名字。
 （`Classical.choice` 的出现来自 `Real`/`ℕ` 上的经典可判定性，属标准三条之列，不是本文件新增。） -/
 
 -- （原文件此处有 4 条 #print axioms，引用的定理名已不存在：isValid_discrete / isValid_continuous / WellFoundedDeps.self_not_mem_parents / WellFoundedDeps.rank_descends。迁移时移除，否则编译失败。）

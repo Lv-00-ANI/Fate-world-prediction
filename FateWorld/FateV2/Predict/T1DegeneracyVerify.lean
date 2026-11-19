@@ -13,7 +13,7 @@ import FateWorld.FateV2.Loop.EndToEnd
 -/
 
 /-! ===========================================================================
-  `Fate.T1DegeneracyVerify` —— **T-1 退化问题的验证**（CC1，最高优先）
+  `T1DegeneracyVerify` —— **T-1 退化问题的验证**（CC1，最高优先）
 
   ## 0  来历
 

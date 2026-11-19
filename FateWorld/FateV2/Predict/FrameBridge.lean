@@ -95,7 +95,7 @@ def bridgeFiber {CF : Type*} (Obs : FateV2.Model.Step F → CF) (f₀ : FateV2.M
 
 /-- ⭐⭐ **突破的具体化**：桥在「反事实商」上单值。
 
-**这是 `Fate.Counterfactual.obsOnQuot_injective` 在本项目类型上的直接实例化。**
+**这是 `Counterfactual.obsOnQuot_injective` 在本项目类型上的直接实例化。**
 
 **含义**：
 即使 $\mathfrak{F}|_{f_0}$ 本身含**无穷多个**机制（桥多值），
@@ -128,7 +128,7 @@ theorem bridge_quot_subsingleton_iff {CF : Type*} (Obs : FateV2.Model.Step F →
 | **B 忠实** | 观测在纤维上单射（商 ≅ 纤维，**桥不单值**）|
 | **C 中间地带** | 既非常值又非单射 |
 
-**⚠ 情形 C 的商基数未给闭式** —— 见 `Fate.Counterfactual` 的诚实标注。 -/
+**⚠ 情形 C 的商基数未给闭式** —— 见 `Counterfactual` 的诚实标注。 -/
 theorem bridge_trichotomy {CF : Type*} (Obs : FateV2.Model.Step F → CF) (f₀ : FateV2.Model.Step F) :
     Collapse (frameModel F CF Obs) (bridgeFiber F Obs f₀)
       ∨ Faithful (frameModel F CF Obs) (bridgeFiber F Obs f₀)

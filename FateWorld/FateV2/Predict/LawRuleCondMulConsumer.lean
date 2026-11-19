@@ -45,12 +45,12 @@ import FateWorld.FateV2.Predict.LawRuleCondMul
   | **C1** | `perZ_rule_legality_iff_condMul` | `condMulRuleAt_nonempty_iff` + `rankOneAll_iff_condMul_of_ne_zero` | **否**。前件只有「`margZ` 处处非零」（一个关于 `p` 的**数值**假设），结论是「逐 `z` 规则处处非空 ⟺ `CondMul p`」。守卫 ≠ 结论。 |
   | **C2** | `rankOne_iff_condMul_at_z` | 独立展开 `rankOne_implies_condMul` 的**逐点**版本 | **否**。前件是「`margZ p z ≠ 0`」（单个 `z` 的非零），结论是该 `z` 切片秩一 ⟺ 该 `z` 上的乘性等式。**这是模块里没有的局部形式**（模块只证全局）。 |
   | **C3** | `finset_rule_legality_iff` | `condMulRuleAt_nonempty_iff`（推广到 `Finset` 索引） | **否**。前件是 `S : Finset γ`，结论把「交叠后的允许集非空」等价于「`S` 内每个切片秩一」。模块只有 `∀ z`（即 `univ`）形式；`Finset` 形式需要额外处理 `⋂ z ∈ S`。 |
-  | **C4** | `restated_ops_eq_lawRule_ops` | 直接对 `Fate.LawRule` 的重述做**定义层对齐** | **否**，但**明确声明其内容为 `rfl`**：模块头注的 TODO 是「待 `Fate/LawRule.lean` 修复后，本文件的 `LawRule` 应替换为其别名」。本定理证明替换**无需修改任何证明**，因为两者**逐字相同**。**这不含新数学**，价值仅在于解锁把 `Fate.LawRule` 的 `compose_comm`/`point_compose`/`compose_top` 用到本模块的规则上（见 C4b/C4c）。 |
+  | **C4** | `restated_ops_eq_lawRule_ops` | 直接对 `LawRule` 的重述做**定义层对齐** | **否**，但**明确声明其内容为 `rfl`**：模块头注的 TODO 是「待 `Fate/LawRule.lean` 修复后，本文件的 `LawRule` 应替换为其别名」。本定理证明替换**无需修改任何证明**，因为两者**逐字相同**。**这不含新数学**，价值仅在于解锁把 `LawRule` 的 `compose_comm`/`point_compose`/`compose_top` 用到本模块的规则上（见 C4b/C4c）。 |
 
   ## 3. 诚实边界
 
   * **C4 是 `rfl`**，我**不**声称它是深刻结论。它存在的唯一理由是让本模块的 `condMulRule`／`condMulRuleAt`
-    能直接吃 `Fate.LawRule` 的算子代数。
+    能直接吃 `LawRule` 的算子代数。
   * **C2 是本文件唯一的新数学**：模块的 `rankOne_implies_condMul` 是**全局**命题
     （前件 `∀ z, IsRankOne (slice p z)`，尾随对**所有** `x y z` 求和）；
     **C2 把它降到单个 `z`**，且给出反方向 —— 这恰是 `condMulRuleAt` 的逐点语义依据。
@@ -227,7 +227,7 @@ theorem finset_rule_legality_univ (p : FinJoint α β γ) :
   rw [finset_rule_legality_iff, condMulRuleAt_nonempty_iff]
   exact ⟨fun h z => h z (Finset.mem_univ z), fun h z _ => h z⟩
 
-/-! ## §4 ⭐ C4 —— 与 `Fate.LawRule` 算子的**定义层对齐**（诚实标注：`rfl`）
+/-! ## §4 ⭐ C4 —— 与 `LawRule` 算子的**定义层对齐**（诚实标注：`rfl`）
 
 模块头注的 TODO：
 
@@ -237,24 +237,24 @@ theorem finset_rule_legality_univ (p : FinJoint α β γ) :
 因为两者**逐字相同**（都是 `C.Carrier → X.Carrier → Set (Measure Y.Carrier)`，
 `compose` 都是 `fun c x => R₁ c x ∩ R₂ c x`）。
 
-**⚠ 这不是新数学**。它的唯一价值是把 `Fate.LawRule` 现成的算子代数
+**⚠ 这不是新数学**。它的唯一价值是把 `LawRule` 现成的算子代数
 （`compose_comm`、`compose_top`、`point_compose`）**免费**用到本模块的规则上，
 见 C4b。 -/
 
-/-- ⭐ **C4**：本模块重述的 `LawRule`／`compose`／`IsPoint` 与 `Fate.LawRule` 的对应项
+/-- ⭐ **C4**：本模块重述的 `LawRule`／`compose`／`IsPoint` 与 `LawRule` 的对应项
 **逐字相同**，故通过 `rfl` 互相转换。 -/
 theorem restated_ops_eq_lawRule_ops
     {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
     (R₁ R₂ : LawRule C X Y) :
     compose R₁ R₂ = FateV2.Rules.LawRule.compose R₁ R₂ := rfl
 
-/-- ⭐ **C4b**：把 `Fate.LawRule.compose_comm` 直接用在本模块的 `compose` 上。 -/
+/-- ⭐ **C4b**：把 `LawRule.compose_comm` 直接用在本模块的 `compose` 上。 -/
 theorem compose_comm_via_lawRule
     {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
     (R₁ R₂ : LawRule C X Y) : compose R₁ R₂ = compose R₂ R₁ :=
   FateV2.Rules.LawRule.compose_comm R₁ R₂
 
-/-- ⭐ **C4c**：把 `Fate.LawRule.compose_top` 用在本模块的 `compose` 上。 -/
+/-- ⭐ **C4c**：把 `LawRule.compose_top` 用在本模块的 `compose` 上。 -/
 theorem compose_top_via_lawRule
     {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
     (R : LawRule C X Y) :

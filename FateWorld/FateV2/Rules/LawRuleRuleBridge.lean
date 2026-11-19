@@ -229,9 +229,9 @@ theorem no_toRule_of_not_isPoint (R : LawRule C X Y) (h : ¬ IsPoint R) :
      `Rule.toLaw` 的像里 ⟺ 其基集是单点集。
   4. `genRule_image_iff`：`LawRulePointDecidability.genRule` 落在像里 ⟺ 生成元条件。
   5. `not_mem_image_of_empty`：某处允许集为空 ⟹ 不可能来自 `Rule`。
-  6. `linRegRule_toRule_kernel`：`Fate.LawRuleInstances.linRegRule` 经 `toRule` 的核是 `δ_{a·x}`。
+  6. `linRegRule_toRule_kernel`：`LawRuleInstances.linRegRule` 经 `toRule` 的核是 `δ_{a·x}`。
   7. `linRegRule_wrong_not_mem_image`：数据不兼容的回归规则**不在**像里。
-  8. `flipRule_toRule_kernel`：`Fate.LawRuleInstances.flipRule` 经 `toRule` 的核是 `δ_{flip2 i}`。
+  8. `flipRule_toRule_kernel`：`LawRuleInstances.flipRule` 经 `toRule` 的核是 `δ_{flip2 i}`。
   9. `flipRule_fixRule_compose_not_mem_image`：翻转×固定组合处处为空 ⟹ 不在像里。
  10. `seqDet_toRule_kernel`：`LawRuleSequence.seqDet` 与 `toRule` **自然交换**。
  11. `seqDet_id_toRule_kernel`：上条在恒等步进下的特例。

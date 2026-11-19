@@ -19,7 +19,7 @@ import Mathlib.Tactic
 
 ## 内容
 
-在 `Fate.Stage2.ErrorBoundE3` 的代数核心
+在 `FateV2.Error.Stage2.ErrorBoundE3` 的代数核心
 （`risk_model_error_bound`：`|R P̂ - R P*| ≤ L·d(P̂,P) + L·d(P,P*)`）之上，
 交付**误差的两项分解**与 **`2L` 系数形式**。
 

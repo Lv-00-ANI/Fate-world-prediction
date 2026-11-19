@@ -49,8 +49,8 @@
 
   ## 3. 与既有模块的关系（**未修改任何已有文件**）
 
-  * 消费 `Fate.SigmaEstimation.varOf`、`meanOf`、`variance_meanOf`（**只读**）。
-  * 消费 `Fate.ObsErrorRandom.estimator_error_bound_random`（**只读**，见 §4 的展望）。
+  * 消费 `FateV2.Error.SigmaEstimation.varOf`、`meanOf`、`variance_meanOf`（**只读**）。
+  * 消费 `ObsErrorRandom.estimator_error_bound_random`（**只读**，见 §4 的展望）。
   * 与 `Fate/WorldModelCapstone.lean` §1.3 的陈述**一致**，不改其内容。
 
   ## 4. 展望（本文件**未**做的事，如实登记）

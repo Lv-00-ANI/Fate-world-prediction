@@ -88,7 +88,7 @@ namespace View3FiberMass
 set_option linter.unusedSectionVars false
 
 open Finset FateV2.Predict.DAGFactorization
-open Fate.View3 (mergeOn mergeOn_Z mergeOn_X mergeOn_Y mergeOn_else)
+open FateV2.Predict.View3 (mergeOn mergeOn_Z mergeOn_X mergeOn_Y mergeOn_else)
 
 universe u
 
@@ -129,7 +129,7 @@ def FiberProdCI (X Y Z : Finset V) (p : (V → α) → ℝ) : Prop :=
 
 /-- ⭐⭐ **`FiberProdCI` 在 `r = w` 上退化回 `View3.FiberCI`**（本文件与主文件的接口）。 -/
 theorem fiberProdCI_implies_fiberCI {X Y Z : Finset V} {p : (V → α) → ℝ}
-    (h : FiberProdCI X Y Z p) : Fate.View3.FiberCI X Y Z p := by
+    (h : FiberProdCI X Y Z p) : FateV2.Predict.View3.FiberCI X Y Z p := by
   intro w
   obtain ⟨lam, fA, fB, hpt⟩ := h w w
   exact ⟨lam, fA, fB, hpt⟩

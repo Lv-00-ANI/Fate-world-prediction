@@ -1,9 +1,9 @@
 /-
-  `Fate.PipelineLipschitz`
+  `PipelineLipschitz`
   ========================================================================
 
   ## 目的
-  `Fate.PipelineTendstoGen.pipeline_tendsto_gen` 证明了「**线性**仿射收缩」
+  `FateV2.Loop.PipelineTendstoGen.pipeline_tendsto_gen` 证明了「**线性**仿射收缩」
   `gstep η θstar θ = (1-η) • θ + η • θstar` 的迭代收敛到 `θstar`。
   本文件提供它的 **非线性对应物** 所需的**唯一分析核心**：
   「`K`-Lipschitz 收缩（`K < 1`）的迭代，相邻两项距离按 `K^n` 几何衰减」。
@@ -161,7 +161,7 @@ theorem lipschitz_iterate_dist_geometric
   覆盖线性情形；它不声称管线的非线性推广已被证明。**
   =========================================================================== -/
 
-/-- 管线单步（与 `Fate.PipelineTendstoGen.gstep` 逐字同一定义；
+/-- 管线单步（与 `FateV2.Loop.PipelineTendstoGen.gstep` 逐字同一定义；
 此处独立复述以避免引入 `PipelineTendstoGen` 的重依赖，便于单独审计）。 -/
 noncomputable def gstep {V : Type*} [AddCommGroup V] [Module ℝ V]
     (η : ℝ) (θstar : V) (θ : V) : V := (1 - η) • θ + η • θstar

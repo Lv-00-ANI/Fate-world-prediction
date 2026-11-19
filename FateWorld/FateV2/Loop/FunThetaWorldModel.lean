@@ -13,7 +13,7 @@ import FateWorld.FateV2.Loop.EndToEnd
 -/
 
 /-! ===========================================================================
-  `Fate.FunThetaWorldModel` —— **T-1b：θ 是函数（在 WorldModel 里的真实例）**
+  `FunThetaWorldModel` —— **T-1b：θ 是函数（在 WorldModel 里的真实例）**
 
   ## 0  任务与交付
 
@@ -120,7 +120,7 @@ import FateWorld.FateV2.Loop.EndToEnd
   实质贡献在 §5–§6（`funThetaWorld_wellFormed` 及 §6 四条，实测 T4/T5）。
 
   纪律：零 `sorry` / 零 `admit` / 零 `axiom`；**未修改任何既有模块**；
-  本文件只导入 `Fate.EndToEnd`。
+  本文件只导入 `EndToEnd`。
   =========================================================================== -/
 
 namespace FateV2.Loop

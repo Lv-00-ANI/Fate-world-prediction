@@ -366,12 +366,12 @@ end FateV2.Predict
   在编译器层面被真实引用**
 
   `_audit/count_metrics.ps1:62` 的 G46 真消费口径是纯文本正则
-  `Fate\.<模块基名>\.\w+`。`Fate/Rule1Genuine.lean` 的真实命名空间是 `Fate.R1G`
-  （第 235 行），`Fate/Rule2Genuine.lean` 的是 `Fate.R248`（第 146 行），
+  `Fate\.<模块基名>\.\w+`。`Fate/Rule1Genuine.lean` 的真实命名空间是 `R1G`
+  （第 235 行），`Fate/Rule2Genuine.lean` 的是 `R248`（第 146 行），
   **两者都不等于模块名** —— 故这两个模块即使被 `import` 也计 0 消费。
 
   `Fate/WiringDoCalcFixed.lean` §6 已把两模块的定理组合进
-  `Fate.Rule1Genuine` / `Fate.Rule2Genuine` 命名空间的定理（证明体真实调用
+  `FateV2.Predict.Rule1Genuine` / `FateV2.Predict.Rule2Genuine` 命名空间的定理（证明体真实调用
   `FateV2.Predict.R1G.ZSCM.*` / `R248.Sem.*`）。**本节**是那些组合定理的消费出口：
   以全限定名调用它们，并接到本文件的 `W7.Consume` 可执行性框架上。
 
@@ -380,14 +380,14 @@ end FateV2.Predict
 
   | # | 名字 | 消费的模块定理 |
   |---|---|---|
-  | 1 | `rule1_premise_executable_via_module` | `Fate.Rule1Genuine.premise_implies_executable` |
-  | 2 | `rule1_premise_cell_form_via_module` | `Fate.Rule1Genuine.premise_implies_cell_form` |
-  | 3 | `rule1_Mdet_via_module` | `Fate.Rule1Genuine.Mdet_premise_exec_and_values` |
-  | 4 | `rule1_no_observational_gap_via_module` | `Fate.Rule1Genuine.premise_implies_no_observational_gap` |
-  | 5 | `rule2_table_via_module` | `Fate.Rule2Genuine.invariant_root_mass_implies_table` |
-  | 6 | `rule2_factor_law_via_module` | `Fate.Rule2Genuine.invariant_implies_factor_and_law` |
-  | 7 | `rule2_chain_closed_form_via_module` | `Fate.Rule2Genuine.chain_table_closed_form` |
-  | 8 | `rule2_chain_executable_via_module` | `Fate.Rule2Genuine.chain_rule2_executable` |
+  | 1 | `rule1_premise_executable_via_module` | `FateV2.Predict.Rule1Genuine.premise_implies_executable` |
+  | 2 | `rule1_premise_cell_form_via_module` | `FateV2.Predict.Rule1Genuine.premise_implies_cell_form` |
+  | 3 | `rule1_Mdet_via_module` | `FateV2.Predict.Rule1Genuine.Mdet_premise_exec_and_values` |
+  | 4 | `rule1_no_observational_gap_via_module` | `FateV2.Predict.Rule1Genuine.premise_implies_no_observational_gap` |
+  | 5 | `rule2_table_via_module` | `FateV2.Predict.Rule2Genuine.invariant_root_mass_implies_table` |
+  | 6 | `rule2_factor_law_via_module` | `FateV2.Predict.Rule2Genuine.invariant_implies_factor_and_law` |
+  | 7 | `rule2_chain_closed_form_via_module` | `FateV2.Predict.Rule2Genuine.chain_table_closed_form` |
+  | 8 | `rule2_chain_executable_via_module` | `FateV2.Predict.Rule2Genuine.chain_rule2_executable` |
 
   零 `sorry` / 零 `admit` / 零 `axiom` / 零 `native_decide`。
 -/
@@ -399,14 +399,14 @@ namespace ConsumeR48
 open FateV2.Error FateV2.Predict.W7.Exec
 
 /-- **出口 1**：`Rule1Premise` ⟹ 表可执行（经
-`Fate.Rule1Genuine.premise_implies_executable`）。 -/
+`FateV2.Predict.Rule1Genuine.premise_implies_executable`）。 -/
 theorem rule1_premise_executable_via_module {Zq Xq Yq : Type} [DecidableEq Zq]
     [DecidableEq Yq] (M : FateV2.Predict.R1G.ZSCM Zq Xq Yq) (h : M.Rule1Premise) :
     Rule1Executable M :=
   FateV2.Predict.Rule1Genuine.premise_implies_executable M h
 
 /-- **出口 2**：逐格闭式（右端不含 `x`），经
-`Fate.Rule1Genuine.premise_implies_cell_form`。 -/
+`FateV2.Predict.Rule1Genuine.premise_implies_cell_form`。 -/
 theorem rule1_premise_cell_form_via_module {Zq Xq Yq : Type} [DecidableEq Zq]
     [DecidableEq Yq] (M : FateV2.Predict.R1G.ZSCM Zq Xq Yq) (h : M.Rule1Premise) (x x0 : Xq)
     (y : Yq) (z : Zq) :
@@ -417,7 +417,7 @@ theorem rule1_premise_cell_form_via_module {Zq Xq Yq : Type} [DecidableEq Zq]
   FateV2.Predict.Rule1Genuine.premise_implies_cell_form M h x x0 y z
 
 /-- **出口 3**：`Mdet` 上「前提 ∧ 可执行 ∧ 表值」，经
-`Fate.Rule1Genuine.Mdet_premise_exec_and_values`。 -/
+`FateV2.Predict.Rule1Genuine.Mdet_premise_exec_and_values`。 -/
 theorem rule1_Mdet_via_module :
     (FateV2.Predict.R1G.Mdet.Rule1Premise ∧ Rule1Executable FateV2.Predict.R1G.Mdet)
       ∧ (FateV2.Predict.R1G.Mdet.doCondZ true true true = 1)
@@ -425,7 +425,7 @@ theorem rule1_Mdet_via_module :
   FateV2.Predict.Rule1Genuine.Mdet_premise_exec_and_values
 
 /-- **出口 4**：可执行性不蕴含 `z` 的删除（否证），经
-`Fate.Rule1Genuine.premise_implies_no_observational_gap`。 -/
+`FateV2.Predict.Rule1Genuine.premise_implies_no_observational_gap`。 -/
 theorem rule1_no_observational_gap_via_module :
     ¬ (∀ (M : FateV2.Predict.R1G.ZSCM Bool Bool Bool) [DecidableEq Bool],
         M.Rule1Premise → Rule1Executable M →
@@ -433,7 +433,7 @@ theorem rule1_no_observational_gap_via_module :
   FateV2.Predict.Rule1Genuine.premise_implies_no_observational_gap
 
 /-- **出口 5**：规则 2 的表读数，经
-`Fate.Rule2Genuine.invariant_root_mass_implies_table`。 -/
+`FateV2.Predict.Rule2Genuine.invariant_root_mass_implies_table`。 -/
 theorem rule2_table_via_module {Zq Xq Yq : Type} [Fintype Zq] [DecidableEq Zq]
     [DecidableEq Yq] (M : R246G3.Sem3.SCM3 Zq Xq Yq)
     (hInv : R248.Sem.MediationInvariant M) (hNorm : R248.Sem.MassOne M)
@@ -445,7 +445,7 @@ theorem rule2_table_via_module {Zq Xq Yq : Type} [Fintype Zq] [DecidableEq Zq]
   FateV2.Predict.Rule2Genuine.invariant_root_mass_implies_table M hInv hNorm hRoot hSup x
 
 /-- **出口 6**：`MediationInvariant` ⟹ 方程分解 ∧ 定律相等，经
-`Fate.Rule2Genuine.invariant_implies_factor_and_law`。 -/
+`FateV2.Predict.Rule2Genuine.invariant_implies_factor_and_law`。 -/
 theorem rule2_factor_law_via_module {Zq Xq Yq : Type} [Fintype Zq] [DecidableEq Zq]
     [DecidableEq Yq] (M : R246G3.Sem3.SCM3 Zq Xq Yq)
     (hInv : R248.Sem.MediationInvariant M) (hNorm : R248.Sem.MassOne M)
@@ -455,14 +455,14 @@ theorem rule2_factor_law_via_module {Zq Xq Yq : Type} [Fintype Zq] [DecidableEq 
           = R246G3.Sem3.doLawXCond M x z y) :=
   FateV2.Predict.Rule2Genuine.invariant_implies_factor_and_law M hInv hNorm hRoot hSup
 
-/-- **出口 7**：`chain` 的闭式表，经 `Fate.Rule2Genuine.chain_table_closed_form`。 -/
+/-- **出口 7**：`chain` 的闭式表，经 `FateV2.Predict.Rule2Genuine.chain_table_closed_form`。 -/
 theorem rule2_chain_closed_form_via_module (x z y : Fin 2) :
     R246G3.Sem3.doLaw2 R246G3.chain x z y = (if z = y then (1 : ℝ) else 0)
       ∧ R246G3.Sem3.doLawXCond R246G3.chain x z y = (if z = y then (1 : ℝ) else 0) :=
   FateV2.Predict.Rule2Genuine.chain_table_closed_form x z y
 
 /-- **出口 8**：`chain` 上规则 2 可执行（`chain` 不满足 `ZIsRoot`，故走
-`Rule2Genuine` 的逐格对拍），经 `Fate.Rule2Genuine.chain_rule2_executable`。 -/
+`Rule2Genuine` 的逐格对拍），经 `FateV2.Predict.Rule2Genuine.chain_rule2_executable`。 -/
 theorem rule2_chain_executable_via_module (x : Fin 2) :
     Rule2Executable R246G3.chain x :=
   FateV2.Predict.Rule2Genuine.chain_rule2_executable x

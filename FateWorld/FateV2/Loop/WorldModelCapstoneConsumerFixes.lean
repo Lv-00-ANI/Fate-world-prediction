@@ -2,8 +2,8 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.WorldModelCapstoneConsumerFixes`
-任务：**【审计 R96 / C8 修复】** 消除 `Fate.WorldModelCapstoneConsumer` 中 C8 的
+模块：`WorldModelCapstoneConsumerFixes`
+任务：**【审计 R96 / C8 修复】** 消除 `WorldModelCapstoneConsumer` 中 C8 的
 同义反复，换为**真有信息**的收缩率定理。
 
 ---------------------------------------------------------------------------
@@ -188,7 +188,7 @@ theorem capstone_closedLoopWorld_contraction_rate
 
 ### §5.3 未做项
 
-* **未**把新定理接进 `Fate.WorldModelCapstoneConsumer` 的其它定理（不改已有模块）。
+* **未**把新定理接进 `WorldModelCapstoneConsumer` 的其它定理（不改已有模块）。
 * **未**处理审计提到的更上游问题（Consumer 自身扇入为 0，即「终点无人使用」）。
   本文件只修 C8 的同义反复这一条，如审计任务范围所述。
 -/

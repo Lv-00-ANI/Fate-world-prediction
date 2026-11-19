@@ -59,9 +59,9 @@ set_option autoImplicit false
   ## 2 诚实边界（**必读**）
 
   1. **本文件不重复定义** `Setoid.ker`、`Quotient`、`PMF` 等基础构造 ——
-     全部复用 Mathlib 与仓内 `Fate.KernelQuotient` / `Fate.MiddleZoneDichotomy`。
+     全部复用 Mathlib 与仓内 `Fate.KernelQuotient` / `MiddleZoneDichotomy`。
   2. **本文件不修改** `Fate.lean`（作者纪律）。若要接入构建，另行在
-     `Fate.lean` 加一行 `import Fate.ObservationUnified` —— **本文件不代做**。
+     `Fate.lean` 加一行 `import ObservationUnified` —— **本文件不代做**。
   3. **三档的「统一」是接口层面的统一**，不是「把一个定理伪装成三个」：
      三档各自的结论类型不同（商商集 / `W → ENNReal` / `ℝ` 误差界），
      这正是 `A14-三档关系分析.md` §2 「三者量纲不同型」的 **Lean 侧证据**。
@@ -81,9 +81,9 @@ set_option autoImplicit false
   | 本文件 | 复用/对应 |
   |---|---|
   | `InversionTier.quotient` | `Fate.KernelQuotient` 的「核–商」一般理论 |
-  | `classOf_eq_iff` | `Fate.KernelQuotient` 的 `Quotient.eq''`；`Fate.MiddleZoneDichotomy` 的 `middleZone_empty_iff_injective` |
+  | `classOf_eq_iff` | `Fate.KernelQuotient` 的 `Quotient.eq''`；`MiddleZoneDichotomy` 的 `middleZone_empty_iff_injective` |
   | `post_*` | `Fate.T43Abduction` 的 `abduction_eq_doLaw_of_sg_indep` 的**形状**（无信息似然 ⟹ 信息被消去）|
-  | `bounded_*` | `Fate.R250ErrorBound` 的 `error_bound_gives_correct_classification` 的**距离版** |
+  | `bounded_*` | `R250ErrorBound` 的 `error_bound_gives_correct_classification` 的**距离版** |
 
   ## 4 ⚠⚠ 第 619 轮修正：删除空洞定理 `tier_output_shape`
 
@@ -205,7 +205,7 @@ theorem liftH_surjOn (I : Inversion W Y) (q : I.quo) : ∃ w, I.liftH q = I.h w 
 
 ⟹ **即**：`h` 单射 ⟹ 商 `I.quo` 的每个类是单点 ⟹ 弱档产物**无损**。
 
-这与 `Fate.MiddleZoneDichotomy.middleZone_empty_iff_injective` 是同一件事的
+这与 `MiddleZoneDichotomy.middleZone_empty_iff_injective` 是同一件事的
 **商表述**：中间地带为空 ⟺ 单射。 -/
 theorem quotient_of_injective_is_trivial (I : Inversion W Y)
     (hinj : Function.Injective I.h) (w w' : W) :
@@ -296,7 +296,7 @@ end PosteriorData
 
 /-! ### §OU.4 强档（`bounded`）：反推产物 = 估计 + 误差界 -/
 
-/- **⚠ 与 `Fate.R250ErrorBound` 的关系**：那边用 `ℝ` 上的符号 `sgn` 判定分类；
+/- **⚠ 与 `R250ErrorBound` 的关系**：那边用 `ℝ` 上的符号 `sgn` 判定分类；
 本文件用**距离** `dist` 判定「估计是否落在真值的误差球内」。**两者平行**，
 本文件取距离版是因为它直接对应「潜变量空间 `W` 上的误差」。 -/
 
@@ -346,7 +346,7 @@ theorem est_within_bound (B : BoundedData W Y) (y : Y) (w : W) (hw : B.h w = y) 
 
 ⟹ **这是「有界噪声下反推只能到 `2ε` 精度」的精确陈述** ——
 也解释了为什么强档需要**额外的间隔条件**（`2ε < margin`，见
-`Fate.R250ErrorBound.error_bound_gives_correct_classification`）才能给出**离散**结论。 -/
+`R250ErrorBound.error_bound_gives_correct_classification`）才能给出**离散**结论。 -/
 theorem candidates_close (B : BoundedData W Y) (y : Y) (w₁ w₂ : W)
     (h₁ : B.h w₁ = y) (h₂ : B.h w₂ = y) :
     dist w₁ w₂ ≤ 2 * B.ε := by

@@ -51,7 +51,7 @@ open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 
-open Fate.S9Fixed
+open FateV2.Predict.S9Fixed
 
 -- ⭐ sink_peel 的一般反证：
 -- 若 bar T f 依赖 x，而 f s 不依赖 x（在 x y 上相等），则 sink_peel 不成立
@@ -65,7 +65,7 @@ theorem sink_peel_general_refutation {T : Finset V} {s : V} (hsT : s ∈ T)
   intro h
   have hx := h x
   have hy := h y
-  have hind := Fate.C18.bar_sdiff_indep hsT hfs hft
+  have hind := FateV2.Predict.C18.bar_sdiff_indep hsT hfs hft
     (FateV2.Predict.DAGFactorization.unpin s x (x s)) (FateV2.Predict.DAGFactorization.unpin s y (y s))
   -- bar T f x = A * f s x, bar T f y = A * f s y, 且 f s x = f s y
   apply hne

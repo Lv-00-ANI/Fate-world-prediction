@@ -32,13 +32,13 @@
 
 | 已证伪 / 已否决 | 本文件 |
 |---|---|
-| 塔 `mass S (mass T p) = mass (S∪T) p` | ❌ **全文不出现 `mass`**（不 `import Fate.DAGFactorization`）|
+| 塔 `mass S (mass T p) = mass (S∪T) p` | ❌ **全文不出现 `mass`**（不 `import DAGFactorization`）|
 | `RouteB.LMG` / `RouteB.Factorizes` | ❌ 不用 |
 | `Factorizes_implies_LMG_Gap` | ❌ 不用 |
 | `G1`（`pa ∩ nd = ∅`）| ❌ 不用（`g1_false`）|
 | `DAG.induce` | ❌ 不需要（不做顶点剥离、不做归纳）|
 
-**唯一的概率论假设**是仓库既有的**正确**口径 `Fate.T1A2.FactorizesOn`
+**唯一的概率论假设**是仓库既有的**正确**口径 `FateV2.Predict.T1A2.FactorizesOn`
 （读集 `{v} ∪ pa(v)`，含 `{v}`，带正性）。
 
 ## 3 本文件交付（零 `sorry` / 零 `axiom` / 零 `mass`）
@@ -131,7 +131,7 @@ def DependsOn (f : (V → Bool) → ℝ) (u : V) : Prop :=
 
 /-- `ReadsOnlyOn S f` ⟹ `f` 不依赖 `S` 之外的任何坐标。 -/
 theorem not_dependsOn_of_reads {S : Finset V} {f : (V → Bool) → ℝ}
-    (hreads : Fate.T1A2.ReadsOnlyOn S f) {u : V} (hu : u ∉ S) : ¬ DependsOn f u := by
+    (hreads : FateV2.Predict.T1A2.ReadsOnlyOn S f) {u : V} (hu : u ∉ S) : ¬ DependsOn f u := by
   rintro ⟨x, y, hxy, hne⟩
   exact hne (hreads x y fun w hwS => hxy w (fun hwu => hu (hwu ▸ hwS)))
 
@@ -146,7 +146,7 @@ $$\mathrm{ReadsOnlyOn}\;S\;f
 
 ⟹ 「支撑被 `S` 包住」**完全用「纤维内是否变动」表述**，无任何求和。 -/
 theorem reads_iff_no_dependsIn {S : Finset V} {f : (V → Bool) → ℝ} :
-    Fate.T1A2.ReadsOnlyOn S f ↔ ∀ u, u ∉ S → ¬ DependsIn S f u := by
+    FateV2.Predict.T1A2.ReadsOnlyOn S f ↔ ∀ u, u ∉ S → ¬ DependsIn S f u := by
   constructor
   · rintro hreads u - ⟨x, y, hxy, -, hne⟩
     exact hne (hreads x y hxy)
@@ -173,9 +173,9 @@ theorem reads_iff_no_dependsIn {S : Finset V} {f : (V → Bool) → ℝ} :
 /-- ⭐⭐⭐⭐⭐ **`V6.1` 单侧乘积只读本区**。 -/
 theorem prod_reads_left {S ZA : Finset V} {reads : V → Finset V}
     (π : V → (V → Bool) → ℝ)
-    (hreads : ∀ v, Fate.T1A2.ReadsOnlyOn (reads v) (π v))
+    (hreads : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (reads v) (π v))
     (hsub : ∀ v ∈ S, reads v ⊆ ZA) :
-    Fate.T1A2.ReadsOnlyOn ZA (fun x => ∏ v ∈ S, π v x) := by
+    FateV2.Predict.T1A2.ReadsOnlyOn ZA (fun x => ∏ v ∈ S, π v x) := by
   intro x y hxy
   refine Finset.prod_congr rfl fun v hv => ?_
   exact hreads v x y fun w hw => hxy w (hsub v hv hw)
@@ -209,11 +209,11 @@ theorem prod_split_separable_const {V₀ V₁ V₂ ZA ZB : Finset V} {reads : V 
     (h01 : Disjoint V₀ V₁) (h02 : Disjoint V₀ V₂) (h12 : Disjoint V₁ V₂)
     (hcover : V₀ ∪ V₁ ∪ V₂ = univ)
     (π : V → (V → Bool) → ℝ)
-    (hreads : ∀ v, Fate.T1A2.ReadsOnlyOn (reads v) (π v))
+    (hreads : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (reads v) (π v))
     (h0 : ∀ v ∈ V₀, reads v = ∅)
     (hA : ∀ v ∈ V₁, reads v ⊆ ZA) (hB : ∀ v ∈ V₂, reads v ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, (∏ v, π v x) = f x * g x := by
   have hconst : ∀ v ∈ V₀, ∀ x y : V → Bool, π v x = π v y := by
     intro v hv x y
@@ -236,10 +236,10 @@ theorem prod_split_separable_const {V₀ V₁ V₂ ZA ZB : Finset V} {reads : V 
 theorem prod_split_separable {V₁ V₂ ZA ZB : Finset V} {reads : V → Finset V}
     (hdisj : Disjoint V₁ V₂) (hcover : V₁ ∪ V₂ = univ)
     (π : V → (V → Bool) → ℝ)
-    (hreads : ∀ v, Fate.T1A2.ReadsOnlyOn (reads v) (π v))
+    (hreads : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (reads v) (π v))
     (hA : ∀ v ∈ V₁, reads v ⊆ ZA) (hB : ∀ v ∈ V₂, reads v ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, (∏ v, π v x) = f x * g x := by
   refine ⟨(fun x => ∏ v ∈ V₁, π v x), (fun x => ∏ v ∈ V₂, π v x),
     prod_reads_left (S := V₁) (ZA := ZA) π hreads hA,
@@ -249,13 +249,13 @@ theorem prod_split_separable {V₁ V₂ ZA ZB : Finset V} {reads : V → Finset 
 /-! ===========================================================================
   §3 **`FactorizesOn` 接驳（`V6.4`）**
 
-  `Fate.T1A2.FactorizesOn G p` 给出 `π`、`ReadsOnlyOn (insert v (pa v)) (π v)`、
+  `FateV2.Predict.T1A2.FactorizesOn G p` 给出 `π`、`ReadsOnlyOn (insert v (pa v)) (π v)`、
   `p x = ∏ v, π v x`。本节只做「读集 = `insert v (pa v)`」的接驳。
   =========================================================================== -/
 
 /-- ⭐⭐⭐⭐⭐ **`V6.4`：`FactorizesOn` + 图侧三段分族 ⟹ 可分离**。 -/
 theorem factorizesOn_separable_const {G : DAG V} {p : (V → Bool) → ℝ}
-    (hfac : Fate.T1A2.FactorizesOn G p)
+    (hfac : FateV2.Predict.T1A2.FactorizesOn G p)
     {V₀ V₁ V₂ ZA ZB : Finset V}
     (h01 : Disjoint V₀ V₁) (h02 : Disjoint V₀ V₂) (h12 : Disjoint V₁ V₂)
     (hcover : V₀ ∪ V₁ ∪ V₂ = univ)
@@ -263,7 +263,7 @@ theorem factorizesOn_separable_const {G : DAG V} {p : (V → Bool) → ℝ}
     (hA : ∀ v ∈ V₁, insert v (G.parents v) ⊆ ZA)
     (hB : ∀ v ∈ V₂, insert v (G.parents v) ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, p x = f x * g x := by
   obtain ⟨π, hreads, -, hprod⟩ := hfac
   obtain ⟨f, g, hf, hg, hsplit⟩ :=
@@ -273,12 +273,12 @@ theorem factorizesOn_separable_const {G : DAG V} {p : (V → Bool) → ℝ}
 
 /-- ⭐⭐⭐⭐ **`V6.4'`：两段版**（在 DAG 上 `V₀ = ∅` 时够用）。 -/
 theorem factorizesOn_separable {G : DAG V} {p : (V → Bool) → ℝ}
-    (hfac : Fate.T1A2.FactorizesOn G p)
+    (hfac : FateV2.Predict.T1A2.FactorizesOn G p)
     {V₁ V₂ ZA ZB : Finset V} (hdisj : Disjoint V₁ V₂) (hcover : V₁ ∪ V₂ = univ)
     (hA : ∀ v ∈ V₁, insert v (G.parents v) ⊆ ZA)
     (hB : ∀ v ∈ V₂, insert v (G.parents v) ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, p x = f x * g x := by
   obtain ⟨π, hreads, -, hprod⟩ := hfac
   obtain ⟨f, g, hf, hg, hsplit⟩ :=
@@ -322,9 +322,9 @@ def SupportCut (G : DAG V) (X Y Z : Finset V) : Prop :=
 **⚠ `dSep` 不在此处消费**：它通过「`SupportCut` 是否可得」进入（§5/§6）。
 本定理是**纯代数 + 图读集**的接驳，零缺口。 -/
 theorem sep_of_supportCut {G : DAG V} {p : (V → Bool) → ℝ} {X Y Z : Finset V}
-    (hfac : Fate.T1A2.FactorizesOn G p) (hcut : SupportCut G X Y Z) :
+    (hfac : FateV2.Predict.T1A2.FactorizesOn G p) (hcut : SupportCut G X Y Z) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn (X ∪ Z) f ∧ Fate.T1A2.ReadsOnlyOn (Y ∪ Z) g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn (X ∪ Z) f ∧ FateV2.Predict.T1A2.ReadsOnlyOn (Y ∪ Z) g ∧
       ∀ x, p x = f x * g x := by
   obtain ⟨V₀, V₁, V₂, h01, h02, h12, hcov, h0, hA, hB, -, -⟩ := hcut
   exact factorizesOn_separable_const hfac h01 h02 h12 hcov h0 hA hB
@@ -483,7 +483,7 @@ $$\text{chainDAG3.dSep }\{0\}\{2\}|\{1\},\quad
 **全程无 `mass`、无塔、无 `DAG.induce`。** -/
 theorem chain3_factorizesOn_condMul
     (p : (Fin 3 → Bool) → ℝ)
-    (hfac : Fate.T1A2.FactorizesOn chainDAG3 p)
+    (hfac : FateV2.Predict.T1A2.FactorizesOn chainDAG3 p)
     (hdsep : chainDAG3.dSep {(0 : Fin 3)} {(2 : Fin 3)} {(1 : Fin 3)}) :
     FateV2.Predict.FinCondIndep.CondMul
       (fun q : (Bool × Bool) × Bool => p (unpack q.1.1 q.2 q.1.2)) := by

@@ -26,11 +26,11 @@ import FateWorld.FateV2.Predict.LawRuleSatisfiabilityConsumer
 
   三候选模块 `Fate/LawRuleSequence` / `Fate/LawRuleMarginal` /
   `Fate/LawRuleUnion` **都 `import FateV2.Rules.LawRule`**。
-  若把本节写进 `Fate.LawRule` 内部，则须反过来 `import` 这三者 ——
+  若把本节写进 `LawRule` 内部，则须反过来 `import` 这三者 ——
   构成 **循环 import**，Lean 直接拒绝，构建必然失败。
 
   故本节在此**独立扇入模块**中落地：它是唯一既能真消费三模块、
-  又不改动任何既有模块内容的形状。`Fate.LawRule` 本身**一字未改**。
+  又不改动任何既有模块内容的形状。`LawRule` 本身**一字未改**。
 
   ## 内容
 
@@ -252,7 +252,7 @@ variable [MeasurableSpace Y.Carrier]
 
 /-- ⭐⭐ **W1：【并 = 泛化】×【严格放宽不是单点档】**
 （消费 `Fate.LawRuleUnion.unionLaw_eq_generalize` 与
-`Fate.LawRule.not_isPoint_of_strict_generalize`）。
+`LawRule.not_isPoint_of_strict_generalize`）。
 
 **新内容**：`unionLaw` 的「选择语义」在**严格**情形下**破坏单点档** ——
 这条在 `LawRuleUnion` 里没有（那里只有 `unionLaw_not_point`，用的是另一个
@@ -272,7 +272,7 @@ theorem unionLaw_not_isPoint_of_strict_subset (R1 R2 : LawRule C X Y)
 
 /-- ⭐⭐ **W2：【并 = 泛化】×【单点规则塌缩 `sInf`】**
 （消费 `Fate.LawRuleUnion.unionLaw_eq_generalize` 与
-`Fate.LawRuleSatisfiabilityConsumer.sInf_pair_eq_of_isPoint`）。
+`LawRuleSatisfiabilityConsumer.sInf_pair_eq_of_isPoint`）。
 
 **新内容**：设 `R1 ⊆ R2`（故 `unionLaw R1 R2 = generalize R1 R2 h`），
 若两元族 `{R2, unionLaw R1 R2}` 可满足，则其 `sInf` **恰为 `R2`**。
@@ -287,8 +287,8 @@ theorem sInf_pair_unionLaw_eq_of_subset (R1 R2 : LawRule C X Y)
   LawRuleSatisfiabilityConsumer.sInf_pair_eq_of_isPoint (R := R2) (G := unionLaw R1 R2) hp hc
 
 /-- ⭐⭐ **W3：【相容 ⟺ 逐点相同】×【含单点规则的可满足族交塌缩】**
-（消费 `Fate.LawRule.compat_iff_eq` 与
-`Fate.LawRuleSatisfiabilityConsumer.eq_sInf_of_isPoint_mem`）。
+（消费 `LawRule.compat_iff_eq` 与
+`LawRuleSatisfiabilityConsumer.eq_sInf_of_isPoint_mem`）。
 
 **新内容**：两条单点规则若 `ComposeCompat`（逐点交非空），则两元族
 `{R₁, R₂}` 的 `sInf` **同时等于 `R₁` 和 `R₂`**。
@@ -347,8 +347,8 @@ def PairCompatible (R1 R2 : LawRule C X Y) : Prop :=
 **真正的组合点**（三条来自**不同模块/不同节**的定理嵌在一条证明里）：
 1. `Fate.LawRuleSatisfiability.compose_nonempty_iff` 把「`compose` 非空」拆成
    「存在公共成员」—— 用于 (a)；
-2. `Fate.LawRule.compat_iff_eq` 把 `ComposeCompat` 转成「逐点相同」—— 用于 (b)；
-3. `Fate.LawRuleSatisfiabilityConsumer.eq_sInf_of_isPoint_mem` 把族交塌缩到单点
+2. `LawRule.compat_iff_eq` 把 `ComposeCompat` 转成「逐点相同」—— 用于 (b)；
+3. `LawRuleSatisfiabilityConsumer.eq_sInf_of_isPoint_mem` 把族交塌缩到单点
    规则上 —— 用于 (c)；其相容性前件 **(a) 本身是本定理证的**，不是白拿的。
 
 ⚠ 本定理的 (a) 前件只有 `ComposeCompat`，结论里出现了**新的**谓词

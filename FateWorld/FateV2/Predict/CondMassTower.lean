@@ -374,13 +374,13 @@ theorem condMass_eq_one_of_subset {S T : Finset V} {p : (V → α) → ℝ} {y :
   field_simp
 
 /-! ===========================================================================
-  §6  R-40 接线：`mass` 递归分解 ➜ `ChainBudget`（**消费 `Fate.ChainErrorBudget`**）
+  §6  R-40 接线：`mass` 递归分解 ➜ `ChainBudget`（**消费 `ChainErrorBudget`**）
 
   本节为 **R-40 Top 86-100 接线**新增（纯追加，不触碰 §1-§5 任何声明）。
 
   ## 接线目的
 
-  `Fate.ChainErrorBudget`（本节之前 external_refs = 0）里的 `ChainBudget` 是一个
+  `ChainErrorBudget`（本节之前 external_refs = 0）里的 `ChainBudget` 是一个
   **纯代数**的「三段预算」结构（`est` / `learn` / `steady` / `total` + `sum` /
   `consistent`），并提供分量上界引理 `sum_first_le_budget` 等。
 
@@ -428,7 +428,7 @@ theorem mass_insert_split {h : V} {S : Finset V} (sh : h ∉ S)
 ⚠ 为避免对 `α` 非空性作额外假设，本条采用**直接刻度**：
 `est := mass S p x`，`learn := 0`，`steady := 0`，`total := mass S p x`。 -/
 noncomputable def chainBudgetOfMass (p : (V → α) → ℝ) (x : V → α) :
-    _root_.Fate.ChainErrorBudget.ChainBudget :=
+    _root_.ChainErrorBudget.ChainBudget :=
   { est := mass ∅ p x
     learn := 0
     steady := 0
@@ -437,14 +437,14 @@ noncomputable def chainBudgetOfMass (p : (V → α) → ℝ) (x : V → α) :
 /-- **上述 `ChainBudget` 是 `consistent` 的。** -/
 theorem chainBudgetOfMass_consistent (p : (V → α) → ℝ) (x : V → α) :
     (chainBudgetOfMass p x).consistent := by
-  unfold _root_.Fate.ChainErrorBudget.ChainBudget.consistent _root_.Fate.ChainErrorBudget.ChainBudget.sum
+  unfold _root_.ChainErrorBudget.ChainBudget.consistent _root_.ChainErrorBudget.ChainBudget.sum
   show mass ∅ p x = mass ∅ p x + 0 + 0
   ring
 
 /-- **接上 `sum_first_le_budget`：估计分量 ≤ 总预算。** -/
 theorem chainBudgetOfMass_first_le (p : (V → α) → ℝ) (x : V → α) :
     mass ∅ p x ≤ (chainBudgetOfMass p x).total :=
-  _root_.Fate.ChainErrorBudget.ChainBudget.sum_first_le_budget
+  _root_.ChainErrorBudget.ChainBudget.sum_first_le_budget
     (chainBudgetOfMass_consistent p x) le_rfl le_rfl
 
 /-- **`mass ∅` 与 `α` 的基数关系（把 `mass` 接到可数刻度上）。**

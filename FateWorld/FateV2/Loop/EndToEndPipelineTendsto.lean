@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.WorldModelPipeline
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndPipelineTendsto` —— **把端到端闭环接到收敛定理**（T858A-v2）
+  `EndToEndPipelineTendsto` —— **把端到端闭环接到收敛定理**（T858A-v2）
   ===========================================================================
 
   ## 0  本文件补的到底是哪一条缺口
@@ -30,7 +30,7 @@ import FateWorld.FateV2.Loop.WorldModelPipeline
   | `linWorld_endToEndIter_closed` | 偏差闭式 `θ_n - θ* = (1-η)^n (θ₀ - θ*)` |
 
   **但它没有 `Tendsto`**——源码 §0 的诚实边界原话是
-  「不声称收敛——收敛已在 `Fate.ThetaConvergence` 中独立给出」。
+  「不声称收敛——收敛已在 `ThetaConvergence` 中独立给出」。
 
   本文件补的正是最后这一步：**把 `PipelineTendstoGen.pipeline_tendsto_gen`
   的极限结论搬到 `endToEndIter` 上**，得到
@@ -214,7 +214,7 @@ $$x \ne 0 \;\wedge\; |1-\eta| < 1 \;\Longrightarrow\;
   \texttt{endToEndIter}\ \mathrm{linWorld}\ \dots\ n\ \theta_0 \;\longrightarrow\; \theta^{*} .$$
 
 **⭐ 这是已入库 `EndToEndPipelineBridge` 明确**未做**的那一步**
-（其 §0 原话：「不声称收敛」「收敛已在 `Fate.ThetaConvergence` 中独立给出」——
+（其 §0 原话：「不声称收敛」「收敛已在 `ThetaConvergence` 中独立给出」——
 但那是在 `fstep`／`pipelineN` 上，**不是**在 `endToEndIter` 上）。
 本定理把它**真的**落到端到端四环闭环的迭代上。
 

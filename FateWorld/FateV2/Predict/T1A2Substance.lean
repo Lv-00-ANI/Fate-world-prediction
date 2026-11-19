@@ -99,7 +99,7 @@ import FateWorld.FateV2.Predict.FinCondIndep
 import Mathlib.Tactic
 
 open FateV2.Modeling.Graph
-open Fate.T1A2
+open FateV2.Predict.T1A2
 open FateV2.Predict.FinCondIndep
 
 namespace FateV2.Predict.T1A2Substance
@@ -130,17 +130,17 @@ open FateV2.Modeling
 
 /-- ⭐ **叉图 `2 → 1 → 0`（≅ `0 ← 1 → 2`）**：`commonCauseDAG` 的别名。
 
-`acyclic` 由 `Fate.T1A1Graphs.commonCauseEdge_key`（每步 `Fin.val` 严格递减）给出。 -/
-abbrev forkDAG : DAG (Fin 3) := Fate.T1A1Graphs.commonCauseDAG
+`acyclic` 由 `FateV2.Predict.T1A1Graphs.commonCauseEdge_key`（每步 `Fin.val` 严格递减）给出。 -/
+abbrev forkDAG : DAG (Fin 3) := FateV2.Predict.T1A1Graphs.commonCauseDAG
 
 /-- 边 `2 → 1`（共同原因 `2` 指向分量 `1`）。 -/
 theorem forkDAG_edge_two_one : forkDAG.edge (2 : Fin 3) 1 := by
-  unfold forkDAG Fate.T1A1Graphs.commonCauseDAG Fate.T1A1Graphs.commonCauseEdge
+  unfold forkDAG FateV2.Predict.T1A1Graphs.commonCauseDAG FateV2.Predict.T1A1Graphs.commonCauseEdge
   decide
 
 /-- 边 `1 → 0`（分量 `1` 指向分量 `0`）。 -/
 theorem forkDAG_edge_one_zero : forkDAG.edge (1 : Fin 3) 0 := by
-  unfold forkDAG Fate.T1A1Graphs.commonCauseDAG Fate.T1A1Graphs.commonCauseEdge
+  unfold forkDAG FateV2.Predict.T1A1Graphs.commonCauseDAG FateV2.Predict.T1A1Graphs.commonCauseEdge
   decide
 
 /-- ⭐ **父集机检**：`pa(0) = {1}` —— 分量 `0` 的唯一父亲是分量 `1`。 -/
@@ -456,7 +456,7 @@ theorem factorizesOn_to_components (p : (Fin 3 → Bool) → ℝ)
 （例如与 `rho` 的取值配合）而不必反复 `unfold forkDAG`。 -/
 theorem factorizesOn_fork_pos (p : (Fin 3 → Bool) → ℝ)
     (h : FactorizesOn forkDAG p) (x : Fin 3 → Bool) : 0 < p x :=
-  Fate.T1A2.FactorizesOn.pos h x
+  FateV2.Predict.T1A2.FactorizesOn.pos h x
 
 /-- **局部性质**：因子分解的 `p` 的因子 `pi v` 只读 `{v} ∪ pa(v)`，
 **且整族因子正性可分离** —— 存在 `pi` 同时满足读集约束、正性与乘积等式。
@@ -491,12 +491,12 @@ theorem components_ne_zero :
 
 **证明**：`FactorizesOn.pos` 强制 `0 < p x`，但 `p x = 0`。
 
-**⚠ 与 `Fate.T1A2.factorizesOn_not_trivial` 的不同**：那条在 `Fin 2` 的空图上取
+**⚠ 与 `FateV2.Predict.T1A2.factorizesOn_not_trivial` 的不同**：那条在 `Fin 2` 的空图上取
 `∃` 形式；本条钉在**叉图** `forkDAG`（`Fin 3`、两条边）上取 `¬` 形式，
 是主定理所在图的**非空洞性见证**。 -/
 theorem forkDAG_no_zero_factorization :
     ¬ FactorizesOn forkDAG (fun _ : Fin 3 → Bool => (0 : ℝ)) :=
-  Fate.T1A2.not_factorizesOn_of_exists_zero (fun _ => false) rfl
+  FateV2.Predict.T1A2.not_factorizesOn_of_exists_zero (fun _ => false) rfl
 
 /-- **消失点 ⟹ 不可因子分解（叉图版）**：若 `p` 在某配置上取 `0`，
 则 `p` 不在叉图上因子分解。
@@ -505,7 +505,7 @@ theorem forkDAG_no_zero_factorization :
 中间靠 `FactorizesOn.pos` 的逐点正性，是真正的推理步。 -/
 theorem forkDAG_not_factorizesOn_of_zero (p : (Fin 3 → Bool) → ℝ)
     (x : Fin 3 → Bool) (hx : p x = 0) : ¬ FactorizesOn forkDAG p :=
-  Fate.T1A2.not_factorizesOn_of_exists_zero x hx
+  FateV2.Predict.T1A2.not_factorizesOn_of_exists_zero x hx
 
 /-- **两类谓词在叉图上的联合刻画**：`FactorizesOn` 蕴含 `Components`，
 且 `Components` 非空洞 —— 把 §6、§7 的结论打包成一条可复用的接口。 -/
@@ -541,7 +541,7 @@ theorem fork_separable_and_components (p : (Fin 3 → Bool) → ℝ)
         (∀ v x, 0 < pi v x) ∧
         ∀ S : Finset (Fin 3), p x = (∏ v ∈ S, pi v x) * (∏ v ∈ Sᶜ, pi v x)) ∧
       Components p :=
-  ⟨Fate.T1A2CI.factorizesOn_separable h x, factorizesOn_to_components p h⟩
+  ⟨FateV2.Predict.T1A2CI.factorizesOn_separable h x, factorizesOn_to_components p h⟩
 
 /-- **叉图上的严格正性与三因子形式同时成立**：`p` 在叉图上因子分解，则
 `p` 处处正 **且** 有三个因子形式（`Components`）。
@@ -562,7 +562,7 @@ theorem fork_pos_and_components (p : (Fin 3 → Bool) → ℝ)
 theorem fork_ne_zero_and_components (p : (Fin 3 → Bool) → ℝ)
     (h : FactorizesOn forkDAG p) :
     (∀ x : Fin 3 → Bool, p x ≠ 0) ∧ Components p :=
-  ⟨Fate.T1A2CI.factorizesOn_ne_zero h, factorizesOn_to_components p h⟩
+  ⟨FateV2.Predict.T1A2CI.factorizesOn_ne_zero h, factorizesOn_to_components p h⟩
 
 /-- **可分离 与 三因子形式 与 正性 三者同时成立**：
 把 §8 前三条合成一条**可复用的接口**，前件仍只有 `FactorizesOn forkDAG p`。
@@ -579,9 +579,9 @@ theorem fork_interface (p : (Fin 3 → Bool) → ℝ)
         (∀ v x, 0 < pi v x) ∧
         ∀ S : Finset (Fin 3), p x = (∏ v ∈ S, pi v x) * (∏ v ∈ Sᶜ, pi v x)) :=
   ⟨factorizesOn_fork_pos p h,
-   Fate.T1A2CI.factorizesOn_ne_zero h,
+   FateV2.Predict.T1A2CI.factorizesOn_ne_zero h,
    factorizesOn_to_components p h,
-   Fate.T1A2CI.factorizesOn_separable h x⟩
+   FateV2.Predict.T1A2CI.factorizesOn_separable h x⟩
 
 
 end FateV2.Predict.T1A2Substance

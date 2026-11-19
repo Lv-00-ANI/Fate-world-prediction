@@ -26,7 +26,7 @@ import Mathlib.Tactic.Linarith
   ## 0 本文件是什么 / 不是什么
 
   **是什么**：一条**与前 16 条视角都不同**的证明策略，**全程零 `sorry`**，
-  且**一个 `mass` 都不用**（不用 `Fate.DAGFactorization.mass`，不出现任何
+  且**一个 `mass` 都不用**（不用 `DAGFactorization.mass`，不出现任何
   `mass S (mass T p)` 形式的塔）。§7 有机器可核验的对照表。
 
   **不是什么**：
@@ -38,7 +38,7 @@ import Mathlib.Tactic.Linarith
 
   | # | 视角 | 失败模式 |
   |---|---|---|
-  | 1–6 | `mass` 塔（边缘的塔 / 条件概率的塔）| **`mass` 非归一** ⟹ 连正确方向的塔也假（`Fate.TowerAudit.mass_idempotent_fails`）|
+  | 1–6 | `mass` 塔（边缘的塔 / 条件概率的塔）| **`mass` 非归一** ⟹ 连正确方向的塔也假（`FateV2.Predict.TowerAudit.mass_idempotent_fails`）|
   | 7–9 | `condMass` + 拓扑序 | 需要逐点 `≠ 0` 守卫，退化为「平凡真」|
   | 10–12 | `Marginal S p : (S → α) → ℝ` 型别化 | 改动面大，且仍需归一化 |
   | 13–14 | 可分离 `p = f(x,z)·g(y,z)` ⟹ `CondMul` | **同义反复**：`ChainMarkov` / `ForkFac` 的**定义本身就是可分离** |
@@ -130,7 +130,7 @@ import Mathlib.Tactic.Linarith
   | §8 「零 mass」对照表 | `no_mass_tower` / `single_layer_sums` | 同主张 |
 
   **关键事实**：`Fate/View17SectionGlue.lean` **编译通过（已验证 exit 0）**
-  且**已在链上**（`Fate.lean:531` 有 `import Fate.View17SectionGlue`）；
+  且**已在链上**（`Fate.lean:531` 有 `import FateV2.Predict.View17SectionGlue`）；
   而本文件 **不在链上**（`Fate.lean` 无 `import FateV2.Predict.GraphToProbView17`）。
 
   ⟹ **建议归档**（`View17SectionGlue` 是本文件的严格后继：`ScreenGlue` 的
@@ -159,7 +159,7 @@ open Finset FateV2.Modeling.Graph
 
 variable {α β γ : Type*}
 
-/-- 三元联合律（**沿用全库唯一口径** `Fate.FinCondIndep.FinJoint`）。 -/
+/-- 三元联合律（**沿用全库唯一口径** `FinCondIndep.FinJoint`）。 -/
 abbrev Joint3 (α β γ : Type*) := FateV2.Predict.FinCondIndep.FinJoint α β γ
 
 /-! ===========================================================================
@@ -270,7 +270,7 @@ theorem fiberSplit_implies_condMul (p : Joint3 α β γ) (h : FiberSplit p) :
 $$\frac{p(x,y,z)}{m_Z(z)}=\frac{m_{XZ}(x,z)}{m_Z(z)}\cdot
   \frac{m_{YZ}(y,z)}{m_Z(z)}.$$
 
-**⚠ 这里“字面”指 Pearl 的条件分布相等形式**（`Fate.FinCondIndep.CondRatio`）。
+**⚠ 这里“字面”指 Pearl 的条件分布相等形式**（`FinCondIndep.CondRatio`）。
 `hz` 是**唯一的额外假设**，且**正是概率语义所必需的**（条件分布只在正质量处有定义）。 -/
 theorem fiberSplit_implies_condRatio (p : Joint3 α β γ) (h : FiberSplit p)
     (hz : ∀ z, FateV2.Predict.FinCondIndep.margZ p z ≠ 0) :
@@ -418,7 +418,7 @@ section Bridge
 variable {V : Type*} [DecidableEq V] [Fintype V]
 variable {α β γ : Type*} [Fintype α] [Fintype β] [Fintype γ]
 -- ⚠ `[Fintype γ]` 是**必需**的：`fiberSplit_implies_condRatio` 经由
--- `Fate.FinCondIndep.condMul_iff_condRatio_of_ne_zero`，后者在 `FinCondIndep` 里
+-- `FinCondIndep.condMul_iff_condRatio_of_ne_zero`，后者在 `FinCondIndep` 里
 -- 声明于 `[Fintype γ]` 段中性。早期版本在此段**省略** `[Fintype γ]` 导致
 -- 编译失败（`Fintype γ` 无法合成，见本轮修复记录）。
 -- 概率解释上 `γ` 本来就应是有限的因子层，故此假设**语义上正当**。
@@ -461,7 +461,7 @@ end Bridge
   §6 精确边界（**必读**）
 
   1. **`dSep ⟹ FiberSplit` 不在此文件**，且**不该在此文件** —— 它需要一般 DAG 上的
-     因子分解（`p = ∏_v p(x_v | x_{pa(v)})`），而 `Fate.FactorMarkov` 已经交付了
+     因子分解（`p = ∏_v p(x_v | x_{pa(v)})`），而 `FactorMarkov` 已经交付了
      这条路的**单步**（`sink_peel`）并登记了**缺口 A**（`G.induce` 未入库）。
      视角 17 **不重复**那条路，**而是给出剖面等价物**：`FiberSplit` 就是
      「三元情形下因子分解」的**显式解**。
@@ -470,7 +470,7 @@ end Bridge
      （条件分布只在正质量处有定义），不是本视角的弱点。
 
   3. **本文件的“零 `mass`”是可机检的**：全部证明中出现的对象只有
-     `Fate.FinCondIndep.margZ / margXZ / margYZ`（它们**就是**在 `p` 自身坐标上的
+     `FinCondIndep.margZ / margXZ / margYZ`（它们**就是**在 `p` 自身坐标上的
      直接求和）与 `Finset` 的分配律。**没有任何 `mass S p`（`S : Finset V`）出现。**
   =========================================================================== -/
 
@@ -816,7 +816,7 @@ end Screen
 
   | 本文件用的 | `mass` 塔用的 |
   |---|---|
-  | `Fate.FinCondIndep.margZ p z = ∑ x, ∑ y, p ((x,y),z)` | `mass S p x = ∑_{w : w|_S = x|_S} p w` |
+  | `FinCondIndep.margZ p z = ∑ x, ∑ y, p ((x,y),z)` | `mass S p x = ∑_{w : w|_S = x|_S} p w` |
   | **固定一个下标，对其余求和** | **固定一个集合的坐标，对其余同时求和** |
   | **外层只有 `p`，不嵌套** | **可以嵌套 `mass S (mass T p)`** |
 

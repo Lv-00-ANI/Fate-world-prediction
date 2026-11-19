@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.Stage2.ShellEscrow`
+模块：`FateV2.Error.Stage2.ShellEscrow`
 审计编号：R123（「合法空壳」豁免登记）
 性质：**登记模块**，不含任何数学内定理。
 

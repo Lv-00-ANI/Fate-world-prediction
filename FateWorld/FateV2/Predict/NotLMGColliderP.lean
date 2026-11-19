@@ -56,13 +56,13 @@ theorem not_lmg_colliderP_chain :
   rw [Finset.insert_empty] at key
   -- key : p x * mass ∅ = mass {0} * mass ∅
   rw [show FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool) x = 0 from
-      Fate.BridgeA4Fixed2.colliderP_x_zero,
+      FateV2.Predict.BridgeA4Fixed2.colliderP_x_zero,
     show FateV2.Predict.DAGFactorization.mass (∅ : Finset (Fin 3))
         (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) x = 4 from
-      Fate.BridgeA4Fixed2.mass_empty_colliderP,
+      FateV2.Predict.BridgeA4Fixed2.mass_empty_colliderP,
     show FateV2.Predict.DAGFactorization.mass ({(0 : Fin 3)} : Finset (Fin 3))
         (FateV2.Predict.ThreeNodeFactorizes.colliderP (α := Bool)) x = 2 from
-      Fate.BridgeA4Fixed2.mass_single_zero_colliderP] at key
+      FateV2.Predict.BridgeA4Fixed2.mass_single_zero_colliderP] at key
   norm_num at key
 
 end FateV2.Predict.BridgeA4Fixed3

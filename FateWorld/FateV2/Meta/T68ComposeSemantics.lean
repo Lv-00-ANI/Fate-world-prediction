@@ -30,7 +30,7 @@
 于是任何仅由这些公理出发的推导，都无法把 `op₁` 与 `op₂` 区分开；
 `R₁ ∘ R₂` 因此**没有**被公理确定的计算含义。
 
-**⭐ 公理取自本仓库已冻结的接口层**（`Fate.ComposeOperator`，
+**⭐ 公理取自本仓库已冻结的接口层**（`FateV2.Rules.ComposeOperator`，
 该文件的 §1–§2 明确声明「接口层语义中立，对应开放问题 5.1 的未决状态」）：
 
   * `ComposeAssoc`       —— 结合律；
@@ -40,7 +40,7 @@
 
 `_r230_B4.lean` 不 import 该文件（它在主库里，会牵入下游依赖），
 故以**同名的局部结构** `ComposeAxioms` **逐字重述**这四条公理。
-重述与 `Fate.ComposeOperator.ComposeLaws` 一一对应（对照见 §1 注释）。
+重述与 `FateV2.Rules.ComposeOperator.ComposeLaws` 一一对应（对照见 §1 注释）。
 
 ---------------------------------------------------------------------------
 ⭐⭐ 关键构造（**零硬编码**，依作者裁决 Q-1）
@@ -85,14 +85,14 @@ namespace FateV2.Meta.R230B4
 -/
 
 /-! ===========================================================================
-    §1  ⭐⭐ **组合算子的公理**（`Fate.ComposeOperator` 接口层的逐字重述）
+    §1  ⭐⭐ **组合算子的公理**（`FateV2.Rules.ComposeOperator` 接口层的逐字重述）
     =========================================================================== -/
 
 /-- ⭐⭐ **组合算子的公理**（载体 `α` 上一个二元运算 `op` 应满足的全部要求）。
 
-**四条字段与 `Fate.ComposeOperator` 的接口层一一对应**：
+**四条字段与 `FateV2.Rules.ComposeOperator` 的接口层一一对应**：
 
-| 本结构字段 | `Fate.ComposeOperator` 中对应 | 规格出处 |
+| 本结构字段 | `FateV2.Rules.ComposeOperator` 中对应 | 规格出处 |
 |---|---|---|
 | `assoc` | `ComposeAssoc op` | 本仓库 §2 接口层（规格未给） |
 | `left_unit` | `ComposeLeftUnit op e` | 本仓库 §2 接口层（规格未给） |
@@ -206,7 +206,7 @@ theorem underdetermined_of_two_models {α : Type*} :
 
 **★ 与开放问题 5.1 的接口**：只要 5.1 未回答，
 任何「`∘` 就是这个 `op`」的主张都**不能由公理推出**——
-它只能是**额外假设**（本仓库 `Fate.ComposeOperator` 的核复合实现即是这样一个标注为
+它只能是**额外假设**（本仓库 `FateV2.Rules.ComposeOperator` 的核复合实现即是这样一个标注为
 【依主控解释】的额外假设）。 -/
 theorem no_unique_semantics :
     ¬ ∃! op : ℕ → ℕ → ℕ, ∃ e, ComposeAxioms op e :=

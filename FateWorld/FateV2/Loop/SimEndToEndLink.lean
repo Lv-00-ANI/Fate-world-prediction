@@ -14,7 +14,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
 -/
 
 /-! ===========================================================================
-  `Fate.SimEndToEndLink` —— **`WorldModel.sim` 与 `endToEndIter` 的显式连接**
+  `SimEndToEndLink` —— **`WorldModel.sim` 与 `endToEndIter` 的显式连接**
 
   ## 0  本文件要解决的问题（缺口二）
 
@@ -23,7 +23,7 @@ import FateWorld.FateV2.Loop.ThetaConvergence
   | 用法 | 落点 | 用 `W.f` 做什么 |
   |---|---|---|
   | **状态预测** | `Fate.WorldModel.WorldModel.sim` | 生成**轨迹** `sim θ u ε a : ℕ → X` |
-  | **参数估计** | `Fate.EndToEnd.endToEndIter` | 算**残差** `x̂_obs - predFrom W θ u ε a x` |
+  | **参数估计** | `EndToEnd.endToEndIter` | 算**残差** `x̂_obs - predFrom W θ u ε a x` |
 
   两者**都用同一个 `W.f`**（`WorldModel.sim_succ` 与 `EndToEnd.predFrom` 逐字同源），
   但此前**没有任何定理**把 `endToEndIter` 的递推与 `W.sim` 的递推放在同一条式子里。

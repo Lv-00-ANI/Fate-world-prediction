@@ -2,9 +2,9 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.SCMEndToEndGeneralQ`
+模块：`SCMEndToEndGeneralQ`
 定位：**任务 D / G6 的主链接入宿主** —— 在 `Y = ℚ` 上给
-`Fate.SCMEndToEndGeneral` 的**三个需要 `[AddCommGroup Y]` 的定理**
+`SCMEndToEndGeneral` 的**三个需要 `[AddCommGroup Y]` 的定理**
 提供**具体的 SCM 实例**，从而让它们从「无条件可用但无人调用」
 变成「被主链模块真的调用」。
 
@@ -12,7 +12,7 @@
 〇、为什么需要本文件（诊断，不是猜测）
 ===========================================================================
 
-`Fate.SCMEndToEndGeneral` 交付 4 条定理：
+`SCMEndToEndGeneral` 交付 4 条定理：
 
 | 定理 | 要求 `[AddCommGroup Y]`？ |
 |---|---|

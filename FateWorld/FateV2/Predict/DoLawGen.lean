@@ -40,7 +40,7 @@ import Mathlib.Tactic
   **`doLaw (doLaw p x) x` 这种写法在本代码库中无法通过 elaboration。**
   原因**不是数学**，而是 Lean 的类型合流：
 
-  1. `Fate.FinCondIndep.FinJoint α β γ` 是
+  1. `FinCondIndep.FinJoint α β γ` 是
      `@[reducible] def ... := (α × β) × γ → ℝ`；
   2. Lean 的 elaborator 检查**函数参数**的 defeq 时只做 `whnf`
      （Pi/`App`/`Proj` 脊），**不做** `unfold` reducible def（那是 `whnfR`）。
@@ -85,7 +85,7 @@ namespace FateV2.Predict.Stage2.DoLawGen
 open Finset
 open FateV2.Error.Stage2.DoLawFin2
 
--- ⚠ `FinJoint` 的全名是 `Fate.FinCondIndep.FinJoint`（`DoLawFin2` 在局部 `open` 里引入）。
+-- ⚠ `FinJoint` 的全名是 `FinCondIndep.FinJoint`（`DoLawFin2` 在局部 `open` 里引入）。
 open FateV2.Predict.FinCondIndep
 
 set_option autoImplicit false

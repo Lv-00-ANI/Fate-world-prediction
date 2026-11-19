@@ -254,7 +254,7 @@ theorem clique_subset_xz_or_yz (adj : V → V → Prop) [DecidableRel adj]
 
 **⚠ 证明是纯谓词逻辑**（`DependsOnlyOn` 的定义展开），无代数技巧。 -/
 theorem dep_z_of_outside (z : V) (a : (V → V) → ℝ)
-    (hdep : Fate.CliqueGrouping.DependsOnlyOn ({z} : Finset V) a)
+    (hdep : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({z} : Finset V) a)
     (b σ : V → V) :
     a (fun w => if w = z then σ w else b w) = a σ := by
   refine hdep _ _ (fun w hw => ?_)
@@ -296,16 +296,16 @@ theorem unique_bridge_separable
     (a b : (V → V) → ℝ)
     -- ⚠ `hdepA` / `hdepB` / `hFac` **在证明中未被使用**（见 §6 第 3 条）：
     --   `unique_bridge_separable` 只需图侧 + 因子只读团即可造出分组乘积。
-    (_hdepA : Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) a)
-    (_hdepB : Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) b)
+    (_hdepA : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) a)
+    (_hdepB : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) b)
     (_hFac : TwoFactorizable (fun σ => ∏ C ∈ N, ψ C σ) a b) :
     ∀ σ : V → V,
       (∏ C ∈ N, ψ C σ)
         = (∏ C ∈ N.filter (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C σ)
           * (∏ C ∈ N.filter (fun C => ¬ ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V)
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V)
           (fun τ => ∏ C ∈ N.filter (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C τ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V)
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V)
           (fun τ => ∏ C ∈ N.filter (fun C => ¬ ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C τ)
       ∧ ∀ σ : V → V,
           (∏ C ∈ N, ψ C σ)
@@ -322,14 +322,14 @@ theorem unique_bridge_separable
       (∏ C ∈ N.filter (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C σ)
         * (∏ C ∈ N.filter (fun C => ¬ ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C σ)
         = ∏ C ∈ N, ψ C σ :=
-    Fate.CliqueGrouping.prod_grouping_by_filter N
+    FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N
       (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)) (fun C => ψ C σ)
   have hfin : ∀ τ : V → V,
       (∏ C ∈ N, ψ C τ)
         = (fun τ => ∏ C ∈ N.filter (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C τ) τ
           * (fun τ => ∏ C ∈ N.filter (fun C => ¬ ∀ w ∈ C, w ∈ ({x, z} : Finset V)), ψ C τ) τ := by
     intro τ
-    exact (Fate.CliqueGrouping.prod_grouping_by_filter N
+    exact (FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N
       (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)) (fun C => ψ C τ)).symm
   refine ⟨hfin σ, ?_, ?_, hfin⟩
   · -- `∏_{A} ψ` 只依赖 `{x,z}`
@@ -374,15 +374,15 @@ theorem unique_bridge
     -- ⚠ `hdepA` / `hdepB` **在证明中未被使用**（见 §6 第 3 条）：
     --   本定理从图侧**直接造出** `F`、`G`，并不需要概率侧先给出依赖信息。
     --   保留它们是为了让定理**陈述**与 Pearl 1.2.4 的接口对齐。
-    (_hdepA : Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) a)
-    (_hdepB : Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) b)
+    (_hdepA : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) a)
+    (_hdepB : FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) b)
     (hFac : TwoFactorizable p a b)
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     -- ⭐ 结论：`p` 在 `{x,z}` / `{y,z}` 上**可分离**
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G
       ∧ -- ⭐ 且**分离是图给的**（团分组）：每个团在 `{x,z}` 或 `{y,z}` 里
         (∀ C ∈ N,
           (∀ w ∈ C, w ∈ ({x, z} : Finset V)) ∨ (∀ w ∈ C, w ∈ ({y, z} : Finset V)))
@@ -399,7 +399,7 @@ theorem unique_bridge
   refine ⟨fun σ => ∏ C ∈ A, ψ C σ, fun σ => ∏ C ∈ B, ψ C σ, ?_, ?_, ?_, hgrp, ?_⟩
   · -- 分组乘积 = 全部乘积 = p
     intro σ
-    rw [hp σ, Fate.CliqueGrouping.prod_grouping_by_filter N
+    rw [hp σ, FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N
       (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)) (fun C => ψ C σ)]
   · -- `∏_A ψ` 只依赖 `{x,z}`
     intro σ₁ σ₂ hst
@@ -414,7 +414,7 @@ theorem unique_bridge
   · -- 图给的分解与概率侧 `hFac` 给的 `a*b` 一致
     intro σ
     have h1 : (∏ C ∈ A, ψ C σ) * (∏ C ∈ B, ψ C σ) = ∏ C ∈ N, ψ C σ :=
-      Fate.CliqueGrouping.prod_grouping_by_filter N
+      FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N
         (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)) (fun C => ψ C σ)
     rw [h1, ← hp σ]
     exact hFac σ
@@ -450,8 +450,8 @@ theorem unique_bridge_graph
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G
       ∧ -- ⭐ 字面含 `adj`：`{z}` 分离 `{x}`、`{y}`，故 `adj` 上的团不跨两边
         USeparated adj ({z} : Set V) ({x} : Set V) ({y} : Set V)
       ∧ (∀ C ∈ N,
@@ -462,7 +462,7 @@ theorem unique_bridge_graph
   let B : Finset (Finset V) := N.filter (fun C => ¬ ∀ w ∈ C, w ∈ ({x, z} : Finset V))
   refine ⟨fun σ => ∏ C ∈ A, ψ C σ, fun σ => ∏ C ∈ B, ψ C σ, ?_, ?_, ?_, hUS, ?_⟩
   · intro σ
-    rw [hp σ, Fate.CliqueGrouping.prod_grouping_by_filter N
+    rw [hp σ, FateV2.Predict.CliqueGrouping.prod_grouping_by_filter N
       (fun C => ∀ w ∈ C, w ∈ ({x, z} : Finset V)) (fun C => ψ C σ)]
   · intro σ₁ σ₂ hst
     refine Finset.prod_congr rfl (fun C hC => ?_)
@@ -483,7 +483,7 @@ theorem unique_bridge_graph
 
 ### ① 概率结论的载体类型 vs 团分解的赋值类型
 
-* `Fate.FinCondIndep.CondMul` 的定义域是 `FinJoint α β γ = (α × β) × γ → ℝ`，
+* `FinCondIndep.CondMul` 的定义域是 `FinJoint α β γ = (α × β) × γ → ℝ`，
   即 **三个具体类型** `α, β, γ`；
 * 团分解 `∏_{C ∈ N} ψ_C σ` 的赋值是 `σ : V → V`，**一个有限类型** `V`。
 
@@ -557,8 +557,8 @@ theorem unique_bridge_graph_conclusion_mentions_adj
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G
       ∧ USeparated adj ({z} : Set V) ({x} : Set V) ({y} : Set V)
       ∧ (∀ C ∈ N, IsClique adj (C : Set V) →
           (∀ w ∈ C, w ∈ ({x, z} : Finset V)) ∨ (∀ w ∈ C, w ∈ ({y, z} : Finset V))) :=
@@ -635,7 +635,7 @@ theorem clique_grouping_and_separation_together
 中间经 `dep_z_of_outside`（它展开 `DependsOnlyOn` 并消费 `z`-坐标）。 -/
 theorem dep_z_through_mkPt (z : V) (a : (V → V) → ℝ)
     (u v z₀ z₁ : V) (hzu : z ≠ u) (hzv : z ≠ v) (hz01 : z₀ = z₁) :
-    Fate.CliqueGrouping.DependsOnlyOn ({z} : Finset V) a →
+    FateV2.Predict.CliqueGrouping.DependsOnlyOn ({z} : Finset V) a →
     a (fun w => mkPt u v z₀ w) = a (fun w => mkPt u v z₁ w) := by
   intro hdep
   -- 直接比较：两者只在 `z` 上可能不同，而 `z` 处相等（由 `hz01`）

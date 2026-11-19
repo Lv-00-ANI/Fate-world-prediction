@@ -46,7 +46,7 @@ open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 
-open Fate.S9Fixed
+open FateV2.Predict.S9Fixed
 
 theorem bar_sdiff_eq {T : Finset V} {s : V} (hsT : s ∈ T)
     (f : V → (V → α) → ℝ) (x : V → α) :
@@ -56,7 +56,7 @@ theorem bar_sdiff_eq {T : Finset V} {s : V} (hsT : s ∈ T)
   funext w
   have hset : (univ \ (T \ {s}) : Finset V) = insert s (univ \ T) := by
     rw [Finset.sdiff_singleton_eq_erase]
-    exact Fate.C14.sdiff_erase_eq hsT
+    exact FateV2.Predict.C14.sdiff_erase_eq hsT
   rw [hset]
   rw [Finset.prod_insert]
   intro h

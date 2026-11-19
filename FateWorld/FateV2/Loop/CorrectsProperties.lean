@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.CorrectsProperties`
+模块：`CorrectsProperties`
 任务：**【EE4】把 `Corrects` 的全部已知推论集中到一处（「前提强度」参考卡）**
 
 ===========================================================================
@@ -92,9 +92,9 @@
 * **不跑全量 `lake build`**；验证方式为 `lake env lean Fate/CorrectsProperties.lean`。
 * 全部定理不依赖有限维/坐标/内积（§8 具体例子除外）。
 
-依赖：`Fate.BoundWriteBack`（`Corrects` / `wbW` / `errA` 定义与主定理）、
+依赖：`BoundWriteBack`（`Corrects` / `wbW` / `errA` 定义与主定理）、
       `FateV2.Loop.ConvergeToOptimalCounterexample`（§2 的推论原始证明）、
-      `Fate.ConvergeToOptimalV2`（最优参数的 `IsOptimal` 定义）。
+      `ConvergeToOptimalV2`（最优参数的 `IsOptimal` 定义）。
 -/
 
 import FateWorld.FateV2.Loop.BoundWriteBack

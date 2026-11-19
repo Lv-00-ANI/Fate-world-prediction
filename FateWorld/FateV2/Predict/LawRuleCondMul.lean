@@ -46,7 +46,7 @@ import FateWorld.FateV2.Predict.CondMulSeparable
   `Fate/LawRule.lean` 在本轮中**正被并发修改**（编译未通过）。
   为让本文件**自身可独立编译**，这里**重述**了 `LawRule` 及其四个算子的定义
   （逐字取自 `Fate/LawRule.lean:69–153` 的同一数学内容），
-  **放在 `Fate.LawRuleCondMul` 命名空间内**，并**不覆盖**原定义。
+  **放在 `LawRuleCondMul` 命名空间内**，并**不覆盖**原定义。
   **⟹ 待 `Fate/LawRule.lean` 修复后，本文件的 `LawRule` 应替换为其别名。**
 
   **无 `sorry` / `admit` / `axiom`。**
@@ -73,25 +73,25 @@ noncomputable section
 
 定义与 `Fate/LawRule.lean` 同一数学内容，仅放在本命名空间以免与并发修改冲突。 -/
 
-/-- **规则**：`C → X → Set (Measure Y)`（重述自 `Fate.LawRule.LawRule`）。 -/
+/-- **规则**：`C → X → Set (Measure Y)`（重述自 `LawRule.LawRule`）。 -/
 def LawRule (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     [MeasurableSpace Y.Carrier] : Type _ :=
   C.Carrier → X.Carrier → Set (MeasureTheory.Measure Y.Carrier)
 
-/-- **组合 = 取交**（重述自 `Fate.LawRule.compose`）。 -/
+/-- **组合 = 取交**（重述自 `LawRule.compose`）。 -/
 def compose {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
     (R₁ R₂ : LawRule C X Y) : LawRule C X Y :=
   fun c x => R₁ c x ∩ R₂ c x
 
-/-- **全约束规则**（重述自 `Fate.LawRule.top`）。 -/
+/-- **全约束规则**（重述自 `LawRule.top`）。 -/
 def top (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     [MeasurableSpace Y.Carrier] : LawRule C X Y := fun _ _ => Set.univ
 
-/-- **空规则**（重述自 `Fate.LawRule.bot`）。 -/
+/-- **空规则**（重述自 `LawRule.bot`）。 -/
 def bot (C : CtxSpace) (X : StateSpace) (Y : OutSpace)
     [MeasurableSpace Y.Carrier] : LawRule C X Y := fun _ _ => ∅
 
-/-- **单点档**（重述自 `Fate.LawRule.IsPoint`）。 -/
+/-- **单点档**（重述自 `LawRule.IsPoint`）。 -/
 def IsPoint {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
     (R : LawRule C X Y) : Prop :=
   ∀ c x, ∃ μ, R c x = {μ}
@@ -277,7 +277,7 @@ theorem condMulGuard_implies_rankOne (p : FinJoint α β γ)
   exact h x y z hz
 
 /-- ⭐⭐ **正性 ⟹ `CondMul` 的每个切片秩一（已证，引用既有定理）**：
-取 `Fate.CondMulSeparable.condMul_implies_separable` 在固定 `z` 处的实例。 -/
+取 `FateV2.Predict.CondMulSeparable.condMul_implies_separable` 在固定 `z` 处的实例。 -/
 theorem condMul_implies_rankOne_of_pos (p : FinJoint α β γ)
     [Nonempty α] [Nonempty β]
     (h : CondMul p) (hpos : ∀ x y z, 0 < p ((x, y), z)) (z : γ) :

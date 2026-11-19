@@ -3,7 +3,7 @@
 ======================================================================
 
 模块：`Fate.RuleLevel`
-上游：`Fate/LawRule.lean`（`LawRule`，位于命名空间 `Fate.LawRule`）、
+上游：`Fate/LawRule.lean`（`LawRule`，位于命名空间 `LawRule`）、
 　　　`Fate/Frame.lean`（`CtxSpace`、`OutSpace`）、
 　　　`Fate/Basic.lean`（`StateSpace`）。
 
@@ -342,7 +342,7 @@ theorem ofLawRule_toLawRule (b : RuleBody C X Y) (h : b.level = RuleTag.transiti
 
     本节为 **R-40 Top 86-100 接线**新增（纯追加，不触碰 §0-§5 任何声明）。
 
-    **消费上游**：`Fate.LawRule`（`compose` / `refine` / `generalize` /
+    **消费上游**：`LawRule`（`compose` / `refine` / `generalize` /
     `IsPoint` / `Deterministic` / `compose_top` / `generalize_absorbs` 等）。
 
     **解决的问题**：§5 只把 `LawRule` 嵌入为**静态载体**（`ofLawRule`），

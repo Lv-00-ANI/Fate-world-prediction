@@ -233,7 +233,7 @@ $$w\in \mathrm{nd}_G(v)\ \Longrightarrow\ v\notin \mathrm{pa}_G(w).$$
 **为什么这才是需要的**：`Factorizes` 中 `φ_w` 只读 `pa G w`。
 沿 `v` 求和（边缘化）时，若 `v ∉ pa G w` 则 `φ_w` 在 `v` 方向上是常数、
 可提出求和号 —— 这正是 A3 的「乘性 `φ` 的边缘化分离」第一支柱。
-（`Fate.FactorRecursionRouteB.phi_eq_of_nondesc` 以此为核心。） -/
+（`FactorRecursionRouteB.phi_eq_of_nondesc` 以此为核心。） -/
 theorem not_mem_pa_of_mem_nonDescendants {G : FateV2.Modeling.Graph.DAG V} {v w : V}
     (hw : w ∈ G.nonDescendants v) : v ∉ pa G w := by
   rw [mem_pa]

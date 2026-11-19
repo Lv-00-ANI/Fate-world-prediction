@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ChainErrorBudgetBound`
+模块：`ChainErrorBudgetBound`
 
 ## ⚠ 第 214 轮修复登记（编译 4 个 error 的处置，读前必看）
 
@@ -149,11 +149,11 @@
 
 ## 依赖
 
-* `Fate.GaussMarkovScalar`（`varOf`、`est`、`est_variance`、`gauss_markov_lower_bound`、
+* `FateV2.Error.GaussMarkovScalar`（`varOf`、`est`、`est_variance`、`gauss_markov_lower_bound`、
   `gauss_markov_attained`）
-* `Fate.OptimalEta`（`c`、`err_eq_c_pow`、`err_mono_in_n`）
-* `Fate.ClosedLoopNoisy`（`steadyErr`、`steadyErr_nonneg`、`noisy_limsup_bound`）
-* `Fate.ThetaConvergence`（`linWorld`、`thetaN`、`linWorld_endToEnd_apply`）
+* `OptimalEta`（`c`、`err_eq_c_pow`、`err_mono_in_n`）
+* `ClosedLoopNoisy`（`steadyErr`、`steadyErr_nonneg`、`noisy_limsup_bound`）
+* `ThetaConvergence`（`linWorld`、`thetaN`、`linWorld_endToEnd_apply`）
 * `Fate.ScratchAssemblyLearns`（`mulCLM`、`invLM`、`corrects_mulCLM_invLM`、
   `endToEndIter_linWorld_eq_noisyIter`）—— 这是**唯一**一座已入库的、把
   `linWorld` 的端到端迭代与 `ClosedLoopNoisy.noisyIter` **逐值**等同起来的桥。

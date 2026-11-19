@@ -52,7 +52,7 @@ namespace FateV2.Predict.T1A2Prob
 open FateV2.Modeling
 
 open Finset
-open Fate.T1A2
+open FateV2.Predict.T1A2
 
 variable {V : Type*} [DecidableEq V]
 

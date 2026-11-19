@@ -3,7 +3,7 @@
 ================================
 
 模块：`FateV2.Rules.CompNotCommutative`
-阶段：**规则层 · 补 `Fate.ComposeSemantics` §4 登记的「未证项」**
+阶段：**规则层 · 补 `ComposeSemantics` §4 登记的「未证项」**
 
 ---------------------------------------------------------------------------
 (a) 本文件补什么
@@ -103,7 +103,7 @@ open FateV2.Modeling
 
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal
-open Fate.ComposeOperator
+open FateV2.Rules.ComposeOperator
 
 universe u
 
@@ -278,7 +278,7 @@ theorem comp_not_commutative_witness :
   -- `1/2 ≠ 0` 在 `ℝ≥0∞` 中
   exact (by norm_num : (1/2 : ℝ≥0∞) ≠ 0) hpt
 
-/-- ⭐⭐ **主结论**：`Fate.ComposeOperator.MeasurableRule.comp` **不满足交换律**。
+/-- ⭐⭐ **主结论**：`FateV2.Rules.ComposeOperator.MeasurableRule.comp` **不满足交换律**。
 
 即：核复合（边缘化）**不是**交换运算。
 

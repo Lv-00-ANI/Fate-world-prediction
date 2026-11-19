@@ -100,7 +100,7 @@ namespace FateV2.Predict.BackdoorZGraphical
 
 open FateV2.Modeling
 
-open Fate.R289 SetupWithM
+open FateV2.Predict.R289 SetupWithM
 
 variable (S : SetupWithM)
 
@@ -198,14 +198,14 @@ theorem adjust_Z_same_as_original (x : S.X) (y : S.Y) :
 
 **⭐⭐ 这才是「Pearl (ii) 必须有」的**真正理由**。** -/
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐ **真实边缘 `P(m)`**（`∑_{x,z} P(m|x)·P(x,z)`）。
 
 **⚠ 本文件用 `∑_x P(x|z)·P(m|x)` 的形式（按 `z` 加权）。** -/
 noncomputable def margM (S : SetupWithM) (m : S.M) : ℝ :=
   ∑ x, S.condM x m * S.margX x
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐⭐ **「用 `{M}` 调整」的**正确**版本**（**真实** `P(m)`）。
 
 $$\sum_m P(m)\sum_z P(z)\,P(y,m\mid x,z).$$
@@ -214,7 +214,7 @@ $$\sum_m P(m)\sum_z P(z)\,P(y,m\mid x,z).$$
 noncomputable def adjustLawM_true (S : SetupWithM) (x : S.X) (y : S.Y) : ℝ :=
   ∑ m, margM S m * ∑ z, S.pz z * S.condYnum x z m y
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐⭐ **核心：**即便用真实 `P(m)`，调整 `{M}` 也**不等于** `do`****。
 
 **⚠ 本定理**需要具体实例的数值验证**（见下面的 `demo` 部分）。
@@ -245,7 +245,7 @@ noncomputable def biasM_true (S : SetupWithM) (x : S.X) (y : S.Y) : ℝ :=
 
 **细节见 ``_pending/第293轮-偏误数值证明.md``。** -/
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐ **`demo.margX(1) = 29/50`**。 -/
 theorem demo_margX_one : demo.margX true = 29/50 := by
   unfold SetupWithM.margX SetupWithM.margXZ SetupWithM.margZ
@@ -253,7 +253,7 @@ theorem demo_margX_one : demo.margX true = 29/50 := by
   simp only [Fintype.sum_bool]
   norm_num [Bool.xor]
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐ **`demo.margM(1) = 79/100`**。 -/
 theorem demo_margM_true : margM demo true = 79/100 := by
   unfold margM SetupWithM.condM SetupWithM.margX SetupWithM.margXZ
@@ -261,7 +261,7 @@ theorem demo_margM_true : margM demo true = 79/100 := by
   simp only [Fintype.sum_bool]
   norm_num [Bool.xor]
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐⭐ **`demo.doLaw(1,0) = 2/5`**。 -/
 theorem demo_doLaw_one_zero : demo.doLaw true false = 2/5 := by
   unfold SetupWithM.doLaw
@@ -278,7 +278,7 @@ theorem demo_doLaw_one_zero : demo.doLaw true false = 2/5 := by
   simp only [Fintype.sum_bool]
   norm_num [Bool.xor]
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐⭐ **`demo.adjustLawM_true(1,0) = 79/250`**。 -/
 theorem demo_adjustM_true_one_zero : adjustLawM_true demo true false = 79/250 := by
   unfold adjustLawM_true margM SetupWithM.condYnum SetupWithM.condM
@@ -286,7 +286,7 @@ theorem demo_adjustM_true_one_zero : adjustLawM_true demo true false = 79/250 :=
   simp only [Fintype.sum_bool]
   norm_num [Bool.xor]
 
-open Fate.R289 Fate.R289.Demo SetupWithM in
+open FateV2.Predict.R289 FateV2.Predict.R289.Demo SetupWithM in
 /-- ⭐⭐⭐⭐⭐ **核心：**即便用真实 `P(m)`，调整 `{M}` 也**不等于** `do`****。
 
 **⭐⭐ 补上第 292 轮债务的**关键定理**：**

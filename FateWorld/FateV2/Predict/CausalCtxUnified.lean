@@ -16,7 +16,7 @@ import Mathlib.Tactic
 -/
 
 /-!
-# `Fate.CausalCtxUnified` —— 合并两份重复的 `ctxOf`
+# `CausalCtxUnified` —— 合并两份重复的 `ctxOf`
 
 ## 背景
 
@@ -27,7 +27,7 @@ import Mathlib.Tactic
 | `Fate/CausalClassificationBridge.lean:298` | `def ctxOf (G : DAG V) : FateV2.Rules.FormalCtx` |
 | `Fate/CausalFCAAdjacency.lean:150` | `def ctxOf (G : DAG V) : FateV2.Rules.FormalCtx` |
 
-**实测**：两者的签名**逐字相同**（同 `DAG V`、同 `Fate.FormalCtx`、同 `universe u`、
+**实测**：两者的签名**逐字相同**（同 `DAG V`、同 `FormalCtx`、同 `universe u`、
 同 `[DecidableEq V] [Fintype V]`），**定义体也逐字相同**：
 
 ```lean

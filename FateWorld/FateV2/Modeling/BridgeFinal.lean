@@ -69,7 +69,7 @@ open FateV2.Modeling.FinMeasureBridge
 
 /-! ## §1 ⭐⭐⭐⭐ `trim` 在单点上的值 = 纤维质量（**自含证明**）
 
-**⚠ 这里不用 `Fate.GapTrimWeightedCount` 的名字**（它在 `BridgeKernel` 之外），
+**⚠ 这里不用 `GapTrimWeightedCount` 的名字**（它在 `BridgeKernel` 之外），
 故在本文件内重证一遍 —— 证明与 `GapTrimWeightedCount §99.3` 完全同构，
 只额外需要 `[MeasurableSingletonClass γ]`（由 `[DiscreteMeasurableSpace γ]` 提供）。 -/
 

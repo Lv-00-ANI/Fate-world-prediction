@@ -50,7 +50,7 @@ import Mathlib.MeasureTheory.Integral.Lebesgue.Map
   |---|---|---|
   | `PearlHierarchy.SCM X Y`（`sg : U → X × (X → Y)`）| `ofPearl` / `ofPearl_joint_apply` | `§K.5` |
   | `Causalean.Graph.DAG V`（`parents v`）| ⚠ **未做**（见 `§K.8` 的缺口登记）| — |
-  | `Fate.SCMSemantics.jointLaw`（裸律 `ℝ`）| `ofPearl_joint_apply`（同形式的 `ℝ≥0∞` 值）| `§K.5` / `§K.6` |
+  | `SCMSemantics.jointLaw`（裸律 `ℝ`）| `ofPearl_joint_apply`（同形式的 `ℝ≥0∞` 值）| `§K.5` / `§K.6` |
   | `Fintype` 上的加权 `δ` 和 | `mkMeasure` / `discreteKernel` | `§K.1`–`§K.2` |
 
   ## 等级与边界（**先说清楚，免得被当成在吹**）

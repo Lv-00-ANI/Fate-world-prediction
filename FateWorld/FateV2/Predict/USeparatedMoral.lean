@@ -49,7 +49,7 @@ namespace FateV2.Predict.USeparatedMoral
 open FateV2.Modeling
 
 open FateV2.Modeling.MoralGraphMarkov
-open Fate.CliqueGrouping
+open FateV2.Predict.CliqueGrouping
 
 /-! ## §1 ⭐⭐⭐⭐ **`USeparated` ⟹ 团落一侧（三点情形）** -/
 
@@ -67,7 +67,7 @@ theorem side_of_useparated (V : Type) [DecidableEq V] [Fintype V] (adj : V → V
     (hsub : ∀ w ∈ C, w = x ∨ w = y ∨ w = z) :
     (∀ w ∈ C, w = x ∨ w = z) ∨ (∀ w ∈ C, w = y ∨ w = z) := by
   -- ⭐ 用 SeparatedImpliesSide.side_of_uns_side
-  have h := Fate.SeparatedImpliesSide.side_of_uns_side adj ({z} : Set V) x y C
+  have h := FateV2.Predict.SeparatedImpliesSide.side_of_uns_side adj ({z} : Set V) x y C
     hx hy hsep hcl (fun w hw => by
       rcases hsub w hw with h1 | h1 | h1
       · exact Or.inl h1

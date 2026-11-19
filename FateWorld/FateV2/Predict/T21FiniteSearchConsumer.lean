@@ -52,7 +52,7 @@ import Mathlib.Tactic
 
 namespace FateV2.Predict.T21Consumer
 
-open FateV2.Predict.CausalDirection FateV2.Predict.CausalPath FateV2.Predict.CausalDescendant Fate.T21
+open FateV2.Predict.CausalDirection FateV2.Predict.CausalPath FateV2.Predict.CausalDescendant FateV2.Predict.T21
 
 universe u
 variable {V : Type u}

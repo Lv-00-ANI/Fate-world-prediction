@@ -9,7 +9,7 @@
 | 文件 | 声称 | **实际（本次机器核查）** |
 |---|---|---|
 | `Fate/View6FactorSupport.lean` | 纯支撑切 `SupportCut` | 其核心 `dSep ⟹ SupportCut` **是假命题**（被下一版 `§3` 反例证伪）|
-| `Fate/View6ZoneCut.lean` | V6.01–V6.10，「零 sorry、EXIT=0」 | ⚠ **`lake build Fate.View6ZoneCut` 失败（3 处 error）**；且文件在 `elimCut_zone_split` 处**截断**，声称的 V6.08–V6.10 **不存在** |
+| `Fate/View6ZoneCut.lean` | V6.01–V6.10，「零 sorry、EXIT=0」 | ⚠ **`lake build View6ZoneCut` 失败（3 处 error）**；且文件在 `elimCut_zone_split` 处**截断**，声称的 V6.08–V6.10 **不存在** |
 
 前两版共同的**结构性**缺陷（不是打错字，是策略层面的）：
 
@@ -51,7 +51,7 @@
 | `DAG.induce` | ❌ 不需要 |
 | 前两版 `SupportCut` / `ElimCut` | ❌ **不用**（前者已证伪，后者「一步」不够，见 §0）|
 
-**唯一的概率论假设**是仓库既有的**正确**口径 `Fate.T1A2.FactorizesOn`
+**唯一的概率论假设**是仓库既有的**正确**口径 `FateV2.Predict.T1A2.FactorizesOn`
 （读集 `{v} ∪ pa(v)`、带正性）。
 
 ## 3 交付清单
@@ -127,17 +127,17 @@ theorem mem_scope {G : DAG V} {v w : V} :
 
 /-- ⭐ **L1.1** 若一族因子的 scope **逐个**包含在 `ZA` 里，则这族乘积只读 `ZA`。 -/
 theorem reads_prod {S ZA : Finset V} (π : V → (V → Bool) → ℝ) (G : DAG V)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v))
     (hsub : ∀ v ∈ S, scope G v ⊆ ZA) :
-    Fate.T1A2.ReadsOnlyOn ZA (fun x => ∏ v ∈ S, π v x) := by
+    FateV2.Predict.T1A2.ReadsOnlyOn ZA (fun x => ∏ v ∈ S, π v x) := by
   intro x y hxy
   refine Finset.prod_congr rfl fun v hv => ?_
   exact hloc v x y fun w hw => hxy w (hsub v hv hw)
 
 /-- ⭐ **L1.2** 单段乘积只读**其 scope 的并**（`biUnion` 形态，供 §4 造切时核对）。 -/
 theorem reads_prod_biUnion {S : Finset V} (π : V → (V → Bool) → ℝ) (G : DAG V)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v)) :
-    Fate.T1A2.ReadsOnlyOn (S.biUnion (fun v => scope G v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v)) :
+    FateV2.Predict.T1A2.ReadsOnlyOn (S.biUnion (fun v => scope G v))
       (fun x => ∏ v ∈ S, π v x) := by
   intro x y hxy
   refine Finset.prod_congr rfl fun v hv => ?_
@@ -156,11 +156,11 @@ theorem prod_scope_split {S V₀ V₁ V₂ ZA ZB : Finset V}
     (h01 : Disjoint V₀ V₁) (h02 : Disjoint V₀ V₂) (h12 : Disjoint V₁ V₂)
     (hcover : V₀ ∪ V₁ ∪ V₂ = S)
     (π : V → (V → Bool) → ℝ)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v))
     (h0 : ∀ v ∈ V₀, scope G v = ∅)
     (hA : ∀ v ∈ V₁, scope G v ⊆ ZA) (hB : ∀ v ∈ V₂, scope G v ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, (∏ v ∈ S, π v x) = f x * g x := by
   have hconst : ∀ v ∈ V₀, ∀ x y : (V → Bool), π v x = π v y := by
     intro v hv x y
@@ -196,7 +196,7 @@ theorem unpinB_self (u : V) (x : V → Bool) : unpinB u x (x u) = x :=
 
 /-- `π v` 不读坐标 `u`（当 `u ∉ scope v`）。 -/
 theorem insensitive_of_not_mem_scope {π : V → (V → Bool) → ℝ} (G : DAG V)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v))
     {v u : V} (h : u ∉ scope G v) (x : V → Bool) (a b : Bool) :
     π v (unpinB u x a) = π v (unpinB u x b) := by
   refine hloc v _ _ ?_
@@ -215,8 +215,8 @@ $$\kappa_u(x):=\sum_{a}\pi_u\bigl(x_u{:=}a\bigr)$$
 **这就是「跑到底」可行的原因**：每次消元都让参与的消息少读一个坐标，
 所以迭代下去 scope 单调收缩，最终必然能落进某一侧。 -/
 theorem msg_reads (π : V → (V → Bool) → ℝ) (G : DAG V)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v)) (u : V) :
-    Fate.T1A2.ReadsOnlyOn (G.parents u)
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v)) (u : V) :
+    FateV2.Predict.T1A2.ReadsOnlyOn (G.parents u)
       (fun x => ∑ a : Bool, π u (unpinB u x a)) := by
   intro x y hxy
   refine Finset.sum_congr rfl fun a _ => ?_
@@ -251,7 +251,7 @@ $$\mathrm{mass}_{V\setminus\{u\}}\Bigl(\prod_v\pi_v\Bigr)x
 本定理只用 `mass_insert_sum`（**对单个坐标**放开再求和，**单层 `mass`**）。
 前提 `hfree : ∀ v ≠ u, u ∉ scope v` 保证 `∏_{v≠u}π_v` 不读 `u`。 -/
 theorem elim_step (G : DAG V) (π : V → (V → Bool) → ℝ)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v))
     {u : V} (hfree : ∀ v, v ≠ u → u ∉ scope G v) (x : V → Bool) :
     mass (univ \ {u}) (fun y => ∏ v, π v y) x
       = (∑ a : Bool, π u (unpinB u x a)) * (∏ v ∈ univ.erase u, π v x) := by
@@ -315,7 +315,7 @@ $$\mathrm{mass}_{V\setminus\{u\}}\Bigl(\prod_v\pi_v\Bigr)x
 `∏_R π` 不读 `u`（`hB` 对 `v ∉ B` 给出 `u ∉ scope v`），故可提出。
 **全程单层 `mass`（`mass_insert_sum'`），无塔。** -/
 theorem bucket_elim (G : DAG V) (π : V → (V → Bool) → ℝ)
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (scope G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (scope G v) (π v))
     {u : V} {B : Finset V} (hu : u ∈ B)
     (hB : ∀ v, v ≠ u → (u ∈ scope G v ↔ v ∈ B)) (x : V → Bool) :
     mass (univ \ {u}) (fun y => ∏ v, π v y) x

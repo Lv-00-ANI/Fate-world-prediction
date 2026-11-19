@@ -54,7 +54,7 @@ open FateV2.Modeling.Graph
 universe u
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
 
-open Fate.S9Fixed
+open FateV2.Predict.S9Fixed
 
 -- ⭐ sink_peel 的正确结论：bar (T\{s}) f x 与 x 无关（当 f s 只读 s）
 theorem bar_sdiff_indep {T : Finset V} {s : V} (hsT : s ∈ T)
@@ -62,15 +62,15 @@ theorem bar_sdiff_indep {T : Finset V} {s : V} (hsT : s ∈ T)
     (hfs : ∀ w w' : V → α, w s = w' s → f s w = f s w')
     (hft : ∀ w w' : V → α, (∀ u ∈ univ \ T, w u = w' u) → tail f T w = tail f T w')
     (x y : V → α) : bar (T \ {s}) f x = bar (T \ {s}) f y := by
-  rw [Fate.C15.bar_sdiff_eq hsT f x, Fate.C15.bar_sdiff_eq hsT f y]
+  rw [FateV2.Predict.C15.bar_sdiff_eq hsT f x, FateV2.Predict.C15.bar_sdiff_eq hsT f y]
   -- 用 mass_indep_of_reads_compl，取 T := T\{s}
-  apply Fate.C17.mass_indep_of_reads_compl
+  apply FateV2.Predict.C17.mass_indep_of_reads_compl
   -- 需：g := fun w => f s w * tail f T w 只依赖 univ \ (T\{s})
   intro w w' h
   -- univ \ (T\{s}) = {s} ∪ (univ\T)
   have hset : (univ \ (T \ {s}) : Finset V) = insert s (univ \ T) := by
     rw [Finset.sdiff_singleton_eq_erase]
-    exact Fate.C14.sdiff_erase_eq hsT
+    exact FateV2.Predict.C14.sdiff_erase_eq hsT
   -- w 与 w' 在 {s} ∪ (univ\T) 上一致
   have hws : w s = w' s := h s (by rw [hset]; exact Finset.mem_insert_self _ _)
   have hwt : ∀ u ∈ univ \ T, w u = w' u := fun u hu => h u (by rw [hset]; exact Finset.mem_insert_of_mem hu)

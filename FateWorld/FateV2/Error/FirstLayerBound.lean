@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.FirstLayerBound`（**新建**，不修改任何已有模块）
+模块：`FirstLayerBound`（**新建**，不修改任何已有模块）
 
 ## 0  本文件要解决的问题（审计 R249）
 
@@ -58,7 +58,7 @@ $$\bigl|\,\mathrm{e2eResidual}\ \mathrm{linWorld}\ (\theta^*\hat x)\ \theta_n\,\
 或 `|e2eResidual|`。
 
 **1.2 `√(varOf P / n)` 与 `linWorld` 之间没有共用的概率模型。**
-`varOf P` 来自 `Fate.GaussMarkovScalar` 的载体（`P` 上 `n` 个 iid 观测、
+`varOf P` 来自 `FateV2.Error.GaussMarkovScalar` 的载体（`P` 上 `n` 个 iid 观测、
 线性估计器 `est a`；`est_err_exact` 证明均匀权重的方差**恰是**
 `(√(varOf P / n))²`）。`linWorld` 是**单**设计点的线性世界，**无**概率结构。
 本文件的接法是外部假设 `hest`：把**同一个** `θ̂`（它既是 `linWorld` 的学习初值、
@@ -132,7 +132,7 @@ $$\bigl|\,\mathrm{e2eResidual}\ \mathrm{linWorld}\ (\theta^*\hat x)\ \theta_n\,\
 
 ## 2.5  ⚠ 附带发现：`Fate/FirstLayerCapstone.lean` **曾无法编译**（第 264 轮已复原，现可编译）
 
-本文件最初计划 `import Fate.FirstLayerCapstone` 以引用 `linkEst` / `linkLearn` /
+本文件最初计划 `import FirstLayerCapstone` 以引用 `linkEst` / `linkLearn` /
 `linkSteady` 做**跨模块**同一性核对。**第 264 轮实测该模块有 4 处 error**（现已被并发代理改坏后复原，见下）：
 
     lake env lean Fate/FirstLayerCapstone.lean
@@ -147,16 +147,16 @@ $$\bigl|\,\mathrm{e2eResidual}\ \mathrm{linWorld}\ (\theta^*\hat x)\ \theta_n\,\
 `linkSteadyReplica`（§3），在**表达式层**做同一性核对；主定理**不**依赖它们。
 ⚠ `Fate/FirstLayerCapstone.lean` 的 4 处 error **已于第 264 轮复原**（`git checkout HEAD`）。以下登记保留为**历史记录**：
 新建 `FirstLayerBound.lean`），故**未修复**，在此如实登记。
-⚠ 另注：`Fate.lean` 的根文件里 `import Fate.FirstLayerCapstone`（第 856 行）存在，
+⚠ 另注：`Fate.lean` 的根文件里 `import FirstLayerCapstone`（第 856 行）存在，
 故**全量 `lake build` 当前会失败**——这是既有状态，非本文件造成。
 
 ## 3 依赖（只 `import`，不改）
 
-`Fate.ChainBudgetBound`（`sigmaLearn`、`learnErr_le`、`e2e_abs_eq`、
+`ChainBudgetBound`（`sigmaLearn`、`learnErr_le`、`e2e_abs_eq`、
 `sigmaSteady`、`sigmaSteady_nonneg`、`sigmaSteady_zero_noise`、`sigmaLearn_eta_one`）、
-`Fate.ThetaConvergence`（`linWorld`、`thetaN`、`linWorld_predFrom`）、
-`Fate.GaussMarkovScalar`（`varOf`、`gauss_markov_lower_bound`、`est`）。
-**不 import** `Fate.FirstLayerCapstone`（见 §3 的登记：**当时**该文件无法编译；虽已复原，为保持本文件的独立性仍不 import）。
+`ThetaConvergence`（`linWorld`、`thetaN`、`linWorld_predFrom`）、
+`FateV2.Error.GaussMarkovScalar`（`varOf`、`gauss_markov_lower_bound`、`est`）。
+**不 import** `FirstLayerCapstone`（见 §3 的登记：**当时**该文件无法编译；虽已复原，为保持本文件的独立性仍不 import）。
 
 纪律：零 `sorry` / 零 `admit` / 零 `axiom`；只新增本文件，不改任何已有模块。
 -/

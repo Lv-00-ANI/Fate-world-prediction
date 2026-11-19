@@ -15,7 +15,7 @@ import Mathlib.Analysis.Normed.Ring.Basic
 -/
 
 /-! ===========================================================================
-  `Fate.GapFalse` —— **`dist_to_optimum_Gap` 的全称形式为假**（负面结论）
+  `GapFalse` —— **`dist_to_optimum_Gap` 的全称形式为假**（负面结论）
 
   ## 0 本文件做什么
 

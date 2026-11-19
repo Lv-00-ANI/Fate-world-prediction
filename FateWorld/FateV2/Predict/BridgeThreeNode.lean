@@ -59,7 +59,7 @@ import Mathlib.Tactic
     「只读 `x₀,x₁`」或「只读 `x₁,x₂`」的**其中一类**，再拆乘积。
     **`hfac` 若去掉，可分离性无从谈起**（那是 `p` 的唯一定量信息）。
 
-  * **`CondMul` 的结论由 `Fate.PearlCondIndepBridge.separable_implies_condMul`**
+  * **`CondMul` 的结论由 `PearlCondIndepBridge.separable_implies_condMul`**
     （纯代数：可分离 ⟹ `CondMul`，无正性假设）给出 —— 它**不含**任何图论前提。
 
   ⟹ **没有把结论写进前件**，也不存在「`hd` 未被消费」的问题。

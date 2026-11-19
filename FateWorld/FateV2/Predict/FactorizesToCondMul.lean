@@ -65,7 +65,7 @@ import Mathlib.Tactic
   **`(a,c)`** 与 **`(b,c)`**，而 `Factorizes` 给的是 **`(a,b)`** 与 **`(a,c)`** 的因子
   —— **两者只有 `(a,c)` 一项重合**。
 
-  而 `Fate.FinMarkov.Factorizes` 的定义（`Fate/FinMarkov.lean:299`）是
+  而 `FinMarkov.Factorizes` 的定义（`Fate/FinMarkov.lean:299`）是
 
   $$P(a,b,c) = \alpha(a)\,\beta(a,b)\,\gamma(a,c),$$
 
@@ -320,24 +320,24 @@ theorem factorizes_implies_condMul_Z' {P : A × B × C → ℝ} (h : Factorizes 
 （见 §2 的 `factorizes_implies_condMul_Z` 的否定面），
 故本定理把「图侧否定」转化为「分解式不存在」这一**代数结论**。
 
-⚠ **跨模块**：显式调用 `Fate.RegressFinMarkov.regress_not_factorizes_of_not_condIndep`。 -/
+⚠ **跨模块**：显式调用 `FateV2.Predict.RegressFinMarkov.regress_not_factorizes_of_not_condIndep`。 -/
 theorem not_factorizes_of_not_condIndep {A B C : Type} [Fintype A] [DecidableEq A]
     [Fintype B] [DecidableEq B] [Fintype C] [DecidableEq C]
     {P : A × B × C → ℝ} (h : ¬ CondIndepFin P) :
     ¬ Factorizes P :=
-  Fate.RegressFinMarkov.regress_not_factorizes_of_not_condIndep h
+  FateV2.Predict.RegressFinMarkov.regress_not_factorizes_of_not_condIndep h
 
 /-- ⭐⭐ **消费 2**：父集分解 ⟹ 商形式（`RegressFinMarkov` 的 `regress_factorizes_ratio`）。
 
 把 `Factorizes` 一步推到教科书的**比值刻画** `P(b,c|a) = P(b|a)P(c|a)`，
 即在 `P(a) ≠ 0` 处成立。这是本文件 `rebindZ` 口径的**商形式对应物**。
 
-⚠ **跨模块**：显式调用 `Fate.RegressFinMarkov.regress_factorizes_ratio`。 -/
+⚠ **跨模块**：显式调用 `FateV2.Predict.RegressFinMarkov.regress_factorizes_ratio`。 -/
 theorem factorizes_ratio_of_factorizes {A B C : Type} [Fintype A] [DecidableEq A]
     [Fintype B] [DecidableEq B] [Fintype C] [DecidableEq C]
     {P : A × B × C → ℝ} (h : Factorizes P) (a : A) :
     CondIndepFinRatio (P := P) a :=
-  Fate.RegressFinMarkov.regress_factorizes_ratio h a
+  FateV2.Predict.RegressFinMarkov.regress_factorizes_ratio h a
 
 end FinMarkov
 end FateV2.Predict

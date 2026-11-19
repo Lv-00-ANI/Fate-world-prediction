@@ -16,7 +16,7 @@ import Mathlib.Tactic
 -/
 
 /-!
-# `Fate.CausalDrivesGazeV2` —— 因果驱动分类（最小可行版本）
+# `CausalDrivesGazeV2` —— 因果驱动分类（最小可行版本）
 
 ## 背景
 
@@ -28,7 +28,7 @@ import Mathlib.Tactic
 ## 目标
 
 给出一个**抽象层级** `causalLevel`（从图 + 集合算出）并与
-`Fate.MainLoop` 的 `abstractUp` / `deconstructDown` 证明**相容**。
+`FateV2.Loop.MainLoop` 的 `abstractUp` / `deconstructDown` 证明**相容**。
 
 ## 本文件实际交付的定理（逐条列出，不多不少）
 

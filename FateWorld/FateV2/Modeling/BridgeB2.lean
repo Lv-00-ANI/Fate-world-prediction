@@ -460,7 +460,7 @@ theorem exists_topoOrderData_noOrderIso (G : FateV2.Modeling.Graph.DAG V) :
   ### 10.1 B3（`dSep` 与拓扑序兼容）应当这样取序
 
   ```lean
-  let τ : TopoOrderData G := Fate.BridgeB2.topoOrderData G
+  let τ : TopoOrderData G := BridgeB2.topoOrderData G
   ```
 
   然后：

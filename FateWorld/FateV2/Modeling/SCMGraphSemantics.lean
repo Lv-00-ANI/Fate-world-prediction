@@ -16,7 +16,7 @@ import Mathlib.Tactic
 -/
 
 /-! ===========================================================================
-  `FateV2.Modeling.SCMGraphSemantics` —— **把 `Fate.SCMGraph` 真正接进 `Fate.SCMSemantics`**
+  `FateV2.Modeling.SCMGraphSemantics` —— **把 `FateV2.Modeling.SCMGraph` 真正接进 `SCMSemantics`**
   ===========================================================================
 
   ## 0. 本文件解决的「假接线」问题
@@ -41,8 +41,8 @@ import Mathlib.Tactic
 
   | 侧 | 载体 | 定义位置 |
   |---|---|---|
-  | **概率侧** | `jointLaw M : M.U × X × Y → ℝ`，`= pU u · [h_u x = y]` | `Fate.SCMSemantics` |
-  | **图侧** | `edge M : SV M → SV M → Prop`（`SV M = U ⊕ (X ⊕ Y)`）| `Fate.SCMGraph` |
+  | **概率侧** | `jointLaw M : M.U × X × Y → ℝ`，`= pU u · [h_u x = y]` | `SCMSemantics` |
+  | **图侧** | `edge M : SV M → SV M → Prop`（`SV M = U ⊕ (X ⊕ Y)`）| `FateV2.Modeling.SCMGraph` |
 
   两套语言**互不引用**：`jointLaw` 不知道图，`edge` 不知道概率。
   本文件建立**第一个真实的连接**：
@@ -174,7 +174,7 @@ end FateV2.Modeling.SCMGraphSemantics
     已**传递**提供本节全部上游（`PearlHierarchy`、`push`、`L1_obs`、`edge`、`rank`、
     `depUX`、`depUY`、`condY`、`doLaw`、`marginalX`）。故本节**零改动**既有行，
     `git diff --numstat` 的 `D = 0`。
-    **代价**：`Fate.SCMUnificationA`、`Fate.SCMKernel` 等**未被本模块 import** 的
+    **代价**：`SCMUnificationA`、`SCMKernel` 等**未被本模块 import** 的
     S 系模块**无法**在此接线 —— 若要对它们接线，必须在文件头部加 `import`
     （会破坏 `D = 0`），故**本轮不做**，如实登记。
   * `not_depUX_exists_condY_eq_doLaw` 的**前件与「存在常值 `x₀`」只差一步经典逻辑**；

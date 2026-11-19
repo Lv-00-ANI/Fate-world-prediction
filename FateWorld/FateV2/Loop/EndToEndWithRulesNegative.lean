@@ -14,7 +14,7 @@ import FateWorld.FateV2.Loop.EndToEndUnconditional
 -/
 
 /-! ===========================================================================
-  `Fate.EndToEndWithRulesNegative` —— **缺口三的否定结果**
+  `EndToEndWithRulesNegative` —— **缺口三的否定结果**
 
   ## 0  登记的问题（「改法 C」）
 

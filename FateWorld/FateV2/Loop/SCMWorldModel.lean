@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.SCMWorldModel`
+模块：`SCMWorldModel`
 定位：**建桥 —— 把世界模型线接进因果主干**（SCM ⟶ `WorldModel`）
 
 ---------------------------------------------------------------------------
@@ -16,7 +16,7 @@
 | **世界模型线** | `WorldModel` → `EndToEnd`(16) → `BoundWriteBack`(12) → `ThetaConvergence` | `Frame`（`Θ,X,U,Act,Ν`）+ 四块（状态/规则集/模拟器/选择器）|
 
 **⚠ 已核实（3 种 grep 模式，见交付说明）**：
-`EndToEnd` / `BoundWriteBack` / `ThetaConvergence` / `WorldModel` 对 `Fate.SCMSemantics`
+`EndToEnd` / `BoundWriteBack` / `ThetaConvergence` / `WorldModel` 对 `SCMSemantics`
 的 import 数**均为 0**；且**没有任何文件**把「任意 SCM」翻译成 `WorldModel`。
 
 **⚠ 与既有模块的边界（必须写清，否则会变成重复劳动）**：

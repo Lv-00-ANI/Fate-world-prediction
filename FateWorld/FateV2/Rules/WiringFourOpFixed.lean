@@ -49,7 +49,7 @@ but is expected to have type
 
 **⚠ 特别声明（不重复历史错误）**：第 1 条（`step_apply_eq_closureOp`）的
 `alphaK`／`upsilonK`／§2 的 `gammaK` 在 `⊆` 序下**定义展开后就是** `K3.closureOp`
-（`Fate.Alpha` 把 `takeConcept` 定义为 `closureOp`，`Fate.UpsilonOperator`
+（`Fate.Alpha` 把 `takeConcept` 定义为 `closureOp`，`UpsilonOperator`
 把 `fcaUpsilon` 定义为 `closureOp`）。因此"三者相等"是**定义重合**，`rfl` 可证。
 本文件**不**把这类等式包装成"新定理"：凡属此类者一律标 `rfl` 登记并注明
 "α 与 υ 在同一载体上不冲突"的**登记价值**，不声称新数学内容。
@@ -60,7 +60,7 @@ but is expected to have type
 ---------------------------------------------------------------------------
 1. **零 `sorry` / `admit` / `axiom`**。
 2. α、υ、γ 的语义**全部来自已有模块**（`Fate.Alpha`、`Fate.AlphaConcreteInstance`、
-   `Fate.GammaOperator`、`Fate.UpsilonOperator`），本文件只做**消费**与**接线**。
+   `Fate.GammaOperator`、`UpsilonOperator`），本文件只做**消费**与**接线**。
 3. ∘ 仍取 `Fate.WiringFourOperators` 的 `combClosure`（规格开放问题 5.1 未定的
    **一个**候选实现），本文件**不**声称它是规格的那个 ∘。
 4. 不填 θ、不填 υ 的概率表达式（规格纪律"填数即为虚构"）。
@@ -110,11 +110,11 @@ namespace WiringFixed
 /-- **α 在 `K3` 上的落点**：`Fate.Alpha.takeConcept`（取概念过程）。 -/
 abbrev alphaK : Set K3.MFCA → Set K3.MFCA := K3.takeConcept
 
-/-- **υ 在 `K3` 上的落点**：`Fate.UpsilonOperator.FCAInstance.fcaUpsilon K3`。 -/
+/-- **υ 在 `K3` 上的落点**：`UpsilonOperator.FCAInstance.fcaUpsilon K3`。 -/
 abbrev upsilonK : Set K3.MFCA → Set K3.MFCA :=
   UpsilonOperator.FCAInstance.fcaUpsilon K3 ()
 
-/-- **υ 满足 `Fate.UpsilonOperator.IsCompletion`**（直接消费已有模块，不重证）。 -/
+/-- **υ 满足 `UpsilonOperator.IsCompletion`**（直接消费已有模块，不重证）。 -/
 theorem upsilonK_isCompletion :
     UpsilonOperator.IsCompletion (UpsilonOperator.FCAInstance.fcaUpsilon K3) :=
   UpsilonOperator.FCAInstance.fcaInstance_isCompletion K3
@@ -193,7 +193,7 @@ def apply : Step → Set K3.MFCA → Set K3.MFCA
 **于 `(⊆)` 序下落成同一个函数** `K3.closureOp`。
 
 本条是 `Fate.Alpha`（`takeConcept := closureOp`）与
-`Fate.UpsilonOperator`（`fcaUpsilon := closureOp`）的**定义重合**，
+`UpsilonOperator`（`fcaUpsilon := closureOp`）的**定义重合**，
 经 `rfl` 即可。**它的价值是登记"α、γ、υ 在同一载体上不冲突"，
 本文件不声称它证明了新数学内容。** 真正的数学内容在 §2 的归纳引理。 -/
 theorem apply_eq_closureOp (st : Step) (X : Set K3.MFCA) :
@@ -286,7 +286,7 @@ theorem runChain_isClosed (st : Step) (rest : List Step) (X : Set K3.MFCA) :
 | 算子 | 律 | 来源 |
 |---|---|---|
 | α | 扩张＋单调＋幂等（闭包算子） | `Fate.Alpha` / `Fate.Implication` |
-| υ | `IsCompletion`（扩张＋单调＋幂等） | `Fate.UpsilonOperator.FCAInstance` |
+| υ | `IsCompletion`（扩张＋单调＋幂等） | `UpsilonOperator.FCAInstance` |
 | γ | `GenOp`（收缩＋单调＋幂等，逆包含序） | `Fate.GammaOperator` |
 | ∘ | 交换＋α 吸收 | §1.3 `combClosure` |
 
@@ -339,7 +339,7 @@ theorem four_operators_common_fixed_point (B : Set K3.MFCA) :
   ⟨K3.takeConcept_isClosed B, K3.takeConcept_isClosed B, K3.takeConcept_isClosed _⟩
 
 /-- **跨模块：α 与 υ 的"饱和"判据重合**
-（把 `Fate.Implication.IsClosedAttr` 与 `Fate.UpsilonOperator.IsCompletion.Saturated`
+（把 `Fate.Implication.IsClosedAttr` 与 `UpsilonOperator.IsCompletion.Saturated`
 两个**来源不同**的谓词接上，调用的是已有模块的 `fca_saturated_iff_isClosedAttr`）。 -/
 theorem alpha_upsilon_same_fixed (B : Set K3.MFCA) :
     K3.IsClosedAttr B ↔ UpsilonOperator.IsCompletion.Saturated

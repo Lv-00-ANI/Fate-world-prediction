@@ -2,14 +2,14 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.SCMWorldModelEval`
+模块：`SCMWorldModelEval`
 定位：**第 3 层「可运行」—— 给 SCM 主干加 `#eval` 数值实例**
 
 ---------------------------------------------------------------------------
 〇、要解决的问题（不是猜测，是盘点结果）
 ---------------------------------------------------------------------------
-`SCM` 主干（`Fate.SCMSemantics` → `Fate.SCMWorldModel` → `Fate.SCMEndToEnd` /
-`Fate.SCMResidual`）有 90 余条定理，**但零 `#eval`**。
+`SCM` 主干（`SCMSemantics` → `SCMWorldModel` → `SCMEndToEnd` /
+`SCMResidual`）有 90 余条定理，**但零 `#eval`**。
 库中 5 个含 `#eval` 的模块（`ConvergeToOptimalDemo` / `EvalClosedLoop` /
 `EvalDemo` / `EvalReal` / `EvalRealProof`）**都不在 SCM 主干上**。
 ⟹「世界模型真的能预测」这件事在 SCM 主干上**从未被数值验证**。本文件补这一块。
@@ -443,9 +443,9 @@ theorem scmDoLaw_dep_x :
   norm_num
 
 /-! ===========================================================================
-  §6  ⭐ **与 `Fate.SCMEndToEnd` 的等式对接**（任务 H，第 716 轮）
+  §6  ⭐ **与 `SCMEndToEnd` 的等式对接**（任务 H，第 716 轮）
 
-  本文件此前只 `import` 了 `Fate.SCMEndToEnd` 却**未真正消费**它的任何定理。
+  本文件此前只 `import` 了 `SCMEndToEnd` 却**未真正消费**它的任何定理。
   本节把 `SCMEndToEnd.predFrom_scmWorldModel_indep_start`
   （`Fate/SCMEndToEnd.lean`，前件仅 `[Nonempty Y]`，对**任意** SCM 成立）
   落到本文件的具体 SCM `scmDemo : SCM Bool Bool` 上，得到两条**新结论**：

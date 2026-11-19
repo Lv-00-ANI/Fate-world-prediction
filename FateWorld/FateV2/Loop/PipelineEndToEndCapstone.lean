@@ -15,7 +15,7 @@ import FateWorld.FateV2.Loop.PipelineAdaptiveEtaRobust
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineEndToEndCapstone` —— **组合定理：7 层理论的端到端保证**
+  `PipelineEndToEndCapstone` —— **组合定理：7 层理论的端到端保证**
 
   ## 0  组合了什么
 

@@ -16,7 +16,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineComplexityOptimal` —— **最优步数选择（最小 N 的存在）**
+  `PipelineComplexityOptimal` —— **最优步数选择（最小 N 的存在）**
 
   ## 0  本文件补什么
 
@@ -111,7 +111,7 @@ theorem prev_fails_of_minimal (c eps : ℝ) (_hc0 : 0 ≤ c) (_hc1 : c < 1) (_he
 给定 `0 ≤ c < 1`、`e0 > 0` 与 `n : ℕ`，存在步长序列 `eta : ℕ → ℝ` 使
 
 * **收缩条件** `∀ k, |1 - eta k| ≤ c`（这正是
-  `Fate.PipelineAdaptiveEtaNormed.adaptive_norm_le` 所需的假设），
+  `PipelineAdaptiveEtaNormed.adaptive_norm_le` 所需的假设），
 * 并且**误差恰为** `c ^ n * e0`（不是 `≤`，是 `=`）。
 
 即：在「一致收缩」假设类下，几何速率 `c^n` **无法**被任何一致更小的

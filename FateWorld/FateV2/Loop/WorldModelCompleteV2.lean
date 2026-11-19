@@ -29,19 +29,19 @@ C6 同时指出一个**关键断点**：
    **定义性引理**（`rfl` / `Subsingleton.elim` 级），**不构成**对世界的断言，
    **也不证明**任何规格中的经验假设（A1–A34）。
 3. **占位登记（必须写明）**：
-   - `alpha` 字段用 `Fate.AlphaData (E : InstSpace.{u}) (M : Type u)`。
+   - `alpha` 字段用 `AlphaData (E : InstSpace.{u}) (M : Type u)`。
      **它与本结构的 `input : InstSpace` 参数直接匹配**，**不是占位**。
-     但**注意**：它**不是** `Fate.InstanceChain.AlphaOutput`（后者是
+     但**注意**：它**不是** `InstanceChain.AlphaOutput`（后者是
      「划分 + `LawRule` 集」）。规格的 α 映到**规则集**，`AlphaData`
      映到**观测映射**；二者的桥**不在本文件内**，登记为未完成项 U2。
-   - `combine.upsilon` 用 `Fate.UpsilonOperator.Upsilon Data α`
+   - `combine.upsilon` 用 `UpsilonOperator.Upsilon Data α`
      （裸函数 `Data → α → α`），**只承载签名**，**不带** `IsCompletion`
      的序论性质（需具体预序，登记为未完成项 U3）。
-   - `combine.gamma` 用 `Fate.GenOp (Rule C X X)`，**相对 `RuleSpec` 的预序**。
+   - `combine.gamma` 用 `GenOp (Rule C X X)`，**相对 `RuleSpec` 的预序**。
      本结构把 `[RuleSpec C X X]` 作为**参数**（不是隐藏前提），
      故「γ 的三条律」随 `GenOp` 自动生效，**不**是本文件的断言。
    - `error` 用 `Fate.FateV2.Error.Core.ErrProfileWeak`，`sigma` 用
-     `Fate.SigmaFromDomain.SigmaSource`（含 `unknown` 支）。
+     `SigmaFromDomain.SigmaSource`（含 `unknown` 支）。
      二者**都是真接口**，**不是占位**。
 4. **规则 ⟹ 模拟器**（C6 的核心断点）由字段 `rules_determine_step` 表达：
    它要求存在本规则集中的一条规则 `r`，使 `simulator.step = render r`。
@@ -143,15 +143,15 @@ noncomputable section
 | 环节 | 本文件字段 | 绑定的既有定义 |
 |---|---|---|
 | ① 骨架 + 输入 | `input` | `Fate.InstSpace`（字段 `Carrier : Type*`） |
-| ② 抽象 α 的**数据** | `alpha` | `Fate.AlphaData`（字段 `obs : E.Carrier → Set M`） |
-| ③a 泛化 γ | `gamma` | `Fate.GenOp (Rule C F.X F.X)`（相对 `[RuleSpec]` 的预序） |
-| ③b 复合 ∘ | `compose` | `Fate.ComposeOperator.MeasurableRule` 的复合 |
-| ③c 完善 υ | `upsilon` | `Fate.UpsilonOperator.Upsilon PUnit (Rule C F.X F.X)` |
+| ② 抽象 α 的**数据** | `alpha` | `AlphaData`（字段 `obs : E.Carrier → Set M`） |
+| ③a 泛化 γ | `gamma` | `GenOp (Rule C F.X F.X)`（相对 `[RuleSpec]` 的预序） |
+| ③b 复合 ∘ | `compose` | `FateV2.Rules.ComposeOperator.MeasurableRule` 的复合 |
+| ③c 完善 υ | `upsilon` | `UpsilonOperator.Upsilon PUnit (Rule C F.X F.X)` |
 | ④ 生成 / 预测 | `simulator` | `Fate.WorldSimulator F`（字段 `step : Step F` / `horizon : ℕ`） |
-| ⑤ 因果 | `causal` | `Fate.ParamSCM.ParamSCM F.X.Carrier F.X.Carrier` |
+| ⑤ 因果 | `causal` | `ParamSCM.ParamSCM F.X.Carrier F.X.Carrier` |
 | ⑥a 误差剖面 | `error` | `Fate.FateV2.Error.Core.ErrProfileWeak` |
-| ⑥b 签名 σ 来源 | `sigma` | `Fate.SigmaFromDomain.SigmaSource` |
-| **（C6 断点）** 规则集 | `rules` | `Fate.Rules C F.X F.X` |
+| ⑥b 签名 σ 来源 | `sigma` | `SigmaFromDomain.SigmaSource` |
+| **（C6 断点）** 规则集 | `rules` | `FateV2.Rules C F.X F.X` |
 | **（C6 断点）** 规则→机制 | `render` / `render_surj` | 本文件定义 |
 | **（C6 断点）** 规则 ⟹ 模拟器 | `rules_determine_step` | 本文件定义（`Σ'` 依赖对） |
 
@@ -163,7 +163,7 @@ noncomputable section
 若日后要接真上下文，须把 `⟨PUnit⟩` 换成 `ctx` 字段并加对齐证据。
 
 **⚠ `[RuleSpec]` 是参数不是隐藏前提**：γ 需要 `Preorder (Rule C F.X F.X)`，
-`Fate.RuleSpec.instPreorder` 从 `[RuleSpec C X Y]` 合成它。
+`RuleSpec.instPreorder` 从 `[RuleSpec C X Y]` 合成它。
 本结构把它**显式列为参数**，故「γ 有预序」在类型层的可见处，
 **不**是匿名前提（这正是规格「不存在匿名前提」纪律的落实）。
 
@@ -172,26 +172,26 @@ structure WorldModelCompleteV2 (F : Frame) [instX : MeasurableSpace F.X.Carrier]
     [S : RuleSpec (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X] where
   /-- **① 输入**：实例集 $\mathcal{E}$（规格 §1.4；`Fate.Frame.InstSpace`）。
 
-  **为什么用 `InstSpace` 而不是 `CtxSpace` 占位**：`Fate.InstanceChain.Instance`
+  **为什么用 `InstSpace` 而不是 `CtxSpace` 占位**：`InstanceChain.Instance`
   （`(O : Type u) (A : Type v)`）与 `Frame` 之间**没有**直接参数对应，
   而 `InstSpace`（单一 `Carrier` 字段）与 `AlphaData` 的 `E` 位**参数匹配**，
   故取 `InstSpace` 是真接口，**不是占位**。 -/
   input : InstSpace.{0}
-  /-- **② 抽象 α（数据层）**：实例 ↦ 属性集的观测映射（`Fate.AlphaData`）。
+  /-- **② 抽象 α（数据层）**：实例 ↦ 属性集的观测映射（`AlphaData`）。
 
   ⚠ 这是 α 的**一项具体载体**（观测映射），**不**包含局部域划分；
   与规格 α（映到规则集）的等价性**不在本文件内证明**（未完成项 U2）。 -/
   alpha : AlphaData.{0} input PUnit
-  /-- **③a 泛化 γ**：特异性预序上的收缩、单调、幂等映射（`Fate.GenOp`）。
+  /-- **③a 泛化 γ**：特异性预序上的收缩、单调、幂等映射（`GenOp`）。
 
   载体取**单条规则层** `Fate.Rule C F.X F.X`（`[RuleSpec]` 给出其预序）。 -/
   gamma : GenOp (Rule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X)
-  /-- **③b 复合 ∘**：两条规则复合为一条（`Fate.ComposeOperator.MeasurableRule`
+  /-- **③b 复合 ∘**：两条规则复合为一条（`FateV2.Rules.ComposeOperator.MeasurableRule`
   的复合接口，此处取其**两条可测规则 ↦ 一条可测规则**的裸形式）。 -/
   compose : ComposeOperator.MeasurableRule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X →
     ComposeOperator.MeasurableRule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X →
     ComposeOperator.MeasurableRule (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X
-  /-- **③c 完善 υ**：规则 × 数据 → 规则（`Fate.UpsilonOperator.Upsilon`）。
+  /-- **③c 完善 υ**：规则 × 数据 → 规则（`UpsilonOperator.Upsilon`）。
 
   **⚠ 只承载签名**：`IsCompletion` 的序论性质（扩张／单调／幂等）
   **未**作为字段断言（需具体预序，未被作者裁决；未完成项 U3）。 -/
@@ -199,15 +199,15 @@ structure WorldModelCompleteV2 (F : Frame) [instX : MeasurableSpace F.X.Carrier]
   /-- **④ 生成 / 预测**：模拟器（`Fate.WorldSimulator F`，字段 `step : Step F` /
   `horizon : ℕ`）。 -/
   simulator : WorldSimulator F
-  /-- **⑤ 因果**：参数化 SCM（`Fate.ParamSCM.ParamSCM X Y`，`Th` 位承载 θ）。 -/
+  /-- **⑤ 因果**：参数化 SCM（`ParamSCM.ParamSCM X Y`，`Th` 位承载 θ）。 -/
   causal : ParamSCM.ParamSCM F.X.Carrier F.X.Carrier
   /-- **⑥a 误差剖面**：偏置 / 方差两分量 + 非负公理的**弱**剖面
   （`Fate.FateV2.Error.Core.ErrProfileWeak`）。 -/
   error : FateV2.Error.Core.ErrProfileWeak
   /-- **⑥b 签名 σ 的来源**：领域给定 / 估计 / 未给
-  （`Fate.SigmaFromDomain.SigmaSource`，**含 `unknown` 支**）。 -/
+  （`SigmaFromDomain.SigmaSource`，**含 `unknown` 支**）。 -/
   sigma : SigmaFromDomain.SigmaSource
-  /-- **（C6 断点）规则集** $\mathcal{R}$（`Fate.Rules`）：这**是**本世界模型的规则集，
+  /-- **（C6 断点）规则集** $\mathcal{R}$（`FateV2.Rules`）：这**是**本世界模型的规则集，
   **不是**与本模型无关的集合——它由本结构携带，供 `rules_determine_step` 使用。 -/
   rules : Rules (⟨PUnit⟩ : CtxSpace.{0}) F.X F.X
   /-- **（C6 断点）从规则到机制的渲染**：把一条规则读成单步机制 `Step F`。
@@ -382,7 +382,7 @@ def vUps : UpsilonOperator.Upsilon PUnit (Rule vCtx vFrameP.X vFrameP.X) :=
 /-- **最小实例的 ∘**：取左操作数（最平凡的复合）。
 
 **⚠ 诚实标注**：这**不是**核复合 `Measure.bind`，只是**让字段可填**。
-真正的核复合已在 `Fate.ComposeOperator` 内（`MeasurableRule.compose`），
+真正的核复合已在 `FateV2.Rules.ComposeOperator` 内（`MeasurableRule.compose`），
 本文件**不重做**（未完成项 U6）。 -/
 def vCompose : ComposeOperator.MeasurableRule vCtx vFrameP.X vFrameP.X →
     ComposeOperator.MeasurableRule vCtx vFrameP.X vFrameP.X →
@@ -458,7 +458,7 @@ theorem minWMC_step_eq_render :
 /-- **相容性 2**：最小实例的轨迹恒为 `PUnit.unit`
 （机制是全单点帧上的唯一机制，故轨迹是常值序列）。
 
-证明：`Fate.TrajGenDeterministic.trajGen` 的值类型是 `PUnit`，
+证明：`FateV2.Model.TrajGenDeterministic.trajGen` 的值类型是 `PUnit`，
 故一切取值相等（`Subsingleton.elim`）。
 
 **⚠ 与前件同义反复自查**：本定理**无前件**（不做任何假设）；
@@ -483,13 +483,13 @@ theorem worldModelCompleteV2_nonempty :
   ⟨minWMC, trivial⟩
 
 /-! ===========================================================================
-    §3.5  接入 `Fate.AssemblyGainShared`：六环装配的**收益判定条件**
+    §3.5  接入 `FateV2.Meta.AssemblyGainShared`：六环装配的**收益判定条件**
     =========================================================================== -/
 
 /-!
 ## 本节的诚实定位（先读）
 
-**(a) 本任务的目标**：把 `Fate.AssemblyGainShared`（17 定理，`fanin 0` 的孤立模块）
+**(a) 本任务的目标**：把 `FateV2.Meta.AssemblyGainShared`（17 定理，`fanin 0` 的孤立模块）
 **接进主干**。依赖方向已确认：`AssemblyGainShared` 只 `import FateV2.Meta.AssemblyMeta`
 （后者 `import` 为空），**不** `import WorldModelCompleteV2`，故本节新增 import
 **不成环**。
@@ -524,7 +524,7 @@ theorem worldModelCompleteV2_nonempty :
 
 /-- ⭐⭐ **【六环装配的收益判定条件】**——`AssemblyGainShared` 的接入点。
 
-本定理是 `Fate.AssemblyGainShared` 两条核心结论的**显式并列**：
+本定理是 `FateV2.Meta.AssemblyGainShared` 两条核心结论的**显式并列**：
 
 1. **非局部（共享）约束 ⟹ 有收益**：存在 `Θ : Set (V2 → ℝ)`，
    `Φc ∩ Ψc ⊆ Θ` 且 `Φc ⊄ Θ` 且 `Ψc ⊄ Θ`
@@ -563,11 +563,11 @@ theorem wmc_six_ring_assembly_gain_iff :
 | # | 未完成项 | 缺什么 |
 |---|---|---|
 | U1 | **`render` 的实质翻译** | 本文件的 `render` 是最平凡的实现（子单点帧上取唯一机制）。从 `Rule`（概率核）到 `Step`（确定性机制）的**真实翻译**需要「取核的期望 / 众数 / 骨架」的测度论选择 + 可测性论证，**本任务（只建类型）未做**。 |
-| U2 | **`alpha` 与规格 α 的对齐** | `AlphaData`（观测映射）≠ `AlphaOutput`（划分 + `LawRule` 集）。二者的桥需 `Fate.InstanceChain.AlphaSpec` 的 S1–S5 与一项「观测 ↦ 规则」的构造，**不在本文件内**。 |
+| U2 | **`alpha` 与规格 α 的对齐** | `AlphaData`（观测映射）≠ `AlphaOutput`（划分 + `LawRule` 集）。二者的桥需 `InstanceChain.AlphaSpec` 的 S1–S5 与一项「观测 ↦ 规则」的构造，**不在本文件内**。 |
 | U3 | **`upsilon` 的 `IsCompletion` 性质** | 需具体预序。规则集上的**具体预序**未被作者裁决（`Fate/GammaOperator.lean` 文件头 E3 已登记为开放），故本文件**不擅自假定**。 |
 | U4 | **上下文取 `⟨PUnit⟩`** | 本结构把 `CtxSpace` 硬编码为单点。真上下文（`AlphaSpec` 的局部域）**未接入**。 |
 | U5 | **`rules_determine_step` 不是「语义正确性」** | 它只断言「本模型的机制**来自**本模型的规则集」，**不**断言该规则集**正确地**刻画了世界。后者是经验假设（A1–A34），**不在任何形式化之内**。 |
-| U6 | **`compose` 的最小实例不调用真复合** | `vCompose` 取左操作数，**不是** `Measure.bind` 复合。真的核复合在 `Fate.ComposeOperator` 内（`MeasurableRule.compose`），本文件**不重做**。 |
+| U6 | **`compose` 的最小实例不调用真复合** | `vCompose` 取左操作数，**不是** `Measure.bind` 复合。真的核复合在 `FateV2.Rules.ComposeOperator` 内（`MeasurableRule.compose`），本文件**不重做**。 |
 | U7 | **C6 判定的「⑦ 交接器」** | 本文件只**建了类型 + 一个最小实例**。六字段并列仍存在：①②、②③、④⑤、⑤⑥ 之间的**语义桥全部缺失**；唯 ③/规则 与 ④ 之间有 `rules_determine_step` 连接。**未达成**「七个环节在数学上被接通」。 |
 | U8 | **§3.5 与六环只是【对应关系】** | `wmc_six_ring_assembly_gain_iff` **不**从六个字段推出任何东西；它的两条合取项**全部来自** `AssemblyGainShared`，与六字段取值**无关**。它是**接入证据**（把 `AssemblyGainShared` 搬进 `Fate` 命名空间可引用），**不是**「六环已交互」的证据。倒真要说六环之间**是否**存在跨字段非局部约束，需给出**具体交互模型**，本文件**未给**。 |
 

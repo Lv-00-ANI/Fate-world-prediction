@@ -77,7 +77,7 @@ import Mathlib.Tactic.FinCases
 
   | 探针 | 结果 |
   |---|---|
-  | `M.sg u = (u, id)` 的 `rfl` | ✅（**必须在** `namespace Fate.T43` 内）|
+  | `M.sg u = (u, id)` 的 `rfl` | ✅（**必须在** `namespace T43` 内）|
   | `(M.sg u).1 = u` | ✅ `rw [h]`（`h : M.sg u = (u, id) := rfl`）|
   | `(M.sg u).2 b = b` | ✅ 同上 + `change (id : Bool → Bool) b = b`（`change` 之后**已无目标**，勿再加 `rfl`）|
   | **`∑ u ∈ ({false} : Finset M.U), f u = f false`** | ❌ `Finset.sum_singleton` / `rw` / `simp` **全部失败**（`instSingleton` 按 **`Bool`** 而非 `M.U` 合成） ⟹ 必须显式 `@Finset.sum_singleton M.U ℝ _ f false`（见 `M_sum_singleton`）|

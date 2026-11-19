@@ -2,16 +2,16 @@
 命运理论 · Lean 4 形式化实现
 ========================================================
 
-模块：`Fate.SCMIdentifiability`
+模块：`SCMIdentifiability`
 定位：**SCM 链的出口 —— 一个否定性定理，把「参数辨识」这个问题的
 可行性条件做成机检的二分判据**
 
 ---------------------------------------------------------------------------
 〇、为什么需要这个文件（扇入破局的动机）
 ---------------------------------------------------------------------------
-审计 R180 指出：`Fate.SCMResidual` 与 `Fate.SCMEndToEnd` 的**扇入为 0**
+审计 R180 指出：`SCMResidual` 与 `SCMEndToEnd` 的**扇入为 0**
 （除 `Fate.lean` 汇总外无人 `import`），整条 SCM 链「进去了出不来」。
-`Fate.ParamSCM` 也近乎孤儿。本文件是**首个真实消费者**：
+`ParamSCM` 也近乎孤儿。本文件是**首个真实消费者**：
 
 ```lean
 import FateWorld.FateV2.Loop.SCMResidual
@@ -128,7 +128,7 @@ import FateWorld.FateV2.Predict.ParamSCM
 * **它是不是「没用」的定理？** —— 不是，见 §7 的
   `selfCheck_identical_models_opposite_verdicts`：**同一个 `sg`** 的模型在两个
   参数空间下判决**相反**，故这条否定性事实**携带**了「`Th` 的选择决定辨识性」
-  这一实质信息，并把 `Fate.SCMWorldModel` 的 `Θ = PUnit` 设计选择
+  这一实质信息，并把 `SCMWorldModel` 的 `Θ = PUnit` 设计选择
   **升级为**可机检的「**任何**裸 `SCM` 都不可辨识」结论
   （`scmToParam_not_identifiable`，对任意 `M : SCM X Y`）。
 
@@ -159,9 +159,9 @@ import FateWorld.FateV2.Predict.ParamSCM
    （`scmThetaSubsingleton_not_identifiable`）。
 3. **`Identifiable` 只覆盖 `ParamSCM`**。裸 `SCM` 上正确的话是
    `scmToParam_not_identifiable`（**不可**辨识，因 `Th = PUnit`）；
-   即「裸 `SCM` 的世界模型永远不可辨识参数」，这是 `Fate.SCMWorldModel`
-   的 `Θ = PUnit` 设计与 `Fate.SCMResidual` 的 `scmStep_indep_theta` 的**语义版**。
-4. 本文件**不**接 `Fate.SCMResidual` 的残差/收缩链（那是另一条出口，
+   即「裸 `SCM` 的世界模型永远不可辨识参数」，这是 `SCMWorldModel`
+   的 `Θ = PUnit` 设计与 `SCMResidual` 的 `scmStep_indep_theta` 的**语义版**。
+4. 本文件**不**接 `SCMResidual` 的残差/收缩链（那是另一条出口，
    已被 `scmIter_tendsto` 覆盖）。本文件对 `SCMResidual` 的依赖是 `import`（扇入），
    不是定理级的。**这一点如实说明，不夸大为「SCM 链已全部接通」**。
 
@@ -210,7 +210,7 @@ set_option autoImplicit false
 **⚠ 为什么不用 `sim` 的某一步**：`sim` 的起点固定为 `W.x`（状态块初值，本文件
 对它是 `Classical.choice` 占位），故 `sim` 会带入与 `θ` 无关的占位噪声；
 `predFrom` 直接是机制 `f`，是「输入 ⟹ 预测」的**最干净**载体。
-两者的一致性由 `Fate.ParamSCM.paramScmWorldModel_sim_one` 保证
+两者的一致性由 `ParamSCM.paramScmWorldModel_sim_one` 保证
 （本文件 §3 的 `scmThetaSubsingleton_sim_eq` 也直接在 `sim` 层另证一遍）。 -/
 noncomputable def Prediction {X Y : Type} (M : ParamSCM X Y) [Nonempty Y]
     (θ : M.Th) (u : M.U) (ε : PUnit) (a : X) (x : Y) : Y :=
@@ -281,7 +281,7 @@ theorem scmThetaSubsingleton_pred_eq_funext {X Y : Type} (M : ParamSCM X Y)
 
 /-- ⭐⭐⭐ **机制层同款**：`paramScmWorldStep` 不区分 `θ`（退化时）。
 
-⟹ 与 `Fate.SCMResidual.scmStep_indep_theta`（裸 `SCM` 上的 `rfl`）
+⟹ 与 `SCMResidual.scmStep_indep_theta`（裸 `SCM` 上的 `rfl`）
 **结构上同义**：那里 `Θ = PUnit` 是**定义性**退化，这里 `Subsingleton` 是其一般化。 -/
 theorem scmThetaSubsingleton_step_eq {X Y : Type} (M : ParamSCM X Y)
     [Subsingleton M.Th] (y : Y) (u : M.U) (e : PUnit) (θ₁ θ₂ : M.Th) (a : X) :
@@ -534,9 +534,9 @@ theorem regressedModel_not_identifiable : ¬ Identifiable regressedModel :=
 
 $$\forall M : \mathrm{SCM}\ X\ Y,\quad \neg\,\mathrm{Identifiable}\,(\mathrm{scmToParam}\,M).$$
 
-**⟹ 这是把 `Fate.SCMWorldModel` 的 `Θ := PUnit` 设计选择
+**⟹ 这是把 `SCMWorldModel` 的 `Θ := PUnit` 设计选择
 升级为机器检验结论**：裸 `SCM` 的世界模型**永远**不可辨识参数，
-**无论 `sg` 怎么写**。与 `Fate.SCMResidual.scmStep_indep_theta`（`rfl` 级，
+**无论 `sg` 怎么写**。与 `SCMResidual.scmStep_indep_theta`（`rfl` 级，
 单步）互为「语义版 / 定义版」。 -/
 theorem scmToParam_not_identifiable {X Y : Type} (M : PearlHierarchy.SCM X Y)
     [Nonempty Y] : ¬ Identifiable (scmToParam M) :=

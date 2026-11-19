@@ -22,8 +22,8 @@ import Mathlib.MeasureTheory.Measure.Dirac
 
   | # | 任务书写法 | 问题 | 本文件的处理 |
   |---|---|---|---|
-  | 1 | `Fate.GenN.weightedCountN / fiberN` | **这两个名字在库里不存在**（`CondIndepN.lean §13` 明确登记「测度层对接未做」）| 本节**自含**建出它们（§1–§2）|
-  | 2 | 结论写成 `κ a t = ENNReal.ofReal (…/…)` | **左端是 `ℝ`、右端是 `ENNReal`**，类型不匹配；且 `∑ p` 可能为非正（`ofReal` 会截断），等式不可能对任意 `p` 成立 | 左端取 `.real`、右端为 `ℝ`（见 `kernelValueN_fiber_ratio`）。这与二元版 `Fate.FinalB3.kernelValue_fiber_ratio` **逐字同构** |
+  | 1 | `FateV2.Modeling.GenN.weightedCountN / fiberN` | **这两个名字在库里不存在**（`CondIndepN.lean §13` 明确登记「测度层对接未做」）| 本节**自含**建出它们（§1–§2）|
+  | 2 | 结论写成 `κ a t = ENNReal.ofReal (…/…)` | **左端是 `ℝ`、右端是 `ENNReal`**，类型不匹配；且 `∑ p` 可能为非正（`ofReal` 会截断），等式不可能对任意 `p` 成立 | 左端取 `.real`、右端为 `ℝ`（见 `kernelValueN_fiber_ratio`）。这与二元版 `FinalB3.kernelValue_fiber_ratio` **逐字同构** |
 
   ## ⭐ `m' = comap snd` **是恰当的**
 

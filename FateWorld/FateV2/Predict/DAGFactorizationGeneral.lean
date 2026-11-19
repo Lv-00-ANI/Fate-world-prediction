@@ -445,7 +445,7 @@ end LocalMarkov
   提升为 `fac_aux` 所需的**任意集合** `step`。
 
   **本节的结论**：这条路线**走不通**，因为该塔性质在既有
-  `Fate.DAGFactorization.mass` 的定义下**是假的**。
+  `DAGFactorization.mass` 的定义下**是假的**。
 
   `mass S p x := ∑_{w : ∀ u ∈ S, w u = x u} p w`
   —— 它**只固定 `S` 上的坐标、对其余坐标求和**。于是
@@ -580,7 +580,7 @@ end Validation
 
 /-! ### §9.2 **T23：`CondMul` ⟹ `LM`（在 `Unpin`/二值特化下）**
 
-`Fate.FinCondIndep.CondMul` 是 `FinJoint α β γ = (α × β) × γ → ℝ` 上的乘性
+`FinCondIndep.CondMul` 是 `FinJoint α β γ = (α × β) × γ → ℝ` 上的乘性
 条件独立。本节的 `LM` 是 `(V → α) → ℝ` 上的集合口径版本。
 二者**陈述同构**（都是「无除法乘性条件独立」）；字符串层面的等价
 需要 `V ≅ Fin 3` 的编码，此处**只给出方向性陈述**（诚实标注 [展开]）。 -/
@@ -591,7 +591,7 @@ section CondMulBridge
 二者的**陈述对应关系**（不证等价，只记录二者都不含除法）。
 
 `CondMul p := ∀ x y z, p ((x,y),z) * margZ p z = margXZ p x z * margYZ p y z`
-—— 见 `Fate.FinCondIndep.CondMul`；本文件 `LM` 是其集合口径推广。 -/
+—— 见 `FinCondIndep.CondMul`；本文件 `LM` 是其集合口径推广。 -/
 theorem condMul_is_multiplicative_form :
     ∀ (α β γ : Type) [Fintype α] [Fintype β] [Fintype γ]
       (p : FateV2.Predict.FinJoint.FinJoint α β γ),

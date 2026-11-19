@@ -28,7 +28,7 @@ namespace FateV2.Meta.MainlineTheorems
 
 **⭐⭐ 即**：**T6.5 = T6.6 + 两个额外结论**（唯一性、结合律）。 -/
 
-/-- ⭐⭐ **相容性**（与 `Fate.MainlineTheorems.Compatible` 一致，此处重述以免依赖顺序）。 -/
+/-- ⭐⭐ **相容性**（与 `FateV2.Meta.MainlineTheorems.Compatible` 一致，此处重述以免依赖顺序）。 -/
 def Compatible' {α : Type*} (op : α → α → α) (s : Setoid α) : Prop :=
   ∀ ⦃x x' y y'⦄, x ≈ x' → y ≈ y' → op x y ≈ op x' y'
 

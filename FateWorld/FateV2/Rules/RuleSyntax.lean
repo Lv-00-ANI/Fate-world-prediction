@@ -62,7 +62,7 @@ open FateV2.Model
 open FateV2.Modeling
 namespace RuleSyntax
 
-/- `LawRule` 活在下游命名空间 `Fate.LawRule` 内，这里打开以便引用。 -/
+/- `LawRule` 活在下游命名空间 `LawRule` 内，这里打开以便引用。 -/
 open FateV2.Rules.LawRule
 
 /-! ### §1  变量环境 -/

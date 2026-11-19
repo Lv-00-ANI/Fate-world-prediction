@@ -353,7 +353,7 @@ theorem euler_global_error
 
     |x_n − y(T)| ≤ (h·M / (2·L)) · (e^{L·T} − 1)
 
-这正是 `Fate.Stage2.ErrorQuadruple.E1Statement ℝ M L T h (x n) (y T)` 的内容。
+这正是 `FateV2.Error.Stage2.ErrorQuadruple.E1Statement ℝ M L T h (x n) (y T)` 的内容。
 
 **前件**：`L > 0`、`h > 0`、`M ≥ 0`、`T = n·h`（外加 `euler_global_error` 的四条）。
 

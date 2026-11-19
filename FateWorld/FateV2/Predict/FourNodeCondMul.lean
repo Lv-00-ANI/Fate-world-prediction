@@ -45,7 +45,7 @@ import Mathlib.Tactic
 
   ## 2. 链 `0→1→2→3` 的因子分解（`Factorizes` 的口径）
 
-  `Fate.FactorRecursionRouteB.Factorizes` 说：`∃ φ, (φ v 只读 pa G v) ∧ p = ∏ φ_v`。
+  `FactorRecursionRouteB.Factorizes` 说：`∃ φ, (φ v 只读 pa G v) ∧ p = ∏ φ_v`。
 
   对链 `0→1→2→3`（拓扑序 `0,1,2,3`）：
   * `pa 0 = ∅` ⟹ `φ₀` 只读空集 ⟹ **`φ₀` 是常数**（❗但我们要保留 `x₀` 的依赖
@@ -64,7 +64,7 @@ import Mathlib.Tactic
   `φ₂ : α → α → ℝ`、`φ₃ : α → α → ℝ`），语义与 `Factorizes` **一致**。
 
   ⚠ **诚实边界**：本文件**没有**把 `Chain4Law` 与
-  `Fate.FactorRecursionRouteB.Factorizes` 的形式**机器等价**地连起来
+  `FactorRecursionRouteB.Factorizes` 的形式**机器等价**地连起来
   （那需要 `pa`/`topoOrder` 的具体化，属段 1 的工作）。本文件的结论是
   **「链形因子分解 ⟹ `CondMul`」**，本身**完整无缺口**，
   并且在语义上正是 `Factorizes` 对链的展开。 -/
@@ -292,9 +292,9 @@ theorem chain4_not_indep_uncond :
   norm_num
 
 /-! ===========================================================================
-  §5 与 `Fate.FactorRecursionRouteB` 的接口（**诚实登记不完整**）
+  §5 与 `FactorRecursionRouteB` 的接口（**诚实登记不完整**）
 
-  `Fate.FactorRecursionRouteB.mass_factorizes_single` 已证：`pa G v ⊆ S` 时
+  `FactorRecursionRouteB.mass_factorizes_single` 已证：`pa G v ⊆ S` 时
 
   $$\mathrm{mass}_S\,p\,x = \varphi_v(x)\cdot\mathrm{mass}_S\Bigl(\prod_{w\neq v}\varphi_w\Bigr)x .$$
 

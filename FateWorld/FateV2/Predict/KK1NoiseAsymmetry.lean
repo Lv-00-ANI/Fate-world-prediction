@@ -13,15 +13,15 @@ import FateWorld.FateV2.Loop.EndToEnd
 -/
 
 /-! ===========================================================================
-  `Fate.KK1NoiseAsymmetry` —— **噪声不对称的核实与后果**（KK1）
+  `KK1NoiseAsymmetry` —— **噪声不对称的核实与后果**（KK1）
 
   ## 0  被核实的判断
 
   主控的偏移自查提出如下结构不对称：
 
-  * `Fate.ResidualLoop.predicted`（约 495–506 行）取
+  * `ResidualLoop.predicted`（约 495–506 行）取
     `ε : ℕ → W.frame.Ν.Carrier`，**在第 `n` 步用的是 `ε n`**（噪声随时间变化）；
-  * `Fate.EndToEnd.endToEnd`（约 240–249 行）与 `endToEndIter`（约 445–453 行）
+  * `EndToEnd.endToEnd`（约 240–249 行）与 `endToEndIter`（约 445–453 行）
     取 `ε : W.frame.Ν.Carrier`，**只是一个单点值**（噪声不随时间变化）。
 
   本文件**逐条核实**该判断，并在具体世界模型上展示其后果。

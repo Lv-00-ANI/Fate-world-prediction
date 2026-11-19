@@ -57,7 +57,7 @@ markov_of_gap :  G.dSep X Y Z  +  ReadClosedBlocks G X Y Z  ⟹  CondIndep p X Y
 `Fate/BridgeFull.lean` 当前第 187 行 `factorizes_standard_implies_routeB` 报
 `Application type mismatch`（该引理**为假**：`RouteB.Factorizes` 读 `pa(v)`，
 标准 `Factorizes` 读 `{v} ∪ pa(v)`，前者**更松**，推不出更紧的那条）。
-故本文件**不 `import Fate.BridgeFull`**，而是把 `ReadClosedBlocks` 等定义**逐字复制**
+故本文件**不 `import FateV2.Predict.BridgeFull`**，而是把 `ReadClosedBlocks` 等定义**逐字复制**
 （§1.1），并用 `rfl` 固化口径（`readClosedBlocks_def_eq`）。
 **不修改** `BridgeFull`（纪律：不改既有模块）。
 
@@ -81,7 +81,7 @@ namespace FateV2.Predict.BridgeMinZPrime
 open FateV2.Modeling
 
 open FateV2.Modeling.Graph
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -110,7 +110,7 @@ set_option linter.unusedVariables false
 
 /-- ⭐⭐⭐ **`ReadClosedBlocks G X Y Z`**：「`X` 块与 `Y` 块在 `Z` 下各自读封闭」。
 
-与 `Fate.BridgeFull.ReadClosedBlocks` **逐字相同**，但**独立定义**
+与 `FateV2.Predict.BridgeFull.ReadClosedBlocks` **逐字相同**，但**独立定义**
 （`BridgeFull` 当前不可编译，见文件头 §0.4）。
 
 1. `Z` 父闭（`Z` 上的因子只读 `Z`）；

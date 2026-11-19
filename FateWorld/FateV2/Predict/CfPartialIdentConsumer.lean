@@ -42,7 +42,7 @@ import Mathlib.Tactic.NormNum
   | **C2** | `cfLower_mono_of_subset` / `cfUpper_mono_of_subset` | `cfLower`/`cfUpper` + `cfIdentSet_subset_of_subset` | **否**。前件是 `𝔐₁ ⊆ 𝔐₂` + `𝔐₁` 非空 + `𝔐₂` 有界。结论是**下界反向单调 / 上界正向单调**（扩张模型类 ⟹ 区间只会变宽）。模块里**没有**单调性，这是本文件的新数学。 |
   | **C3** | `soundInterval_lower_upper` | `cfIdentSet_subset_Icc` | **否**。前件是**有界性**（可达值集的上下界存在），结论是 `[cfLower, cfUpper]` 是**可信报告区间**（每个相容模型的反事实都落在里面）。有界 ≠ 报告正确性。 |
   | **C4** | `soundInterval_open_sharp` | `cf_M0_true_false` / `cf_M1_true_false` / `M0_mem_open` / `M1_mem_open` | **否**。前件是「`(ℓ,u)` 是 `𝔐open` 上的可信区间」，结论是**任何**可信区间必须含 `[0,1]`（`ℓ ≤ 0 ∧ 1 ≤ u`）。这是**sharpness**：没有更窄的可信区间。模块只有 `open_bounds_attained`（上下界可达），**没有**「任意可信区间都含 `[0,1]`」这一步。 |
-  | **C5** | `open_cf_eq_doLaw_image` / `doLaw_not_point_ident_open` | `cfIdentSet_open_eq` + `Fate.CfNecessity.cf_eq_doLaw_of_obsSet_univ` + `M0_obsSet` / `M1_obsSet` | **否**。前件是 `𝔐open` 两成员**证据截面为 `univ`**，结论是「**干预律** `doLaw` 的像也是 `{0,1}`」⟹ **连 `doLaw` 都不可点识别**。模块只讲**反事实**不可识别，**没有**讲 `doLaw`；这需要真正调用 `CfNecessity` 的桥定理。 |
+  | **C5** | `open_cf_eq_doLaw_image` / `doLaw_not_point_ident_open` | `cfIdentSet_open_eq` + `CfNecessity.cf_eq_doLaw_of_obsSet_univ` + `M0_obsSet` / `M1_obsSet` | **否**。前件是 `𝔐open` 两成员**证据截面为 `univ`**，结论是「**干预律** `doLaw` 的像也是 `{0,1}`」⟹ **连 `doLaw` 都不可点识别**。模块只讲**反事实**不可识别，**没有**讲 `doLaw`；这需要真正调用 `CfNecessity` 的桥定理。 |
 
   ## 2. 诚实边界
 
@@ -226,7 +226,7 @@ theorem M1_doLaw_true_false : doLaw M1 true false = 1 := by
 /-- **C5a ⭐⭐⭐**：在 `𝔐open` 上，**反事实识别集 = 干预律 `doLaw` 的像**。
 
 ⟹ **机制**：两个成员的证据截面都是 `univ`（`M0_obsSet` / `M1_obsSet`），
-且 `∑ pU = 1`，故由 `Fate.CfNecessity.cf_eq_doLaw_of_obsSet_univ`，
+且 `∑ pU = 1`，故由 `CfNecessity.cf_eq_doLaw_of_obsSet_univ`，
 **带溯因的反事实退化为纯干预律**。
 
 ⟹ **语义**：「**即使**反事实可以退化成 `do` 律，`u` 不可观测仍然导致不可识别」——
@@ -315,7 +315,7 @@ end CfPartialIdent
 
   §2 的 `soundInterval_lower_upper` 说「`[cfLower, cfUpper]` 总是可信」，
   §2 的 `soundInterval_open_sharp` 说「`𝔐open` 上任何可信区间必含 `[0,1]`」。
-  这两条之间还差**一步**：把模块 `Fate.CfPartialIdent` 算出的**具体端点值**
+  这两条之间还差**一步**：把模块 `CfPartialIdent` 算出的**具体端点值**
   `cfLower = 0`、`cfUpper = 1` **代入**，得到一条**无需再算**的显式结论。
 
   本节补上这一步，并给出三条**新的**组合命题：
@@ -328,10 +328,10 @@ end CfPartialIdent
 
   | 源 | 定理 | 内容 |
   |---|---|---|
-  | `Fate.CfPartialIdent` | `open_Lower` | `cfLower 𝔐open (0,0) (1,0) = 0` |
-  | `Fate.CfPartialIdent` | `open_Upper` | `cfUpper 𝔐open (0,0) (1,0) = 1` |
-  | `Fate.CfPartialIdent` | `open_bounds` | 该识别集上下有界 |
-  | `Fate.CfPartialIdent` | `cf_mem_Icc` | 任一可达值落在 `[cfLower, cfUpper]` |
+  | `CfPartialIdent` | `open_Lower` | `cfLower 𝔐open (0,0) (1,0) = 0` |
+  | `CfPartialIdent` | `open_Upper` | `cfUpper 𝔐open (0,0) (1,0) = 1` |
+  | `CfPartialIdent` | `open_bounds` | 该识别集上下有界 |
+  | `CfPartialIdent` | `cf_mem_Icc` | 任一可达值落在 `[cfLower, cfUpper]` |
   | 本文件 §2 | `soundInterval_lower_upper` | 有界 ⟹ `[cfLower,cfUpper]` 可信 |
   | 本文件 §2 | `soundInterval_open_sharp` | 任何可信区间必含 `[0,1]` |
 -/
@@ -356,9 +356,9 @@ namespace CfPartialIdent.R49
 theorem open_interval_zero_one_sound :
     SoundInterval 𝔐open false false true false 0 1 := by
   intro M hM
-  rcases _root_.Fate.CfPartialIdent.open_shape M hM with rfl | rfl
-  · rw [_root_.Fate.CfPartialIdent.cf_M0_true_false]; norm_num
-  · rw [_root_.Fate.CfPartialIdent.cf_M1_true_false]; norm_num
+  rcases _root_.CfPartialIdent.open_shape M hM with rfl | rfl
+  · rw [_root_.CfPartialIdent.cf_M0_true_false]; norm_num
+  · rw [_root_.CfPartialIdent.cf_M1_true_false]; norm_num
 
 /-- ⭐⭐ **`open_sound_via_general_theorem`**：用**一般定理** `soundInterval_lower_upper`
 （而不是逐模型验算）得到同一条结论，**端点由模块的 `open_Lower`/`open_Upper` 给出**。
@@ -367,10 +367,10 @@ theorem open_interval_zero_one_sound :
 两者**独立**得到 `[0,1]`，彼此印证 —— 若哪一侧的数值被改动，另一侧会先坏。 -/
 theorem open_sound_via_general_theorem :
     SoundInterval 𝔐open false false true false
-      (_root_.Fate.CfPartialIdent.cfLower 𝔐open false false true false)
-      (_root_.Fate.CfPartialIdent.cfUpper 𝔐open false false true false) :=
+      (_root_.CfPartialIdent.cfLower 𝔐open false false true false)
+      (_root_.CfPartialIdent.cfUpper 𝔐open false false true false) :=
   soundInterval_lower_upper 𝔐open false false true false
-    _root_.Fate.CfPartialIdent.open_bounds
+    _root_.CfPartialIdent.open_bounds
 
 /-! ### R49.2 sharpness 的定量重述：`[0,1]` 已是最紧 -/
 
@@ -394,15 +394,15 @@ theorem open_zero_one_is_tightest (l u : ℝ) (h : SoundInterval 𝔐open false 
 `M1` 是 `1`（贴上界）—— 两个模型**恰好把区间两端都占满**，
 所以任何「更窄的可信区间」都会漏掉其中一个模型。这正是 §R49.2 sharpness 的**机制**。 -/
 theorem open_mem_Icc_both_models :
-    (_root_.Fate.CfPartialIdent.cfLower 𝔐open false false true false
-        ≤ _root_.Fate.T43.cfWithAbduction M0 false false true false
-      ∧ _root_.Fate.T43.cfWithAbduction M0 false false true false
-        ≤ _root_.Fate.CfPartialIdent.cfUpper 𝔐open false false true false)
-    ∧ (_root_.Fate.CfPartialIdent.cfLower 𝔐open false false true false
-        ≤ _root_.Fate.T43.cfWithAbduction M1 false false true false
-      ∧ _root_.Fate.T43.cfWithAbduction M1 false false true false
-        ≤ _root_.Fate.CfPartialIdent.cfUpper 𝔐open false false true false) :=
-  ⟨_root_.Fate.CfPartialIdent.open_mem_Icc_M0, _root_.Fate.CfPartialIdent.open_mem_Icc_M1⟩
+    (_root_.CfPartialIdent.cfLower 𝔐open false false true false
+        ≤ _root_.T43.cfWithAbduction M0 false false true false
+      ∧ _root_.T43.cfWithAbduction M0 false false true false
+        ≤ _root_.CfPartialIdent.cfUpper 𝔐open false false true false)
+    ∧ (_root_.CfPartialIdent.cfLower 𝔐open false false true false
+        ≤ _root_.T43.cfWithAbduction M1 false false true false
+      ∧ _root_.T43.cfWithAbduction M1 false false true false
+        ≤ _root_.CfPartialIdent.cfUpper 𝔐open false false true false) :=
+  ⟨_root_.CfPartialIdent.open_mem_Icc_M0, _root_.CfPartialIdent.open_mem_Icc_M1⟩
 
 /-- ⭐⭐⭐ **`open_endpoints_exactly_attained`**：`[0,1]` 的两个端点都在 `𝔐open` 上
 **恰好被实现**（`M0 ↦ 0`，`M1 ↦ 1`）。
@@ -411,9 +411,9 @@ theorem open_mem_Icc_both_models :
 不是保守估计。这也是「弱档不可点识别」的**数值机理**：
 两个都符合观测数据的模型，给出**完全相反**的反事实值。 -/
 theorem open_endpoints_exactly_attained :
-    _root_.Fate.T43.cfWithAbduction M0 false false true false = 0
-      ∧ _root_.Fate.T43.cfWithAbduction M1 false false true false = 1 :=
-  ⟨_root_.Fate.CfPartialIdent.cf_M0_true_false, _root_.Fate.CfPartialIdent.cf_M1_true_false⟩
+    _root_.T43.cfWithAbduction M0 false false true false = 0
+      ∧ _root_.T43.cfWithAbduction M1 false false true false = 1 :=
+  ⟨_root_.CfPartialIdent.cf_M0_true_false, _root_.CfPartialIdent.cf_M1_true_false⟩
 
 end CfPartialIdent.R49
 

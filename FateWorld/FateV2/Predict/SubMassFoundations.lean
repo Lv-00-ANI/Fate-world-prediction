@@ -74,10 +74,10 @@ theorem mass_const (S : Finset V) (c : ℝ) (x : V → α) :
 -- mass_indep_outside（已证）
 theorem mass_indep_outside {U S : Finset V} (hSU : S ⊆ U) {g : (V → α) → ℝ}
     (hg : ∀ w w', (∀ u ∈ U, w u = w' u) → g w = g w') (x y : V → α) :
-    mass S g x = mass S g (Fate.C17.glueT U x y) := by
+    mass S g x = mass S g (FateV2.Predict.C17.glueT U x y) := by
   apply mass_congr
   intro u hu
-  exact (Fate.C17.glueT_mem (hSU hu)).symm
+  exact (FateV2.Predict.C17.glueT_mem (hSU hu)).symm
 
 -- ⭐ 关键推论：mass S g x = mass S g (glueT U x x)，而 glueT U x x 在 U 外 = x（还是 x）
 -- 实际上 glueT U x x = x。需要 y 在 U 外有特定值才有用。

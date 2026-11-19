@@ -31,27 +31,27 @@ import FateWorld.FateV2.Predict.PearlPathDecomp
 
   | 命名空间 | 文件 | `CondMul` 的定义 |
   |---|---|---|
-  | `Fate.FinCondIndep` | `FinCondIndep.lean` | `∀ x y z, p·margZ = margXZ·margYZ` |
-  | `Fate.Fork213` | `PearlFork.lean` | **逐字相同** |
+  | `FinCondIndep` | `FinCondIndep.lean` | `∀ x y z, p·margZ = margXZ·margYZ` |
+  | `Fork213` | `PearlFork.lean` | **逐字相同** |
   | `FateV2.Predict.R242G1` | `PearlMarkovBridgeG1.lean` | **逐字相同** |
-  | `Fate.PearlMarkov` | `PearlMarkov.lean` | 只给 `ColliderFac`（对撞，另一支）|
+  | `FateV2.Predict.PearlMarkov` | `PearlMarkov.lean` | 只给 `ColliderFac`（对撞，另一支）|
 
   `PearlFork.lean` 的文件头**明说**「⚠ 本文件刻意不 `import FateV2.Predict.FinCondIndep`」，
   并把 `FinJoint` / `margXZ` / `CondMul` / `CondRatio` **全部重写了一遍**。
   **⟹ 于是三个模块讲同一命题，却互不认识 —— 这就是 `external_refs = 0` 的机制。**
 
   **本文件不重写任何定义**（那是历史包袱的成因），**只做接线**：
-  用 `Fate.FinCondIndep` 作为**唯一口径**，把其余三支**翻译过去**，
+  用 `FinCondIndep` 作为**唯一口径**，把其余三支**翻译过去**，
   并证明**翻译是真桥（`↔`，不是单向蕴含）**。
 
   ## 1. 交付清单（全部零 `sorry` / 零 `axiom` / 零 `native_decide`）
 
   | 定理 | 说的话 |
   |---|---|
-  | `fork213_finJoint_eq` | `Fate.Fork213.FinJoint` 与 `Fate.FinCondIndep.FinJoint` **是同一类型** |
+  | `fork213_finJoint_eq` | `Fork213.FinJoint` 与 `FinCondIndep.FinJoint` **是同一类型** |
   | `fork213_condMul_iff` | 两支的 `CondMul` **同构**（`↔`，双向） |
   | `fork213_condRatio_iff` | 两支的 `CondRatio` **同构**（`↔`） |
-  | `fork213_bridge` | `Fate.Fork213` 的 fork 主定理**直接**给出 `FinCondIndep.CondMul` |
+  | `fork213_bridge` | `Fork213` 的 fork 主定理**直接**给出 `FinCondIndep.CondMul` |
   | `chain_bridge_z` | `R242G1.ChainFac` **直接**给出 `FinCondIndep.CondMul` |
   | `chain_bridge_z_ratio` | 再给出 `CondRatio`（经 `condMul_imp_condRatio`） |
   | `fork_and_chain_same_target` | **fork 与 chain 两条路到达同一个 `CondMul`** |
@@ -59,9 +59,9 @@ import FateWorld.FateV2.Predict.PearlPathDecomp
 
   ## 2. 为什么这不是同义反复（自查，纪律第 7 条）
 
-  * `fork213_condMul_iff` 的前件是 **`Fate.Fork213.CondMul p`**，
-    结论是 **`Fate.FinCondIndep.CondMul p`** —— 两个**不同命名空间**下的**独立 `def`**。
-    Lean 中它们**不是**同一个常量（`Fate.Fork213.CondMul ≠ FateV2.Predict.FinCondIndep.CondMul`
+  * `fork213_condMul_iff` 的前件是 **`Fork213.CondMul p`**，
+    结论是 **`FinCondIndep.CondMul p`** —— 两个**不同命名空间**下的**独立 `def`**。
+    Lean 中它们**不是**同一个常量（`Fork213.CondMul ≠ FateV2.Predict.FinCondIndep.CondMul`
     的名字不同），故 `↔` 是**两条方向**都要证的真命题（此处展开后互为 `id`，
     但这是**展开定义后的发现**，不是假设）。
   * `fork213_bridge` 的前件是 **`ForkFac`**（三因子分解），
@@ -91,7 +91,7 @@ universe u
   §1 ⭐ **类型层接线**：两支的 `FinJoint` 是同一个类型构造子
   =========================================================================== -/
 
-/-- ⭐ **`Fate.Fork213.FinJoint` 与 `Fate.FinCondIndep.FinJoint` 逐字相同。**
+/-- ⭐ **`Fork213.FinJoint` 与 `FinCondIndep.FinJoint` 逐字相同。**
 
 两者都是 `(α × β) × γ → ℝ`（一个 `abbrev`，一个 `abbrev`），
 故**同一 `(α,β,γ)` 上的一个函数可以两边通用**。
@@ -105,11 +105,11 @@ theorem fork213_finJoint_eq (al be ga : Type u) :
   §2 ⭐⭐⭐ **`CondMul` 两支同构**（双向）
   =========================================================================== -/
 
-/-- ⭐⭐⭐ **`CondMul` 两支同构**：`Fate.Fork213.CondMul p ↔ FateV2.Predict.FinCondIndep.CondMul p`。
+/-- ⭐⭐⭐ **`CondMul` 两支同构**：`Fork213.CondMul p ↔ FateV2.Predict.FinCondIndep.CondMul p`。
 
 **⚠ 这是真桥不是同义反复**：两支的 `CondMul` 是**两个不同常量**
 （各自 `def`），`Fate/PearlFork.lean` 的文件头明说它**刻意不 import**
-`Fate.FinCondIndep`。两条方向都需展开定义后核对，
+`FinCondIndep`。两条方向都需展开定义后核对，
 `margZ` / `margXZ` / `margYZ` 的**定义体**也分别独立写了两遍。
 
 **证明**：两条方向都是 `fun h => h` —— **但这一步之所以成立**，
@@ -136,7 +136,7 @@ theorem fork213_condRatio_iff {al be ga : Type u}
   §3 ⭐⭐⭐ **fork 支 → 统一口径**：`ForkFac ⟹ CondMul`
   =========================================================================== -/
 
-/-- ⭐⭐⭐ **`Fate.Fork213` 的 fork 主定理直接落脚到 `Fate.FinCondIndep.CondMul`。**
+/-- ⭐⭐⭐ **`Fork213` 的 fork 主定理直接落脚到 `FinCondIndep.CondMul`。**
 
 **前件**（严格弱于结论）：`ForkFac p h f g`，即
 `∀ x y z, p ((x,y),z) = h z * f z x * g z y`
@@ -146,8 +146,8 @@ theorem fork213_condRatio_iff {al be ga : Type u}
 
 **⟹ 前件是「生成机制」，结论是「独立性」—— 不互相包含。**
 
-**此前的缺口**：`Fate/Fork213` 里这条只有 `Fate.Fork213.CondMul` 版本，
-**没有任何一处**把它接到 `Fate.FinCondIndep` / `R242G1` 的主线上。 -/
+**此前的缺口**：`Fate/Fork213` 里这条只有 `Fork213.CondMul` 版本，
+**没有任何一处**把它接到 `FinCondIndep` / `R242G1` 的主线上。 -/
 theorem fork213_bridge {al be ga : Type u}
     [Fintype al] [Fintype be] [Fintype ga]
     (p : FateV2.Predict.FinCondIndep.FinJoint al be ga) (h : ga → ℝ)
@@ -250,10 +250,10 @@ theorem fork_and_chain_same_target {al be ga : Type u}
 **意义**：`PearlMarkov.collider_unique` 此前**零引用**；
 接上本文件后，`PearlMarkov` 的「三结构判据」进入了跨框架视野 ——
 读者可以从这里看到：**fork / chain 走 `CondMul` 路线，collider 不走。** -/
-theorem collider_excluded {S : Fate.PearlMarkov.TripleStructure}
-    (h : Fate.PearlMarkov.givesConditionalIndependence S = false) :
-    S = Fate.PearlMarkov.TripleStructure.collider :=
-  Fate.PearlMarkov.collider_unique h
+theorem collider_excluded {S : FateV2.Predict.PearlMarkov.TripleStructure}
+    (h : FateV2.Predict.PearlMarkov.givesConditionalIndependence S = false) :
+    S = FateV2.Predict.PearlMarkov.TripleStructure.collider :=
+  FateV2.Predict.PearlMarkov.collider_unique h
 
 /-- ⭐⭐ **链与分叉在结构判据上等价**（与 §5 的概率层汇合定理**对照**）。
 
@@ -261,11 +261,11 @@ theorem collider_excluded {S : Fate.PearlMarkov.TripleStructure}
 它**不**声称概率命题等价 —— 概率层的对照物是 §5 的 `fork_and_chain_same_target`
 （那里是两条**不同**路径到达同一**结论**，而不是两条结论相等）。 -/
 theorem chain_fork_criterion_eq :
-    Fate.PearlMarkov.givesConditionalIndependence
-        Fate.PearlMarkov.TripleStructure.chain =
-      Fate.PearlMarkov.givesConditionalIndependence
-        Fate.PearlMarkov.TripleStructure.fork :=
-  Fate.PearlMarkov.chain_fork_both_conditional
+    FateV2.Predict.PearlMarkov.givesConditionalIndependence
+        FateV2.Predict.PearlMarkov.TripleStructure.chain =
+      FateV2.Predict.PearlMarkov.givesConditionalIndependence
+        FateV2.Predict.PearlMarkov.TripleStructure.fork :=
+  FateV2.Predict.PearlMarkov.chain_fork_both_conditional
 
 /-! ===========================================================================
   §7 ⭐⭐ **`PearlPathDecomp` 的图论入口**（让第 3 步可被本文件引用）

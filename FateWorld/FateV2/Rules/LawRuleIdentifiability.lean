@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：Fate.LawRuleIdentifiability
+模块：LawRuleIdentifiability
 主题：**把「参数可辨识性」抽成一个抽象定理，两个领域实例归约到它**
 
 ---------------------------------------------------------------------------
@@ -36,8 +36,8 @@
   到格的点嵌入」。本模块的 §4 给出该方向的一个**抽象**形式（保交 + 单射
   ⟹ 序嵌入），但 **§5 证明现有两实例都不满足其前件**（`hmono` 失败），
   故 §4 对现有实例是**空的** —— 它是未来实例的**接口**，不是当前成果。
-- 未修改任何已有模块；仅 `import Fate.LawRuleTwoDomains` 与
-  `Fate.LawRuleInstances`。
+- 未修改任何已有模块；仅 `import LawRuleTwoDomains` 与
+  `LawRuleInstances`。
 - 零 `sorry` / `admit` / `axiom` / `native_decide` / `maxHeartbeats` / `?_`。
 -/
 

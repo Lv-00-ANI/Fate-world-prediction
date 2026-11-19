@@ -2,7 +2,7 @@
 命运理论 · 单点档 ⟹ 确定性函数的**精确可提取条件**
 ======================================================================
 
-模块：`Fate.LawRulePointExtract`
+模块：`LawRulePointExtract`
 上游：`Fate/LawRule.lean`（`LawRule`、`IsPoint`、`Deterministic`、`DetFun.toLaw`）、
 　　　`Fate/LawRuleToTraj.lean`（`IsDirac`、`toDetFun`、`isDirac_iff_exists_detFun`、
 　　　　`isPoint_not_isDirac`）、

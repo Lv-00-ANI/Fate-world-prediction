@@ -109,7 +109,7 @@ open FateV2.Modeling
 open Finset
 open FateV2.Predict.FinCondIndep
 open FateV2.Modeling.MoralGraphMarkov
-open Fate.SeparatedImpliesSide
+open FateV2.Predict.SeparatedImpliesSide
 
 variable {V : Type} [DecidableEq V] [Fintype V]
 
@@ -120,8 +120,8 @@ variable {V : Type} [DecidableEq V] [Fintype V]
 /-- ⭐⭐⭐ **`SeparableCondMul` 与 `PearlCondIndepBridge` 的两条同命题定理一致**。
 
 **为什么要这条**：仓库里有**两条**「可分离 ⟹ `CondMul`」：
-`Fate.SeparableCondMul.separable_implies_condMul`（任务 242 轮，做真的求和重排）
-与 `Fate.PearlCondIndepBridge.separable_implies_condMul`（早先的边缘律引理版）。
+`FateV2.Predict.SeparableCondMul.separable_implies_condMul`（任务 242 轮，做真的求和重排）
+与 `PearlCondIndepBridge.separable_implies_condMul`（早先的边缘律引理版）。
 **本文件后面的定理统一使用前者**；本定理证明二者**可互换**，
 从而「用哪一条」不影响后续结论。 -/
 theorem separable_condMul_two_routes_agree {α β γ : Type} [Fintype α] [Fintype β] [Fintype γ]
@@ -178,9 +178,9 @@ theorem chain_condMul_of_uns_sep
     (hp : ∀ σ, p σ = ∏ C ∈ N, ψ C σ) :
     ∃ (F G : (V → V) → ℝ),
       (∀ σ, p σ = F σ * G σ)
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
-      ∧ Fate.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
-  Fate.SeparatedCondMulZ.uns_separable_chain_slim adj x y z N ψ hUS hcl hsub hread p hp
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({x, z} : Finset V) F
+      ∧ FateV2.Predict.CliqueGrouping.DependsOnlyOn ({y, z} : Finset V) G :=
+  FateV2.Predict.SeparatedCondMulZ.uns_separable_chain_slim adj x y z N ψ hUS hcl hsub hread p hp
 
 /-- ⭐⭐⭐⭐⭐ **主定理 1 的「再走一步」：把可分离性送进 `CondMul` 的
 `Finset` 求和口径**。

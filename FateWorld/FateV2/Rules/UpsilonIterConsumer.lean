@@ -1,8 +1,8 @@
 /-
 命运理论 · Lean 4 形式化实现
 ================================
-模块：`Fate.UpsilonIterConsumer`
-阶段：**P5-甲（批 2）—— `Fate.UpsilonIteration` 的消费方**
+模块：`UpsilonIterConsumer`
+阶段：**P5-甲（批 2）—— `UpsilonIteration` 的消费方**
 ---------------------------------------------------------------------------
 ## 0. 本文件只做一件事
 
@@ -23,7 +23,7 @@
 | §6 FCA 实例 | `fca_upsilonIter_stabilizes`、`fca_upsilonIter_mono` |
 | §7 前件互不蕴含 | `cex_B_not_A`、`cex_B_holds` |
 
-（以上全部位于 `Fate.UpsilonIteration` 命名空间内。）
+（以上全部位于 `UpsilonIteration` 命名空间内。）
 
 ## 2. 本文件给出的消费定理（4 条）
 

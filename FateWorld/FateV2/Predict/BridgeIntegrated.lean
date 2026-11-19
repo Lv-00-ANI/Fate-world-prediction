@@ -15,7 +15,7 @@
 
   ## 依赖（全部已入库、零 `sorry`）
 
-  * `Fate.FactorizesToHyper.factorizes_to_hyper` —— `Fate/FactorizesToHyper.lean`
+  * `FateV2.Predict.FactorizesToHyper.factorizes_to_hyper` —— `Fate/FactorizesToHyper.lean`
   * `FateV2.Predict.GraphToProbView7.condIndep_general` —— `Fate/CondIndepGeneralNZ.lean`
   * `FateV2.Predict.FactorMarkov.Factorizes` / `CondIndep` —— `Fate/FactorMarkov.lean`
   * `FateV2.Predict.View19.Split` / `ReadSet` —— `Fate/View19FactorGraphSplit.lean`

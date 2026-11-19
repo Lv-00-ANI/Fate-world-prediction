@@ -2,9 +2,9 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.ChainErrorBudgetTightWiring`
+模块：`ChainErrorBudgetTightWiring`
 
-**作用**：把 `Fate.ChainErrorBudgetPredNTight` 的定理真接入主链。
+**作用**：把 `ChainErrorBudgetPredNTight` 的定理真接入主链。
 
 ## ⚠ 五次失败的教训（第 679 / 680 轮）
 
@@ -24,14 +24,14 @@
 
 | 裸名 | 真实全名 |
 |---|---|
-| `mulCLM` | `Fate.AssemblyLearnsScratch.mulCLM`（⚠ **不是** `ScratchAssemblyLearns`） |
-| `c` | `Fate.OptimalEta.c` |
-| `errA` | `Fate.BoundWriteBack.errA` |
-| `thetaN` | `Fate.ThetaConvergence.thetaN` |
-| `optEstimate` | `Fate.ChainErrorBudgetBound.optEstimate` |
-| `estGap` | `Fate.ChainErrorBudgetBound.estGap` |
-| `steadyTerm` | `Fate.ChainErrorBudgetBound.steadyTerm` |
-| `linkEst` | `Fate.FirstLayerCapstone.linkEst` |
+| `mulCLM` | `AssemblyLearnsScratch.mulCLM`（⚠ **不是** `ScratchAssemblyLearns`） |
+| `c` | `OptimalEta.c` |
+| `errA` | `BoundWriteBack.errA` |
+| `thetaN` | `ThetaConvergence.thetaN` |
+| `optEstimate` | `ChainErrorBudgetBound.optEstimate` |
+| `estGap` | `ChainErrorBudgetBound.estGap` |
+| `steadyTerm` | `ChainErrorBudgetBound.steadyTerm` |
+| `linkEst` | `FirstLayerCapstone.linkEst` |
 
 **关键教训**：`mulCLM` 所在**文件**叫 `ScratchAssemblyLearns.lean`，
 但所在**命名空间**叫 `AssemblyLearnsScratch`（词序颠倒）。

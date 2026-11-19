@@ -26,9 +26,9 @@ import Mathlib.Tactic.LinearCombination
 
   本项目里 `CondIndep` 有**两个已有的化身**：
 
-  * 二元层：`Fate.FinCondIndep.CondMul`（$X \perp\!\!\!\perp Y \mid Z$，单条件变量），
-    其双条件变量推广是 `Fate.CondIndep2.CondMul2`；
-  * N 元层：`Fate.GenC3.CondIndepN`（$\{X_i\}_{i\in\iota}\perp\!\!\!\perp$ 给定 $Z$）。
+  * 二元层：`FinCondIndep.CondMul`（$X \perp\!\!\!\perp Y \mid Z$，单条件变量），
+    其双条件变量推广是 `CondIndep2.CondMul2`；
+  * N 元层：`FateV2.Modeling.GenC3.CondIndepN`（$\{X_i\}_{i\in\iota}\perp\!\!\!\perp$ 给定 $Z$）。
 
   **这两个谓词都只是一条「逐点乘性等式」。真正的定理是：由这条等式可以
   推出教科书上「条件独立关系」应满足的整套公理。** 本文件把这件事做完。

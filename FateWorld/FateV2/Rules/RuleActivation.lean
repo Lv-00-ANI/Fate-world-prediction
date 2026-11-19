@@ -29,7 +29,7 @@ import Mathlib
   | 层 | 种子 | 传播关系 | 闭包 |
   |---|---|---|---|
   | 规则层（本模块）| `init` | `dep`（规则依赖规则）| `closure` |
-  | 因果层 `Fate.Ancestral` | `S` | `Ancestor`（祖先 → 后代）| `AncestralSet` |
+  | 因果层 `Ancestral` | `S` | `Ancestor`（祖先 → 后代）| `AncestralSet` |
 
   ## 依赖关系的两个来源
 

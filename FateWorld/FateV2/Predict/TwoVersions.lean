@@ -615,7 +615,7 @@ end Inst
 | # | 检查项 | 状态 |
 |---|---|---|
 | 1 | 文件直接写进 `Fate/`，文件名无下划线前缀 | ✅ `Fate/TwoVersions.lean` |
-| 2 | 不改任何既有模块 | ✅ 只 `import Fate.BoundWriteBack`，未改动 |
+| 2 | 不改任何既有模块 | ✅ 只 `import BoundWriteBack`，未改动 |
 | 3 | 零 `sorry` / 零 `admit` / 零 `axiom` | ✅ 交付前 grep 复核 |
 | 4 | `lake env lean Fate/TwoVersions.lean` 零 error | ✅ 跑两遍 |
 | 5 | 未跑全量 `lake build` | ✅ |

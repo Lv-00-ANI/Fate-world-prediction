@@ -39,7 +39,7 @@ import FateWorld.FateV2.Modeling.KernelQuotientExtra
 
   ## 缘起
 
-  `Fate/KernelQuotient.lean`（命名空间 `Fate.KernelQuotientTheory`）把项目里
+  `Fate/KernelQuotient.lean`（命名空间 `KernelQuotientTheory`）把项目里
   三处独立重建的结构统一为**一个** `Set`-层理论：对**任意** `f : A → B`，
   核 `ker f`、商 `A/ker f`、第一同构 `A/ker f ≃ range f`、三情形穷尽、
   核族的完备子格性质。

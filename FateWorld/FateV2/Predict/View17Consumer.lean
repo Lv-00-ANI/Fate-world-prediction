@@ -84,7 +84,7 @@ namespace FateV2.Predict.View17Consumer
 open FateV2.Modeling
 
 open Finset FateV2.Modeling.Graph
-open Fate.View17
+open FateV2.Predict.View17
 
 /-!
   # Predict · View17Consumer
@@ -204,7 +204,7 @@ variable {V : Type*} [DecidableEq V] [Fintype V]
 * `hsp : BarrierSplit G X' Y Z p` —— **小**源集上的屏障剖分；
 * `hXX' : X' ⊆ X`。
 
-结论：`Fate.FinCondIndep.CondMul p`（对 `p` 作为 `(X, Y, Z) = (V, V, V)` 三元联合律）。
+结论：`FinCondIndep.CondMul p`（对 `p` 作为 `(X, Y, Z) = (V, V, V)` 三元联合律）。
 
 **证明必须消费两件 `View17` 的东西**：
 1. `barrier_antitone_source`（C1）把屏障**升级**到 `X`；

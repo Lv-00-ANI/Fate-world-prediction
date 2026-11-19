@@ -63,7 +63,7 @@ namespace CfNecessity
 
 open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics Finset
 
--- ⚠ `obsSet` / `postZ` / `cfWithAbduction` 定义在 `Fate.T43` 命名空间内。
+-- ⚠ `obsSet` / `postZ` / `cfWithAbduction` 定义在 `T43` 命名空间内。
 open FateV2.Predict.T43
 
 /-! ## §1 两个**测度**的显式形式

@@ -2,7 +2,7 @@
 命运理论 · **`LawRule` 的实例层**：`α : InstSpace → LawRule` 需要什么？
 ======================================================================
 
-模块：`Fate.InstSpaceToLawRule`
+模块：`InstSpaceToLawRule`
 上游：`Fate/LawRule.lean`（`LawRule`、`IsPoint`、`Deterministic`、`compose`、`top`、`bot`）、
 　　　`Fate/LawRuleToTraj.lean`（`IsDirac`、`toDetFun`、`toDetFun_toLaw`）、
 　　　`Fate/Frame.lean`（`InstSpace`、`CtxSpace`、`StateSpace`、`OutSpace`、`Rules`、`Alpha`）、

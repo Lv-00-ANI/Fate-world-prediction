@@ -23,7 +23,7 @@ import Mathlib.Analysis.SpecificLimits.Normed
    `θ₀ - η • θ₀ + η • θstar - θstar = θ₀ - θstar - η • (θ₀ - θstar)`
    （两边都是 `(1-η)•(θ₀-θstar)`）。原 `simp only [... , sub_add_cancel]` 解不掉，
    `sub_add_cancel` 还被 linter 报未用。**改用 `simp only [gstep, sub_smul, one_smul]` 后接 `module`** ——
-   `module`（`Mathlib.Tactic` 的线性代数归一化，经 `Fate.WorldModelPipeline` 传递可见）成功闭合。
+   `module`（`Mathlib.Tactic` 的线性代数归一化，经 `WorldModelPipeline` 传递可见）成功闭合。
 
 2. `pipelineNGen_real_eq_fstep`（§4）—— 原归纳步 `rw [show … from rfl]` 失败
    （展开后形态与 `pipelineNGen` 不符）。**改为 `funext` 证明 `gstep η θstar = fstep η θstar`
@@ -37,11 +37,11 @@ import Mathlib.Analysis.SpecificLimits.Normed
 -/
 
 /-! ===========================================================================
-  `Fate.PipelineTendstoGen` —— **G3：端到端管线收敛从 ℝ 泛化到任意实赋范空间 `V`**
+  `FateV2.Loop.PipelineTendstoGen` —— **G3：端到端管线收敛从 ℝ 泛化到任意实赋范空间 `V`**
 
   ## 0  本文件要解决什么
 
-  现行 `Fate.WorldModelPipeline.pipeline_tendsto` 只在 `ℝ` 上陈述：
+  现行 `WorldModelPipeline.pipeline_tendsto` 只在 `ℝ` 上陈述：
 
   $$\texttt{pipeline\_tendsto}\ (\eta\ \theta^*\ x\ \theta_0 : \mathbb{R})
       \;(h_x : x \ne 0)\;(h_\eta : |1-\eta| < 1)
@@ -75,7 +75,7 @@ import Mathlib.Analysis.SpecificLimits.Normed
   记为 `pipelineNGen`；闭式与收敛**逐字**是同一个推导（`fstep_iterate_closed` 的 `V`-版）。
   **这是「同一推导换成 `V`」，不是另造一类动力学。**
 
-  对照 `ℝ` 版：取 `V := ℝ`，则 `pipelineNGen` 与 `Fate.ThetaConvergence.fstep`
+  对照 `ℝ` 版：取 `V := ℝ`，则 `pipelineNGen` 与 `ThetaConvergence.fstep`
   的迭代**逐点相等**（`pipelineNGen_real_eq_fstep`），
   因而 `pipeline_tendsto_gen` 在 `V := ℝ` 时**回落到** `linWorld_tendsto_thetaStar` 的结论
   （`pipeline_tendsto_gen_real`）。**这就是「与特化版一致」的可检验含义。**
@@ -132,7 +132,7 @@ noncomputable def pipelineNGen {V : Type*} [AddCommGroup V] [Module ℝ V]
 $$\bigl(\texttt{pipelineNGen}\ \eta\ \theta^*\ \theta_0\ n\bigr) - \theta^*
    \;=\; (1-\eta)^n \bullet (\theta_0 - \theta^*) .$$
 
-**⭐ 与 `Fate.ThetaConvergence.fstep_iterate_closed` 逐字同构**：那里是 `(1-η)^n * (θ - θ*)`，
+**⭐ 与 `ThetaConvergence.fstep_iterate_closed` 逐字同构**：那里是 `(1-η)^n * (θ - θ*)`，
 这里把 `*`（标量乘）换成 `•`（数乘）。**归纳步相同：`gstep θ - θ* = (1-η) • (θ - θ*)`。** -/
 theorem pipelineNGen_closed {V : Type*} [AddCommGroup V] [Module ℝ V]
     (η : ℝ) (θstar : V) (θ₀ : V) (n : ℕ) :
@@ -191,7 +191,7 @@ theorem pipeline_tendsto_gen
   §4  ⭐⭐ 与 `ℝ` 特化版的一致性（可检验的回落）
   =========================================================================== -/
 
-/-- ⭐⭐ **`V := ℝ` 时，泛化迭代 = `Fate.ThetaConvergence.fstep` 的迭代**。
+/-- ⭐⭐ **`V := ℝ` 时，泛化迭代 = `ThetaConvergence.fstep` 的迭代**。
 
 **⭐ 这是「同一推导」的硬核对**：证明本文件的 `pipelineNGen` 在 `V := ℝ`
 上与 `ThetaConvergence` 的 `fstep` 迭代**逐点相等**（进而与 `thetaN` 相等）。
@@ -206,7 +206,7 @@ theorem pipelineNGen_real_eq_fstep (η θstar θ₀ : ℝ) (n : ℕ) :
 
 取 `V := ℝ`、`x := θstar`（任意非零设计点，`hx` 保证），
 `pipeline_tendsto_gen` 给出与 `pipeline_tendsto` **相同形状**的 `Tendsto` 结论，
-且极限点 `= θstar`（与 `Fate.ThetaConvergence.linWorld_tendsto_thetaStar` 一致，见下条）。
+且极限点 `= θstar`（与 `ThetaConvergence.linWorld_tendsto_thetaStar` 一致，见下条）。
 
 **⚠ 本条不重证 `pipeline_tendsto`**（那已由 `ThetaConvergence` 与 `WorldModelPipeline` 提供）；
 本条只是**展示** `pipeline_tendsto_gen` 在 `V := ℝ` 时确实陈述了同一件事，

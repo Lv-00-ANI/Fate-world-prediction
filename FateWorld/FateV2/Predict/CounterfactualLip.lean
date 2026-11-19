@@ -21,7 +21,7 @@ import Mathlib.Tactic
 `Fate/Stage2/CounterfactualGenuine` 只交了 `E7` 的**代数传递**（②）：
 给定 `hLip : dY (f a) (f b) ≤ L * dU a b`，推出误差界。
 
-本文件补上 `E7` 缺失的**另一半（①）**：在 `Fate.Counterfactual.Model`
+本文件补上 `E7` 缺失的**另一半（①）**：在 `Counterfactual.Model`
 的具体载体上，把反事实输出写成复合
 
   `Y_{x'}(u) = M.Obs (arm u)`，其中 `arm : U → M.SCM` 是 `do(x', ·)`，

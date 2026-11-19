@@ -2,7 +2,7 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.EndToEndConverge`
+模块：`EndToEndConverge`
 任务：**【H8】把 `writeBack_reduces_error` 接到 `WorldModel` 链条上** ——
 给出「端到端迭代使误差几何收缩」与「收敛到不动点」的定理。
 
@@ -38,7 +38,7 @@ $$\mathrm{err}\bigl(\mathrm{wbW}\ A\ φ\ η\ x'\ θ\bigr)
 | 12 | `corrects_mulStep` | `Corrects` 在乘法机制上**可满足**（⟹ 结论非空真）|
 
 ===========================================================================
-⚠ 与 `Fate.EndToEnd` 的**真实**接口（诚实说明，必须先读）
+⚠ 与 `EndToEnd` 的**真实**接口（诚实说明，必须先读）
 ===========================================================================
 
 `Fate/EndToEnd.lean` 的 `endToEnd` 是
@@ -85,14 +85,14 @@ $$\mathrm{endToEnd}\ W\ h\ η\ φ\ y\ θ\ u\ ε\ a\ x
 
 | 模块 | 结论 | 与本文件的关系 |
 |---|---|---|
-| `Fate.BoundWriteBack` | **一步**误差 `= |1-η| · err` | 本文件的**引擎**（直接引用 `err_wbW`）|
-| `Fate.WiringConvergence` | `iterMap` 上的 `n` 步闭式 + `→ 0` + 上游观测界 | **部分重叠**（`errIter_closed`、`errIter_tendsto_zero`）|
-| `Fate.ConvergeToOptimalIter` | `A θ_n → x'`（闭式 + tendsto）| **部分重叠**（`thetaIter_tendsto_optimal`）|
-| `Fate.ThetaConvergence` | `θ_n → θ*`（**参数**收敛，`linWorld`）| **不重叠**（那是参数极限，本文件是预测极限）|
+| `BoundWriteBack` | **一步**误差 `= |1-η| · err` | 本文件的**引擎**（直接引用 `err_wbW`）|
+| `WiringConvergence` | `iterMap` 上的 `n` 步闭式 + `→ 0` + 上游观测界 | **部分重叠**（`errIter_closed`、`errIter_tendsto_zero`）|
+| `ConvergeToOptimalIter` | `A θ_n → x'`（闭式 + tendsto）| **部分重叠**（`thetaIter_tendsto_optimal`）|
+| `ThetaConvergence` | `θ_n → θ*`（**参数**收敛，`linWorld`）| **不重叠**（那是参数极限，本文件是预测极限）|
 
 **⚠ 判重结论（诚实登记，含实测）**：本文件的 §3–§4 多步迭代部分与
-`Fate.WiringConvergence`（`err_iterMap` / `closedLoop_tendsto_zero`）及
-`Fate.ConvergeToOptimalIter`（`iterErr_closed` / `predicts_converges`）
+`WiringConvergence`（`err_iterMap` / `closedLoop_tendsto_zero`）及
+`ConvergeToOptimalIter`（`iterErr_closed` / `predicts_converges`）
 在**数学内容上重叠**（同一闭式、同一收敛，载体不同、命名不同）。
 
 **实测的同名定理重合度**（`comm -12` 对两文件的定理名排序求交）：
@@ -150,7 +150,7 @@ open FateV2.Loop.EndToEnd FateV2.Loop.BoundWriteBack
 -/
 
 /-! ===========================================================================
-    §1  具体载体：复用 `Fate.EndToEndBounds` 的 `cX` / `cΘ` / `mulWorldModel`
+    §1  具体载体：复用 `EndToEndBounds` 的 `cX` / `cΘ` / `mulWorldModel`
     =========================================================================== -/
 
 /-- ⭐ 本文件用的具体状态空间：`ℝ`（**直接复用** `EndToEndBounds.cX`，
@@ -309,7 +309,7 @@ theorem thetaIter_succ (A : E →L[ℝ] F) (φ : F →ₗ[ℝ] E) (η : ℝ) (x'
 /-- ⭐ **`thetaIter` 就是 `EndToEnd.endToEnd` 的迭代**（`k` 步）。
 
 **⭐ 意义**：本文件的迭代**不是**另造算子——它就是
-`Fate.EndToEnd.endToEndIter`（在 `mulWorld` 上、经 `endToEnd_apply_mul` 展开后）。
+`EndToEnd.endToEndIter`（在 `mulWorld` 上、经 `endToEnd_apply_mul` 展开后）。
 本定理把两边的**步数语义**对齐（都是 `Nat.iterate`）。
 本文件不引用 `endToEndIter` 本身（它的签名带 `WorldModel` 的六个环境参数，
 展开后与 `wbW` 逐字一致，见 `endToEnd_apply_mul`）。 -/

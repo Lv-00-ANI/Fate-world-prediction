@@ -10,8 +10,8 @@
   | # | 原定理（**未改动**） | 所在模块 | 结论 |
   |---|---|---|---|
   | 1 | `FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable` | `CondMulSeparable` | ✅ 可去 |
-  | 2 | `Fate.MarkovBridgeTheorem.cond_mul_implies_separable_chain` | `MarkovBridgeTheorem` | ✅ 可去 |
-  | 3 | `Fate.WorldScenario.optimalChoose_mem` | `PolicyAlgorithm` | ✅ 可去（实例降为显式参数）|
+  | 2 | `FateV2.Predict.MarkovBridgeTheorem.cond_mul_implies_separable_chain` | `MarkovBridgeTheorem` | ✅ 可去 |
+  | 3 | `WorldScenario.optimalChoose_mem` | `PolicyAlgorithm` | ✅ 可去（实例降为显式参数）|
 
   ## 逐条理由（为什么是 A 类）
 
@@ -106,7 +106,7 @@ open FateV2.Predict.FinCondIndep
 
 variable {α β γ : Type} [Fintype α] [Fintype β] [Fintype γ]
 
-/-- ⭐ **【无 `[Nonempty]` 版】**：`Fate.MarkovBridgeTheorem.cond_mul_implies_separable_chain`
+/-- ⭐ **【无 `[Nonempty]` 版】**：`FateV2.Predict.MarkovBridgeTheorem.cond_mul_implies_separable_chain`
 去掉 `[Nonempty α] [Nonempty β]` 后**仍然成立**。
 
 原定理是 §1 的逐字转调，故直接转调 §1 的无 `Nonempty` 版本。 -/
@@ -129,7 +129,7 @@ open FateV2.Predict.WorldScenario
 
 universe u
 
-/-- ⭐ **【无 `[Nonempty]` 版】**：`Fate.WorldScenario.optimalChoose_mem`
+/-- ⭐ **【无 `[Nonempty]` 版】**：`WorldScenario.optimalChoose_mem`
 去掉 `[Nonempty A] [Nonempty X]` 后**仍然成立**。
 
 **做法**：用底层 `chooseOptimalSet P tree hne`（签名**不含**任何 `Nonempty` 实例），
@@ -165,12 +165,12 @@ end WorldScenario
      `σ` 为空时 `∑ x, f x = 0`，`h : ∀ x, 0 < f x` 空真，
      **结论 `0 < 0` 为假** ⟹ 在 `[Fintype σ]` 下**没有**无 `Nonempty` 形式。
 
-  2. `Fate.SCMWorldModel.scmWorldModel_*`（`[Nonempty Y]`）—— **不可去**。
+  2. `SCMWorldModel.scmWorldModel_*`（`[Nonempty Y]`）—— **不可去**。
      构造 `WorldModel` 的 `cur := Classical.choice ‹Nonempty Y›` / `initial.val`：
      空类型 `Y` 上 `WorldState.cur : Y` **无法给出取值**。这是**结构需要**，
      与本任务要找的「只作默认值、结论不读它」的 A 类**不同**（此处结论依赖 `W.x` 的存在）。
 
-  3. `Fate.LawRule.isPoint_genRule_iff`（`[Nonempty C.Carrier] [Nonempty X.Carrier]`）
+  3. `LawRule.isPoint_genRule_iff`（`[Nonempty C.Carrier] [Nonempty X.Carrier]`）
      —— **实测不可去**（与 DOWN-1 的 A 类判定**相反**，如实记录）。
      原证用 `Classical.arbitrary C.Carrier` / `X.Carrier` 从 `hp : ∀ c x, ...` 取一点。
      若 `C.Carrier` 为空：`IsPoint (genRule G g)` **空真**，
@@ -178,7 +178,7 @@ end WorldScenario
      **与 `C`/`X` 无关**，取 `G = ∅` 时它**为假** ⟹ 双向不成立。
      ⟹ 该 `[Nonempty]` **承载真实内容**，原判「A 类」有误。
 
-  4. `Fate.CondMI` §2 的 `[Nonempty α] [Nonempty β] [Nonempty γ]` —— **不可去**，
+  4. `CondMI` §2 的 `[Nonempty α] [Nonempty β] [Nonempty γ]` —— **不可去**，
      且**模块已自行记录**（`Fate/CondMI.lean:326` 原话：
      「`∀ x y z, 0 < p` 在空类型上会**空真**，故这里显式排除」）。
      这是**正确的断言**：正性假设需要非空域才有信息。

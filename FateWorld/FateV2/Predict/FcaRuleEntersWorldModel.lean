@@ -157,7 +157,7 @@ theorem dgToRichLaw_apply {E : InstSpace} {M : Type*} {L : Type*} [CompleteLatti
     (interp : Set (Set M) → Set (MeasureTheory.Measure F.X.Carrier))
     (c : (RichCtx F).Carrier) (x : F.X.Carrier) :
     dgToRichLaw D K c₀ attr interp c x
-      = interp (attr '' Fate.AlphaMVFCA.minClosed K x) := rfl
+      = interp (attr '' AlphaMVFCA.minClosed K x) := rfl
 
 /-- ⭐ **【`dgToRichLaw` 与「富上下文的四位」无关】**（`rfl` 级，如实登记缺口）。
 

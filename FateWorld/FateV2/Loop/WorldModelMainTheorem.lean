@@ -2,13 +2,13 @@
 命运理论 · Lean 4 形式化实现
 ================================
 
-模块：`Fate.WorldModelMainTheorem`
+模块：`WorldModelMainTheorem`
 任务：**【世界模型的最终交付物 / 真正的收口点】**
 
 ---------------------------------------------------------------------------
 ## 0  缘起（审计 R96 的判定）
 ---------------------------------------------------------------------------
-`Fate.WorldModelCapstone.worldModel_capstone`（`WorldModelCapstone.lean:650`）
+`WorldModelCapstone.worldModel_capstone`（`WorldModelCapstone.lean:650`）
 是全库**唯一**一条真正的世界模型装配定理：它 import 并真实调用 **8 个上游
 模块**（`ThetaConvergence` / `WorldModelReadsTheta` / `ConvergenceOptimal` /
 `SteadyErrEstimate` / `WorldModelAssembly` / `ClosedLoopNoisy` /
@@ -300,8 +300,8 @@ end Witness
 
 | 模块 | 变化前扇入（非库根） | 变化后 |
 |---|---|---|
-| `Fate.WorldModelCapstone` | 1（`WorldModelCapstoneConsumer`）| **2**（+ 本文件）|
-| `Fate.WorldModelCapstoneConsumer` | **0** | **1**（本文件 —— 它是 Consumer 的**唯一**真实下游）|
+| `WorldModelCapstone` | 1（`WorldModelCapstoneConsumer`）| **2**（+ 本文件）|
+| `WorldModelCapstoneConsumer` | **0** | **1**（本文件 —— 它是 Consumer 的**唯一**真实下游）|
 
 **⟹ 任务 (e)**：Consumer 的扇入从 **0** 变为 **1**（本文件是它**唯一**的真实下游）。
 

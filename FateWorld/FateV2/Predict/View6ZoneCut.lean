@@ -146,7 +146,7 @@ set_option linter.unusedSectionVars false
   §1 支撑语言（读集）
   =========================================================================== -/
 
-/-- 因子的读集 `R v = {v} ∪ pa(v)`（`FactorizesOn` 的口径，`Fate.T1A2`）。 -/
+/-- 因子的读集 `R v = {v} ∪ pa(v)`（`FactorizesOn` 的口径，`FateV2.Predict.T1A2`）。 -/
 def readSet (G : DAG V) (v : V) : Finset V := insert v (G.parents v)
 
 theorem mem_readSet {G : DAG V} {v w : V} :
@@ -162,9 +162,9 @@ theorem mem_readSet {G : DAG V} {v w : V} :
 /-- ⭐⭐ **V6.02 单段乘积只读本区**。 -/
 theorem prod_zone_reads {S ZA : Finset V} {reads : V → Finset V}
     (π : V → (V → Bool) → ℝ)
-    (hreads : ∀ v, Fate.T1A2.ReadsOnlyOn (reads v) (π v))
+    (hreads : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (reads v) (π v))
     (hsub : ∀ v ∈ S, reads v ⊆ ZA) :
-    Fate.T1A2.ReadsOnlyOn ZA (fun x => ∏ v ∈ S, π v x) := by
+    FateV2.Predict.T1A2.ReadsOnlyOn ZA (fun x => ∏ v ∈ S, π v x) := by
   intro x y hxy
   refine Finset.prod_congr rfl fun v hv => ?_
   exact hreads v x y fun w hw => hxy w (hsub v hv hw)
@@ -188,11 +188,11 @@ theorem prod_zone_split3_gen {S V₀ V₁ V₂ ZA ZB : Finset V} {reads : V → 
     (h01 : Disjoint V₀ V₁) (h02 : Disjoint V₀ V₂) (h12 : Disjoint V₁ V₂)
     (hcover : V₀ ∪ V₁ ∪ V₂ = S)
     (π : V → (V → Bool) → ℝ)
-    (hreads : ∀ v, Fate.T1A2.ReadsOnlyOn (reads v) (π v))
+    (hreads : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (reads v) (π v))
     (h0 : ∀ v ∈ V₀, reads v = ∅)
     (hA : ∀ v ∈ V₁, reads v ⊆ ZA) (hB : ∀ v ∈ V₂, reads v ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, (∏ v ∈ S, π v x) = f x * g x := by
   have hconst : ∀ v ∈ V₀, ∀ x y : V → Bool, π v x = π v y := by
     intro v hv x y
@@ -218,11 +218,11 @@ theorem prod_zone_split3 {V₀ V₁ V₂ ZA ZB : Finset V} {reads : V → Finset
     (h01 : Disjoint V₀ V₁) (h02 : Disjoint V₀ V₂) (h12 : Disjoint V₁ V₂)
     (hcover : V₀ ∪ V₁ ∪ V₂ = univ)
     (π : V → (V → Bool) → ℝ)
-    (hreads : ∀ v, Fate.T1A2.ReadsOnlyOn (reads v) (π v))
+    (hreads : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (reads v) (π v))
     (h0 : ∀ v ∈ V₀, reads v = ∅)
     (hA : ∀ v ∈ V₁, reads v ⊆ ZA) (hB : ∀ v ∈ V₂, reads v ⊆ ZB) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn ZA f ∧ Fate.T1A2.ReadsOnlyOn ZB g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn ZA f ∧ FateV2.Predict.T1A2.ReadsOnlyOn ZB g ∧
       ∀ x, (∏ v, π v x) = f x * g x :=
   prod_zone_split3_gen (S := univ) h01 h02 h12 hcover π hreads h0 hA hB
 
@@ -315,7 +315,7 @@ theorem unpinB_self (u : V) (x : V → Bool) : unpinB u x (x u) = x :=
 
 /-- `π v` 不读坐标 `u`（`u ∉ readSet v`，且 `LocalTo`）。 -/
 theorem insensitive_of_not_mem_readSet {π : V → (V → Bool) → ℝ} {G : DAG V}
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (readSet G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (readSet G v) (π v))
     {v u : V} (h : u ∉ readSet G v) (x : V → Bool) (a b : Bool) :
     π v (unpinB u x a) = π v (unpinB u x b) := by
   refine hloc v _ _ ?_
@@ -333,7 +333,7 @@ $$\mathrm{mass}_{\,V\setminus\{u\}}\Bigl(\prod_v \pi_v\Bigr) x
 **只用 `mass_insert_sum`（T1，单坐标）+ `Finset.prod_erase`**，
 **无 `mass` 嵌套、无塔、无归一化假设**。 -/
 theorem absorb_free {G : DAG V} {π : V → (V → Bool) → ℝ}
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (readSet G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (readSet G v) (π v))
     {u : V} (hfree : ∀ v, v ≠ u → u ∉ readSet G v) (x : V → Bool) :
     mass (univ \ {u}) (fun y => ∏ v, π v y) x
       = (∑ a : Bool, π u (unpinB u x a)) * (∏ v ∈ univ.erase u, π v x) := by
@@ -378,9 +378,9 @@ theorem absorb_free {G : DAG V} {π : V → (V → Bool) → ℝ}
 `§3` 的反例里 `π 2` 读 `{1,2}` 无处安放；消元后 `κ` 读 `pa(2) = {1} ⊆ X∪Z`，
 **立刻可安放**。 -/
 theorem absorb_free_reads {G : DAG V} {π : V → (V → Bool) → ℝ}
-    (hloc : ∀ v, Fate.T1A2.ReadsOnlyOn (readSet G v) (π v))
+    (hloc : ∀ v, FateV2.Predict.T1A2.ReadsOnlyOn (readSet G v) (π v))
     (u : V) :
-    Fate.T1A2.ReadsOnlyOn (G.parents u) (fun x => ∑ a : Bool, π u (unpinB u x a)) := by
+    FateV2.Predict.T1A2.ReadsOnlyOn (G.parents u) (fun x => ∑ a : Bool, π u (unpinB u x a)) := by
   intro x y hxy
   refine Finset.sum_congr rfl fun a _ => ?_
   refine hloc u _ _ ?_
@@ -427,11 +427,11 @@ $$\mathrm{mass}_{V\setminus\{u\}}\Bigl(\prod_v\pi_v\Bigr)x
 `∏_{v≠u}` 由 `prod_zone_split3_gen` 在 `univ.erase u` 上三分裂。
 **全程单层 `mass`、无 `mass∘mass`、无塔。** -/
 theorem elimCut_zone_split {G : DAG V} {p : (V → Bool) → ℝ} {X Y Z : Finset V} {u : V}
-    (hfac : Fate.T1A2.FactorizesOn G p)
+    (hfac : FateV2.Predict.T1A2.FactorizesOn G p)
     (hfree : ∀ v, v ≠ u → u ∉ readSet G v)
     (hcut : ElimCut G u X Y Z) :
     ∃ f g : (V → Bool) → ℝ,
-      Fate.T1A2.ReadsOnlyOn (X ∪ Z) f ∧ Fate.T1A2.ReadsOnlyOn (Y ∪ Z) g ∧
+      FateV2.Predict.T1A2.ReadsOnlyOn (X ∪ Z) f ∧ FateV2.Predict.T1A2.ReadsOnlyOn (Y ∪ Z) g ∧
       ∀ x, FateV2.Predict.DAGFactorization.mass (univ \ {u}) p x = f x * g x := by
   obtain ⟨π, hloc, -, hprod⟩ := hfac
   obtain ⟨V₀, V₁, V₂, h01, h02, h12, hcov, h0, hA, hB, hX, hY, hpu⟩ := hcut
@@ -453,7 +453,7 @@ theorem elimCut_zone_split {G : DAG V} {p : (V → Bool) → ℝ} {X Y Z : Finse
     prod_zone_split3_gen (S := univ.erase u) (reads := readSet G)
       h01 h02 h12 hcov π hloc h0 hA hB
   -- 消息 `κ` 归入 `X∪Z` 侧
-  have hκ : Fate.T1A2.ReadsOnlyOn (X ∪ Z) (fun x => ∑ a : Bool, π u (unpinB u x a)) :=
+  have hκ : FateV2.Predict.T1A2.ReadsOnlyOn (X ∪ Z) (fun x => ∑ a : Bool, π u (unpinB u x a)) :=
     (absorb_free_reads hloc u).mono hpu
   refine ⟨fun x => (∑ a : Bool, π u (unpinB u x a)) * f' x, g, ?_, hg, ?_⟩
   · -- 乘积仍只读 `X∪Z`

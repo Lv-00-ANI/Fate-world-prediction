@@ -79,6 +79,6 @@ theorem blockCI_of_factorization {ψ : V → (V → α) → ℝ} {p : (V → α)
   -- CondIndep p X Y Z
   have hci := FateV2.Predict.GraphToProbView7.condIndep_general ψ p hfac hread hsplit hXY hXZ hYZ hcover
   -- 用 BlockCIGeneralC
-  exact Fate.C5g.blockCI_of_condIndep hXYuni hZX hci
+  exact FateV2.Predict.C5g.blockCI_of_condIndep hXYuni hZX hci
 
 end FateV2.Predict.C5h

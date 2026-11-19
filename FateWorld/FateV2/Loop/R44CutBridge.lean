@@ -3,8 +3,8 @@
 
 ## 本文件做什么
 
-`Fate/View14CutReweight.lean`（真实 namespace `Fate.View14`，18 条定理）
-与 `Fate/BridgeDirect.lean`（真实 namespace `Fate.BridgeDirect`，34 条定理）
+`Fate/View14CutReweight.lean`（真实 namespace `FateV2.Predict.View14`，18 条定理）
+与 `Fate/BridgeDirect.lean`（真实 namespace `FateV2.Predict.BridgeDirect`，34 条定理）
 在真实 `external_refs` 口径下**双双为 0**。
 
 两者都在「`Finset` 型 DAG 上的父闭集 / 割集」这一层工作：
@@ -18,8 +18,8 @@
 
 ## ⚠ 防环
 
-本文件 `import Fate.View14CutReweight` 与 `import Fate.BridgeDirect`。
-两者均无 `import Fate.R44CutBridge`（本文件是新建的），故不可能成环。
+本文件 `import Fate.View14CutReweight` 与 `import FateV2.Predict.BridgeDirect`。
+两者均无 `import FateV2.Loop.R44CutBridge`（本文件是新建的），故不可能成环。
 
 ## ⚠ 前件检查
 
@@ -49,8 +49,8 @@ import FateWorld.FateV2.Predict.BridgeDirect
 
 /-- ⭐⭐⭐ **【`Cut` 的并为割 + `AncClosed` 的并为闭，同一份接口】**
 
-- `Fate.View14.Cut.union`：两割集之并仍是割集；
-- `Fate.BridgeDirect.ancClosed_union_of_ancClosed`：两祖先闭集之并仍祖先闭。
+- `FateV2.Predict.View14.Cut.union`：两割集之并仍是割集；
+- `FateV2.Predict.BridgeDirect.ancClosed_union_of_ancClosed`：两祖先闭集之并仍祖先闭。
 
 两条**都是「并对封闭」**，但分别钉在两个不同的谓词（`Cut` 与 `AncClosed`）上，
 且来自两个互不引用的模块。把它们并置后，下游对任一谓词都能一次拿到封闭性。
@@ -66,17 +66,17 @@ open FateV2.Predict
 theorem r44_cut_union_and_ancClosed_union
     {V : Type} [DecidableEq V] [Fintype V]
     {G : FateV2.Modeling.Graph.DAG V} {A B X Z : Finset V}
-    (hA : Fate.View14.Cut G A) (hB : Fate.View14.Cut G B)
-    (hX : Fate.Strategy11Hull.AncClosed G X)
-    (hZ : Fate.Strategy11Hull.AncClosed G Z) :
-    Fate.View14.Cut G (A ∪ B) ∧ Fate.Strategy11Hull.AncClosed G (X ∪ Z) :=
-  ⟨Fate.View14.Cut.union hA hB,
-   Fate.BridgeDirect.ancClosed_union_of_ancClosed hX hZ⟩
+    (hA : FateV2.Predict.View14.Cut G A) (hB : FateV2.Predict.View14.Cut G B)
+    (hX : FateV2.Predict.Strategy11Hull.AncClosed G X)
+    (hZ : FateV2.Predict.Strategy11Hull.AncClosed G Z) :
+    FateV2.Predict.View14.Cut G (A ∪ B) ∧ FateV2.Predict.Strategy11Hull.AncClosed G (X ∪ Z) :=
+  ⟨FateV2.Predict.View14.Cut.union hA hB,
+   FateV2.Predict.BridgeDirect.ancClosed_union_of_ancClosed hX hZ⟩
 
 /-- ⭐⭐ **【割集 ⟺ 暴露集为空，与 `AncClosed` 蕴含落位】**
 
-- `Fate.View14.exposed_eq_empty_iff_cut`：`Cut G A ↔ exposed G A = ∅`；
-- `Fate.BridgeDirect.parents_subset_of_ancClosed`：`AncClosed G X` 时
+- `FateV2.Predict.View14.exposed_eq_empty_iff_cut`：`Cut G A ↔ exposed G A = ∅`；
+- `FateV2.Predict.BridgeDirect.parents_subset_of_ancClosed`：`AncClosed G X` 时
   每个 `v ∈ X` 的父集落在 `X ∪ Z`（对**任意** `Z`）。
 
 第二条**强于**第一条的「父落在 `X` 内」：它给出**带任意旁路集 `Z`** 的落位，
@@ -84,25 +84,25 @@ theorem r44_cut_union_and_ancClosed_union
 theorem r44_cut_iff_exposed_and_ancClosed_peel
     {V : Type} [DecidableEq V] [Fintype V]
     {G : FateV2.Modeling.Graph.DAG V} {A X Z : Finset V} :
-    (Fate.View14.Cut G A ↔ Fate.View21.exposed G A = ∅)
-      ∧ (Fate.Strategy11Hull.AncClosed G X →
+    (FateV2.Predict.View14.Cut G A ↔ FateV2.Predict.View21.exposed G A = ∅)
+      ∧ (FateV2.Predict.Strategy11Hull.AncClosed G X →
           ∀ v ∈ X, G.parents v ⊆ X ∪ Z) :=
-  ⟨Fate.View14.exposed_eq_empty_iff_cut G A,
-   fun hX => Fate.BridgeDirect.parents_subset_of_ancClosed hX⟩
+  ⟨FateV2.Predict.View14.exposed_eq_empty_iff_cut G A,
+   fun hX => FateV2.Predict.BridgeDirect.parents_subset_of_ancClosed hX⟩
 
 /-- ⭐ **【全空间是割集，祖先闭包是割集】**
 
-- `Fate.View14.cut_univ`：`Cut G univ`；
-- `Fate.View14.cut_ancestralSet`：`Cut G (G.ancestralSet S)`。
+- `FateV2.Predict.View14.cut_univ`：`Cut G univ`；
+- `FateV2.Predict.View14.cut_ancestralSet`：`Cut G (G.ancestralSet S)`。
 
 两条一起保证 `Cut` 谓词**非空**且对「取祖先闭包」这个常见构造**成立**，
 排除 `Cut` 恒假的空洞风险。 -/
 theorem r44_cut_nonvacuous
     {V : Type} [DecidableEq V] [Fintype V]
     (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) :
-    Fate.View14.Cut G (Finset.univ : Finset V)
-      ∧ Fate.View14.Cut G (G.ancestralSet S) :=
-  ⟨Fate.View14.cut_univ G, Fate.View14.cut_ancestralSet G S⟩
+    FateV2.Predict.View14.Cut G (Finset.univ : Finset V)
+      ∧ FateV2.Predict.View14.Cut G (G.ancestralSet S) :=
+  ⟨FateV2.Predict.View14.cut_univ G, FateV2.Predict.View14.cut_ancestralSet G S⟩
 
 /-- ⭐⭐ **【割集时：暴露集为空 且 暴露集落在 `A` 内】**
 
@@ -113,9 +113,9 @@ theorem r44_cut_nonvacuous
 theorem r44_cut_exposed_both
     {V : Type} [DecidableEq V] [Fintype V]
     {G : FateV2.Modeling.Graph.DAG V} {A : Finset V}
-    (hcut : Fate.View14.Cut G A) :
-    Fate.View21.exposed G A ⊆ A ∧ Fate.View21.exposed G A = ∅ :=
-  Fate.View14.exposed_subset_and_eq_empty_of_cut G hcut
+    (hcut : FateV2.Predict.View14.Cut G A) :
+    FateV2.Predict.View21.exposed G A ⊆ A ∧ FateV2.Predict.View21.exposed G A = ∅ :=
+  FateV2.Predict.View14.exposed_subset_and_eq_empty_of_cut G hcut
 
 /-! ## §2 重加权可行性的接口 -/
 
@@ -140,11 +140,11 @@ theorem r44_reweight_endpoints
     FateV2.Predict.DAGFactorization.mass S p x
         = FateV2.Predict.DAGFactorization.mass S (fun w => ∏ v, q v w) x
       ∧ FateV2.Predict.DAGFactorization.mass (Finset.univ : Finset V) p x
-          = Fate.View14.cutWeight (Finset.univ : Finset V) q x
+          = FateV2.Predict.View14.cutWeight (Finset.univ : Finset V) q x
             * FateV2.Predict.DAGFactorization.mass (Finset.univ : Finset V)
                 (fun _ => (1 : ℝ)) x :=
-  ⟨Fate.View14.cut_reweight_empty G hloc p hfac S x,
-   Fate.View14.cut_reweight_univ G hloc p hfac x⟩
+  ⟨FateV2.Predict.View14.cut_reweight_empty G hloc p hfac S x,
+   FateV2.Predict.View14.cut_reweight_univ G hloc p hfac x⟩
 
 /-! ## §3 两侧并置：`ReadClosedBlocks` 的两条款 + 割集 -/
 
@@ -164,13 +164,13 @@ theorem r44_reweight_endpoints
 theorem r44_readClosedBlocks_unpacked
     {V : Type} [DecidableEq V] [Fintype V]
     {G : FateV2.Modeling.Graph.DAG V} {X Y Z : Finset V}
-    (h : Fate.BridgeDirect.ReadClosedBlocks G X Y Z) :
-    Fate.Strategy11Hull.AncClosed G Z
+    (h : FateV2.Predict.BridgeDirect.ReadClosedBlocks G X Y Z) :
+    FateV2.Predict.Strategy11Hull.AncClosed G Z
       ∧ (∀ v ∈ X, G.parents v ⊆ X ∪ Z)
       ∧ (∀ v ∈ Y, G.parents v ⊆ Y ∪ Z)
-      ∧ (Fate.View14.Cut G (X ∪ Z) → Fate.View21.exposed G (X ∪ Z) = ∅) := by
+      ∧ (FateV2.Predict.View14.Cut G (X ∪ Z) → FateV2.Predict.View21.exposed G (X ∪ Z) = ∅) := by
   obtain ⟨h1, h2, h3⟩ := h
-  exact ⟨h1, h2, h3, fun hcut => (Fate.View14.exposed_eq_empty_iff_cut G (X ∪ Z)).mp hcut⟩
+  exact ⟨h1, h2, h3, fun hcut => (FateV2.Predict.View14.exposed_eq_empty_iff_cut G (X ∪ Z)).mp hcut⟩
 
 /-- ⭐⭐ **【`gap_is_peel` 与 `exposed` 判据的合成】**
 
@@ -183,12 +183,12 @@ theorem r44_readClosedBlocks_unpacked
 theorem r44_gap_is_peel_and_cut_iff
     {V : Type} [DecidableEq V] [Fintype V]
     {G : FateV2.Modeling.Graph.DAG V} {X Y Z A : Finset V}
-    (hZ : Fate.Strategy11Hull.AncClosed G Z)
+    (hZ : FateV2.Predict.Strategy11Hull.AncClosed G Z)
     (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
-    (Fate.BridgeDirect.Gap G X Y Z
+    (FateV2.Predict.BridgeDirect.Gap G X Y Z
         ↔ (G.dSep X Y Z → ∀ v ∈ X, G.parents v ⊆ X ∪ Z))
-      ∧ (Fate.View14.Cut G A ↔ Fate.View21.exposed G A = ∅) :=
-  ⟨Fate.BridgeDirect.gap_is_peel hZ hY,
-   Fate.View14.exposed_eq_empty_iff_cut G A⟩
+      ∧ (FateV2.Predict.View14.Cut G A ↔ FateV2.Predict.View21.exposed G A = ∅) :=
+  ⟨FateV2.Predict.BridgeDirect.gap_is_peel hZ hY,
+   FateV2.Predict.View14.exposed_eq_empty_iff_cut G A⟩
 
 end FateV2.Loop.R44CutBridge

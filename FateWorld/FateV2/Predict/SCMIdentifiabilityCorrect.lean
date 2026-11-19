@@ -72,7 +72,7 @@ Identifiable M :=
 
 1. **`obsDist` 只取 L1（观测层）**，不含 L2（干预）/ L3（反事实）。
    ⟹ 本文件证的「不可辨识」比「L1+L2+L3 全不可辨识」**弱**。
-   若 `obsDist` 相同但 `L2_family` 不同（`Fate.PearlHierarchy.L3_not_determined_by_L1_and_L2`
+   若 `obsDist` 相同但 `L2_family` 不同（`PearlHierarchy.L3_not_determined_by_L1_and_L2`
    正好给了这种例子），则本文件**不**声称它们在 L2/L3 上不可辨识。
    **本文件不**证「L1 不可辨识 ⟹ L2+L3 不可辨识」的逆命题。
 2. **`IdentifiableObs` 只是「L1-可辨识」**，不是全局 / 局部可辨识性的完整语义
@@ -88,7 +88,7 @@ Identifiable M :=
 ## 五、纪律
 
 零 `sorry` / 零 `admit` / 零 `axiom`；只新建本文件，不改动任何既有模块；
-不外泄名称（全部在 `Fate.SCMIdentifiabilityCorrect` 命名空间内）。
+不外泄名称（全部在 `SCMIdentifiabilityCorrect` 命名空间内）。
 -/
 
 import FateWorld.FateV2.Predict.ParamSCM

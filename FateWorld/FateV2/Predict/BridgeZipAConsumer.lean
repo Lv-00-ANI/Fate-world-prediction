@@ -5,14 +5,14 @@
 
 | 目标模块声明 | 在本文件的角色 |
 |---|---|
-| `Fate.BridgeZipA.zStar_eq_iff_readClosed`（A10） | **C1**（不可证明性包装）、**C2**（每条 `dSep` 三元组都可由 `parent` 一步判据取到 `zStar = Z`） |
-| `Fate.BridgeZipA.readClosed_zStar` | **C2**（无条件产出 `ReadClosedBlocks G X Y (zStar ·)`） |
-| `Fate.BridgeZipA.subset_zStar` | **C2** |
-| `Fate.BridgeZipA.req_subset_of_readClosed` | **C1** |
-| `Fate.BridgeZipA.mass_congr_at` | **C3**（第四读集 `Z'` 处的**逐点**见证：`Z'∖Z` 只在不含 `v` 时才无关） |
-| `Fate.BridgeZipA.mass_Z_eq_sum_over_Z'` | **C3**（压回的正确形态 = 求和） |
-| `Fate.BridgeZipA.zStar_exceeds_domain` / `zStar_exceeds_XZ` / `zStar_exceeds_YZ` | **C4**（`zStar` 溢出在 A1–A3 处不可救） |
-| `Fate.BridgeZipA.hole_forces_eq` | **C4**（洞条件退化的定量形态：`zStar∖Z` 的任一点都满足 `v ∈ zStar`） |
+| `FateV2.Predict.BridgeZipA.zStar_eq_iff_readClosed`（A10） | **C1**（不可证明性包装）、**C2**（每条 `dSep` 三元组都可由 `parent` 一步判据取到 `zStar = Z`） |
+| `FateV2.Predict.BridgeZipA.readClosed_zStar` | **C2**（无条件产出 `ReadClosedBlocks G X Y (zStar ·)`） |
+| `FateV2.Predict.BridgeZipA.subset_zStar` | **C2** |
+| `FateV2.Predict.BridgeZipA.req_subset_of_readClosed` | **C1** |
+| `FateV2.Predict.BridgeZipA.mass_congr_at` | **C3**（第四读集 `Z'` 处的**逐点**见证：`Z'∖Z` 只在不含 `v` 时才无关） |
+| `FateV2.Predict.BridgeZipA.mass_Z_eq_sum_over_Z'` | **C3**（压回的正确形态 = 求和） |
+| `FateV2.Predict.BridgeZipA.zStar_exceeds_domain` / `zStar_exceeds_XZ` / `zStar_exceeds_YZ` | **C4**（`zStar` 溢出在 A1–A3 处不可救） |
+| `FateV2.Predict.BridgeZipA.hole_forces_eq` | **C4**（洞条件退化的定量形态：`zStar∖Z` 的任一点都满足 `v ∈ zStar`） |
 
 ## 1 一句话结论（诚实）
 
@@ -56,7 +56,7 @@ open FateV2.Modeling
 open FateV2.Modeling.Graph
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
-open Fate.Strategy11Hull
+open FateV2.Predict.Strategy11Hull
 
 universe u
 variable {V : Type u} [DecidableEq V] [Fintype V]
@@ -89,9 +89,9 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 `zStar = Z` 与 `ReadClosedBlocks` **等价**，故「用 `zStar` 提出更弱的图论前提」
 这一**战略**被 A10 完全封死（这是本定理真正的用途：**否证** RouteA 作为 G1 替代品）。 -/
 theorem zStar_only_at_G1 {G : FateV2.Modeling.Graph.DAG V} {X Y Z : Finset V}
-    (h : Fate.BridgeZipA.zStar G X Y Z = Z) :
-    Fate.BridgeZipA.ReadClosedBlocks G X Y Z :=
-  (Fate.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mpr h
+    (h : FateV2.Predict.BridgeZipA.zStar G X Y Z = Z) :
+    FateV2.Predict.BridgeZipA.ReadClosedBlocks G X Y Z :=
+  (FateV2.Predict.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mpr h
 
 /-- **C1′ —— `routeA_unusable`**（消费 `zStar_eq_iff_readClosed` 的两个方向）。
 
@@ -104,12 +104,12 @@ theorem zStar_only_at_G1 {G : FateV2.Modeling.Graph.DAG V} {X Y Z : Finset V}
 
 即 `zStar` 路线**既不比 G1 弱，也不比 G1 强**。 -/
 theorem routeA_unusable (G : FateV2.Modeling.Graph.DAG V) :
-    (∀ X Y Z : Finset V, Fate.BridgeZipA.zStar G X Y Z = Z →
-        Fate.BridgeZipA.ReadClosedBlocks G X Y Z)
-      ∧ (∀ X Y Z : Finset V, Fate.BridgeZipA.ReadClosedBlocks G X Y Z →
-        Fate.BridgeZipA.zStar G X Y Z = Z) :=
-  ⟨fun X Y Z h => (Fate.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mpr h,
-   fun X Y Z h => (Fate.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mp h⟩
+    (∀ X Y Z : Finset V, FateV2.Predict.BridgeZipA.zStar G X Y Z = Z →
+        FateV2.Predict.BridgeZipA.ReadClosedBlocks G X Y Z)
+      ∧ (∀ X Y Z : Finset V, FateV2.Predict.BridgeZipA.ReadClosedBlocks G X Y Z →
+        FateV2.Predict.BridgeZipA.zStar G X Y Z = Z) :=
+  ⟨fun X Y Z h => (FateV2.Predict.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mpr h,
+   fun X Y Z h => (FateV2.Predict.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mp h⟩
 
 /-! ===========================================================================
   §2 C2：`zStar` **正向**接到桥主定理（`BridgeFullFixed.markov_of_readClosedBlocks`）
@@ -132,8 +132,8 @@ theorem zStar_readClosed_of_parents_in {G : FateV2.Modeling.Graph.DAG V} {X Y Z 
     (hZ : AncClosed G Z)
     (hX : ∀ v ∈ X, G.parents v ⊆ X ∪ Z)
     (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
-    Fate.BridgeZipA.zStar G X Y Z = Z := by
-  refine (Fate.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mp ⟨hZ, hX, hY⟩
+    FateV2.Predict.BridgeZipA.zStar G X Y Z = Z := by
+  refine (FateV2.Predict.BridgeZipA.zStar_eq_iff_readClosed X Y Z).mp ⟨hZ, hX, hY⟩
 
 /-- **C2′ — `markov_via_zStar`**：`zStar` 路线的**唯一**正向出口。
 
@@ -147,7 +147,7 @@ theorem markov_via_zStar {G : FateV2.Modeling.Graph.DAG V} {p : (V → α) → �
     (hX : ∀ v ∈ X, G.parents v ⊆ X ∪ Z)
     (hY : ∀ v ∈ Y, G.parents v ⊆ Y ∪ Z) :
     CondIndep p X Y Z :=
-  Fate.BridgeFullFixed.markov_of_readClosedBlocks hloc hfac hnorm hd
+  FateV2.Predict.BridgeFullFixed.markov_of_readClosedBlocks hloc hfac hnorm hd
     ⟨hZ, hX, hY⟩
 
 /-! ===========================================================================
@@ -169,7 +169,7 @@ mass Z p x = ∑ a : α, mass (insert v Z) p (unpin v x a)
 theorem mass_Z_pushdown_is_sum {Z : Finset V} {v : V} (hv : v ∉ Z)
     (p : (V → α) → ℝ) (x : V → α) :
     mass Z p x = ∑ a : α, mass (insert v Z) p (unpin v x a) :=
-  Fate.BridgeZipA.mass_Z_eq_sum_over_Z' Z hv p x
+  FateV2.Predict.BridgeZipA.mass_Z_eq_sum_over_Z' Z hv p x
 
 omit [Fintype V] in
 /-- **C3′ — `mass_insert_not_congr_at_v`**：`insert v Z` 的 `mass` **读**`v` 位，
@@ -192,7 +192,7 @@ theorem zip_down_needs_sum {Z : Finset V} {v : V} (hv : v ∉ Z)
     (p : (V → α) → ℝ) (x : V → α) :
     mass Z p x = ∑ a : α, mass (insert v Z) p (unpin v x a)
       ∧ ¬ (v ∉ insert v Z) :=
-  ⟨Fate.BridgeZipA.mass_Z_eq_sum_over_Z' Z hv p x, mass_insert_not_congr_at_v⟩
+  ⟨FateV2.Predict.BridgeZipA.mass_Z_eq_sum_over_Z' Z hv p x, mass_insert_not_congr_at_v⟩
 
 /-! ===========================================================================
   §4 C4：`zStar ∖ Z` 的每一点都**仍在** `zStar` 内（洞条件不可修补）
@@ -213,27 +213,27 @@ theorem zip_down_needs_sum {Z : Finset V} {v : V} (hv : v ∉ Z)
 故 A7 的「退化」是**空的**：`zStar ⊋ Z` 时它既不可满足，也不可能通过加强 *(P)* 得到。 -/
 theorem zStar_hole_condition_refuted :
     ¬ (∀ (X Y Z : Finset (Fin 3)),
-        ∀ v ∈ Fate.BridgeZipA.zStar Fate.BridgeZipA.gch X Y Z \ Z,
-          v ∉ Fate.BridgeZipA.zStar Fate.BridgeZipA.gch X Y Z) := by
+        ∀ v ∈ FateV2.Predict.BridgeZipA.zStar FateV2.Predict.BridgeZipA.gch X Y Z \ Z,
+          v ∉ FateV2.Predict.BridgeZipA.zStar FateV2.Predict.BridgeZipA.gch X Y Z) := by
   intro h
-  exact h {0} {2} {1} 0 Fate.BridgeZipA.gch_mem_zStar_sdiff
-    (Finset.mem_sdiff.mp Fate.BridgeZipA.gch_mem_zStar_sdiff).1
+  exact h {0} {2} {1} 0 FateV2.Predict.BridgeZipA.gch_mem_zStar_sdiff
+    (Finset.mem_sdiff.mp FateV2.Predict.BridgeZipA.gch_mem_zStar_sdiff).1
 
 /-- **C4′ — `hole_condition_forces_zStar_eq`**：A7（`hole_forces_eq`）在 `Z' := zStar` 上的实例。
 
 若洞条件也覆盖 `zStar` 自身，则 `zStar G X Y Z = Z`（即 RouteA 退化到 G1）。 -/
 theorem hole_condition_forces_zStar_eq {G : FateV2.Modeling.Graph.DAG V} (X Y Z : Finset V)
-    (hhole : ∀ v ∈ Fate.BridgeZipA.zStar G X Y Z \ Z,
-      v ∉ Fate.BridgeZipA.zStar G X Y Z) :
-    Fate.BridgeZipA.zStar G X Y Z = Z :=
-  Fate.BridgeZipA.hole_forces_eq (Fate.BridgeZipA.subset_zStar X Y Z) hhole
+    (hhole : ∀ v ∈ FateV2.Predict.BridgeZipA.zStar G X Y Z \ Z,
+      v ∉ FateV2.Predict.BridgeZipA.zStar G X Y Z) :
+    FateV2.Predict.BridgeZipA.zStar G X Y Z = Z :=
+  FateV2.Predict.BridgeZipA.hole_forces_eq (FateV2.Predict.BridgeZipA.subset_zStar X Y Z) hhole
 
 /-- **C4″ — `zStar_hole_iff`**：C4′ 的等价形态（A7 的 `hole_iff` 在 `zStar` 上的实例），
 与 `zStar_eq_iff_readClosed` **同一**（A10），故「洞条件修补」**仍然**只是 G1。 -/
 theorem zStar_hole_iff {G : FateV2.Modeling.Graph.DAG V} (X Y Z : Finset V) :
-    (∀ v ∈ Fate.BridgeZipA.zStar G X Y Z \ Z, v ∉ Fate.BridgeZipA.zStar G X Y Z)
-      ↔ Fate.BridgeZipA.ReadClosedBlocks G X Y Z := by
-  rw [Fate.BridgeZipA.hole_iff (Fate.BridgeZipA.subset_zStar X Y Z)]
-  exact (Fate.BridgeZipA.zStar_eq_iff_readClosed X Y Z).symm
+    (∀ v ∈ FateV2.Predict.BridgeZipA.zStar G X Y Z \ Z, v ∉ FateV2.Predict.BridgeZipA.zStar G X Y Z)
+      ↔ FateV2.Predict.BridgeZipA.ReadClosedBlocks G X Y Z := by
+  rw [FateV2.Predict.BridgeZipA.hole_iff (FateV2.Predict.BridgeZipA.subset_zStar X Y Z)]
+  exact (FateV2.Predict.BridgeZipA.zStar_eq_iff_readClosed X Y Z).symm
 
 end FateV2.Predict.BridgeZipAConsumer

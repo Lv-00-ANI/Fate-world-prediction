@@ -13,7 +13,7 @@ ChainMarkovRelative p  ⟹  chainDAG.dSep {0} {2} {1}  ⟹  CondMul (p 的重排
 并把**每一个图侧断言**用 `Causalean.Graph.DAG.dSep` 的 `decide` **逐条机检**。
 写法**逐字复用** `Fate/T1A1.lean`：`chainEdge` / `chainDAG` 的 acyclicity 手法
 （严格单调 `Fin.val`）、`open FateV2.Modeling.Graph`、`dSep` 用 `decide` 判定、
-`CondMul` 用 `Fate.FinCondIndep` 的口径。
+`CondMul` 用 `FinCondIndep` 的口径。
 
 ## ⚠⚠ 诚实结论（先读这一段）
 
@@ -209,7 +209,7 @@ def ForkMarkov (p : FinJoint (Fin 2) (Fin 2) (Fin 3)) : Prop :=
 
 **证明**：因子分解已是**可分离形式**
 $p((x,y),z) = (p_Z(z)\,p_{X|Z}(x,z))\cdot p_{Y|Z}(y,z)$，
-直接套 `Fate.PearlCondIndepBridge.separable_implies_condMul`。
+直接套 `PearlCondIndepBridge.separable_implies_condMul`。
 
 **⚠ 为什么没有 `hSep` 参数**：`dSep` 的源/目标/条件集与 `CondMul` 的 `X/Y/Z`
 是**两套不同的标号口径**（前者要求三个集合两两不交，后者只是一个三元组取值）。

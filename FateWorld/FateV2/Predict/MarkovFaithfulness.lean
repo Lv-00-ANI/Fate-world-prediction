@@ -21,7 +21,7 @@ import Mathlib.Tactic.IntervalCases
 -/
 
 /-! ===========================================================================
-  `Fate.MarkovFaithfulness` —— **反例构造的对称面**
+  `MarkovFaithfulness` —— **反例构造的对称面**
   （d-分离 ⟹ 条件独立 的**反向**；**不需要忠实性**的最强版本）
 
   ## 0 任务

@@ -3,9 +3,9 @@
 
 把两段**已入库**的结果串起来：
 
-* `Fate.SplitFromDAG.split_of_dSep`
+* `SplitFromDAG.split_of_dSep`
   : `G.dSep X Y Z → X ∪ Y ∪ Z = univ → Split (readSetOf G) X Y Z`
-* `Fate.BridgeIntegrated.condIndep_of_factorizes_general`
+* `BridgeIntegrated.condIndep_of_factorizes_general`
   : `Factorizes p G → Split (readSetOf G) X Y Z →` 三对不交 `→` 覆盖 `→ CondIndep p X Y Z`
 
 `dSep` 的前三个合取项**恰好**就是所需的 `Disjoint X Y` / `Disjoint X Z` /
@@ -69,7 +69,7 @@ end Chain
 /-! ===========================================================================
   §2  一致性检查：一般版在 `Z = ∅` 处回落到已入库的 `condIndep_of_factorizes_dSep`
 
-  `Fate.SplitFromDAG.condIndep_of_factorizes_dSep` 已存入库且零 `sorry`，
+  `SplitFromDAG.condIndep_of_factorizes_dSep` 已存入库且零 `sorry`，
   这里不再重复证明 `Z = ∅` 版本，只登记其签名以供交叉核对：
   * `condIndep_of_factorizes_dSep (hdsep : G.dSep X Y ∅) (hcover : X ∪ Y = univ)
       : CondIndep p X Y ∅`
