@@ -34,7 +34,7 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 OUT = os.path.join(ROOT, '_inventory', '残留Fate前缀.csv')
 
 NS_RE = re.compile(r'^\s*namespace\s+(\S+)')
-END_RE = re.compile(r'^\s*end\s+(\S+)\s*$')
+END_RE = re.compile(r'^\s*end(?:\s+(\S+))?\s*$')  # ⚠ 无名 end 也匹配（Lean 允许用它关闭 section）
 # 残留引用：Fate.X（后面可能还有 .Y）
 REF_RE = re.compile(r'(?<![\w.`])Fate\.([A-Za-z_]\w*)')
 
@@ -55,7 +55,7 @@ def collect_namespaces():
                         full = '.'.join(stack)
                         bylast[stack[-1]].add(full)
                         continue
-                    if END_RE.match(line) and stack:
+                    if END_RE.match(line) and stack:  # 无名 end 同样弹出
                         stack.pop()
     return bylast
 

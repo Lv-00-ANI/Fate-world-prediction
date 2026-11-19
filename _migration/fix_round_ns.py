@@ -33,7 +33,7 @@ V2 = os.path.join(ROOT, 'FateWorld', 'FateV2')
 OUT = os.path.join(ROOT, '_inventory', '轮次命名空间.csv')
 
 NS_RE = re.compile(r'^\s*namespace\s+(\S+)')
-END_RE = re.compile(r'^\s*end\s+(\S+)\s*$')
+END_RE = re.compile(r'^\s*end(?:\s+(\S+))?\s*$')  # ⚠ 无名 end 也匹配（Lean 允许用它关闭 section）
 DEF_RE = re.compile(
     r'^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+)*'
     r'(?:structure|inductive|class|def|abbrev|opaque|theorem|lemma)\s+([A-Za-z_]\w*)')
@@ -68,7 +68,7 @@ def scan_defs():
                     if m:
                         stack.append(m.group(1))
                         continue
-                    if END_RE.match(line) and stack:
+                    if END_RE.match(line) and stack:  # 无名 end 同样弹出
                         stack.pop()
                         continue
                     m = DEF_RE.match(line)

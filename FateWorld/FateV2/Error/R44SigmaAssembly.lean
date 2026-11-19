@@ -42,7 +42,7 @@ import FateWorld.FateV2.Meta.AssemblyGainShared
 
 /-! ## §1 sigma 侧：三种刻画与收敛窗口的联合接口 -/
 
-/-- ⭐⭐⭐ **【sigma 三刻画 + 收缩窗内的稳态误差，一次取全】**
+/- ⭐⭐⭐ **【sigma 三刻画 + 收缩窗内的稳态误差，一次取全】**
 
 在 `MemLp id 2 P`、`0 < n`、`0 < varOf P`、`|1 - eta| < 1` 下：
 
@@ -116,7 +116,7 @@ theorem r44_gain_closed_form_and_fixed_point (eta : ℝ) :
 
 /-- ⭐⭐⭐⭐ **【共享变量收益的完整包：交集蕴含 + 两侧单独不蕴含】**
 
-把 `Fate.AssemblyGainShared.assembly_gain_shared` 的 `Set` 形态
+把 `FateV2.Meta.AssemblyGainShared.assembly_gain_shared` 的 `Set` 形态
 与 `jointShared_subset_left` / `jointShared_subset_right` 一起交付：
 
 - `jointShared c1 c2 ⊆ c1.holds`（联合约束是**更严**的约束）；
@@ -129,16 +129,16 @@ theorem r44_gain_closed_form_and_fixed_point (eta : ℝ) :
 两条反例（第三、四支）；结论中的包含关系不是前件的一部分**。 -/
 theorem r44_shared_gain_full_package :
     (∀ {V : Type} {V1 V2 : Set V}
-        (c1 : Fate.AssemblyGainShared.Supported V1)
-        (c2 : Fate.AssemblyGainShared.Supported V2),
-        Fate.AssemblyGainShared.jointShared c1 c2 ⊆ c1.holds
-          ∧ Fate.AssemblyGainShared.jointShared c1 c2 ⊆ c2.holds)
-      ∧ ¬ Fate.AssemblyGainShared.Φc ⊆ Fate.AssemblyGainShared.Θc
-      ∧ ¬ Fate.AssemblyGainShared.Ψc ⊆ Fate.AssemblyGainShared.Θc := by
-  refine ⟨fun c1 c2 => ⟨Fate.AssemblyGainShared.jointShared_subset_left c1 c2,
-    Fate.AssemblyGainShared.jointShared_subset_right c1 c2⟩,
-    Fate.AssemblyGainShared.shared_gain_not_from_Φ,
-    Fate.AssemblyGainShared.shared_gain_not_from_Ψ⟩
+        (c1 : FateV2.Meta.AssemblyGainShared.Supported V1)
+        (c2 : FateV2.Meta.AssemblyGainShared.Supported V2),
+        FateV2.Meta.AssemblyGainShared.jointShared c1 c2 ⊆ c1.holds
+          ∧ FateV2.Meta.AssemblyGainShared.jointShared c1 c2 ⊆ c2.holds)
+      ∧ ¬ FateV2.Meta.AssemblyGainShared.Φc ⊆ FateV2.Meta.AssemblyGainShared.Θc
+      ∧ ¬ FateV2.Meta.AssemblyGainShared.Ψc ⊆ FateV2.Meta.AssemblyGainShared.Θc := by
+  refine ⟨fun c1 c2 => ⟨FateV2.Meta.AssemblyGainShared.jointShared_subset_left c1 c2,
+    FateV2.Meta.AssemblyGainShared.jointShared_subset_right c1 c2⟩,
+    FateV2.Meta.AssemblyGainShared.shared_gain_not_from_Φ,
+    FateV2.Meta.AssemblyGainShared.shared_gain_not_from_Ψ⟩
 
 /-- ⭐⭐ **【收益判据：存在性 ⟺ 互不包含】**（`Set` 层的一般形式，与 §2 的具体实例并置）
 
@@ -149,7 +149,7 @@ theorem r44_shared_gain_full_package :
 theorem r44_gain_iff_general {alpha : Type} {Phi Psi : Set alpha} :
     (∃ Theta : Set alpha, Phi ∩ Psi ⊆ Theta ∧ ¬ Phi ⊆ Theta ∧ ¬ Psi ⊆ Theta)
       ↔ (¬ Phi ⊆ Psi) ∧ (¬ Psi ⊆ Phi) :=
-  Fate.AssemblyGainShared.gain_iff
+  FateV2.Meta.AssemblyGainShared.gain_iff
 
 /-! ## §3 两线并置：sigma 的下界与装配收益的**同一份接口** -/
 
@@ -172,11 +172,11 @@ theorem r44_sigma_bound_and_assembly_gain
         (MeasureTheory.Measure.pi (fun _ : Fin n => P))
       ≤ ProbabilityTheory.variance (FateV2.Error.GaussMarkovScalar.est a)
           (MeasureTheory.Measure.pi (fun _ : Fin n => P)))
-      ∧ (∀ f : Fate.AssemblyGainShared.V2 → ℝ,
-          f ∈ Fate.AssemblyGainShared.jointShared
-                Fate.AssemblyGainShared.c₁ Fate.AssemblyGainShared.c₂
-            → f ∈ Fate.AssemblyGainShared.Θc) :=
+      ∧ (∀ f : FateV2.Meta.AssemblyGainShared.V2 → ℝ,
+          f ∈ FateV2.Meta.AssemblyGainShared.jointShared
+                FateV2.Meta.AssemblyGainShared.c₁ FateV2.Meta.AssemblyGainShared.c₂
+            → f ∈ FateV2.Meta.AssemblyGainShared.Θc) :=
   ⟨FateV2.Error.SigmaLandscape.meanOf_is_minimizer hP n hn a hsum,
-   Fate.AssemblyGainShared.shared_gain_holds⟩
+   FateV2.Meta.AssemblyGainShared.shared_gain_holds⟩
 
 end FateV2.Error.R44SigmaAssembly
