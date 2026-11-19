@@ -58,12 +58,19 @@ def main():
         for m in re.finditer(r'error: FateWorld/FateV2/([^\s:]+)\.lean', out):
             bad.add('FateWorld.FateV2.' + m.group(1).replace('/', '.'))
 
-        ok = len(chunk) - len(bad & set(chunk))
+        # ⚠ lake 的 "logged failures" 会包含「因依赖失败而跳过」的目标，
+        # 直接采信会误报。以 **.olean 是否存在** 为准，才是真实成败。
+        real_bad = []
+        for m in chunk:
+            rel = m[len('FateWorld.FateV2.'):].replace('.', os.sep)
+            if not os.path.exists(os.path.join(OLEAN, rel + '.olean')):
+                real_bad.append(m)
+        ok = len(chunk) - len(real_bad)
         print(f'  成功 {ok} / {len(chunk)}', flush=True)
-        if bad:
-            for b in sorted(bad & set(chunk)):
+        if real_bad:
+            for b in real_bad:
                 print(f'  ❌ {b}', flush=True)
-            fails.extend(sorted(bad & set(chunk)))
+            fails.extend(real_bad)
 
     os.makedirs(os.path.dirname(LOG), exist_ok=True)
     with open(LOG, 'w', encoding='utf-8') as fh:
