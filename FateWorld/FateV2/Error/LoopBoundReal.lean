@@ -100,6 +100,7 @@ import FateWorld.FateV2.Loop.MainLoop
 namespace FateV2.Error.MainLoop
 
 open FateV2.Loop
+open FateV2.Loop.MainLoop
 
 /-! ## §0.5 ⚠ **本库 Mathlib 片段的一条实测限制**（第 302 轮登记）
 
@@ -121,7 +122,7 @@ open FateV2.Loop
 
 **证明**：`add_le_add_right : b ≤ c → a + b ≤ a + c`（注意是**左加**），
 取 `b = 0`、`c = margin`、`a = noise`，再 `ring` 消去 `noise + 0`。 -/
-theorem le_self_add_of_nonneg (noise : NoiseScale) (margin : ℝ) (hm : 0 ≤ margin) :
+theorem le_self_add_of_nonneg (noise : ℝ) (margin : ℝ) (hm : 0 ≤ margin) :
     noise ≤ noise + margin := by
   have h1 : noise + (0:ℝ) ≤ noise + margin := add_le_add_right hm noise
   have e : noise + (0:ℝ) = noise := by ring
@@ -149,7 +150,7 @@ theorem le_self_add_of_nonneg (noise : NoiseScale) (margin : ℝ) (hm : 0 ≤ ma
 
 **证明**：`h` ⟹ `.paused` 是 `step` 的**不动点** ⟹ 对 `k` 归纳
 （`Function.iterate_succ_apply'` 是**归纳步**，即**真的在用循环**）。 -/
-theorem forever_paused_of_low_info (info : InfoLevel) (noise : NoiseScale)
+theorem forever_paused_of_low_info (info : InfoLevel) (noise : ℝ)
     (margin : ℝ) (h : info - noise < margin) (k : ℕ) :
     (step info noise margin)^[k] LoopState.paused = LoopState.paused := by
   -- `h` ⟹ `info ≤ noise + margin` ⟹ `.paused` 是 `step` 的不动点
@@ -164,13 +165,13 @@ theorem forever_paused_of_low_info (info : InfoLevel) (noise : NoiseScale)
 
 **⟹ 这条定理的内容**完全等价于「若 `info ≤ noise + margin` 则 `.paused` 冻结」——
 **`margin` 在此只是一个加法常数**，没有独立自由度。 -/
-theorem low_info_iff (info : InfoLevel) (noise : NoiseScale) (margin : ℝ) :
+theorem low_info_iff (info : InfoLevel) (noise : ℝ) (margin : ℝ) :
     info - noise < margin ↔ info < noise + margin := by
   constructor <;> intro h <;> linarith
 
 /-- ⭐ **去掉 `h` 的「门槛版」**：若直接给 `info ≤ noise + margin`，
 则**同样**永远暂停（且 `margin` 无需任何符号条件）。 -/
-theorem forever_paused_of_gate (info : InfoLevel) (noise : NoiseScale) (margin : ℝ)
+theorem forever_paused_of_gate (info : InfoLevel) (noise : ℝ) (margin : ℝ)
     (hgate : info ≤ noise + margin) (k : ℕ) :
     (step info noise margin)^[k] LoopState.paused = LoopState.paused := by
   have hfix : step info noise margin LoopState.paused = LoopState.paused :=
@@ -189,7 +190,7 @@ step info noise margin s = step info noise 0 s              （无用；见下�
 
 **⟹ 对 `.paused` 侧，「`margin`」与「更大的 `noise`」**不可区分**：
 `margin` 的作用**只是**把 `noise` 抬高到门槛 —— 这是 `margin` **不是**独立参数的证据。 -/
-theorem absorb_margin (info : InfoLevel) (noise : NoiseScale) (margin : ℝ) :
+theorem absorb_margin (info : InfoLevel) (noise : ℝ) (margin : ℝ) :
     step info noise margin LoopState.paused = step info (noise + margin) 0 LoopState.paused := by
   simp only [step]
   split <;> split <;> simp_all <;> linarith
@@ -203,7 +204,7 @@ theorem absorb_margin (info : InfoLevel) (noise : NoiseScale) (margin : ℝ) :
 **⚠ 注意**：这不是 §1 的特例，而是**平行的叙述** ——
 §1 的门槛是 `info < noise + margin`，本条是 `info < noise`。
 两者**同形**，说明 §1 的 `margin` 位置**任何实数都能填**。 -/
-theorem forever_paused_of_below_noise (info : InfoLevel) (noise : NoiseScale)
+theorem forever_paused_of_below_noise (info : InfoLevel) (noise : ℝ)
     (h : info < noise) (k : ℕ) :
     (step info noise 0)^[k] LoopState.paused = LoopState.paused := by
   have hfix : step info noise 0 LoopState.paused = LoopState.paused :=
@@ -234,7 +235,7 @@ theorem forever_paused_of_below_noise (info : InfoLevel) (noise : NoiseScale)
 
 **⚠ `margin` 只出现在 `if` 的条件里**：它决定 `k` 步后的**落点**，
 不决定**步数**（步数恒 1）。 -/
-theorem paused_closed_form (info : InfoLevel) (noise : NoiseScale) (margin : ℝ)
+theorem paused_closed_form (info : InfoLevel) (noise : ℝ) (margin : ℝ)
     (hm : 0 ≤ margin) :
     ∀ k : ℕ, 1 ≤ k →
       (step info noise margin)^[k] LoopState.paused =
@@ -267,7 +268,7 @@ theorem paused_closed_form (info : InfoLevel) (noise : NoiseScale) (margin : ℝ
 - **反向**：若 `noise + margin < info`，则**第 1 步就跳出**
   —— 故 `margin` 的**大小直接决定**能否冻结（`margin` 不可删）。
 - **`margin` 在结论右侧**：门槛 `noise + margin`。 -/
-theorem frozen_iff_of_low_info (info : InfoLevel) (noise : NoiseScale) (margin : ℝ)
+theorem frozen_iff_of_low_info (info : InfoLevel) (noise : ℝ) (margin : ℝ)
     (hm : 0 ≤ margin) :
     (∀ k : ℕ, 1 ≤ k → (step info noise margin)^[k] LoopState.paused = LoopState.paused) ↔
       info ≤ noise + margin := by
@@ -290,7 +291,7 @@ theorem frozen_iff_of_low_info (info : InfoLevel) (noise : NoiseScale) (margin :
 
 **⟹ `margin` 不可被任意小地削弱**：右侧是**闭**的（`≤`），
 故多一分信息就恢复（`margin` 是**精确**的宽度）。 -/
-theorem frozen_band_sharp (noise : NoiseScale) (margin : ℝ) (ε : ℝ) (hε : 0 < ε) :
+theorem frozen_band_sharp (noise : ℝ) (margin : ℝ) (ε : ℝ) (hε : 0 < ε) :
     ((step (noise + margin) noise margin)^[1] LoopState.paused = LoopState.paused) ∧
       ((step (noise + margin + ε) noise margin)^[1] LoopState.paused = LoopState.running) := by
   refine ⟨?_, ?_⟩
@@ -307,7 +308,7 @@ theorem frozen_band_sharp (noise : NoiseScale) (margin : ℝ) (ε : ℝ) (hε : 
 
 **⚠ `hm` 不可去**：`info ≤ noise` 只给 `.paused`，而 `.paused` 自稳要
 `info ≤ noise + margin` —— 这**只在 `margin ≥ 0`** 时才是免费的（`le_self_add_of_nonneg`）。 -/
-theorem running_closed_form (info : InfoLevel) (noise : NoiseScale) (margin : ℝ)
+theorem running_closed_form (info : InfoLevel) (noise : ℝ) (margin : ℝ)
     (hm : 0 ≤ margin) :
     ∀ k : ℕ, 1 ≤ k →
       (step info noise margin)^[k] LoopState.running =
@@ -354,7 +355,7 @@ theorem running_closed_form (info : InfoLevel) (noise : NoiseScale) (margin : �
 **⟹ 两者不矛盾**：`h` 把 `.paused` 钉在门槛内，而 `.running` 的门槛
 （`noise < info`）可以同时成立 —— `two_sides_both_stable_iff` 说明这一并存
 恰好要求 `margin > 0`（`h` 与 `.running` 自稳**不可**并存于负 `margin`）。 -/
-theorem forever_paused_of_low_info_neg (info : InfoLevel) (noise : NoiseScale)
+theorem forever_paused_of_low_info_neg (info : InfoLevel) (noise : ℝ)
     (margin : ℝ) (hm : margin < 0) (h : info - noise < margin) (k : ℕ) :
     (step info noise margin)^[k] LoopState.paused = LoopState.paused :=
   forever_paused_of_low_info info noise margin h k
@@ -370,7 +371,7 @@ theorem forever_paused_of_low_info_neg (info : InfoLevel) (noise : NoiseScale)
 
 **⟹ `margin` 的真作用**：它**就是滞回带的宽度** —— 这是 `margin` 不可去的
 **结构性理由**（不是「步数」的理由）。 -/
-theorem two_sides_both_stable_iff (info : InfoLevel) (noise : NoiseScale) (margin : ℝ) :
+theorem two_sides_both_stable_iff (info : InfoLevel) (noise : ℝ) (margin : ℝ) :
     (step info noise margin LoopState.running = LoopState.running ∧
         step info noise margin LoopState.paused = LoopState.paused) ↔
       noise < info ∧ info ≤ noise + margin := by
@@ -398,7 +399,7 @@ theorem two_sides_both_stable_iff (info : InfoLevel) (noise : NoiseScale) (margi
 
 **⚠ 诚实说明**：本条**不是**「步数界」。步数恒 ≤ 1；
 `margin` 的作用是**移动门槛**（`MainLoop.margin_size_irrelevant`）。 -/
-theorem margin_lowers_exit_threshold (noise : NoiseScale) (margin₁ margin₂ : ℝ)
+theorem margin_lowers_exit_threshold (noise : ℝ) (margin₁ margin₂ : ℝ)
     (hle : margin₁ ≤ margin₂) :
     -- ① 单调：门槛右端随 `margin` 变大
     (∀ info : InfoLevel, info ≤ noise + margin₁ → info ≤ noise + margin₂) ∧
@@ -421,7 +422,7 @@ theorem margin_lowers_exit_threshold (noise : NoiseScale) (margin₁ margin₂ :
 
 **⟹ 「`margin` 是整个循环的余量」是**错**的**：它只是**暂停态的恢复余量**。
 本定理防止过度声称，也解释 `margin_size_irrelevant`（步数恒 ≤ 1）与本文件不矛盾。 -/
-theorem margin_only_affects_paused (info : InfoLevel) (noise : NoiseScale)
+theorem margin_only_affects_paused (info : InfoLevel) (noise : ℝ)
     (margin₁ margin₂ : ℝ) (h₁ : 0 ≤ margin₁) (h₂ : 0 ≤ margin₂) :
     ∀ k : ℕ, 1 ≤ k → (step info noise margin₁)^[k] LoopState.running =
         (step info noise margin₂)^[k] LoopState.running := by
@@ -436,7 +437,7 @@ theorem margin_only_affects_paused (info : InfoLevel) (noise : NoiseScale)
 
 取 `info = noise + margin/2`：`margin < 0` ⟹ `info < noise`（故 `.running → .paused`），
 又 `noise + margin < info`（故 `.paused → .running`）。 -/
-theorem exists_two_cycle_of_margin_neg (noise : NoiseScale) (margin : ℝ) (hm : margin < 0) :
+theorem exists_two_cycle_of_margin_neg (noise : ℝ) (margin : ℝ) (hm : margin < 0) :
     ∃ info : InfoLevel,
       step info noise margin LoopState.running = LoopState.paused ∧
         step info noise margin LoopState.paused = LoopState.running := by
@@ -452,7 +453,7 @@ theorem exists_two_cycle_of_margin_neg (noise : NoiseScale) (margin : ℝ) (hm :
 
 **⟹ `margin` 的符号完全决定 `.running` 侧是「稳定」还是「2-周期」**，
 这是 `margin` 不可去的第二个**独立**理由（与 §5 的「带宽」不同）。 -/
-theorem two_cycle_iff_margin_neg (noise : NoiseScale) (margin : ℝ) :
+theorem two_cycle_iff_margin_neg (noise : ℝ) (margin : ℝ) :
     (∃ info : InfoLevel,
         step info noise margin LoopState.running = LoopState.paused ∧
           step info noise margin LoopState.paused = LoopState.running) ↔
@@ -469,7 +470,7 @@ theorem two_cycle_iff_margin_neg (noise : NoiseScale) (margin : ℝ) :
 
 与 `two_cycle_iff_margin_neg` 合起来：`margin` 的**符号** ⟺ `.running` 侧
 「稳定 / 2-周期」。 -/
-theorem running_stable_of_margin_nonneg (info : InfoLevel) (noise : NoiseScale)
+theorem running_stable_of_margin_nonneg (info : InfoLevel) (noise : ℝ)
     (margin : ℝ) (hm : 0 ≤ margin) :
     (step info noise margin)^[2] LoopState.running =
       (step info noise margin)^[1] LoopState.running := by
@@ -494,7 +495,7 @@ theorem running_stable_of_margin_nonneg (info : InfoLevel) (noise : NoiseScale)
 
 **`margin` 出现在门槛 `noise + margin` 里**，且本条的**否定**由
 `frozen_iff_of_low_info` 给出 ⟹ 两者构成**完整二分**（`paused_dichotomy`）。 -/
-theorem loop_travels_of_margin_low (info : InfoLevel) (noise : NoiseScale) (margin : ℝ)
+theorem loop_travels_of_margin_low (info : InfoLevel) (noise : ℝ) (margin : ℝ)
     (h : noise + margin < info) :
     (step info noise margin)^[1] LoopState.paused = LoopState.running := by
   rw [Function.iterate_one]
@@ -509,7 +510,7 @@ theorem loop_travels_of_margin_low (info : InfoLevel) (noise : NoiseScale) (marg
 
 **⟹ `margin` 是 `.paused` 侧的**唯一**阈值参数**：它不参与 `.running` 侧（§5），
 也不改变步数（恒 1），但**完全决定** `.paused` 的**落点**。 -/
-theorem paused_dichotomy (info : InfoLevel) (noise : NoiseScale) (margin : ℝ)
+theorem paused_dichotomy (info : InfoLevel) (noise : ℝ) (margin : ℝ)
     (hm : 0 ≤ margin) :
     (info ≤ noise + margin ∧
         ∀ k : ℕ, 1 ≤ k → (step info noise margin)^[k] LoopState.paused = LoopState.paused)
