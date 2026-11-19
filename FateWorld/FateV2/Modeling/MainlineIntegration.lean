@@ -6,6 +6,7 @@ import FateWorld.FateV2.Predict.DoCalculusRules
 import FateWorld.FateV2.Predict.ThreeViews
 import FateWorld.FateV2.Predict.BridgeQuotient
 open MeasureTheory ProbabilityTheory
+open FateV2.Modeling.BridgeKernel
 
 set_option linter.unusedSectionVars false
 

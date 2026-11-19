@@ -44,6 +44,7 @@ variable {α β γ : Type}
   [MeasurableSingletonClass ((α × β) × γ)]
 
 open FateV2.Modeling.FinMeasureBridge FateV2.Modeling.FinalB3
+open FateV2.Modeling.BridgeKernel
 
 /-- ⭐⭐ **`bridgeStatement` ⟹ `CondIndepFin`**（`hp` 非负 + 纤维非零）。 -/
 theorem bridge_to_condIndepFin

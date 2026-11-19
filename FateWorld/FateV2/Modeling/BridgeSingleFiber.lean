@@ -1,5 +1,6 @@
 import FateWorld.FateV2.Modeling.BridgeEquiv
 open MeasureTheory ProbabilityTheory
+open FateV2.Modeling.BridgeKernel
 
 /-!
   # Modeling · BridgeSingleFiber
