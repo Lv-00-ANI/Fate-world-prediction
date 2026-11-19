@@ -66,6 +66,7 @@ variable {α β γ : Type}
   [Countable α] [Countable β] [Countable γ]
 
 open FateV2.Modeling.FinMeasureBridge
+open FateV2.Modeling.BridgeKernel
 
 /-! ## §1 ⭐⭐⭐⭐ `trim` 在单点上的值 = 纤维质量（**自含证明**）
 

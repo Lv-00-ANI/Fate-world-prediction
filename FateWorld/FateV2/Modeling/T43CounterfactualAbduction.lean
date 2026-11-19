@@ -98,7 +98,7 @@ import Mathlib.Tactic.NormNum
 
 namespace FateV2.Modeling.R242.G2
 
-open FateV2.Error FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics Finset
+open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics Finset
 
 /-! ## §1 记号工具 -/
 

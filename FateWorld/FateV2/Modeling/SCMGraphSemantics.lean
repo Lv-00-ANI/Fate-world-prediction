@@ -81,7 +81,7 @@ import Mathlib.Tactic
 
 namespace FateV2.Modeling.SCMGraphSemantics
 
-open FateV2.Error FateV2.Modeling.SCMSemantics FateV2.Modeling.SCMGraph FateV2.Modeling.PearlHierarchy
+open FateV2.Modeling.SCMSemantics FateV2.Modeling.SCMGraph FateV2.Modeling.PearlHierarchy
 
 universe u
 
