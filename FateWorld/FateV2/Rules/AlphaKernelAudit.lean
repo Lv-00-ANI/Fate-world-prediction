@@ -54,7 +54,7 @@
 -/
 
 import FateWorld.FateV2.Rules.AlphaKernel
-open FateV2.Error FateV2.Rules.AlphaKernel FateV2.Rules.FormalCtx
+open FateV2.Rules.AlphaKernel FateV2.Rules.FormalCtx
 
 namespace FateV2.Rules.AlphaKernel
 
