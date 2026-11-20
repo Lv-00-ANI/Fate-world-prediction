@@ -358,7 +358,7 @@ variable {V : Type v}
 /-- **`revAnc`（反向祖先关系）**：`revAnc G x y` 表示「`x` 是 `y` 的祖先」的反向边，
 即把 `dep` 取作 `fun x y => Ancestor G y x`（正是 `RuleReadSet.ancestralSet_eq_closure`
 所用的依赖关系）。 -/
-abbrev revAnc {G : CausalDirection.CausalGraph V} : V → V → Prop :=
+abbrev revAnc {G : FateV2.Predict.CausalDirection.CausalGraph V} : V → V → Prop :=
   fun x y => Ancestral.Ancestor G y x
 
 /-- **R1**：⭐⭐ **祖先闭包 = §0 闭包算子在种子 `S` 上的取值**。
@@ -366,7 +366,7 @@ abbrev revAnc {G : CausalDirection.CausalGraph V} : V → V → Prop :=
 把 §3 的主桥（`closureOp_eq_readSet_closure`）与
 `RuleReadSet.ancestralSet_eq_closure` 复合，
 得到「因果层祖先闭包」在**规则层闭包算子**中的表示。 -/
-theorem ancestralSet_eq_closureOp {G : CausalDirection.CausalGraph V} (S : Set V) :
+theorem ancestralSet_eq_closureOp {G : FateV2.Predict.CausalDirection.CausalGraph V} (S : Set V) :
     Ancestral.AncestralSet G S = closureOp (revAnc (G := G)) S S := by
   rw [closureOp_eq_readSet_closure, RuleReadSet.ancestralSet_eq_closure]
 
@@ -374,7 +374,7 @@ theorem ancestralSet_eq_closureOp {G : CausalDirection.CausalGraph V} (S : Set V
 
 **证明**：由 R1 把目标化为 `closureOp revAnc S (closureOp revAnc S S) = closureOp revAnc S S`，
 再经 §3 的主桥换成 `RuleReadSet` 侧，用 `closure_idempotent`。 -/
-theorem ancestralSet_mem_closedSets {G : CausalDirection.CausalGraph V} (S : Set V) :
+theorem ancestralSet_mem_closedSets {G : FateV2.Predict.CausalDirection.CausalGraph V} (S : Set V) :
     Ancestral.AncestralSet G S ∈ closedSets (revAnc (G := G)) S := by
   unfold closedSets
   simp only [Set.mem_setOf_eq]
@@ -386,7 +386,7 @@ theorem ancestralSet_mem_closedSets {G : CausalDirection.CausalGraph V} (S : Set
 
 这是 R2 在 `closedSets_eq_isClosed` 下的直接翻译，
 使祖先闭包**接入 Mathlib 的闭包算子理论**（完全格结构等）。 -/
-theorem ancestralSet_isClosed {G : CausalDirection.CausalGraph V} (S : Set V) :
+theorem ancestralSet_isClosed {G : FateV2.Predict.CausalDirection.CausalGraph V} (S : Set V) :
     (closureOperator (revAnc (G := G)) S).IsClosed (Ancestral.AncestralSet G S) :=
   (isClosed_iff_mem_closedSets _ _ _).mpr (ancestralSet_mem_closedSets S)
 
@@ -397,7 +397,7 @@ theorem ancestralSet_isClosed {G : CausalDirection.CausalGraph V} (S : Set V) :
 
 **⚠ 非循环**：前件说的是 **`T`** 的性质（`T` 是闭集、`T` 包含 `S`），
 结论说的是 **`AncestralSet G S`** 被 `T` 包含 —— 两者是不同的集合对象。 -/
-theorem ancestralSet_subset_of_mem_closedSets {G : CausalDirection.CausalGraph V}
+theorem ancestralSet_subset_of_mem_closedSets {G : FateV2.Predict.CausalDirection.CausalGraph V}
     {S T : Set V} (hST : S ⊆ T) (hT : T ∈ closedSets (revAnc (G := G)) S) :
     Ancestral.AncestralSet G S ⊆ T := by
   have hcl : closureOp (revAnc (G := G)) S T = T := hT
@@ -419,7 +419,7 @@ theorem ancestralSet_subset_of_mem_closedSets {G : CausalDirection.CausalGraph V
 * 方向 `→`：R4（取 `T = S`，需要 `S ⊆ S`）给出 `AncestralSet G S ⊆ S`，
   与 `subset_ancestralSet_via_closure`（`S ⊆ AncestralSet G S`）合成等号。
 * 方向 `←`：R2（`AncestralSet G S` 是闭集）加上结论中的等式即可。 -/
-theorem mem_closedSets_iff_ancestralSet_eq {G : CausalDirection.CausalGraph V} (S : Set V) :
+theorem mem_closedSets_iff_ancestralSet_eq {G : FateV2.Predict.CausalDirection.CausalGraph V} (S : Set V) :
     S ∈ closedSets (revAnc (G := G)) S ↔ Ancestral.AncestralSet G S = S := by
   constructor
   · intro hS

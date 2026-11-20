@@ -197,8 +197,8 @@ theorem unary_C_collapses {γ : Type*} {r : γ → γ → Prop} (hr : Std.Symm r
     (extentClosure r : Set γ → Set γ) = (intentClosure r) := by
   funext A
   show lowerPolar r (upperPolar r A) = upperPolar r (lowerPolar r A)
-  rw [FateV2.Rules.FateV2.Rules.T112Unary.upperPolar_eq_lowerPolar_of_symm hr (lowerPolar r A),
-    FateV2.Rules.FateV2.Rules.T112Unary.upperPolar_eq_lowerPolar_of_symm hr A]
+  rw [FateV2.Rules.T112Unary.upperPolar_eq_lowerPolar_of_symm hr (lowerPolar r A),
+    FateV2.Rules.T112Unary.upperPolar_eq_lowerPolar_of_symm hr A]
 
 end ThmC
 
