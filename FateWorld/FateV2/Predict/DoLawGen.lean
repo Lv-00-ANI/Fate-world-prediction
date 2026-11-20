@@ -83,7 +83,8 @@ import Mathlib.Tactic
 namespace FateV2.Predict.Stage2.DoLawGen
 
 open Finset
-open FateV2.Error.Stage2.DoLawFin2
+open FateV2.Predict.Stage2.DoLawFin2
+open FateV2.Modeling.SCMSemantics
 
 -- ⚠ `FinJoint` 的全名是 `FinCondIndep.FinJoint`（`DoLawFin2` 在局部 `open` 里引入）。
 open FateV2.Predict.FinCondIndep
@@ -307,3 +308,4 @@ end FateV2.Predict.Stage2.DoLawGen
 #print axioms FateV2.Predict.Stage2.DoLawGen.doLawG_normalized
 #print axioms FateV2.Predict.Stage2.DoLawGen.doLawG_card_one
 #print axioms FateV2.Predict.Stage2.DoLawGen.doLaw_idem_pt
+
