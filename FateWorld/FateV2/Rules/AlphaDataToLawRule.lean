@@ -142,7 +142,6 @@ import FateWorld.FateV2.Rules.AlphaDataToPartition
 namespace FateV2.Rules
 
 open FateV2.Model
-open FateV2.Predict
 open FateV2.Predict.AlphaMVFCA
 open FateV2.Modeling
 open Set FateV2.Rules.MVFCA4 MeasureTheory
@@ -273,14 +272,14 @@ dgToLawRule K c₀ attr interp = fun _ x => interp (attr '' minClosed K x)
 def dgToLawRule (D : AlphaData E M) (K : PatStruct X.Carrier L) (c₀ : C.Carrier)
     (attr : X.Carrier → Set M) (interp : Set (Set M) → Set (Measure Y.Carrier)) :
     LawRule.LawRule C X Y :=
-  AlphaMVFCA.localRuleAsLaw K c₀ (fun A => interp (attr '' A))
+  FateV2.Rules.AlphaMVFCA.localRuleAsLaw K c₀ (fun A => interp (attr '' A))
 
 /-- 展开式（**定义性**，不当成果）：
 `dgToLawRule` 在 `(c, x)` 处取 `interp (attr '' minClosed K x)`。 -/
 theorem dgToLawRule_apply (D : AlphaData E M) (K : PatStruct X.Carrier L) (c₀ : C.Carrier)
     (attr : X.Carrier → Set M) (interp : Set (Set M) → Set (Measure Y.Carrier))
     (c : C.Carrier) (x : X.Carrier) :
-    dgToLawRule D K c₀ attr interp c x = interp (attr '' AlphaMVFCA.minClosed K x) := rfl
+    dgToLawRule D K c₀ attr interp c x = interp (attr '' FateV2.Predict.AlphaMVFCA.minClosed K x) := rfl
 
 /-- 与 `localRuleAsLaw` 的**对齐等式**（`rfl`，定义性，不当成果）：
 `dgToLawRule` 就是 `localRuleAsLaw K c₀ (fun A => interp (attr '' A))`。 -/
@@ -288,7 +287,7 @@ theorem dgToLawRule_eq_localRuleAsLaw (D : AlphaData E M) (K : PatStruct X.Carri
     (c₀ : C.Carrier) (attr : X.Carrier → Set M)
     (interp : Set (Set M) → Set (Measure Y.Carrier)) :
     dgToLawRule D K c₀ attr interp
-      = AlphaMVFCA.localRuleAsLaw K c₀ (fun A => interp (attr '' A)) :=
+      = FateV2.Rules.AlphaMVFCA.localRuleAsLaw K c₀ (fun A => interp (attr '' A)) :=
   rfl
 
 /-- **输出与上下文无关**（定义性，如实标注 —— `localRuleAsLaw` 体是 `fun _ x => ⋯`）。
@@ -311,9 +310,9 @@ theorem dgToLawRule_carrier_indep (D : AlphaData E M) (K : PatStruct X.Carrier L
 theorem dgToLawRule_rulesLocal (D : AlphaData E M) (K : PatStruct X.Carrier L)
     (c₀ : C.Carrier) (attr : X.Carrier → Set M)
     (interp : Set (Set M) → Set (Measure Y.Carrier)) :
-    InstanceChain.RulesLocal (AlphaMVFCA.closedPartition K)
+    InstanceChain.RulesLocal (FateV2.Predict.AlphaMVFCA.closedPartition K)
       {dgToLawRule D K c₀ attr interp} := by
-  have h := AlphaMVFCA.rulesLocal (L := L) (c₀ := c₀) K (fun A => interp (attr '' A))
+  have h := FateV2.Predict.AlphaMVFCA.rulesLocal (L := L) (c₀ := c₀) K (fun A => interp (attr '' A))
   simpa only [dgToLawRule_eq_localRuleAsLaw] using h
 
 /-- ⭐⭐ **装出来的规则满足 `RulesInhabited`**（需 `interp` 在每个 `attr '' A` 上非空）。
@@ -327,7 +326,7 @@ theorem dgToLawRule_rulesInhabited (D : AlphaData E M) (K : PatStruct X.Carrier 
     (ht : ∀ A : Set X.Carrier, (interp (attr '' A)).Nonempty) :
     InstanceChain.RulesInhabited (C := C) (X := X) (Y := Y)
       {dgToLawRule D K c₀ attr interp} := by
-  have h := AlphaMVFCA.rulesInhabited (C := C) (X := X) (Y := Y) (L := L)
+  have h := FateV2.Predict.AlphaMVFCA.rulesInhabited (C := C) (X := X) (Y := Y) (L := L)
     (c₀ := c₀) K (fun A => interp (attr '' A)) ht
   simpa only [dgToLawRule_eq_localRuleAsLaw] using h
 
@@ -339,10 +338,10 @@ theorem dgToLawRule_rulesInhabited (D : AlphaData E M) (K : PatStruct X.Carrier 
 theorem dgToLawRule_eq_of_same_minClosed (D : AlphaData E M) (K : PatStruct X.Carrier L)
     (c₀ : C.Carrier) (attr : X.Carrier → Set M)
     (interp : Set (Set M) → Set (Measure Y.Carrier)) {x y : X.Carrier}
-    (h : AlphaMVFCA.minClosed K y = AlphaMVFCA.minClosed K x) (c : C.Carrier) :
+    (h : FateV2.Predict.AlphaMVFCA.minClosed K y = FateV2.Predict.AlphaMVFCA.minClosed K x) (c : C.Carrier) :
     dgToLawRule D K c₀ attr interp c x = dgToLawRule D K c₀ attr interp c y := by
-  have hxy : y ∈ AlphaMVFCA.closedPartition K x := h
-  exact AlphaMVFCA.localRuleAsLaw_eq_of_same_class (c₀ := c₀) K
+  have hxy : y ∈ FateV2.Predict.AlphaMVFCA.closedPartition K x := h
+  exact FateV2.Rules.AlphaMVFCA.localRuleAsLaw_eq_of_same_class (c₀ := c₀) K
     (fun A => interp (attr '' A)) hxy c
 
 end AlphaData

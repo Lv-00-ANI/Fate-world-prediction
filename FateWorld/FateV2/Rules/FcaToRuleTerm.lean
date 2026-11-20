@@ -95,7 +95,6 @@ import FateWorld.FateV2.Rules.RuleSyntax
 namespace FateV2.Rules
 
 open FateV2.Model
-open FateV2.Predict
 open FateV2.Predict.AlphaMVFCA
 open FateV2.Modeling
 open Set MeasureTheory FateV2.Rules.MVFCA4
@@ -179,12 +178,12 @@ theorem conjList_subset (atomOf : M → RuleTerm) {l l' : List M}
 的**并**）。给出这个名字是为了让「有限枚举」这一假设写得干净。 -/
 def attrClosure (K : PatStruct X.Carrier L) (attr : X.Carrier → Set M)
     (x : X.Carrier) : Set M :=
-  {m | ∃ y ∈ AlphaMVFCA.minClosed K x, m ∈ attr y}
+  {m | ∃ y ∈ FateV2.Predict.AlphaMVFCA.minClosed K x, m ∈ attr y}
 
 /-- `attrClosure` 就是 `AlphaData.dgToLawRule` 中族的并（定义性）。 -/
 theorem attrClosure_eq_sUnion (K : PatStruct X.Carrier L) (attr : X.Carrier → Set M)
     (x : X.Carrier) :
-    attrClosure K attr x = ⋃₀ (attr '' AlphaMVFCA.minClosed K x) := by
+    attrClosure K attr x = ⋃₀ (attr '' FateV2.Predict.AlphaMVFCA.minClosed K x) := by
   ext m
   simp [attrClosure]
 

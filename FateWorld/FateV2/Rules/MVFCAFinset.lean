@@ -18,7 +18,7 @@ import Mathlib.Data.Finset.Lattice.Fold
   MVFCA · **`minClosed` / `attrClosure` 的 Finset 版（可枚举算法）**
 
   COMPLEX-1 §5 第 9、10 条：
-  * 第 10 条：`minClosed`（`Fate/AlphaMVFCA.lean`，`K.cl {g}`，`Set` 层）
+  * 第 10 条：`minClosed`（`Fate/FateV2.Predict.AlphaMVFCA.lean`，`K.cl {g}`，`Set` 层）
     只有「`Set` 层 ⋂₀ / `down` 定义」，**没有 Finset 计算版**；
   * 第 9 条：`attrClosure`（`Fate/FcaToRuleTerm.lean`，`∃` 定义）同理。
 
@@ -36,7 +36,7 @@ import Mathlib.Data.Finset.Lattice.Fold
   def cl   (K) (A : Set G) : Set G := K.down (K.up A)
   ```
 
-  `Fate/AlphaMVFCA.lean:67`：
+  `Fate/FateV2.Predict.AlphaMVFCA.lean:67`：
   ```lean
   def minClosed (K : PatStruct G L) (g : G) : Set G := K.cl {g}
   ```
@@ -87,7 +87,6 @@ import Mathlib.Data.Finset.Lattice.Fold
 namespace FateV2.Rules
 
 open FateV2.Modeling
-open FateV2.Predict
 open FateV2.Predict.AlphaMVFCA
 namespace AlphaMVFCA
 
@@ -206,7 +205,7 @@ end AlphaMVFCA
   `attrClosure` 原有定义是纯 `∃`（`Fate/FcaToRuleTerm.lean:164`）：
   ```lean
   def attrClosure (K) (attr : X.Carrier → Set M) (x) : Set M :=
-    {m | ∃ y ∈ AlphaMVFCA.minClosed K x, m ∈ attr y}
+    {m | ∃ y ∈ FateV2.Predict.AlphaMVFCA.minClosed K x, m ∈ attr y}
   ```
   两个量词都可枚举后即为 Finset 版：
   * `y` 由 `minClosedFinset` 枚举（`[Fintype X.Carrier]`）；
@@ -244,7 +243,7 @@ def attrClosureFinset [Fintype X.Carrier] [Fintype M]
     (K : PatStruct X.Carrier L) (attr : X.Carrier → Set M)
     (dattr : ∀ y : X.Carrier, DecidablePred (fun m : M => m ∈ attr y))
     (x : X.Carrier) : Finset M :=
-  (AlphaMVFCA.minClosedFinset K x).biUnion
+  (FateV2.Predict.AlphaMVFCA.minClosedFinset K x).biUnion
     (fun y => @Finset.filter M (fun m => m ∈ attr y) (dattr y) Finset.univ)
 
 /-- **成员判定**：`m ∈ attrClosureFinset K attr x ↔ ∃ y ∈ minClosedFinset K x, m ∈ attr y`。
@@ -256,7 +255,7 @@ theorem mem_attrClosureFinset [Fintype X.Carrier] [Fintype M]
     (K : PatStruct X.Carrier L) (attr : X.Carrier → Set M)
     (dattr : ∀ y : X.Carrier, DecidablePred (fun m : M => m ∈ attr y)) (x : X.Carrier) (m : M) :
     m ∈ attrClosureFinset K attr dattr x
-      ↔ ∃ y ∈ AlphaMVFCA.minClosedFinset K x, m ∈ attr y := by
+      ↔ ∃ y ∈ FateV2.Predict.AlphaMVFCA.minClosedFinset K x, m ∈ attr y := by
   unfold attrClosureFinset
   rw [Finset.mem_biUnion]
   refine exists_congr fun y => ?_
@@ -271,8 +270,8 @@ theorem mem_attrClosureFinset [Fintype X.Carrier] [Fintype M]
 `(attrClosureFinset K attr x : Set M) = attrClosure K attr x`。
 
 证明：两侧都归约到「`∃ y, δ x ≤ δ y ∧ m ∈ attr y`」——
-左侧用 `mem_attrClosureFinset` + `AlphaMVFCA.mem_minClosedFinset`，
-右侧用 `attrClosure` 的定义 + `AlphaMVFCA.mem_minClosed_iff`。
+左侧用 `mem_attrClosureFinset` + `FateV2.Predict.AlphaMVFCA.mem_minClosedFinset`，
+右侧用 `attrClosure` 的定义 + `FateV2.Predict.AlphaMVFCA.mem_minClosed_iff`。
 
 ⚠ **前件检查（纪律 7）**：前件只有 `[Fintype X.Carrier]` / `[Fintype M]`
 （枚举所需）与 `[DecidableRel (· ≤ ·)]` / `[DecidableEq M]`（判定所需）。
@@ -286,7 +285,7 @@ theorem attrClosureFinset_coe [Fintype X.Carrier] [Fintype M]
   rw [Finset.mem_coe, mem_attrClosureFinset]
   unfold attrClosure
   refine exists_congr fun y => ?_
-  rw [AlphaMVFCA.mem_minClosedFinset, AlphaMVFCA.mem_minClosed_iff]
+  rw [FateV2.Predict.AlphaMVFCA.mem_minClosedFinset, FateV2.Predict.AlphaMVFCA.mem_minClosed_iff]
 
 /-- ⭐ **Finset 版与 `attrClosure_eq_sUnion` 的连接**：
 Finset 版算出的集合就是 `AlphaData.dgToLawRule` 中族 `attr '' minClosed K x` 的并。 -/
@@ -294,7 +293,7 @@ theorem attrClosureFinset_coe_eq_sUnion [Fintype X.Carrier] [Fintype M]
     [DecidableRel (fun a b : L => a ≤ b)] [DecidableEq M]
     (K : PatStruct X.Carrier L) (attr : X.Carrier → Set M)
     (dattr : ∀ y : X.Carrier, DecidablePred (fun m : M => m ∈ attr y)) (x : X.Carrier) :
-    (attrClosureFinset K attr dattr x : Set M) = ⋃₀ (attr '' AlphaMVFCA.minClosed K x) := by
+    (attrClosureFinset K attr dattr x : Set M) = ⋃₀ (attr '' FateV2.Predict.AlphaMVFCA.minClosed K x) := by
   rw [attrClosureFinset_coe, attrClosure_eq_sUnion]
 
 /-- ⚠ **诚实登记：属性侧可枚举性是真实假设**。
@@ -306,7 +305,7 @@ theorem attrClosureFinset_coe_eq_sUnion [Fintype X.Carrier] [Fintype M]
 「任意 `M`」口径有实质差距，如实记录。 -/
 theorem attrClosureFinset_definitional (K : PatStruct X.Carrier L)
     (attr : X.Carrier → Set M) (x : X.Carrier) :
-    attrClosure K attr x = {m | ∃ y ∈ AlphaMVFCA.minClosed K x, m ∈ attr y} :=
+    attrClosure K attr x = {m | ∃ y ∈ FateV2.Predict.AlphaMVFCA.minClosed K x, m ∈ attr y} :=
   rfl
 
 end FcaToRuleTerm
