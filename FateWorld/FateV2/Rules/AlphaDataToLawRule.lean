@@ -312,7 +312,7 @@ theorem dgToLawRule_rulesLocal (D : AlphaData E M) (K : PatStruct X.Carrier L)
     (interp : Set (Set M) → Set (Measure Y.Carrier)) :
     InstanceChain.RulesLocal (FateV2.Predict.AlphaMVFCA.closedPartition K)
       {dgToLawRule D K c₀ attr interp} := by
-  have h := FateV2.Predict.AlphaMVFCA.rulesLocal (L := L) (c₀ := c₀) K (fun A => interp (attr '' A))
+  have h := FateV2.Rules.AlphaMVFCA.rulesLocal (L := L) (c₀ := c₀) K (fun A => interp (attr '' A))
   simpa only [dgToLawRule_eq_localRuleAsLaw] using h
 
 /-- ⭐⭐ **装出来的规则满足 `RulesInhabited`**（需 `interp` 在每个 `attr '' A` 上非空）。
@@ -326,7 +326,7 @@ theorem dgToLawRule_rulesInhabited (D : AlphaData E M) (K : PatStruct X.Carrier 
     (ht : ∀ A : Set X.Carrier, (interp (attr '' A)).Nonempty) :
     InstanceChain.RulesInhabited (C := C) (X := X) (Y := Y)
       {dgToLawRule D K c₀ attr interp} := by
-  have h := FateV2.Predict.AlphaMVFCA.rulesInhabited (C := C) (X := X) (Y := Y) (L := L)
+  have h := FateV2.Rules.AlphaMVFCA.rulesInhabited (C := C) (X := X) (Y := Y) (L := L)
     (c₀ := c₀) K (fun A => interp (attr '' A)) ht
   simpa only [dgToLawRule_eq_localRuleAsLaw] using h
 
