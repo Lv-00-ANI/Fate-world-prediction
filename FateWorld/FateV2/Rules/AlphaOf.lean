@@ -53,6 +53,7 @@ import FateWorld.FateV2.Rules.AlphaRulesLocal
 namespace FateV2.Rules
 
 open FateV2.Model
+open FateV2.Predict.AlphaMVFCA
 open FateV2.Modeling
 namespace AlphaMVFCA
 

@@ -142,6 +142,7 @@ import FateWorld.FateV2.Rules.AlphaDataToPartition
 namespace FateV2.Rules
 
 open FateV2.Model
+open FateV2.Predict.AlphaMVFCA
 open FateV2.Modeling
 open Set FateV2.Rules.MVFCA4 MeasureTheory
 

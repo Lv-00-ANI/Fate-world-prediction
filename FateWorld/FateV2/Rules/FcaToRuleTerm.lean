@@ -95,6 +95,7 @@ import FateWorld.FateV2.Rules.RuleSyntax
 namespace FateV2.Rules
 
 open FateV2.Model
+open FateV2.Predict.AlphaMVFCA
 open FateV2.Modeling
 open Set MeasureTheory FateV2.Rules.MVFCA4
 

@@ -87,6 +87,7 @@ import Mathlib.Data.Finset.Lattice.Fold
 namespace FateV2.Rules
 
 open FateV2.Modeling
+open FateV2.Predict.AlphaMVFCA
 namespace AlphaMVFCA
 
 open FateV2.Rules.MVFCA4
