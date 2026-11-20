@@ -54,4 +54,4 @@ namespace FateV2.Predict.SinkPeelDiagnosis
   本文件不含新定理，只登记诊断。反例见 `SinkPeelCounterexample.lean`。
   =========================================================================== -/
 
-end FateV2.Predict.SinkPeelDiagnosis
+-- （纯文档模块：无 namespace 包裹，移除规则 8 误加的 end）

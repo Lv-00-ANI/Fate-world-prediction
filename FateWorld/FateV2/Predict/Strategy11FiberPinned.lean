@@ -39,7 +39,7 @@ $$\mathrm{isPrefix}\,S \;\Longrightarrow\; \forall v\in S,\ \mathrm{pa}_G(v)\sub
 
 $$\mathrm{isPrefix}\,S \;\Longrightarrow\; \mathrm{mass}\,S\,p\,x = \prod_{v\in S} f\,v\,x .$$
 
-**直接由原引擎 `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` 给出**（按 `S = lowerSet k` 展开）。
+**直接由原引擎 `FateV2.Predict.Strategy11.peel_lower` 给出**（按 `S = lowerSet k` 展开）。
 本文件不改动引擎，只**换个用法**。
 
 ### 块 C：**纤维钉死**的乘积重排（`prod_pinned`，本文件的新核心）
@@ -170,7 +170,7 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 
 /-- ⭐ **A1：拓扑前缀**。`S` 是某个 `lowerSet k` 时就叫前缀（= 祖先闭集的「切片」形态）。-/
 def isPrefix (G : FateV2.Modeling.Graph.DAG V) (S : Finset V) : Prop :=
-  ∃ k : ℕ, S = FateV2.Predict.NonemptyFree2.Strategy11.lowerSet G k
+  ∃ k : ℕ, S = FateV2.Predict.Strategy11.lowerSet G k
 
 /-- ⭐⭐ **A2：前缀对取父封闭（真用 `G.edge` + `topoOrder`）**。
 
@@ -183,7 +183,7 @@ theorem isPrefix_parent_closed {S : Finset V} (h : isPrefix G S) :
     ∀ v ∈ S, G.parents v ⊆ S := by
   obtain ⟨k, rfl⟩ := h
   intro v hv u hu
-  rw [FateV2.Predict.NonemptyFree2.Strategy11.mem_lowerSet] at hv ⊢
+  rw [FateV2.Predict.Strategy11.mem_lowerSet] at hv ⊢
   exact lt_trans (G.topoOrder_lt u v (G.mem_parents.mp hu)) hv
 
 /-! ===========================================================================
@@ -199,7 +199,7 @@ theorem mass_prefix {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     [Nonempty V] (hnorm : FactorNorm f) {S : Finset V} (hS : isPrefix G S) :
     ∀ x, mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
-  exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower hloc hfac hnorm k
+  exact FateV2.Predict.Strategy11.peel_lower hloc hfac hnorm k
 
 /-! ===========================================================================
   §3 **块 C：纤维钉死的乘积重排**（本文件的新核心；纯代数 + 父闭性）

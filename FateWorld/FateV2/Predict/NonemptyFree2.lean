@@ -14,9 +14,9 @@
   | 4 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_normalized` | `T35Rule1Split` | 同上 | ✅ 可去 |
   | 5 | `SCMIdentifiability.scmThetaSubsingleton_pred_eq` | `SCMIdentifiability` | `[Nonempty Y]` | ✅ 可去（**完全未用**）|
   | 6 | `LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one` | `LawRulePointDecidabilityConsumer` | `[Nonempty C.Carrier] [Nonempty X.Carrier]` | ✅ 可去（空型时空真）|
-  | 7 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
-  | 8 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_univ_minus` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
-  | 9 | `FateV2.Predict.NonemptyFree2.Strategy11.peel_top_vertex` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
+  | 7 | `FateV2.Predict.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
+  | 8 | `FateV2.Predict.Strategy11.peel_lower_univ_minus` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
+  | 9 | `FateV2.Predict.Strategy11.peel_top_vertex` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
   | 10 | `FateV2.Predict.NonemptyFree2.Strategy11Fiber.mass_prefix` | `Strategy11FiberPinned` | 同上 | ✅ 可去（转调 7）|
 
   ⚠ **本文件共交 10 条**（任务要求 ≥4 条）。
@@ -303,7 +303,7 @@ theorem mass_empty_of_not_nonempty (hV : ¬ Nonempty V)
     exact absurd (Finset.mem_univ x) h
 
 /-- ⭐ **【无 `[Nonempty V]` 版】顶层引擎**：
-`FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` 去掉 `[Nonempty V]` 后**仍然成立**。
+`FateV2.Predict.Strategy11.peel_lower` 去掉 `[Nonempty V]` 后**仍然成立**。
 
 **证明策略**：非空分支**复用原证**；空分支用 `lowerSet = ∅` + `mass ∅ p x = p x`
 + `hfac x : p x = ∏ v, f v x = 1`（空积）**两边同时归 `1`**。 -/
@@ -322,7 +322,7 @@ theorem peel_lower_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) →
     rw [hfac x]
     exact Finset.prod_eq_one (fun v _ => absurd ⟨v⟩ hV)
 
-/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_univ_minus`
+/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.Strategy11.peel_lower_univ_minus`
 去掉 `[Nonempty V]` 后**仍然成立**（直接由上面转调）。 -/
 theorem peel_lower_univ_minus_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
@@ -330,7 +330,7 @@ theorem peel_lower_univ_minus_noNonempty {p : (V → α) → ℝ} {f : V → (V 
     FateV2.Predict.DAGFactorization.mass (lowerSet G k) p x = ∏ v ∈ lowerSet G k, f v x :=
   peel_lower_noNonempty hloc hfac hnorm k x
 
-/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11.peel_top_vertex`
+/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.Strategy11.peel_top_vertex`
 去掉 `[Nonempty V]` 后**仍然成立**（`htop` 把 `univ \ {s}` 换成 `lowerSet`，再转调）。 -/
 theorem peel_top_vertex_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
@@ -367,7 +367,7 @@ theorem mass_prefix_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) �
     (hnorm : FactorNorm f) {S : Finset V} (hS : FateV2.Predict.NonemptyFree2.Strategy11Fiber.isPrefix G S) :
     ∀ x, FateV2.Predict.DAGFactorization.mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
-  exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_noNonempty hloc hfac hnorm k
+  exact FateV2.Predict.Strategy11.peel_lower_noNonempty hloc hfac hnorm k
 
 end Strategy11Fiber
 
@@ -376,7 +376,7 @@ end Strategy11Fiber
   ===========================================================================
 
   1. ⚠⚠ **更正**：本文件**第一版**在此处记录了
-     `FateV2.Predict.NonemptyFree2.Strategy11.peel_lower` / `peel_lower_univ_minus` 为**不可去**，
+     `FateV2.Predict.Strategy11.peel_lower` / `peel_lower_univ_minus` 为**不可去**，
      理由是「空 `V` 时 `mass ∅ p x = p (空函数)` 而右边 `= 1`，二者一般不等」。
      **该理由是错的**：`hfac x` 在空 `V` 时给出 `p x = ∏ v : V, f v x = 1`（空积），
      **所以左边也等于 `1`**。见 §4 的 `peel_lower_noNonempty`（机检通过）。
