@@ -26,14 +26,14 @@ open FateV2.Predict
 
 ## ⚠ 本轮的定位：**把「条件独立」与「本项目 SCM 载体」接起来**
 
-**背景**（见 `FateV2.Predict/SCMSemantics.lean` §68.4 与 `FateV2.Predict/DoCalculusRules.lean` §66.4）：
+**背景**（见 `FateV2.Predict/FateV2.Modeling.SCMSemantics.lean` §68.4 与 `FateV2.Predict/DoCalculusRules.lean` §66.4）：
 
 既有文件已**如实登记**一处缺口 ——
 
 > **缺的是「SCM 语义 → 概率语义」的连接**：
 > 把有限律嵌入概率论，并在其上谈条件独立（Markov 桥）。
 
-**本轮做的事**：**在项目自有的有限 SCM 载体（`PearlHierarchy.SCM`）上，
+**本轮做的事**：**在项目自有的有限 SCM 载体（`FateV2.Modeling.PearlHierarchy.SCM`）上，
 显式定义「诱导的有限联合律」，并给出它满足条件独立的充分条件。**
 
 ## 本轮的核心对象
@@ -53,9 +53,9 @@ open FateV2.Predict
    **理由**：有限律在 `P(a) = 0` 处无定义，乘法形式**处处有定义**，
    且与「条件期望可分解」等价（当 `P(a) > 0`）。
    **⟹ 这是**真正无条件、可判定的**有限口径**（依作者裁决 Q-1：无硬编码）。
-2. **SCM 载体是 `PearlHierarchy.SCM A (B × C)`**（单结果位口径的 `B × C` 实例）。
+2. **SCM 载体是 `FateV2.Modeling.PearlHierarchy.SCM A (B × C)`**（单结果位口径的 `B × C` 实例）。
    **不新建 SCM 结构** —— 直接用项目自有载体。
-3. **`push` 用 `PearlHierarchy.push`**（项目自有有限推前）。
+3. **`push` 用 `FateV2.Modeling.PearlHierarchy.push`**（项目自有有限推前）。
 4. **本文不含**：测度层 `CondIndepFun` 的嵌入、d-分离 ⟹ 条件独立、
    一般（多变量、含环/含混杂）SCM 的 Markov 性质。**这些缺口在 §69.5 具名登记。**
 
@@ -190,23 +190,23 @@ theorem sum_ite_triple_eq (a' : A) (b' : B) (c' : C) (a : A) (b : B) :
        (Prod.ext_iff.mp (Prod.ext_iff.mp hcon).2).1⟩)
 /-! ### **SCM 诱导的有限联合律**（**第 119 轮已移入 `PearlHierarchy`**）
 
-⚠ **本定义已移至 `FateV2.Predict/PearlHierarchy.lean` 的 `SCM.jointLaw3`。**
+⚠ **本定义已移至 `FateV2.Predict/FateV2.Modeling.PearlHierarchy.lean` 的 `SCM.jointLaw3`。**
 
 **为何移入**：它原先只在这里定义，而**下游定理**（`margAB_jointLaw3` 等）
 **引用了它** —— 但 `_pending/` **不在构建图内**，
 ⟹ **那些引用在正式构建里**全部悬空****
 （`simp only [.. jointLaw3 ..]` 无从展开，报**误导性**的错误）。
 
-**且它是**自足**的（只用 `PearlHierarchy.push`），故入库无阻碍。**
+**且它是**自足**的（只用 `FateV2.Modeling.PearlHierarchy.push`），故入库无阻碍。**
 
 **以下保留原说明（供追溯）**：
 
 联合律 = 外生律沿轨道映射
 $$u \mapsto \bigl((\mathrm{sg}\,u).1,\; (\mathrm{sg}\,u).2\,(\mathrm{sg}\,u).1\bigr) \in A \times B \times C$$
-的**推前**（`PearlHierarchy.push`）。
+的**推前**（`FateV2.Modeling.PearlHierarchy.push`）。
 
 **⟹ 这正是项目自有载体上「SCM → 有限概率语义」的第一步，
-与 `SCMSemantics.jointLaw`（三元组 `U × A × B`）**分工不同**：
+与 `FateV2.Modeling.SCMSemantics.jointLaw`（三元组 `U × A × B`）**分工不同**：
 **本定义把外生 `U` 边缘化掉**，只留**可观测三元组 `A × B × C`** ——
 **因为条件独立是关于可观测量说的。** -/
 --    此处**不再重复定义**（重复会造成 identity 冲突）。
@@ -217,12 +217,12 @@ $$u \mapsto \bigl((\mathrm{sg}\,u).1,\; (\mathrm{sg}\,u).2\,(\mathrm{sg}\,u).1\b
 `CondIndepFin.margAB` 作用在 `jointLaw3` 上。
 
 **⟹ 这是**定义层的等价**，用于把 SCM 联合律与条件独立的边缘律对接。** -/
-theorem _root_.FateV2.Modeling.PearlHierarchy.SCM.margAB_jointLaw3 (M : PearlHierarchy.SCM A (B × C)) :
+theorem _root_.FateV2.Modeling.PearlHierarchy.SCM.margAB_jointLaw3 (M : FateV2.Modeling.PearlHierarchy.SCM A (B × C)) :
     CondIndepFin.margAB M.jointLaw3 = fun p =>
       ∑ u, M.pU u * (if ((M.sg u).1, ((M.sg u).2 (M.sg u).1).1) = p
         then (1 : ℝ) else 0) := by
   funext p
-  simp only [CondIndepFin.margAB, PearlHierarchy.SCM.jointLaw3, PearlHierarchy.push]
+  simp only [CondIndepFin.margAB, FateV2.Modeling.PearlHierarchy.SCM.jointLaw3, FateV2.Modeling.PearlHierarchy.push]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun u _ => ?_
   -- ⚠ 第 115 轮【最小步长】修正：**它是裸的 `mul_sum`，不是 `Finset.mul_sum`**！
@@ -463,11 +463,11 @@ variable (M : FracSCM A B C)
 noncomputable def pU : M.UA × M.UB × M.UC → ℝ :=
   fun u => M.pA u.1 * M.pB u.2.1 * M.pC u.2.2
 
-/-- **编码为项目自有 SCM 载体** `PearlHierarchy.SCM A (B × C)`。
+/-- **编码为项目自有 SCM 载体** `FateV2.Modeling.PearlHierarchy.SCM A (B × C)`。
 
 事实 `A = aF uA`；结构方程 `a ↦ (bF a uB, cF a uC)` ——
 **注意 `B` 与 `C` 的结构方程分别只读 `uB` 与 `uC`。** -/
-noncomputable def toSCM : PearlHierarchy.SCM A (B × C) where
+noncomputable def toSCM : FateV2.Modeling.PearlHierarchy.SCM A (B × C) where
   U := M.UA × M.UB × M.UC
   instFintype := inferInstance
   instDecEq := inferInstance
@@ -502,7 +502,7 @@ theorem jointLaw3_eq {a : A} {b : B} {c : C} :
   --    `sum_mul : (∑ f) * a = ∑ f * a`（**常数在右**）
   --    **二者不可混用** —— 用错时 Lean 报「Did not find an occurrence」，
   --    **而错误信息**看起来像「方向问题」，实则是「常数位置不对」**。
-  simp only [PearlHierarchy.SCM.jointLaw3, PearlHierarchy.push, toSCM, pU]
+  simp only [FateV2.Modeling.PearlHierarchy.SCM.jointLaw3, FateV2.Modeling.PearlHierarchy.push, toSCM, pU]
   -- ⚠ **第 113 轮的 `change` 必须保留**：`M.toSCM.U` 是**结构字段投影**，
   --    而 `Fintype.sum_prod_type` 要求**乘积类型字面量**的 `Fintype` 实例
   --    ⟹ 须先 `change` 把目标显式改写为乘积类型上的求和。
@@ -621,7 +621,7 @@ end FracSCM
 | **G1** | **必要性**（`CondIndepFin` 是否由某 SCM 结构**必然**导出） | 未证；本文件只给**充分**条件 |
 | **G2** | **d-分离 ⟹ 条件独立**（一般图） | 需图侧 collider/分叉/链的方向区分（`DSeparation` 只做路径层）+ 一般 Markov 桥 |
 | **G3** | **含混杂 / 含环 / 一般 DAG 的 SCM Markov 性质** | 本文件只覆盖**朴素无混杂**的 `FracSCM` |
-| **G4** | **多变量多结果的一般 SCM** | `PearlHierarchy.SCM` 为**单结果位**口径，本文件只到 `B × C` |
+| **G4** | **多变量多结果的一般 SCM** | `FateV2.Modeling.PearlHierarchy.SCM` 为**单结果位**口径，本文件只到 `B × C` |
 | **G5** | **测度层嵌入**（有限律 → `Measure`，接 `CondIndepFun`） | 未做；见 `SCMSemantics` §68.4 |
 | **G6** | **`FracSCM → SCM` 的一般化**（外生块数可变 / 结果位任意） | 本文件硬编码三块 |
 
@@ -649,7 +649,7 @@ def finMarkovGaps : List FinMarkovGap := [
   ⟨"G3", "含混杂 / 含环 / 一般 DAG 的 SCM Markov 性质",
    "本文件只覆盖朴素无混杂的 FracSCM"⟩,
   ⟨"G4", "多变量多结果的一般 SCM",
-   "PearlHierarchy.SCM 为单结果位口径，本文件只到 B × C"⟩,
+   "FateV2.Modeling.PearlHierarchy.SCM 为单结果位口径，本文件只到 B × C"⟩,
   ⟨"G5", "有限律 → Measure 的嵌入（接 CondIndepFun）",
    "未做；见 SCMSemantics §68.4"⟩,
   ⟨"G6", "FracSCM → 一般 SCM 的外生块数目推广",

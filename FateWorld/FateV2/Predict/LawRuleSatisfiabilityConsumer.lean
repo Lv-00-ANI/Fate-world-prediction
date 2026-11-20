@@ -197,16 +197,16 @@ theorem sInf_pair_eq_of_isPoint {R G : LawRule C X Y} (hp : IsPoint R)
 /-- `SCM` 诱导的规则族（上下文 = 干预值 `do(X := c)`，见 `PearlLawRuleBridge`）。 -/
 noncomputable def scmFamily (X Y : Type*) [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y] :
-    Set (LawRule (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)) :=
-  Set.range (fun M : PearlHierarchy.SCM X Y => M.toLawRule)
+    Set (LawRule (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)) :=
+  Set.range (fun M : FateV2.Modeling.PearlHierarchy.SCM X Y => M.toLawRule)
 
 /-- ⭐ **`scmFamily` 的任何子族都 `IsPointAll`**
 （消费 `PearlLawRuleBridge.isPoint_toLawRule`）。 -/
 theorem isPointAll_of_subset_scmFamily {X Y : Type*} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y]
-    (S : Set (LawRule (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)))
+    (S : Set (LawRule (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)))
     (hS : S ⊆ scmFamily X Y) : IsPointAll S := by
   intro R hR
   obtain ⟨M, rfl⟩ := hS hR
@@ -220,8 +220,8 @@ $\iff$ 该族**逐点恒等**（即所有 `SCM` 在每个干预值上诱导同�
 前件只有「`S` 是 `SCM` 像的子集」和「`S` 非空」。 -/
 theorem scmFamily_compatible_iff {X Y : Type*} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y]
-    (S : Set (LawRule (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)))
+    (S : Set (LawRule (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)))
     (hS : S ⊆ scmFamily X Y) (hne : S.Nonempty) :
     Compatible S ↔ ∀ R₁ ∈ S, ∀ R₂ ∈ S, ∀ c x, R₁ c x = R₂ c x :=
   compatible_iff_of_isPointAll S (isPointAll_of_subset_scmFamily S hS) hne
@@ -229,8 +229,8 @@ theorem scmFamily_compatible_iff {X Y : Type*} [Fintype X] [DecidableEq X]
 /-- ⭐⭐ **推论**：`SCM` 族可满足时，其逐点交仍是**单点档**。 -/
 theorem scmFamily_sInf_isPoint {X Y : Type*} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y]
-    (S : Set (LawRule (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)))
+    (S : Set (LawRule (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)))
     (hS : S ⊆ scmFamily X Y) (hne : S.Nonempty) (hc : Compatible S) :
     IsPoint (sInf S) :=
   isPoint_sInf_of_compatible S (isPointAll_of_subset_scmFamily S hS) hne hc
@@ -239,9 +239,9 @@ theorem scmFamily_sInf_isPoint {X Y : Type*} [Fintype X] [DecidableEq X]
 其交**恰是**那条规则 —— 其余 `SCM` 或任意规则都不贡献额外约束。 -/
 theorem scmFamily_sInf_eq_of_mem {X Y : Type*} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y]
-    (S : Set (LawRule (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)))
-    (M : PearlHierarchy.SCM X Y) (hR : M.toLawRule ∈ S) (hc : Compatible S) :
+    (S : Set (LawRule (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)))
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (hR : M.toLawRule ∈ S) (hc : Compatible S) :
     sInf S = M.toLawRule :=
   eq_sInf_of_isPoint_mem S M.toLawRule hR M.isPoint_toLawRule hc
 
@@ -255,8 +255,8 @@ theorem scmFamily_sInf_eq_of_mem {X Y : Type*} [Fintype X] [DecidableEq X]
 **不**使用 `compatible_iff_finsetwise` —— 后者需 `Tight` 实例，库中不存在。 -/
 theorem compatible_finsetwise_scm {X Y : Type*} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y]
-    (S : Set (LawRule (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)))
+    (S : Set (LawRule (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)))
     (hc : Compatible S) : FinsetwiseCompatible S :=
   Compatible.finsetwise hc
 

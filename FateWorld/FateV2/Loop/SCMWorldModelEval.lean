@@ -42,14 +42,14 @@
 | `WorldModel.sim (scmWorldModel scmDemo) _ u ε a (n+1)` | `stepD (u n) (a n)` | `scmSim_succ_eq_stepD` |
 | `WorldModel.sim … ` 整条轨迹（`trajGen`）| `trajD x₀ u a` | `scmTrajD_eq_trajGen` |
 | `EndToEnd.predFrom (scmWorldModel scmDemo) …` | `stepD u a` | `scmPredFrom_eq_stepD` |
-| `SCMSemantics.doLaw scmDemo` | `doLawQ : Bool → Bool → ℚ` | `scmDoLawQ_cast` |
-| `SCMSemantics.jointLaw scmDemo` | `jointLawQ : Bool → Bool → Bool → ℚ` | `scmJointLawQ_cast` |
-| `SCMSemantics.marginalY scmDemo` | `marginalYQ : Bool → ℚ` | `scmMarginalYQ_cast` |
+| `FateV2.Modeling.SCMSemantics.doLaw scmDemo` | `doLawQ : Bool → Bool → ℚ` | `scmDoLawQ_cast` |
+| `FateV2.Modeling.SCMSemantics.jointLaw scmDemo` | `jointLawQ : Bool → Bool → Bool → ℚ` | `scmJointLawQ_cast` |
+| `FateV2.Modeling.SCMSemantics.marginalY scmDemo` | `marginalYQ : Bool → ℚ` | `scmMarginalYQ_cast` |
 | `(scmDemo.sg u).1` / `(scmDemo.sg u).2` | `sgFst u` / `sgSnd u a` | `scmSg_fst` / `scmSg_snd` |
 
 概率律用 `ℚ` 而非 `ℝ` 作镜像（`ℚ` 的加乘**可计算**，`ℝ` 的不行；
 这是本文件**唯一的数值口径让步**，已由上面三条 `_cast` 定理补平：
-`((doLawQ x y : ℚ) : ℝ) = SCMSemantics.doLaw scmDemo x y`，逐点，不是抽样）。
+`((doLawQ x y : ℚ) : ℝ) = FateV2.Modeling.SCMSemantics.doLaw scmDemo x y`，逐点，不是抽样）。
 
 ---------------------------------------------------------------------------
 二、`#eval` 的实际输出（本机实跑，粘贴原文）
@@ -66,7 +66,7 @@
 | §3 | `scmSim_succ_eq_stepD` | ⭐ `WorldModel.sim` 第 `n+1` 步 `= a n && u n` |
 | §3 | `scmPredFrom_eq_stepD` | ⭐ `EndToEnd.predFrom` 在 `scmDemo` 上 `= a && u` |
 | §3 | `scmSg_fst` / `scmSg_snd` | 结构映射两个分量的可计算形状（`rfl`） |
-| §4 | `scmDoLawQ_cast` | ℚ 镜像 cast 到 ℝ **=** `SCMSemantics.doLaw`（逐点） |
+| §4 | `scmDoLawQ_cast` | ℚ 镜像 cast 到 ℝ **=** `FateV2.Modeling.SCMSemantics.doLaw`（逐点） |
 | §4 | `scmJointLawQ_cast` | 同上（联合律）|
 | §4 | `scmMarginalYQ_cast` | 同上（`Y` 边缘律）|
 | §4.1 | `scmDoLaw_true_true` / `_true_false` / `_false_true` / `_false_false` | `doLaw` 的**四个具体数值**（`1/2, 1/2, 0, 1`）|
@@ -90,7 +90,7 @@
 * **本文件没有任何定理的结论出现在自己的前件里**；§3–§5 的定理前件**只含**
   具体取值（`x₀ u a n y : Bool` 等）与**结构前提**（`PUnit` 的取值）。
 * §5 的三条 `_dep_u` 定理的结论是**不等** `≠`，前件里**没有**任何 `≠`（无前件）。
-* `scmDoLaw_true_true` 等的结论是**等式**，左式是 `SCMSemantics.doLaw` 的
+* `scmDoLaw_true_true` 等的结论是**等式**，左式是 `FateV2.Modeling.SCMSemantics.doLaw` 的
   `Finset` 求和、右式是具体有理数；证明必须`展开定义 + 枚举 Bool`（见证明），
   **不是** `rfl` 级重念，也**不是**前件的改写。
 * `scmTrajD_eq_trajGen` 两侧是**两个不同的定义**（`trajD` 的 `Nat.rec`
@@ -191,15 +191,15 @@ def trajD (x₀ : Bool) (u a : ℕ → Bool) : ℕ → Bool :=
 /-- 外生律的可计算镜像（`ℚ` 上的均匀律）。 -/
 def pUq : Bool → ℚ := fun _ => 1 / 2
 
-/-- `SCMSemantics.doLaw` 的 `ℚ` 镜像。 -/
+/-- `FateV2.Modeling.SCMSemantics.doLaw` 的 `ℚ` 镜像。 -/
 def doLawQ (x y : Bool) : ℚ :=
   ∑ u : Bool, pUq u * (if sgSnd u x = y then 1 else 0)
 
-/-- `SCMSemantics.jointLaw` 的 `ℚ` 镜像（联合律含 `X` 的取值 `x`）。 -/
+/-- `FateV2.Modeling.SCMSemantics.jointLaw` 的 `ℚ` 镜像（联合律含 `X` 的取值 `x`）。 -/
 def jointLawQ (u x y : Bool) : ℚ :=
   pUq u * (if sgSnd u x = y then 1 else 0)
 
-/-- `SCMSemantics.marginalY` 的 `ℚ` 镜像（事实分量取 `(sg u).1`）。 -/
+/-- `FateV2.Modeling.SCMSemantics.marginalY` 的 `ℚ` 镜像（事实分量取 `(sg u).1`）。 -/
 def marginalYQ (y : Bool) : ℚ :=
   ∑ u : Bool, pUq u * (if sgSnd u (sgFst u) = y then 1 else 0)
 
@@ -287,7 +287,7 @@ theorem scmPredFrom_eq_stepD (u : Bool) (a : Bool) (y : Bool) :
   §4  概率律：可计算镜像 **cast 到 ℝ 后 = 库定义**
   =========================================================================== -/
 
-/-- ⭐⭐⭐ **干预律：`#eval` 出的 `ℚ` 数 cast 到 `ℝ` 就是 `SCMSemantics.doLaw`**。
+/-- ⭐⭐⭐ **干预律：`#eval` 出的 `ℚ` 数 cast 到 `ℝ` 就是 `FateV2.Modeling.SCMSemantics.doLaw`**。
 
 $$\bigl(\mathrm{doLawQ}\,x\,y : \mathbb{Q}\bigr)_{\mathbb{R}}
   \;=\; \mathrm{doLaw}\;\mathrm{scmDemo}\;x\;y .$$
@@ -299,25 +299,25 @@ $$\bigl(\mathrm{doLawQ}\,x\,y : \mathbb{Q}\bigr)_{\mathbb{R}}
 右侧是 `ℝ` 上的 `Finset.sum`；二者由 `push_cast`（`Rat.cast` 穿过 `+`/`*`）
 与 `Fintype.sum_bool`（把 `Bool` 上的和摊成两项）桥接。 -/
 theorem scmDoLawQ_cast (x y : Bool) :
-    ((doLawQ x y : ℚ) : ℝ) = SCMSemantics.doLaw scmDemo x y := by
-  simp only [doLawQ, SCMSemantics.doLaw, scmDemo, sgD, pUq, sgSnd]
+    ((doLawQ x y : ℚ) : ℝ) = FateV2.Modeling.SCMSemantics.doLaw scmDemo x y := by
+  simp only [doLawQ, FateV2.Modeling.SCMSemantics.doLaw, scmDemo, sgD, pUq, sgSnd]
   change ((∑ u : Bool, (1 / 2 : ℚ) * (if (x && u) = y then 1 else 0) : ℚ) : ℝ)
     = ∑ u : Bool, (1 / 2 : ℝ) * (if (x && u) = y then 1 else 0)
   rw [Fintype.sum_bool, Fintype.sum_bool]
   push_cast
   cases x <;> cases y <;> norm_num
 
-/-- ⭐⭐ **联合律：`ℚ` 镜像 cast 到 `ℝ` 就是 `SCMSemantics.jointLaw`**。 -/
+/-- ⭐⭐ **联合律：`ℚ` 镜像 cast 到 `ℝ` 就是 `FateV2.Modeling.SCMSemantics.jointLaw`**。 -/
 theorem scmJointLawQ_cast (u x y : Bool) :
-    ((jointLawQ u x y : ℚ) : ℝ) = SCMSemantics.jointLaw scmDemo (u, x, y) := by
-  simp only [jointLawQ, SCMSemantics.jointLaw, scmDemo, sgD, pUq, sgSnd]
+    ((jointLawQ u x y : ℚ) : ℝ) = FateV2.Modeling.SCMSemantics.jointLaw scmDemo (u, x, y) := by
+  simp only [jointLawQ, FateV2.Modeling.SCMSemantics.jointLaw, scmDemo, sgD, pUq, sgSnd]
   push_cast
   cases u <;> cases x <;> cases y <;> norm_num
 
-/-- ⭐⭐ **`Y` 边缘律：`ℚ` 镜像 cast 到 `ℝ` 就是 `SCMSemantics.marginalY`**。 -/
+/-- ⭐⭐ **`Y` 边缘律：`ℚ` 镜像 cast 到 `ℝ` 就是 `FateV2.Modeling.SCMSemantics.marginalY`**。 -/
 theorem scmMarginalYQ_cast (y : Bool) :
-    ((marginalYQ y : ℚ) : ℝ) = SCMSemantics.marginalY scmDemo y := by
-  simp only [marginalYQ, SCMSemantics.marginalY, scmDemo, sgD, pUq, sgFst, sgSnd]
+    ((marginalYQ y : ℚ) : ℝ) = FateV2.Modeling.SCMSemantics.marginalY scmDemo y := by
+  simp only [marginalYQ, FateV2.Modeling.SCMSemantics.marginalY, scmDemo, sgD, pUq, sgFst, sgSnd]
   change ((∑ u : Bool, (1 / 2 : ℚ) * (if (u && u) = y then 1 else 0) : ℚ) : ℝ)
     = ∑ u : Bool, (1 / 2 : ℝ) * (if (u && u) = y then 1 else 0)
   rw [Fintype.sum_bool, Fintype.sum_bool]
@@ -330,36 +330,36 @@ theorem scmMarginalYQ_cast (y : Bool) :
 逐条枚举 `x y : Bool`（四次，即全集）。 -/
 
 /-- ⭐ `doLaw(true) = 1/2` 在 `y = true` 处。 -/
-theorem scmDoLaw_true_true : SCMSemantics.doLaw scmDemo true true = 1 / 2 := by
-  simp only [SCMSemantics.doLaw, scmDemo, sgD]
+theorem scmDoLaw_true_true : FateV2.Modeling.SCMSemantics.doLaw scmDemo true true = 1 / 2 := by
+  simp only [FateV2.Modeling.SCMSemantics.doLaw, scmDemo, sgD]
   change (∑ u : Bool, (1 / 2 : ℝ) * (if (u && true) = true then 1 else 0)) = 1 / 2
   rw [Fintype.sum_bool]
   norm_num
 
 /-- ⭐ `doLaw(true) = 1/2` 在 `y = false` 处。 -/
-theorem scmDoLaw_true_false : SCMSemantics.doLaw scmDemo true false = 1 / 2 := by
-  simp only [SCMSemantics.doLaw, scmDemo, sgD]
+theorem scmDoLaw_true_false : FateV2.Modeling.SCMSemantics.doLaw scmDemo true false = 1 / 2 := by
+  simp only [FateV2.Modeling.SCMSemantics.doLaw, scmDemo, sgD]
   change (∑ u : Bool, (1 / 2 : ℝ) * (if (u && true) = false then 1 else 0)) = 1 / 2
   rw [Fintype.sum_bool]
   norm_num
 
 /-- ⭐ `doLaw(false) = 0` 在 `y = true` 处（`x := false` 使 `Y` 恒为 `false`）。 -/
-theorem scmDoLaw_false_true : SCMSemantics.doLaw scmDemo false true = 0 := by
-  simp only [SCMSemantics.doLaw, scmDemo, sgD]
+theorem scmDoLaw_false_true : FateV2.Modeling.SCMSemantics.doLaw scmDemo false true = 0 := by
+  simp only [FateV2.Modeling.SCMSemantics.doLaw, scmDemo, sgD]
   change (∑ u : Bool, (1 / 2 : ℝ) * (if (u && false) = true then 1 else 0)) = 0
   rw [Fintype.sum_bool]
   norm_num
 
 /-- ⭐ `doLaw(false) = 1` 在 `y = false` 处（点质量）。 -/
-theorem scmDoLaw_false_false : SCMSemantics.doLaw scmDemo false false = 1 := by
-  simp only [SCMSemantics.doLaw, scmDemo, sgD]
+theorem scmDoLaw_false_false : FateV2.Modeling.SCMSemantics.doLaw scmDemo false false = 1 := by
+  simp only [FateV2.Modeling.SCMSemantics.doLaw, scmDemo, sgD]
   change (∑ u : Bool, (1 / 2 : ℝ) * (if (u && false) = false then 1 else 0)) = 1
   rw [Fintype.sum_bool]
   norm_num
 
 /-- ⭐⭐ **`Y` 的边缘律是均匀的**：`marginalY true = 1/2`。 -/
-theorem scmMarginalY_true : SCMSemantics.marginalY scmDemo true = 1 / 2 := by
-  simp only [SCMSemantics.marginalY, scmDemo, sgD]
+theorem scmMarginalY_true : FateV2.Modeling.SCMSemantics.marginalY scmDemo true = 1 / 2 := by
+  simp only [FateV2.Modeling.SCMSemantics.marginalY, scmDemo, sgD]
   change (∑ u : Bool, (1 / 2 : ℝ) * (if (u && u) = true then 1 else 0)) = 1 / 2
   rw [Fintype.sum_bool]
   norm_num
@@ -438,7 +438,7 @@ theorem scmSim_dep_u :
 ⟹ 「`do(X := x)` 切断了 `X` 的入边」在本实例上给出**不同的数**
 （`1/2` vs `0`），不是同一件事的两种说法。 -/
 theorem scmDoLaw_dep_x :
-    SCMSemantics.doLaw scmDemo true true ≠ SCMSemantics.doLaw scmDemo false true := by
+    FateV2.Modeling.SCMSemantics.doLaw scmDemo true true ≠ FateV2.Modeling.SCMSemantics.doLaw scmDemo false true := by
   rw [scmDoLaw_true_true, scmDoLaw_false_true]
   norm_num
 

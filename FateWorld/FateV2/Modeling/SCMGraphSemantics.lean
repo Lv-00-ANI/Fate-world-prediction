@@ -23,14 +23,14 @@ import Mathlib.Tactic
 
   `MM4` 任务要求「接线 `SCMGraph` → `SCMSemantics`（扇入 15）」。
 
-  **核查发现（两种 grep 模式互校，见下）**：`Fate/SCMSemantics.lean` 第 2 行
+  **核查发现（两种 grep 模式互校，见下）**：`Fate/FateV2.Modeling.SCMSemantics.lean` 第 2 行
   **早已**有 `import FateV2.Modeling.SCMGraph`，但全文**零处**引用 `SCMGraph` 的任何标识符
   （`SV` / `enc` / `dec` / `depUX` / `depXY` / `depUY` / `edge` / `SCMGraph`）。
   即：**import 挂了，但没有一个下游消费者。**
 
   ```
-  grep -c "SCMGraph"          Fate/SCMSemantics.lean   →  1   （仅 import 行）
-  grep -c "SV|enc|dec|edge"   Fate/SCMSemantics.lean   →  0
+  grep -c "SCMGraph"          Fate/FateV2.Modeling.SCMSemantics.lean   →  1   （仅 import 行）
+  grep -c "SV|enc|dec|edge"   Fate/FateV2.Modeling.SCMSemantics.lean   →  0
   ```
 
   **这种「只 import 不消费」在本项目历史上就是「假接线」**：`SCMGraph` 的 38 条定理
@@ -91,7 +91,7 @@ variable {X Y : Type u} [Fintype X] [DecidableEq X] [Fintype Y] [DecidableEq Y]
 
 消费 `SV.instFintype` 背后的 `Equiv`（由 `enc`/`dec` 及双向互逆 `enc_dec`/`dec_enc`
 构造）。证明需要 `Fintype.card_congr` 与 `Fintype.card_sum`，**不是定义展开**。 -/
-theorem card_SV (M : PearlHierarchy.SCM X Y) :
+theorem card_SV (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
     Fintype.card (SV M) = Fintype.card M.U + Fintype.card X + Fintype.card Y := by
   rw [Fintype.card_congr (Equiv.mk (SV.dec M) (SV.enc M) (SV.enc_dec M) (SV.dec_enc M)).symm]
   simp [Fintype.card_sum, Nat.add_assoc]
@@ -110,7 +110,7 @@ omit [Fintype X] [DecidableEq X] [Fintype Y] in
 
 **⚠ 证明不需要 `pU u ≠ 0`**：`jointLaw = pU u · [条件]`，若 `pU u = 0` 则
 `jointLaw = 0`，与非零前件矛盾，故前件已隐含指示子非零，反推 `(sg u).2 (sg u).1 = v`。 -/
-theorem jointLaw_ne_zero_imp_edge_xy (M : PearlHierarchy.SCM X Y)
+theorem jointLaw_ne_zero_imp_edge_xy (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (u : M.U) (v : Y)
     (h : jointLaw M (u, ((M.sg u).1, v)) ≠ 0) :
     edge M (.x ((M.sg u).1)) (.y v) := by
@@ -128,7 +128,7 @@ theorem jointLaw_ne_zero_imp_edge_xy (M : PearlHierarchy.SCM X Y)
 
 同时消费 `SCMGraph.edge`（经上一条）与 `SCMGraph.edge_from_y_false`
 （`Y` 是叶，无出边）。这条把「概率支集给出的边」与「图的层次结构」合起来。 -/
-theorem jointLaw_support_edge_and_y_leaf (M : PearlHierarchy.SCM X Y)
+theorem jointLaw_support_edge_and_y_leaf (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (u : M.U) (v : Y)
     (h : jointLaw M (u, ((M.sg u).1, v)) ≠ 0) :
     edge M (.x ((M.sg u).1)) (.y v) ∧ ∀ b : SV M, ¬ edge M (.y v) b :=
@@ -215,12 +215,12 @@ open FateV2.Modeling.SCMSemantics FateV2.Modeling.SCMGraph FateV2.Modeling.Pearl
 **⟹ 这是一条从「总体概率层」到「图结构层」的蕴含**，两端的定义分属
 `SCMSemantics` 与 `SCMGraph`，前件**不含**任何 `edge` 信息。 -/
 theorem L1_obs_ne_zero_imp_edge_xy {X Y : Type} [DecidableEq X] [DecidableEq Y]
-    [Fintype X] [Fintype Y] (M : PearlHierarchy.SCM X Y) (x : X) (y : Y)
+    [Fintype X] [Fintype Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y)
     (h : M.L1_obs (x, y) ≠ 0) :
     SCMGraph.edge M (.x x) (.y y) := by
   by_contra hc
   apply h
-  rw [PearlHierarchy.SCM.L1_obs, push]
+  rw [FateV2.Modeling.PearlHierarchy.SCM.L1_obs, push]
   apply Finset.sum_eq_zero
   intro u _
   by_cases hkey : ((M.sg u).1, (M.sg u).2 (M.sg u).1) = (x, y)
@@ -234,7 +234,7 @@ theorem L1_obs_ne_zero_imp_edge_xy {X Y : Type} [DecidableEq X] [DecidableEq Y]
 消费 `SCMGraph.edge_rank_lt`（势函数 `U ↦ 0, X ↦ 1, Y ↦ 2`）。
 前件**不含**任何 `rank` 信息，故不是重言。 -/
 theorem L1_obs_ne_zero_imp_rank_lt {X Y : Type} [DecidableEq X] [DecidableEq Y]
-    [Fintype X] [Fintype Y] (M : PearlHierarchy.SCM X Y) (x : X) (y : Y)
+    [Fintype X] [Fintype Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y)
     (h : M.L1_obs (x, y) ≠ 0) :
     SCMGraph.rank (M := M) (.x x) < SCMGraph.rank (M := M) (.y y) :=
   SCMGraph.edge_rank_lt (L1_obs_ne_zero_imp_edge_xy M x y h)
@@ -244,7 +244,7 @@ theorem L1_obs_ne_zero_imp_rank_lt {X Y : Type} [DecidableEq X] [DecidableEq Y]
 这两条合起来说明「`L1_obs` 的支集只落在 `X → Y` 这一层，`Y` 是叶」——
 **是 §2.3 的总体律版本**。 -/
 theorem L1_obs_ne_zero_imp_y_leaf {X Y : Type} [DecidableEq X] [DecidableEq Y]
-    [Fintype X] [Fintype Y] (M : PearlHierarchy.SCM X Y) (x : X) (y : Y)
+    [Fintype X] [Fintype Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y)
     (h : M.L1_obs (x, y) ≠ 0) :
     SCMGraph.edge M (.x x) (.y y) ∧ ∀ b : SCMGraph.SV M, ¬ SCMGraph.edge M (.y y) b :=
   ⟨L1_obs_ne_zero_imp_edge_xy M x y h, SCMGraph.edge_from_y_false M y⟩
@@ -257,7 +257,7 @@ theorem L1_obs_ne_zero_imp_y_leaf {X Y : Type} [DecidableEq X] [DecidableEq Y]
 故本定理只做经典逻辑消去。它的作用是让下游**用图侧词汇**陈述结论。
 
 **⚠ 诚实标注**：这**不是**新数学，见文件 §3。 -/
-theorem exists_constX_of_not_depUX {X Y : Type} (M : PearlHierarchy.SCM X Y)
+theorem exists_constX_of_not_depUX {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (h : ¬ SCMGraph.depUX M) : ∃ x₀ : X, ∀ u : M.U, (M.sg u).1 = x₀ := by
   by_contra hc
   exact h (by simpa [SCMGraph.depUX] using hc)
@@ -276,24 +276,24 @@ theorem exists_constX_of_not_depUX {X Y : Type} (M : PearlHierarchy.SCM X Y)
 `condY M x = 0`（见 `marginalX_eq_zero_of_ne` 的同款论证），故等式不成立 ——
 这是**如实的**最强形式。 -/
 theorem not_depUX_exists_condY_eq_doLaw {X Y : Type} [DecidableEq X] [DecidableEq Y]
-    [Fintype X] [Fintype Y] (M : PearlHierarchy.SCM X Y) (h : ¬ SCMGraph.depUX M) :
+    [Fintype X] [Fintype Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (h : ¬ SCMGraph.depUX M) :
     ∃ x₀ : X, (∀ u : M.U, (M.sg u).1 = x₀) ∧
-      SCMSemantics.condY M x₀ = SCMSemantics.doLaw M x₀ := by
+      FateV2.Modeling.SCMSemantics.condY M x₀ = FateV2.Modeling.SCMSemantics.doLaw M x₀ := by
   obtain ⟨x₀, hx₀⟩ := exists_constX_of_not_depUX M h
-  exact ⟨x₀, hx₀, SCMSemantics.condY_eq_doLaw_of_no_confound M x₀ hx₀ rfl⟩
+  exact ⟨x₀, hx₀, FateV2.Modeling.SCMSemantics.condY_eq_doLaw_of_no_confound M x₀ hx₀ rfl⟩
 
 /-- ⭐⭐ **常值 `X` 下，其它点的边缘律严格为 `0`。**
 
-消费 `SCMSemantics.marginalX` 的定义与图侧常值条件：`x ≠ x₀` 时
+消费 `FateV2.Modeling.SCMSemantics.marginalX` 的定义与图侧常值条件：`x ≠ x₀` 时
 `[sg u .1 = x]` 对**每个** `u` 恒为假。
 
 **⟹ 这是 `not_depUX_exists_condY_eq_doLaw` 边界登记的形式化**
 （「等式只在 `x₀` 处成立」的原因）。 -/
 theorem marginalX_eq_zero_of_ne {X Y : Type} [DecidableEq X] [DecidableEq Y]
-    [Fintype X] [Fintype Y] (M : PearlHierarchy.SCM X Y)
+    [Fintype X] [Fintype Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (x₀ : X) (hx₀ : ∀ u : M.U, (M.sg u).1 = x₀) {x : X} (hx : x ≠ x₀) :
-    SCMSemantics.marginalX M x = 0 := by
-  unfold SCMSemantics.marginalX
+    FateV2.Modeling.SCMSemantics.marginalX M x = 0 := by
+  unfold FateV2.Modeling.SCMSemantics.marginalX
   apply Finset.sum_eq_zero
   intro u _
   rw [hx₀ u, if_neg (Ne.symm hx), mul_zero]
@@ -305,12 +305,12 @@ theorem marginalX_eq_zero_of_ne {X Y : Type} [DecidableEq X] [DecidableEq Y]
 「总体 ⟹ 图」平行）：`doLaw` 是 `∑_u pU u · [h_u x = y]`，和为 `0` 之外
 必有被加项非零。**不需要 `pU > 0`**。 -/
 theorem doLaw_ne_zero_imp_exists {X Y : Type} [DecidableEq X] [DecidableEq Y]
-    [Fintype X] [Fintype Y] (M : PearlHierarchy.SCM X Y) (x : X) (y : Y)
-    (h : SCMSemantics.doLaw M x y ≠ 0) : ∃ u : M.U, (M.sg u).2 x = y := by
+    [Fintype X] [Fintype Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y)
+    (h : FateV2.Modeling.SCMSemantics.doLaw M x y ≠ 0) : ∃ u : M.U, (M.sg u).2 x = y := by
   by_contra hc
   push Not at hc
   apply h
-  unfold SCMSemantics.doLaw
+  unfold FateV2.Modeling.SCMSemantics.doLaw
   apply Finset.sum_eq_zero
   intro u _
   rw [if_neg (hc u), mul_zero]

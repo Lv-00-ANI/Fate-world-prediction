@@ -34,7 +34,7 @@ open FateV2.Modeling
   ## ⚠ 第 247 轮：**§2 的三条定理是 D4 型（定义改写），已在本轮**升级**
 
   **G6 第 242 轮评估判定**：`t34_pushforward`（全文件 `rfl`）是**定义改写** ——
-  确实如此：`SCMSemantics.doLaw` 的**定义**就是推前形式，故那条定理**只能是 `rfl`**。
+  确实如此：`FateV2.Modeling.SCMSemantics.doLaw` 的**定义**就是推前形式，故那条定理**只能是 `rfl`**。
 
   **第 247 轮的重做不删旧定理**（它们仍是 API：把定义钉死），
   而是**在 §4–§5 补上真正的分析内容**：
@@ -97,7 +97,7 @@ theorem doMap_snd {X Y : Type*} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x 
 **`g u = f_u(x)` 里的 `x` 是**常数方程给出的**，`f_u` 是**其余的方程**（不变）。** -/
 theorem t34_pushforward {X Y : Type} [Fintype X] [DecidableEq Y]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
-    SCMSemantics.doLaw M x
+    FateV2.Modeling.SCMSemantics.doLaw M x
       = FateV2.Modeling.PearlHierarchy.push M.pU (fun u : M.U => (M.sg u).2 x) := by
   funext y
   rfl
@@ -108,7 +108,7 @@ theorem t34_pushforward {X Y : Type} [Fintype X] [DecidableEq Y]
 **`doLaw` 的定义**本身就是**推前形式**。** -/
 theorem t34_expand {X Y : Type} [Fintype X] [DecidableEq Y]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y) :
-    SCMSemantics.doLaw M x y
+    FateV2.Modeling.SCMSemantics.doLaw M x y
       = ∑ u : M.U, M.pU u * (if (M.sg u).2 x = y then 1 else 0) := rfl
 
 /-! ## §3 **观测律与干预律的**结构差别**（强化 T3.5）** -/
@@ -119,7 +119,7 @@ theorem t34_expand {X Y : Type} [Fintype X] [DecidableEq Y]
 **也是 T3.5（观测 ≠ 干预）的**结构性原因**。 -/
 theorem t34_obs_formula {X Y : Type} [Fintype X] [DecidableEq X] [DecidableEq Y]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y) :
-    SCMSemantics.condY M x y
+    FateV2.Modeling.SCMSemantics.condY M x y
       = ∑ u : M.U, M.pU u * (if (M.sg u).1 = x then 1 else 0)
           * (if (M.sg u).2 x = y then 1 else 0) := rfl
 
@@ -133,10 +133,10 @@ theorem t34_obs_formula {X Y : Type} [Fintype X] [DecidableEq X] [DecidableEq Y]
 **这就是「`do(X=x)` 无视 `X` 的实际取值」的**数值含义**。** -/
 theorem t34_comparison {X Y : Type} [Fintype X] [DecidableEq X] [DecidableEq Y]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y) :
-    SCMSemantics.condY M x y
+    FateV2.Modeling.SCMSemantics.condY M x y
         = ∑ u : M.U, M.pU u * (if (M.sg u).1 = x then 1 else 0)
             * (if (M.sg u).2 x = y then 1 else 0)
-      ∧ SCMSemantics.doLaw M x y
+      ∧ FateV2.Modeling.SCMSemantics.doLaw M x y
         = ∑ u : M.U, M.pU u * (if (M.sg u).2 x = y then 1 else 0) :=
   ⟨rfl, rfl⟩
 
@@ -168,7 +168,7 @@ theorem t34_comparison {X Y : Type} [Fintype X] [DecidableEq X] [DecidableEq Y]
 /-- **两条律的逐点差**（`doLaw − condY`）。 -/
 noncomputable def lawDiff {X Y : Type} [Fintype X] [Fintype Y]
     [DecidableEq X] [DecidableEq Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : X → Y → ℝ :=
-  fun x y => SCMSemantics.doLaw M x y - SCMSemantics.condY M x y
+  fun x y => FateV2.Modeling.SCMSemantics.doLaw M x y - FateV2.Modeling.SCMSemantics.condY M x y
 
 /-- **逐 `x` 的 `L¹` 范数**：`∑ y, |lawDiff M x y|`。 -/
 noncomputable def lawDiffAt {X Y : Type} [Fintype X] [Fintype Y]
@@ -188,7 +188,7 @@ theorem diff_eq_correction {X Y : Type} [Fintype X] [Fintype Y]
     lawDiff M x y
       = ∑ u, M.pU u * (if (M.sg u).1 = x then 0 else 1)
           * (if (M.sg u).2 x = y then 1 else 0) := by
-  unfold lawDiff SCMSemantics.doLaw SCMSemantics.condY
+  unfold lawDiff FateV2.Modeling.SCMSemantics.doLaw FateV2.Modeling.SCMSemantics.condY
   rw [← Finset.sum_sub_distrib]
   apply Finset.sum_congr rfl
   intro u _
@@ -199,12 +199,12 @@ theorem diff_eq_correction {X Y : Type} [Fintype X] [Fintype Y]
 **⚠ 需要 `Finset.sum_eq_zero_iff_of_nonneg` 与 `abs_eq_zero`：不是定义展开。** -/
 theorem lawDiffAt_zero_iff {X Y : Type} [Fintype X] [Fintype Y]
     [DecidableEq X] [DecidableEq Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
-    lawDiffAt M x = 0 ↔ ∀ y, SCMSemantics.doLaw M x y = SCMSemantics.condY M x y := by
+    lawDiffAt M x = 0 ↔ ∀ y, FateV2.Modeling.SCMSemantics.doLaw M x y = FateV2.Modeling.SCMSemantics.condY M x y := by
   unfold lawDiffAt lawDiff
   constructor
   · intro h y
     have h4 := (Finset.sum_eq_zero_iff_of_nonneg
-      (fun i _ => abs_nonneg (SCMSemantics.doLaw M x i - SCMSemantics.condY M x i))).mp h y
+      (fun i _ => abs_nonneg (FateV2.Modeling.SCMSemantics.doLaw M x i - FateV2.Modeling.SCMSemantics.condY M x i))).mp h y
       (Finset.mem_univ y)
     exact sub_eq_zero.mp (abs_eq_zero.mp h4)
   · intro h
@@ -226,7 +226,7 @@ theorem t34_norm_zero_unconfounded {X Y : Type} [Fintype X] [Fintype Y]
     apply Finset.sum_eq_zero
     intro u _
     rw [hconst u, if_pos rfl, mul_zero, zero_mul]
-  have hsub : SCMSemantics.doLaw M x₀ y - SCMSemantics.condY M x₀ y = 0 := hzero
+  have hsub : FateV2.Modeling.SCMSemantics.doLaw M x₀ y - FateV2.Modeling.SCMSemantics.condY M x₀ y = 0 := hzero
   linarith [hsub]
 
 /-- **有混杂 ⟹ 范数为正**（以 T3.5 的完全混杂模型为见证）：
@@ -258,8 +258,8 @@ theorem t34_norm_pos_confounded' (x : Fin 2) : lawDiffAt FateV2.Predict.T35.M x 
 /-- **`doLaw` 的总质量**恒为 `∑ u, p_U(u)`（与 `x` 无关）。 -/
 theorem doLaw_mass {X Y : Type} [Fintype X] [Fintype Y] [DecidableEq Y]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
-    ∑ y, SCMSemantics.doLaw M x y = ∑ u, M.pU u := by
-  unfold SCMSemantics.doLaw
+    ∑ y, FateV2.Modeling.SCMSemantics.doLaw M x y = ∑ u, M.pU u := by
+  unfold FateV2.Modeling.SCMSemantics.doLaw
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl ?_
   intro u _
@@ -269,8 +269,8 @@ theorem doLaw_mass {X Y : Type} [Fintype X] [Fintype Y] [DecidableEq Y]
 /-- **`condY` 的总质量**恰为 `marginalX M x = P(X = x)`。 -/
 theorem condY_mass {X Y : Type} [Fintype X] [Fintype Y] [DecidableEq X] [DecidableEq Y]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
-    ∑ y, SCMSemantics.condY M x y = SCMSemantics.marginalX M x := by
-  unfold SCMSemantics.condY SCMSemantics.marginalX
+    ∑ y, FateV2.Modeling.SCMSemantics.condY M x y = FateV2.Modeling.SCMSemantics.marginalX M x := by
+  unfold FateV2.Modeling.SCMSemantics.condY FateV2.Modeling.SCMSemantics.marginalX
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl ?_
   intro u _

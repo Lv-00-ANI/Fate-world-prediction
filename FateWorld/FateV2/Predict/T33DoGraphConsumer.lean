@@ -66,7 +66,7 @@
   「同一集合的两次使用」在**不同实例**下是**不同项**；本文件的定理对每个实例都成立，
   但**不声称** `doMap M X x` 在实例层面定义无关（后者需要 `propext` 上的重写，**未证**）。
 * 本文件**不使用** `T35Rule1*` / do-calculus 三条规则（T3.3 的语义侧 `VecSCM`
-  与 `PearlHierarchy.SCM` 不是同一载体，见模块 §5 `doMap_shared_structure` 的登记）。
+  与 `FateV2.Modeling.PearlHierarchy.SCM` 不是同一载体，见模块 §5 `doMap_shared_structure` 的登记）。
 
 **本文件不含 `sorry` / `admit` / `axiom`。**
 -/

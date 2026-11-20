@@ -78,9 +78,9 @@ noncomputable def M : SCM (Fin 2) (Fin 2) where
 **而非归一化的条件概率**。`X=x` 的边缘质量是 `1/2`，
 **故 `P(Y=y|X=x) = (1/2)/(1/2) = 1`**（点质量）。 -/
 theorem condY_M (x y : Fin 2) :
-    SCMSemantics.condY M x y = if x = y then (1 : ℝ) / 2 else 0 := by
+    FateV2.Modeling.SCMSemantics.condY M x y = if x = y then (1 : ℝ) / 2 else 0 := by
   classical
-  have h1 : SCMSemantics.condY M x y
+  have h1 : FateV2.Modeling.SCMSemantics.condY M x y
       = ∑ u : Fin 2, (1 : ℝ) / 2 * (if u = x then 1 else 0) * (if u = y then 1 else 0) := rfl
   rw [h1, Fin.sum_univ_two]
   fin_cases x <;> fin_cases y <;> norm_num
@@ -90,8 +90,8 @@ theorem condY_M (x y : Fin 2) :
 **读法**：干预 `do(X = x)` 后，`Y` 仍按 `U` 的分布取值 ——
 `1/2` 取 `0`、`1/2` 取 `1`。**⟹ 与观测律截然不同**。 -/
 theorem doLaw_M (x y : Fin 2) :
-    SCMSemantics.doLaw M x y = (1 : ℝ) / 2 := by
-  have h1 : SCMSemantics.doLaw M x y
+    FateV2.Modeling.SCMSemantics.doLaw M x y = (1 : ℝ) / 2 := by
+  have h1 : FateV2.Modeling.SCMSemantics.doLaw M x y
       = ∑ u : Fin 2, (1 : ℝ) / 2 * (if u = y then 1 else 0) := rfl
   rw [h1, Fin.sum_univ_two]
   fin_cases y <;> norm_num
@@ -109,8 +109,8 @@ theorem doLaw_M (x y : Fin 2) :
 theorem t35_observational_ne_interventional :
     ∃ (X Y : Type) (_ : Fintype X) (_ : DecidableEq X)
       (_ : Fintype Y) (_ : DecidableEq Y)
-      (M' : PearlHierarchy.SCM X Y) (x : X) (y : Y),
-      SCMSemantics.condY M' x y ≠ SCMSemantics.doLaw M' x y :=
+      (M' : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y),
+      FateV2.Modeling.SCMSemantics.condY M' x y ≠ FateV2.Modeling.SCMSemantics.doLaw M' x y :=
   ⟨Fin 2, Fin 2, inferInstance, inferInstance, inferInstance, inferInstance,
    M, 0, 1, by rw [condY_M, doLaw_M]; norm_num⟩
 
@@ -118,7 +118,7 @@ theorem t35_observational_ne_interventional :
 
 **⚠ 这比 `≠` 更强** —— 它给出了两条律的**实际数值**。 -/
 theorem t35_witness_values :
-    SCMSemantics.condY M 0 1 = 0 ∧ SCMSemantics.doLaw M 0 1 = (1 : ℝ) / 2 :=
+    FateV2.Modeling.SCMSemantics.condY M 0 1 = 0 ∧ FateV2.Modeling.SCMSemantics.doLaw M 0 1 = (1 : ℝ) / 2 :=
   ⟨by rw [condY_M]; norm_num, by rw [doLaw_M]⟩
 
 /-- **对照：在 `x = y` 处两者数值恰好相等**。
@@ -126,7 +126,7 @@ theorem t35_witness_values :
 **⚠ 本定理如实登记这个巧合**，以免读者误以为「处处不等」才是 T3.5 的结论。
 **而它们的**含义不同**：观测是「联合质量 `1/2`」，干预是「边缘质量 `1/2`」。** -/
 theorem t35_coincidence_at_diagonal :
-    SCMSemantics.condY M 0 0 = SCMSemantics.doLaw M 0 0 := by
+    FateV2.Modeling.SCMSemantics.condY M 0 0 = FateV2.Modeling.SCMSemantics.doLaw M 0 0 := by
   rw [condY_M, doLaw_M]
   norm_num
 
@@ -137,11 +137,11 @@ theorem t35_coincidence_at_diagonal :
 **⚠ 本定义**新增**，因为清单写的是 `P(Y | X=x)`（**归一化概率**），
 **而 `condY` 是**联合质量****。 -/
 noncomputable def condProb (x y : Fin 2) : ℝ :=
-  SCMSemantics.condY M x y / SCMSemantics.marginalX M x
+  FateV2.Modeling.SCMSemantics.condY M x y / FateV2.Modeling.SCMSemantics.marginalX M x
 
 /-- **`X = x` 的边缘质量恒为 `1/2`**。 -/
-theorem marginalX_M (x : Fin 2) : SCMSemantics.marginalX M x = (1 : ℝ) / 2 := by
-  have h1 : SCMSemantics.marginalX M x
+theorem marginalX_M (x : Fin 2) : FateV2.Modeling.SCMSemantics.marginalX M x = (1 : ℝ) / 2 := by
+  have h1 : FateV2.Modeling.SCMSemantics.marginalX M x
       = ∑ u : Fin 2, (1 : ℝ) / 2 * (if u = x then 1 else 0) := rfl
   rw [h1, Fin.sum_univ_two]
   fin_cases x <;> norm_num

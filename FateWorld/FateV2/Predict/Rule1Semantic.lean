@@ -93,7 +93,7 @@ import Mathlib.Tactic.NormNum
   **⚠ 二者的归一化常数不同**。
   **⟹ 逐字相等 `condY = doLaw` 只在 `μ(x) = 1` 时可能成立**，
   **那会把本定理降格成「`X` 退化」这种无聊情形**（正是
-  `SCMSemantics.condY_eq_doLaw_of_no_confound` 的 `hconst` 前提）。
+  `FateV2.Modeling.SCMSemantics.condY_eq_doLaw_of_no_confound` 的 `hconst` 前提）。
   **故本文件的主形式写成归一化无关的 `condY = μ(x)·doLaw`，
   再由 §2 的 `noConfounding_iff_condProb_eq_doLaw_guarded` 转成
   `P(Y|X=x) = P(Y|do(X=x))` 的字面形式。**
@@ -102,7 +102,7 @@ import Mathlib.Tactic.NormNum
 
   | # | 名字 | 内容 | 类型 |
   |---|---|---|---|
-  | 1 | `SCM.margX` / `margX_eq` | `μ(x) = P(X=x)`（`= SCMSemantics.marginalX`）| def |
+  | 1 | `SCM.margX` / `margX_eq` | `μ(x) = P(X=x)`（`= FateV2.Modeling.SCMSemantics.marginalX`）| def |
   | 2 | ⭐⭐⭐ `SCM.NoConfounding` | **无混杂的精确条件** | def |
   | 3 | `SCM.NoUDependence` | 可判定的**充分**条件 | def |
   | 4 | ⭐⭐⭐ `rule1_no_confounding` | **规则 1 的最简语义形式** | 定理 |
@@ -142,16 +142,16 @@ namespace SCM
 
 $$\mu(x) := \sum_u p_U(u)\,[\,(\mathrm{sg}\,u).1 = x\,]$$
 
-**⚠ 与 `SCMSemantics.marginalX` **定义相同**（见 `marginalX_eq`）；
+**⚠ 与 `FateV2.Modeling.SCMSemantics.marginalX` **定义相同**（见 `marginalX_eq`）；
 此处重述只为让本文件自足**（**不改变任何既有定义**，符合 S1 纪律）。 -/
 noncomputable def margX {X Y : Type u} [Fintype X] [DecidableEq X]
-    (M : PearlHierarchy.SCM X Y) : X → ℝ :=
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : X → ℝ :=
   fun x => ∑ u, M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0)
 
-/-- ⭐ **`margX` 与 `SCMSemantics.marginalX` 是**同一个函数**（定义展开）。 -/
+/-- ⭐ **`margX` 与 `FateV2.Modeling.SCMSemantics.marginalX` 是**同一个函数**（定义展开）。 -/
 theorem margX_eq {X Y : Type u} [Fintype X] [DecidableEq X]
-    (M : PearlHierarchy.SCM X Y) :
-    margX M = SCMSemantics.marginalX M :=
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
+    margX M = FateV2.Modeling.SCMSemantics.marginalX M :=
   rfl
 
 /-- ⭐⭐⭐⭐ **无混杂条件**（**本文件的核心定义**）。
@@ -181,8 +181,8 @@ $$P(Y = y \mid X = x) \;=\; P(Y = y \mid do(X = x)).$$
    **而该充分条件严格强于它**（§6 的 `M2`：`NoConfounding` 成立而
    `NoUDependence` 不成立）—— **⟹ 它不是充分条件的换写。** -/
 def NoConfounding {X Y : Type u} [DecidableEq X] [DecidableEq Y]
-    (M : PearlHierarchy.SCM X Y) : Prop :=
-  ∀ x y, SCMSemantics.condY M x y = SCMSemantics.marginalX M x * SCMSemantics.doLaw M x y
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : Prop :=
+  ∀ x y, FateV2.Modeling.SCMSemantics.condY M x y = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y
 
 /-- ⭐⭐⭐ **`X` 的方程在**正质量处**取常值**（`NoConfounding` 的可判定充分条件）。
 
@@ -196,7 +196,7 @@ $$\textbf{NoUDependence}(M) := \forall u\,v,\ p_U(u)\ne 0 \to p_U(v)\ne 0 \to
 **⭐ 但它只是**充分**条件，不是刻画** ——
 `NoConfounding` 允许 `X` 依赖 `u`，只要 `Y` 的方程在干预后**不再**看到那个依赖
 （§6 的 `M2`：`sg u = (u, fun x => x)`，`X` 依赖 `u`，但 `Y` 只读 `x`）。 -/
-def NoUDependence {X Y : Type u} (M : PearlHierarchy.SCM X Y) : Prop :=
+def NoUDependence {X Y : Type u} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : Prop :=
   ∀ u v, M.pU u ≠ 0 → M.pU v ≠ 0 → (M.sg u).1 = (M.sg v).1
 
 end SCM
@@ -234,9 +234,9 @@ $$\mathrm{condY}\,M\,x\,y = \mu(x)\cdot \mathrm{doLaw}\,M\,x\,y,$$
 | 该条件**有可判定的充分条件** | §5 `noConfounding_of_no_u_dependence` | 分片求和，需 `Finset` 引理 |
 | 该条件**不等价于「方程不共用外生」** | §6 `noConfounding_M2` + `M2_not_noUDependence` | 数值反例，**反驳任务书的「⟺」** |
 | 该条件**归一化后逐字等于 Pearl 的结论** | §2 `noConfounding_iff_condProb_eq_doLaw_guarded` | **双向证明** | -/
-theorem rule1_no_confounding (M : PearlHierarchy.SCM X Y)
+theorem rule1_no_confounding (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (h : SCM.NoConfounding M) :
-    ∀ x y, SCMSemantics.condY M x y = SCMSemantics.marginalX M x * SCMSemantics.doLaw M x y :=
+    ∀ x y, FateV2.Modeling.SCMSemantics.condY M x y = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y :=
   fun x y => h x y
 
 /-- ⭐⭐⭐ **`μ(x) = ∑_y condY x y`**：**`condY` 在 `y` 上求和恰为 `X` 的边缘质量**。
@@ -250,9 +250,9 @@ $$\sum_y \mathrm{condY}\,M\,x\,y = \mu(x) = P(X = x)$$
 **⚠ 本引理是**真计算**：把外层 `∑_u` 与内层 `∑_y` **换序**
 （`Finset.sum_comm`），再用 `∑_y [f x = y] = 1`（`Finset.sum_ite_eq'`）消去内层 ——
 **这一步不能由定义直接得到，需要两个具体的求和引理。** -/
-theorem marginalX_eq_sum_condY (M : PearlHierarchy.SCM X Y) (x : X) :
-    SCMSemantics.marginalX M x = ∑ y, SCMSemantics.condY M x y := by
-  unfold SCMSemantics.marginalX SCMSemantics.condY
+theorem marginalX_eq_sum_condY (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
+    FateV2.Modeling.SCMSemantics.marginalX M x = ∑ y, FateV2.Modeling.SCMSemantics.condY M x y := by
+  unfold FateV2.Modeling.SCMSemantics.marginalX FateV2.Modeling.SCMSemantics.condY
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun u _ => ?_
   rw [← Finset.mul_sum]
@@ -274,10 +274,10 @@ $$\Bigl(\forall x,\ \mu(x) \ne 0\Bigr) \implies
 `condY ≡ 0`（在 `p_U ≥ 0` 下），此时 `0/0 = 0`（Lean 的除法约定）
 **恒等于 `doLaw` 当且仅当 `doLaw ≡ 0`** —— 这**不是**「无混杂」的含义，
 而是退化情形的巧合。**故守卫 `∀ x, μ(x) ≠ 0` 是**语义上必需**的。** -/
-theorem noConfounding_iff_condProb_eq_doLaw_guarded (M : PearlHierarchy.SCM X Y)
-    (hpos : ∀ x, SCMSemantics.marginalX M x ≠ 0) :
+theorem noConfounding_iff_condProb_eq_doLaw_guarded (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
+    (hpos : ∀ x, FateV2.Modeling.SCMSemantics.marginalX M x ≠ 0) :
     SCM.NoConfounding M ↔
-      ∀ x y, SCMSemantics.condY M x y / SCMSemantics.marginalX M x = SCMSemantics.doLaw M x y := by
+      ∀ x y, FateV2.Modeling.SCMSemantics.condY M x y / FateV2.Modeling.SCMSemantics.marginalX M x = FateV2.Modeling.SCMSemantics.doLaw M x y := by
   constructor
   · intro h x y
     rw [h x y]
@@ -293,13 +293,13 @@ theorem noConfounding_iff_condProb_eq_doLaw_guarded (M : PearlHierarchy.SCM X Y)
 $$\mu(x) = 1 \implies \forall y,\ \mathrm{condY}\,M\,x\,y = \mathrm{doLaw}\,M\,x\,y$$
 
 **⭐ 即**：**当 `X = x` 是「必然事件」时，`NoConfounding` 退化为
-`Fate/SCMSemantics.condY_eq_doLaw_of_no_confound` 的结论。**
+`Fate/FateV2.Modeling.SCMSemantics.condY_eq_doLaw_of_no_confound` 的结论。**
 
 **⟹ 本定理把新定义与既有定理**接上** ——
 新定义是既有定理的**严格推广**（既有定理需要 `X` 常值，本定义不需要）。 -/
-theorem eq_doLaw_of_noConfounding_of_marginal_one (M : PearlHierarchy.SCM X Y)
-    (h : SCM.NoConfounding M) (x : X) (hx : SCMSemantics.marginalX M x = 1) :
-    ∀ y, SCMSemantics.condY M x y = SCMSemantics.doLaw M x y := by
+theorem eq_doLaw_of_noConfounding_of_marginal_one (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
+    (h : SCM.NoConfounding M) (x : X) (hx : FateV2.Modeling.SCMSemantics.marginalX M x = 1) :
+    ∀ y, FateV2.Modeling.SCMSemantics.condY M x y = FateV2.Modeling.SCMSemantics.doLaw M x y := by
   intro y
   rw [h x y, hx, one_mul]
 
@@ -320,8 +320,8 @@ $$\mathrm{condY}\,M\,0\,1 = 0, \qquad
 **⭐ 故 `rule1_no_confounding` 的前提是**真能失败**的，不是空条件。** -/
 theorem T35_not_noConfounding : ¬ SCM.NoConfounding FateV2.Predict.T35.M := by
   intro h
-  have h01 : SCMSemantics.condY FateV2.Predict.T35.M 0 1
-      = SCMSemantics.marginalX FateV2.Predict.T35.M 0 * SCMSemantics.doLaw FateV2.Predict.T35.M 0 1 := h 0 1
+  have h01 : FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M 0 1
+      = FateV2.Modeling.SCMSemantics.marginalX FateV2.Predict.T35.M 0 * FateV2.Modeling.SCMSemantics.doLaw FateV2.Predict.T35.M 0 1 := h 0 1
   rw [FateV2.Predict.T35.condY_M, FateV2.Predict.T35.marginalX_M, FateV2.Predict.T35.doLaw_M] at h01
   norm_num at h01
 
@@ -332,8 +332,8 @@ theorem T35_not_noConfounding : ¬ SCM.NoConfounding FateV2.Predict.T35.M := by
 **故本定理断言的是「不能把这个前提硬套到 `M` 上」** ——
 **它给出 `rule1_no_confounding` 的**边界**。** -/
 theorem T35_rule1_boundary :
-    ¬ ∀ x y, SCMSemantics.condY FateV2.Predict.T35.M x y
-        = SCMSemantics.marginalX FateV2.Predict.T35.M x * SCMSemantics.doLaw FateV2.Predict.T35.M x y :=
+    ¬ ∀ x y, FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M x y
+        = FateV2.Modeling.SCMSemantics.marginalX FateV2.Predict.T35.M x * FateV2.Modeling.SCMSemantics.doLaw FateV2.Predict.T35.M x y :=
   T35_not_noConfounding
 
 /-! ===========================================================================
@@ -349,7 +349,7 @@ U = Fin 2,  pU ≡ 1/2,  sg u = (u, fun _ => 0)
 
 **⭐ 它满足 `NoConfounding`**：`Y` 的方程**常值** ⟹ 干预不改任何东西
 （`doLaw M1 x 0 = 1`，`condY M1 x 0 = 1/2 = μ(x)·1`）。 -/
-noncomputable def M1 : PearlHierarchy.SCM (Fin 2) (Fin 2) where
+noncomputable def M1 : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2) where
   U := Fin 2
   pU := fun _ => (1 : ℝ) / 2
   sg := fun u => (u, fun _ => 0)
@@ -363,8 +363,8 @@ theorem if_flip {α : Type} [DecidableEq α] (a b : α) (t : ℝ) :
 
 /-- ⭐⭐ **`M1` 的观测律**：`condY M1 x y = 1/2` 当 `y = 0`，否则 `0`。 -/
 theorem condY_M1 (x y : Fin 2) :
-    SCMSemantics.condY M1 x y = if y = 0 then (1 : ℝ) / 2 else 0 := by
-  have e : SCMSemantics.condY M1 x y
+    FateV2.Modeling.SCMSemantics.condY M1 x y = if y = 0 then (1 : ℝ) / 2 else 0 := by
+  have e : FateV2.Modeling.SCMSemantics.condY M1 x y
       = ∑ u : Fin 2, M1.pU u * (if (M1.sg u).1 = x then (1 : ℝ) else 0)
           * (if (M1.sg u).2 x = y then (1 : ℝ) else 0) := rfl
   rw [e]
@@ -387,8 +387,8 @@ theorem condY_M1 (x y : Fin 2) :
 
 /-- ⭐⭐ **`M1` 的干预律**：`doLaw M1 x y = 1` 当 `y = 0`，否则 `0`（**与 `x` 无关**）。 -/
 theorem doLaw_M1 (x y : Fin 2) :
-    SCMSemantics.doLaw M1 x y = if y = 0 then (1 : ℝ) else 0 := by
-  have e : SCMSemantics.doLaw M1 x y
+    FateV2.Modeling.SCMSemantics.doLaw M1 x y = if y = 0 then (1 : ℝ) else 0 := by
+  have e : FateV2.Modeling.SCMSemantics.doLaw M1 x y
       = ∑ u : Fin 2, M1.pU u * (if (M1.sg u).2 x = y then (1 : ℝ) else 0) := rfl
   rw [e]
   have hstep : ∀ u : Fin 2, M1.pU u * (if (M1.sg u).2 x = y then (1 : ℝ) else 0)
@@ -403,8 +403,8 @@ theorem doLaw_M1 (x y : Fin 2) :
   by_cases hy : y = 0 <;> simp [hy]
 
 /-- ⭐⭐ **`M1` 的 `X` 边缘**：`μ(x) = 1/2`。 -/
-theorem marginalX_M1 (x : Fin 2) : SCMSemantics.marginalX M1 x = (1 : ℝ) / 2 := by
-  have e : SCMSemantics.marginalX M1 x
+theorem marginalX_M1 (x : Fin 2) : FateV2.Modeling.SCMSemantics.marginalX M1 x = (1 : ℝ) / 2 := by
+  have e : FateV2.Modeling.SCMSemantics.marginalX M1 x
       = ∑ u : Fin 2, M1.pU u * (if (M1.sg u).1 = x then (1 : ℝ) else 0) := rfl
   rw [e]
   have hstep : ∀ u : Fin 2, M1.pU u * (if (M1.sg u).1 = x then (1 : ℝ) else 0)
@@ -436,7 +436,7 @@ theorem noConfounding_M1 : SCM.NoConfounding M1 := by
 **⚠ 由 §2 的 `noConfounding_iff_condProb_eq_doLaw_guarded` 与 `noConfounding_M1`
 得到** —— **这是把 §2 的刻画**用在具体模型上**的可核对接口。** -/
 theorem rule1_normalized_M1 (x y : Fin 2) :
-    SCMSemantics.condY M1 x y / SCMSemantics.marginalX M1 x = SCMSemantics.doLaw M1 x y :=
+    FateV2.Modeling.SCMSemantics.condY M1 x y / FateV2.Modeling.SCMSemantics.marginalX M1 x = FateV2.Modeling.SCMSemantics.doLaw M1 x y :=
   (noConfounding_iff_condProb_eq_doLaw_guarded M1
     (fun x => by rw [marginalX_M1]; norm_num)).mp noConfounding_M1 x y
 
@@ -472,7 +472,7 @@ $$\Bigl(\textbf{NoUDependence}(M) \wedge \sum_u p_U(u) = 1\Bigr)
 （`x = x₀` 分支要 `μ(x₀) = 1`）。
 **⭐ 不需要 `p_U ≥ 0`** —— 因为两个分支都靠**指示因子 `[x_u = x]`** 的
 `if_pos`/`if_neg` 直接分类，而非靠「和为零则每项为零」的论证。 -/
-theorem noConfounding_of_no_u_dependence (M : PearlHierarchy.SCM X Y)
+theorem noConfounding_of_no_u_dependence (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (h : SCM.NoUDependence M) (hnorm : ∑ u, M.pU u = 1) :
     SCM.NoConfounding M := by
   intro x y
@@ -480,9 +480,9 @@ theorem noConfounding_of_no_u_dependence (M : PearlHierarchy.SCM X Y)
   · obtain ⟨u₀, hu₀⟩ := hex
     have hx₀ : ∀ u, M.pU u ≠ 0 → (M.sg u).1 = (M.sg u₀).1 := fun u hu => h u u₀ hu hu₀
     -- `μ(x₀) = 1`
-    have hμ1 : ∀ x, x = (M.sg u₀).1 → SCMSemantics.marginalX M x = 1 := by
+    have hμ1 : ∀ x, x = (M.sg u₀).1 → FateV2.Modeling.SCMSemantics.marginalX M x = 1 := by
       intro x hx
-      unfold SCMSemantics.marginalX
+      unfold FateV2.Modeling.SCMSemantics.marginalX
       have hone : ∀ u, M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0) = M.pU u := by
         intro u
         by_cases hu : M.pU u = 0
@@ -491,8 +491,8 @@ theorem noConfounding_of_no_u_dependence (M : PearlHierarchy.SCM X Y)
       rw [Finset.sum_congr rfl (fun u _ => hone u), hnorm]
     by_cases hsame : x = (M.sg u₀).1
     · -- `x = x₀`：`condY = doLaw`，且 `μ(x) = 1`
-      have hcd : SCMSemantics.condY M x y = SCMSemantics.doLaw M x y := by
-        unfold SCMSemantics.condY SCMSemantics.doLaw
+      have hcd : FateV2.Modeling.SCMSemantics.condY M x y = FateV2.Modeling.SCMSemantics.doLaw M x y := by
+        unfold FateV2.Modeling.SCMSemantics.condY FateV2.Modeling.SCMSemantics.doLaw
         refine Finset.sum_congr rfl fun u _ => ?_
         by_cases hu : M.pU u = 0
         · simp [hu]
@@ -500,16 +500,16 @@ theorem noConfounding_of_no_u_dependence (M : PearlHierarchy.SCM X Y)
           rw [if_pos hxu]; ring
       rw [hcd, hμ1 x hsame, one_mul]
     · -- `x ≠ x₀`：两边都是 `0`
-      have hzero : SCMSemantics.condY M x y = 0 := by
-        unfold SCMSemantics.condY
+      have hzero : FateV2.Modeling.SCMSemantics.condY M x y = 0 := by
+        unfold FateV2.Modeling.SCMSemantics.condY
         refine Finset.sum_eq_zero fun u _ => ?_
         by_cases hu : M.pU u = 0
         · simp [hu]
         · have hxu : (M.sg u).1 ≠ x := by
             rw [hx₀ u hu]; exact fun hh => hsame hh.symm
           rw [if_neg hxu]; ring
-      have hμ0 : SCMSemantics.marginalX M x = 0 := by
-        unfold SCMSemantics.marginalX
+      have hμ0 : FateV2.Modeling.SCMSemantics.marginalX M x = 0 := by
+        unfold FateV2.Modeling.SCMSemantics.marginalX
         refine Finset.sum_eq_zero fun u _ => ?_
         by_cases hu : M.pU u = 0
         · simp [hu]
@@ -542,15 +542,15 @@ U = Fin 2,  pU ≡ 1/2,  sg u = (u, fun x => x)
 
 **⟹ 「方程是否共用外生」**不是**「有无混杂」的判据。
 **正确的判据是 `NoConfounding`（§1）—— 它问的是「干预后 `Y` 面对的外生条件分布是否改变」。** -/
-noncomputable def M2 : PearlHierarchy.SCM (Fin 2) (Fin 2) where
+noncomputable def M2 : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2) where
   U := Fin 2
   pU := fun _ => (1 : ℝ) / 2
   sg := fun u => (u, fun x => x)
 
 /-- ⭐⭐ **`M2` 的观测律**：`condY M2 x y = 1/2` 当 `x = y`，否则 `0`。 -/
 theorem condY_M2 (x y : Fin 2) :
-    SCMSemantics.condY M2 x y = if x = y then (1 : ℝ) / 2 else 0 := by
-  have e : SCMSemantics.condY M2 x y
+    FateV2.Modeling.SCMSemantics.condY M2 x y = if x = y then (1 : ℝ) / 2 else 0 := by
+  have e : FateV2.Modeling.SCMSemantics.condY M2 x y
       = ∑ u : Fin 2, M2.pU u * (if (M2.sg u).1 = x then (1 : ℝ) else 0)
           * (if (M2.sg u).2 x = y then (1 : ℝ) else 0) := rfl
   rw [e, Fin.sum_univ_two]
@@ -565,8 +565,8 @@ theorem condY_M2 (x y : Fin 2) :
 
 /-- ⭐⭐ **`M2` 的干预律**：`doLaw M2 x y = 1` 当 `x = y`，否则 `0`（**`Y = x` 确定**）。 -/
 theorem doLaw_M2 (x y : Fin 2) :
-    SCMSemantics.doLaw M2 x y = if x = y then (1 : ℝ) else 0 := by
-  have e : SCMSemantics.doLaw M2 x y
+    FateV2.Modeling.SCMSemantics.doLaw M2 x y = if x = y then (1 : ℝ) else 0 := by
+  have e : FateV2.Modeling.SCMSemantics.doLaw M2 x y
       = ∑ u : Fin 2, M2.pU u * (if (M2.sg u).2 x = y then (1 : ℝ) else 0) := rfl
   rw [e, Fin.sum_univ_two]
   have h3 : (M2.sg (0 : Fin 2)).2 x = x := rfl
@@ -577,8 +577,8 @@ theorem doLaw_M2 (x y : Fin 2) :
   fin_cases x <;> fin_cases y <;> norm_num
 
 /-- ⭐⭐ **`M2` 的 `X` 边缘**：`μ(x) = 1/2`。 -/
-theorem marginalX_M2 (x : Fin 2) : SCMSemantics.marginalX M2 x = (1 : ℝ) / 2 := by
-  have e : SCMSemantics.marginalX M2 x
+theorem marginalX_M2 (x : Fin 2) : FateV2.Modeling.SCMSemantics.marginalX M2 x = (1 : ℝ) / 2 := by
+  have e : FateV2.Modeling.SCMSemantics.marginalX M2 x
       = ∑ u : Fin 2, M2.pU u * (if (M2.sg u).1 = x then (1 : ℝ) else 0) := rfl
   rw [e, Fin.sum_univ_two]
   have h1 : (M2.sg (0 : Fin 2)).1 = (0 : Fin 2) := rfl
@@ -633,7 +633,7 @@ theorem confounding_is_not_syntactic :
   **实测不成立。** 用「逐条解析定理主体」的方式核对（见 `_audit/T2` 报告）：
 
   * `theorem`/`lemma` **共 21 条**；
-  * `:= rfl` 的**只有 1 条**（`margX_eq`，`margX` 与 `SCMSemantics.marginalX`
+  * `:= rfl` 的**只有 1 条**（`margX_eq`，`margX` 与 `FateV2.Modeling.SCMSemantics.marginalX`
     是同一函数的两种写法 —— **有价值的跨模块接线**，保留）；
   * **其余 20 条都是 `by` 块或项级实质证明**。
 
@@ -669,10 +669,10 @@ $$\Bigl(\sum_u p_U(u) = 1\Bigr) \implies \forall x,\quad
 **⚠ 诚实登记（本轮实测发现）**：**归一化假设 `hnorm` 删不掉** ——
 不加它时等式右边是 `∑_u p_U(u)` 而非 `1`，
 **故「`doLaw` 是 `Y` 上的概率律」是本文件里**唯一**依赖 `p_U` 归一化的事实。** -/
-theorem doLaw_sum_eq_one (M : PearlHierarchy.SCM X Y)
+theorem doLaw_sum_eq_one (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (hnorm : ∑ u, M.pU u = 1) (x : X) :
-    ∑ y, SCMSemantics.doLaw M x y = 1 := by
-  have e : ∑ y, SCMSemantics.doLaw M x y
+    ∑ y, FateV2.Modeling.SCMSemantics.doLaw M x y = 1 := by
+  have e : ∑ y, FateV2.Modeling.SCMSemantics.doLaw M x y
       = ∑ y, ∑ u, M.pU u * (if (M.sg u).2 x = y then (1 : ℝ) else 0) := rfl
   rw [e]
   rw [show (∑ y : Y, ∑ u : M.U, M.pU u * (if (M.sg u).2 x = y then (1 : ℝ) else 0))
@@ -695,9 +695,9 @@ $$\sum_x \mu(x) = \sum_u p_U(u).$$
 **⭐ 为何非平凡**：需要把 `∑_x` 与 `∑_u` **换序**，
 并证明 `∑_x [(sg u).1 = x] = 1`（**每条外生实现恰好贡献 1 个单位质量给某个 `x`**）。
 **⟹ 这是「`μ` 是 `p_U` 经 `(sg ·).1` 推前」的数值陈述。** -/
-theorem marginalX_sum_eq_pU (M : PearlHierarchy.SCM X Y) :
-    ∑ x, SCMSemantics.marginalX M x = ∑ u, M.pU u := by
-  have e : ∑ x, SCMSemantics.marginalX M x
+theorem marginalX_sum_eq_pU (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
+    ∑ x, FateV2.Modeling.SCMSemantics.marginalX M x = ∑ u, M.pU u := by
+  have e : ∑ x, FateV2.Modeling.SCMSemantics.marginalX M x
       = ∑ x, ∑ u, M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0) := rfl
   rw [e]
   rw [show (∑ x : X, ∑ u : M.U, M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0))
@@ -721,8 +721,8 @@ $$\sum_x \sum_y \mathrm{condY}\,M\,x\,y = \sum_u p_U(u).$$
 `marginalX_sum_eq_pU` 的**合成**。
 **它检查 `condY` 确实是「联合质量」而非归一化条件概率** ——
 **若 `condY` 的每个 `x` 切片都归一化到 `1`，本式会给出 `#X = ∑ p_U`，与 `X` 的大小挂钩。** -/
-theorem sum_condY_eq_sum_pU (M : PearlHierarchy.SCM X Y) :
-    ∑ x, ∑ y, SCMSemantics.condY M x y = ∑ u, M.pU u := by
+theorem sum_condY_eq_sum_pU (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
+    ∑ x, ∑ y, FateV2.Modeling.SCMSemantics.condY M x y = ∑ u, M.pU u := by
   rw [← marginalX_sum_eq_pU M]
   exact Finset.sum_congr rfl fun x _ => (marginalX_eq_sum_condY M x).symm
 
@@ -739,28 +739,28 @@ $$\Bigl(\exists y_0,\ \forall u,\ (M.\mathrm{sg}\,u).2 = \mathrm{const}\;y_0\Big
 **⭐ 证明的实质**：`Y` 常值 `y₀` 时
 `condY M x y = μ(x)·[y₀ = y]` 而 `doLaw M x y = (∑_u p_U u)·[y₀ = y] = [y₀ = y]`，
 **故两边都等于 `μ(x)·[y₀ = y]`**（**需归一化 `hnorm`**）。** -/
-theorem noConfounding_of_Y_eq_const (M : PearlHierarchy.SCM X Y) (y0 : Y)
+theorem noConfounding_of_Y_eq_const (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (y0 : Y)
     (hf : ∀ u, (M.sg u).2 = fun _ => y0) (hnorm : ∑ u, M.pU u = 1) :
     SCM.NoConfounding M := by
   intro x y
-  have hcond : SCMSemantics.condY M x y
-      = SCMSemantics.marginalX M x * (if y0 = y then (1 : ℝ) else 0) := by
-    have e : SCMSemantics.condY M x y
+  have hcond : FateV2.Modeling.SCMSemantics.condY M x y
+      = FateV2.Modeling.SCMSemantics.marginalX M x * (if y0 = y then (1 : ℝ) else 0) := by
+    have e : FateV2.Modeling.SCMSemantics.condY M x y
         = ∑ u, (M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0))
             * (if y0 = y then (1 : ℝ) else 0) := by
-      unfold SCMSemantics.condY
+      unfold FateV2.Modeling.SCMSemantics.condY
       refine Finset.sum_congr rfl fun u _ => ?_
       rw [hf u]
-    have e2 : SCMSemantics.marginalX M x * (if y0 = y then (1 : ℝ) else 0)
+    have e2 : FateV2.Modeling.SCMSemantics.marginalX M x * (if y0 = y then (1 : ℝ) else 0)
         = ∑ u, (M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0))
             * (if y0 = y then (1 : ℝ) else 0) := by
-      unfold SCMSemantics.marginalX
+      unfold FateV2.Modeling.SCMSemantics.marginalX
       rw [Finset.sum_mul]
     rw [e, e2]
-  have hdo : SCMSemantics.doLaw M x y = if y0 = y then (1 : ℝ) else 0 := by
-    have e : SCMSemantics.doLaw M x y
+  have hdo : FateV2.Modeling.SCMSemantics.doLaw M x y = if y0 = y then (1 : ℝ) else 0 := by
+    have e : FateV2.Modeling.SCMSemantics.doLaw M x y
         = ∑ u, M.pU u * (if y0 = y then (1 : ℝ) else 0) := by
-      unfold SCMSemantics.doLaw
+      unfold FateV2.Modeling.SCMSemantics.doLaw
       refine Finset.sum_congr rfl fun u _ => ?_
       rw [hf u]
     rw [e, ← Finset.sum_mul, hnorm, one_mul]
@@ -776,9 +776,9 @@ $$\mu(x) \ne 0 \implies \textbf{NoConfounding}(M) \implies
 且是**双向**：`→` 用 `mul_eq_zero` 排除 `μ(x) = 0` 分支，`←` 用 `mul_zero`。
 **⟹ 这是「`condY` 与 `doLaw` 在 `x` 切片上支持集相同」的陈述**，
 **可用于由 `doLaw` 的支持反推观测律的支持。** -/
-theorem condY_eq_zero_iff_doLaw_eq_zero (M : PearlHierarchy.SCM X Y)
-    (h : SCM.NoConfounding M) (x : X) (hx : SCMSemantics.marginalX M x ≠ 0) (y : Y) :
-    SCMSemantics.condY M x y = 0 ↔ SCMSemantics.doLaw M x y = 0 := by
+theorem condY_eq_zero_iff_doLaw_eq_zero (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
+    (h : SCM.NoConfounding M) (x : X) (hx : FateV2.Modeling.SCMSemantics.marginalX M x ≠ 0) (y : Y) :
+    FateV2.Modeling.SCMSemantics.condY M x y = 0 ↔ FateV2.Modeling.SCMSemantics.doLaw M x y = 0 := by
   rw [h x y]
   constructor
   · intro h0
@@ -799,7 +799,7 @@ theorem condY_eq_zero_iff_doLaw_eq_zero (M : PearlHierarchy.SCM X Y)
 
   * **`theorem`/`lemma` 共 26 条**；
   * **结论为 `rfl` 的仅 1 条**：`margX_eq`（**有价值的跨模块接线**：`SCM.margX`
-    与 `SCMSemantics.marginalX` 是同一函数的两种写法）；
+    与 `FateV2.Modeling.SCMSemantics.marginalX` 是同一函数的两种写法）；
   * **其余 25 条均为 `by` 块或项级实质证明**。
 
   **⟹ 本模块的实际 rfl 比例是 4%（1/26），不是 92%。**
@@ -831,7 +831,7 @@ $$\Bigl(\forall u,\ (\mathrm{sg}'\,u).2 = (\mathrm{sg}\,u)_2\Bigr)
     = \sum_u p_U(u)\,[\mathrm{sg}_u(x) = y].$$
 
 **⭐⭐ 为何非平凡（这是本节的**核心结构事实**）**：
-`SCMSemantics.doLaw` 的定义里**没有** `[(sg u).1 = x]` 这个筛选因子，
+`FateV2.Modeling.SCMSemantics.doLaw` 的定义里**没有** `[(sg u).1 = x]` 这个筛选因子，
 而 `condY` 里**有**。
 **故 `doLaw` 对 `X` 的方程完全不敏感** ——
 **这正是「干预 `do(X := x)` 切断 `X` 的入边」的**数值/句法体现**。**
@@ -858,7 +858,7 @@ $$\Bigl(\exists x_0,\ \forall u,\ (M.\mathrm{sg}\,u).1 = x_0\Bigr)
 前件可推出，反之不然**（在 `pU` 有零点的模型上，`NoUDependence` 可能成立
 而「全部 `u` 常值」不成立）。
 **⟹ 这是一个**真正更弱的前件**给出的充分条件，不是 §5 的换写。** -/
-theorem noConfounding_of_sg_fst_const (M : PearlHierarchy.SCM X Y) (x0 : X)
+theorem noConfounding_of_sg_fst_const (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x0 : X)
     (hfst : ∀ u, (M.sg u).1 = x0) (hnorm : ∑ u, M.pU u = 1) :
     SCM.NoConfounding M :=
   noConfounding_of_no_u_dependence M
@@ -874,11 +874,11 @@ $$\textbf{NoConfounding}(M) \implies \mu(x) = 1 \implies
 再把 `μ(x) = 1` 提出，**最后把 `∑` 的等式两边对齐**。
 **⟹ 这不是展开，是「两个律的归一化等价」的陈述；**
 **它给出「`μ(x) = 1` 时观测律与干预律**同归一化**」的可用接口。** -/
-theorem doLaw_sum_eq_one_of_condY_sum (M : PearlHierarchy.SCM X Y)
-    (h : SCM.NoConfounding M) (x : X) (hx : SCMSemantics.marginalX M x = 1)
-    (hc : ∑ y, SCMSemantics.condY M x y = 1) :
-    ∑ y, SCMSemantics.doLaw M x y = 1 := by
-  have e : ∑ y, SCMSemantics.doLaw M x y = ∑ y, SCMSemantics.condY M x y := by
+theorem doLaw_sum_eq_one_of_condY_sum (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
+    (h : SCM.NoConfounding M) (x : X) (hx : FateV2.Modeling.SCMSemantics.marginalX M x = 1)
+    (hc : ∑ y, FateV2.Modeling.SCMSemantics.condY M x y = 1) :
+    ∑ y, FateV2.Modeling.SCMSemantics.doLaw M x y = 1 := by
+  have e : ∑ y, FateV2.Modeling.SCMSemantics.doLaw M x y = ∑ y, FateV2.Modeling.SCMSemantics.condY M x y := by
     refine Finset.sum_congr rfl fun y _ => ?_
     rw [h x y, hx, one_mul]
   rw [e, hc]

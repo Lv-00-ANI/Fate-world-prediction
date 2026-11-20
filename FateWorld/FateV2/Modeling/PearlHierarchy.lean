@@ -9,7 +9,7 @@ import Mathlib.Tactic.Ring
 
 /-!
   ## 迁移登记
-  - 来源：Legacy/ProperFit-6e03674/PearlHierarchy.lean
+  - 来源：Legacy/ProperFit-6e03674/FateV2.Modeling.PearlHierarchy.lean
   - 动作：B（适配）
   - 对应环节：—
   - 依赖裁决：D-007 D-008 D-014

@@ -72,7 +72,7 @@ open FateV2.Modeling
 
 **⚠ 这是「`X → Y` 有边」的**语义刻画** —— 若 `Y` 的方程对 `X` 完全不敏感，
 则**不存在**从 `X` 到 `Y` 的因果通路。** -/
-def DependsOn {X Y : Type} (M : PearlHierarchy.SCM X Y) : Prop :=
+def DependsOn {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : Prop :=
   ∃ u : M.U, ∃ x₁ x₂ : X, (M.sg u).2 x₁ ≠ (M.sg u).2 x₂
 
 /-- ⭐⭐⭐ **从 `SCM` 构造的**因果图**（两顶点：`X` 与 `Y`）。
@@ -81,7 +81,7 @@ def DependsOn {X Y : Type} (M : PearlHierarchy.SCM X Y) : Prop :=
 **⭐ 边**：**只有一条可能的边 `X → Y`，当且仅当 `DependsOn M`。**
 
 **⭐⭐ 这是**真正的**语义→图映射：`SCM` 结构里没有 `Adj`，故这个图是**算出来的**。** -/
-def graphOfSCM {X Y : Type} (M : PearlHierarchy.SCM X Y) :
+def graphOfSCM {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
     CausalDirection.CausalGraph (Sum Unit Unit) where
   Adj := fun a b =>
     a = Sum.inl () ∧ b = Sum.inr () ∧ DependsOn M
@@ -108,7 +108,7 @@ def graphOfSCM {X Y : Type} (M : PearlHierarchy.SCM X Y) :
 这里 `graphOfSCM` 与 `SCM` **是两个独立结构**，**联系需要证明**。** -/
 
 /-- ⭐⭐⭐ **`graphOfSCM` 有边 ⟺ `DependsOn`**（**实质联系**）。 -/
-theorem graphOfSCM_adj_iff {X Y : Type} (M : PearlHierarchy.SCM X Y) :
+theorem graphOfSCM_adj_iff {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
     (graphOfSCM M).Adj (Sum.inl ()) (Sum.inr ()) ↔ DependsOn M := by
   unfold graphOfSCM DependsOn
   constructor
@@ -120,7 +120,7 @@ theorem graphOfSCM_adj_iff {X Y : Type} (M : PearlHierarchy.SCM X Y) :
 /-- ⭐⭐⭐ **若 `Y` 的方程是常函数，则**没有** `X → Y` 边。**
 
 **⭐⭐ 这是**非平凡**的**：它从**语义条件**（方程是常函数）推出**图的结构**（无边）。** -/
-theorem no_edge_of_constant {X Y : Type} (M : PearlHierarchy.SCM X Y)
+theorem no_edge_of_constant {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (hconst : ∀ u : M.U, ∃ y : Y, ∀ x : X, (M.sg u).2 x = y) :
     ¬ (graphOfSCM M).Adj (Sum.inl ()) (Sum.inr ()) := by
   rw [graphOfSCM_adj_iff]
@@ -132,7 +132,7 @@ theorem no_edge_of_constant {X Y : Type} (M : PearlHierarchy.SCM X Y)
 
 **⭐⭐ 这是**实质内容**：**干预 `X` 后，`X → Y` 的边仍在**（当且仅当 `Y` 依赖 `X`）。**
 **⟹ 这正是 Pearl「**do 只删指向 X 的边**，不删从 X 出发的边」的**语义依据**。** -/
-theorem doX_preserves_outgoing {X Y : Type} (M : PearlHierarchy.SCM X Y) (x : X) :
+theorem doX_preserves_outgoing {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
     (graphOfSCM (DoCalculus.doX M x)).Adj (Sum.inl ()) (Sum.inr ())
       ↔ (graphOfSCM M).Adj (Sum.inl ()) (Sum.inr ()) := by
   rw [graphOfSCM_adj_iff, graphOfSCM_adj_iff]

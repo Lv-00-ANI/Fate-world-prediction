@@ -14,7 +14,7 @@ import FateWorld.FateV2.Rules.LawRuleToTraj
 -/
 
 /-! ===========================================================================
-  §LR+  ⭐⭐⭐⭐ **`PearlHierarchy.SCM` ⟹ `LawRule`：桥推进（第 2 轮）**
+  §LR+  ⭐⭐⭐⭐ **`FateV2.Modeling.PearlHierarchy.SCM` ⟹ `LawRule`：桥推进（第 2 轮）**
 
   ## 0. 与 `Fate/SCMLawBridge.lean` 的分工
 
@@ -90,7 +90,7 @@ variable {Xc : Type} [Fintype Xc] [DecidableEq Xc]
 
 `SCMLawBridge` 的 `lawAt` 的签名里 `C : CtxSpace` 是**哑参数**：
 `lawAt M … C c y` **不依赖** `c`（定义上 `fun _ y => …`）。
-这是 `PearlHierarchy.SCM` **类型里没有 `CtxSpace`** 的直接后果，
+这是 `FateV2.Modeling.PearlHierarchy.SCM` **类型里没有 `CtxSpace`** 的直接后果，
 `SCMLawBridge` §4 如实登记为缺口，但**未**给出补救构造。
 
 **本定义即补救**：不改 `SCM` 类型，而把「随上下文变化的机制」
@@ -100,7 +100,7 @@ $$(\mathrm{lawFam}\,M)\,c\;y \;=\; \bigl(\mathrm{lawAt}\,(M\,c)\bigr)\;c\;y .$$
 
 **读法**：`M : C.Carrier → SCM X Y` 是「每个上下文一个结构机制」。
 **⟹ 上下文不再被丢弃，而是被 `SCM` 族消费。** -/
-noncomputable def lawFam (M : C.Carrier → PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+noncomputable def lawFam (M : C.Carrier → FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) : LawRule C SX Yb :=
@@ -113,7 +113,7 @@ noncomputable def lawFam (M : C.Carrier → PearlHierarchy.SCM Xc Yc) (SX : Stat
 `lawFam` **没有**引入任何新语义，它只是把 `lawAt` 沿 `c` **重新索引**。
 故 `SCMLawBridge` 关于 `lawAt` 的**全部**结论（`isPoint`、`L3` 决定性、
 桥主等式）**逐条继承**到 `lawFam` 的每个纤维（见下三条）。 -/
-theorem lawFam_apply (M : C.Carrier → PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem lawFam_apply (M : C.Carrier → FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) (c : C.Carrier) :
@@ -124,7 +124,7 @@ theorem lawFam_apply (M : C.Carrier → PearlHierarchy.SCM Xc Yc) (SX : StateSpa
 
 **⟹ 上下文纤维化不降档**：即使在每个 `c` 处机制不同，
 允许集仍然逐点是单点集。 -/
-theorem isPoint_lawFam (M : C.Carrier → PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem isPoint_lawFam (M : C.Carrier → FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) : LawRule.IsPoint (lawFam M SX e Yb φ) :=
@@ -137,9 +137,9 @@ theorem isPoint_lawFam (M : C.Carrier → PearlHierarchy.SCM Xc Yc) (SX : StateS
 
 **⟹ 这是 `SCMLawBridge.L3_determines_lawAt` 沿 `c` 的**逐点提升**：
 证明只用 `funext` + 上述单点版本，故**不重复**实质推理
-（实质部分在 `PearlHierarchy.L3_determines_L2`，已在 `SCMLawBridge` 消费）。 -/
+（实质部分在 `FateV2.Modeling.PearlHierarchy.L3_determines_L2`，已在 `SCMLawBridge` 消费）。 -/
 theorem L3_determines_lawFam
-    {M₁ M₂ : C.Carrier → PearlHierarchy.SCM Xc Yc} [DecidableEq (Xc → Yc)]
+    {M₁ M₂ : C.Carrier → FateV2.Modeling.PearlHierarchy.SCM Xc Yc} [DecidableEq (Xc → Yc)]
     (SX : StateSpace) [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier)
@@ -175,19 +175,19 @@ rewrite 失败）。
 **语义结论不变**（外生不确定性消失 ⟹ 确定性机制），但证明**必须**经过这两步。 -/
 
 /-- ⭐ **点质量外生律 ⟹ `L2_do` 是点质量**（沿结构方程读数）。 -/
-theorem L2_do_of_pointMass (M : PearlHierarchy.SCM Xc Yc) (u₀ : M.U)
+theorem L2_do_of_pointMass (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (u₀ : M.U)
     (h0 : ∀ u : M.U, u ≠ u₀ → M.pU u = 0) (h1 : M.pU u₀ = 1) (x : Xc) :
     M.L2_do x = fun y => if (M.sg u₀).2 x = y then (1 : ℝ) else 0 := by
   classical
   funext y
-  simp only [PearlHierarchy.SCM.L2_do, PearlHierarchy.push]
+  simp only [FateV2.Modeling.PearlHierarchy.SCM.L2_do, FateV2.Modeling.PearlHierarchy.push]
   rw [Finset.sum_eq_single u₀]
   · simp [h1]
   · intro b _ hb; simp [h0 b hb]
   · intro hc; exact absurd (Finset.mem_univ _) hc
 
 /-- ⭐⭐ **点质量外生律 ⟹ 推出测度是 Dirac**（§2 两个正向定理的公共引擎）。 -/
-theorem pushMeasure_L2_do_of_pointMass (M : PearlHierarchy.SCM Xc Yc)
+theorem pushMeasure_L2_do_of_pointMass (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc)
     (Yb : OutSpace) [MeasurableSpace Yb.Carrier] (φ : Yc → Yb.Carrier)
     (u₀ : M.U) (x : Xc)
     (h0 : ∀ u : M.U, u ≠ u₀ → M.pU u = 0) (h1 : M.pU u₀ = 1) :
@@ -207,7 +207,7 @@ $$\texttt{IsDirac}\,(\mathrm{lawAt}\,M) \iff
 **这是定义展开**（`IsDirac` 与 `lawAt` 各自的 `∃` 逐点对齐），
 它的用处是**把闸 A 的判定完全交给推出测度**——
 后者可以用 `SCM.pushMeasure_apply` **逐原子计算**（见 §2.2 的一般障碍）。 -/
-theorem isDirac_lawAt_iff (M : PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem isDirac_lawAt_iff (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) (C : CtxSpace) [Nonempty C.Carrier] :
@@ -233,7 +233,7 @@ $$\mathrm{pushMeasure}\,\varphi\,p = \delta_{\varphi(y)}$$
 **⟹ 语义**：外生不确定性**消失**（`u₀` 是唯一实现），SCM 退化为**确定性机制**
 `y ↦ φ((sg u₀).2 (e^{-1}y))`。**这是「SCM 可算」的确切条件**，
 且它是**关于 SCM 的**条件（`pU` 的形状），**不是**关于 `LawRule` 的。 -/
-theorem isDirac_lawAt_of_pointMass (M : PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem isDirac_lawAt_of_pointMass (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) (C : CtxSpace) (u₀ : M.U)
@@ -263,7 +263,7 @@ $$\delta_{\;\varphi\left((\mathrm{sg}\,u_0).2\,(e^{-1}y)\right)} .$$
 并把终点**写成 SCM 的结构量**（`sg` 的结构方程 + 桥参数 `φ`）。
 `SCMLawBridge` §4 只说「`lawAt` 是 `IsPoint`、接不上 `TrajGen`」——
 **本定理给出接上的条件与形式**。 -/
-theorem exists_detFun_lawAt_of_pointMass (M : PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem exists_detFun_lawAt_of_pointMass (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) (C : CtxSpace) (u₀ : M.U)
@@ -280,7 +280,7 @@ $$\mathrm{lawAt}\,M = \mathrm{DetFun.toLaw}\Bigl(c,\,y \mapsto
 
 **⟹ 这条是 `exists_detFun_lawAt_of_pointMass` 的**可计算版本****：
 见证**不是** `Classical.choose`，而是**写出来的** SCM 表达式。 -/
-theorem detFun_lawAt (M : PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem detFun_lawAt (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) (C : CtxSpace) (u₀ : M.U)
@@ -368,7 +368,7 @@ variable {Xc : Type} [Fintype Xc] [DecidableEq Xc]
 
 **⟹ 这条**直接否定**「`SCMLawBridge.isPoint_lawAt` 可升级」**：
 `IsPoint` **恒真**，`IsDirac` **一般不真**，二者的差额在这里是**机器可见**的。 -/
-theorem not_isDirac_lawAt_of_two_atoms (M : PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem not_isDirac_lawAt_of_two_atoms (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     [DecidableEq Yb.Carrier]
@@ -409,7 +409,7 @@ variable {Xc : Type} [Fintype Xc] [DecidableEq Xc]
 **⚠ 注意**：`IsPointDet` 与 `LawRuleToTraj.IsDirac` **是同一个谓词**
 （两者都要求 `∃ y, R c x = {δ_y}`），故本定理与 `isDirac_lawAt_iff`
 **内容相同**；此处保留是为了让 `SCMLawBridge` §5 的 `toRule` 用法**有据可引**。 -/
-theorem isPointDet_lawAt_iff (M : PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
+theorem isPointDet_lawAt_iff (M : FateV2.Modeling.PearlHierarchy.SCM Xc Yc) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : Xc ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Yc → Yb.Carrier) (C : CtxSpace) [Nonempty C.Carrier] :

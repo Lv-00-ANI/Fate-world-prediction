@@ -1780,9 +1780,9 @@ theorem backdoor_interface_consistent
         FateV2.Predict.R277.adjustLaw FateV2.Predict.R277.zb x y
           = FateV2.Predict.R277.doLaw2 FateV2.Predict.R277.zb x y)
     -- (2) do-算子的分布层幂等（doLaw 对 do 是恒等）
-    ∧ SCMSemantics.doLaw (DoCalculus.doX M x) x' = SCMSemantics.doLaw M x'
+    ∧ FateV2.Modeling.SCMSemantics.doLaw (DoCalculus.doX M x) x' = FateV2.Modeling.SCMSemantics.doLaw M x'
     -- (3) `doLaw` 就是 Pearl 层级 L2 的读出
-    ∧ SCMSemantics.doLaw M x' = M.L2_do x'
+    ∧ FateV2.Modeling.SCMSemantics.doLaw M x' = M.L2_do x'
     -- (4) `do` 不动外生律
     ∧ (DoCalculus.doX M x).pU = M.pU := by
   refine ⟨fun x y =>
@@ -1833,11 +1833,11 @@ theorem causal_query_interface_well_defined
           = FateV2.Predict.R277.doLaw2 FateV2.Predict.R277.zb x y)
     -- (3) do-算子的分布层律：幂等 + 后写者胜
     ∧ (∀ x x' x'' : X,
-        SCMSemantics.doLaw (DoCalculus.doX M x) x' = SCMSemantics.doLaw M x'
-        ∧ SCMSemantics.doLaw (DoCalculus.doX (DoCalculus.doX M x) x') x''
-            = SCMSemantics.doLaw M x'')
+        FateV2.Modeling.SCMSemantics.doLaw (DoCalculus.doX M x) x' = FateV2.Modeling.SCMSemantics.doLaw M x'
+        ∧ FateV2.Modeling.SCMSemantics.doLaw (DoCalculus.doX (DoCalculus.doX M x) x') x''
+            = FateV2.Modeling.SCMSemantics.doLaw M x'')
     -- (4) L3 唯一决定 L1 与全部 doLaw
-    ∧ (M.L1_obs = N.L1_obs ∧ SCMSemantics.doLaw M = SCMSemantics.doLaw N) :=
+    ∧ (M.L1_obs = N.L1_obs ∧ FateV2.Modeling.SCMSemantics.doLaw M = FateV2.Modeling.SCMSemantics.doLaw N) :=
   ⟨fun x y => FateV2.Predict.WiringFrontdoor.worldModel_frontdoor_identification W hX hQ hMed x y,
    fun x y => FateV2.Predict.WiringBackdoorFixed.backdoorSep_consumed_adjust_eq_do hsep hpos x y,
    fun x x' x'' => ⟨FateV2.Predict.CausalRouteDo.doLaw_stable_under_do M x x',
@@ -2051,7 +2051,7 @@ theorem worldModel_capstone
           = FateV2.Predict.R277.doLaw2 FateV2.Predict.R277.zb xb yb)
     -- (7) do-算子的分布层幂等
     ∧ (∀ (M : SCM (Fin 2) (Fin 2)) (a b : Fin 2),
-        SCMSemantics.doLaw (DoCalculus.doX M a) b = SCMSemantics.doLaw M b) := by
+        FateV2.Modeling.SCMSemantics.doLaw (DoCalculus.doX M a) b = FateV2.Modeling.SCMSemantics.doLaw M b) := by
   refine ⟨ThetaConvergence.linWorld_tendsto_thetaStar η θstar x θ₀ hx hη,
     OptimalEta.c_one,
     ThetaConvergence.linWorld_one_step_exact θstar x θ₀ hx,

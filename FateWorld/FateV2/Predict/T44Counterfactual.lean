@@ -50,7 +50,7 @@ import Mathlib.Logic.Basic
 
   ## ⭐ 本文件的形式化策略
 
-  **不用 `PearlHierarchy.SCM`**，而用「结构方程 + 外生」的最小抽象形式：
+  **不用 `FateV2.Modeling.PearlHierarchy.SCM`**，而用「结构方程 + 外生」的最小抽象形式：
 
   ```
   structure SCM (U X Y : Type*) where

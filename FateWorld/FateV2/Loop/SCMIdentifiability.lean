@@ -538,7 +538,7 @@ $$\forall M : \mathrm{SCM}\ X\ Y,\quad \neg\,\mathrm{Identifiable}\,(\mathrm{scm
 升级为机器检验结论**：裸 `SCM` 的世界模型**永远**不可辨识参数，
 **无论 `sg` 怎么写**。与 `SCMResidual.scmStep_indep_theta`（`rfl` 级，
 单步）互为「语义版 / 定义版」。 -/
-theorem scmToParam_not_identifiable {X Y : Type} (M : PearlHierarchy.SCM X Y)
+theorem scmToParam_not_identifiable {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [Nonempty Y] : ¬ Identifiable (scmToParam M) :=
   @scmThetaSubsingleton_not_identifiable X Y (scmToParam M) _ inferInstance
 

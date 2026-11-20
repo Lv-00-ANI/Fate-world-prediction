@@ -491,14 +491,14 @@ theorem doGraph_eq_delOut_adj {V : Type*} (G : CausalDirection.CausalGraph V) (X
 
 /-- ⭐⭐ **`T34.doMap` 是本文件 `VecSCM.doMap` 的单变量特例**（**语义对接说明**）。
 
-**⚠ `T34.doMap` 作用在 `PearlHierarchy.SCM X Y`（单结果口径）上，
+**⚠ `T34.doMap` 作用在 `FateV2.Modeling.PearlHierarchy.SCM X Y`（单结果口径）上，
 **故不能与 `VecSCM.doMap` 直接相等**；**本定理只登记**二者共享的**结构**：
 
 **`T34.doMap M x` 把第一个分量换成常数 `x`（`doMap_fst`），
 **而 `VecSCM.doMap` 把 `X` 索引的方程换成常数（`doMap_const`）** ——
 **同一种「换方程」，只是坐标不同。** -/
 theorem doMap_shared_structure :
-    (∀ {X Y : Type*} (M : PearlHierarchy.SCM X Y) (x : X) (u : M.U),
+    (∀ {X Y : Type*} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (u : M.U),
         (FateV2.Predict.T34.doMap M x u).1 = x)
     ∧ (∀ {E V D : Type*} (M : VecSCM E V D) (X : Set V) [DecidablePred (· ∈ X)]
         (x : V → D) (exi : E) {eq : V}, eq ∈ X → ∀ assign : V → D,

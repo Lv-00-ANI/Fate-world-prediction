@@ -72,11 +72,11 @@ open FateV2.Modeling
 /-! ## §1 ⭐⭐ **`doX` 的语义性质**（"切断"的语义侧） -/
 
 /-- ⭐⭐ **`doX` 后 `X` 的取值恒为 `x`**（「切断指向 X 的影响」的语义形式）。 -/
-theorem doX_sg_fst (M : PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
+theorem doX_sg_fst (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
     ((DoCalculus.doX M x).sg u).1 = x := rfl
 
 /-- ⭐⭐ **`doX` 后 `Y` 的方程不变**。 -/
-theorem doX_sg_snd (M : PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
+theorem doX_sg_snd (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
     ((DoCalculus.doX M x).sg u).2 = (M.sg u).2 := rfl
 
 /-! ## §2 ⭐⭐⭐ **「切断指向 X 的入边」的抽象定义** -/
@@ -136,10 +136,10 @@ theorem delIn_eq_cuts {V : Type*} (G : CausalDirection.CausalGraph V) (VX : Set 
 theorem do_and_graph_share_cuts :
     -- 1. doX 后 X 的取值恒为 x
     -- 1. doX 后 X 的取值恒为 x（⚠ 用具体类型 Bool，避开宇宙问题）
-    (∀ (M : PearlHierarchy.SCM Bool Bool) (x : Bool),
+    (∀ (M : FateV2.Modeling.PearlHierarchy.SCM Bool Bool) (x : Bool),
         ∀ u : M.U, ((DoCalculus.doX M x).sg u).1 = x)
     -- 2. doX 后 Y 的方程不变
-    ∧ (∀ (M : PearlHierarchy.SCM Bool Bool) (x : Bool),
+    ∧ (∀ (M : FateV2.Modeling.PearlHierarchy.SCM Bool Bool) (x : Bool),
         ∀ u : M.U, ((DoCalculus.doX M x).sg u).2 = (M.sg u).2)
     -- 3. delIn 恰是 CutsIncoming
     ∧ (∀ {V : Type*} (G : CausalDirection.CausalGraph V) (VX : Set V),

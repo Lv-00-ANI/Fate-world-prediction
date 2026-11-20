@@ -24,15 +24,15 @@
 | 既有模块 | 它做的方向 | 与本文件的关系 |
 |---|---|---|
 | `Fate/DoLawWorldModel.lean` | 给**已有**的 `WorldModel` **加** SCM 字段（`DoCapable`，`WorldModel ⟶ SCM` 方向）| **方向相反**：本文件是 `SCM ⟶ WorldModel`（**构造** `WorldModel`）|
-| `Fate/WiringBackdoor.lean` §4 | 把一个**具体的** `BackdoorSetup`（`fX`/`fY` 显式给出）做成 `WorldModel` | 本文件对**任意** `PearlHierarchy.SCM` 构造，且**不引入**任何具体 SCM |
-| `Fate/SCMSemantics.lean` | SCM 的联合律/边缘律/观测律/干预律（有限求和口径）| **本文件只引用**，不重定义 |
+| `Fate/WiringBackdoor.lean` §4 | 把一个**具体的** `BackdoorSetup`（`fX`/`fY` 显式给出）做成 `WorldModel` | 本文件对**任意** `FateV2.Modeling.PearlHierarchy.SCM` 构造，且**不引入**任何具体 SCM |
+| `Fate/FateV2.Modeling.SCMSemantics.lean` | SCM 的联合律/边缘律/观测律/干预律（有限求和口径）| **本文件只引用**，不重定义 |
 
 ⟹ 本文件的增量是：**`SCM → WorldModel` 这个方向的全新构造 + 桥接定理**。
 
 ---------------------------------------------------------------------------
 一、翻译方案（任务书 (a)）
 ---------------------------------------------------------------------------
-给定 `M : PearlHierarchy.SCM X Y`（`X` = 事实变量、`Y` = 结果变量），构造 `WorldModel`：
+给定 `M : FateV2.Modeling.PearlHierarchy.SCM X Y`（`X` = 事实变量、`Y` = 结果变量），构造 `WorldModel`：
 
 | `WorldModel`/`Frame` 位 | 取 SCM 的什么 | 理由 |
 |---|---|---|
@@ -57,7 +57,7 @@
 | **(i)** | `scmWorldModel_doLaw_eq_push_step` | `doLaw` **=** 外生律沿 `WorldModel.f` 的推前 |
 | **(i)** | `scmWorldModel_step_iff_sg` | `WorldModel` 的机制**恰好**决定（且只决定）`sg` 的第二分量 |
 | **(ii)** | `scmWorldModel_jointLaw_eq_sim` | SCM 的**联合律** = 「`Act` 取事实值 `X` 时的首步模拟律」 |
-| **(ii)** | `scmWorldModel_marginalY_eq_sim` | `SCMSemantics.marginalY` **=** 首步模拟的边缘律 |
+| **(ii)** | `scmWorldModel_marginalY_eq_sim` | `FateV2.Modeling.SCMSemantics.marginalY` **=** 首步模拟的边缘律 |
 | **(iii)** | `scmWorldModel_doLaw_eq_sim` | SCM 的 `do(x)` **=** `WorldModel` 上 `Act := x` 的首步模拟律 |
 | **(iii)** | `scmWorldModel_step_indep_start` | **`do` 切断入边**：`f` 的取值与旧状态无关 |
 | — | `scmWorldModel_wellFormed` | 构造出的 `WorldModel` 是**合格**的（选择器在自带规则集上有效）|
@@ -471,8 +471,8 @@ $$\mathrm{doLaw}\,M\,x \;=\; \bigl(\mathrm{push}\ p_U\ (u \mapsto f\,y_0\,u\,\va
 这是「因果主干的 `doLaw` 能被世界模型的机制复现」的**等式证据**。 -/
 theorem scmWorldModel_doLaw_eq_push_step {X Y : Type} (M : SCM X Y)
     [DecidableEq Y] (x : X) (y₀ : Y) (e : PUnit) (t : PUnit) :
-    SCMSemantics.doLaw M x =
-      PearlHierarchy.push M.pU
+    FateV2.Modeling.SCMSemantics.doLaw M x =
+      FateV2.Modeling.PearlHierarchy.push M.pU
         (fun u => scmWorldStep M y₀ u e t x) :=
   rfl
 
@@ -493,18 +493,18 @@ $$\mathrm{jointLaw}\,M\,(u, x, y)
 之外的输入，故**观测 = `Act` 取事实值**。这不是「借用干预」，
 而是「`Act` 位承载了 SCM 中 `X` 的角色」（见 §1 `scmActSpace` 的说明）。
 
-**⚠ 反同义反复**：结论两侧分别是 `SCMSemantics.jointLaw`（既有定义，`Finset` 求和）
+**⚠ 反同义反复**：结论两侧分别是 `FateV2.Modeling.SCMSemantics.jointLaw`（既有定义，`Finset` 求和）
 与 `sim`（`trajGen` 迭代）——**不同模块、不同定义机制**，由本定理首次相等。 -/
 theorem scmWorldModel_jointLaw_eq_sim {X Y : Type} (M : SCM X Y) [Nonempty Y]
     [DecidableEq Y] (u : M.U) (x : X) (y : Y) :
-    SCMSemantics.jointLaw M (u, x, y)
+    FateV2.Modeling.SCMSemantics.jointLaw M (u, x, y)
       = M.pU u *
         (if (scmWorldModel M).sim PUnit.unit (fun _ => u) (fun _ => PUnit.unit)
               (fun _ => x) 1 = y then 1 else 0) := by
   rw [scmWorldModel_sim_one M PUnit.unit u (fun _ => PUnit.unit) x]
   rfl
 
-/-- ⭐⭐⭐ **桥 (ii)：`SCMSemantics.marginalY` = 首步模拟的边缘律**。
+/-- ⭐⭐⭐ **桥 (ii)：`FateV2.Modeling.SCMSemantics.marginalY` = 首步模拟的边缘律**。
 
 $$(\mathrm{marginalY}\,M)\,y
   \;=\; \sum_u p_U(u)\,\bigl[\mathrm{sim}^{(x \mapsto (\mathrm{sg}\,u).1)}(1) = y\bigr]$$
@@ -517,7 +517,7 @@ $$(\mathrm{marginalY}\,M)\,y
 本定理把它换成 `sim … 1`。**二者的桥梁是 `scmWorldModel_sim_one`**（非 `rfl`）。 -/
 theorem scmWorldModel_marginalY_eq_sim {X Y : Type} (M : SCM X Y) [Nonempty Y]
     [DecidableEq Y] (y : Y) :
-    SCMSemantics.marginalY M y
+    FateV2.Modeling.SCMSemantics.marginalY M y
       = ∑ u, M.pU u *
           (if (scmWorldModel M).sim PUnit.unit (fun _ => u) (fun _ => PUnit.unit)
                 (fun _ => (M.sg u).1) 1 = y then 1 else 0) := by
@@ -545,7 +545,7 @@ $$\mathrm{doLaw}\,M\,x\,y
   两侧**定义路径完全不同**，等式由 `scmWorldModel_sim_one` 建立。**非重念**。 -/
 theorem scmWorldModel_doLaw_eq_sim {X Y : Type} (M : SCM X Y) [Nonempty Y]
     [DecidableEq Y] (x : X) (y : Y) :
-    SCMSemantics.doLaw M x y
+    FateV2.Modeling.SCMSemantics.doLaw M x y
       = ∑ u, M.pU u *
           (if (scmWorldModel M).sim PUnit.unit (fun _ => u) (fun _ => PUnit.unit)
                 (fun _ => x) 1 = y then 1 else 0) := by

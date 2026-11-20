@@ -177,7 +177,7 @@ theorem e2eResidual_paramScm {X Y : Type} (M : FateV2.Predict.ParamSCM.ParamSCM 
 `SCMResidual` 的展开没同步，本定理**立刻编译失败**。
 **⚠ 反同义反复**：两条上游定理的**前件不同**（`SCMEndToEnd` 版多一个 `xpred`），
 本定理把它们**规范化到同一签名**再比较，**不是** `exact h`。 -/
-theorem e2eResidual_agree {X Y : Type} (M : PearlHierarchy.SCM X Y) [Nonempty Y]
+theorem e2eResidual_agree {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [Nonempty Y]
     [AddCommGroup Y]
     (xobs : Y) (a : X) (xpred : Y) (u : M.U) (ε : PUnit) :
     SCMEndToEnd.e2eResidual_scmWorldModel M xobs PUnit.unit u ε a xpred
@@ -200,7 +200,7 @@ $$\bigl\|\,\mathrm{e2eResidual}\;(\mathrm{paramScmWorldModel}\,M)\;x'\;\theta\;u
 证明必须走 `e2eResidual_paramScm`（求值）+ `SCMResidual.scmPredErr`（误差口径）
 两条上游。 -/
 theorem e2eResidual_norm_eq_scmPredErr {Y : Type} [Nonempty Y] [NormedAddCommGroup Y]
-    [NormedSpace ℝ Y] (M : PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit)
+    [NormedSpace ℝ Y] (M : FateV2.Modeling.PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit)
     (x θ₀ : Y) :
     ‖FateV2.Loop.EndToEnd.e2eResidual (SCMWorldModel.scmWorldModel M) ((M.sg u).2 a)
         PUnit.unit u PUnit.unit a x‖ = 0
@@ -226,7 +226,7 @@ $$\bigl\|\,\theta_1 - x'\,\bigr\| \;<\; \bigl\|\,\theta_0 - x'\,\bigr\| ,
 证明调用的 `scmPredErr_contract` 本身由 `BoundWriteBack.err_wbW`（收缩率公式）
 与 `scmCorrects_identity` 得出 —— **不是前件的改写**。 -/
 theorem e2eResidual_contract {Y : Type} [NormedAddCommGroup Y] [NormedSpace ℝ Y]
-    (M : PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit) (η : ℝ) (θ₀ : Y)
+    (M : FateV2.Modeling.PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit) (η : ℝ) (θ₀ : Y)
     (hη : |1 - η| < 1) (hne : θ₀ ≠ (M.sg u).2 a) :
     ‖BoundWriteBack.wbW (ContinuousLinearMap.id ℝ Y) (SCMResidual.SIMap Y) η
         ((M.sg u).2 a) θ₀ - (M.sg u).2 a‖
@@ -320,7 +320,7 @@ $$\bigl\|\,\theta_n - x'\,\bigr\| \;=\; |1-\eta|^{\,n}\cdot\bigl\|\,\theta_0 - x
 结论是 `n` 步后的**等式**。由 `scmIter_err` 的**归纳**才能从单步走到 `n` 步 ——
 **不是前件的改写**。 -/
 theorem predErr_iter_bound {Y : Type} [NormedAddCommGroup Y] [NormedSpace ℝ Y]
-    (M : PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit) (η : ℝ) (θ₀ : Y)
+    (M : FateV2.Modeling.PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit) (η : ℝ) (θ₀ : Y)
     (_hη : |1 - η| < 1) (n : ℕ) :
     ‖SCMResidual.scmIter (ContinuousLinearMap.id ℝ Y) (SCMResidual.SIMap Y) η
         ((M.sg u).2 a) n θ₀ - (M.sg u).2 a‖
@@ -355,7 +355,7 @@ $$\bigl\|\,\theta_n - (\mathrm{sg}\,u).2\,a\,\bigr\|
 **证明**：`predErr_iter_bound`（`n` 步精确公式）→ `tendsto_pow_atTop_nhds_zero_of_abs_lt_one`
 → 乘常数。**⚠ 前件只有 `|1-η| < 1`**，结论是**极限陈述**。 -/
 theorem predErr_iter_tendsto {Y : Type} [NormedAddCommGroup Y] [NormedSpace ℝ Y]
-    (M : PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit) (η : ℝ) (θ₀ : Y)
+    (M : FateV2.Modeling.PearlHierarchy.SCM PUnit Y) (u : M.U) (a : PUnit) (η : ℝ) (θ₀ : Y)
     (hη : |1 - η| < 1) :
     Filter.Tendsto (fun n => ‖SCMResidual.scmIter (ContinuousLinearMap.id ℝ Y)
         (SCMResidual.SIMap Y) η ((M.sg u).2 a) n θ₀ - (M.sg u).2 a‖)
@@ -385,7 +385,7 @@ $$\mathrm{endToEndIter}\;(\mathrm{scmWorldModel}\,M)\;h\;\eta\;\varphi\;y\;u\;\v
 证明用 `Subsingleton.elim`（`PUnit` 的基数事实），
 **不引用** `endToEnd` / `endToEndIter` 的**任何**定义展开内容 ——
 而这恰恰是本定理**要表达**的东西：退化**与机制无关**。 -/
-theorem endToEndIter_const {X Y G : Type} (M : PearlHierarchy.SCM X Y)
+theorem endToEndIter_const {X Y G : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [Nonempty Y] [AddCommGroup Y] [Ring PUnit]
     (h : Y → G) (η : PUnit) (φ : Y →+ PUnit) (y : G) (u : M.U) (ε : PUnit)
     (a : X) (x : Y) (n : ℕ) (θ : PUnit) :

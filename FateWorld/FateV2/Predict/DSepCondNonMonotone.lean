@@ -54,7 +54,7 @@ sets), not a restatement of its own hypothesis.
 
 @[expose] public section
 
-namespace FateV2.Predict.Causalean.Graph
+namespace FateV2.Modeling.Graph
 
 open FateV2.Modeling
 namespace DAG
@@ -127,4 +127,4 @@ theorem dSep_not_monotone_cond :
 
 end DAG
 
-end FateV2.Predict.Causalean.Graph
+end FateV2.Modeling.Graph

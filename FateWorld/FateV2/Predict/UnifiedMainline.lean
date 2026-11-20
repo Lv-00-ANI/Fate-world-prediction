@@ -100,7 +100,7 @@ universe u v w x y
 **⚠ `L3_cf` 的余域是 `X × (X → Y)`**（逐个体响应**函数**），
 与 `PearlHierarchy` §4 的「值对编码」`L3coord = X × (Y × Y)` **不同型** ——
 本模块只在本读出上工作，**不**声称两者逐字相等。 -/
-noncomputable def L3readout : PearlHierarchy.SCM Bool Bool → (Bool × (Bool → Bool) → ℝ) :=
+noncomputable def L3readout : FateV2.Modeling.PearlHierarchy.SCM Bool Bool → (Bool × (Bool → Bool) → ℝ) :=
   fun M => M.L3_cf
 
 /-- ⭐ **`L3_cf` 读出非单射**（`L3_cf_not_injective` 的直接改写）。
@@ -109,7 +109,7 @@ noncomputable def L3readout : PearlHierarchy.SCM Bool Bool → (Bool × (Bool �
 转成「读出不是单射」这一**函数论事实**。 -/
 theorem L3readout_not_injective : ¬ Function.Injective L3readout := by
   intro hinj
-  obtain ⟨M₁, M₂, hne, heq⟩ := PearlHierarchy.L3_cf_not_injective
+  obtain ⟨M₁, M₂, hne, heq⟩ := FateV2.Modeling.PearlHierarchy.L3_cf_not_injective
   exact hne (hinj heq)
 
 /-- ⭐⭐ **A 组主定理**：**Pearl 第三层的中间地带非空**。
@@ -132,9 +132,9 @@ theorem pearl_L3_middleZone_nonempty :
 **结论的三段正是 `MiddleZone` 的定义 `Φ s = Φ t ∧ s ≠ t`：**
 同一个见证对，既见证 `MiddleZone` 非空，也见证「$=$ 严格细于 $\sim_{\text{cf}}$」。 -/
 theorem pearl_L3_middleZone_witness :
-    ∃ M₁ M₂ : PearlHierarchy.SCM Bool Bool, M₁ ≠ M₂ ∧
+    ∃ M₁ M₂ : FateV2.Modeling.PearlHierarchy.SCM Bool Bool, M₁ ≠ M₂ ∧
       (M₁, M₂) ∈ MiddleZoneDichotomy.MiddleZone L3readout := by
-  obtain ⟨M₁, M₂, hne, heq⟩ := PearlHierarchy.L3_cf_not_injective
+  obtain ⟨M₁, M₂, hne, heq⟩ := FateV2.Modeling.PearlHierarchy.L3_cf_not_injective
   exact ⟨M₁, M₂, hne, heq, hne⟩
 
 /-! ===========================================================================
@@ -216,15 +216,15 @@ theorem levels_kernel_translation {SCM ObsDist Int IntDist Cf : Type*}
 
 /-- 机制 1（`sel1`）的 **L1 读出**。 -/
 noncomputable def mechL1 : Bool → (Bool × Bool → ℝ) :=
-  fun b => if b then PearlHierarchy.L1_2 else PearlHierarchy.L1_1
+  fun b => if b then FateV2.Modeling.PearlHierarchy.L1_2 else FateV2.Modeling.PearlHierarchy.L1_1
 
 /-- 机制 1（`sel1`）的 **L2 读出**。 -/
 noncomputable def mechL2 : Bool → (Bool → Bool → ℝ) :=
-  fun b => if b then PearlHierarchy.L2_2 else PearlHierarchy.L2_1
+  fun b => if b then FateV2.Modeling.PearlHierarchy.L2_2 else FateV2.Modeling.PearlHierarchy.L2_1
 
 /-- 机制 1（`sel1`）的 **L3 读出**（**值对编码** `L3coord`，与 §4 一致）。 -/
-noncomputable def mechL3 : Bool → (PearlHierarchy.L3coord → ℝ) :=
-  fun b => if b then PearlHierarchy.L3_2 else PearlHierarchy.L3_1
+noncomputable def mechL3 : Bool → (FateV2.Modeling.PearlHierarchy.L3coord → ℝ) :=
+  fun b => if b then FateV2.Modeling.PearlHierarchy.L3_2 else FateV2.Modeling.PearlHierarchy.L3_1
 
 /-- ⭐ `L3_not_determined_by_L1_and_L2` 的**索引改写**：三条读出的两两关系。
 
@@ -235,19 +235,19 @@ theorem mechanisms_separated_by_L3 :
     (∀ a b : Bool, mechL2 a = mechL2 b) ∧
     mechL3 false ≠ mechL3 true := by
   -- ⭐ 核心：`PearlHierarchy` 的打包结论（L1 相同、L2 相同、L3 不同）
-  obtain ⟨hL1, hL2, hL3⟩ := PearlHierarchy.L3_not_determined_by_L1_and_L2
+  obtain ⟨hL1, hL2, hL3⟩ := FateV2.Modeling.PearlHierarchy.L3_not_determined_by_L1_and_L2
   refine ⟨?_, ?_, ?_⟩
   · intro a b
-    show (if a then PearlHierarchy.L1_2 else PearlHierarchy.L1_1) =
-         (if b then PearlHierarchy.L1_2 else PearlHierarchy.L1_1)
+    show (if a then FateV2.Modeling.PearlHierarchy.L1_2 else FateV2.Modeling.PearlHierarchy.L1_1) =
+         (if b then FateV2.Modeling.PearlHierarchy.L1_2 else FateV2.Modeling.PearlHierarchy.L1_1)
     rw [hL1]
     split_ifs <;> rfl
   · intro a b
-    show (if a then PearlHierarchy.L2_2 else PearlHierarchy.L2_1) =
-         (if b then PearlHierarchy.L2_2 else PearlHierarchy.L2_1)
+    show (if a then FateV2.Modeling.PearlHierarchy.L2_2 else FateV2.Modeling.PearlHierarchy.L2_1) =
+         (if b then FateV2.Modeling.PearlHierarchy.L2_2 else FateV2.Modeling.PearlHierarchy.L2_1)
     rw [hL2]
     split_ifs <;> rfl
-  · show (PearlHierarchy.L3_1 : PearlHierarchy.L3coord → ℝ) ≠ PearlHierarchy.L3_2
+  · show (FateV2.Modeling.PearlHierarchy.L3_1 : FateV2.Modeling.PearlHierarchy.L3coord → ℝ) ≠ FateV2.Modeling.PearlHierarchy.L3_2
     exact hL3
 
 /-- ⭐ **(L1, L2) 联合读出在两机制上**完全相同**（常值）。 -/
@@ -267,7 +267,7 @@ $$\neg\exists F,\ \forall b,\ \mathrm{mechL3}(b) = F\bigl((\mathrm{mechL1}(b), \
 **⟹ 即**：`PearlHierarchy` 的「L3 ⊋ L1+L2」的**精确内容** ——
 **L3 层携带的信息**无法**经由 `(L1,L2)` 读懂**。 -/
 theorem L3_not_function_of_L1L2 :
-    ¬ ∃ F : (Bool × Bool → ℝ) × (Bool → Bool → ℝ) → (PearlHierarchy.L3coord → ℝ),
+    ¬ ∃ F : (Bool × Bool → ℝ) × (Bool → Bool → ℝ) → (FateV2.Modeling.PearlHierarchy.L3coord → ℝ),
       ∀ b : Bool, mechL3 b = F (mechL1 b, mechL2 b) := by
   rintro ⟨F, hF⟩
   obtain ⟨-, -, h3⟩ := mechanisms_separated_by_L3
@@ -286,7 +286,7 @@ theorem L3_not_function_of_L1L2 :
 与中间地带的**非空性**（一个**函数论**命题）认成**同一个事实**的两面。 -/
 theorem middleZone_of_pearl_irreducibility :
     (MiddleZoneDichotomy.MiddleZone (fun b => (mechL1 b, mechL2 b))).Nonempty ∧
-      ¬ ∃ F : (Bool × Bool → ℝ) × (Bool → Bool → ℝ) → (PearlHierarchy.L3coord → ℝ),
+      ¬ ∃ F : (Bool × Bool → ℝ) × (Bool → Bool → ℝ) → (FateV2.Modeling.PearlHierarchy.L3coord → ℝ),
         ∀ b : Bool, mechL3 b = F (mechL1 b, mechL2 b) :=
   ⟨(MiddleZoneDichotomy.middleZone_nonempty_iff_not_injective
       (fun b => (mechL1 b, mechL2 b))).mpr joint_not_injective,

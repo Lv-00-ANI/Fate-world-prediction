@@ -33,7 +33,7 @@ import FateWorld.FateV2.Predict.InterventionSelection
   * **6 条**：签名里出现 `Fin n` 的比较（`Fin.lt` / `Fin.le` 走 `UInt` 的 `LT` 实例，
     实测带 `[propext]`），或 `Finset` 成员判定（`Finset.decidableMem` 带三公理）。
   * **1 条**（`DoCalculus.doX_probeP_eq_doX_probeQ`）：结论是两个
-    `PearlHierarchy.SCM` 相等，而 `SCM.pU : U → ℝ` ⟹ 典型 A3（字段型 `Real`）。
+    `FateV2.Modeling.PearlHierarchy.SCM` 相等，而 `SCM.pU : U → ℝ` ⟹ 典型 A3（字段型 `Real`）。
   * **其余**：结论经 `DiscLaw.total`（`List.sum`）、`BackdoorSetup.px : Ux → ℝ`、
     `SCM.condY`（`ℝ` 值）等 `Real`-承载定义。
 

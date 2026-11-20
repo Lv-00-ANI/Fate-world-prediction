@@ -349,7 +349,7 @@ def t1aInventory : List T1AItem := [
   ⟨"T1A.2", "图因子分解 ⟺ 马尔可夫性",
    "【第 71 轮修正】图侧已完成；剩余缺口 = 概率语义（因子分解需要概率分布，而当前 SCM 载体是有限/离散的）"⟩,
   ⟨"T1A.3", "后门准则 ⟹ P(y|do(x)) 可识别",
-   "【第 71 轮修正】do 算子与图操作已完成（Fate/DoCalculus + GraphOps）；已证 backdoor 的最简特例（Fate/SCMSemantics.condY_eq_doLaw_of_no_confound）；剩余缺口 = 一般 backdoor 需要 Kernel 测度语义（当前有限 SCM 载体上无法陈述）"⟩,
+   "【第 71 轮修正】do 算子与图操作已完成（Fate/DoCalculus + GraphOps）；已证 backdoor 的最简特例（Fate/FateV2.Modeling.SCMSemantics.condY_eq_doLaw_of_no_confound）；剩余缺口 = 一般 backdoor 需要 Kernel 测度语义（当前有限 SCM 载体上无法陈述）"⟩,
   ⟨"T1A.4", "前门准则 ⟹ 可识别",
    "同上"⟩,
   ⟨"T1A.5", "do-calculus 三条规则",

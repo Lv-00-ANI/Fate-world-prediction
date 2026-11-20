@@ -253,7 +253,7 @@ end Counterexample
 2. **没有输出到 `SCM` / `toLawRule`**。`SCM` 是单变量 `X → Y` 的结构方程，
    而链 Markov 性的载体是 `Fin (n+1) → α` 的**联合律**；
    把 `ChainFac` 实现为某个 `SCM` 需要「链上每个变量都有自己的结构方程」的多变量 `SCM`，
-   `Fate/PearlHierarchy.lean` 的 `SCM` **不具备**该形状。**这是接不上的原因**，
+   `Fate/FateV2.Modeling.PearlHierarchy.lean` 的 `SCM` **不具备**该形状。**这是接不上的原因**，
    不是遗漏 —— 硬接会造出与模块陈述不符的空洞命题。
 3. **C1/C2/C3 是形状搬运**，不含新数学（数学在 `chainFactor_condMul` 里）。
    我不声称它们是深刻结论。

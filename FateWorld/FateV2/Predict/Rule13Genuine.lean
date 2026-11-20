@@ -161,7 +161,7 @@ $$\textbf{XIndependent}(M) := \forall u\,v,\
 
 **⚠ 它**不是恒真命题** —— §5 的 `T35_not_XIndependent` 给出反例；
 **也不是恒假** —— §5 的 `M1_XIndependent` 给出满足它的模型。** -/
-def XIndependent {X Y : Type u} (M : PearlHierarchy.SCM X Y) : Prop :=
+def XIndependent {X Y : Type u} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : Prop :=
   ∀ u v : M.U, (M.sg u).1 = (M.sg v).1 ∨ M.pU u = 0 ∨ M.pU v = 0
 
 /-- ⭐⭐ **外生律归一化**（`∑_u p_U(u) = 1`）。
@@ -169,7 +169,7 @@ def XIndependent {X Y : Type u} (M : PearlHierarchy.SCM X Y) : Prop :=
 **⚠ 这是**必要的**，不是技术性回避**：`rule1_genuine` 的结论里
 `μ(x)` 是**质量**而非概率，**若不归一化**则 `μ(x)` 可以不是 `0/1`，
 **而** `condY` 的「外层 `[x_u=x]`」**无法**从内层提出来**（见 §2 的论证）。** -/
-def MassOne {X Y : Type u} (M : PearlHierarchy.SCM X Y) : Prop := ∑ u, M.pU u = 1
+def MassOne {X Y : Type u} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : Prop := ∑ u, M.pU u = 1
 
 end Exog
 
@@ -197,7 +197,7 @@ $$\textbf{XIndependent}(M) \implies
 从而 `μ(x)` 的因子**可以被提出来**。
 **⚠ 没有 `XIndependent` 时这条是**假的**（`X` 可依赖 `u`，
 则支撑上既有 `x_u = x` 也有 `x_v ≠ x`）。** -/
-theorem XIndependent.disj (M : PearlHierarchy.SCM X Y) (h : XIndependent M) (x : X) :
+theorem XIndependent.disj (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (h : XIndependent M) (x : X) :
     (∀ u, M.pU u ≠ 0 → (M.sg u).1 = x)
       ∨ (∀ u, M.pU u ≠ 0 → (M.sg u).1 ≠ x) := by
   by_cases hex : ∃ u, M.pU u ≠ 0 ∧ (M.sg u).1 = x
@@ -213,7 +213,7 @@ theorem XIndependent.disj (M : PearlHierarchy.SCM X Y) (h : XIndependent M) (x :
     exact hex ⟨u, hu, hx⟩
 
 /-- **（内部）**正质量处 `pU u · [x_u = x] = pU u`，在「全取 `x`」分片上。 -/
-private theorem mult_ind (M : PearlHierarchy.SCM X Y) (x : X)
+private theorem mult_ind (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X)
     (hall : ∀ u, M.pU u ≠ 0 → (M.sg u).1 = x) (u : M.U) :
     M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0) = M.pU u := by
   by_cases hp : M.pU u = 0
@@ -221,7 +221,7 @@ private theorem mult_ind (M : PearlHierarchy.SCM X Y) (x : X)
   · rw [if_pos (hall u hp), mul_one]
 
 /-- **（内部）**正质量处 `pU u · [x_u = x] = 0`，在「全不取 `x`」分片上。 -/
-private theorem mult_ind_zero (M : PearlHierarchy.SCM X Y) (x : X)
+private theorem mult_ind_zero (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X)
     (hall : ∀ u, M.pU u ≠ 0 → (M.sg u).1 ≠ x) (u : M.U) :
     M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0) = 0 := by
   by_cases hp : M.pU u = 0
@@ -229,7 +229,7 @@ private theorem mult_ind_zero (M : PearlHierarchy.SCM X Y) (x : X)
   · rw [if_neg (hall u hp), mul_zero]
 
 /-- **（内部）**「全不取 `x`」分片：两边都退化为 `0`。 -/
-private theorem main_zero (M : PearlHierarchy.SCM X Y) (x : X)
+private theorem main_zero (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X)
     (hall : ∀ u, M.pU u ≠ 0 → (M.sg u).1 ≠ x) (y : Y) :
     (∑ u, M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0)
         * (if (M.sg u).2 x = y then (1 : ℝ) else 0))
@@ -240,7 +240,7 @@ private theorem main_zero (M : PearlHierarchy.SCM X Y) (x : X)
   simp only [hz2, Finset.sum_const_zero, zero_mul]
 
 /-- **（内部）**「全取 `x`」分片：外层指示恒 1，`μ(x) = 1`，两边相等。 -/
-private theorem main_one (M : PearlHierarchy.SCM X Y) (hm : MassOne M) (x : X)
+private theorem main_one (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (hm : MassOne M) (x : X)
     (hall : ∀ u, M.pU u ≠ 0 → (M.sg u).1 = x) (y : Y) :
     (∑ u, M.pU u * (if (M.sg u).1 = x then (1 : ℝ) else 0)
         * (if (M.sg u).2 x = y then (1 : ℝ) else 0))
@@ -275,12 +275,12 @@ $$\textbf{XIndependent}(M) \wedge \textstyle\sum_u p_U(u) = 1
 两边都展开成 `∑_u`。由 `XIndependent.disj`，**支撑上的 `[x_u = x]` 是常数**：
 - **全取 `x`**：`μ(x) = ∑ pU · 1 = 1`（**这里用到 `MassOne`**），外层指示**消失**；
 - **全不取 `x`**：`μ(x) = 0`，两边都退化为 `0`。** -/
-theorem rule1_genuine (M : PearlHierarchy.SCM X Y)
+theorem rule1_genuine (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (h : Exog.XIndependent M) (hm : Exog.MassOne M) :
-    ∀ x y, SCMSemantics.condY M x y
-      = SCMSemantics.marginalX M x * SCMSemantics.doLaw M x y := by
+    ∀ x y, FateV2.Modeling.SCMSemantics.condY M x y
+      = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y := by
   intro x y
-  unfold SCMSemantics.condY SCMSemantics.marginalX SCMSemantics.doLaw
+  unfold FateV2.Modeling.SCMSemantics.condY FateV2.Modeling.SCMSemantics.marginalX FateV2.Modeling.SCMSemantics.doLaw
   rcases XIndependent.disj M h x with hall | hall
   · exact main_one M hm x hall y
   · exact main_zero M x hall y
@@ -290,7 +290,7 @@ theorem rule1_genuine (M : PearlHierarchy.SCM X Y)
 **⚠ 诚实标注**：这条**本身**又是「结论包装」（用 `rule1_genuine` 的结论填回旧定义），
 **它的价值仅在于**把新定理接到旧 API**，**不计入实质内容**。
 **实质内容在 `rule1_genuine` 本体（它有真证明）。** -/
-theorem noConfounding_of_XIndependent (M : PearlHierarchy.SCM X Y)
+theorem noConfounding_of_XIndependent (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (h : Exog.XIndependent M) (hm : Exog.MassOne M) :
     R242G3.SCM.NoConfounding M :=
   rule1_genuine M h hm
@@ -380,7 +380,7 @@ namespace Rule1
 $$\mathrm{sg}\,u = (0, \mathrm{fun}\ x \mapsto x)$$
 
 **⟹ `(sg u).1 = 0` 对所有 `u` 成立** ⟹ **`XIndependent`**。 -/
-noncomputable def M1 : PearlHierarchy.SCM (Fin 2) (Fin 2) where
+noncomputable def M1 : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2) where
   U := Fin 2
   pU := fun _ => (1 : ℝ) / 2
   sg := fun _ => ((0 : Fin 2), fun x => x)
@@ -399,7 +399,7 @@ theorem M1_massOne : Exog.MassOne M1 := by
 
 /-- ⭐⭐⭐⭐ **`rule1_genuine` 在 `M1` 上**跑通**（**真计算验证**）。 -/
 theorem M1_rule1 (x y : Fin 2) :
-    SCMSemantics.condY M1 x y = SCMSemantics.marginalX M1 x * SCMSemantics.doLaw M1 x y :=
+    FateV2.Modeling.SCMSemantics.condY M1 x y = FateV2.Modeling.SCMSemantics.marginalX M1 x * FateV2.Modeling.SCMSemantics.doLaw M1 x y :=
   rule1_genuine M1 M1_XIndependent M1_massOne x y
 
 /-- ⭐⭐⭐⭐⭐ **⚠ **诚实边界**：`XIndependent` **不是必要的****。
@@ -415,7 +415,7 @@ theorem M1_rule1 (x y : Fin 2) :
 **并**明确承认** `M2` 型模型落在**定理覆盖范围之外**。
 **这正是与旧 P3 级定理的本质区别：旧版**没有**覆盖范围的概念（因为它就是结论本身）。** -/
 theorem XIndependent_not_necessary :
-    ∃ (M : PearlHierarchy.SCM (Fin 2) (Fin 2)),
+    ∃ (M : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2)),
       R242G3.SCM.NoConfounding M ∧ ¬ Exog.XIndependent M :=
   ⟨R242G3.M2, FateV2.Predict.R242G3.noConfounding_M2, by
     intro h
@@ -432,7 +432,7 @@ theorem XIndependent_not_necessary :
 
 **（这是 `Fate/T35Confounding.lean` 的核心反例模型的简化形式：
 `X` 与 `Y` **共用**同一个外生，故有混杂。）** -/
-noncomputable def MC : PearlHierarchy.SCM (Fin 2) (Fin 2) where
+noncomputable def MC : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2) where
   U := Fin 2
   pU := fun _ => (1 : ℝ) / 2
   sg := fun (u : Fin 2) => (u, fun _ => u)

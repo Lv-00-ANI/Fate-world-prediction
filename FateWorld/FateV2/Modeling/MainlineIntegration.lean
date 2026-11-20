@@ -52,7 +52,7 @@ set_option linter.unusedSectionVars false
   | **4** | `indep_to_fiber_eq` | ⭐⭐ **反向闭合**（真实调用 `bridge_to_condIndepFin_at`）：主链语言 ⟹ 单纤维乘法等式 |
   | **5** | `condIndepFin_iff_indep` | ⭐⭐⭐ 定理 3 + 4 的**等价形式**（桥在主链上的完整接口）|
   | **6** | `doCalculus_bridge_concrete` | ⭐⭐⭐ **接 do-演算主链**：为 `gap_reduces_to_markov_bridge` 提供**具体**（非占位）桥 |
-  | **7** | `SCM_jointLaw3_bridge` | ⭐⭐⭐ **接 SCM 主链**：`PearlHierarchy.SCM.jointLaw3`（观测层）满足有限条件独立 ⟹ 桥成立 |
+  | **7** | `SCM_jointLaw3_bridge` | ⭐⭐⭐ **接 SCM 主链**：`FateV2.Modeling.PearlHierarchy.SCM.jointLaw3`（观测层）满足有限条件独立 ⟹ 桥成立 |
 
   ---------------------------------------------------------------------------
   ## ⚠ 诚实边界
@@ -278,11 +278,11 @@ theorem doCalculus_bridge_concrete
   ⟨FateV2.Modeling.FinCondIndepMeasure.bridgeStatement p,
     FateV2.Modeling.FinalB3.condIndepFin_to_bridge p hp hcond⟩
 
-/-! ## §B4.4 ⭐⭐⭐ 接 `PearlHierarchy.SCM` 的观测层 -/
+/-! ## §B4.4 ⭐⭐⭐ 接 `FateV2.Modeling.PearlHierarchy.SCM` 的观测层 -/
 
 /-- ⭐⭐⭐ **SCM 主链的观测层一旦满足有限条件独立，其桥即成立**。
 
-`PearlHierarchy.SCM.jointLaw3` 是主链的**观测层联合律**（`(x,y,z)` 三变量）。
+`FateV2.Modeling.PearlHierarchy.SCM.jointLaw3` 是主链的**观测层联合律**（`(x,y,z)` 三变量）。
 **本条把「该联合律满足有限条件独立」直接送到桥上** ——
 这是 `BridgeFinal` 的成果**第一次**被 SCM 一侧消费。 -/
 theorem SCM_jointLaw3_bridge

@@ -27,7 +27,7 @@
 （不是 `instance`，不是隐藏假设）。
 
 **⚠ 这些实例在本文件里是「参数」，不是「事实」**：
-`Y` 在 SCM 里是任意结果空间（`PearlHierarchy.SCM.U/pU/sg` 只要求
+`Y` 在 SCM 里是任意结果空间（`FateV2.Modeling.PearlHierarchy.SCM.U/pU/sg` 只要求
 `Fintype`/`DecidableEq` 的**外生空间** `U`），一般**没有**群结构。
 因此本文件 §3 起的定理**不外推到任意 SCM**，而是「**若** `Y` 带加法群结构
 **则** 端到端链在 SCM 实例上取这个形状」—— 这是如实的条件形式，
@@ -131,7 +131,7 @@ $$\mathrm{predFrom}\;(\mathrm{scmWorldModel}\,M)\;\theta\;u\;\varepsilon\;a\;y
 **⚠ 反同义反复核查**：
 * 前件只有 `[Nonempty Y]`（`scmWorldModel` 的构造前提，见 `SCMWorldModel` §4）；
 * 结论左侧是 `EndToEnd.predFrom`（`Fate/EndToEnd.lean:144`），
-  右侧是 `PearlHierarchy.SCM.sg`（`Fate/PearlHierarchy.lean:75`）——
+  右侧是 `FateV2.Modeling.PearlHierarchy.SCM.sg`（`Fate/FateV2.Modeling.PearlHierarchy.lean:75`）——
   **两个模块各自的定义**，由本定理首次相等；
 * 证明必须依次展开 `predFrom` → `WorldModel.f` → `simulator.step`
   （即 `scmWorldModel` 的构造），**不是**把结论塞进前件。
@@ -150,7 +150,7 @@ theorem predFrom_scmWorldModel {X Y : Type} (M : SCM X Y) [Nonempty Y]
 $$\mathrm{predFrom}\;(\mathrm{scmWorldModel}\,M)\;\theta\;u\;\varepsilon\;(\mathrm{sg}\,u).1\;y
   \;=\;(\mathrm{sg}\,u).2\;(\mathrm{sg}\,u).1 .$$
 
-**读法**：这正是 `SCMSemantics.marginalY` / `jointLaw` 里出现的那一项
+**读法**：这正是 `FateV2.Modeling.SCMSemantics.marginalY` / `jointLaw` 里出现的那一项
 （`(sg u).2 ((sg u).1)`）—— 端到端链的预测端与 SCM 的观测律**对齐**。 -/
 theorem predFrom_scmWorldModel_facts {X Y : Type} (M : SCM X Y) [Nonempty Y]
     (θ : PUnit) (u : M.U) (ε : PUnit) (y : Y) :

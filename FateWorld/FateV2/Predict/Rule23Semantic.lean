@@ -157,7 +157,7 @@ import Mathlib.Tactic.NormNum
 
   ## ⚠⚠ 载体表达力的**如实边界**（不做假）
 
-  `Sem3.SCM3 Z X Y := PearlHierarchy.SCM (Z × X) Y` 的 `sg u = (w_u, f_u)`
+  `Sem3.SCM3 Z X Y := FateV2.Modeling.PearlHierarchy.SCM (Z × X) Y` 的 `sg u = (w_u, f_u)`
   里 **`Z` 的观测值 `zOf(w_u)` 与外生 `u` 绑定**，**不随 `x` 变**。
   **⟹ 在本载体里 `Z` 等价于一个「根」（无父节点）。**
   **⟹ 规则 2 的**图侧**面貌（`Z` 是 `X` 的后代 ⟹ `G_{\underline X \overline Z}` 里
@@ -196,7 +196,7 @@ namespace Sem3
 第一分量是 `Z`、第二分量是 `X`。
 
 **⚠ 为什么可以这样编码（如实说明）**：
-`PearlHierarchy.SCM` 是**两变量载体**（`sg u = (x_u, f_u)`），**没有第三个变量的位置**。
+`FateV2.Modeling.PearlHierarchy.SCM` 是**两变量载体**（`sg u = (x_u, f_u)`），**没有第三个变量的位置**。
 三条规则的**语义内容**只涉及三件事：
 (a) `Z`、`X` 的**观测**（两个指示因子）；
 (b) `do(z)`、`do(x)` 分别钉死两个分量；
@@ -204,7 +204,7 @@ namespace Sem3
 乘积空间 `Z × X` 上这三点都可表达，**且不需要新载体**。
 **⚠ 代价**：编码**不表达**「`Z` 是 `X` 的后代」这类**结构关系** ——
 **本文件也不用它**（三条规则的语义内容本来就只在分布层面）。 -/
-abbrev SCM3 (Z X Y : Type u) := PearlHierarchy.SCM (Z × X) Y
+abbrev SCM3 (Z X Y : Type u) := FateV2.Modeling.PearlHierarchy.SCM (Z × X) Y
 
 variable {Z X Y : Type u}
 

@@ -17,7 +17,7 @@ import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
 -/
 
 /-! ===========================================================================
-  §LR  ⭐⭐⭐⭐ **`PearlHierarchy.SCM` 能否诱导 `LawRule`？** —— 能，且分三档
+  §LR  ⭐⭐⭐⭐ **`FateV2.Modeling.PearlHierarchy.SCM` 能否诱导 `LawRule`？** —— 能，且分三档
 
   ## 0. 一句话答案
 
@@ -31,7 +31,7 @@ import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
 
   ## 1. ⚠ **一处不可避免的类型障碍**（先说清楚，免得被当成简化）
 
-  `PearlHierarchy.SCM` 的 `X`、`Y` 是**裸 `Type`**（只带 `Fintype`/`DecidableEq`），
+  `FateV2.Modeling.PearlHierarchy.SCM` 的 `X`、`Y` 是**裸 `Type`**（只带 `Fintype`/`DecidableEq`），
   而 `LawRule` 的载体**必须**是 `StateSpace`／`OutSpace`（带拓扑 + 可测 + Borel 相容）。
   **⟹ 「直接」诱导在类型层不可能**，必须给**桥参数**。本文件用**最弱的**两个：
 
@@ -49,7 +49,7 @@ import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
   `sg u = (x_u, h_u)` 里 `x_u` 是**事实值**（外生 `u` **决定** `X`）。
   若不干预，只在 `x = x_u` 的个体上才有定义；
   **而条件化于 `X = x` 需要逐点 Bayes 归一化**——
-  `PearlHierarchy.SCM` 的单结果口径里**没有**「先验 × 似然」分解，
+  `FateV2.Modeling.PearlHierarchy.SCM` 的单结果口径里**没有**「先验 × 似然」分解，
   归一化**不是免费的**（分母可为 `0`）。
   **本文件的选择**：`lawAt M y` 读作 $\mathrm{do}(X := e^{-1}(y))$ 下的 $Y$ 律，
   即 `SCM.L2_do` 的测度化——**不需要任何归一化**。
@@ -87,7 +87,7 @@ import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
   * **② 只做「零质量否决」**，不做「完整相容性」：后者需要归一化与 `φ` 单射，
     而 `LawRule` 的成员判据是 `Prop`，逐 `y` 定值会在 `φ` 的纤维上**过约束**。
     这是**真实的数学障碍**，不是简化。
-  * **不触及连续 / 一般可测 SCM**（`PearlHierarchy.SCM` 本身是 `Fintype` 载体）。
+  * **不触及连续 / 一般可测 SCM**（`FateV2.Modeling.PearlHierarchy.SCM` 本身是 `Fintype` 载体）。
   =========================================================================== -/
 
 namespace FateV2.Rules
@@ -162,9 +162,9 @@ $$(\mathrm{lawAt}\,M)\;c\;y \;:=\;
 **允许下一状态分布**是**唯一**那一个：
 把外生律沿「干预 `X := e.symm y` 后的结构方程」推前。
 
-**⚠ 上下文 `c` 被忽略**：`PearlHierarchy.SCM` 类型里**没有**上下文坐标
+**⚠ 上下文 `c` 被忽略**：`FateV2.Modeling.PearlHierarchy.SCM` 类型里**没有**上下文坐标
 （见文件头 §4 的边界登记）。 -/
-noncomputable def lawAt (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+noncomputable def lawAt (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) : LawRule C SX Yb :=
@@ -176,14 +176,14 @@ $$(\mathrm{lawAt}\,M)\;c\;y = \bigl\{\,\mathrm{meas}\bigl(M.\mathrm{L2\_do}\,(e^
 
 **⟹ 这条把「`LawRule` 在 SCM 上是什么意思」钉死为第二层（干预）**，
 不是含糊的「条件分布」。 -/
-theorem lawAt_eq_L2_do (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem lawAt_eq_L2_do (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier) :
     lawAt M SX e Yb φ C c y = {pushMeasure Yb φ (M.L2_do (e.symm y))} := rfl
 
 /-- ⭐⭐ **① 是无条件单点档**：世界模型需要的「可算转移」档位。 -/
-theorem isPoint_lawAt (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem isPoint_lawAt (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) : LawRule.IsPoint (lawAt M SX e Yb φ C) :=
@@ -197,21 +197,21 @@ theorem isPoint_lawAt (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
 
 若两个 SCM 有**相同**的反事实系统（`L3_cf`），则它们诱导的 `LawRule`（①）**相等**。
 
-**证明**：`PearlHierarchy.L3_determines_L2`（**实质引理**，用 `push_push` + `sum_comm`）
+**证明**：`FateV2.Modeling.PearlHierarchy.L3_determines_L2`（**实质引理**，用 `push_push` + `sum_comm`）
 给出 `L2_family` 相同；而 ① 在**定义上**是 `meas ∘ L2_do ∘ e.symm`，故相等。
 
 **⟹ 强度**：这条**不是**定义展开——它把 `PearlHierarchy` 的层间蕴含
 **搬运**到 `LawRule` 层。**这是两套载体之间真正的接线。** -/
-theorem L3_determines_lawAt {M₁ M₂ : PearlHierarchy.SCM X Y}
+theorem L3_determines_lawAt {M₁ M₂ : FateV2.Modeling.PearlHierarchy.SCM X Y}
     [DecidableEq (X → Y)] (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) (h : M₁.L3_cf = M₂.L3_cf) :
     lawAt M₁ SX e Yb φ C = lawAt M₂ SX e Yb φ C := by
-  have hL2 : M₁.L2_family = M₂.L2_family := PearlHierarchy.L3_determines_L2 h
+  have hL2 : M₁.L2_family = M₂.L2_family := FateV2.Modeling.PearlHierarchy.L3_determines_L2 h
   funext c y
   have hx := congrFun hL2 (e.symm y)
-  simp only [PearlHierarchy.SCM.L2_family] at hx
+  simp only [FateV2.Modeling.PearlHierarchy.SCM.L2_family] at hx
   show ({pushMeasure Yb φ (M₁.L2_do (e.symm y))} : Set (Measure Yb.Carrier))
       = {pushMeasure Yb φ (M₂.L2_do (e.symm y))}
   rw [hx]
@@ -233,14 +233,14 @@ $$(\mathrm{lawObs}\,M)\;c\;y \;=\;
 「完整相容性」（`μ` 在纤维上的分布 = `L1_obs` 归一化）需要
 (1) 归一化因子非零、(2) `φ` 单射；二者本文件**不假设**，
 故只取其中**无需任何假设**的部分。 -/
-noncomputable def lawObs (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+noncomputable def lawObs (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (C : CtxSpace) : LawRule C SX Yb :=
   fun _ y => if (∀ y' : Y, M.L1_obs (e.symm y, y') = 0) then Set.univ else ∅
 
 /-- ⭐ **② 的「不否决」分支**。 -/
-theorem lawObs_apply (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem lawObs_apply (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier)
@@ -249,7 +249,7 @@ theorem lawObs_apply (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
   rw [lawObs, if_pos h]
 
 /-- ⭐ **② 的「否决」分支**。 -/
-theorem lawObs_apply_not (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem lawObs_apply_not (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier)
@@ -261,7 +261,7 @@ theorem lawObs_apply_not (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
 
 这精确刻画了本档的**贫乏性**：它**从不**给出「恰好一个」允许分布，
 故它不是「约束得刚好」的那种规律，而是**否决器**。 -/
-theorem lawObs_point_or_empty (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem lawObs_point_or_empty (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier) :
@@ -277,7 +277,7 @@ theorem lawObs_point_or_empty (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
 **⚠ 这条是精确 `iff`**，且同时暴露本档的病：只要 `L1_obs` 在某个 `x` 处**非零**，
 ② 就在该点为**空**——即 ② 与 ① **不相容**（① 在该点有元素）。
 **⟹ 「观测」与「机制」在这一档上是**互斥**的，而不是互补的。**这是本档的真实结论。** -/
-theorem lawObs_eq_top_iff (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem lawObs_eq_top_iff (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (C : CtxSpace) [Nonempty C.Carrier] :
@@ -311,14 +311,14 @@ $$(\mathrm{composeLaw}\,M)\;c\;y = (\mathrm{lawAt}\,M)\;c\;y \cap (\mathrm{lawOb
 **语义**：真值律 **且** 观测不否决。
 **这就是 `LawRule` 的「约束」语义的自然用法**：
 `SCM` 给真值（①），观测给否决（②），**取交才是「既符合机制又符合观测」的规律**。 -/
-noncomputable def composeLaw (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+noncomputable def composeLaw (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) : LawRule C SX Yb :=
   LawRule.compose (lawAt M SX e Yb φ C) (lawObs M SX e Yb C)
 
 /-- ⭐ **③ 的定义展开**（`LawRule.compose` 在此逐字落实为取交）。 -/
-theorem composeLaw_apply (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem composeLaw_apply (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier) :
@@ -326,7 +326,7 @@ theorem composeLaw_apply (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
       = lawAt M SX e Yb φ C c y ∩ lawObs M SX e Yb C c y := rfl
 
 /-- ⭐⭐ **③ 只有两种结局**：= ①（观测不否决），或 = ∅（观测否决）。 -/
-theorem composeLaw_eq_lawAt_or_empty (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem composeLaw_eq_lawAt_or_empty (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier) :
@@ -347,7 +347,7 @@ theorem composeLaw_eq_lawAt_or_empty (M : PearlHierarchy.SCM X Y) (SX : StateSpa
 `SCM` 单给出的 ① **是**单点档（可算转移）；
 一旦把观测约束交进去（③），**可能落到非单点档**，
 而 `LawRule` **恰好**能装这个新东西（`Rule` 装不了，见 §5 的 `isPoint_iff_mem_range`）。 -/
-theorem composeLaw_not_point_of_veto (M : PearlHierarchy.SCM X Y) (SX : StateSpace)
+theorem composeLaw_not_point_of_veto (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (SX : StateSpace)
     [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
     (e : X ≃ SX.Carrier) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
     (φ : Y → Yb.Carrier) (C : CtxSpace) (c : C.Carrier) (y : SX.Carrier)
@@ -443,7 +443,7 @@ variable {SX : StateSpace} [MeasurableSpace SX.Carrier] [DecidableEq SX.Carrier]
 （但注意：③ 在否决处**可以**产生空—非空混合，故 §4 的构造**能**装 `bot` 之外的更多东西；
 `bot` 本身需要**处处**否决，即观测律处处非零——见 `bot_not_mem_range_composeLaw`。） -/
 theorem bot_not_mem_range_lawAt (C : CtxSpace) (Yb : OutSpace) [MeasurableSpace Yb.Carrier]
-    [Nonempty C.Carrier] (φ : Y → Yb.Carrier) (M : PearlHierarchy.SCM X Y)
+    [Nonempty C.Carrier] (φ : Y → Yb.Carrier) (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (SX' : StateSpace) [MeasurableSpace SX'.Carrier] [DecidableEq SX'.Carrier]
     (e : X ≃ SX'.Carrier) [Nonempty X] :
     lawAt M SX' e Yb φ C ≠ LawRule.bot C SX' Yb := by

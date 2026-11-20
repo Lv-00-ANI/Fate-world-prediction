@@ -306,7 +306,7 @@ noncomputable def backdoorFormula {X Y Z : Type*} [Fintype Z]
   ∑ z, condY x z y * margZ z
 
 /-- **退化**：`Z` 单点（**空调整集**）且 `p(()) = 1` 时，调整公式 = 条件律。
-这是 `SCMSemantics.condY_eq_doLaw_of_no_confound` 的**一般形式**。 -/
+这是 `FateV2.Modeling.SCMSemantics.condY_eq_doLaw_of_no_confound` 的**一般形式**。 -/
 theorem backdoorFormula_unit {X Y : Type*}
     (condY : X → Unit → Y → ℝ) (margZ : Unit → ℝ)
     (x : X) (y : Y) (h : margZ () = 1) :

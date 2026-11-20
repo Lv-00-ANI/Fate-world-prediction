@@ -36,7 +36,7 @@ open FateV2.Predict
 Carrier := PUnit` —— 参数空间是**单点**。因此 `:252` 的 `scmWorldStep`
 定义为 `fun _y u _ε _θ a => (M.sg u).2 a`，**丢弃 `θ` 是必然**：
 `PUnit` 只有一个元素，不可能有别的写法。根因在
-`FateV2.Predict/PearlHierarchy.lean:83`：
+`FateV2.Predict/FateV2.Modeling.PearlHierarchy.lean:83`：
 
 ```lean
 structure SCM (X Y : Type*) where
@@ -51,7 +51,7 @@ structure SCM (X Y : Type*) where
 而 `WorldModel` 是**有参数机制**（`Step F` 的第四位是 `F.Θ.Carrier`）。
 接口天生有损。这就是 T-1b 在该方向上的**根本障碍**。
 
-**处置（遵主控判断）**：**不改** `PearlHierarchy.SCM`（扇入高、是因果主干核心），
+**处置（遵主控判断）**：**不改** `FateV2.Modeling.PearlHierarchy.SCM`（扇入高、是因果主干核心），
 而是**新建**一个参数化结构 `ParamSCM`，并用**定理**把它与 `SCM` 连起来。
 ⟹ 本文件**不修改任何既有模块**，只新建。
 
@@ -121,11 +121,11 @@ structure SCM (X Y : Type*) where
 ---------------------------------------------------------------------------
 1. `ParamSCM` 与 `SCM` 是**两个独立结构**。本文件**不**声称
    `ParamSCM` 能替代 `SCM` 的全部下游（`SCMSemantics` / `DAGFactorization` 等
-   30+ 个模块仍消费 `PearlHierarchy.SCM`）。连接只到「`SCM` 嵌入为
+   30+ 个模块仍消费 `FateV2.Modeling.PearlHierarchy.SCM`）。连接只到「`SCM` 嵌入为
    `Th = PUnit` 的 `ParamSCM`」这一层（`scmToParam`）。
 2. **不**重新定义 `SCMSemantics` 的 `jointLaw` / `doLaw`。`doLaw` 桥
    （`paramScmWorldModel_doLaw_eq_sim`）是**自足**地在 `ParamSCM` 上写的
-   逐点求和**定义** `paramScmDoLaw`，与 `SCMSemantics.doLaw` 是**同形式**
+   逐点求和**定义** `paramScmDoLaw`，与 `FateV2.Modeling.SCMSemantics.doLaw` 是**同形式**
    但**不同函数**（因为 `sg` 多一位）。**本文件不声称**二者相等——
    在 `Th = PUnit` 上二者相等，但那是**平凡**的，故不列为定理。
 3. `sg` 的第一分量（事实 `X`）在 `WorldModel` 翻译中**仍然丢失**
@@ -160,7 +160,7 @@ noncomputable section
   §1  参数化 SCM 结构（任务书 (b)）
   =========================================================================== -/
 
-/-- **参数化有限 SCM**：在 `PearlHierarchy.SCM` 上**加一个参数空间 `Th`**。
+/-- **参数化有限 SCM**：在 `FateV2.Modeling.PearlHierarchy.SCM` 上**加一个参数空间 `Th`**。
 
 与 `SCM` 的**唯一区别**是 `sg` 的签名：
 
@@ -410,13 +410,13 @@ theorem paramScmWorldModel_sim_one {X Y : Type} (M : ParamSCM X Y) [Nonempty Y]
   have := paramScmWorldModel_sim_succ M θ (fun _ => u) ε (fun _ => x) 0
   simpa using this
 
-/-- **`ParamSCM` 的干预律**（自足定义，与 `SCMSemantics.doLaw` 同形式，
+/-- **`ParamSCM` 的干预律**（自足定义，与 `FateV2.Modeling.SCMSemantics.doLaw` 同形式，
 但 `sg` 多一位 `θ`）。
 
 $$\mathrm{paramScmDoLaw}\,M\,\theta\,x\,y
   := \sum_u p_U(u)\cdot[(\mathrm{sg}\,\theta\,u).2\,x = y]$$
 
-**⚠ 本文件不声称它等于 `SCMSemantics.doLaw`** —— 见文件头边界 2。 -/
+**⚠ 本文件不声称它等于 `FateV2.Modeling.SCMSemantics.doLaw`** —— 见文件头边界 2。 -/
 noncomputable def paramScmDoLaw {X Y : Type*} (M : ParamSCM X Y)
     [DecidableEq Y] (θ : M.Th) : X → Y → ℝ :=
   fun x y => ∑ u, M.pU u * (if (M.sg θ u).2 x = y then 1 else 0)

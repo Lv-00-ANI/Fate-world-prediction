@@ -126,10 +126,10 @@ open R249.Exog
 结论 `∀ y, condY M x y = doLaw M x y` 是 `Y → ℝ` 上的等式族。
 论域与形态都不同，且证明体是 `rule1_genuine` + `one_mul`（不是 `fun y => h y`）。 -/
 theorem condY_eq_doLaw_of_marginalX_one {X Y : Type u} [Fintype X] [DecidableEq X]
-    [Fintype Y] [DecidableEq Y] (M : PearlHierarchy.SCM X Y)
+    [Fintype Y] [DecidableEq Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (h : XIndependent M) (hm : MassOne M) (x : X)
-    (hx : SCMSemantics.marginalX M x = 1) :
-    ∀ y, SCMSemantics.condY M x y = SCMSemantics.doLaw M x y := by
+    (hx : FateV2.Modeling.SCMSemantics.marginalX M x = 1) :
+    ∀ y, FateV2.Modeling.SCMSemantics.condY M x y = FateV2.Modeling.SCMSemantics.doLaw M x y := by
   intro y
   rw [R249.Rule1.rule1_genuine M h hm x y, hx, one_mul]
 
@@ -138,7 +138,7 @@ theorem condY_eq_doLaw_of_marginalX_one {X Y : Type u} [Fintype X] [DecidableEq 
 
 $$\mathrm{marginalX}\,M1\,0 = \sum_{u:\mathrm{Fin}\,2}\ \tfrac12\,[0 = 0] = 1$$ -/
 theorem M1_marginalX_zero :
-    SCMSemantics.marginalX R249.Rule1.M1 (⟨0, by decide⟩ : Fin 2) = 1 := by
+    FateV2.Modeling.SCMSemantics.marginalX R249.Rule1.M1 (⟨0, by decide⟩ : Fin 2) = 1 := by
   show (∑ u : R249.Rule1.M1.U,
       R249.Rule1.M1.pU u
         * (if (R249.Rule1.M1.sg u).1 = (⟨0, by decide⟩ : Fin 2) then (1 : ℝ) else 0)) = 1
@@ -159,8 +159,8 @@ theorem M1_marginalX_zero :
 ⚠ **诚实标注**：本条的实质在 `M1_marginalX_zero` 与
 `condY_eq_doLaw_of_marginalX_one`；这里只是把两者接起来。 -/
 theorem M1_condY_eq_doLaw (y : Fin 2) :
-    SCMSemantics.condY R249.Rule1.M1 (⟨0, by decide⟩ : Fin 2) y
-      = SCMSemantics.doLaw R249.Rule1.M1 (⟨0, by decide⟩ : Fin 2) y :=
+    FateV2.Modeling.SCMSemantics.condY R249.Rule1.M1 (⟨0, by decide⟩ : Fin 2) y
+      = FateV2.Modeling.SCMSemantics.doLaw R249.Rule1.M1 (⟨0, by decide⟩ : Fin 2) y :=
   condY_eq_doLaw_of_marginalX_one R249.Rule1.M1 R249.Rule1.M1_XIndependent
     R249.Rule1.M1_massOne (⟨0, by decide⟩ : Fin 2) M1_marginalX_zero y
 
@@ -172,7 +172,7 @@ $$U = \mathrm{Fin}\,2,\quad p_U(u) = [u = 0],\quad \mathrm{sg}\,u = (u,\ \mathrm
 
 **⟹ `pU 1 = 0`，故 `XIndependent MZ` 成立（走 `pU u = 0` 分支）；
 但 `(sg 0).1 = 0 ≠ 1 = (sg 1).1`，故 `X` **不是常值**。** -/
-noncomputable def MZ : PearlHierarchy.SCM (Fin 2) (Fin 2) where
+noncomputable def MZ : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2) where
   U := Fin 2
   pU := fun u => if u = 0 then (1 : ℝ) else 0
   sg := fun u => (u, fun x => x)
@@ -223,8 +223,8 @@ theorem MZ_sg_not_const :
 本条验证**`X` 非常值、但正质量上常值**的模型 —— 即 `XIndependent` 的
 **全部力量**（不只是「常值」这个特例）。 -/
 theorem MZ_rule1 (x y : Fin 2) :
-    SCMSemantics.condY MZ x y
-      = SCMSemantics.marginalX MZ x * SCMSemantics.doLaw MZ x y :=
+    FateV2.Modeling.SCMSemantics.condY MZ x y
+      = FateV2.Modeling.SCMSemantics.marginalX MZ x * FateV2.Modeling.SCMSemantics.doLaw MZ x y :=
   R249.Rule1.rule1_genuine MZ MZ_XIndependent MZ_massOne x y
 
 /-- ⭐⭐⭐⭐⭐ **主结论（§1）：`XIndependent` **严格弱于**「`X` 常值」**。
@@ -236,7 +236,7 @@ theorem MZ_rule1 (x y : Fin 2) :
 **不是装饰** —— 去掉它们（改成「`X` 常值」）会**丢掉真模型**。
 本条把这个「不可省性」形式化。 -/
 theorem xIndependent_strictly_weaker :
-    ∃ (M : PearlHierarchy.SCM (Fin 2) (Fin 2)),
+    ∃ (M : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 2)),
       XIndependent M ∧ MassOne M ∧ ¬ (∀ u v : M.U, (M.sg u).1 = (M.sg v).1) :=
   ⟨MZ, MZ_XIndependent, MZ_massOne, MZ_sg_not_const⟩
 

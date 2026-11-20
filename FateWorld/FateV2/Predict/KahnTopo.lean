@@ -62,7 +62,7 @@ Given `G : DAG V` with `[Fintype V] [DecidableEq V]`:
 
 @[expose] public section
 
-namespace FateV2.Predict.Causalean.Graph
+namespace FateV2.Modeling.Graph
 
 open FateV2.Modeling
 variable {V : Type*} [DecidableEq V] [Fintype V]
@@ -330,4 +330,4 @@ theorem topoList_ancestor (G : DAG V) {u w : V} (h : Relation.TransGen G.edge u 
   | single hab => exact topoList_topo G hab
   | tail _ hbc ih => exact lt_trans ih (topoList_topo G hbc)
 
-end FateV2.Predict.Causalean.Graph
+end FateV2.Modeling.Graph

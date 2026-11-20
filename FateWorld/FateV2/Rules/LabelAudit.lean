@@ -753,7 +753,7 @@ def label_A20 : AssumptionKind := .empirical
 
 /-- **A22** SCM 的正确性可由数据确立。类型栏（`05:59`）：不可证的经验假设。
 原文：「SCM 不正确，反事实就是幻觉」。
-⚠ 实现侧无对应谓词；`Fate/SCMSemantics.lean` 只给语义。记入 §5。 -/
+⚠ 实现侧无对应谓词；`Fate/FateV2.Modeling.SCMSemantics.lean` 只给语义。记入 §5。 -/
 def label_A22 : AssumptionKind := .empirical
 
 /-- **A23** 外生变量可识别。类型栏（`05:60`）：不可证的经验假设。
@@ -1307,7 +1307,7 @@ def labeledGaps : List LabeledGap := [
     gap := "A20「因果发现的假设成立」（`05:57`）在实现侧**无对应谓词**：马尔可夫性／忠实性／无隐混杂／平稳性四项**均未被具名**。",
     severity := "silent" },
   { axiomId := "A22", specKind := .empirical,
-    gap := "A22「SCM 的正确性可由数据确立」（`05:59`）在实现侧**无对应谓词**。`Fate/SCMSemantics.lean` 只给语义，不给「正确性可确立」。`05:59` 原文：「SCM 不正确，反事实就是幻觉」——这条**后果**在实现侧**未被写出**。",
+    gap := "A22「SCM 的正确性可由数据确立」（`05:59`）在实现侧**无对应谓词**。`Fate/FateV2.Modeling.SCMSemantics.lean` 只给语义，不给「正确性可确立」。`05:59` 原文：「SCM 不正确，反事实就是幻觉」——这条**后果**在实现侧**未被写出**。",
     severity := "silent" },
   { axiomId := "A23", specKind := .empirical,
     gap := "A23「外生变量可识别」（`05:60`）在实现侧**无识别性谓词**。`05:60` 原文：「反事实的第 1 步『更新外生变量 P(U|e)』整体依赖它」。",

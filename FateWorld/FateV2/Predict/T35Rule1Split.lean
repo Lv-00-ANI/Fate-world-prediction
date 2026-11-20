@@ -64,7 +64,7 @@ import FateWorld.FateV2.Predict.Rule1Semantic
 
   ## 3. ⭐⭐⭐⭐ 关键发现：任务书的「无混杂」表述**不充分**
 
-  任务书说「`X` 与 `Y` 用**不同的**外生分量」。在 `PearlHierarchy.SCM`
+  任务书说「`X` 与 `Y` 用**不同的**外生分量」。在 `FateV2.Modeling.PearlHierarchy.SCM`
   （字段为**单一** `U` 与 `sg : U → X × (X → Y)`）上，必须先引入
   `e : M.U ≃ Ux × Uy` 把 `U` 拆两半，再要求
 
@@ -135,7 +135,7 @@ import FateWorld.FateV2.Predict.Rule1Semantic
   - `T35.M.U = Fin 2`，**无法**拆成 `Ux × Uy` 使 `X`、`Y` 读**不同**分量；
     其混杂是「**同一坐标驱动两方程**」，比「读错分量」更强 ⟹
     必须用 `Rule1Semantic` 的**语义**谓词去抓（见 `T35_not_noConfounding`）。
-  - `PearlHierarchy.SCM` 是**单一** `U`，故「读不同分量」**必须**经 `e` 陈述。
+  - `FateV2.Modeling.PearlHierarchy.SCM` 是**单一** `U`，故「读不同分量」**必须**经 `e` 陈述。
   - `SeparablePU` 中的归一（`∑pX = ∑pY = 1`）**不是**载体的产物，
     而是**数学必需**（§3.2 的代数论证）。
   =========================================================================== -/

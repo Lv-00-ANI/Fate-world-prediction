@@ -41,7 +41,7 @@ import FateWorld.FateV2.Predict.PearlLawRuleBridge
 
   | # | 消费方定理 | 从上游取什么 | 接到哪里 | 是否同义反复 |
   |---|---|---|---|---|
-  | §2 | `doLaw_eq_L2_do` | —— (定义对齐) | `PearlHierarchy.SCM.L2_do` | 定义等式（`rfl`），**明示标注为非实质** |
+  | §2 | `doLaw_eq_L2_do` | —— (定义对齐) | `FateV2.Modeling.PearlHierarchy.SCM.L2_do` | 定义等式（`rfl`），**明示标注为非实质** |
   | §2 | `NC_imp_L2_family_eq` | ⭐ `rule1_of_fullNoConfounding` | `SCM.L2_family`（**可辨识性**） | 否（前件是可观测律相等 + 边缘相等，结论是**干预律**相等） |
   | §2 | `NC_imp_L2_do_cancel` | ⭐ 同上 | `SCM.L2_do` 逐点 | 否 |
   | §3 | ⭐ `literal_rule1_iff_marginal_one` | `rule1_of_separable` 的结论形式 | 「字面规则 1 何时成立」**充要条件** | 否（**这是把上游的反例诊断升级成一般刻画**） |
@@ -99,7 +99,7 @@ open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics FateV2.Predict.
   =========================================================================== -/
 
 /-- ⚠ **对齐引理（`rfl` 级，非实质定理）**：
-`SCMSemantics.doLaw` 与 `SCM.L2_do` 逐点相同 —— 两者都是
+`FateV2.Modeling.SCMSemantics.doLaw` 与 `SCM.L2_do` 逐点相同 —— 两者都是
 `∑_u p_U(u) · [sg(u).2 x = y]`，只是 `L2_do` 写成 `push` 形式。
 
 **⚠ 这不是本模块的贡献**：它是**定义展开**（`rfl`）。列在此处的唯一目的是
@@ -276,7 +276,7 @@ $$\forall c\,x,\quad \mathrm{toLawRule}\,M_{\mathrm{NC}}\,c\,x
 `LawRule` 的概念在任何前件中都不出现。 -/
 theorem MNC_toLawRule_folds (c x : Fin 2) :
     MNC.toLawRule c x = MNC.toLawRule 0 x := by
-  rw [PearlHierarchy.SCM.toLawRule_apply, PearlHierarchy.SCM.toLawRule_apply,
+  rw [FateV2.Modeling.PearlHierarchy.SCM.toLawRule_apply, FateV2.Modeling.PearlHierarchy.SCM.toLawRule_apply,
     MNC_L2_family_constant c, MNC_L2_family_constant 0]
 
 /-- ⭐⭐⭐⭐⭐ **`MNC` 上 L1 ≠ L2**：观测律与干预律是**不同的**律。

@@ -98,19 +98,19 @@ theorem regress_sum_mul {α : Type} [Fintype α] (f : α → ℝ) (c : ℝ) :
 **那些引用在正式构建里**全部悬空****，
 **且报的是**误导性**的错误**（`simp` 无从展开，目标停在未展开状态）。
 
-**⭐ 第 119 轮的修复**：把它移入 `Fate/PearlHierarchy.lean` 的 `SCM.jointLaw3`。
+**⭐ 第 119 轮的修复**：把它移入 `Fate/FateV2.Modeling.PearlHierarchy.lean` 的 `SCM.jointLaw3`。
 
 ⚠ **若有人把它移回 `_pending`，本节编译失败。** -/
 
 /-- ⭐ **回归**：`SCM.jointLaw3` 在**正式库**可用。 -/
 noncomputable example {X B C : Type} [DecidableEq X] [DecidableEq B] [DecidableEq C]
-    (M : PearlHierarchy.SCM X (B × C)) : X × B × C → ℝ :=
+    (M : FateV2.Modeling.PearlHierarchy.SCM X (B × C)) : X × B × C → ℝ :=
   M.jointLaw3
 
 /-- ⭐ **回归**：`jointLaw3` 的**定义式**（推前形式）——
 **这是它「可用」的实质证据**（不只是名字存在）。 -/
 theorem regress_jointLaw3_def {X B C : Type} [DecidableEq X] [DecidableEq B] [DecidableEq C]
-    (M : PearlHierarchy.SCM X (B × C)) (w : X × B × C) :
+    (M : FateV2.Modeling.PearlHierarchy.SCM X (B × C)) (w : X × B × C) :
     M.jointLaw3 w = ∑ u, M.pU u * (if ((M.sg u).1, (M.sg u).2 (M.sg u).1) = w
       then (1 : ℝ) else 0) := by
   rfl
@@ -176,11 +176,11 @@ theorem regress_toSCM_condIndepFin {A B C : Type} [Fintype A] [DecidableEq A]
 /-- ⭐ **回归**：`margAB_jointLaw3`（**一致性引理**，第 119 轮证完）。 -/
 theorem regress_margAB_jointLaw3 {A B C : Type} [Fintype A] [DecidableEq A]
     [Fintype B] [DecidableEq B] [Fintype C] [DecidableEq C]
-    (M : PearlHierarchy.SCM A (B × C)) :
+    (M : FateV2.Modeling.PearlHierarchy.SCM A (B × C)) :
     FinMarkov.CondIndepFin.margAB M.jointLaw3 = fun p =>
       ∑ u, M.pU u * (if ((M.sg u).1, ((M.sg u).2 (M.sg u).1).1) = p
         then (1 : ℝ) else 0) :=
-  PearlHierarchy.SCM.margAB_jointLaw3 M
+  FateV2.Modeling.PearlHierarchy.SCM.margAB_jointLaw3 M
 
 
 /-! ## §6 ⭐⭐ **跨模块组合**：`Factorizes` 与 `condIndepFin_symm` 的接线

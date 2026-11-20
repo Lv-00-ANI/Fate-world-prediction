@@ -56,7 +56,7 @@
 
 **⚠ 反同义反复核查（本项目最高频问题）**：
 - `scmEndToEnd_general_predFrom`：前件只有 `[Nonempty Y]`（`scmWorldModel` 的构造前提）；
-  结论右侧 `(sg u).2 a` 是 `PearlHierarchy.SCM.sg` 的求值，左侧经
+  结论右侧 `(sg u).2 a` 是 `FateV2.Modeling.PearlHierarchy.SCM.sg` 的求值，左侧经
   `predFrom → WorldModel.f → simulator.step → scmWorldStep` 四层定义，
   **前件不含任何等式**，非循环。
 - `scmEndToEnd_general_apply`：前件无任何关于残差/`θ'` 的假设，结论是展开式，非循环。

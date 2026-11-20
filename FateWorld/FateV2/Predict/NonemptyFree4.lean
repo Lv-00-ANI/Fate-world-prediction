@@ -95,7 +95,7 @@
   * **结论**把 `EndToEnd.predFrom` / `e2eResidual` / `endToEnd`
     在 SCM 实例上**求值**成含 `(M.sg u).2 a` 的表达式——
     两侧分属不同模块（`Fate/EndToEnd.lean` 与 `Fate/SCMWorldModel.lean`
-    / `Fate/PearlHierarchy.lean`）的**定义**，由定理首次相等。
+    / `Fate/FateV2.Modeling.PearlHierarchy.lean`）的**定义**，由定理首次相等。
   * 新定理是对原定理的**调用**，未添加任何假设 ⟹ 语义与原定理相同。
 
   ---------------------------------------------------------------------------
@@ -148,7 +148,7 @@ theorem predFrom_scmWorldModel {X Y : Type} (M : SCM X Y) [Nonempty Y]
 ```
 
 `[Nonempty Y]` 由参数 `(y : Y)` 就地给出（`⟨y⟩`）。 -/
-theorem predFrom_scmWorldModel_noNonempty {X Y : Type} (M : PearlHierarchy.SCM X Y)
+theorem predFrom_scmWorldModel_noNonempty {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (θ : PUnit.{1}) (u : M.U) (ε : PUnit.{1}) (a : X) (y : Y) :
     FateV2.Loop.EndToEnd.predFrom (@SCMWorldModel.scmWorldModel X Y M ⟨y⟩) θ u ε a y
       = (M.sg u).2 a := by
@@ -160,7 +160,7 @@ theorem predFrom_scmWorldModel_noNonempty {X Y : Type} (M : PearlHierarchy.SCM X
 原陈述（`Fate/SCMEndToEnd.lean:158`）：`predFrom … y₁ = predFrom … y₂`。
 `[Nonempty Y]` 由 `y₁` 给出。两侧各用**自己的**出发状态作见证。 -/
 theorem predFrom_scmWorldModel_indep_start_noNonempty {X Y : Type}
-    (M : PearlHierarchy.SCM X Y)
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (θ : PUnit.{1}) (u : M.U) (ε : PUnit.{1}) (a : X) (y₁ y₂ : Y) :
     FateV2.Loop.EndToEnd.predFrom (@SCMWorldModel.scmWorldModel X Y M ⟨y₁⟩) θ u ε a y₁
       = FateV2.Loop.EndToEnd.predFrom (@SCMWorldModel.scmWorldModel X Y M ⟨y₂⟩) θ u ε a y₂ := by
@@ -172,7 +172,7 @@ theorem predFrom_scmWorldModel_indep_start_noNonempty {X Y : Type}
 原陈述（`Fate/SCMEndToEnd.lean:202`）：
 `e2eResidual … = xobs - (M.sg u).2 a`。
 `[Nonempty Y]` 由观测值 `(xobs : Y)` 给出。 -/
-theorem e2eResidual_scmWorldModel_noNonempty {X Y : Type} (M : PearlHierarchy.SCM X Y)
+theorem e2eResidual_scmWorldModel_noNonempty {X Y : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [AddCommGroup Y]
     (xobs : Y) (θ : PUnit.{1}) (u : M.U) (ε : PUnit.{1}) (a : X) (xpred : Y) :
     FateV2.Loop.EndToEnd.e2eResidual (@SCMWorldModel.scmWorldModel X Y M ⟨xobs⟩) xobs θ u ε a xpred
@@ -186,7 +186,7 @@ theorem e2eResidual_scmWorldModel_noNonempty {X Y : Type} (M : PearlHierarchy.SC
 `e2eResidual … = 0 ↔ xobs = (M.sg u).2 a`。
 `[Nonempty Y]` 由 `(xobs : Y)` 给出。 -/
 theorem e2eResidual_scmWorldModel_eq_zero_iff_noNonempty {X Y : Type}
-    (M : PearlHierarchy.SCM X Y) [AddCommGroup Y]
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [AddCommGroup Y]
     (xobs : Y) (θ : PUnit.{1}) (u : M.U) (ε : PUnit.{1}) (a : X) (xpred : Y) :
     FateV2.Loop.EndToEnd.e2eResidual (@SCMWorldModel.scmWorldModel X Y M ⟨xobs⟩) xobs θ u ε a xpred
         = 0
@@ -203,7 +203,7 @@ theorem e2eResidual_scmWorldModel_eq_zero_iff_noNonempty {X Y : Type}
 ⚠ **附加注意**：原定理的结论里还有 `EndToEnd.observe h y`，
 其定义要求 `[Nonempty W.frame.X.Carrier]`（即 `[Nonempty Y]`）。
 它与 `scmWorldModel` 用的是**同一个**局部实例 `⟨x⟩`，因此一并去掉。 -/
-theorem endToEnd_scmWorldModel_noNonempty {X Y G : Type} (M : PearlHierarchy.SCM X Y)
+theorem endToEnd_scmWorldModel_noNonempty {X Y G : Type} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [AddCommGroup Y] [Ring PUnit.{1}]
     (h : Y → G) (η : PUnit.{1}) (φ : Y →+ PUnit.{1})
     (y : G) (θ : PUnit.{1}) (u : M.U) (ε : PUnit.{1}) (a : X) (x : Y) :

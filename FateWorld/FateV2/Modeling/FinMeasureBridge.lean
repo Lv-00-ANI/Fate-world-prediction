@@ -19,7 +19,7 @@ import Mathlib.MeasureTheory.Measure.Dirac
 
   依第 86 轮评估的核心建议：项目已有**两个完整可编译的一半**
   （图侧的 d-分离 / 概率侧的有限条件独立），但**没有连接它们的定理**。
-  `SCMSemantics.lean:130-141` 自己登记了这个缺口。
+  `FateV2.Modeling.SCMSemantics.lean:130-141` 自己登记了这个缺口。
 
   **本节做第一端**：把 `FinJoint` 嵌入 `Measure`，并证明**保持质量**。
 

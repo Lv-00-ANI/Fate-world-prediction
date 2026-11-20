@@ -21,7 +21,7 @@ open FateV2.Predict
   **`FateV2.Predict/Stage1A.lean`**：
   > | **T1A.5** | do-calculus 三条规则 | ❌ 无 | **未实现**（登记） |
 
-  **`FateV2.Predict/PearlHierarchy.lean`**：
+  **`FateV2.Predict/FateV2.Modeling.PearlHierarchy.lean`**：
   > 本文件**不**形式化 do-calculus 的三条代数规则
 
   ## ⚠ 本节的范围（**如实划界**）
@@ -66,7 +66,7 @@ variable {X Y : Type u}
 **这正是「切断入边 + 设常数」的精确形式。**
 
 **⚠ 外生律 `pU` **不被改动**（干预不改变外生分布）。** -/
-def doX (M : PearlHierarchy.SCM X Y) (x : X) : PearlHierarchy.SCM X Y where
+def doX (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) : FateV2.Modeling.PearlHierarchy.SCM X Y where
   U := M.U
   instFintype := M.instFintype
   instDecEq := M.instDecEq
@@ -81,7 +81,7 @@ $$do(x)\bigl(do(x)(M)\bigr) = do(x)(M)$$
 
 **⟹ 即**：**重复同一干预无效果** ——
 **这是 do-算子的**最基本代数性质**。** -/
-theorem do_idempotent (M : PearlHierarchy.SCM X Y) (x : X) :
+theorem do_idempotent (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
     doX (doX M x) x = doX M x := by
   unfold doX
   congr 1
@@ -93,7 +93,7 @@ $$do(x')\bigl(do(x)(M)\bigr) = do(x')(M)$$
 
 **⚠ 意义**：**do-算子的序列**不携带历史信息**** ——
 **这与「$do$ 不可逆」的性质一致。** -/
-theorem do_comp (M : PearlHierarchy.SCM X Y) (x x' : X) :
+theorem do_comp (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x x' : X) :
     doX (doX M x) x' = doX M x' := by
   unfold doX
   congr 1
@@ -127,7 +127,7 @@ theorem do_comp (M : PearlHierarchy.SCM X Y) (x x' : X) :
 **不再需要「登记为未证」。** -/
 
 /-- **两个只在 `sg` 第一分量上不同的 SCM**（反例的两个见证）。 -/
-noncomputable def probeP : PearlHierarchy.SCM (Fin 2) (Fin 1) where
+noncomputable def probeP : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 1) where
   U := Bool
   instFintype := inferInstance
   instDecEq := inferInstance
@@ -135,7 +135,7 @@ noncomputable def probeP : PearlHierarchy.SCM (Fin 2) (Fin 1) where
   sg := fun _ => (0, fun _ => 0)
 
 /-- 与 `probeP` 仅在 `sg` 第一分量（`0` vs `1`）上不同。 -/
-noncomputable def probeQ : PearlHierarchy.SCM (Fin 2) (Fin 1) where
+noncomputable def probeQ : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 1) where
   U := Bool
   instFintype := inferInstance
   instDecEq := inferInstance
@@ -170,7 +170,7 @@ $$\exists\, M_1 \neq M_2,\quad do(M_1, x) = do(M_2, x)$$
 反例 `probeP` / `probeQ` 为**显式构造**，
 证明中**无 `sorry`**、**无新公理**。 -/
 theorem do_not_injective :
-    ¬ Function.Injective (fun M : PearlHierarchy.SCM (Fin 2) (Fin 1) => doX M 0) := by
+    ¬ Function.Injective (fun M : FateV2.Modeling.PearlHierarchy.SCM (Fin 2) (Fin 1) => doX M 0) := by
   intro hinj
   exact probeP_ne_probeQ (hinj doX_probeP_eq_doX_probeQ)
 
@@ -181,7 +181,7 @@ theorem do_not_injective :
 **陈述**：**`do(x)` 后的模型，其 `sg` 的第一分量恒为 `x`。**
 
 **⟹ 即**：**干预是**不可再干预**的**（幂等的直接推论）。** -/
-theorem do_sg_fst (M : PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
+theorem do_sg_fst (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
     ((doX M x).sg u).1 = x :=
   rfl
 
@@ -189,7 +189,7 @@ theorem do_sg_fst (M : PearlHierarchy.SCM X Y) (x : X) (u : M.U) :
 
 **⟹ 即**：**这是「干预只动结构、不动外生」的精确形式** ——
 **也是 do-calculus 第二、三条规则所需的语义前提。** -/
-theorem do_pU (M : PearlHierarchy.SCM X Y) (x : X) :
+theorem do_pU (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
     (doX M x).pU = M.pU :=
   rfl
 

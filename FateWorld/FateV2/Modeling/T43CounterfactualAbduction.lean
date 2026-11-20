@@ -67,7 +67,7 @@ import Mathlib.Tactic.NormNum
 
   ### 2.1 第 1 条（`cf_no_abduction_eq_doLaw`）**确实**是 D4 型（定义展开）
 
-  **用户已预先警告过这一点，我确认警告正确。** `SCMSemantics.doLaw` 的定义**本身**
+  **用户已预先警告过这一点，我确认警告正确。** `FateV2.Modeling.SCMSemantics.doLaw` 的定义**本身**
   就是「用先验 `pU` 求和」：`doLaw M x y = ∑ u, pU u * [h_u(x) = y]`。
   所以「不做溯因」与 `doLaw` **是同一件事**，等式**由 `rfl` 关闭**。
   **我不把它包装成深刻定理**：它在 §2 中**只用来把 `CFAlgorithm` 的字段语义钉死**，
@@ -89,7 +89,7 @@ import Mathlib.Tactic.NormNum
      本文件把「溯因」定义成**公式**（`abductionFactor`），
      **它与 Pearl 第 1 步的语义对应是「事后合理性论证」（§5），不是定理。**
   2. **不**断言「反事实 ⟹ 干预」在**所有** `L1/L2` 缺失的信息下都成立。
-     `PearlHierarchy.L3_not_determined_by_L1_and_L2` 已表明 L3 ⊋ (L1,L2)；
+     `FateV2.Modeling.PearlHierarchy.L3_not_determined_by_L1_and_L2` 已表明 L3 ⊋ (L1,L2)；
      本文件说的是**更窄**的一件事：**在 `L3` 的逐 `u` 公式上把溯因因子换成 1，
      得到的就是 `L2` 的 `doLaw`**。这正是「去掉溯因 ⟹ 退化为干预」的精确形式。
   3. **数值 `1/4` / `1/2`** 全部由 Lean 的 `norm_num` 计算，
@@ -165,7 +165,7 @@ structure CFAlgorithm (X Y : Type) where
 
 /-- ⭐⭐ **溯因权重**：`abduction = true` 时是观测筛选因子 `[x_u = x]`，否则是 `1`。 -/
 noncomputable def CFAlgorithm.weight (a : CFAlgorithm X Y)
-    (M : PearlHierarchy.SCM X Y) [DecidableEq X] (x : X) (u : M.U) : ℝ :=
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq X] (x : X) (u : M.U) : ℝ :=
   if a.abduction then (if (M.sg u).1 = x then 1 else 0) else 1
 
 /-- ⭐⭐⭐ **反事实（`L3`）律**：先按 `weight` 重加权外生律，
@@ -175,7 +175,7 @@ $$\mathrm{cfLaw}_a\,M\,(x,x')\,y
   = \sum_u p_U(u)\cdot w_a(x,u)\cdot[\mathrm{sg}(u).2\ x' = y]$$
 -/
 noncomputable def CFAlgorithm.cfLaw (a : CFAlgorithm X Y)
-    (M : PearlHierarchy.SCM X Y) [DecidableEq X] [DecidableEq Y]
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq X] [DecidableEq Y]
     (x x' : X) (y : Y) : ℝ :=
   ∑ u, M.pU u * a.weight M x u * (if (M.sg u).2 x' = y then 1 else 0)
 
@@ -184,7 +184,7 @@ noncomputable def CFAlgorithm.cfLaw (a : CFAlgorithm X Y)
 **⚠ 这是 D4（定义展开）**：`weight = 1` 时求和式与 `doLaw` 的定义**字面相同**。
 证明是 `Finset.sum_congr` + `one_mul`，**不含概率内容**。
 **真正的数学内容在 §4**（存在 SCM 使开关产生不同结果）。 -/
-theorem cf_no_abduction_eq_doLaw (M : PearlHierarchy.SCM X Y)
+theorem cf_no_abduction_eq_doLaw (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [DecidableEq X] [DecidableEq Y] (x x' : X) (y : Y) :
     (⟨false⟩ : CFAlgorithm X Y).cfLaw M x x' y = doLaw M x' y := by
   unfold CFAlgorithm.cfLaw doLaw CFAlgorithm.weight
@@ -193,7 +193,7 @@ theorem cf_no_abduction_eq_doLaw (M : PearlHierarchy.SCM X Y)
   ring
 
 /-- ⭐⭐ 由 `abduction = true` 的**展开式**（只是把开关打开，仍属定义层）。 -/
-theorem cf_with_abduction_eq (M : PearlHierarchy.SCM X Y)
+theorem cf_with_abduction_eq (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [DecidableEq X] [DecidableEq Y] (x x' : X) (y : Y) :
     (⟨true⟩ : CFAlgorithm X Y).cfLaw M x x' y
       = ∑ u, M.pU u * (if (M.sg u).1 = x then 1 else 0)
@@ -207,7 +207,7 @@ theorem cf_with_abduction_eq (M : PearlHierarchy.SCM X Y)
 **⟹ 观测律 `condY` 正是「反事实 + 完整溯因」在 `x' = x`（**无干预**）处的特例。**
 这与 Pearl 的直觉一致：`condY` 是「用后验预测事实」，不涉及 do。
 **⚠ 这仍属定义层**（`condY` 的定义与上式字面相同），故只作**登记**，不作主定理。 -/
-theorem cf_with_abduction_at_same_x_eq_condY (M : PearlHierarchy.SCM X Y)
+theorem cf_with_abduction_at_same_x_eq_condY (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [DecidableEq X] [DecidableEq Y] (x : X) (y : Y) :
     (⟨true⟩ : CFAlgorithm X Y).cfLaw M x x y = condY M x y := by
   rw [cf_with_abduction_eq]
@@ -230,7 +230,7 @@ variable {X Y : Type} [DecidableEq X] [DecidableEq Y]
 /-- ⭐⭐⭐ **逐点形式**：带溯因的律 = 不带溯因的律，但**每一项**多乘了 `[x_u = x]`。
 
 这是 §4 反例的**通用机制**：反例的存在性 ⟺ 存在一个 `M` 使那个因子**真的**改变了求和。 -/
-theorem abduction_true_eq_false_with_factor (M : PearlHierarchy.SCM X Y)
+theorem abduction_true_eq_false_with_factor (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (x x' : X) (y : Y) :
     (⟨true⟩ : CFAlgorithm X Y).cfLaw M x x' y
       = ∑ u, M.pU u * (if (M.sg u).1 = x then 1 else 0)
@@ -238,7 +238,7 @@ theorem abduction_true_eq_false_with_factor (M : PearlHierarchy.SCM X Y)
   cf_with_abduction_eq M x x' y
 
 /-- ⭐⭐ 不带溯因的律的**同一形状**（因子被换成 `1`）。 -/
-theorem abduction_false_form (M : PearlHierarchy.SCM X Y) (x x' : X) (y : Y) :
+theorem abduction_false_form (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x x' : X) (y : Y) :
     (⟨false⟩ : CFAlgorithm X Y).cfLaw M x x' y
       = ∑ u, M.pU u * (1 : ℝ) * (if (M.sg u).2 x' = y then 1 else 0) := by
   rw [cf_no_abduction_eq_doLaw]
@@ -275,7 +275,7 @@ abbrev v2 : Bool → (Bool → Bool) := v2f
 
 * `U := Bool × Bool`，`pU ≡ 1/4`（均匀分布，总质量 `4 · 1/4 = 1`）；
 * `sg (a, b) = (a, v2 b)`：`X := a`，**结构方程 `Y := b` 忽略输入 `X`**。 -/
-noncomputable def M : PearlHierarchy.SCM Bool Bool where
+noncomputable def M : FateV2.Modeling.PearlHierarchy.SCM Bool Bool where
   U := Bool × Bool
   instFintype := inferInstance
   instDecEq := inferInstance
@@ -362,7 +362,7 @@ theorem abduction_matters_quantitative :
 而是把 §4.1 的两条**数值引理**（`abduction_value` / `doLaw_value`）拼起来，
 再用 `norm_num` 排除 `1/4 = 1/2`。 -/
 theorem abduction_changes_result :
-    ∃ (M' : PearlHierarchy.SCM Bool Bool) (x x' y : Bool),
+    ∃ (M' : FateV2.Modeling.PearlHierarchy.SCM Bool Bool) (x x' y : Bool),
       (⟨true⟩ : CFAlgorithm Bool Bool).cfLaw M' x x' y
         ≠ (⟨false⟩ : CFAlgorithm Bool Bool).cfLaw M' x x' y := by
   refine ⟨M, true, true, true, ?_⟩
@@ -435,13 +435,13 @@ end Counterexample
 
 | 本文件用的东西 | 出处 | 作用 |
 |---|---|---|
-| `PearlHierarchy.SCM`（`U`, `pU`, `sg`）| `Fate/PearlHierarchy.lean` | 载体 |
-| `SCMSemantics.doLaw` | `Fate/SCMSemantics.lean:96` | 「不做溯因」的形式 |
-| `SCMSemantics.condY` | `Fate/SCMSemantics.lean:83` | 完整溯因在 `x'=x` 处的特例（§2 末）|
-| `push` | `Fate/PearlHierarchy.lean` | 推前（本文件未直接用，因 `doLaw` 已展开）|
+| `FateV2.Modeling.PearlHierarchy.SCM`（`U`, `pU`, `sg`）| `Fate/FateV2.Modeling.PearlHierarchy.lean` | 载体 |
+| `FateV2.Modeling.SCMSemantics.doLaw` | `Fate/FateV2.Modeling.SCMSemantics.lean:96` | 「不做溯因」的形式 |
+| `FateV2.Modeling.SCMSemantics.condY` | `Fate/FateV2.Modeling.SCMSemantics.lean:83` | 完整溯因在 `x'=x` 处的特例（§2 末）|
+| `push` | `Fate/FateV2.Modeling.PearlHierarchy.lean` | 推前（本文件未直接用，因 `doLaw` 已展开）|
 | `Fintype.sum_prod_type` | `Mathlib.Data.Fintype.Prod` | `Bool × Bool` 求和拆分 |
 | `Fintype.sum_bool` | Mathlib | `Bool` 求和拆分 |
-| `PearlHierarchy.L3_1` / `L2_1` | `Fate/PearlHierarchy.lean` | **同一机制**的另一种表述（分层口径）|
+| `FateV2.Modeling.PearlHierarchy.L3_1` / `L2_1` | `Fate/FateV2.Modeling.PearlHierarchy.lean` | **同一机制**的另一种表述（分层口径）|
 
 **⭐ 与前序文献/代码的关系**：
 `PearlHierarchy` 中 `L2_do`（干预）与 `L3_1`（反事实）之差**正是** `[x_u = x]` 因子；

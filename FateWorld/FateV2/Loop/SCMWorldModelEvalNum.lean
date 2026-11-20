@@ -447,7 +447,7 @@ theorem iterD_false_fixed (k : ℕ) :
 def sgStep (u : Bool) (x : ℚ) : ℚ := x + (if u then 1 else 0)
 
 /-- 具体 SCM：`U = Bool`、均匀 `pU`、结构映射 `sg u = (0, sgStep u)`。 -/
-def scmQ : PearlHierarchy.SCM ℚ ℚ where
+def scmQ : FateV2.Modeling.PearlHierarchy.SCM ℚ ℚ where
   U := Bool
   pU := fun _ => 1 / 2
   sg := fun u => (0, sgStep u)

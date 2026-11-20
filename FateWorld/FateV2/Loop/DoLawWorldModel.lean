@@ -24,7 +24,7 @@ import Mathlib.MeasureTheory.Measure.Dirac
 
   | 已有 | 位置 | 本文件是否重复 |
   |---|---|---|
-  | `SCMSemantics.doLaw`（显式 `Finset` 求和） | `Fate/SCMSemantics.lean` §68.2 | **不重复**，只引用 |
+  | `FateV2.Modeling.SCMSemantics.doLaw`（显式 `Finset` 求和） | `Fate/FateV2.Modeling.SCMSemantics.lean` §68.2 | **不重复**，只引用 |
   | `doLaw_eq_push` / `doLaw_is_law_after_do` / `doProb` | `Fate/CausalRouteDo.lean` §1–§5 | **不重复**，只引用 |
   | `DoCalculus.doX`（模型变换算子） | `Fate/DoCalculus.lean` §64.1 | **不重复**，只引用 |
   | `WorldModel`（状态/规则集/模拟器/选择器四块） | `Fate/WorldModel.lean` §5 | **不重复**，只引用 |
@@ -117,7 +117,7 @@ universe u
 
 /-- ⭐⭐ **`WorldModel` 上的 SCM 作用域**：`X` 与 `Y` 都取世界模型的状态取值类型。 -/
 abbrev SCMScope (W : WorldModel) : Type _ :=
-  PearlHierarchy.SCM W.frame.X.Carrier W.frame.X.Carrier
+  FateV2.Modeling.PearlHierarchy.SCM W.frame.X.Carrier W.frame.X.Carrier
 
 /-- ⭐⭐ **「可干预的世界模型」**：在 `WorldModel` 上**携带一个 SCM**（因果机制）。
 
@@ -190,7 +190,7 @@ abbrev DoCapable.State (W : DoCapable) : Type _ := W.base.frame.X.Carrier
 /-- ⭐⭐ **`DoCapable` 的 `SCM` 视图**：把摊平的 `pU` / `sg` 重新打包成 `SCM`。
 
 **⚠ 这是「摊平」的逆变换**：它使本文件可以**直接复用**
-`SCMSemantics.doLaw` / `CausalRouteDo.doProb` / `DoCalculus.doX` ——
+`FateV2.Modeling.SCMSemantics.doLaw` / `CausalRouteDo.doProb` / `DoCalculus.doX` ——
 **不需要重写任何概率定义**。
 
 **⚠ `U := W.Exo`**（不是别的），故 `W.toSCM.U` 与 `W.Exo` **定义相等**（`rfl`）。 -/
@@ -261,7 +261,7 @@ $$\mathrm{DoCapable.doLaw}\,W := \mathrm{doLaw}\,(W.\mathrm{toSCM}) .$$
 `WorldModel` 上现在**有** `doLaw` 这个名字。** -/
 noncomputable def DoCapable.doLaw (W : DoCapable) [DecidableEq W.State] :
     W.State → W.State → ℝ :=
-  SCMSemantics.doLaw W.toSCM
+  FateV2.Modeling.SCMSemantics.doLaw W.toSCM
 
 /-- ⭐⭐ **世界模型的干预概率**（`doProb` 在 `DoCapable` 上的具名读出）。
 
@@ -274,10 +274,10 @@ noncomputable def DoCapable.doProb (W : DoCapable) [Fintype W.State]
     [DecidableEq W.State] : W.State → W.State → ℝ :=
   CausalRouteDo.doProb W.toSCM
 
-/-- ⭐ **定义展开**（`DoCapable.doLaw` ↔ `SCMSemantics.doLaw`，`rfl`）。 -/
+/-- ⭐ **定义展开**（`DoCapable.doLaw` ↔ `FateV2.Modeling.SCMSemantics.doLaw`，`rfl`）。 -/
 theorem DoCapable.doLaw_apply (W : DoCapable) [DecidableEq W.State]
     (x y : W.State) :
-    W.doLaw x y = SCMSemantics.doLaw W.toSCM x y := rfl
+    W.doLaw x y = FateV2.Modeling.SCMSemantics.doLaw W.toSCM x y := rfl
 
 /-- ⭐ **定义展开**（`DoCapable.doProb` ↔ `CausalRouteDo.doProb`，`rfl`）。 -/
 theorem DoCapable.doProb_apply (W : DoCapable) [Fintype W.State]
@@ -398,13 +398,13 @@ theorem DoCapable.doProb_sum_eq_one (W : DoCapable)
     (hU : ∑ u, W.pU u = 1) (x : W.State) :
     ∑ y, W.doProb x y = 1 := by
   have hU' : ∑ u, W.toSCM.pU u = 1 := by rw [DoCapable.toSCM_pU]; exact hU
-  have hmass : ∑ y, SCMSemantics.doLaw W.toSCM x y = ∑ u, W.toSCM.pU u :=
+  have hmass : ∑ y, FateV2.Modeling.SCMSemantics.doLaw W.toSCM x y = ∑ u, W.toSCM.pU u :=
     FateV2.Predict.T34.doLaw_mass W.toSCM x
-  have hne : (∑ y, SCMSemantics.doLaw W.toSCM x y) ≠ 0 := by
+  have hne : (∑ y, FateV2.Modeling.SCMSemantics.doLaw W.toSCM x y) ≠ 0 := by
     rw [hmass, hU']; norm_num
   have hsplit : ∑ y, W.doProb x y
-      = (∑ y, SCMSemantics.doLaw W.toSCM x y)
-        / (∑ y, SCMSemantics.doLaw W.toSCM x y) := by
+      = (∑ y, FateV2.Modeling.SCMSemantics.doLaw W.toSCM x y)
+        / (∑ y, FateV2.Modeling.SCMSemantics.doLaw W.toSCM x y) := by
     rw [Finset.sum_div]
     refine Finset.sum_congr rfl ?_
     intro y _
@@ -414,7 +414,7 @@ theorem DoCapable.doProb_sum_eq_one (W : DoCapable)
 
 /-- ⭐⭐⭐ **`doProb` 非负**（当 `pU ≥ 0` 且分母为正）。 -/
 theorem DoCapable.doProb_nonneg (W : DoCapable) [Fintype W.State] [DecidableEq W.State]
-    (hpU : ∀ u, 0 ≤ W.pU u) (hpos : ∀ x, 0 < ∑ y', SCMSemantics.doLaw W.toSCM x y')
+    (hpU : ∀ u, 0 ≤ W.pU u) (hpos : ∀ x, 0 < ∑ y', FateV2.Modeling.SCMSemantics.doLaw W.toSCM x y')
     (x y : W.State) : 0 ≤ W.doProb x y := by
   rw [DoCapable.doProb_apply, CausalRouteDo.doProb]
   have hpU' : ∀ u, 0 ≤ W.toSCM.pU u := by

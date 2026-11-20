@@ -700,14 +700,14 @@ example (M : SCM X Y) (v : SV M) : ¬ (SCMGraph M).isAncestor v v :=
 
 **⚠ 这不是「已证等价」**：`R277.moralAdj` 的载体是
 `R259.BackdoorSetup`（五个独立 `Type` 字段 + `fX`/`fY` 两槽），
-本文件的载体是 `PearlHierarchy.SCM`（单个 `sg`）。
+本文件的载体是 `FateV2.Modeling.PearlHierarchy.SCM`（单个 `sg`）。
 **两者之间的忠实翻译函子未写** —— 这是**明确的缺口**（§7.2 第 1 条）。
 
 ## §7.2 ⚠ 缺口（**逐条登记，不掩饰**）
 
 | # | 缺口 | 需要什么 |
 |---|---|---|
-| **1** | `R259.BackdoorSetup → PearlHierarchy.SCM` 的翻译（把 `fX`,`fY` 揉成 `sg`）**未写** | 需要一个把 `fY` 的 `Uy` 槽吸收进 `U := Ux × Uy` 的编码 |
+| **1** | `R259.BackdoorSetup → FateV2.Modeling.PearlHierarchy.SCM` 的翻译（把 `fX`,`fY` 揉成 `sg`）**未写** | 需要一个把 `fY` 的 `Uy` 槽吸收进 `U := Ux × Uy` 的编码 |
 | **2** | **道德化**（`SCMGraph` → 无向邻接）**未写** | 祖先图 + 父亲两两相连；可直接接 `FateV2.Modeling.MoralGraphMarkov.USeparated` |
 | **3** | **`dSep` 判定**（`BackdoorGenuine` 头表的「§5」）**未在本文件** | 依赖 §7.2 第 2 条的道德化 |
 | **4** | `depUY` 的**否定方向**（有混杂 ⟹ 观测律真的混杂）**未证** | 需要 `∃ u, pU u ≠ 0`（本文件**不作此假设**） |

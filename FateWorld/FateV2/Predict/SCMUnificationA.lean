@@ -22,24 +22,24 @@ docstring（`/- ... -/` 注释块）**，第 120 行才开始 `import`。也就�
 * `#check @SCM.mk`         ⟹ `Unknown identifier`
 * `#check @FateV2.Modeling.PearlHierarchy.SCM` ⟹ 成功
 * `#check @FateV2.Predict.ParamSCM.scmToParam` ⟹ 成功
-  （类型 `PearlHierarchy.SCM X Y → ParamSCM X Y`）
+  （类型 `FateV2.Modeling.PearlHierarchy.SCM X Y → ParamSCM X Y`）
 
 `grep -rn '^structure [A-Za-z]*SCM' Fate/*.lean` 的真正命中（排除 docstring）
 只有 6 个**互不相同**的结构，其中单结果变量、二参数 `SCM (X Y : Type*)`
-的**只有** `PearlHierarchy.SCM` 一个。`Fate/SCMUnificationA.lean` 里
+的**只有** `FateV2.Modeling.PearlHierarchy.SCM` 一个。`Fate/SCMUnificationA.lean` 里
 `:19`、`:27` 两处 `structure SCM` 同样在 docstring 里。
 
 **⟹ 「两个 `SCM` 命名空间不同」是误判；不存在第二个可合并的 `SCM`。**
 本文件据此**改为**处理**真实存在**的那一对：
 
 ```lean
-PearlHierarchy.SCM  X Y          -- 无参数位：sg : U → X × (X → Y)
+FateV2.Modeling.PearlHierarchy.SCM  X Y          -- 无参数位：sg : U → X × (X → Y)
 ParamSCM.ParamSCM   X Y          -- 有参数位：sg : Th → U → X × (X → Y)
 ```
 
 二者**不同构**（`ParamSCM` 多一个 `Th` 字段，`sg` 多一位，类型都不同），
 但有**确定的关系**：给定 `ParamSCM X Y` 的任一参数点 `x : N.Th`，
-取 `N.sg x` 得一个 `PearlHierarchy.SCM X Y`。
+取 `N.sg x` 得一个 `FateV2.Modeling.PearlHierarchy.SCM X Y`。
 
 ---------------------------------------------------------------------------
 一、本文件交付（与既有库**不重复**）
@@ -49,7 +49,7 @@ ParamSCM.ParamSCM   X Y          -- 有参数位：sg : Th → U → X × (X →
 
 | 编号 | 名称 | 内容 |
 |---|---|---|
-| (a) | `toPearl` | 定义：`ParamSCM → Th 取一点 → PearlHierarchy.SCM` |
+| (a) | `toPearl` | 定义：`ParamSCM → Th 取一点 → FateV2.Modeling.PearlHierarchy.SCM` |
 | (b) | `toPearl_pU` / `toPearl_sg` | 投影引理 |
 | (c) | `toPearl_scmToParam` | ⭐⭐ `toPearl (scmToParam M) PUnit.unit = M`（**左逆**） |
 | (d) | `scmToParam_sg_at` | ⭐ 在任意参数点 `x` 处，`scmToParam (toPearl N x)` 的 `sg` 与 `N.sg x` 逐点相等 |
@@ -92,11 +92,11 @@ set_option autoImplicit false
 -/
 
 /-! ===========================================================================
-  §1  反向构造：`ParamSCM` 在一个参数点处给出 `PearlHierarchy.SCM`
+  §1  反向构造：`ParamSCM` 在一个参数点处给出 `FateV2.Modeling.PearlHierarchy.SCM`
   =========================================================================== -/
 
 /-- ⭐⭐ **在某参数点 `x : N.Th` 处「冻结参数」**，把 `ParamSCM X Y` 投影成
-`PearlHierarchy.SCM X Y`。这是 `ParamSCM.scmToParam`（反向）的**逆方向**。
+`FateV2.Modeling.PearlHierarchy.SCM X Y`。这是 `ParamSCM.scmToParam`（反向）的**逆方向**。
 
 与 `scmToParam` 的差别是**结构性的**：`scmToParam` 把 `Th` 固定为 `PUnit`
 （是 `SCM ↪ ParamSCM`），而本定义保留 `N` 的任意参数点（是 `ParamSCM → SCM`
@@ -104,7 +104,7 @@ set_option autoImplicit false
 
 标签：**[定义性约定]**。 -/
 def toPearl {X Y : Type*} (N : ParamSCM X Y) (x : N.Th) :
-    PearlHierarchy.SCM X Y where
+    FateV2.Modeling.PearlHierarchy.SCM X Y where
   U := N.U
   instFintype := N.instFintypeU
   instDecEq := N.instDecEqU
@@ -130,14 +130,14 @@ theorem toPearl_sg {X Y : Type*} (N : ParamSCM X Y) (x : N.Th) :
 `fun _ u => M.sg u`；`toPearl` 再**取**该函数在 `PUnit.unit` 的值并**去掉**
 `Th` 位。两个操作互为反，需真证明（`Th` 位消失、`sg` 的 `_` 被 `PUnit.unit`
 填充、`U`/`pU` 需一致）。 -/
-theorem toPearl_scmToParam {X Y : Type*} (M : PearlHierarchy.SCM X Y) :
+theorem toPearl_scmToParam {X Y : Type*} (M : FateV2.Modeling.PearlHierarchy.SCM X Y) :
     toPearl (scmToParam M) PUnit.unit = M := by
   cases M
   rfl
 
 /-- ⭐⭐ **左逆按点形式**（`U` 分量）：保留 `sg` 逐点相等，
 便于下游不做整结构 `cases`。 -/
-theorem toPearl_scmToParam_sg {X Y : Type*} (M : PearlHierarchy.SCM X Y)
+theorem toPearl_scmToParam_sg {X Y : Type*} (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     (u : M.U) :
     (toPearl (scmToParam M) PUnit.unit).sg u = M.sg u := by
   cases M

@@ -121,7 +121,7 @@ import FateWorld.FateV2.Predict.InterventionSup
 
   ### 4.3 ③ **载体**的固有局限（**这是本文件的**技术核心**，**必须读**）
 
-  载体 `Sem3.SCM3 Z X Y = PearlHierarchy.SCM (Z × X) Y` 把 `Z` 的观测值**绑在外生上**
+  载体 `Sem3.SCM3 Z X Y = FateV2.Modeling.PearlHierarchy.SCM (Z × X) Y` 把 `Z` 的观测值**绑在外生上**
   （`zOf(sg u)`，**不依赖 `x`** 但**依赖 `u`**）。
 
   **⟹ `ZIsRoot`（要求 `zOf` 对**所有** `z` 恒定）在本载体上**几乎总是假的**：
@@ -861,7 +861,7 @@ $$\mathrm{doLaw2} = \mathrm{doLawXCond} \iff \forall u,\ \mathrm{zOf}(f_X(u_X), 
 
   ## 8.1 ⭐⭐ 载体**没有** `Z` 的方程（**这是全部症结**）
 
-  `Sem3.SCM3 Z X Y = PearlHierarchy.SCM (Z × X) Y`，其字段是
+  `Sem3.SCM3 Z X Y = FateV2.Modeling.PearlHierarchy.SCM (Z × X) Y`，其字段是
 
   ```lean
   U : Type;  pU : U → ℝ;  sg : U → (Z × X) × ((Z × X) → Y)

@@ -23,14 +23,14 @@
 
   | 结构 | 出处 | 关键字段 | 可修改吗 |
   |---|---|---|---|
-  | `PearlHierarchy.SCM (X Y)` | `Fate/PearlHierarchy.lean:75` | `U`、`pU : U → ℝ`、`sg : U → X × (X → Y)` | 作为**结构字段**「不可变」（Lean 结构无变异）：要改只能**另构造**一个 `SCM` 值。⚠ `U` 是**数据字段**，改 `U` 会改**类型层面**的外生空间 |
-  | `ParamSCM` | `Fate/ParamSCM.lean` | 加了**参数空间** `Th`，`sg` 读 `θ` | **参数 `θ` 是显式的、可变的维** —— 这正是 `ParamSCM` 相对 `SCM` 的**全部**增量。`ParamSCM` 文件头自陈：`PearlHierarchy.SCM` 的 `sg : U → X × (X → Y)` **没有参数位**，故 `SCM` 是「无参数机制」 |
+  | `FateV2.Modeling.PearlHierarchy.SCM (X Y)` | `Fate/FateV2.Modeling.PearlHierarchy.lean:75` | `U`、`pU : U → ℝ`、`sg : U → X × (X → Y)` | 作为**结构字段**「不可变」（Lean 结构无变异）：要改只能**另构造**一个 `SCM` 值。⚠ `U` 是**数据字段**，改 `U` 会改**类型层面**的外生空间 |
+  | `ParamSCM` | `Fate/ParamSCM.lean` | 加了**参数空间** `Th`，`sg` 读 `θ` | **参数 `θ` 是显式的、可变的维** —— 这正是 `ParamSCM` 相对 `SCM` 的**全部**增量。`ParamSCM` 文件头自陈：`FateV2.Modeling.PearlHierarchy.SCM` 的 `sg : U → X × (X → Y)` **没有参数位**，故 `SCM` 是「无参数机制」 |
   | `FateV2.Modeling.SCMGraph.edge` | `Fate/SCMGraph.lean:§3` | `edge M : SV M → SV M → Prop`，**由 `sg` 机械导出** | ⚠⚠ **图不可独立修改**：`edge` 是 `sg` 的**函数**，**没有**独立的边集字段。要改图必须改 `sg`（或换 `M`） |
   | `Causalean.Graph.DAG V` | `CausDAG.lean:62` | `edge : V → V → Prop`、`decEdge`、`acyclic` | **有独立的 `edge` 字段 ⟹ 图本身是可替换的**；门槛是必须**同时提供 `acyclic` 证据** |
 
   ### ⭐ 实测得出的、决定本文件全部设计的两条结论
 
-  1. **`PearlHierarchy.SCM` 的「图」不是独立自由度**：它由 `sg` 派生
+  1. **`FateV2.Modeling.PearlHierarchy.SCM` 的「图」不是独立自由度**：它由 `sg` 派生
      （`SCMGraph.edge`）。⟹「修正图」在 `SCM` 口径下**没有独立入口**。
      **本文件因此把修正规则建在 `DAG` 层**（`edge` 是独立字段），
      **并显式给出**「该 `DAG` 的边被某个 `SCM` 的 `sg` *蕴含*」的谓词

@@ -17,7 +17,7 @@
 `finLawToMeasure_singleton`、`ofReal_inj_of_nonneg`、`finLawToMeasure_inj_of_nonneg`、
 `finLawToMeasure_eq_dirac`、`finLawToMeasure_neg_erased`
 
-`PearlHierarchy.SCM` 内：`lawY`、`toLawRule`、`toLawRuleNoCtx`、`toLawRule_apply`、
+`FateV2.Modeling.PearlHierarchy.SCM` 内：`lawY`、`toLawRule`、`toLawRuleNoCtx`、`toLawRule_apply`、
 `toLawRuleNoCtx_apply`、`toLawRule_state_indep`、`toLawRule_diag_eq`、
 `L2_family_eq_of_toLawRule_eq`、`toLawRule_eq_of_L2_family_eq`、
 `toLawRule_eq_iff_L2_family_eq`、`toLawRule_congr_L3_cf`、`toLawRule_congr_L3_cf_L1`、
@@ -103,13 +103,13 @@ open MeasureTheory
 variable {X Y : Type*} [Fintype X] [DecidableEq X] [Fintype Y] [DecidableEq Y]
 
 /-- 局部实例：`Y` 的可测结构取 `finStateSpace Y` 的那一个（与上游 §3 一致）。 -/
-local instance instMeasY : MeasurableSpace Y := (PearlHierarchy.finStateSpace Y).meas
+local instance instMeasY : MeasurableSpace Y := (FateV2.Modeling.PearlHierarchy.finStateSpace Y).meas
 
 /-- 局部实例：`Y` 上单点集可测。 -/
 local instance instSingY : MeasurableSingletonClass Y :=
-  PearlHierarchy.instMeasurableSingletonClassFinStateSpace Y
+  FateV2.Modeling.PearlHierarchy.instMeasurableSingletonClassFinStateSpace Y
 
-variable (M : PearlHierarchy.SCM X Y)
+variable (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
 
 /-! ===========================================================================
     §1  Dirac 单点档：精确判据与反例方向
@@ -130,18 +130,18 @@ $$ \iff $$
 theorem isPointDet_toLawRule_iff :
     LawRule.IsPointDet M.toLawRule ↔
       ∀ c : X, ∃ y : Y,
-        PearlHierarchy.finLawToMeasure (Y := Y) (PearlHierarchy.finStateSpace Y).meas
+        FateV2.Modeling.PearlHierarchy.finLawToMeasure (Y := Y) (FateV2.Modeling.PearlHierarchy.finStateSpace Y).meas
             (M.L2_do c)
           = Measure.dirac y := by
   constructor
   · intro h c
     obtain ⟨y, hy⟩ := h c c
-    rw [PearlHierarchy.SCM.toLawRule_apply] at hy
+    rw [FateV2.Modeling.PearlHierarchy.SCM.toLawRule_apply] at hy
     exact ⟨y, Set.singleton_eq_singleton_iff.mp hy⟩
   · intro h c x
     obtain ⟨y, hy⟩ := h c
     refine ⟨y, ?_⟩
-    show ({PearlHierarchy.finLawToMeasure (Y := Y) (PearlHierarchy.finStateSpace Y).meas
+    show ({FateV2.Modeling.PearlHierarchy.finLawToMeasure (Y := Y) (FateV2.Modeling.PearlHierarchy.finStateSpace Y).meas
       (M.L2_do c)} : Set (Measure Y)) = {Measure.dirac y}
     rw [hy]
 
@@ -155,7 +155,7 @@ omit [Fintype X] [DecidableEq X] in
 本定理是它在**整条规则**上的 `¬`-形式。） -/
 theorem not_isPointDet_toLawRule_of_not_dirac (c₀ : X)
     (h : ∀ y : Y,
-      PearlHierarchy.finLawToMeasure (Y := Y) (PearlHierarchy.finStateSpace Y).meas
+      FateV2.Modeling.PearlHierarchy.finLawToMeasure (Y := Y) (FateV2.Modeling.PearlHierarchy.finStateSpace Y).meas
           (M.L2_do c₀)
         ≠ Measure.dirac y) :
     ¬ LawRule.IsPointDet M.toLawRule := by
@@ -182,13 +182,13 @@ theorem isPointDet_toLawRule_of_pointmass
     LawRule.IsPointDet M.toLawRule := by
   refine (isPointDet_toLawRule_iff M).mpr fun c => ?_
   obtain ⟨y₀, hy₀⟩ := hpt c
-  exact ⟨y₀, PearlHierarchy.SCM.toLawRule_dirac_iff_pointmass M c (hp c) (hsum c) hy₀⟩
+  exact ⟨y₀, FateV2.Modeling.PearlHierarchy.SCM.toLawRule_dirac_iff_pointmass M c (hp c) (hsum c) hy₀⟩
 
 /-! ===========================================================================
     §3  组合：两条 `SCM` 诱导规则之「取交」不产生新东西
     =========================================================================== -/
 
-variable (N : PearlHierarchy.SCM X Y)
+variable (N : FateV2.Modeling.PearlHierarchy.SCM X Y)
 
 omit [Fintype X] [DecidableEq X] in
 /-- **两条诱导规则之「取交」逐点或空或单点**（消费 `compose_point_or_empty`）。
@@ -224,14 +224,14 @@ omit [Fintype X] [DecidableEq X] in
 **不可能**是任何 `SCM` 诱导出来的规则 —— `SCM` 的像落在**非空**单点档里。 -/
 theorem toLawRule_ne_bot (c x : X) :
     M.toLawRule c x ≠
-      (LawRule.bot (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-        (PearlHierarchy.finStateSpace Y)) c x := by
-  have hne : ({PearlHierarchy.finLawToMeasure (Y := Y) (PearlHierarchy.finStateSpace Y).meas
+      (LawRule.bot (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+        (FateV2.Modeling.PearlHierarchy.finStateSpace Y)) c x := by
+  have hne : ({FateV2.Modeling.PearlHierarchy.finLawToMeasure (Y := Y) (FateV2.Modeling.PearlHierarchy.finStateSpace Y).meas
       (M.L2_do c)} : Set (Measure Y)).Nonempty := ⟨_, Set.mem_singleton _⟩
-  rw [PearlHierarchy.SCM.toLawRule_apply]
+  rw [FateV2.Modeling.PearlHierarchy.SCM.toLawRule_apply]
   intro h
-  have hempty : (LawRule.bot (PearlHierarchy.ctxOf X) (PearlHierarchy.finStateSpace X)
-      (PearlHierarchy.finStateSpace Y)) c x = (∅ : Set (Measure Y)) := rfl
+  have hempty : (LawRule.bot (FateV2.Modeling.PearlHierarchy.ctxOf X) (FateV2.Modeling.PearlHierarchy.finStateSpace X)
+      (FateV2.Modeling.PearlHierarchy.finStateSpace Y)) c x = (∅ : Set (Measure Y)) := rfl
   rw [hempty] at h
   exact hne.ne_empty h
 

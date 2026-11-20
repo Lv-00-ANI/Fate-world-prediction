@@ -4,7 +4,7 @@ import Mathlib.Probability.Independence.Conditional
 
 /-!
   ## 迁移登记
-  - 来源：Legacy/ProperFit-6e03674/SCMSemantics.lean
+  - 来源：Legacy/ProperFit-6e03674/FateV2.Modeling.SCMSemantics.lean
   - 动作：B（适配）
   - 对应环节：—
   - 依赖裁决：D-007 D-008 D-014
@@ -67,18 +67,18 @@ $$\mathrm{jointLaw}\,M\,(u, x, y) :=
   \end{cases}$$
 
 **⟹ 这是把有限 SCM **显式嵌入概率论**的第一步。** -/
-noncomputable def jointLaw (M : PearlHierarchy.SCM X Y) [DecidableEq Y] :
+noncomputable def jointLaw (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq Y] :
     M.U × X × Y → ℝ :=
   fun p => M.pU p.1 * if (M.sg p.1).2 p.2.1 = p.2.2 then 1 else 0
 
 /-- **$X$ 的边缘律**（把 $Y$ 与 $U$ 边缘化）。
 
 $$\mathrm{marginalX}\,M\,x := \sum_{u}\ p_U(u) \cdot [\mathrm{sg}(u).1 = x]$$ -/
-noncomputable def marginalX (M : PearlHierarchy.SCM X Y) [DecidableEq X] : X → ℝ :=
+noncomputable def marginalX (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq X] : X → ℝ :=
   fun x => ∑ u, M.pU u * (if (M.sg u).1 = x then 1 else 0)
 
 /-- **$Y$ 的边缘律**。 -/
-noncomputable def marginalY (M : PearlHierarchy.SCM X Y) [DecidableEq Y] : Y → ℝ :=
+noncomputable def marginalY (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq Y] : Y → ℝ :=
   fun y => ∑ u, M.pU u * (if (M.sg u).2 (M.sg u).1 = y then 1 else 0)
 
 /-! ### §68.2 观测条件下的 $Y$ 律 -/
@@ -94,7 +94,7 @@ $$\mathrm{condY}\,M\,x\,y := \sum_{u}\ p_U(u) \cdot
 
 **⟹ 两者的差别正是「混杂」的来源** ——
 **这是 backdoor 准则的**语义基础**。** -/
-noncomputable def condY (M : PearlHierarchy.SCM X Y) [DecidableEq X] [DecidableEq Y] :
+noncomputable def condY (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq X] [DecidableEq Y] :
     X → Y → ℝ :=
   fun x y => ∑ u, M.pU u *
     (if (M.sg u).1 = x then 1 else 0) * (if (M.sg u).2 x = y then 1 else 0)
@@ -107,7 +107,7 @@ $$\mathrm{doLaw}\,M\,x\,y := \sum_{u}\ p_U(u) \cdot
 **⟹ 与 `condY` 的差别**：**干预**不筛选** $x$**（没有 $[\mathrm{sg}(u).1 = x]$ 因子）。**
 
 **⚠ 这正是「$do(x)$ 切断了 $X$ 的入边」的**数值体现**。** -/
-noncomputable def doLaw (M : PearlHierarchy.SCM X Y) [DecidableEq Y] : X → Y → ℝ :=
+noncomputable def doLaw (M : FateV2.Modeling.PearlHierarchy.SCM X Y) [DecidableEq Y] : X → Y → ℝ :=
   fun x y => ∑ u, M.pU u * (if (M.sg u).2 x = y then 1 else 0)
 
 /-! ### §68.3 观测与干预的**分离**（**核心定理**） -/
@@ -123,7 +123,7 @@ noncomputable def doLaw (M : PearlHierarchy.SCM X Y) [DecidableEq Y] : X → Y �
 
 **⟹ 即**：**「无混杂 $\implies$ 观测 = 干预」** ——
 **这是 backdoor 准则的**最简特例**。** -/
-theorem condY_eq_doLaw_of_no_confound (M : PearlHierarchy.SCM X Y)
+theorem condY_eq_doLaw_of_no_confound (M : FateV2.Modeling.PearlHierarchy.SCM X Y)
     [DecidableEq X] [DecidableEq Y] (x₀ : X)
     (hconst : ∀ u, (M.sg u).1 = x₀) (hx : x = x₀) :
     condY M x = doLaw M x := by
@@ -145,7 +145,7 @@ theorem condY_eq_doLaw_of_no_confound (M : PearlHierarchy.SCM X Y)
 |---|---|
 | **`CondIndepFun`**（条件独立的概率定义）| **Mathlib 已有** |
 | **`condIndepFun_iff`**（⟺ 条件期望可分解）| **Mathlib 已有** |
-| **有限律的推前** | ✅ 本项目已有（`PearlHierarchy.push`）|
+| **有限律的推前** | ✅ 本项目已有（`FateV2.Modeling.PearlHierarchy.push`）|
 | **SCM 的联合/条件/干预律** | ✅ **本轮已建** |
 | ⚠ **「有限律 → `Measure`」的嵌入** | ❌ **未做** |
 | ⚠ **d-分离 $\implies$ 该嵌入下条件独立** | ❌ **未做** |

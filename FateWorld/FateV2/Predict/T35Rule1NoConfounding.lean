@@ -25,7 +25,7 @@
 
   ```lean
   theorem rule1_no_confounding ... :
-      ∀ x, SCMSemantics.doLaw M x = SCMSemantics.condY M x
+      ∀ x, FateV2.Modeling.SCMSemantics.doLaw M x = FateV2.Modeling.SCMSemantics.condY M x
   ```
 
   ## 2. ⭐⭐⭐ 为什么这个命题为假（本文件的核心）
@@ -255,8 +255,8 @@ $$\mathrm{doLaw}\,M_{\mathrm{Bad}}\,0\,0 = \sum_{u : \mathrm{Fin}\,4} \tfrac14
   \cdot [u/2 = 0] = \tfrac12.$$ -/
 
 /-- ⭐⭐⭐ **观测律**：`condY MBad 0 0 = 1/4`（`X`、`Y` 独立，各 `1/2`）。 -/
-theorem condY_MBad : SCMSemantics.condY MBad 0 0 = (1 : ℝ) / 4 := by
-  have h1 : SCMSemantics.condY MBad (0 : Fin 2) (0 : Fin 2)
+theorem condY_MBad : FateV2.Modeling.SCMSemantics.condY MBad 0 0 = (1 : ℝ) / 4 := by
+  have h1 : FateV2.Modeling.SCMSemantics.condY MBad (0 : Fin 2) (0 : Fin 2)
       = ∑ u : Fin 4,
           (1 / 4 : ℝ) * (if (if u.val % 2 = 0 then (0 : Fin 2) else 1) = 0 then 1 else 0)
             * (if (if u.val / 2 = 0 then (0 : Fin 2) else 1) = 0 then 1 else 0) := rfl
@@ -266,8 +266,8 @@ theorem condY_MBad : SCMSemantics.condY MBad 0 0 = (1 : ℝ) / 4 := by
   norm_num
 
 /-- ⭐⭐⭐ **干预律**：`doLaw MBad 0 0 = 1/2`（`Y` 按 `Uy` 均匀）。 -/
-theorem doLaw_MBad : SCMSemantics.doLaw MBad 0 0 = (1 : ℝ) / 2 := by
-  have h1 : SCMSemantics.doLaw MBad (0 : Fin 2) (0 : Fin 2)
+theorem doLaw_MBad : FateV2.Modeling.SCMSemantics.doLaw MBad 0 0 = (1 : ℝ) / 2 := by
+  have h1 : FateV2.Modeling.SCMSemantics.doLaw MBad (0 : Fin 2) (0 : Fin 2)
       = ∑ u : Fin 4,
           (1 / 4 : ℝ) * (if (if u.val / 2 = 0 then (0 : Fin 2) else 1) = 0 then 1 else 0) := rfl
   rw [h1]
@@ -283,7 +283,7 @@ $$\textbf{NoConfounding}_{\text{draft}}(M_{\mathrm{Bad}}, e_{\mathrm{Bad}})
 **⟹ 草稿要证的 `rule1_no_confounding`（按草稿的定义）为假。** -/
 theorem draft_rule1_false :
     NoConfoundingDraft MBad eBad ∧
-      SCMSemantics.condY MBad 0 0 ≠ SCMSemantics.doLaw MBad 0 0 :=
+      FateV2.Modeling.SCMSemantics.condY MBad 0 0 ≠ FateV2.Modeling.SCMSemantics.doLaw MBad 0 0 :=
   ⟨MBad_noConfounding, by rw [condY_MBad, doLaw_MBad]; norm_num⟩
 
 /-- ⭐⭐⭐⭐⭐ **否定形式的登记**：不存在「草稿无混杂 ⟹ 两律处处相等」这一定理。
@@ -294,7 +294,7 @@ theorem draft_rule1_false :
 theorem draft_conclusion_not_derivable :
     ¬ ∀ x y : Fin 2,
         NoConfoundingDraft MBad eBad →
-          SCMSemantics.condY MBad x y = SCMSemantics.doLaw MBad x y := by
+          FateV2.Modeling.SCMSemantics.condY MBad x y = FateV2.Modeling.SCMSemantics.doLaw MBad x y := by
   intro h
   exact draft_rule1_false.2 (h 0 0 draft_rule1_false.1)
 
@@ -320,9 +320,9 @@ theorem draft_conclusion_not_derivable :
 theorem two_opposite_witnesses :
     -- 反例 1：完全独立
     (NoConfoundingDraft MBad eBad ∧
-      SCMSemantics.condY MBad 0 0 ≠ SCMSemantics.doLaw MBad 0 0) ∧
+      FateV2.Modeling.SCMSemantics.condY MBad 0 0 ≠ FateV2.Modeling.SCMSemantics.doLaw MBad 0 0) ∧
     -- 反例 2：T35 的完全混杂（数值见 `Fate/T35Confounding.lean`）
-    (SCMSemantics.condY FateV2.Predict.T35.M 0 1 ≠ SCMSemantics.doLaw FateV2.Predict.T35.M 0 1) :=
+    (FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M 0 1 ≠ FateV2.Modeling.SCMSemantics.doLaw FateV2.Predict.T35.M 0 1) :=
   ⟨draft_rule1_false, by
     rw [FateV2.Predict.T35.condY_M, FateV2.Predict.T35.doLaw_M]; norm_num⟩
 

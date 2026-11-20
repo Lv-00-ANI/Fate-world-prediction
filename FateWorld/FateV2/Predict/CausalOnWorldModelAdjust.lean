@@ -96,11 +96,11 @@ $$\sum_{z_1}\sum_{z_2} p(x,z_1,z_2)\,P(y\mid x,z_1,z_2)\,w(z_1,z_2)
 
 **⚠ 与 `bd_sum_joint` 的关系**：后者是 `w ≡ 1` 的特例。本式对**任意** `w` 成立，
 是 `hZ.joint` 逐点乘 `w` 后求和（`Finset.sum_congr` + `ring`，非投影）。 -/
-theorem bd_weighted_joint (M : PearlHierarchy.SCM T.Xt T.Yt) {d : T.Xt → T.Yt → ℝ}
+theorem bd_weighted_joint (M : FateV2.Modeling.PearlHierarchy.SCM T.Xt T.Yt) {d : T.Xt → T.Yt → ℝ}
     (hZ : DoLawOn T d M) (x : T.Xt) (y : T.Yt) (w : T.Z₁ → T.Z₂t → ℝ) :
     ∑ z₁, ∑ z₂,
         FateV2.Predict.R277.pXZ T x z₁ z₂ * FateV2.Predict.R277.pYcond T x z₁ z₂ y * w z₁ z₂
-      = SCMSemantics.condY M x y
+      = FateV2.Modeling.SCMSemantics.condY M x y
         * ∑ z₁, ∑ z₂, FateV2.Predict.R277.pZ T z₁ z₂ * w z₁ z₂ := by
   rw [Finset.mul_sum]
   refine Finset.sum_congr rfl fun z₁ _ => ?_
@@ -127,11 +127,11 @@ $$\mathrm{adjustLaw}\,T\,x\,y \;=\; P(X{=}x,Y{=}y)\cdot
 （`zb_pXZ_pos` 机检它在 `zb` 上成立）。
 
 **⚠ 这不是 `adjustLaw = condY`**：除非修正因子恰为 `1`，而 §4 机检它**不是**。 -/
-theorem adjustLaw_eq_condY_mul_correction (M : PearlHierarchy.SCM T.Xt T.Yt)
+theorem adjustLaw_eq_condY_mul_correction (M : FateV2.Modeling.PearlHierarchy.SCM T.Xt T.Yt)
     {d : T.Xt → T.Yt → ℝ} (hZ : DoLawOn T d M) (x : T.Xt) (y : T.Yt)
     (hpos : ∀ z₁ z₂, FateV2.Predict.R277.pXZ T x z₁ z₂ ≠ 0) :
     FateV2.Predict.R277.adjustLaw T x y
-      = SCMSemantics.condY M x y
+      = FateV2.Modeling.SCMSemantics.condY M x y
         * ∑ z₁, ∑ z₂,
             FateV2.Predict.R277.pZ T z₁ z₂ * FateV2.Predict.R277.pZ T z₁ z₂ / FateV2.Predict.R277.pXZ T x z₁ z₂ := by
   rw [FateV2.Predict.R277.adjustLaw, Finset.mul_sum]
@@ -142,17 +142,17 @@ theorem adjustLaw_eq_condY_mul_correction (M : PearlHierarchy.SCM T.Xt T.Yt)
   have hN : (∑ ux, ∑ uz₂, ∑ uy, T.pz₁ z₁ * T.pu ux * T.puz₂ uz₂ * T.py uy *
       (if T.fX z₁ ux = x then 1 else 0) * (if T.fZ ux uz₂ = z₂ then 1 else 0) *
       (if T.fY x z₂ uy = y then 1 else 0))
-      = SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ := by
+      = FateV2.Modeling.SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ := by
     have h1 : FateV2.Predict.R277.pXZ T x z₁ z₂ *
         ((∑ ux, ∑ uz₂, ∑ uy, T.pz₁ z₁ * T.pu ux * T.puz₂ uz₂ * T.py uy *
           (if T.fX z₁ ux = x then 1 else 0) * (if T.fZ ux uz₂ = z₂ then 1 else 0) *
           (if T.fY x z₂ uy = y then 1 else 0)) / FateV2.Predict.R277.pXZ T x z₁ z₂)
-        = SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ := by
+        = FateV2.Modeling.SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ := by
       rw [← FateV2.Predict.R277.pYcond]; exact hZ.joint x z₁ z₂ y
     rw [mul_comm (FateV2.Predict.R277.pXZ T x z₁ z₂), div_mul_cancel₀ _ (hpos z₁ z₂)] at h1
     exact h1
   have hpy : FateV2.Predict.R277.pYcond T x z₁ z₂ y
-      = SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ / FateV2.Predict.R277.pXZ T x z₁ z₂ := by
+      = FateV2.Modeling.SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ / FateV2.Predict.R277.pXZ T x z₁ z₂ := by
     rw [FateV2.Predict.R277.pYcond, hN]
   rw [hpy]; ring
 
@@ -177,10 +177,10 @@ theorem zb_correction_eq (x : Bool) :
 **⚠ 注意**：右边的 `M` 是**任意**满足 `DoLawOn zb d M` 的 `SCM`。
 本定理说的是「`hZ` 把 `adjustLaw` **逼到** `condY` 的一个已知常数倍」，
 **不是** `adjustLaw = condY`。 -/
-theorem zb_adjustLaw_factor (M : PearlHierarchy.SCM Bool Bool) {d : Bool → Bool → ℝ}
+theorem zb_adjustLaw_factor (M : FateV2.Modeling.PearlHierarchy.SCM Bool Bool) {d : Bool → Bool → ℝ}
     (hZ : DoLawOn FateV2.Predict.R277.zb d M) (x y : Bool) :
     FateV2.Predict.R277.adjustLaw FateV2.Predict.R277.zb x y
-      = SCMSemantics.condY M x y * (if x then (73 : ℝ) / 48 else (145 : ℝ) / 16) := by
+      = FateV2.Modeling.SCMSemantics.condY M x y * (if x then (73 : ℝ) / 48 else (145 : ℝ) / 16) := by
   rw [adjustLaw_eq_condY_mul_correction (T := FateV2.Predict.R277.zb) M hZ x y
     (fun _ z₂ => FateV2.Predict.R277.zb_pXZ_pos x z₂),
     zb_correction_eq x]

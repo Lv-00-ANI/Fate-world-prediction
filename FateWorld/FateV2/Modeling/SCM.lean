@@ -6,7 +6,7 @@ import Mathlib.MeasureTheory.Measure.Map
 
   ## 迁移登记
   - 来源：新写（参考 `命运-素材-原始文件-不可更改/Fate/SCMGraph.lean`、
-          `SCMSemantics.lean`、`ParamSCM.lean`）
+          `FateV2.Modeling.SCMSemantics.lean`、`ParamSCM.lean`）
   - 动作：C 重写
   - 对应环节：F5-01（SCM 结构）、F5-03（结构方程）、F5-07（外生律）、
               F2-01（转移方程）、F2-12（随机转移核）

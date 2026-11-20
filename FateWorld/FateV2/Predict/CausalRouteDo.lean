@@ -32,7 +32,7 @@ open FateV2.Modeling
 
   | 任务书的假设 | 实际状态 | 位置 |
   |---|---|---|
-  | 「do 算子只有代数律」 | ⚠ **不准确**：`SCMSemantics.doLaw` 已把干预律定义成**显式 `Finset` 求和**（**不经过任何图**）| `FateV2.Predict/SCMSemantics.lean` §68.2 |
+  | 「do 算子只有代数律」 | ⚠ **不准确**：`FateV2.Modeling.SCMSemantics.doLaw` 已把干预律定义成**显式 `Finset` 求和**（**不经过任何图**）| `FateV2.Predict/FateV2.Modeling.SCMSemantics.lean` §68.2 |
   | 「没把图连到概率」 | ⚠ **部分已做**：`T34` 已证 `doLaw − condY = 混杂质量`、质量守恒、`L¹` 范数判据；`Rule1Genuine` 已把**结构条件** `NoiseReadsX` 接进数值层 | `FateV2.Predict/T34DoPushforward.lean`、`FateV2.Predict/Rule1Genuine.lean` |
   | 「dSep ⟹ CI 走不通」 | ✅ **已 machine-check 证伪**（`gap_false_in_general`），**本文件不碰** | `FateV2.Predict/BridgeFullFixed.lean` |
   | 「`do` 与图的关系」 | ✅ **已证**：`graphOf(doMap M) = doInGraph(graphOf M)`（`T3.3`）| `FateV2.Predict/T33DoGraph.lean` |
@@ -40,7 +40,7 @@ open FateV2.Modeling
   **⟹ 盘点结论（决定了本路线**能做什么、不能做什么**）**：
 
   1. **「定义 doLaw 而不经过 dSep」这件事**，仓库里**已经做了** ——
-     `SCMSemantics.doLaw` 就是**直接由结构方程算出**的干预律，
+     `FateV2.Modeling.SCMSemantics.doLaw` 就是**直接由结构方程算出**的干预律，
      **它的定义里没有图、没有 dSep、没有 Bayes-Ball**。
      **⟹ 本路线不是「补一个新定义」，而是把已有的 `doLaw` 放进 do-calculus 语义的框架里，
      证出它**确实满足 do-算子的应有性质** —— 这正是任务第 2、3、4 点的要求。**
@@ -78,7 +78,7 @@ open FateV2.Modeling
   | 层 | Pearl | 本文件术语 | 关系（本文件所证）|
   |---|---|---|---|
   | **L1** | 观测律 `P(X,Y)` | `SCM.L1_obs` | **`doLaw` 是干预模型的 `L1` 读出**（§2 闭环）|
-  | **L2** | 干预律 `P(Y|do(x))` | `SCMSemantics.doLaw` | **由 `L3` 唯一决定**（§4）|
+  | **L2** | 干预律 `P(Y|do(x))` | `FateV2.Modeling.SCMSemantics.doLaw` | **由 `L3` 唯一决定**（§4）|
   | **L3** | 反事实系统 | `SCM.L3_cf` | **决定 `L2`（§4）；`L1` 是 `L2` 沿 `x` 的进一步读出** |
 
   ## 三、诚实边界（**本文件不做什么**）
@@ -103,10 +103,10 @@ universe u
 /-! ===========================================================================
   §1 干预律 `doLaw` 的**语义定位**：它是「先做 do、再观测」的读出
 
-  本节把 `SCMSemantics.doLaw` 与 `DoCalculus.doX`（模型变换算子）**接起来**。
+  本节把 `FateV2.Modeling.SCMSemantics.doLaw` 与 `DoCalculus.doX`（模型变换算子）**接起来**。
 
   **⚠ 关键观察**（定义层面）：
-  `SCMSemantics.doLaw M x y = ∑ u, pU u · [ (sg u).2 x = y ]`，
+  `FateV2.Modeling.SCMSemantics.doLaw M x y = ∑ u, pU u · [ (sg u).2 x = y ]`，
   而 `DoCalculus.doX M x` 把 `sg` 的第一分量换成常数 `x`，**第二分量不变**。
   **⟹ `doLaw` 只读到 `sg` 的第二分量**，因此**对「事实 `X` 的方程」不敏感** ——
   **这正是 do-算子的本质：干预无视 `X` 的实际取值。**
@@ -114,11 +114,11 @@ universe u
 
 /-- **`doLaw` 只是结构方程族的推前**（把定义整理成 `push` 形式，供 §4 使用）。
 
-**这不是新内容，而是把 `SCMSemantics.doLaw` 的显式求和式**
-**对齐到 `PearlHierarchy.push`** —— 两者定义上相等（`rfl`）。 -/
+**这不是新内容，而是把 `FateV2.Modeling.SCMSemantics.doLaw` 的显式求和式**
+**对齐到 `FateV2.Modeling.PearlHierarchy.push`** —— 两者定义上相等（`rfl`）。 -/
 theorem doLaw_eq_push {X Y : Type} [Fintype X] [DecidableEq Y]
     (M : SCM X Y) (x : X) :
-    SCMSemantics.doLaw M x = push M.pU (fun u => (M.sg u).2 x) := by
+    FateV2.Modeling.SCMSemantics.doLaw M x = push M.pU (fun u => (M.sg u).2 x) := by
   funext y
   rfl
 
@@ -147,8 +147,8 @@ theorem doLaw_eq_push {X Y : Type} [Fintype X] [DecidableEq Y]
   `doLaw` 用显式 `Finset` 求和，需要对齐两边并**消掉「`X` 分量 = `x`」的过滤因子**。 -/
 theorem doLaw_is_law_after_do {X Y : Type} [Fintype X] [DecidableEq X] [DecidableEq Y]
     (M : SCM X Y) (x : X) (y : Y) :
-    (DoCalculus.doX M x).L1_obs (x, y) = SCMSemantics.doLaw M x y := by
-  unfold SCM.L1_obs SCMSemantics.doLaw DoCalculus.doX push
+    (DoCalculus.doX M x).L1_obs (x, y) = FateV2.Modeling.SCMSemantics.doLaw M x y := by
+  unfold SCM.L1_obs FateV2.Modeling.SCMSemantics.doLaw DoCalculus.doX push
   apply Finset.sum_congr rfl
   intro u _
   by_cases h : (M.sg u).2 x = y
@@ -167,8 +167,8 @@ $$\bigl(\mathrm{doX}(M, x)\bigr).\mathrm{L1\_obs}\,(x', y)
 theorem doLaw_is_law_after_do_general {X Y : Type} [Fintype X] [DecidableEq X] [DecidableEq Y]
     (M : SCM X Y) (x x' : X) (y : Y) :
     (DoCalculus.doX M x).L1_obs (x', y)
-      = (if x' = x then SCMSemantics.doLaw M x y else 0) := by
-  unfold SCM.L1_obs SCMSemantics.doLaw DoCalculus.doX push
+      = (if x' = x then FateV2.Modeling.SCMSemantics.doLaw M x y else 0) := by
+  unfold SCM.L1_obs FateV2.Modeling.SCMSemantics.doLaw DoCalculus.doX push
   by_cases hx : x' = x
   · rw [if_pos hx, hx]
     apply Finset.sum_congr rfl
@@ -209,7 +209,7 @@ $$\mathrm{doLaw}\bigl(\mathrm{doX}(M, x)\bigr)\,x' \;=\; \mathrm{doLaw}\,M\,x'$$
 **这也说明「律层幂等」比「模型层幂等」**更强**：对**任意** `x'` 都成立。** -/
 theorem doLaw_stable_under_do {X Y : Type} [Fintype X] [DecidableEq Y]
     (M : SCM X Y) (x x' : X) :
-    SCMSemantics.doLaw (DoCalculus.doX M x) x' = SCMSemantics.doLaw M x' := by
+    FateV2.Modeling.SCMSemantics.doLaw (DoCalculus.doX M x) x' = FateV2.Modeling.SCMSemantics.doLaw M x' := by
   funext y
   rfl
 
@@ -221,8 +221,8 @@ $$\mathrm{doLaw}\bigl(\mathrm{doX}(\mathrm{doX}(M, x), x')\bigr)\,x''
 **这是 `do_comp` 的分布层对应物。** -/
 theorem doLaw_comp {X Y : Type} [Fintype X] [DecidableEq Y]
     (M : SCM X Y) (x x' x'' : X) :
-    SCMSemantics.doLaw (DoCalculus.doX (DoCalculus.doX M x) x') x''
-      = SCMSemantics.doLaw M x'' := by
+    FateV2.Modeling.SCMSemantics.doLaw (DoCalculus.doX (DoCalculus.doX M x) x') x''
+      = FateV2.Modeling.SCMSemantics.doLaw M x'' := by
   funext y
   rfl
 
@@ -258,10 +258,10 @@ theorem doLaw_pU_preserved {X Y : Type} [Fintype X] [DecidableEq Y]
 theorem L3_determines_doLaw {X Y : Type} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y] [DecidableEq (X → Y)]
     (M N : SCM X Y) (h : M.L3_cf = N.L3_cf) :
-    SCMSemantics.doLaw M = SCMSemantics.doLaw N := by
+    FateV2.Modeling.SCMSemantics.doLaw M = FateV2.Modeling.SCMSemantics.doLaw N := by
   funext x y
   have key : ∀ M : SCM X Y,
-      SCMSemantics.doLaw M x = push M.L3_cf (fun p : X × (X → Y) => p.2 x) := by
+      FateV2.Modeling.SCMSemantics.doLaw M x = push M.L3_cf (fun p : X × (X → Y) => p.2 x) := by
     intro M
     rw [doLaw_eq_push, SCM.L3_cf]
     exact (push_push M.pU (fun u => ((M.sg u).1, (M.sg u).2))
@@ -279,17 +279,17 @@ theorem L3_determines_doLaw {X Y : Type} [Fintype X] [DecidableEq X]
 theorem L3_determines_L1_and_doLaw {X Y : Type} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y] [DecidableEq (X → Y)]
     (M N : SCM X Y) (h : M.L3_cf = N.L3_cf) :
-    M.L1_obs = N.L1_obs ∧ SCMSemantics.doLaw M = SCMSemantics.doLaw N :=
-  ⟨PearlHierarchy.L3_determines_L1 h, L3_determines_doLaw M N h⟩
+    M.L1_obs = N.L1_obs ∧ FateV2.Modeling.SCMSemantics.doLaw M = FateV2.Modeling.SCMSemantics.doLaw N :=
+  ⟨FateV2.Modeling.PearlHierarchy.L3_determines_L1 h, L3_determines_doLaw M N h⟩
 
-/-- **`doLaw` 与 `PearlHierarchy.L2_do` 逐点一致**（同一干预律的两种写法）。
+/-- **`doLaw` 与 `FateV2.Modeling.PearlHierarchy.L2_do` 逐点一致**（同一干预律的两种写法）。
 
-**读法**：`SCMSemantics.doLaw` 是**显式求和**形式，
+**读法**：`FateV2.Modeling.SCMSemantics.doLaw` 是**显式求和**形式，
 `SCM.L2_do` 是**`push` 推前**形式，**二者定义上相等**。
 **⟹ 本文件的 `doLaw` 就是 Pearl 层级表里的 L2。** -/
 theorem doLaw_eq_L2_do {X Y : Type} [Fintype X] [DecidableEq Y]
     (M : SCM X Y) (x : X) :
-    SCMSemantics.doLaw M x = M.L2_do x := by
+    FateV2.Modeling.SCMSemantics.doLaw M x = M.L2_do x := by
   funext y
   rfl
 
@@ -312,7 +312,7 @@ $$\mathrm{doProb}\,M\,x\,y := \frac{\mathrm{doLaw}\,M\,x\,y}{\sum_{y'} \mathrm{d
 **⚠ 分母 `∑_{y'} doLaw M x y' = ∑_u pU u`**，与 `x` 无关（`T34.doLaw_mass`）。 -/
 noncomputable def doProb {X Y : Type} [Fintype X] [Fintype Y] [DecidableEq Y]
     (M : SCM X Y) (x : X) (y : Y) : ℝ :=
-  SCMSemantics.doLaw M x y / ∑ y', SCMSemantics.doLaw M x y'
+  FateV2.Modeling.SCMSemantics.doLaw M x y / ∑ y', FateV2.Modeling.SCMSemantics.doLaw M x y'
 
 /-- **归一化的观测律** `P(Y = y | X = x)`。
 
@@ -321,7 +321,7 @@ $$\mathrm{obsProb}\,M\,x\,y := \frac{\mathrm{condY}\,M\,x\,y}{\sum_{y'} \mathrm{
 **⚠ 分母 `∑_{y'} condY M x y' = marginalX M x = P(X = x)`**（`T34.condY_mass`）。 -/
 noncomputable def obsProb {X Y : Type} [Fintype X] [Fintype Y]
     [DecidableEq X] [DecidableEq Y] (M : SCM X Y) (x : X) (y : Y) : ℝ :=
-  SCMSemantics.condY M x y / ∑ y', SCMSemantics.condY M x y'
+  FateV2.Modeling.SCMSemantics.condY M x y / ∑ y', FateV2.Modeling.SCMSemantics.condY M x y'
 
 /-- **层级分离（归一化见证）**：在 `T35` 完全混杂模型上，
 **观测律与干预律作为概率律不相等**（且给出具体数值）。
@@ -338,16 +338,16 @@ theorem layer_separation_normalized :
     doProb FateV2.Predict.T35.M 0 1 = (1 : ℝ) / 2
     ∧ obsProb FateV2.Predict.T35.M 0 1 = 0
     ∧ doProb FateV2.Predict.T35.M 0 1 ≠ obsProb FateV2.Predict.T35.M 0 1 := by
-  have hdoMass : ∑ y' : Fin 2, SCMSemantics.doLaw FateV2.Predict.T35.M (0 : Fin 2) y' = 1 := by
+  have hdoMass : ∑ y' : Fin 2, FateV2.Modeling.SCMSemantics.doLaw FateV2.Predict.T35.M (0 : Fin 2) y' = 1 := by
     rw [Fin.sum_univ_two]
     rw [FateV2.Predict.T35.doLaw_M, FateV2.Predict.T35.doLaw_M]
     norm_num
-  have hobsMass : ∑ y' : Fin 2, SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) y' = (1 : ℝ) / 2 := by
+  have hobsMass : ∑ y' : Fin 2, FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) y' = (1 : ℝ) / 2 := by
     rw [Fin.sum_univ_two]
     -- condY_M 0 0 = 1/2 (since x = y), condY_M 0 1 = 0
-    have h00 : SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (0 : Fin 2) = 1 / 2 := by
+    have h00 : FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (0 : Fin 2) = 1 / 2 := by
       rw [FateV2.Predict.T35.condY_M]; simp
-    have h01 : SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (1 : Fin 2) = 0 := by
+    have h01 : FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (1 : Fin 2) = 0 := by
       rw [FateV2.Predict.T35.condY_M]; norm_num
     rw [h00, h01]; norm_num
   refine ⟨?_, ?_, ?_⟩
@@ -356,7 +356,7 @@ theorem layer_separation_normalized :
     norm_num
   · unfold obsProb
     rw [hobsMass]
-    have h01 : SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (1 : Fin 2) = 0 := by
+    have h01 : FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (1 : Fin 2) = 0 := by
       rw [FateV2.Predict.T35.condY_M]; norm_num
     rw [h01]; norm_num
   · intro h
@@ -364,7 +364,7 @@ theorem layer_separation_normalized :
       unfold doProb; rw [hdoMass, FateV2.Predict.T35.doLaw_M]; norm_num
     have h2 : obsProb FateV2.Predict.T35.M 0 1 = 0 := by
       unfold obsProb; rw [hobsMass]
-      have h01 : SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (1 : Fin 2) = 0 := by
+      have h01 : FateV2.Modeling.SCMSemantics.condY FateV2.Predict.T35.M (0 : Fin 2) (1 : Fin 2) = 0 := by
         rw [FateV2.Predict.T35.condY_M]; norm_num
       rw [h01]; norm_num
     rw [h1, h2] at h
@@ -389,7 +389,7 @@ theorem layer_separation_normalized :
   **路线 A 的**判定**（如实）**：
 
   * **「能否直接定义 doLaw 而不经过 dSep？」** —— **能，且仓库已做过了**
-    （`SCMSemantics.doLaw`）。**本文件的贡献不是重造它，而是证明它满足 do-calculus 语义的
+    （`FateV2.Modeling.SCMSemantics.doLaw`）。**本文件的贡献不是重造它，而是证明它满足 do-calculus 语义的
     闭环（§2）、分布层代数律（§3）、与三层级的对应（§4–§5）。**
   * **「需要什么假设？」** —— **只需结构方程族 `f_u` 与外生律 `pU`**（§1 末）；
     **不需要无环性、不需要 d-分离、不需要无隐变量。**

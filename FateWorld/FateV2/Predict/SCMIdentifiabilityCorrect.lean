@@ -72,7 +72,7 @@ Identifiable M :=
 
 1. **`obsDist` 只取 L1（观测层）**，不含 L2（干预）/ L3（反事实）。
    ⟹ 本文件证的「不可辨识」比「L1+L2+L3 全不可辨识」**弱**。
-   若 `obsDist` 相同但 `L2_family` 不同（`PearlHierarchy.L3_not_determined_by_L1_and_L2`
+   若 `obsDist` 相同但 `L2_family` 不同（`FateV2.Modeling.PearlHierarchy.L3_not_determined_by_L1_and_L2`
    正好给了这种例子），则本文件**不**声称它们在 L2/L3 上不可辨识。
    **本文件不**证「L1 不可辨识 ⟹ L2+L3 不可辨识」的逆命题。
 2. **`IdentifiableObs` 只是「L1-可辨识」**，不是全局 / 局部可辨识性的完整语义
@@ -133,7 +133,7 @@ variable {X Y : Type*} [Fintype X] [DecidableEq X] [Fintype Y] [DecidableEq Y]
 **⚠ 这是 L1（关联层）的读出**：只读「事实 `X`」与「事实 `X` 下的 `Y`」的联合分布。
 反事实 / 逐个体响应函数 `(sg θ u).2` 的**非事实点**信息在此**不可见**（见文件头边界 3）。 -/
 noncomputable def obsDist (M : ParamSCM X Y) (θ : M.Th) : X × Y → ℝ :=
-  PearlHierarchy.push M.pU
+  FateV2.Modeling.PearlHierarchy.push M.pU
     (fun u => ((M.sg θ u).1, (M.sg θ u).2 (M.sg θ u).1))
 
 /-- ⭐⭐⭐ **【正确的可辨识性定义：观测口径】**
@@ -161,7 +161,7 @@ theorem obsDist_eq_of_sg_eq {M : ParamSCM X Y} {θ₀ : M.Th}
     (h : ∀ (θ : M.Th) (u : M.U), M.sg θ u = M.sg θ₀ u) (θ : M.Th) :
     obsDist M θ = obsDist M θ₀ := by
   funext w
-  unfold obsDist PearlHierarchy.push
+  unfold obsDist FateV2.Modeling.PearlHierarchy.push
   refine Finset.sum_congr rfl (fun u _ => ?_)
   simp only [h θ u]
 
@@ -251,7 +251,7 @@ noncomputable def distinguishingModel : ParamSCM Bool Bool where
 `distinguishingModel` 的观测分布是 `(θ, θ)` 处的单点质量；
 若 `obsDist θ₁ = obsDist θ₂`，在 `(θ₁, θ₁)` 处求值即得 `θ₂ = θ₁`。
 
-**⚠ 反同义反复**：证明**必须**展开 `PearlHierarchy.push` 的有限和
+**⚠ 反同义反复**：证明**必须**展开 `FateV2.Modeling.PearlHierarchy.push` 的有限和
 （`∑ u : Unit, …`）、做 `if_true` 化简、在 `1 = if (θ₂,θ₂) = (θ₁,θ₁) then 1 else 0`
 上分情况——这是**真正走了 `obsDist` 的数值展开**，不是定义同义反复。
 另见 `distinguishingModel_sg_dep`：`sg` **确实依赖** `θ`（前件非空洞）。 -/

@@ -69,7 +69,7 @@ import Mathlib.Tactic.NormNum
 
   ## ⭐⭐⭐ 三、载体与 `W`
 
-  `PearlHierarchy.SCM X Y` **只有两个**观测变量 `X`、`Y`，
+  `FateV2.Modeling.PearlHierarchy.SCM X Y` **只有两个**观测变量 `X`、`Y`，
   **没有放 `W`（协变量集）的位置**（`Fate/Rule2Genuine.lean` §7.3 已登记同样局限）。
   **故本文件取 `W := ∅`**，即规则 1 的「**无调整集**」情形：
 
@@ -83,7 +83,7 @@ import Mathlib.Tactic.NormNum
   ```
   U ─→ (z_u, f_u, x_u)          外生律 pU
   Z := z_u                      ⭐ Z 是外生噪声的**纯观测**
-  X := x_u                      （`PearlHierarchy.SCM.sg` 的第一分量）
+  X := x_u                      （`FateV2.Modeling.PearlHierarchy.SCM.sg` 的第一分量）
   Y := f_u(x, z_u)              ⭐ Y 的方程**读 x 与 Z**
   ```
 
@@ -228,7 +228,7 @@ import Mathlib.Tactic.NormNum
 
   | 项 | 状态 | 原因 |
   |---|---|---|
-  | `W ≠ ∅`（调整集）| ❌ 未做 | `PearlHierarchy.SCM` **无 `W` 的位置**（§10）|
+  | `W ≠ ∅`（调整集）| ❌ 未做 | `FateV2.Modeling.PearlHierarchy.SCM` **无 `W` 的位置**（§10）|
   | `d-分离 ⟹ 概率条件独立` 的元定理 | ❌ 未做 | **本文件的桥是**显式的 `NoiseReadsX`**，不是从 d-分离推出来的 |
   | 由 `rule1Sep` **单独**推出结论 | ❌ **不可能** | ⭐ **`Mbad` 是反例**（`rule1Sep` 成立而 `≠`）|
   | 规则 2 / 规则 3 | ❌ 未做 | 规则 2 见 `Fate/Rule2Genuine.lean` |
@@ -264,7 +264,7 @@ universe u
 ```
 U ──→ (z_u, f_u, x_u)         外生律 pU
 Z := z_u                      ⭐ Z 是外生噪声的**纯观测**
-X := x_u                      （`PearlHierarchy.SCM.sg` 第一分量）
+X := x_u                      （`FateV2.Modeling.PearlHierarchy.SCM.sg` 第一分量）
 Y := f_u(x, z_u)              ⭐ Y 的方程**读 x 与 Z**
 ```
 
@@ -285,7 +285,7 @@ structure ZSCM (Z X Y : Type u) where
   zOf : U → Z
   /-- ⭐ `Y` 的方程，**读 `(x, z_u)`**。 -/
   fY : U → X → Z → Y
-  /-- `X` 的方程（对应 `PearlHierarchy.SCM.sg` 的第一分量）。 -/
+  /-- `X` 的方程（对应 `FateV2.Modeling.PearlHierarchy.SCM.sg` 的第一分量）。 -/
   fX : U → X
 
 attribute [instance] ZSCM.instFintype ZSCM.instDecEq

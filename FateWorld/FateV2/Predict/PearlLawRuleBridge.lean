@@ -1,17 +1,17 @@
 /-
 =============================================================================
-  `PearlHierarchy.SCM` 诱导 `LawRule` —— 构造 + 判别定理
+  `FateV2.Modeling.PearlHierarchy.SCM` 诱导 `LawRule` —— 构造 + 判别定理
 =============================================================================
 
 模块：`FateV2.Predict`
-上游：`Fate/PearlHierarchy.lean`（`SCM`、`push`、`SCM.L2_do`、`SCM.L2_family`、
+上游：`Fate/FateV2.Modeling.PearlHierarchy.lean`（`SCM`、`push`、`SCM.L2_do`、`SCM.L2_family`、
 　　　`SCM.L3_cf`、`L3_determines_L2`、`L3_determines_L1`）、
 　　　`Fate/LawRule.lean`（`LawRule`、`IsPoint`、`IsPointDet`、`compose`、`compose_top`）
 
 ---------------------------------------------------------------------------
 问题（作者原问）
 ---------------------------------------------------------------------------
-> `PearlHierarchy.SCM` 能否诱导出 `LawRule`？给出构造。这可能同时推进桥。
+> `FateV2.Modeling.PearlHierarchy.SCM` 能否诱导出 `LawRule`？给出构造。这可能同时推进桥。
 
 ---------------------------------------------------------------------------
 答案（先结论，再构造）

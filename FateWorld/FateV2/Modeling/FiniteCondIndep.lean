@@ -33,7 +33,7 @@ import Mathlib.Tactic.FieldSimp
 
   ## ⚠⚠ 为什么单开一节：**测度层不是必需品**
 
-  **第 68 轮**（`Fate/SCMSemantics.lean`）把有限 SCM 推前成了有限联合律，
+  **第 68 轮**（`Fate/FateV2.Modeling.SCMSemantics.lean`）把有限 SCM 推前成了有限联合律，
   但**条件独立**仍借用 Mathlib 的 `ProbabilityTheory.CondIndepFun`，
   **落在 `Measure` 层** —— 需要 $\sigma$-代数、可测性、几乎处处等
   与**有限组合骨架无关**的机器。

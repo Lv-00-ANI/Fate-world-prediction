@@ -48,9 +48,9 @@ import Mathlib.MeasureTheory.Integral.Lebesgue.Map
 
   | 现有载体 | 本模块的接口 | 位置 |
   |---|---|---|
-  | `PearlHierarchy.SCM X Y`（`sg : U → X × (X → Y)`）| `ofPearl` / `ofPearl_joint_apply` | `§K.5` |
+  | `FateV2.Modeling.PearlHierarchy.SCM X Y`（`sg : U → X × (X → Y)`）| `ofPearl` / `ofPearl_joint_apply` | `§K.5` |
   | `Causalean.Graph.DAG V`（`parents v`）| ⚠ **未做**（见 `§K.8` 的缺口登记）| — |
-  | `SCMSemantics.jointLaw`（裸律 `ℝ`）| `ofPearl_joint_apply`（同形式的 `ℝ≥0∞` 值）| `§K.5` / `§K.6` |
+  | `FateV2.Modeling.SCMSemantics.jointLaw`（裸律 `ℝ`）| `ofPearl_joint_apply`（同形式的 `ℝ≥0∞` 值）| `§K.5` / `§K.6` |
   | `Fintype` 上的加权 `δ` 和 | `mkMeasure` / `discreteKernel` | `§K.1`–`§K.2` |
 
   ## 等级与边界（**先说清楚，免得被当成在吹**）
@@ -66,8 +66,8 @@ import Mathlib.MeasureTheory.Integral.Lebesgue.Map
   | **`SCMK.markov_fiber`**（**Markov 性主定理**）| ⭐⭐⭐⭐⭐ [理论] | ✅ **零缺口** |
   | `SCMK.markov_marginal`（边缘化推论，同上）| ⭐⭐⭐⭐ [理论] | ✅ 零缺口 |
   | `SCMK.locallyMarkov`（局部 Markov 性的 kernel 表述）| ⭐⭐⭐⭐ [理论] | ✅ 零缺口 |
-  | `ofPearl` / `ofPearl_joint_apply`（与 `PearlHierarchy.SCM` 接口）| ⭐⭐⭐ [验证] | ✅ 零缺口 |
-  | 与 `SCMSemantics.jointLaw` 的**逐字等式** | ⚠ **不做**（类型不同，见 `§K.6`）| — |
+  | `ofPearl` / `ofPearl_joint_apply`（与 `FateV2.Modeling.PearlHierarchy.SCM` 接口）| ⭐⭐⭐ [验证] | ✅ 零缺口 |
+  | 与 `FateV2.Modeling.SCMSemantics.jointLaw` 的**逐字等式** | ⚠ **不做**（类型不同，见 `§K.6`）| — |
   | `DAG` 父集 → 条件域（`dagMechanism`）| ⚠ **未做**（见 `§K.8`）| — |
 
   **⚠ 边界（如实登记，不夸大）**：
@@ -234,7 +234,7 @@ theorem discreteKernel_totalMass {α : Type u} {β : Type v} [MeasurableSpace α
 | `kX` | $X$ 的**外生机制** | `Kernel Unit X` |
 | `kY` | $Y$ 在**父节点 $X$ 给定**下的机制 | `Kernel (Unit × X) Y` |
 
-**⚠ 与 `PearlHierarchy.SCM` 的差别**：后者用**单个 `sg : U → X × (X → Y)`**
+**⚠ 与 `FateV2.Modeling.PearlHierarchy.SCM` 的差别**：后者用**单个 `sg : U → X × (X → Y)`**
 把两个机制**揉在一起**；本结构把 `kX` / `kY` **分开承载** ——
 **这正是「每节点一个 kernel」的形式化体现**，也是能套用 `compProd`
 （从而**免费**得到 Markov 性）的原因。
@@ -312,7 +312,7 @@ $$\kappa_{\mathrm{joint}}(\cdot)\bigl[\{p \mid p_1 = x\}\bigr] = k_X(\cdot)\{x\}
 
 **⟹ 与 `markov_fiber` 合读**：两式相除（在 $k_X(\cdot)\{x\} \ne 0$ 时）
 得到**条件律** $Y \mid X = x$ **就是** `kY (·, x)` ——
-这正是 `SCMSemantics.condY` 的 kernel 版本。**零缺口**（`t = univ` 代入）。 -/
+这正是 `FateV2.Modeling.SCMSemantics.condY` 的 kernel 版本。**零缺口**（`t = univ` 代入）。 -/
 theorem markov_marginal (M : SCMK X Y) [MeasurableSingletonClass X]
     [IsSFiniteKernel M.kX] [IsMarkovKernel M.kY]
     (x : X) :
@@ -370,7 +370,7 @@ theorem locallyMarkov (M : SCMK X Y) [MeasurableSingletonClass X]
 end SCMK
 
 /-! ===========================================================================
-  §K.5  ⭐⭐⭐ **与 `PearlHierarchy.SCM` 的接口**（现有 `Fintype` 载体）
+  §K.5  ⭐⭐⭐ **与 `FateV2.Modeling.PearlHierarchy.SCM` 的接口**（现有 `Fintype` 载体）
   =========================================================================== -/
 
 section PearlInterface
@@ -379,9 +379,9 @@ variable {X Y : Type u} [Fintype X] [DecidableEq X] [Fintype Y] [DecidableEq Y]
   [MeasurableSpace X] [MeasurableSpace Y]
   [MeasurableSingletonClass X] [MeasurableSingletonClass Y]
 
-/-- ⭐⭐⭐ [构造] **`PearlHierarchy.SCM` → `SCMK`**（**载体转换接口**）。
+/-- ⭐⭐⭐ [构造] **`FateV2.Modeling.PearlHierarchy.SCM` → `SCMK`**（**载体转换接口**）。
 
-给定 `M : PearlHierarchy.SCM X Y`（`sg : U → X × (X → Y)`，`pU : U → ℝ`），
+给定 `M : FateV2.Modeling.PearlHierarchy.SCM X Y`（`sg : U → X × (X → Y)`，`pU : U → ℝ`），
 构造两个机制：
 
 * `kX`：$X$ 的机制 —— **外生律沿 `u ↦ (sg u).1` 的推前**；
@@ -391,19 +391,19 @@ variable {X Y : Type u} [Fintype X] [DecidableEq X] [Fintype Y] [DecidableEq Y]
 故本接口**取正部** `ENNReal.ofReal`。**这不是无损嵌入**：若 `pU` 有负值，
 转换后信息丢失 —— **依本项目纪律，这一点必须写明**，
 而不是假装「`ℝ` 与 `ℝ≥0∞` 一样」。**`pU ≥ 0` 时无损**（见 `ofPearl_weight`）。 -/
-noncomputable def ofPearl (M : PearlHierarchy.SCM X Y) : SCMK X Y where
+noncomputable def ofPearl (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : SCMK X Y where
   kX := discreteKernel (fun _ x => ∑ u, ENNReal.ofReal (M.pU u) * (if (M.sg u).1 = x then 1 else 0))
   kY := discreteKernel (fun p y => ∑ u, ENNReal.ofReal (M.pU u) * (if (M.sg u).2 p.2 = y then 1 else 0))
 
 omit [MeasurableSingletonClass Y] in
 /-- ⭐ [支撑] **`ofPearl` 的 `kX` 权重展开**（定义性）。 -/
-lemma ofPearl_kX_apply (M : PearlHierarchy.SCM X Y) (x : X) :
+lemma ofPearl_kX_apply (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) :
     (ofPearl M).kX () {x} =
       ∑ u, ENNReal.ofReal (M.pU u) * (if (M.sg u).1 = x then 1 else 0) := by
   rw [ofPearl, discreteKernel_apply_singleton]
 
 /-- ⭐ [支撑] **`ofPearl` 的 `kY` 权重展开**（定义性）。 -/
-lemma ofPearl_kY_apply (M : PearlHierarchy.SCM X Y) (x : X) (y : Y) :
+lemma ofPearl_kY_apply (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y) :
     (ofPearl M).kY ((), x) {y} =
       ∑ u, ENNReal.ofReal (M.pU u) * (if (M.sg u).2 x = y then 1 else 0) := by
   rw [ofPearl, discreteKernel_apply_singleton]
@@ -417,7 +417,7 @@ $$\kappa^{\mathrm{ofPearl}}_{\mathrm{joint}}(\cdot)\bigl[X=x, Y=y\bigr]
 **⟹ 这是 `markov_fiber` 在 `ofPearl` 上的**显式求值** ——
 把 kernel 侧的抽象定理**落到现有载体的数值形式**上。
 **⚠ 证明只需 `markov_fiber` + 两条展开引理，故零缺口，但价值在于**接口**而非新数学。** -/
-theorem ofPearl_joint_apply (M : PearlHierarchy.SCM X Y) (x : X) (y : Y) :
+theorem ofPearl_joint_apply (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y) :
     (ofPearl M).joint () {p : X × Y | p.1 = x ∧ p.2 = y} =
       (∑ u, ENNReal.ofReal (M.pU u) * (if (M.sg u).1 = x then 1 else 0)) *
       (∑ u, ENNReal.ofReal (M.pU u) * (if (M.sg u).2 x = y then 1 else 0)) := by
@@ -456,12 +456,12 @@ theorem ofPearl_joint_apply (M : PearlHierarchy.SCM X Y) (x : X) (y : Y) :
 end PearlInterface
 
 /-! ===========================================================================
-  §K.6  ⭐⭐⭐ **与 `SCMSemantics.jointLaw` 的一致性**
+  §K.6  ⭐⭐⭐ **与 `FateV2.Modeling.SCMSemantics.jointLaw` 的一致性**
   =========================================================================== -/
 
 /-! ### 说明（**为什么这里只有一个接口引理而不是完整等式**）
 
-`SCMSemantics.jointLaw` 是 `ℝ` 值的**裸函数**
+`FateV2.Modeling.SCMSemantics.jointLaw` 是 `ℝ` 值的**裸函数**
 （`M.U × X × Y → ℝ`），而本模块的 `joint` 是 `ℝ≥0∞` 值的 **`Measure`**。
 两者**不是同一个类型**，故「等式」只能经由 `ENNReal.ofReal` 建立：
 
