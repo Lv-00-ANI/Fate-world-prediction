@@ -128,7 +128,6 @@ import FateWorld.FateV2.Rules.T112FCAConnection
 
 namespace FateV2.Rules.T112
 
-open FateV2.Error
 open scoped Classical
 
 universe u v

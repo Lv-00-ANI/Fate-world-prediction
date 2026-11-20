@@ -1,3 +1,0 @@
-﻿Rules: 17 个待验证
-  AlphaKernelAudit: ['FateV2.Error']
-    → OK

@@ -35,7 +35,6 @@ import Mathlib.Order.Closure
 
 namespace FateV2.Rules.Stage2.FCGenuine
 
-open FateV2.Error
 open Set
 
 universe u v

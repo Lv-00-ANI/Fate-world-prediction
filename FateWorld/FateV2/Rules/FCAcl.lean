@@ -70,8 +70,6 @@ import Mathlib.Tactic
 
 namespace FateV2.Rules.Stage2.FCAcl
 
-open FateV2.Error
-
 universe u v
 
 set_option linter.checkUnivs false
