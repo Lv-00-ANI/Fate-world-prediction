@@ -271,7 +271,7 @@ theorem mem_attrClosureFinset [Fintype X.Carrier] [Fintype M]
 
 证明：两侧都归约到「`∃ y, δ x ≤ δ y ∧ m ∈ attr y`」——
 左侧用 `mem_attrClosureFinset` + `FateV2.Rules.AlphaMVFCA.mem_minClosedFinset`，
-右侧用 `attrClosure` 的定义 + `FateV2.Predict.AlphaMVFCA.mem_minClosed_iff`。
+右侧用 `attrClosure` 的定义 + `FateV2.Rules.AlphaMVFCA.mem_minClosed_iff`。
 
 ⚠ **前件检查（纪律 7）**：前件只有 `[Fintype X.Carrier]` / `[Fintype M]`
 （枚举所需）与 `[DecidableRel (· ≤ ·)]` / `[DecidableEq M]`（判定所需）。
@@ -285,7 +285,7 @@ theorem attrClosureFinset_coe [Fintype X.Carrier] [Fintype M]
   rw [Finset.mem_coe, mem_attrClosureFinset]
   unfold attrClosure
   refine exists_congr fun y => ?_
-  rw [FateV2.Rules.AlphaMVFCA.mem_minClosedFinset, FateV2.Predict.AlphaMVFCA.mem_minClosed_iff]
+  rw [FateV2.Rules.AlphaMVFCA.mem_minClosedFinset, FateV2.Rules.AlphaMVFCA.mem_minClosed_iff]
 
 /-- ⭐ **Finset 版与 `attrClosure_eq_sUnion` 的连接**：
 Finset 版算出的集合就是 `AlphaData.dgToLawRule` 中族 `attr '' minClosed K x` 的并。 -/
