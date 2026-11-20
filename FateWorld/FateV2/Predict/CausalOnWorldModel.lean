@@ -10,7 +10,7 @@
 -------------------------------------------------------------------------------
   | # | 名称 | 内容 |
   |---|---|---|
-  | §1 | `doLaw` | `SCMSemantics.doLaw` 的别名（`CausalRouteDo` 语义）|
+  | §1 | `doLaw` | `FateV2.Modeling.SCMSemantics.doLaw` 的别名（`CausalRouteDo` 语义）|
   | §1 | `doLaw_eq` | 定义展开（`rfl`）|
   | §2 | `DoLawOn` | 「后门载体的可观测侧与 SCM 一致」的精确定义（5 场）|
   | §2 | `bd_joint_obs` | `hZ.joint` 的读出（逐 `(x,z₁,z₂,y)`）|
@@ -24,14 +24,14 @@
 -------------------------------------------------------------------------------
 
   **【错误 1｜146:7 `dependsOnNoncomputable`】—— 纯语法，已修**
-  `abbrev doLaw` 依赖 `SCMSemantics.doLaw`（`noncomputable`），故须加
+  `abbrev doLaw` 依赖 `FateV2.Modeling.SCMSemantics.doLaw`（`noncomputable`），故须加
   `noncomputable`。**不改任何陈述，纯装饰性修复。**
 
   **【错误 2｜186:44 `HMul ℝ (T.Z₂t → ℝ)`】—— 实质性类型错误，已修**
   `DoLawOn.margX_of` 字段原写作
 
   ```
-  ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = SCMSemantics.marginalX M x * FateV2.Predict.R277.pZ T z₁
+  ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Predict.R277.pZ T z₁
   ```
 
   但 `FateV2.Predict.R277.pZ : Z₁ → Z₂t → ℝ`（**柯里化二元**，实测
@@ -157,16 +157,16 @@ open Finset
 
 /-- **世界模型侧的 `doLaw`**：`CausalRouteDo` / `SCMSemantics` 的 `doLaw`。
 
-⭐ 显式取带命名空间的全名，使读者一眼看到本文件用的是 `SCMSemantics.doLaw`
+⭐ 显式取带命名空间的全名，使读者一眼看到本文件用的是 `FateV2.Modeling.SCMSemantics.doLaw`
 （干预律），而**不是** `FrontdoorSetup.doLaw`。
 
-**⚠ 修复 1**：加 `noncomputable`（`SCMSemantics.doLaw` 是 `noncomputable`）。 -/
-noncomputable abbrev doLaw {X Y : Type} [DecidableEq Y] (M : PearlHierarchy.SCM X Y) : X → Y → ℝ :=
+**⚠ 修复 1**：加 `noncomputable`（`FateV2.Modeling.SCMSemantics.doLaw` 是 `noncomputable`）。 -/
+noncomputable abbrev doLaw {X Y : Type} [DecidableEq Y] (M : FateV2.Modeling.PearlHierarchy.SCM X Y) : X → Y → ℝ :=
   FateV2.Modeling.SCMSemantics.doLaw M
 
 /-- ⭐ **定义展开**（`rfl`）：本文件的 `doLaw` 逐字就是显式求和式。 -/
 theorem doLaw_eq {X Y : Type} [Fintype X] [DecidableEq Y]
-    (M : PearlHierarchy.SCM X Y) (x : X) (y : Y) :
+    (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (x : X) (y : Y) :
     doLaw M x y = ∑ u, M.pU u * (if (M.sg u).2 x = y then (1 : ℝ) else 0) := rfl
 
 /-! ===========================================================================
@@ -185,29 +185,29 @@ theorem doLaw_eq {X Y : Type} [Fintype X] [DecidableEq Y]
 与 `ℝ` 相乘无实例 ⟹ 结构体无法声明。
 改为 `* T.pz₁ z₁`（`pz₁ : Z₁ → ℝ`，即原注释所写的 `pz₁` 归一）。 -/
 structure DoLawOn (T : FateV2.Predict.R277.ZBlockedSetup) (d : T.Xt → T.Yt → ℝ)
-    (M : PearlHierarchy.SCM T.Xt T.Yt) : Prop where
+    (M : FateV2.Modeling.PearlHierarchy.SCM T.Xt T.Yt) : Prop where
   /-- ⭐ **`p(x)`**：`∑_{z₁ z₂} pXZ T x z₁ z₂ = M.marginalX x`。 -/
   margX : ∀ x : T.Xt,
-    ∑ z₁ : T.Z₁, ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = SCMSemantics.marginalX M x
+    ∑ z₁ : T.Z₁, ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = FateV2.Modeling.SCMSemantics.marginalX M x
   /-- ⭐ **单点 `z₁` 的 `p(x)`**：`∑_{z₂} pXZ = marginalX x · pz₁ z₁`。 -/
   margX_of : ∀ (z₁ : T.Z₁) (x : T.Xt),
-    ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = SCMSemantics.marginalX M x * T.pz₁ z₁
+    ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pXZ T x z₁ z₂ = FateV2.Modeling.SCMSemantics.marginalX M x * T.pz₁ z₁
   /-- ⭐ **`pZ` 关于 `z₂` 归一**（`∑_{z₂} pZ(z₁,z₂) = 1`）。 -/
   pZ_sum : ∀ z₁ : T.Z₁, ∑ z₂ : T.Z₂t, FateV2.Predict.R277.pZ T z₁ z₂ = (1 : ℝ)
   /-- ⭐ **联合质量**：`pXZ(x,z₁,z₂)·P(y|x,z₁,z₂) = M.condY x y · pZ(z₁,z₂)`。 -/
   joint : ∀ (x : T.Xt) (z₁ : T.Z₁) (z₂ : T.Z₂t) (y : T.Yt),
     FateV2.Predict.R277.pXZ T x z₁ z₂ * FateV2.Predict.R277.pYcond T x z₁ z₂ y
-      = SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂
+      = FateV2.Modeling.SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂
   /-- ⭐ **登记**：参数 `d` 就是 `M` 的干预律（`d` 为参数，此处只作登记）。 -/
   interventional : ∀ (x : T.Xt) (y : T.Yt), d x y = FateV2.Modeling.SCMSemantics.doLaw M x y
 
 variable {T : FateV2.Predict.R277.ZBlockedSetup}
 
 /-- ⭐ **`joint` 的直接读出**（逐 `(x,z₁,z₂,y)`），另起一名使 §3 可读。 -/
-theorem bd_joint_obs (M : PearlHierarchy.SCM T.Xt T.Yt) {d : T.Xt → T.Yt → ℝ}
+theorem bd_joint_obs (M : FateV2.Modeling.PearlHierarchy.SCM T.Xt T.Yt) {d : T.Xt → T.Yt → ℝ}
     (hZ : DoLawOn T d M) (x : T.Xt) (z₁ : T.Z₁) (z₂ : T.Z₂t) (y : T.Yt) :
     FateV2.Predict.R277.pXZ T x z₁ z₂ * FateV2.Predict.R277.pYcond T x z₁ z₂ y
-      = SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ :=
+      = FateV2.Modeling.SCMSemantics.condY M x y * FateV2.Predict.R277.pZ T z₁ z₂ :=
   hZ.joint x z₁ z₂ y
 
 /-! ===========================================================================
@@ -223,11 +223,11 @@ $$\sum_{z_2} p(x,z_2)\cdot P(y\mid x,z_2) \;=\; P(X{=}x,Y{=}y)\cdot \sum_{z_2}p(
 
 **⚠ 读法**：左边是**观测**律的分子（`pXZ` 加权），右边是 `condY` 乘 `pZ` 总质量。
 **它不是** `adjustLaw`（后者用 `pZ` 加权）。 -/
-theorem bd_sum_joint (M : PearlHierarchy.SCM Bool Bool) {d : Bool → Bool → ℝ}
+theorem bd_sum_joint (M : FateV2.Modeling.PearlHierarchy.SCM Bool Bool) {d : Bool → Bool → ℝ}
     (hZ : DoLawOn FateV2.Predict.R277.zb d M) (x y : Bool) :
     ∑ z₂ : Bool, FateV2.Predict.R277.pXZ FateV2.Predict.R277.zb x () z₂
         * FateV2.Predict.R277.pYcond FateV2.Predict.R277.zb x () z₂ y
-      = SCMSemantics.condY M x y * (∑ z₂ : Bool, FateV2.Predict.R277.pZ FateV2.Predict.R277.zb () z₂) := by
+      = FateV2.Modeling.SCMSemantics.condY M x y * (∑ z₂ : Bool, FateV2.Predict.R277.pZ FateV2.Predict.R277.zb () z₂) := by
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl (fun z₂ _ => hZ.joint x () z₂ y)
 
@@ -275,7 +275,7 @@ theorem badd_pZ_sum : ∑ z₂ : Bool, FateV2.Predict.R277.pZ badd () z₂ = (3 
 
 **⟹ 这证明 `DoLawOn` 不是恒真式，其字段真的承载内容**——
 即它作为前件不是空转的。 -/
-theorem DoLawOn_fails_on_badd (M : PearlHierarchy.SCM Bool Bool) (d : Bool → Bool → ℝ) :
+theorem DoLawOn_fails_on_badd (M : FateV2.Modeling.PearlHierarchy.SCM Bool Bool) (d : Bool → Bool → ℝ) :
     ¬ DoLawOn badd d M := by
   intro hZ
   have h : ∑ z₂ : Bool, FateV2.Predict.R277.pZ badd () z₂ = 1 := hZ.pZ_sum ()
