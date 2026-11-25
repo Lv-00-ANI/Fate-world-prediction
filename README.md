@@ -9,8 +9,12 @@
 > [![Build](https://img.shields.io/badge/build-348%2F975%20verified-orange)]()
 > [![sorry](https://img.shields.io/badge/sorry-0-brightgreen)]()
 >
-> **远程**：https://github.com/Lv-00-ANI/Fate-world-prediction
-> **构建状态**：⚠️ **迁移进行中，348 / 975 个 FateV2 模块已验证编译**。详见 [`_inventory/迁移完整性问题.md`](_inventory/迁移完整性问题.md)
+>
+>
+> [![论文-误差部分](DOI 10.5281/zenodo.23752684)](https://zenodo.org/records/24043156)
+>
+>
+> 
 
 ---
 
