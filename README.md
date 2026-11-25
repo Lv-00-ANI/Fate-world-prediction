@@ -2,6 +2,8 @@
 
 > **《命运》世界模型 / 预测系统的形式化工程仓库。**
 >
+> （有感兴趣的可以帮下忙自己一个人估计弄不起来了  想借助社区的力量把这个项目做一下）
+>
 > [![Lean](https://img.shields.io/badge/Lean-4.33.0--rc1-blue)](https://leanprover.github.io/)
 > [![Modules](https://img.shields.io/badge/modules-1828-lightgrey)]()
 > [![Build](https://img.shields.io/badge/build-348%2F975%20verified-orange)]()
