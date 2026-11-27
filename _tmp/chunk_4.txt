@@ -1,0 +1,134 @@
+﻿⚠ [1727/1732] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3501/3514] Replayed FateWorld.FateV2.Loop.ResidualLoop
+warning: FateWorld/FateV2/Loop/ResidualLoop.lean:603:7: Variable name `X` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _X
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3513/3515] Built FateWorld.FateV2.Predict.T43Abduction (35s)
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:119:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.mem_obsSet`:
+  [Fintype X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:123:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.obsEventMass_eq_sum_obsSet`:
+  [Fintype X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:160:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.no_abduction_eq_doLaw`:
+  [Fintype X]
+  [DecidableEq X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [DecidableEq X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:164:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.cfWithAbduction_eq_sum`:
+  [Fintype X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [3514/3516] Built FateWorld.FateV2.Loop.CfUnconditionalVertex (24s)
+⚠ [8673/8683] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8674/8683] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8681/8689] Built FateWorld.FateV2.Predict.TwoVersions (407s)
+⚠ [8682/8689] Replayed FateWorld.FateV2.Loop.ConvergeToOptimalV2
+warning: FateWorld/FateV2/Loop/ConvergeToOptimalV2.lean:96:5: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8686/8693] Built FateWorld.FateV2.Loop.ConvergeToOptimalND (51s)
+warning: FateWorld/FateV2/Loop/ConvergeToOptimalND.lean:687:26: `EuclideanSpace.norm_single` has been deprecated: Use `PiLp.norm_single` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) {ι : Type u_2} (β : ι → Type u_4) [hp : Fact (1 ≤ p)] [inst : Fintype ι]
+    [inst_1 : (i : ι) → SeminormedAddCommGroup (β i)] [inst_2 : DecidableEq ι] (i : ι) (b : β i),
+    ‖PiLp.single p i b‖ = ‖b‖
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] [inst_2 : Fintype ι] (i : ι) (a : 𝕜),
+    ‖EuclideanSpace.single i a‖ = ‖a‖
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.norm_single` to `PiLp.norm_single x`).
+warning: FateWorld/FateV2/Loop/ConvergeToOptimalND.lean:687:26: This simp argument is unused:
+  EuclideanSpace.norm_single
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [theta0, sub_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8689/8693] Built FateWorld.FateV2.Loop.ClosedLoopUnified (38s)
+✔ [8693/8697] Built FateWorld.FateV2.Loop.ClosedLoopWiring (35s)
+✔ [8694/8697] Built FateWorld.FateV2.Loop.ConvergenceContrast (48s)
+✔ [8695/8697] Built FateWorld.FateV2.Loop.ThetaLearningParam (38s)
+ℹ [8696/8699] Built FateWorld.FateV2.Loop.ContinuousEval (30s)
+info: FateWorld/FateV2/Loop/ContinuousEval.lean:152:0: Real.ofCauchy (sorry /- (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, (3 : Rat)/2, ... -/)
+info: FateWorld/FateV2/Loop/ContinuousEval.lean:155:0: Real.ofCauchy (sorry /- 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ... -/)
+info: FateWorld/FateV2/Loop/ContinuousEval.lean:158:0: Real.ofCauchy (sorry /- 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, ... -/)
+info: FateWorld/FateV2/Loop/ContinuousEval.lean:161:0: 3 / 2
+info: FateWorld/FateV2/Loop/ContinuousEval.lean:162:0: 3
+info: FateWorld/FateV2/Loop/ContinuousEval.lean:163:0: 6
+ℹ [8697/8701] Built FateWorld.FateV2.Loop.ConvergeToOptimalDemo (31s)
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:366:0: [0, 5 / 2, 15 / 4, 35 / 8, 75 / 16, 155 / 32, 315 / 64, 635 / 128, 1275 / 256, 2555 / 512, 5115 / 1024]
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:369:0: ["0.0000", "2.5000", "3.7500", "4.3750", "4.6875", "4.8437", "4.9218", "4.9609", "4.9804", "4.9902", "4.9951"]
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:372:0: "0.0000"
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:373:0: "2.5000"
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:374:0: "3.7500"
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:375:0: "4.3750"
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:376:0: "4.6875"
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:379:0: "4.995117"
+info: FateWorld/FateV2/Loop/ConvergeToOptimalDemo.lean:380:0: "4.99999523"
+✔ [8698/8702] Built FateWorld.FateV2.Loop.ConvergeToOptimalDemoConsumer (32s)
+✔ [8700/8702] Built FateWorld.FateV2.Loop.DemoConcrete (25s)
+✔ [8702/8709] Built FateWorld.FateV2.Loop.CorrectsPropertiesConsumer (25s)
+⚠ [8703/8709] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+✔ [8708/8709] Built FateWorld.FateV2.Loop.EndToEndBounds (26s)
+✔ [8709/8709] Built FateWorld.FateV2.Loop.DemoEndToEnd (28s)
+Build completed successfully (8709 jobs).
