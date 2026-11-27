@@ -93,6 +93,7 @@ import FateWorld.FateV2.Predict.ParamSCM
 namespace FateV2.Predict
 
 open FateV2.Model
+open FateV2.Modeling
 namespace CausalEventFormal
 
 universe u v
