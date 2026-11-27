@@ -132,6 +132,8 @@ contraction_interface`（`:374`）的结论 `c W.η < 1` 是同义反复
 import FateWorld.FateV2.Loop.WorldModelCapstone
 import FateWorld.FateV2.Loop.WorldModelCapstoneConsumer
 import Mathlib.Tactic
+import FateWorld.FateV2.Error.SteadyErrEstimate
+import FateWorld.FateV2.Error.SigmaEstimation
 
 namespace FateV2.Loop
 namespace WorldModelMainTheorem
@@ -139,6 +141,8 @@ namespace WorldModelMainTheorem
 universe u
 
 open Filter Topology MeasureTheory ProbabilityTheory
+open FateV2.Error
+open FateV2.Modeling
 open scoped Topology
 
 /-!

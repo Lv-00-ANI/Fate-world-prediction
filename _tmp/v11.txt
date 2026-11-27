@@ -1,0 +1,238 @@
+﻿⚠ [1727/1732] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3529/3539] Replayed FateWorld.FateV2.Modeling.CausSeparation
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:205:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:486:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:558:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:684:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3530/3539] Replayed FateWorld.FateV2.Predict.FinCondIndep
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:199:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_condRatio`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:270:8: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.swapXY_swapXY`:
+  [Fintype α]
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:287:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margXZ_swapXY`:
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:295:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margYZ_swapXY`:
+  [Fintype α]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:321:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_sym`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:339:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margZ_swapXY_def`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:436:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMul_of_factorization`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [3532/3539] Replayed FateWorld.FateV2.Predict.FinJoint
+warning: FateWorld/FateV2/Predict/FinJoint.lean:101:7: The namespace `FinJoint` is duplicated in the declaration `FateV2.Predict.FinJoint.FinJoint`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+⚠ [3535/3543] Replayed FateWorld.FateV2.Predict.FinMarkov
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:165:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.sum_ite_triple_eq`:
+  [Fintype A]
+  [Fintype B]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype B] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:220:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.PearlHierarchy.SCM.margAB_jointLaw3`:
+  [Fintype A]
+  [Fintype B]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype B] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:284:26: This simp argument is unused:
+  true_and
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [hca, hcb', and_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:334:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.factorizes_condIndepFin`:
+  [DecidableEq A]
+  [DecidableEq B]
+  [DecidableEq C]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq A] [DecidableEq B] [DecidableEq C] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:385:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.condIndepFin_iff_ratio`:
+  [DecidableEq A]
+  [DecidableEq B]
+  [DecidableEq C]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq A] [DecidableEq B] [DecidableEq C] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [3539/3546] Replayed FateWorld.FateV2.Predict.SeparableCondMul
+warning: FateWorld/FateV2/Predict/SeparableCondMul.lean:69:0: automatically included section variable(s) unused in theorem `FateV2.Predict.SeparableCondMul.separable_implies_condMul`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [3543/3549] Replayed FateWorld.FateV2.Predict.BackdoorCriterion
+warning: FateWorld/FateV2/Predict/BackdoorCriterion.lean:546:6: 'norm_num [condT]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: FateWorld/FateV2/Predict/BackdoorCriterion.lean:546:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [3546/3549] Replayed FateWorld.FateV2.Predict.BackdoorGenuine
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:860:6: This simp argument is unused:
+  zbFx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_bool, if_false, if_true, Bool.false_eq_true, zbFz, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:863:6: This simp argument is unused:
+  zbFx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_bool, if_false, if_true, Bool.false_eq_true, zbFz, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:913:9: This simp argument is unused:
+  zbFx
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_bool, Fintype.sum_unique, if_false, if_true, Bool.false_eq_true, zbFz, zbFy,
+    Bool.xor_true, Bool.xor_false, Bool.not_true, Bool.not_false, one_mul, zero_mul, mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:933:44: This simp argument is unused:
+  zero_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_unique, Fintype.sum_bool, if_false, if_true, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false, Bool.false_eq_true, one_mul, zero_mul, mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:974:44: This simp argument is unused:
+  zero_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_unique, Fintype.sum_bool, if_false, if_true, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false, Bool.false_eq_true, one_mul, zero_mul, mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:982:46: This simp argument is unused:
+  zero_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_unique, Fintype.sum_bool, if_false, if_true, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false, Bool.false_eq_true, one_mul, zero_mul, mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:1245:2: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:1304:5: Variable name `ux` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ux
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:1304:8: Variable name `ux'` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ux'
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:1363:44: This simp argument is unused:
+  zero_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_unique, Fintype.sum_bool, if_false, if_true, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false, Bool.false_eq_true, one_mul, zero_mul, mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/BackdoorGenuine.lean:1392:44: This simp argument is unused:
+  zero_div
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Fintype.sum_unique, Fintype.sum_bool, if_false, if_true, Bool.xor_true, Bool.xor_false,
+    Bool.not_true, Bool.not_false, Bool.false_eq_true, one_mul, zero_mul, mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3549/3549] Built FateWorld.FateV2.Predict.WiringBackdoor (276s)
+warning: FateWorld/FateV2/Predict/WiringBackdoor.lean:267:5: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Predict/WiringBackdoor.lean:329:57: Variable name `hx` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hx
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (3549 jobs).

@@ -47,7 +47,7 @@ import FateWorld.FateV2.Predict.BridgeDirect
 
 /-! ## §1 `FactorizesOn` 的三重收束 -/
 
-/-- ⭐⭐ **【因子分解的三重收束】**
+/- ⭐⭐ **【因子分解的三重收束】**
 
 在叉图上因子分解的 `p`，同时满足：
 

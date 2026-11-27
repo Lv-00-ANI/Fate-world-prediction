@@ -8,10 +8,10 @@
 
   | # | 原定理（**未改动**） | 所在模块 | 原 `[Nonempty]` | 结论 |
   |---|---|---|---|---|
-  | 1 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_separable` | `T35Rule1Split` | `[Nonempty Ux] [Nonempty Uy]` | ✅ 可去 |
-  | 2 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
-  | 3 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.noConfounding_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
-  | 4 | `FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_normalized` | `T35Rule1Split` | 同上 | ✅ 可去 |
+  | 1 | `FateV2.Predict.T35Rule1Split.rule1_of_separable` | `T35Rule1Split` | `[Nonempty Ux] [Nonempty Uy]` | ✅ 可去 |
+  | 2 | `FateV2.Predict.T35Rule1Split.rule1_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
+  | 3 | `FateV2.Predict.T35Rule1Split.noConfounding_of_fullNoConfounding` | `T35Rule1Split` | 同上 | ✅ 可去 |
+  | 4 | `FateV2.Predict.T35Rule1Split.rule1_normalized` | `T35Rule1Split` | 同上 | ✅ 可去 |
   | 5 | `SCMIdentifiability.scmThetaSubsingleton_pred_eq` | `SCMIdentifiability` | `[Nonempty Y]` | ✅ 可去（**完全未用**）|
   | 6 | `LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one` | `LawRulePointDecidabilityConsumer` | `[Nonempty C.Carrier] [Nonempty X.Carrier]` | ✅ 可去（空型时空真）|
   | 7 | `FateV2.Predict.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
@@ -129,7 +129,7 @@ namespace T35Rule1Split
 open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_separable` 去掉 `[Nonempty Ux] [Nonempty Uy]` 后**仍然成立**。
+`FateV2.Predict.T35Rule1Split.rule1_of_separable` 去掉 `[Nonempty Ux] [Nonempty Uy]` 后**仍然成立**。
 
 **证明策略**：`Ux` 空 ⟹ `SeparablePU` 的 `∑ pX = 1` 变成 `0 = 1`（矛盾）；
 `Uy` 空同理。两情形都**复用原证**（原定理由 `hsep` 保证 `Nonempty`）。 -/
@@ -137,15 +137,15 @@ theorem rule1_of_separable_noNonempty {X Y Ux Uy : Type} [Fintype X] [DecidableE
     [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux] [Fintype Uy]
     [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (hx : FateV2.Predict.NonemptyFree2.T35Rule1Split.XReadsOnlyUx M e)
-    (hy : FateV2.Predict.NonemptyFree2.T35Rule1Split.YReadsOnlyUy M e)
-    (hsep : FateV2.Predict.NonemptyFree2.T35Rule1Split.SeparablePU M e) (x : X) (y : Y) :
+    (hx : FateV2.Predict.T35Rule1Split.XReadsOnlyUx M e)
+    (hy : FateV2.Predict.T35Rule1Split.YReadsOnlyUy M e)
+    (hsep : FateV2.Predict.T35Rule1Split.SeparablePU M e) (x : X) (y : Y) :
     FateV2.Modeling.SCMSemantics.condY M x y
       = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y := by
   classical
   by_cases hUx : Nonempty Ux
   · by_cases hUy : Nonempty Uy
-    · exact FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_separable M e hx hy hsep x y
+    · exact FateV2.Predict.T35Rule1Split.rule1_of_separable M e hx hy hsep x y
     · -- `Uy` 空 ⟹ `∑ v, pY v = 0 ≠ 1` ⟹ `hsep` 不可满足
       obtain ⟨pX, pY, -, -, hpY⟩ := hsep
       haveI : IsEmpty Uy := not_nonempty_iff.mp hUy
@@ -156,20 +156,20 @@ theorem rule1_of_separable_noNonempty {X Y Ux Uy : Type} [Fintype X] [DecidableE
     simp at hpX
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_of_fullNoConfounding` 的无实例形式。
+`FateV2.Predict.T35Rule1Split.rule1_of_fullNoConfounding` 的无实例形式。
 
 前件换成打包的 `FullNoConfounding`，直接转调 §1.1。 -/
 theorem rule1_of_fullNoConfounding_noNonempty {X Y Ux Uy : Type} [Fintype X]
     [DecidableEq X] [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux]
     [Fintype Uy] [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (h : FateV2.Predict.NonemptyFree2.T35Rule1Split.FullNoConfounding M e) (x : X) (y : Y) :
+    (h : FateV2.Predict.T35Rule1Split.FullNoConfounding M e) (x : X) (y : Y) :
     FateV2.Modeling.SCMSemantics.condY M x y
       = FateV2.Modeling.SCMSemantics.marginalX M x * FateV2.Modeling.SCMSemantics.doLaw M x y :=
   rule1_of_separable_noNonempty M e h.1.1 h.1.2 h.2 x y
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`FateV2.Predict.NonemptyFree2.T35Rule1Split.noConfounding_of_fullNoConfounding` 的无实例形式。
+`FateV2.Predict.T35Rule1Split.noConfounding_of_fullNoConfounding` 的无实例形式。
 
 结论是**谓词** `NC M = ∀ x y, condY M x y = marginalX M x * doLaw M x y`，
 由 §1.2 全称化即得。 -/
@@ -177,21 +177,21 @@ theorem noConfounding_of_fullNoConfounding_noNonempty {X Y Ux Uy : Type} [Fintyp
     [DecidableEq X] [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux]
     [Fintype Uy] [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (h : FateV2.Predict.NonemptyFree2.T35Rule1Split.FullNoConfounding M e) :
-    FateV2.Predict.NonemptyFree2.T35Rule1Split.NC M :=
+    (h : FateV2.Predict.T35Rule1Split.FullNoConfounding M e) :
+    FateV2.Predict.T35Rule1Split.NC M :=
   fun x y => rule1_of_fullNoConfounding_noNonempty M e h x y
 
 /-- ⭐ **【无 `[Nonempty Ux] [Nonempty Uy]` 版】**：
-`FateV2.Predict.NonemptyFree2.T35Rule1Split.rule1_normalized` 的无实例形式（归一化形式，多一个 `hpos`）。
+`FateV2.Predict.T35Rule1Split.rule1_normalized` 的无实例形式（归一化形式，多一个 `hpos`）。
 
 先在无实例的 §1.1 上 `mul_div_cancel_left₀`，只用到 `hpos`，与 `Nonempty` 无关。 -/
 theorem rule1_normalized_noNonempty {X Y Ux Uy : Type} [Fintype X] [DecidableEq X]
     [Fintype Y] [DecidableEq Y] [Fintype Ux] [DecidableEq Ux] [Fintype Uy]
     [DecidableEq Uy]
     (M : FateV2.Modeling.PearlHierarchy.SCM X Y) (e : M.U ≃ Ux × Uy)
-    (hx : FateV2.Predict.NonemptyFree2.T35Rule1Split.XReadsOnlyUx M e)
-    (hy : FateV2.Predict.NonemptyFree2.T35Rule1Split.YReadsOnlyUy M e)
-    (hsep : FateV2.Predict.NonemptyFree2.T35Rule1Split.SeparablePU M e)
+    (hx : FateV2.Predict.T35Rule1Split.XReadsOnlyUx M e)
+    (hy : FateV2.Predict.T35Rule1Split.YReadsOnlyUy M e)
+    (hsep : FateV2.Predict.T35Rule1Split.SeparablePU M e)
     (hpos : ∀ x, FateV2.Modeling.SCMSemantics.marginalX M x ≠ 0) (x : X) (y : Y) :
     FateV2.Modeling.SCMSemantics.condY M x y / FateV2.Modeling.SCMSemantics.marginalX M x
       = FateV2.Modeling.SCMSemantics.doLaw M x y := by
@@ -250,7 +250,7 @@ theorem isPoint_genRule_of_finset_card_one_noNonempty
   classical
   by_cases hC : Nonempty C.Carrier
   · by_cases hX : Nonempty X.Carrier
-    · exact FateV2.Rules.LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one
+    · exact FateV2.Rules.LawRule.isPoint_genRule_of_finset_card_one
         hi₀ hcard hsub
     · -- `X` 空 ⟹ 量化域空 ⟹ 空真
       intro c x

@@ -361,6 +361,9 @@ end FateV2.Predict.R277
   =========================================================================== -/
 
 namespace FateV2.Predict.WiringBackdoor
+open FateV2.Model
+open FateV2.Modeling
+open FateV2.Modeling
 
 /-- **世界状态空间**：`S.X × S.Y`（一个可观测量对），取离散结构。
 
