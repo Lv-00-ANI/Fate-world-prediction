@@ -80,7 +80,8 @@ namespace LawRule
 namespace PointDecidabilityConsumer
 
 open Set MeasureTheory
-open FateV2.Predict.LawRuleToTraj
+open FateV2.Rules.LawRuleToTraj
+open FateV2.Rules.LawRule
 
 variable {C : CtxSpace} {X : StateSpace} {Y : OutSpace} [MeasurableSpace Y.Carrier]
 

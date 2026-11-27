@@ -82,4 +82,4 @@ namespace FateV2.Predict.LMGcFinalVerdict
   本文件汇总 `LMGc` 的最终诊断，不含新定理。
   =========================================================================== -/
 
-end FateV2.Predict.LMGcFinalVerdict
+-- （纯文档模块：第 25 行的 namespace 在 ```lean 围栏内属示例，实际无 namespace 包裹，移除规则 8 误加的 end）

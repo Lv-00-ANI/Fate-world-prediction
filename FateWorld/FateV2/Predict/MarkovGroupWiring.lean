@@ -163,7 +163,7 @@ theorem chainMarkovRelative_separable_of_pos {α β γ : Type}
     (hpos : ∀ x y z, 0 < reindex p ((x, y), z)) :
     ∃ (f : α → β → ℝ) (g : γ → β → ℝ),
       ∀ x y z, reindex p ((x, y), z) = f x z * g y z :=
-  FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable (reindex p)
+  FateV2.Predict.CondMulSeparable.condMul_implies_separable (reindex p)
     (FateV2.Predict.MarkovBridgeReal.chain_markov_relative_condmul p h) hpos
 
 /-! ## §4 道德图因子分解 ⟹ 条件比（`MoralGraphMarkov` × `PearlMarkovBridgeG1`） -/

@@ -5,3 +5,78 @@ Hint: The binding can be removed (if unused) or named `_` (if used implicitly). 
   [apply] _X
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8665/8675] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8666/8675] Replayed FateWorld.FateV2.Loop.EvalDemo
+info: FateWorld/FateV2/Loop/EvalDemo.lean:196:0: false
+info: FateWorld/FateV2/Loop/EvalDemo.lean:197:0: true
+info: FateWorld/FateV2/Loop/EvalDemo.lean:198:0: false
+info: FateWorld/FateV2/Loop/EvalDemo.lean:199:0: true
+info: FateWorld/FateV2/Loop/EvalDemo.lean:200:0: false
+info: FateWorld/FateV2/Loop/EvalDemo.lean:203:0: true
+info: FateWorld/FateV2/Loop/EvalDemo.lean:204:0: false
+info: FateWorld/FateV2/Loop/EvalDemo.lean:207:0: [false, true, false, true, false]
+⚠ [8667/8679] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8670/8679] Replayed FateWorld.FateV2.Loop.EvalReal
+info: FateWorld/FateV2/Loop/EvalReal.lean:262:0: 9
+info: FateWorld/FateV2/Loop/EvalReal.lean:263:0: -1
+info: FateWorld/FateV2/Loop/EvalReal.lean:264:0: 100
+info: FateWorld/FateV2/Loop/EvalReal.lean:265:0: -18
+info: FateWorld/FateV2/Loop/EvalReal.lean:268:0: (1, 5, 8)
+info: FateWorld/FateV2/Loop/EvalReal.lean:269:0: (9, -1, 0, -11)
+info: FateWorld/FateV2/Loop/EvalReal.lean:270:0: (9, -1, 100, -18)
+info: FateWorld/FateV2/Loop/EvalReal.lean:273:0: [9, -1, 100, -18]
+info: FateWorld/FateV2/Loop/EvalReal.lean:277:0: (10, 0)
+⚠ [8674/8680] Replayed FateWorld.FateV2.Loop.FillGap
+warning: FateWorld/FateV2/Loop/FillGap.lean:81:50: Variable name `hφ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hφ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8676/8681] Replayed FateWorld.FateV2.Loop.EvalClosedLoop
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:191:0: [10, 5, 5 / 2, 5 / 4, 5 / 8, 5 / 16]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:194:0: [10, 5, 5 / 2, 5 / 4, 5 / 8, 5 / 16]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:197:0: [(0, 10, 10), (1, 5, 5), (2, 5 / 2, 5 / 2), (3, 5 / 4, 5 / 4), (4, 5 / 8, 5 / 8), (5, 5 / 16, 5 / 16)]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:200:0: [1 / 2, 1 / 2, 1 / 2, 1 / 2, 1 / 2]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:210:0: iterR : ℕ → ℝ → ℝ
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:211:0: errR : ℝ → ℝ
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:413:0: 'FateV2.Loop.EvalClosedLoop.iterQ_eq_iterate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:414:0: 'FateV2.Loop.EvalClosedLoop.corrects_predId' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:415:0: 'FateV2.Loop.EvalClosedLoop.eta_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:416:0: 'FateV2.Loop.EvalClosedLoop.halfQ_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:417:0: 'FateV2.Loop.EvalClosedLoop.stepQ_cast_stepR' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:418:0: 'FateV2.Loop.EvalClosedLoop.iterQ_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:419:0: 'FateV2.Loop.EvalClosedLoop.errQ_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:420:0: 'FateV2.Loop.EvalClosedLoop.errR_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:421:0: 'FateV2.Loop.EvalClosedLoop.errQ_tendsto_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:422:0: 'FateV2.Loop.EvalClosedLoop.errR_eventually_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:423:0: 'FateV2.Loop.EvalClosedLoop.iterQ_closed_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:424:0: 'FateV2.Loop.EvalClosedLoop.iterQ_theta0' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:425:0: 'FateV2.Loop.EvalClosedLoop.errR_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:426:0: 'FateV2.Loop.EvalClosedLoop.errR_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:427:0: 'FateV2.Loop.EvalClosedLoop.errR_strict_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:428:0: 'FateV2.Loop.EvalClosedLoop.closed_loop_instance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:429:0: 'FateV2.Loop.EvalClosedLoop.errR_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Loop/EvalClosedLoop.lean:430:0: 'FateV2.Loop.EvalClosedLoop.errR_halves' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [8679/8681] Built FateWorld.FateV2.Loop.GapFalse (603s)
+✔ [8680/8681] Built FateWorld.FateV2.Loop.FillGapStrong (53s)
+✔ [8681/8681] Built FateWorld.FateV2.Loop.GapIsFalse (43s)
+Build completed successfully (8681 jobs).

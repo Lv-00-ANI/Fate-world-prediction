@@ -73,7 +73,7 @@ namespace FateV2.Predict
 open FateV2.Predict
 namespace SCMUnificationA
 
-open FateV2.Predict.PearlHierarchy
+open FateV2.Modeling.PearlHierarchy
 open FateV2.Predict.ParamSCM
 
 set_option autoImplicit false

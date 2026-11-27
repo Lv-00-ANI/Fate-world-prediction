@@ -396,7 +396,7 @@ namespace FateV2.Predict.W7
 
 namespace ConsumeR48
 
-open FateV2.Error FateV2.Predict.W7.Exec
+open FateV2.Predict.W7.Exec
 
 /-- **出口 1**：`Rule1Premise` ⟹ 表可执行（经
 `FateV2.Predict.Rule1Genuine.premise_implies_executable`）。 -/

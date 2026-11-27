@@ -1,0 +1,16 @@
+﻿⚠ [1724/1731] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+✔ [1731/1731] Built FateWorld.FateV2.Predict.LawRulePointDecidabilityConsumer (14s)
+Build completed successfully (1731 jobs).
