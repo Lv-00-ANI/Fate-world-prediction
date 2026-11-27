@@ -1,0 +1,87 @@
+﻿⚠ [1726/1728] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3500/3512] Replayed FateWorld.FateV2.Loop.ResidualLoop
+warning: FateWorld/FateV2/Loop/ResidualLoop.lean:603:7: Variable name `X` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _X
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8670/8680] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8671/8681] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8675/8684] Replayed FateWorld.FateV2.Loop.SCMResidual
+warning: FateWorld/FateV2/Loop/SCMResidual.lean:436:13: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.zero_apply` to `zero_apply x`).
+warning: FateWorld/FateV2/Loop/SCMResidual.lean:700:56: Variable name `θ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _θ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Loop/SCMResidual.lean:755:8: This simp argument is unused:
+  smul_eq_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [8676/8685] Replayed FateWorld.FateV2.Loop.EvalReal
+info: FateWorld/FateV2/Loop/EvalReal.lean:262:0: 9
+info: FateWorld/FateV2/Loop/EvalReal.lean:263:0: -1
+info: FateWorld/FateV2/Loop/EvalReal.lean:264:0: 100
+info: FateWorld/FateV2/Loop/EvalReal.lean:265:0: -18
+info: FateWorld/FateV2/Loop/EvalReal.lean:268:0: (1, 5, 8)
+info: FateWorld/FateV2/Loop/EvalReal.lean:269:0: (9, -1, 0, -11)
+info: FateWorld/FateV2/Loop/EvalReal.lean:270:0: (9, -1, 100, -18)
+info: FateWorld/FateV2/Loop/EvalReal.lean:273:0: [9, -1, 100, -18]
+info: FateWorld/FateV2/Loop/EvalReal.lean:277:0: (10, 0)
+⚠ [8678/8686] Replayed FateWorld.FateV2.Loop.FillGap
+warning: FateWorld/FateV2/Loop/FillGap.lean:81:50: Variable name `hφ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hφ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8682/8687] Built FateWorld.FateV2.Loop.SCMWorldModelEvalNum (88s)
+info: FateWorld/FateV2/Loop/SCMWorldModelEvalNum.lean:401:0: [3, 4, 5, 6, 7]
+info: FateWorld/FateV2/Loop/SCMWorldModelEvalNum.lean:404:0: [(true, 13), (false, 10)]
+info: FateWorld/FateV2/Loop/SCMWorldModelEvalNum.lean:407:0: [1, -1 / 2, 1 / 4, -1 / 8, 1 / 16, -1 / 32]
+info: FateWorld/FateV2/Loop/SCMWorldModelEvalNum.lean:410:0: [1, 1, 1, 1, 1, 1]
+info: FateWorld/FateV2/Loop/SCMWorldModelEvalNum.lean:414:0: [(1, -2), (1 / 2, -1 / 2)]
+ℹ [8686/8691] Replayed FateWorld.FateV2.Loop.SCMWorldModelEval
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:373:0: [(true, true, true), (true, false, false), (false, true, false), (false, false, false)]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:377:0: [(true, true, true, true), (false, true, false, false)]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:381:0: [false, true, false, true, false, true]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:384:0: [false, false, false, false, false, false]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:387:0: [true, false, true, false, true, false]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:390:0: [(true, true, 1 / 2), (true, false, 1 / 2), (false, true, 0), (false, false, 1)]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:394:0: [(true, 1 / 2), (false, 1 / 2)]
+info: FateWorld/FateV2/Loop/SCMWorldModelEval.lean:397:0: [(true, true, true, 1 / 2), (true, true, false, 0), (true, false, true, 0), (true, false, false, 1 / 2),
+  (false, true, true, 0), (false, true, false, 1 / 2), (false, false, true, 0), (false, false, false, 1 / 2)]
+✔ [8693/8694] Built FateWorld.FateV2.Loop.SimEndToEndLink (49s)
+Build completed successfully (8694 jobs).

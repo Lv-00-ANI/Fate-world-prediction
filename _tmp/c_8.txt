@@ -1,0 +1,125 @@
+﻿⚠ [1727/1733] Replayed FateWorld.FateV2.Loop.ResidualLoop
+warning: FateWorld/FateV2/Loop/ResidualLoop.lean:603:7: Variable name `X` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _X
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8664/8671] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8665/8671] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+⚠ [8666/8675] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8675/8679] Replayed FateWorld.FateV2.Loop.WorldModelReadsTheta
+info: FateWorld/FateV2/Loop/WorldModelReadsTheta.lean:394:0: 13
+info: FateWorld/FateV2/Loop/WorldModelReadsTheta.lean:398:0: 28
+info: FateWorld/FateV2/Loop/WorldModelReadsTheta.lean:402:0: 15
+info: FateWorld/FateV2/Loop/WorldModelReadsTheta.lean:405:0: 8
+info: FateWorld/FateV2/Loop/WorldModelReadsTheta.lean:406:0: 8
+⚠ [8677/8680] Replayed FateWorld.FateV2.Loop.PipelineTendstoGen
+warning: FateWorld/FateV2/Loop/PipelineTendstoGen.lean:172:30: Variable name `hx` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hx
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8678/8682] Built FateWorld.FateV2.Loop.KK1NoiseAsymmetryConsumer (51s)
+⚠ [8685/8689] Replayed FateWorld.FateV2.Loop.ConvergeToOptimalND
+warning: FateWorld/FateV2/Loop/ConvergeToOptimalND.lean:687:26: `EuclideanSpace.norm_single` has been deprecated: Use `PiLp.norm_single` instead
+
+Note: The updated constant has a different type:
+  ∀ (p : ENNReal) {ι : Type u_2} (β : ι → Type u_4) [hp : Fact (1 ≤ p)] [inst : Fintype ι]
+    [inst_1 : (i : ι) → SeminormedAddCommGroup (β i)] [inst_2 : DecidableEq ι] (i : ι) (b : β i),
+    ‖PiLp.single p i b‖ = ‖b‖
+instead of
+  ∀ {ι : Type u_1} {𝕜 : Type u_3} [inst : RCLike 𝕜] [inst_1 : DecidableEq ι] [inst_2 : Fintype ι] (i : ι) (a : 𝕜),
+    ‖EuclideanSpace.single i a‖ = ‖a‖
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.norm_single` to `PiLp.norm_single x`).
+warning: FateWorld/FateV2/Loop/ConvergeToOptimalND.lean:687:26: This simp argument is unused:
+  EuclideanSpace.norm_single
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [theta0, sub_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8686/8689] Built FateWorld.FateV2.Loop.LearnFunction (50s)
+✔ [8687/8689] Built FateWorld.FateV2.Loop.OptimalityChain (81s)
+✔ [8688/8691] Built FateWorld.FateV2.Loop.LearnFunctionUnified (42s)
+⚠ [8691/8698] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+✔ [8697/8703] Built FateWorld.FateV2.Loop.ParamSCMConsumer (41s)
+⚠ [8698/8706] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8699/8706] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [8703/8708] Replayed FateWorld.FateV2.Error.SigmaEstimation
+warning: FateWorld/FateV2/Error/SigmaEstimation.lean:99:0: automatically included section variable(s) unused in theorem `FateV2.Error.SigmaEstimation.variance_coord_pi`:
+  hP
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit hP in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Error/SigmaEstimation.lean:176:0: automatically included section variable(s) unused in theorem `FateV2.Error.SigmaEstimation.variance_meanOf_tendsto_zero`:
+  hPm
+  hP
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit hPm hP in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [8707/8712] Built FateWorld.FateV2.Error.SigmaLandscape (42s)
+⚠ [8709/8715] Replayed FateWorld.FateV2.Loop.ConvergeToOptimalV2
+warning: FateWorld/FateV2/Loop/ConvergeToOptimalV2.lean:96:5: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8713/8717] Built FateWorld.FateV2.Error.ChainErrorBudgetGrounded (39s)
+✔ [8715/8718] Built FateWorld.FateV2.Loop.WorldModelSynthesis (40s)
