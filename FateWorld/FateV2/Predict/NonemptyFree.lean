@@ -9,7 +9,7 @@
 
   | # | 原定理（**未改动**） | 所在模块 | 结论 |
   |---|---|---|---|
-  | 1 | `FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable` | `CondMulSeparable` | ✅ 可去 |
+  | 1 | `FateV2.Predict.CondMulSeparable.condMul_implies_separable` | `CondMulSeparable` | ✅ 可去 |
   | 2 | `FateV2.Predict.MarkovBridgeTheorem.cond_mul_implies_separable_chain` | `MarkovBridgeTheorem` | ✅ 可去 |
   | 3 | `WorldScenario.optimalChoose_mem` | `PolicyAlgorithm` | ✅ 可去（实例降为显式参数）|
 
@@ -76,7 +76,7 @@ open FateV2.Predict.FinCondIndep
 
 variable {α β γ : Type*} [Fintype α] [Fintype β] [Fintype γ]
 
-/-- ⭐ **【无 `[Nonempty]` 版】**：`FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable`
+/-- ⭐ **【无 `[Nonempty]` 版】**：`FateV2.Predict.CondMulSeparable.condMul_implies_separable`
 去掉 `[Nonempty α] [Nonempty β]` 后**仍然成立**。
 
 **证明策略**：对 `Nonempty α ∧ Nonempty β` 分支**复用原证**（原定理可直接调用）；
@@ -88,7 +88,7 @@ theorem condMul_implies_separable_noNonempty (p : FinJoint α β γ)
   classical
   by_cases hα : Nonempty α
   · by_cases hβ : Nonempty β
-    · exact FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable p h hpos
+    · exact FateV2.Predict.CondMulSeparable.condMul_implies_separable p h hpos
     · -- `β` 为空 ⟹ 量化域 `α × β` 为空 ⟹ 结论空真，显式见证即可
       exact ⟨fun _ _ => 0, fun _ _ => 0, fun x y _ => absurd ⟨y⟩ hβ⟩
   · -- `α` 为空 ⟹ 同样空真
@@ -115,7 +115,7 @@ theorem cond_mul_implies_separable_chain_noNonempty
     (h : CondMul p) (hpos : ∀ x y z, 0 < p ((x, y), z)) :
     ∃ (f : α → γ → ℝ) (g : β → γ → ℝ),
       ∀ x y z, p ((x, y), z) = f x z * g y z :=
-  FateV2.Predict.NonemptyFree.CondMulSeparable.condMul_implies_separable_noNonempty p h hpos
+  FateV2.Predict.CondMulSeparable.condMul_implies_separable_noNonempty p h hpos
 
 end MarkovBridgeTheorem
 

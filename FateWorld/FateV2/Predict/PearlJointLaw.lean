@@ -72,6 +72,7 @@ namespace FateV2.Predict
 
 open FateV2.Modeling
 namespace PearlHierarchy
+open FateV2.Modeling.PearlHierarchy
 
 set_option autoImplicit false
 
@@ -291,7 +292,6 @@ end Chain
 
 section Witness
 
-open FateV2.Modeling.PearlHierarchy
 
 /-- **`U4` 上的联合律逐点值**：用 `sum_push` 的**具体实例**核对
 `sel1` 给出的 `L3` 联合律在 `4` 点均匀外生空间上**总质量为 1**
