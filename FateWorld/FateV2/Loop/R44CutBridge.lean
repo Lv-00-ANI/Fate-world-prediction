@@ -47,7 +47,7 @@ import FateWorld.FateV2.Predict.BridgeDirect
 
 /-! ## §1 割集的封闭性：两个模块的「并」条款 -/
 
-/-- ⭐⭐⭐ **【`Cut` 的并为割 + `AncClosed` 的并为闭，同一份接口】**
+/- ⭐⭐⭐ **【`Cut` 的并为割 + `AncClosed` 的并为闭，同一份接口】**
 
 - `FateV2.Predict.View14.Cut.union`：两割集之并仍是割集；
 - `FateV2.Predict.BridgeDirect.ancClosed_union_of_ancClosed`：两祖先闭集之并仍祖先闭。
@@ -192,3 +192,4 @@ theorem r44_gap_is_peel_and_cut_iff
    FateV2.Predict.View14.exposed_eq_empty_iff_cut G A⟩
 
 end FateV2.Loop.R44CutBridge
+

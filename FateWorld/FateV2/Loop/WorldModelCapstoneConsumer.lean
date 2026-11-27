@@ -100,6 +100,8 @@
 
 import FateWorld.FateV2.Loop.WorldModelCapstone
 import Mathlib.Tactic
+import FateWorld.FateV2.Error.SteadyErrEstimate
+import FateWorld.FateV2.Error.SigmaEstimation
 
 namespace FateV2.Loop
 namespace WorldModelCapstoneConsumer
@@ -107,8 +109,13 @@ namespace WorldModelCapstoneConsumer
 universe u
 
 open Filter Topology MeasureTheory ProbabilityTheory
+open FateV2.Modeling.RA14Strong
+open FateV2.Modeling
 open FateV2.Modeling.PearlHierarchy
 open scoped Topology
+open FateV2.Error.SteadyErrEstimate
+open FateV2.Error.SigmaEstimation
+open FateV2.Error
 
 /-!
   # Loop · WorldModelCapstoneConsumer

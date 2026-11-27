@@ -54,6 +54,7 @@ import FateWorld.FateV2.Error.LoopBoundReal
 namespace FateV2.Loop.MainLoop
 
 open FateV2.Error
+open FateV2.Error.MainLoop
 
 open FateV2.Error
 
@@ -111,6 +112,8 @@ end FateV2.Loop.MainLoop
   本节的贡献是**接线与组合**（把两条分支放同一前提上），**不**声称新循环界。 -/
 
 namespace FateV2.Loop.MainLoop
+open FateV2.Error.MainLoop
+open FateV2.Loop.MainLoop
 
 /-! ### §R34 真引用 `FateV2.Error.MainLoop` 的 4 条定理 -/
 
@@ -203,3 +206,4 @@ theorem one_step_closed_forms_consumed (info : InfoLevel) (noise : NoiseScale)
 #print axioms one_step_closed_forms_consumed
 
 end FateV2.Loop.MainLoop
+
