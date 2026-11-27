@@ -1,5 +1,6 @@
 import FateWorld.FateV2.Predict.DoLawFin2
 import Mathlib.Tactic
+import FateWorld.FateV2.Modeling.SCMSemantics
 
 /-!
   # Predict · DoLawGen
