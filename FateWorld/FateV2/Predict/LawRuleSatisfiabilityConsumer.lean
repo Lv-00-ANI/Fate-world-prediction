@@ -45,7 +45,6 @@
 import FateWorld.FateV2.Rules.LawRuleSatisfiability
 import FateWorld.FateV2.Rules.LawRulePointDecidability
 import FateWorld.FateV2.Predict.PearlLawRuleBridge
-open FateV2.Error
 open FateV2.Predict.LawRule
 
 namespace FateV2.Predict

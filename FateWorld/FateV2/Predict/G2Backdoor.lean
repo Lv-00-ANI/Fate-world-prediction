@@ -92,8 +92,6 @@ namespace FateV2.Predict.Stage2.G2Backdoor
 
 open FateV2.Modeling
 
-open FateV2.Error
-
 /-! ===========================================================================
   §1 ⭐⭐⭐ **`BackdoorSetup.NoDescendant`（R259 的 A 号定义）是恒真式**
   =========================================================================== -/

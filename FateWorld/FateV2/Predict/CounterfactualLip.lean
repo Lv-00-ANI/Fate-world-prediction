@@ -37,8 +37,6 @@ import Mathlib.Tactic
 
 namespace FateV2.Predict.Stage2.CounterfactualLip
 
-open FateV2.Error
-
 variable {U : Type*}
 
 -- ⭐⭐⭐⭐ **反事实 Lipschitz 性（从 `Model.Obs` 推出）**：

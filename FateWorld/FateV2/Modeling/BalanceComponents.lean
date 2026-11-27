@@ -61,7 +61,6 @@ namespace FateV2.Predict.GraphToProbView7
 open FateV2.Predict
 
 open Finset
-open FateV2.Error
 open FateV2.Predict.DAGFactorization
 
 universe u

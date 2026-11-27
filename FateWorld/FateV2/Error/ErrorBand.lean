@@ -14,7 +14,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 open FateV2.Loop
 open FateV2.Modeling
-open FateV2.Error
 open FateV2.Predict
 open FateV2.Model
 

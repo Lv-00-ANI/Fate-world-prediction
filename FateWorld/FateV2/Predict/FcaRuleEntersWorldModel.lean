@@ -92,7 +92,6 @@ import FateWorld.FateV2.Predict.LawDetToStepGen
 import FateWorld.FateV2.Rules.LawRuleToTraj
 import FateWorld.FateV2.Model.TrajGenDeterministic
 import FateWorld.FateV2.Loop.RuleEntersWorldModel
-open FateV2.Error
 open FateV2.Rules.LawRule
 open FateV2.Rules.LawRuleToTraj
 

@@ -12,7 +12,6 @@ import FateWorld.FateV2.Loop.EndToEnd
 -/
 
 open FateV2.Loop
-open FateV2.Error
 open FateV2.Predict
 open FateV2.Modeling
 open FateV2.Model

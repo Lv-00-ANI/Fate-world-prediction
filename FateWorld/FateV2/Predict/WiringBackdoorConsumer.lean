@@ -100,8 +100,6 @@ namespace FateV2.Predict.WiringBackdoorConsumer
 
 open FateV2.Modeling
 
-open FateV2.Error
-
 /-! ===========================================================================
   §2 【消费 `r259_noDescendant_is_tautology`】恒真假设 ⟹ 该假设「筛不出任何东西」
   =========================================================================== -/
@@ -320,8 +318,6 @@ end FateV2.Predict.WiringBackdoorConsumer
 -/
 
 namespace FateV2.Predict.WiringBackdoorConsumer
-
-open FateV2.Error
 
 /-- **出口 1**：backdoor 主定理（经 `FateV2.Predict.BackdoorCriterion.criterion_via_blocked`）。 -/
 theorem bc_criterion_wired (S : FateV2.Predict.R259.BackdoorSetup)

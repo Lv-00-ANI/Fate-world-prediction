@@ -583,7 +583,6 @@ end FateV2.Predict
 
 namespace FateV2.Predict.Rule1Genuine
 
-open FateV2.Error
 open FateV2.Predict.W7.Exec
 
 /-- ⭐⭐⭐⭐ **组合定理 1（规则 1）：`Rule1Premise` ⟹ 表可执行。**
@@ -647,8 +646,6 @@ theorem premise_implies_no_observational_gap :
 end FateV2.Predict.Rule1Genuine
 
 namespace FateV2.Predict.Rule2Genuine
-
-open FateV2.Error
 
 /-- ⭐⭐⭐⭐ **组合定理 5（规则 2）：结构条件 ⟹ 表的**直接读数**。**
 

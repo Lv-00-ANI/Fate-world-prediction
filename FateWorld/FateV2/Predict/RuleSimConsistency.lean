@@ -16,8 +16,6 @@ open FateV2.Model
 open FateV2.Modeling
 open FateV2.Rules
 open FateV2.Modeling
-open FateV2.Error
-
 /-
 ============================================================================
   T12 · `WorldModel.rules` 与其 `simulator` 的**一致性定理**

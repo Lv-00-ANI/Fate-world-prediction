@@ -61,7 +61,6 @@ import FateWorld.FateV2.Predict.T1A2Substance
 
 namespace FateV2.Predict.T1A2Substance
 
-open FateV2.Error
 open FateV2.Predict.FinCondIndep
 
 /-! ### §0.1 ⭐ `WFree` 前提（哑坐标不出现在因子中） -/

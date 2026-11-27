@@ -73,7 +73,6 @@
 
 import FateWorld.FateV2.Predict.PearlLawRuleBridge
 import FateWorld.FateV2.Rules.LawRule
-open FateV2.Error
 open FateV2.Rules.LawRule
 
 namespace FateV2.Predict

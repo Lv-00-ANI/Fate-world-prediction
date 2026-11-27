@@ -362,8 +362,6 @@ end FateV2.Predict.R277
 
 namespace FateV2.Predict.WiringBackdoor
 
-open FateV2.Error
-
 /-- **世界状态空间**：`S.X × S.Y`（一个可观测量对），取离散结构。
 
 **⚠ `borel_le`**：取 `⊤`（可测空间）与 `⊤`（拓扑），
@@ -702,8 +700,6 @@ end FateV2.Predict.WiringBackdoor
 
 namespace FateV2.Predict.BackdoorCriterion
 
-open FateV2.Error
-
 /-- ⭐⭐⭐⭐ **组合定理 1（backdoor）：`BackdoorBlocked` + 归一化 + positivity ⟹
 调整公式 = 干预律。**
 
@@ -743,8 +739,6 @@ theorem formula_degenerate_unit {X Y : Type*} (condY : X → Unit → Y → ℝ)
 end FateV2.Predict.BackdoorCriterion
 
 namespace FateV2.Predict.BackdoorGenuine
-
-open FateV2.Error
 
 /-- ⭐⭐⭐⭐ **组合定理 4（图形侧）：Pearl 四条件 ⟺ 四个图侧谓词的合取。** -/
 theorem conditions_decompose (S : FateV2.Predict.R259.BackdoorSetup) (x : S.X) (y : S.Y)

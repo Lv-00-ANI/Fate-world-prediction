@@ -48,8 +48,6 @@ import Mathlib.Logic.Equiv.Basic
 namespace FateV2.Predict.GraphToProbView7
 
 open Finset
-open FateV2.Error
-
 universe u
 
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]

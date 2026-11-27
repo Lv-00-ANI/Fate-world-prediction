@@ -60,7 +60,6 @@ namespace FateV2.Predict.GraphToProbView7
 open FateV2.Modeling
 
 open Finset
-open FateV2.Error
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 open FateV2.Predict.View19
@@ -92,7 +91,6 @@ end FateV2.Predict.GraphToProbView7
 namespace FateV2.Predict.GraphToProbView7
 
 open Finset
-open FateV2.Error
 open FateV2.Predict.DAGFactorization
 open FateV2.Predict.FactorMarkov
 open FateV2.Predict.View19

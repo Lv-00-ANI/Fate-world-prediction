@@ -40,8 +40,6 @@ namespace FateV2.Predict.View19
 
 open FateV2.Modeling
 
-open FateV2.Error
-
 universe u
 
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α]
@@ -109,8 +107,6 @@ end FateV2.Predict.GraphToProbView7
 
 namespace FateV2.Predict.FactorizesToHyper
 
-open FateV2.Error
-
 universe u
 
 variable {V : Type u} {α : Type u} [Fintype V] [Fintype α] [DecidableEq V] [DecidableEq α] [Nonempty α]
@@ -129,8 +125,6 @@ theorem bridge_separated
 end FateV2.Predict.FactorizesToHyper
 
 namespace FateV2.Modeling.CondIndepCondMulBridge
-
-open FateV2.Error
 
 /-- ⭐ **`factorizesOn_of_components`**（幽灵名）：无正性因子分解 ⟹ 条件独立。
 
