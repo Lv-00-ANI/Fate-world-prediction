@@ -32,7 +32,7 @@ namespace FateV2.Predict
 open FateV2.Predict
 namespace KernelAdjunction
 
-open FateV2.Predict.KernelQuotientTheory
+open FateV2.Modeling.KernelQuotientTheory
 
 universe u v
 
