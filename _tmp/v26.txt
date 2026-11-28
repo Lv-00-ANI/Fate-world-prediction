@@ -1,0 +1,82 @@
+﻿⚠ [1723/1735] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+ℹ [1731/1735] Replayed FateWorld.FateV2.Rules.AlphaFCAConstruction
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:842:0: @AlphaData.alpha : {E : InstSpace} →
+  {M : Type u_1} → (D : AlphaData E M) → E.Carrier → Concept E.Carrier M D.ctx.Irel × Set M
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:844:0: @AlphaData.alpha_snd_isClosed : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) (e : E.Carrier),
+  D.ctx.IsClosedAttr (D.alpha e).2
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:846:0: @AlphaData.alpha_snd_eq_thIter : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [F : D.ctx.FiniteAttrs]
+  (e : E.Carrier), ∃ n, (D.alpha e).2 = D.thIter n (D.obs e)
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:848:0: @AlphaData.dgBasis_sound : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {r : Set M × Set M},
+  r ∈ D.dgBasis → D.ctx.Models r.1 r.2
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:849:0: @AlphaData.dgBasis_complete : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [D.ctx.FiniteAttrs],
+  {X | D.ctx.IsModel X} = {X | D.ctx.IsClosedAttr X}
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:850:0: @AlphaData.dgBasis_nonredundant : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [F : D.ctx.FiniteAttrs],
+  D.ctx.IsNonRedundant D.dgBasis
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:852:0: @AlphaData.rulesUnionOf_subset_of_closed : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {C : Set M},
+  D.ctx.IsClosedAttr C → D.rulesUnionOf C ⊆ C
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:853:0: @AlphaData.rulesUnionOf_eq_of_closed_of_closureOp : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {C P : Set M},
+  D.ctx.IsClosedAttr C → D.ctx.IsPseudoIntent P → C = D.ctx.closureOp P → D.rulesUnionOf C = C
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:854:0: @AlphaData.dgBasis_eq_empty_of_no_pseudoIntent : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M),
+  (∀ (P : Set M), ¬D.ctx.IsPseudoIntent P) → D.dgBasis = ∅
+⚠ [1738/1740] Replayed FateWorld.FateV2.Rules.UpsilonOperator
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:219:11: Left-hand side of simp theorem has a variable as head symbol. This means the theorem will be tried on every simp step, which can be expensive. This may be acceptable for `local` or `scoped` simp lemmas.
+Use `set_option warning.simp.varHead false` to disable this warning.
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:279:0: automatically included section variable(s) unused in theorem `FateV2.Rules.UpsilonOperator.IsCompletion.saturated_iff`:
+  [PartialOrder α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [PartialOrder α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:300:0: automatically included section variable(s) unused in theorem `FateV2.Rules.UpsilonOperator.IsCompletion.saturated_idem`:
+  [PartialOrder α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [PartialOrder α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:415:0: Definition `IsCompletion.ofSet` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:610:5: Variable name `hκ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hκ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [1902/1908] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3555/3562] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3562/3569] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+✔ [3569/3569] Built FateWorld.FateV2.Loop.WorldModelCompleteV2W (269s)
+Build completed successfully (3569 jobs).

@@ -92,10 +92,18 @@
 
 import FateWorld.FateV2.Loop.WorldModelCompleteV2
 import FateWorld.FateV2.Loop.WorldModelCompleteV2NonDeg
+import FateWorld.FateV2.Rules.EvaluationSystems
+import FateWorld.FateV2.Rules.GammaOperator
+import FateWorld.FateV2.Rules.AlphaFCAConstruction
+import FateWorld.FateV2.Rules.UpsilonOperator
+import FateWorld.FateV2.Rules.ComposeOperator
+import FateWorld.FateV2.Error.SigmaFromDomain
 namespace FateV2.Loop
 
 open FateV2.Model
 open FateV2.Predict
+open FateV2.Rules
+open FateV2.Error
 universe u
 
 noncomputable section

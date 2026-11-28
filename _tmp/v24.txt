@@ -1,0 +1,148 @@
+﻿⚠ [1724/1730] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+ℹ [1732/1734] Replayed FateWorld.FateV2.Rules.AlphaFCAConstruction
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:842:0: @AlphaData.alpha : {E : InstSpace} →
+  {M : Type u_1} → (D : AlphaData E M) → E.Carrier → Concept E.Carrier M D.ctx.Irel × Set M
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:844:0: @AlphaData.alpha_snd_isClosed : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) (e : E.Carrier),
+  D.ctx.IsClosedAttr (D.alpha e).2
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:846:0: @AlphaData.alpha_snd_eq_thIter : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [F : D.ctx.FiniteAttrs]
+  (e : E.Carrier), ∃ n, (D.alpha e).2 = D.thIter n (D.obs e)
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:848:0: @AlphaData.dgBasis_sound : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {r : Set M × Set M},
+  r ∈ D.dgBasis → D.ctx.Models r.1 r.2
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:849:0: @AlphaData.dgBasis_complete : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [D.ctx.FiniteAttrs],
+  {X | D.ctx.IsModel X} = {X | D.ctx.IsClosedAttr X}
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:850:0: @AlphaData.dgBasis_nonredundant : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [F : D.ctx.FiniteAttrs],
+  D.ctx.IsNonRedundant D.dgBasis
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:852:0: @AlphaData.rulesUnionOf_subset_of_closed : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {C : Set M},
+  D.ctx.IsClosedAttr C → D.rulesUnionOf C ⊆ C
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:853:0: @AlphaData.rulesUnionOf_eq_of_closed_of_closureOp : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {C P : Set M},
+  D.ctx.IsClosedAttr C → D.ctx.IsPseudoIntent P → C = D.ctx.closureOp P → D.rulesUnionOf C = C
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:854:0: @AlphaData.dgBasis_eq_empty_of_no_pseudoIntent : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M),
+  (∀ (P : Set M), ¬D.ctx.IsPseudoIntent P) → D.dgBasis = ∅
+⚠ [1738/1740] Replayed FateWorld.FateV2.Rules.UpsilonOperator
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:219:11: Left-hand side of simp theorem has a variable as head symbol. This means the theorem will be tried on every simp step, which can be expensive. This may be acceptable for `local` or `scoped` simp lemmas.
+Use `set_option warning.simp.varHead false` to disable this warning.
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:279:0: automatically included section variable(s) unused in theorem `FateV2.Rules.UpsilonOperator.IsCompletion.saturated_iff`:
+  [PartialOrder α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [PartialOrder α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:300:0: automatically included section variable(s) unused in theorem `FateV2.Rules.UpsilonOperator.IsCompletion.saturated_idem`:
+  [PartialOrder α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [PartialOrder α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:415:0: Definition `IsCompletion.ofSet` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:610:5: Variable name `hκ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hκ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [1902/1908] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3554/3562] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3563/3567] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+✖ [3567/3567] Building FateWorld.FateV2.Loop.WorldModelCompleteV2W (255s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Loop\WorldModelCompleteV2W.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Loop\WorldModelCompleteV2W.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Loop\WorldModelCompleteV2W.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Loop\WorldModelCompleteV2W.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Loop\WorldModelCompleteV2W.setup.json --json
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:162:9: invalid binder annotation, type is not a class instance
+  ?m.2
+
+Note: Use the command `set_option checkBinderAnnotations false` to disable the check
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:291:16: Function expected at
+  AlphaData
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨PUnit⟩
+
+Hint: The identifier `AlphaData` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:295:16: Function expected at
+  GenOp
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  (Rule nonDegCtx nonDegFrame.X nonDegFrame.X)
+
+Hint: The identifier `GenOp` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:302:14: Unknown identifier `UpsilonOperator.Upsilon`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:306:18: Unknown identifier `ComposeOperator.MeasurableRule`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:307:4: Unknown identifier `ComposeOperator.MeasurableRule`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:308:4: Unknown identifier `ComposeOperator.MeasurableRule`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:350:11: Function expected at
+  WorldModelCompleteV2W
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  nonDegFrame
+
+Hint: The identifier `WorldModelCompleteV2W` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:378:47: typeclass instance problem is stuck
+  Membership (Rule nonDegCtx nonDegFrame.X nonDegFrame.X) ?m.9
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `Membership` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:386:11: Function expected at
+  WorldModelCompleteV2W
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  nonDegFrame
+
+Hint: The identifier `WorldModelCompleteV2W` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:411:48: typeclass instance problem is stuck
+  Membership (Rule nonDegCtx nonDegFrame.X nonDegFrame.X) ?m.63
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `Membership` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Loop.WorldModelCompleteV2W
+lake.exe : error: build failed
+所在位置 行:6 字符: 1
++ & lake build FateWorld.FateV2.Loop.WorldModelCompleteV2W 2>&1 | Out-F ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

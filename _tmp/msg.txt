@@ -1,42 +1,79 @@
-推进：FateV2 达 974/975 = 99.9%，只剩 1 个模块
+完成：FateV2 975/975 = 100%，迁移结束
 
-## 本轮修复 2 个
+## 里程碑
 
-### Rule13GenuineConsumer
+全部 13 个域 100% 通过编译：
 
-    error: 462:31 Unknown identifier LawRule.IsPoint
+    Predict    409/409
+    Rules      132/132
+    Loop       121/121
+    Error      114/114
+    Modeling    91/91
+    Core        36/36
+    Model       28/28
+    Meta        19/19
+    Demo         9/9
+    Export       5/5
+    Bridge       3/3
+    Classical    3/3
+    Data         1/1
+    ----------------
+    合计       975/975
 
-IsPoint 在 FateV2.Rules.LawRule 命名空间，但源码写 LawRule.IsPoint
-时 LawRule 被解析为**结构**（FateV2.Rules.LawRule.LawRule），
-于是按字段名查找失败。改为全限定 FateV2.Rules.LawRule.IsPoint。
+## 最后一个模块 WorldModelCompleteV2W
 
-### LawRuleAlgebraUnify
+根因：RuleSpec 等名字根本不在作用域内。Lean 的 autoImplicit
+把它们当作隐式变量（签名显示为 ?m.2），于是
+[S : RuleSpec ...] 报「type is not a class instance」。
 
-    error: 78:4/78:44 Function expected
-    error: 79:6 Unknown identifier seqDet_id
+补了 6 个 import + 2 个 open：
+    Rules.EvaluationSystems / GammaOperator / AlphaFCAConstruction
+    / UpsilonOperator / ComposeOperator / Error.SigmaFromDomain
+    open FateV2.Rules / open FateV2.Error
 
-查证 compose / seqDet / seqDet_id 三者均在 FateV2.Rules.LawRule：
-    Rules/LawRule.lean          → FateV2.Rules.LawRule.compose
-    Rules/LawRuleSequence.lean  → FateV2.Rules.LawRule.seqDet / seqDet_id
+## 113 轮全程回顾
 
-文件只 open 了 FateV2.Rules（外层），补 open FateV2.Rules.LawRule 后通过。
+    轮次    已编译    百分比
+      1      296      30%
+     30      348     35.7%   <- 发现 627 个模块从未被编译
+     50      488     50.1%
+     70      606     62.2%
+     90      870     89.2%
+    110      971     99.6%
+    113      975      100%
 
-## 剩余唯一模块
+第 30 轮的发现是本项目最关键的一次诊断：
+lake build FateWorld 依据 trace 缓存判断「已构建」，不检查
+.olean 是否存在，导致 627 个模块在「假迁移」状态下藏了 20 轮。
 
-Loop/WorldModelCompleteV2W
+此后 83 轮定位并修复了 12 类系统缺陷：
+  1 import 位置 / /-! 在 import 前
+  2 缺 open（裸名 vs 前缀两种形态）
+  3 点号记法依赖命名空间位置
+  4 轮次编号前缀（R238E3 等）
+  5 残留 Fate. 前缀 / 命名空间破碎 / 前缀重复堆叠
+  6 错域引用
+  7 裸命名空间前缀
+  8 /-- 文档注释修饰 namespace
+  9 open 不跨 namespace 块 / 外层不递归
+ 10 _root_. 绝对引用
+ 11 FateV2 模块 import Legacy 致类型分裂
+ 12 诊断命令（#check 等）失效引用
+  另加：纯文档模块被规则 8 误加 end、多 token open 行
 
-    error: 161 structure 的 [S : RuleSpec (...) F.X F.X]
-           → invalid binder annotation, type is not a class instance
+## 工具沉淀
 
-已核对 Legacy 原文：那里也是方括号写法。FateV2 中 RuleSpec 确实是 class
-（两处定义：Rules/EvaluationSystems.lean 与 Rules/GammaOperator.lean）。
-所以问题不在方括号本身，而可能在于：
-  - RuleSpec 未被传递导入（autoImplicit 导致视为非 class）
-  - 或两处同名 class 导致解析到签名不匹配的那个
+  port_v2.py           迁移引擎（规则 1-8）
+  name_index.py        全库名字 → 命名空间索引（15596 个名字）
+  build_chunks.py      分块构建（按 olean 判定成败）
+  fix_leftover_fate.py 残留前缀清理
+  fix_round_ns.py      轮次编号前缀修正
+  fix_broken_ns.py     命名空间破碎修复
+  fix_wrong_domain.py  错域引用发现（不自动改）
+  verify.py            逐模块验证
 
-下一轮继续查证。
+## 下一步
 
-## 状态
-
-FateV2 972 -> 974 / 975 = 99.9%。
-12 个完成域（含 Meta 19/19），共 441 模块 100% 通过。
+迁移阶段完成，转入第二阶段：目标要求的「把东西整合到
+证明链上、把这些证明实际可用」。
+需要引用图分析，找出孤立定理并接入主链。
