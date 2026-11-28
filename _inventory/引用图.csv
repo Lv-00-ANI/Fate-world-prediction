@@ -64,7 +64,7 @@ Error.AudUnivLayer2b,Error,3,0,0,孤立
 Error.BlockLayerLowerBound,Error,7,0,0,孤立
 Error.BridgeNW,Error,39,2,1,真消费
 Error.CfNecessity,Error,35,2,0,假接线
-Error.ChainBudgetBound,Error,28,11,0,假接线
+Error.ChainBudgetBound,Error,28,12,1,真消费
 Error.ChainErrorBudget,Error,22,6,1,真消费
 Error.ChainErrorBudgetBound,Error,22,4,3,真消费
 Error.ChainErrorBudgetGrounded,Error,27,4,0,假接线
@@ -178,6 +178,7 @@ Integration.CarrierCapstone,Integration,3,0,0,孤立
 Integration.ErrorBatch1,Integration,4,0,0,孤立
 Integration.LoopCapstone1,Integration,3,0,0,孤立
 Integration.ModelingBatch1,Integration,5,0,0,孤立
+Integration.RulesErrorBatch1,Integration,3,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
 Integration.VerdictLatticeCapstone,Integration,4,0,0,孤立
@@ -870,7 +871,7 @@ Rules.AlphaStatistical,Rules,25,0,0,孤立
 Rules.CellDiameter,Rules,16,0,0,孤立
 Rules.Classification,Rules,95,9,5,真消费
 Rules.Compactness,Rules,15,1,1,真消费
-Rules.Completeness,Rules,39,8,0,假接线
+Rules.Completeness,Rules,39,9,1,真消费
 Rules.CompNotCommutative,Rules,15,3,3,真消费
 Rules.ComposeDefault,Rules,8,0,0,孤立
 Rules.ComposeEmbedding,Rules,5,0,0,孤立
