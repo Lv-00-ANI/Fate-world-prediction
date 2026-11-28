@@ -1,0 +1,236 @@
+﻿⚠ [3/5] Replayed FateWorld.FateV2.Classical.Assumptions
+warning: FateWorld/FateV2/Classical/Assumptions.lean:125:38: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3038/3039] Built FateWorld.FateV2.Error.AICDataPath (120s)
+⚠ [3144/3154] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3152/3155] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3207/3211] Replayed FateWorld.FateV2.Error.ErrorBound
+warning: FateWorld/FateV2/Error/ErrorBound.lean:620:6: Variable name `s` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _s
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBound.lean:620:8: Variable name `δ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _δ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBound.lean:620:10: Variable name `ε` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ε
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBound.lean:661:5: Variable name `hε` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hε
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3211/3211] Building FateWorld.FateV2.Integration.ErrorAutoCapstone (34s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Integration\ErrorAutoCapstone.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\ErrorAutoCapstone.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\ErrorAutoCapstone.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\ErrorAutoCapstone.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\ErrorAutoCapstone.setup.json --json
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:24:3: Application type mismatch: The argument
+  var_monotone_breaks_errAt
+has type
+  Prop
+of sort `Type` but is expected to have type
+  var_monotone_breaks_errAt
+of sort `Prop` in the application
+  And.intro var_monotone_breaks_errAt
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:28:3: Application type mismatch: The argument
+  not_infoComplete_hingeErr
+has type
+  Prop
+of sort `Type` but is expected to have type
+  not_infoComplete_hingeErr
+of sort `Prop` in the application
+  And.intro not_infoComplete_hingeErr
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:28:30: Application type mismatch: The argument
+  hingeErr_two_minima
+has type
+  Prop
+of sort `Type` but is expected to have type
+  hingeErr_two_minima
+of sort `Prop` in the application
+  And.intro hingeErr_two_minima
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:28:51: Application type mismatch: The argument
+  notUniqueMin_of_convexOnly
+has type
+  Prop
+of sort `Type` but is expected to have type
+  notUniqueMin_of_convexOnly
+of sort `Prop` in the application
+  And.intro notUniqueMin_of_convexOnly
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:28:79: Application type mismatch: The argument
+  convex_not_imp_strictConvex
+has type
+  Prop
+of sort `Type` but is expected to have type
+  convex_not_imp_strictConvex
+of sort `Prop` in the application
+  And.intro convex_not_imp_strictConvex
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:28:108: Application type mismatch: The argument
+  notUniqueMin_hingeErr
+has type
+  Prop
+of sort `Type` but is expected to have type
+  notUniqueMin_hingeErr
+of sort `Prop` in the application
+  And.intro notUniqueMin_hingeErr
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:32:3: Application type mismatch: The argument
+  example_lower
+has type
+  Prop
+of sort `Type` but is expected to have type
+  example_lower
+of sort `Prop` in the application
+  And.intro example_lower
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:32:18: Application type mismatch: The argument
+  example_upper
+has type
+  Prop
+of sort `Type` but is expected to have type
+  example_upper
+of sort `Prop` in the application
+  And.intro example_upper
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:32:33: Application type mismatch: The argument
+  example_left_endpoint
+has type
+  Prop
+of sort `Type` but is expected to have type
+  example_left_endpoint
+of sort `Prop` in the application
+  And.intro example_left_endpoint
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:32:56: Application type mismatch: The argument
+  example_right_endpoint
+has type
+  Prop
+of sort `Type` but is expected to have type
+  example_right_endpoint
+of sort `Prop` in the application
+  And.intro example_right_endpoint
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:32:80: Application type mismatch: The argument
+  example_mid
+has type
+  Prop
+of sort `Type` but is expected to have type
+  example_mid
+of sort `Prop` in the application
+  And.intro example_mid
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:36:3: Application type mismatch: The argument
+  univ_bound_necessary_scaling
+has type
+  Prop
+of sort `Type` but is expected to have type
+  univ_bound_necessary_scaling
+of sort `Prop` in the application
+  And.intro univ_bound_necessary_scaling
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:36:33: Application type mismatch: The argument
+  univ_scale_sharp
+has type
+  Prop
+of sort `Type` but is expected to have type
+  univ_scale_sharp
+of sort `Prop` in the application
+  And.intro univ_scale_sharp
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:36:51: Application type mismatch: The argument
+  univ_error_bound_gives_correct_classification
+has type
+  Prop
+of sort `Type` but is expected to have type
+  univ_error_bound_gives_correct_classification
+of sort `Prop` in the application
+  And.intro univ_error_bound_gives_correct_classification
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:36:98: Application type mismatch: The argument
+  univ_tight_bound_epsilon_eq_m
+has type
+  Prop
+of sort `Type` but is expected to have type
+  univ_tight_bound_epsilon_eq_m
+of sort `Prop` in the application
+  And.intro univ_tight_bound_epsilon_eq_m
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:36:129: Application type mismatch: The argument
+  boundary_uniqueness_fails_without_convex
+has type
+  Prop
+of sort `Type` but is expected to have type
+  boundary_uniqueness_fails_without_convex
+of sort `Prop` in the application
+  And.intro boundary_uniqueness_fails_without_convex
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:40:3: Application type mismatch: The argument
+  id_lipschitzInvertibleOn_one
+has type
+  Prop
+of sort `Type` but is expected to have type
+  id_lipschitzInvertibleOn_one
+of sort `Prop` in the application
+  And.intro id_lipschitzInvertibleOn_one
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:3: Application type mismatch: The argument
+  gridIndex_half_zero
+has type
+  Prop
+of sort `Type` but is expected to have type
+  gridIndex_half_zero
+of sort `Prop` in the application
+  And.intro gridIndex_half_zero
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:24: Application type mismatch: The argument
+  gridIndex_neg_half_eq_neg_quarter
+has type
+  Prop
+of sort `Type` but is expected to have type
+  gridIndex_neg_half_eq_neg_quarter
+of sort `Prop` in the application
+  And.intro gridIndex_neg_half_eq_neg_quarter
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:59: Application type mismatch: The argument
+  gridIndex_half_eq_quarter
+has type
+  Prop
+of sort `Type` but is expected to have type
+  gridIndex_half_eq_quarter
+of sort `Prop` in the application
+  And.intro gridIndex_half_eq_quarter
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:86: Application type mismatch: The argument
+  toWeak_gap_sep
+has type
+  Prop
+of sort `Type` but is expected to have type
+  toWeak_gap_sep
+of sort `Prop` in the application
+  And.intro toWeak_gap_sep
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:102: Application type mismatch: The argument
+  Wdrop_err_seven
+has type
+  Prop
+of sort `Type` but is expected to have type
+  Wdrop_err_seven
+of sort `Prop` in the application
+  And.intro Wdrop_err_seven
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Integration.ErrorAutoCapstone
+lake.exe : error: build failed
+所在位置 行:6 字符: 1
++ & lake build FateWorld.FateV2.Integration.ErrorAutoCapstone 2>&1 | Ou ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

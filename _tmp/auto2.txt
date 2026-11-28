@@ -1,0 +1,215 @@
+﻿⚠ [3/5] Replayed FateWorld.FateV2.Classical.Assumptions
+warning: FateWorld/FateV2/Classical/Assumptions.lean:125:38: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3149/3178] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3150/3178] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3205/3211] Replayed FateWorld.FateV2.Error.ErrorBound
+warning: FateWorld/FateV2/Error/ErrorBound.lean:620:6: Variable name `s` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _s
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBound.lean:620:8: Variable name `δ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _δ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBound.lean:620:10: Variable name `ε` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ε
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBound.lean:661:5: Variable name `hε` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hε
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [3211/3211] Building FateWorld.FateV2.Integration.ErrorAutoCapstone (127s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Integration\ErrorAutoCapstone.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\ErrorAutoCapstone.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\ErrorAutoCapstone.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\ErrorAutoCapstone.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\ErrorAutoCapstone.setup.json --json
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:24:4: Application type mismatch: The argument
+  ErrorN.var_monotone_breaks_errAt
+has type
+  ∃ b v,
+    (∀ (γ : ℕ), Antitone fun n => b n γ) ∧
+      (∀ (n γ : ℕ), 0 ≤ b n γ) ∧ (∀ (n γ : ℕ), 0 ≤ v n γ) ∧ ∀ (k : ℕ), Monotone fun n => v n k
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And ErrorN.var_monotone_breaks_errAt
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:29:4: Application type mismatch: The argument
+  Error.AdjudicationKUnified.hingeErr_two_minima
+has type
+  ConvexOn ℝ Set.univ Error.H5K.hingeErr ∧
+    IsMinOn Error.H5K.hingeErr Set.univ 1 ∧ IsMinOn Error.H5K.hingeErr Set.univ (-1) ∧ 1 ≠ -1
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AdjudicationKUnified.hingeErr_two_minima
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:29:60: Application type mismatch: The argument
+  Error.AdjudicationKUnified.notUniqueMin_of_convexOnly
+has type
+  (ConvexOn ℝ Set.univ fun γ => Error.H5K.profHinge.err γ) ∧
+    (¬StrictConvexOn ℝ Set.univ fun γ => Error.H5K.profHinge.err γ) ∧
+      Error.Core.IsFitBoundary Error.H5K.profHinge 0 1 ∧
+        Error.Core.IsFitBoundary Error.H5K.profHinge 0 (-1) ∧ ¬∃! γ, Error.Core.IsFitBoundary Error.H5K.profHinge 0 γ
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AdjudicationKUnified.notUniqueMin_of_convexOnly
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:29:123: Application type mismatch: The argument
+  Error.AdjudicationKUnified.convex_not_imp_strictConvex
+has type
+  ∃ f, ConvexOn ℝ Set.univ f ∧ ¬StrictConvexOn ℝ Set.univ f
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AdjudicationKUnified.convex_not_imp_strictConvex
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:29:187: Application type mismatch: The argument
+  Error.AdjudicationKUnified.notUniqueMin_hingeErr
+has type
+  ¬∃! γ, IsMinOn Error.H5K.hingeErr Set.univ γ
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AdjudicationKUnified.notUniqueMin_hingeErr
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:29:245: Application type mismatch: The argument
+  Error.AdjudicationKUnified.adjudicationK_math_side
+has type
+  ∀ (f : ℝ → ℝ), Error.AdjudicationKUnified.InfoComplete f → ∃! γ, IsMinOn f Set.univ γ
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AdjudicationKUnified.adjudicationK_math_side
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:34:4: Application type mismatch: The argument
+  Error.AudUniv2.univ_bound_necessary_scaling
+has type
+  ∀ (k : ℝ), 0 < k → Modeling.RA14Strong.LipschitzInvertibleOn (fun x => k * x) (1 / k)
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AudUniv2.univ_bound_necessary_scaling
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:34:57: Application type mismatch: The argument
+  Error.AudUniv2.univ_scale_sharp
+has type
+  ∀ (k : ℝ), 0 < k → ∀ (x₁ x₂ : ℝ), dist ((fun x => k * x) x₁) ((fun x => k * x) x₂) = dist x₁ x₂ / (1 / k)
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AudUniv2.univ_scale_sharp
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:34:98: Application type mismatch: The argument
+  Error.AudUniv2.univ_error_bound_gives_correct_classification
+has type
+  ∀ (s δ ε : ℝ), |δ| ≤ ε → 2 * ε < |s| → Error.R250ErrorBound.sgn (s + δ) = Error.R250ErrorBound.sgn s
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AudUniv2.univ_error_bound_gives_correct_classification
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:34:168: Application type mismatch: The argument
+  Error.AudUniv2.univ_tight_bound_epsilon_eq_m
+has type
+  ∀ (m : ℝ),
+    0 < m →
+      Error.R250ErrorBound.sgn (m + -m) = 0 ∧
+        Error.R250ErrorBound.sgn m = 1 ∧ Error.R250ErrorBound.sgn (m + -m) ≠ Error.R250ErrorBound.sgn m
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AudUniv2.univ_tight_bound_epsilon_eq_m
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:34:222: Application type mismatch: The argument
+  Error.AudUniv2.boundary_uniqueness_fails_without_convex
+has type
+  ∃ W σ γ₁ γ₂, Error.Core.IsFitBoundary W σ γ₁ ∧ Error.Core.IsFitBoundary W σ γ₂ ∧ γ₁ ≠ γ₂
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AudUniv2.boundary_uniqueness_fails_without_convex
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:39:4: Application type mismatch: The argument
+  Error.AudUniv2.id_lipschitzInvertibleOn_one
+has type
+  Modeling.RA14Strong.LipschitzInvertibleOn (fun x => x) 1
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.AudUniv2.id_lipschitzInvertibleOn_one
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:4: Application type mismatch: The argument
+  ErrorN.gridIndex_neg_half_eq_neg_quarter
+has type
+  ErrorN.gridIndex (-(1 / 2)) = ErrorN.gridIndex (-(1 / 4))
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And ErrorN.gridIndex_neg_half_eq_neg_quarter
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:44:54: Application type mismatch: The argument
+  ErrorN.gridIndex_half_eq_quarter
+has type
+  ErrorN.gridIndex (1 / 2) = ErrorN.gridIndex (1 / 4)
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And ErrorN.gridIndex_half_eq_quarter
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:45:93: Application type mismatch: The argument
+  toWeak_gap_sep
+has type
+  Prop
+of sort `Type` but is expected to have type
+  toWeak_gap_sep
+of sort `Prop` in the application
+  And.intro toWeak_gap_sep
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:45:109: Application type mismatch: The argument
+  accepts_not_implies_strong
+has type
+  Prop
+of sort `Type` but is expected to have type
+  accepts_not_implies_strong
+of sort `Prop` in the application
+  And.intro accepts_not_implies_strong
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:45:137: Application type mismatch: The argument
+  drop_gap_value
+has type
+  Prop
+of sort `Type` but is expected to have type
+  drop_gap_value
+of sort `Prop` in the application
+  And.intro drop_gap_value
+error: FateWorld/FateV2/Integration/ErrorAutoCapstone.lean:49:4: Application type mismatch: The argument
+  Error.Decomposition.boundary_not_unique_with_convex
+has type
+  (ConvexOn ℝ Set.univ fun γ => Error.Decomposition.profHinge.err γ) ∧
+    (¬StrictConvexOn ℝ Set.univ fun γ => Error.Decomposition.profHinge.err γ) ∧
+      Error.Core.IsFitBoundary Error.Decomposition.profHinge 0 1 ∧
+        Error.Core.IsFitBoundary Error.Decomposition.profHinge 0 (-1) ∧ 1 ≠ -1
+of sort `Prop` but is expected to have type
+  Prop
+of sort `Type` in the application
+  And Error.Decomposition.boundary_not_unique_with_convex
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Integration.ErrorAutoCapstone
+lake.exe : error: build failed
+所在位置 行:4 字符: 1
++ & lake build FateWorld.FateV2.Integration.ErrorAutoCapstone 2>&1 | Ou ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

@@ -1,44 +1,56 @@
-集成：Error 域第一批 —— 3 个模块进入证明链
+结论（否定）：批量自动集成不可行 —— 定理普遍带自由变量
 
-## 新增
+## 本轮做了什么
 
-FateWorld/FateV2/Integration/ErrorBatch1.lean
+尝试用生成器批量把「假接线」模块转为真消费：
+    _migration/gen_capstone.py    导出「无参定理」汇总骨架
+    _migration/gen_capstone2.py   加上完整命名空间限定
 
-消费 3 个 Error 域模块：
-    Error.ErrorBound       sgn_of_pos / sgn_of_neg / sgn_of_zero / sgn_trichotomy
-    Error.ErrBandLink      scoreOfTrack_le_of_ok
-    Error.VerdictTheory    fitBoundary_isMin / fitBoundary_unique_of_isMin
+在 Error 域试跑 6 个模块，**全部编译失败**，已删除生成文件。
 
-## 四条组合定理
+## 失败的根本原因
 
-  sgn_trichotomy_pinned      三分 + 每种情形的常数锁定
-  band_error_implies_optimal 带内误差 ⟹ 得分最优
-  boundary_sigma_locked      边界点的 σ 被最小值唯一锁定
-  boundary_gives_min         边界点 ⟹ 取到最小值
+自动重述的形态是：
 
-其中 sgn_trichotomy_pinned 需要四条定理协同：trichotomy 只给三分，
-但不给「哪种情形对应哪个常数」；后者要 sgn_of_pos/neg/zero 分别钉死。
+    theorem cap_X : T1 ∧ T2 ∧ T3 := ⟨T1, T2, T3⟩
 
-## 过程中排除的三个失败
+但被重述的定理普遍**带自由变量**（section 里的 variable 或隐式参数）。
+在项位置裸引时，Lean 无法推断这些变量，报：
 
-1. sgn_of_zero 类型是 sgn 0 = 0，不是 	 = 0 → sgn t = 0
-   → 需要 un h => by rw [h]; exact sgn_of_zero
-2. WorldScenario.Scenario 不在作用域（open FateV2.Predict.WorldScenario
-   不够，因为 WorldScenario 本身要先可见）
-   → 改全限定 FateV2.Predict.WorldScenario.Scenario
+    error: Application type mismatch: The argument
+      ErrorN.var_monotone_breaks_errAt
+    has type
+      ∃ b v, (∀ γ, Antitone ...) ∧ ...
+    of sort Prop but is expected to have type ...
 
-## 引用图变化
+即：定理本身是「一个 ∃ 命题」，但它在源文件里其实被 section variable
+参数化（例如 b、v 由上下文给出），裸引时变量未实例化。
 
-    真消费  320 -> 323
-    假接线  350 -> 347
-    模块数  980 -> 981
+**这不是我代码的 bug，而是「定理不是闭合项」这一事实。**
+自动重述只有在定理真正闭合（无自由变量）时才成立，
+而这样的定理在库里是少数。
 
-## 累积
+## 这意味着什么
 
-集成模块 6 个，覆盖 11 个源模块：
-    Modeling: CondIndepSemigraphoid / CausBayesBall / CFMap /
-              FiniteCondIndep / CondIndepGeneralNZ
-    Rules:    T112SecondQuotient
-    Export:   Carrier
-    Core:     VerdictAlgebra
-    Error:    ErrorBound / ErrBandLink / VerdictTheory
+「把证明整合到证明链」**本质上需要人工判断**：
+- 要引用一条带假设的定理，必须自己提供实例或把它放进合适的上下文
+- 真正的组合定理（如 SemigraphoidCapstone 的 condRel_locate_symm）
+  需要理解两条定理如何协同，这是模板做不到的
+
+## 保留的工具
+
+两个生成器保留在 _migration/ 下，并在文件头写明其局限：
+可用于**发现**哪些模块有闭合定理，但不能代替人工集成。
+
+## 当前状态（未变化）
+
+    模块 981，有 olean 981
+    真消费 323 (32%)  假接线 347 (35%)  孤立 311 (31%)
+
+工作区干净 —— 失败产物已删除，没有留下半成品。
+
+## 后续方向
+
+回到**每轮手工集成 1-3 个高价值模块**的节奏。
+已完成的 6 个 capstone（覆盖 11 个源模块）是真实有效的：
+它们的每条定理都能独立编译通过，且证明体里确实调用了源定理。
