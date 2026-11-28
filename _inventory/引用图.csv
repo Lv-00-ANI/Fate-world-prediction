@@ -176,6 +176,7 @@ Export.Export,Export,6,6,4,真消费
 Export.Modality,Export,15,2,1,真消费
 Integration.CarrierCapstone,Integration,3,0,0,孤立
 Integration.ErrorBatch1,Integration,4,0,0,孤立
+Integration.LoopCapstone1,Integration,3,0,0,孤立
 Integration.ModelingBatch1,Integration,5,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
@@ -289,7 +290,7 @@ Loop.TwoDPrediction,Loop,26,0,0,孤立
 Loop.TwoVersionsConsumer,Loop,15,0,0,孤立
 Loop.WiringConvergence,Loop,19,13,4,真消费
 Loop.WorldModelAssembly,Loop,12,3,0,假接线
-Loop.WorldModelCapstone,Loop,50,8,0,假接线
+Loop.WorldModelCapstone,Loop,50,9,1,真消费
 Loop.WorldModelCapstoneConsumer,Loop,8,1,0,假接线
 Loop.WorldModelCapstoneConsumerFixes,Loop,2,0,0,孤立
 Loop.WorldModelCompleteV2,Loop,25,4,3,真消费
