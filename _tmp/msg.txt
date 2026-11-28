@@ -1,48 +1,44 @@
-集成：ScoreK + NaryAlgebra（第 10 个 capstone）
+文档：新增证明链集成指南 + BridgeA1 接入（第 11 个 capstone）
 
-## 新增
+## 1. 新增 _inventory/证明链集成指南.md
 
-FateWorld/FateV2/Integration/ScoreKBatch1.lean
+把 125 轮里积累的方法与教训固化成可交接的文档：
+  - 三态判据（真消费 / 假接线 / 孤立）与测量方法
+  - 优先做哪些模块的三条判据（被 import 次数、签名清晰、组合有实质）
+  - 集成模块的结构模板
+  - **九条失败模式清单**（每条都实际踩过，含症状 → 根因 → 修法）
+  - 已完成清单（10 个 capstone / 18 个源模块）
+  - 未做清单（340 个假接线按优先级排序、315 个孤立的分类）
+  - **自动化尝试的否定结论**（第 121 轮，勿重复）
+  - 验证纪律（必须用 refgraph 确认状态真的变了）
 
-消费：
-    Error.ScoreK          bandLoss_eq_zero_iff / _pos_of_lt / _pos_of_gt / _eq_zero
-    Modeling.NaryAlgebra  condIndepN_sum_factorize
+这份文档的目的是让接续者不必重走 125 轮弯路。
 
-## 三条组合定理
+## 2. BridgeA1Capstone
 
-  bandLoss_complete_characterization  零 ⟺ 带内，带外两向皆正
-  bandLoss_zero_and_nonneg            带内损失为零且非负
-  condIndepN_factorize_form           N 元条件独立的和因子化（含权重项形式）
+Predict.BridgeA1 被 **9 个模块 import 却无任何名字被调用**。
 
-第一条的组合有实质：
-  bandLoss_eq_zero_iff 只给等价；
-  下游做分情形论证时还需要「低于下界 / 高于上界各自蕴含正损失」。
-  三条并置后一次引用即覆盖全部三种情形。
+消费四条关于 pa ∩ nd 的结果，组合成三种打包形式：
+  pa_nd_relationship        包含 / 交等式 / 空集判定（三合一）
+  pa_nd_nonempty_chain      包含 + 非空传递（推导链首尾并置）
+  arrowDAG_pa_nd_concrete   具体反例上的取值（pa = nd = {0}）
+
+pa_nd_relationship 的组合有实质：四条源定理是**同一事实的四种表述**，
+下游在不同 tactic 语境需要不同形式（simp 要等式、by_cases 要空集判定），
+打包后不必回查源文件确认方向。
 
 ## 过程中的失败
 
-condIndepN_sum_factorize 的结论是我凭猜测写的（用了 ∏ i in s 等），
-报 unexpected token 'in'。查源文件后得到真实签名：
-
-    (∑ xs, (if ∀ i, xs i ∈ S i then p xs z else 0))
-        * (NMass p z) ^ (Fintype.card ι - 1)
-      = ∏ i, ∑ a, (if a ∈ S i then marg p i a z else 0)
-
-关键差别：源定理带 **(NMass p z)^(card ι - 1) 权重项**，
-且 S 是 ∀ i, Set (α i) 而非 Finset。
-按真实签名重写后通过。
-
-## 教训
-
-**不要凭印象写结论**。即使目标定理名字看起来「应该是什么样」，
-也必须先读源文件的签名。这一轮本可一次通过，却因猜测多花一次编译。
+pa 未入作用域（?m.1）—— 它在 FateV2.Predict.DAGFactorization，
+需要 open 父层 FateV2.Predict 才能让 DAGFactorization 可见。
+按集成指南的失败模式 2 修正后通过。
 
 ## 引用图变化
 
-    真消费  328 -> 330
-    假接线  342 -> 340
-    模块数  984 -> 985
+    真消费  330 -> 331
+    假接线  340 -> 339
+    模块数  985 -> 986
 
 ## 累积
 
-集成模块 10 个，覆盖 18 个源模块。
+集成模块 11 个，覆盖 19 个源模块。
