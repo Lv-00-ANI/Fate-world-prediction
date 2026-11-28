@@ -178,6 +178,7 @@ Integration.CarrierCapstone,Integration,3,0,0,孤立
 Integration.ErrorBatch1,Integration,4,0,0,孤立
 Integration.LoopCapstone1,Integration,3,0,0,孤立
 Integration.ModelingBatch1,Integration,5,0,0,孤立
+Integration.PredictBatch1,Integration,3,0,0,孤立
 Integration.RulesErrorBatch1,Integration,3,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
@@ -555,7 +556,7 @@ Predict.DAGFactorization,Predict,35,34,25,真消费
 Predict.DAGFactorizationGeneral,Predict,32,8,2,真消费
 Predict.DetFunToStepDraft,Predict,4,8,6,真消费
 Predict.DistributionInvariants,Predict,34,3,2,真消费
-Predict.DoCalculus,Predict,10,8,0,假接线
+Predict.DoCalculus,Predict,10,9,1,真消费
 Predict.DoCalculusRules,Predict,13,5,1,真消费
 Predict.DoLawFin2,Predict,10,1,1,真消费
 Predict.DoLawGen,Predict,11,0,0,孤立
@@ -719,7 +720,7 @@ Predict.ScenarioSharpWiring,Predict,6,0,0,孤立
 Predict.SCMIdentifiabilityCorrect,Predict,10,1,0,假接线
 Predict.SCMUnificationA,Predict,7,0,0,孤立
 Predict.SdiffEraseEq,Predict,1,1,0,假接线
-Predict.SeparableCondMul,Predict,1,12,0,假接线
+Predict.SeparableCondMul,Predict,1,13,1,真消费
 Predict.SeparatedCondMul,Predict,2,1,0,假接线
 Predict.SeparatedCondMulUnified,Predict,11,0,0,孤立
 Predict.SeparatedCondMulZ,Predict,53,1,0,假接线

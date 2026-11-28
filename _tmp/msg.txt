@@ -1,46 +1,46 @@
-集成：修复两条严重的接线丢失（Completeness 被 import 8 次、ChainBudgetBound 11 次）
+集成：Predict 域首批 —— do-算子代数与可分离性（一次通过）
 
-## 优先级依据
+## 优先级
 
-按「被 import 次数多、却无任何名字被调用」排序，前两名正是：
-    Error.ChainBudgetBound   被 import 11 次，定义 28
-    Rules.Completeness       被 import  8 次，定义 39
-这类模块显然不是「无人需要」，而是名字没被引用 —— 接线丢失最严重。
+    Predict.SeparableCondMul   被 import 12 次（假接线榜首）
+    Predict.DoCalculus         被 import  8 次
 
 ## 新增
 
-FateWorld/FateV2/Integration/RulesErrorBatch1.lean
+FateWorld/FateV2/Integration/PredictBatch1.lean
 
 消费：
-    Rules.Completeness      pseudoIntent_closure_closed / _strict
-    Error.ChainBudgetBound  sigmaEst_nonneg / est_bound
+    DoCalculus         do_idempotent / do_comp / do_not_injective
+    SeparableCondMul   separable_implies_condMul
 
 ## 三条组合定理
 
-  pseudoIntent_closure_closed_and_strict  闭包既闭又严格更大
-  pseudoIntent_not_closed                 伪内涵不是闭集（逆否用法）
-  sigma_est_foundation                    尺度非负 + 范数界
+  do_idempotent_and_comp      幂等 + 复合（完整代数律）
+  do_idempotent_but_lossy     幂等但非单射（稳定性 + 代价定理）
+  condMul_of_factorization    以函数参数形式暴露可分离性的内核
 
 第一条的组合有实质：
-  只引 closed 会以为「闭包不再增长」（因为它已闭）
-  只引 strict 会以为「闭包破坏了闭性」
-  合起来才是「迭代能持续推进且每次落在闭集上」—— 完备性证明的枢纽。
+  do_idempotent 说「重复同一干预无效」
+  do_comp      说「后一次干预覆盖前一次」
+  合起来才是「do 构成幂等半群作用」。
 
-## 过程中排除的四个失败
+第二条的对比更有意义：
+  幂等性容易让人以为「do 可逆或保持信息」，
+  do_not_injective 正是代价定理 —— 不同结构模型可映到同一点。
+  合起来才是对 do 的完整刻画：「稳定的、但丢信息的」。
 
-1. pseudoIntent_closure_closed hP 把 hP 当成了 K
-   → 需要显式 (K := K)
-2. GaussMarkovScalar.est 未知 → 缺 open FateV2.Error（父层）
-3. Measure 未知 → 缺 open MeasureTheory
-4. sigmaEst_nonneg 带 [IsProbabilityMeasure P] 实例（linter 已提示）
-   → 补进 variable 声明
+## 一次通过
+
+这是集成模块里第一次完全无迭代：open 层次正确
+（FateV2.Predict + 两个内层命名空间）、变量声明照抄源文件、
+参数全部显式。印证了判据的成熟。
 
 ## 引用图变化
 
-    真消费  324 -> 326
-    假接线  346 -> 344
-    模块数  982 -> 983
+    真消费  326 -> 328
+    假接线  344 -> 342
+    模块数  983 -> 984
 
 ## 累积
 
-集成模块 8 个，覆盖 14 个源模块。
+集成模块 9 个，覆盖 16 个源模块。
