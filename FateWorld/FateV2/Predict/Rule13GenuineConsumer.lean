@@ -459,7 +459,7 @@ namespace Bridge
 （`PearlLawRuleBridge` §6），**本条不含新数学**。
 它的唯一作用是在类型上把 `Rule13Genuine.Rule1.M1`
 （本模块的上游，**已验证满足规则 1**）接到 `LawRule` 的 `IsPoint` 判定上。 -/
-theorem M1_toLawRule_isPoint : LawRule.IsPoint R249.Rule1.M1.toLawRule :=
+theorem M1_toLawRule_isPoint : FateV2.Rules.LawRule.IsPoint R249.Rule1.M1.toLawRule :=
   R249.Rule1.M1.isPoint_toLawRule
 
 /-- ⭐⭐ **`M1` 诱导的规则属于 `scmFamily`**（⚠ **同上，接口层**）。 -/

@@ -1,39 +1,42 @@
-推进：FateV2 达 972/975 = 99.7%，剩余 3 个
+推进：FateV2 达 974/975 = 99.9%，只剩 1 个模块
 
-## 本轮
-
-StepExpressiveness 通过。补 open FateV2.Model 使 Step / Frame 解析
-（与 CausalEventFormal 同一模式）。
-
-## 剩余 3 个及已诊断的原因
-
-### LawRuleAlgebraUnify
-
-    error: 78:4 Function expected at
-    error: 79:6 Unknown identifier seqDet_id
-
-LawRule C X X 里的 LawRule 解析成了**命名空间** FateV2.Rules.LawRule
-（文件有 open FateV2.Rules），不是结构 FateV2.Rules.LawRule.LawRule。
-已把 LawRule C 类形状改成全限定，但还有 compose / seqDet 等名字
-需要进一步确认归属。
+## 本轮修复 2 个
 
 ### Rule13GenuineConsumer
 
-    error: 461:31 Unknown identifier LawRule.IsPoint
+    error: 462:31 Unknown identifier LawRule.IsPoint
 
-已补 open FateV2.Rules，待验证。
+IsPoint 在 FateV2.Rules.LawRule 命名空间，但源码写 LawRule.IsPoint
+时 LawRule 被解析为**结构**（FateV2.Rules.LawRule.LawRule），
+于是按字段名查找失败。改为全限定 FateV2.Rules.LawRule.IsPoint。
 
-### WorldModelCompleteV2W
+### LawRuleAlgebraUnify
 
-    error: 161 行 structure 的 instance binder
-           [S : RuleSpec (...) F.X F.X] → invalid binder annotation,
-           type is not a class instance
+    error: 78:4/78:44 Function expected
+    error: 79:6 Unknown identifier seqDet_id
 
-即 RuleSpec 是 structure 而非 class，不能用方括号 instance binder。
-需要改为圆括号 (S : ...)，并同步修改所有依赖 S 为 instance 的使用处。
+查证 compose / seqDet / seqDet_id 三者均在 FateV2.Rules.LawRule：
+    Rules/LawRule.lean          → FateV2.Rules.LawRule.compose
+    Rules/LawRuleSequence.lean  → FateV2.Rules.LawRule.seqDet / seqDet_id
 
-这条需要看 Legacy 原文确认原写法。
+文件只 open 了 FateV2.Rules（外层），补 open FateV2.Rules.LawRule 后通过。
+
+## 剩余唯一模块
+
+Loop/WorldModelCompleteV2W
+
+    error: 161 structure 的 [S : RuleSpec (...) F.X F.X]
+           → invalid binder annotation, type is not a class instance
+
+已核对 Legacy 原文：那里也是方括号写法。FateV2 中 RuleSpec 确实是 class
+（两处定义：Rules/EvaluationSystems.lean 与 Rules/GammaOperator.lean）。
+所以问题不在方括号本身，而可能在于：
+  - RuleSpec 未被传递导入（autoImplicit 导致视为非 class）
+  - 或两处同名 class 导致解析到签名不匹配的那个
+
+下一轮继续查证。
 
 ## 状态
 
-11 个完成域（422 模块）保持 100%。FateV2 972/975 = 99.7%。
+FateV2 972 -> 974 / 975 = 99.9%。
+12 个完成域（含 Meta 19/19），共 441 模块 100% 通过。
