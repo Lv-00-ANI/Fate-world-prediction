@@ -2198,3 +2198,494 @@ Hint: The binding can be removed (if unused) or named `_` (if used implicitly). 
   [apply] _k
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [9145/10487] Built FateWorld.FateV2.Error.FitBoundaryN (20s)
+⚠ [9148/10487] Replayed FateWorld.FateV2.Error.ErrorBoundChain
+warning: FateWorld/FateV2/Error/ErrorBoundChain.lean:461:6: Variable name `s` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _s
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBoundChain.lean:461:8: Variable name `δ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _δ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBoundChain.lean:461:10: Variable name `ε` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ε
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ErrorBoundChain.lean:640:5: Variable name `hpos` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hpos
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [9150/10487] Built FateWorld.FateV2.Error.AudUnivLayer2 (21s)
+✔ [9155/10487] Built FateWorld.FateV2.Demo.ExecutableAll (18s)
+⚠ [9160/10487] Replayed FateWorld.FateV2.Predict.FinMarkov
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:165:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.sum_ite_triple_eq`:
+  [Fintype A]
+  [Fintype B]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype B] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:220:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.PearlHierarchy.SCM.margAB_jointLaw3`:
+  [Fintype A]
+  [Fintype B]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype B] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:284:26: This simp argument is unused:
+  true_and
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [hca, hcb', and_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:334:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.factorizes_condIndepFin`:
+  [DecidableEq A]
+  [DecidableEq B]
+  [DecidableEq C]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq A] [DecidableEq B] [DecidableEq C] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:385:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.condIndepFin_iff_ratio`:
+  [DecidableEq A]
+  [DecidableEq B]
+  [DecidableEq C]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq A] [DecidableEq B] [DecidableEq C] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+ℹ [9161/10487] Replayed FateWorld.FateV2.Predict.DoLawGen
+info: FateWorld/FateV2/Predict/DoLawGen.lean:303:0: 'FateV2.Predict.Stage2.DoLawGen.sum_div_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:304:0: 'FateV2.Predict.Stage2.DoLawGen.doLaw_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:305:0: 'FateV2.Predict.Stage2.DoLawGen.massG_eq_doUnnorm' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:306:0: 'FateV2.Predict.Stage2.DoLawGen.doLawG_def' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:307:0: 'FateV2.Predict.Stage2.DoLawGen.doLaw_eq_doLawG' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:308:0: 'FateV2.Predict.Stage2.DoLawGen.doLaw_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:309:0: 'FateV2.Predict.Stage2.DoLawGen.doLawG_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:310:0: 'FateV2.Predict.Stage2.DoLawGen.doLawG_card_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/DoLawGen.lean:311:0: 'FateV2.Predict.Stage2.DoLawGen.doLaw_idem_pt' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9164/10487] Built FateWorld.FateV2.Predict.MarkovBridge (25s)
+✔ [9165/10487] Built FateWorld.FateV2.Modeling.T43CounterfactualAbduction (16s)
+✔ [9166/10487] Built FateWorld.FateV2.Modeling.SCMKernel (22s)
+✔ [9167/10487] Built FateWorld.FateV2.Modeling.SCMGraphSemantics (18s)
+⚠ [9170/10487] Replayed FateWorld.FateV2.Predict.T43Abduction
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:119:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.mem_obsSet`:
+  [Fintype X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:123:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.obsEventMass_eq_sum_obsSet`:
+  [Fintype X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:160:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.no_abduction_eq_doLaw`:
+  [Fintype X]
+  [DecidableEq X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [DecidableEq X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T43Abduction.lean:164:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T43.cfWithAbduction_eq_sum`:
+  [Fintype X]
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype X] [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+ℹ [9171/10487] Replayed FateWorld.FateV2.Predict.T1A2Chain
+info: FateWorld/FateV2/Predict/T1A2Chain.lean:114:0: 'FateV2.Predict.T1A2Chain.chain_reads_single_parent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Chain.lean:115:0: 'FateV2.Predict.T1A2Chain.reads_mono_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Chain.lean:116:0: 'FateV2.Predict.T1A2Chain.prod_reads_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9172/10487] Replayed FateWorld.FateV2.Predict.T1A2N
+info: FateWorld/FateV2/Predict/T1A2N.lean:64:0: 'FateV2.Predict.T1A2N.t1a2_abstract' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2N.lean:65:0: 'FateV2.Predict.T1A2N.t1a2_abstract_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9173/10487] Replayed FateWorld.FateV2.Modeling.CausSeparation
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:205:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:486:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:558:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:684:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+✔ [9177/10487] Built FateWorld.FateV2.Predict.ParentMap (9.1s)
+ℹ [9181/10487] Replayed FateWorld.FateV2.Predict.T1A2Encode
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:304:0: condMul_of_separable : ∀ (p : (Fin 2 × Fin 2) × Fin 2 → ℝ) (a : Fin 2 → ℝ) (b c : Fin 2 → Fin 2 → ℝ),
+  (∀ (x y z : Fin 2), p ((x, y), z) = a z * b x z * c y z) → FinCondIndep.CondMul p
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:305:0: theta : (Fin 2 × Fin 2) × Fin 2 → Fin 3 → Bool
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:309:0: 'FateV2.Predict.T1A2Encode.card_fin3_bool' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:310:0: 'FateV2.Predict.T1A2Encode.card_prod_fin2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:311:0: 'FateV2.Predict.T1A2Encode.card_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:312:0: 'FateV2.Predict.T1A2Encode.thetaEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:313:0: 'FateV2.Predict.T1A2Encode.exists_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:314:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:315:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:316:0: 'FateV2.Predict.T1A2Encode.fin2_eq_of_bool' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:317:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit_symm_apply_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:318:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit_symm_apply_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:319:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit_symm_apply_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:320:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit_apply_symm_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:321:0: 'FateV2.Predict.T1A2Encode.thetaEquivExplicit_symm_apply_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:322:0: 'FateV2.Predict.T1A2Encode.funcEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:323:0: 'FateV2.Predict.T1A2Encode.funcEquiv_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:324:0: 'FateV2.Predict.T1A2Encode.funcEquivExplicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2Encode.lean:325:0: 'FateV2.Predict.T1A2Encode.funcEquivExplicit_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [9186/10487] Built FateWorld.FateV2.Rules.AlphaFourOp (10s)
+✔ [9187/10487] Built FateWorld.FateV2.Rules.ComposeSemantics (11s)
+ℹ [9188/10487] Built FateWorld.FateV2.Rules.EvaluationSystemsConsumer (11s)
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:265:0: 'FateV2.Rules.EvaluationSystems.Consumer.popperBetter_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:266:0: 'FateV2.Rules.EvaluationSystems.Consumer.occamBetter_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:267:0: 'FateV2.Rules.EvaluationSystems.Consumer.lakatosBetter_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:268:0: 'FateV2.Rules.EvaluationSystems.Consumer.popperAndOccamBetter_conflict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:269:0: 'FateV2.Rules.EvaluationSystems.Consumer.popperBetter_occamNotBetter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:270:0: 'FateV2.Rules.EvaluationSystems.Consumer.metaBetter_irrefl_popper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Rules/EvaluationSystemsConsumer.lean:271:0: 'FateV2.Rules.EvaluationSystems.Consumer.metaBetter_irrefl_occam' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9189/10487] Replayed FateWorld.FateV2.Rules.AlphaAndStochasticWiringConsumer
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:333:0: instancesFrame : Type → Frame
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:336:0: @encoderAttrs : {O A : Type} → Finset (InstanceChain.Instance O A) → InstanceChain.Instance O A → Set A
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:337:0: @encoderOfInstances : {O A : Type} →
+  (D : Finset (InstanceChain.Instance O A)) →
+    Encoder (instancesFrame (InstanceChain.Instance O A)) (alphaDataOfInstances D).ctx
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:338:0: @encoderOfInstances_toAttrs : ∀ {O A : Type} (D : Finset (InstanceChain.Instance O A)),
+  (encoderOfInstances D).toAttrs = encoderAttrs D
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:339:0: @encoderOfInstances_toObjects : ∀ {O A : Type} (D : Finset (InstanceChain.Instance O A))
+  (i : InstanceChain.Instance O A),
+  (encoderOfInstances D).toObjects i = {j | (alphaDataOfInstances D).obs i ⊆ (alphaDataOfInstances D).obs j}
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:340:0: @encoderOfInstances_coherent : ∀ {O A : Type} (D : Finset (InstanceChain.Instance O A)), (encoderOfInstances D).Coherent
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:341:0: @mem_polarDown_of_notMem_table : ∀ {O A : Type} {D : Finset (InstanceChain.Instance O A)}
+  {i : InstanceChain.Instance O A}, i ∉ D → ∀ (B : Set A), i ∈ (alphaDataOfInstances D).ctx.polarDown B ↔ B = ∅
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:342:0: @encoderOfInstances_toObjects_of_attrs_eq : ∀ {O A : Type} (D : Finset (InstanceChain.Instance O A))
+  {i j : InstanceChain.Instance O A},
+  j ∈ D → i.attrs = j.attrs → (encoderOfInstances D).toObjects j ⊆ (encoderOfInstances D).toObjects i
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:345:0: @AlphaData.takeConcept_instanceConcept_intent_idem : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M)
+  (e : E.Carrier), D.takeConcept (D.instanceConcept e).intent = (D.instanceConcept e).intent
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:346:0: @AlphaData.models_iff_toConcept_le : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {A B : Set M},
+  D.ctx.Models A B ↔ D.toConcept A ≤ D.toConcept B
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:349:0: trajGenSto_dirac : ∀ (F : Frame) [inst : MeasurableSpace F.Ν.Carrier] [inst_1 : MeasurableSpace F.X.Carrier]
+  [MeasurableSingletonClass F.Ν.Carrier] [MeasurableSingletonClass F.X.Carrier] (f : Step F) (T : ℕ) (ε₀ : F.Ν.Carrier)
+  (θ : F.Θ.Carrier) (x₀ : F.X.Carrier) (u : Fin T → F.U.Carrier) (a : Fin T → F.Act.Carrier),
+  trajGenSto F f T (Measure.dirac ε₀) θ (Measure.dirac x₀) u a =
+    Measure.dirac (TrajGenDeterministic.detTraj F f T θ x₀ u (fun x => ε₀) a)
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:350:0: unfold_eq_detTrajDet_full : ∀ (F : Frame) (f : Step F) (T : ℕ) (θ : F.Θ.Carrier) (x₀ : F.X.Carrier)
+  (ω : Fin T → F.Ν.Carrier) (u : Fin T → F.U.Carrier) (a : Fin T → F.Act.Carrier),
+  unfold F f T θ u a (x₀, ω) = detTraj F f T θ x₀ u ω a ∧
+    detTraj F f T θ x₀ u ω a = TrajGenDeterministic.detTraj F f T θ x₀ u ω a
+info: FateWorld/FateV2/Rules/AlphaAndStochasticWiringConsumer.lean:351:0: trajGenSto_dirac_path : ∀ (F : Frame) [inst : MeasurableSpace F.Ν.Carrier] [inst_1 : MeasurableSpace F.X.Carrier]
+  [MeasurableSingletonClass F.Ν.Carrier] [MeasurableSingletonClass F.X.Carrier] (f : Step F) (T : ℕ) (ε₀ : F.Ν.Carrier)
+  (θ : F.Θ.Carrier) (x₀ : F.X.Carrier) (u : Fin T → F.U.Carrier) (a : Fin T → F.Act.Carrier),
+  trajGenSto F f T (Measure.dirac ε₀) θ (Measure.dirac x₀) u a =
+      Measure.dirac (TrajGenDeterministic.detTraj F f T θ x₀ u (fun x => ε₀) a) ∧
+    ∀ (a₀ : F.Act.Carrier) (u' : F.U.Carrier) (x : F.X.Carrier),
+      xNextDist F f (Measure.dirac ε₀) θ a₀ u' x = Measure.dirac (f x u' ε₀ θ a₀)
+⚠ [9191/10487] Replayed FateWorld.FateV2.Model.Pairing
+warning: FateWorld/FateV2/Model/Pairing.lean:69:2: The namespace `Pairing` is duplicated in the declaration `FateV2.Model.Pairing.Pairing.rel`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Model/Pairing.lean:67:10: The namespace `Pairing` is duplicated in the declaration `FateV2.Model.Pairing.Pairing`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Model/Pairing.lean:67:10: The namespace `Pairing` is duplicated in the declaration `FateV2.Model.Pairing.Pairing.mk`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+⚠ [9192/10487] Replayed FateWorld.FateV2.Predict.NonemptyFree3
+warning: FateWorld/FateV2/Predict/NonemptyFree3.lean:113:8: The namespaces `FateV2` and `Predict` are duplicated in the declaration `FateV2.Predict.FateV2.Predict.NonemptyFree3.adjacent_universal_noNonempty`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Predict/NonemptyFree3.lean:134:8: The namespaces `FateV2` and `Predict` are duplicated in the declaration `FateV2.Predict.FateV2.Predict.NonemptyFree3.invariance_iff_const_noNonempty`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Predict/NonemptyFree3.lean:159:8: The namespaces `FateV2` and `Predict` are duplicated in the declaration `FateV2.Predict.FateV2.Predict.NonemptyFree3.chooseEstimator_of_exists_noNonempty`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Predict/NonemptyFree3.lean:174:8: The namespaces `FateV2` and `Predict` are duplicated in the declaration `FateV2.Predict.FateV2.Predict.NonemptyFree3.chooseEstimator_apply_of_noNonempty`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+⚠ [9199/10487] Replayed FateWorld.FateV2.Rules.RuleExec
+warning: FateWorld/FateV2/Rules/RuleExec.lean:138:49: This simp argument is unused:
+  RuleTerm.eval
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Term.toRuleTerm, Term.eval]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Rules/RuleExec.lean:139:47: This simp argument is unused:
+  RuleTerm.eval
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Term.toRuleTerm, Term.eval, h n]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Rules/RuleExec.lean:169:62: This simp argument is unused:
+  RuleTerm.eval
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Term.toRuleTerm, Term.check, RuleTerm.holds, Term.eval_agree a envQ envR h,
+    Term.eval_agree b envQ envR h, decide_eq_true_eq, Rat.cast_inj]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Rules/RuleExec.lean:173:62: This simp argument is unused:
+  RuleTerm.eval
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Term.toRuleTerm, Term.check, RuleTerm.holds, Term.eval_agree a envQ envR h,
+    Term.eval_agree b envQ envR h, decide_eq_true_eq, Rat.cast_le]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Rules/RuleExec.lean:177:62: This simp argument is unused:
+  RuleTerm.eval
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Term.toRuleTerm, Term.check, RuleTerm.holds, Term.eval_agree a envQ envR h,
+    Term.eval_agree b envQ envR h, decide_eq_true_eq, Rat.cast_lt]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [9212/10487] Replayed FateWorld.Legacy.Stage2.FCAcl
+info: FateWorld/Legacy/Stage2/FCAcl.lean:94:0: 'Fate.Stage2.FCAcl.cl_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAcl.lean:95:0: 'Fate.Stage2.FCAcl.cl_idem' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9214/10487] Replayed FateWorld.Legacy.Stage2.FCAGenuine
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:201:0: 'Fate.Stage2.FCGenuine.subset_cl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:202:0: 'Fate.Stage2.FCGenuine.cl_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:203:0: 'Fate.Stage2.FCGenuine.cl_idem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:204:0: 'Fate.Stage2.FCGenuine.cl_minimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:205:0: 'Fate.Stage2.FCGenuine.cl_eq_sInter_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:206:0: 'Fate.Stage2.FCGenuine.isClosed_cl' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:207:0: 'Fate.Stage2.FCGenuine.isClosureSet_iff_exists_concept' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:208:0: 'Fate.Stage2.FCGenuine.isClosureSet_iff_isConcept_extent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/FCAGenuine.lean:209:0: 'Fate.Stage2.FCGenuine.clOperator' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9223/10487] Replayed FateWorld.Legacy.StatAlpha
+warning: FateWorld/Legacy/StatAlpha.lean:100:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.outCount_eq_filter`:
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:123:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.empFreq_nonneg`:
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:158:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.tv_nonneg`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:159:25: Variable name `y` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _y
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/Legacy/StatAlpha.lean:161:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.tv_self`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:164:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.tv_symm`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:168:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.tv_triangle`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:242:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.shift_nonneg`:
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:281:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.shift_ne`:
+  [Fintype Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/Legacy/StatAlpha.lean:291:0: automatically included section variable(s) unused in theorem `Fate.StatAlpha.exists_pos_of_sum_one`:
+  [DecidableEq Y]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Y] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [9234/10487] Replayed FateWorld.Legacy.InterventionSharp
+warning: FateWorld/Legacy/InterventionSharp.lean:152:44: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/Legacy/InterventionSharp.lean:189:44: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/Legacy/InterventionSharp.lean:250:44: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [9236/10487] Replayed FateWorld.Legacy.T1A2Chain
+info: FateWorld/Legacy/T1A2Chain.lean:99:0: 'Fate.T1A2Chain.chain_reads_single_parent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Chain.lean:100:0: 'Fate.T1A2Chain.reads_mono_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Chain.lean:101:0: 'Fate.T1A2Chain.prod_reads_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9237/10487] Replayed FateWorld.Legacy.T1A2N
+info: FateWorld/Legacy/T1A2N.lean:49:0: 'Fate.T1A2N.t1a2_abstract' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2N.lean:50:0: 'Fate.T1A2N.t1a2_abstract_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9238/10487] Replayed FateWorld.Legacy._root.CausSeparation
+warning: FateWorld/Legacy/_root/CausSeparation.lean:190:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/Legacy/_root/CausSeparation.lean:471:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/Legacy/_root/CausSeparation.lean:543:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/Legacy/_root/CausSeparation.lean:669:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+ℹ [9243/10487] Replayed FateWorld.Legacy.T1A2Encode
+info: FateWorld/Legacy/T1A2Encode.lean:291:0: condMul_of_separable : ∀ (p : (Fin 2 × Fin 2) × Fin 2 → ℝ) (a : Fin 2 → ℝ) (b c : Fin 2 → Fin 2 → ℝ),
+  (∀ (x y z : Fin 2), p ((x, y), z) = a z * b x z * c y z) → FinCondIndep.CondMul p
+info: FateWorld/Legacy/T1A2Encode.lean:292:0: theta : (Fin 2 × Fin 2) × Fin 2 → Fin 3 → Bool
+info: FateWorld/Legacy/T1A2Encode.lean:296:0: 'Fate.T1A2Encode.card_fin3_bool' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:297:0: 'Fate.T1A2Encode.card_prod_fin2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:298:0: 'Fate.T1A2Encode.card_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:299:0: 'Fate.T1A2Encode.thetaEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:300:0: 'Fate.T1A2Encode.exists_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:301:0: 'Fate.T1A2Encode.thetaEquivExplicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:302:0: 'Fate.T1A2Encode.thetaEquivExplicit_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:303:0: 'Fate.T1A2Encode.fin2_eq_of_bool' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:304:0: 'Fate.T1A2Encode.thetaEquivExplicit_symm_apply_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:305:0: 'Fate.T1A2Encode.thetaEquivExplicit_symm_apply_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:306:0: 'Fate.T1A2Encode.thetaEquivExplicit_symm_apply_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:307:0: 'Fate.T1A2Encode.thetaEquivExplicit_apply_symm_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:308:0: 'Fate.T1A2Encode.thetaEquivExplicit_symm_apply_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:309:0: 'Fate.T1A2Encode.funcEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:310:0: 'Fate.T1A2Encode.funcEquiv_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:311:0: 'Fate.T1A2Encode.funcEquivExplicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/T1A2Encode.lean:312:0: 'Fate.T1A2Encode.funcEquivExplicit_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9249/10487] Replayed FateWorld.Legacy.Stage2.ErrorBoundE2c
+info: FateWorld/Legacy/Stage2/ErrorBoundE2c.lean:31:0: 'Fate.Stage2.ErrorBoundE2c.log_one_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9250/10487] Replayed FateWorld.Legacy.Stage2.ErrorBoundE2cFull
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:240:0: 'Fate.Stage2.ErrorBoundE2cFull.log_one_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:241:0: 'Fate.Stage2.ErrorBoundE2cFull.psi_arg_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:242:0: 'Fate.Stage2.ErrorBoundE2cFull.psi_bound_iff_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:243:0: 'Fate.Stage2.ErrorBoundE2cFull.mul_le_of_nonneg_of_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:244:0: 'Fate.Stage2.ErrorBoundE2cFull.cosh_exp_eq_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:245:0: 'Fate.Stage2.ErrorBoundE2cFull.psi_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:246:0: 'Fate.Stage2.ErrorBoundE2cFull.psi_half_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:247:0: 'Fate.Stage2.ErrorBoundE2cFull.exp_half_add_exp_neg_half_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:248:0: 'Fate.Stage2.ErrorBoundE2cFull.exp_mul_one_sub_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2cFull.lean:249:0: 'Fate.Stage2.ErrorBoundE2cFull.exp_sub_one_le_mul_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9252/10487] Replayed FateWorld.Legacy.Stage2.ErrorBoundE2f
+info: FateWorld/Legacy/Stage2/ErrorBoundE2f.lean:49:0: 'Fate.Stage2.ErrorBoundE2f.exp_le_one_add_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2f.lean:50:0: 'Fate.Stage2.ErrorBoundE2f.exp_sub_one_le_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/Legacy/Stage2/ErrorBoundE2f.lean:51:0: 'Fate.Stage2.ErrorBoundE2f.hoeffding_explicit_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9254/10487] Built FateWorld.FateV2.Error.ErrorBoundE2cFull (200s)
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:253:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.log_one_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:254:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.psi_arg_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:255:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.psi_bound_iff_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:256:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.mul_le_of_nonneg_of_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:257:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.cosh_exp_eq_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:258:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.psi_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:259:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.psi_half_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:260:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.exp_half_add_exp_neg_half_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:261:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.exp_mul_one_sub_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2cFull.lean:262:0: 'FateV2.Predict.Stage2.ErrorBoundE2cFull.exp_sub_one_le_mul_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9255/10487] Replayed FateWorld.FateV2.Predict.ErrorBoundE2c
+info: FateWorld/FateV2/Predict/ErrorBoundE2c.lean:46:0: 'FateV2.Predict.Stage2.ErrorBoundE2c.log_one_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9256/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE2f
+info: FateWorld/FateV2/Error/ErrorBoundE2f.lean:64:0: 'FateV2.Error.Stage2.ErrorBoundE2f.exp_le_one_add_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2f.lean:65:0: 'FateV2.Error.Stage2.ErrorBoundE2f.exp_sub_one_le_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2f.lean:66:0: 'FateV2.Error.Stage2.ErrorBoundE2f.hoeffding_explicit_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [9258/10487] Replayed FateWorld.FateV2.Predict.InterventionTight
+warning: FateWorld/FateV2/Predict/InterventionTight.lean:467:0: automatically included section variable(s) unused in theorem `FateV2.Predict.WorldScenario.Tight.mem_planSet`:
+  [Fintype A]
+  [Fintype X]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype X] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

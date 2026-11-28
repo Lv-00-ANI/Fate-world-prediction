@@ -1,0 +1,310 @@
+﻿⚠ [1711/1716] Replayed FateWorld.FateV2.Modeling.FinMeasureBridge
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:198:54: This simp argument is unused:
+  Set.indicator_of_mem
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.mem_singleton_iff, smul_eq_mul, mul_ite, mul_one,
+    mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:4: This simp argument is unused:
+  Set.mem_singleton_iff
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, smul_eq_mul, mul_ite, mul_one,
+    mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:40: This simp argument is unused:
+  mul_ite
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, Set.mem_singleton_iff, smul_eq_mul,
+    mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:49: This simp argument is unused:
+  mul_one
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, Set.mem_singleton_iff, smul_eq_mul,
+    mul_ite, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:58: This simp argument is unused:
+  mul_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, Set.mem_singleton_iff, smul_eq_mul,
+    mul_ite, mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:364:10: This simp argument is unused:
+  Set.indicator_of_mem h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:365:10: This simp argument is unused:
+  Set.indicator_of_notMem h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:689:17: This simp argument is unused:
+  eq_self_iff_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [and_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [2969/2984] Replayed FateWorld.FateV2.Predict.FinCondIndep
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:199:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_condRatio`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:270:8: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.swapXY_swapXY`:
+  [Fintype α]
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:287:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margXZ_swapXY`:
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:295:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margYZ_swapXY`:
+  [Fintype α]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:321:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_sym`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:339:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margZ_swapXY_def`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:436:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMul_of_factorization`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2970/2984] Replayed FateWorld.FateV2.Predict.SeparableCondMul
+warning: FateWorld/FateV2/Predict/SeparableCondMul.lean:69:0: automatically included section variable(s) unused in theorem `FateV2.Predict.SeparableCondMul.separable_implies_condMul`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [2979/2984] Replayed FateWorld.FateV2.Modeling.BridgeKernel
+warning: FateWorld/FateV2/Modeling/BridgeKernel.lean:519:5: Variable name `p` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _p
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Modeling/BridgeKernel.lean:522:5: Variable name `z` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _z
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2983/2984] Replayed FateWorld.FateV2.Modeling.CondIndepSemigraphoid
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:117:8: This simp argument is unused:
+  Finset.sum_filter
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [eq_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:117:27: This simp argument is unused:
+  eq_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Finset.sum_filter]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:129:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condIndepN_sum_eq`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:190:58: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:190:72: Variable name `hb` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hb
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:225:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.toFam_apply_mem`:
+  [Fintype ι]
+  [Nonempty ι]
+  [(i : ι) → Fintype (α i)]
+  [(i : ι) → DecidableEq (α i)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] [Nonempty ι] [(i : ι) → Fintype (α i)] [(i : ι) → DecidableEq (α i)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:231:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.toFam_apply_notMem`:
+  [Fintype ι]
+  [Nonempty ι]
+  [(i : ι) → Fintype (α i)]
+  [(i : ι) → DecidableEq (α i)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] [Nonempty ι] [(i : ι) → Fintype (α i)] [(i : ι) → DecidableEq (α i)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:259:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.proj_univ`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:289:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.proj_empty`:
+  [Nonempty ι]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty ι] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:305:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.marg_eq_proj_sum`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:372:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.proj_compose`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:427:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condRel_iff`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:435:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condRel_intro`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:450:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.proj_empty_const`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:459:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.famOn_empty_subsingleton`:
+  [Fintype ι]
+  [Nonempty ι]
+  [(i : ι) → Fintype (α i)]
+  [(i : ι) → DecidableEq (α i)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] [Nonempty ι] [(i : ι) → Fintype (α i)] [(i : ι) → DecidableEq (α i)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:526:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condRel_symm`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:560:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condMul2_symm`:
+  [Fintype ζ]
+  [Fintype ω]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ζ] [Fintype ω] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:721:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condRel_congr_union`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:732:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.condRel_disjoint_symm`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Modeling/CondIndepSemigraphoid.lean:744:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.Semigraphoid.not_condRel_of_not_condIndepN`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✖ [2984/2984] Building FateWorld.FateV2.Integration.SemigraphoidCapstone (88s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Integration\SemigraphoidCapstone.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\SemigraphoidCapstone.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\SemigraphoidCapstone.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\SemigraphoidCapstone.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\SemigraphoidCapstone.setup.json --json
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:49:9: Unknown identifier `GenC3.NJoint`
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:50:9: failed to synthesize instance of type class
+  Fintype ι
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:51:4: failed to synthesize instance of type class
+  Fintype ι
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:51:22: failed to synthesize instance of type class
+  Fintype ι
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:59:32: Unknown identifier `GenC3.NJoint`
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:60:28: failed to synthesize instance of type class
+  Fintype ι
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:61:4: failed to synthesize instance of type class
+  Fintype ι
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:72:9: Unknown identifier `GenC3.NJoint`
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:73:9: failed to synthesize instance of type class
+  Fintype ι
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:73:44: failed to synthesize instance of type class
+  Union (Finset ι)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: FateWorld/FateV2/Integration/SemigraphoidCapstone.lean:73:44: failed to synthesize instance of type class
+  Union (Finset ι)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Integration.SemigraphoidCapstone
+lake.exe : error: build failed
+所在位置 行:9 字符: 1
++ & lake build FateWorld.FateV2.Integration.SemigraphoidCapstone 2>&1 | ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
