@@ -1,0 +1,350 @@
+﻿⚠ [882/886] Replayed FateWorld.FateV2.Predict.FinCondIndep
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:199:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_condRatio`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:270:8: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.swapXY_swapXY`:
+  [Fintype α]
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:287:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margXZ_swapXY`:
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:295:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margYZ_swapXY`:
+  [Fintype α]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:321:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_sym`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:339:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margZ_swapXY_def`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:436:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMul_of_factorization`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [991/994] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [993/998] Replayed FateWorld.FateV2.Predict.CondMulSeparable
+warning: FateWorld/FateV2/Predict/CondMulSeparable.lean:60:0: automatically included section variable(s) unused in theorem `FateV2.Predict.CondMulSeparable.condMul_implies_separable`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [997/1000] Replayed FateWorld.FateV2.Modeling.CausSeparation
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:205:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:486:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:558:8: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: FateWorld/FateV2/Modeling/CausSeparation.lean:684:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [1020/1021] Replayed FateWorld.FateV2.Predict.FinJoint
+warning: FateWorld/FateV2/Predict/FinJoint.lean:101:7: The namespace `FinJoint` is duplicated in the declaration `FateV2.Predict.FinJoint.FinJoint`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+⚠ [3530/3541] Replayed FateWorld.FateV2.Predict.SeparableCondMul
+warning: FateWorld/FateV2/Predict/SeparableCondMul.lean:69:0: automatically included section variable(s) unused in theorem `FateV2.Predict.SeparableCondMul.separable_implies_condMul`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [3537/3543] Replayed FateWorld.FateV2.Predict.FinMarkov
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:165:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.sum_ite_triple_eq`:
+  [Fintype A]
+  [Fintype B]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype B] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:220:0: automatically included section variable(s) unused in theorem `FateV2.Modeling.PearlHierarchy.SCM.margAB_jointLaw3`:
+  [Fintype A]
+  [Fintype B]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype B] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:284:26: This simp argument is unused:
+  true_and
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [hca, hcb', and_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:334:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.factorizes_condIndepFin`:
+  [DecidableEq A]
+  [DecidableEq B]
+  [DecidableEq C]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq A] [DecidableEq B] [DecidableEq C] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinMarkov.lean:385:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinMarkov.condIndepFin_iff_ratio`:
+  [DecidableEq A]
+  [DecidableEq B]
+  [DecidableEq C]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq A] [DecidableEq B] [DecidableEq C] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [8682/8686] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8685/8688] Built FateWorld.FateV2.Predict.NonemptyFree (706s)
+⚠ [8688/8691] Replayed FateWorld.FateV2.Predict.DoCalculusRules
+warning: FateWorld/FateV2/Predict/DoCalculusRules.lean:277:17: Variable name `G` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _G
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8696/8698] Replayed FateWorld.FateV2.Loop.ResidualLoop
+warning: FateWorld/FateV2/Loop/ResidualLoop.lean:603:7: Variable name `X` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _X
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8698/8703] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8703/8707] Replayed FateWorld.FateV2.Loop.SCMResidual
+warning: FateWorld/FateV2/Loop/SCMResidual.lean:436:13: `ContinuousLinearMap.zero_apply` has been deprecated: Use `zero_apply` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.zero_apply` to `zero_apply x`).
+warning: FateWorld/FateV2/Loop/SCMResidual.lean:700:56: Variable name `θ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _θ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Loop/SCMResidual.lean:755:8: This simp argument is unused:
+  smul_eq_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8705/8711] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+⚠ [8711/8713] Replayed FateWorld.FateV2.Predict.DAGFactorization
+warning: FateWorld/FateV2/Predict/DAGFactorization.lean:259:0: automatically included section variable(s) unused in theorem `FateV2.Predict.DAGFactorization.unpin_self`:
+  [Fintype V]
+  [Fintype α]
+  [DecidableEq α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype V] [Fintype α] [DecidableEq α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [8721/8726] Replayed FateWorld.FateV2.Predict.T1A2
+warning: FateWorld/FateV2/Predict/T1A2.lean:81:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T1A2.ReadsOnlyOn.mono`:
+  [DecidableEq V]
+  [Fintype V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] [Fintype V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/T1A2.lean:87:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T1A2.readsOnlyOn_empty_iff`:
+  [DecidableEq V]
+  [Fintype V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] [Fintype V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: FateWorld/FateV2/Predict/T1A2.lean:193:0: 'FateV2.Predict.T1A2.ReadsOnlyOn.mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:194:0: 'FateV2.Predict.T1A2.readsOnlyOn_empty_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:195:0: 'FateV2.Predict.T1A2.ReadsOnlyOn.insert' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:196:0: 'FateV2.Predict.T1A2.mem_nd' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:197:0: 'FateV2.Predict.T1A2.not_mem_nd_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:198:0: 'FateV2.Predict.T1A2.FactorizesOn.pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:199:0: 'FateV2.Predict.T1A2.FactorizesOn.ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:200:0: 'FateV2.Predict.T1A2.factorizesOn_not_trivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:201:0: 'FateV2.Predict.T1A2.not_factorizesOn_of_exists_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+warning: FateWorld/FateV2/Predict/T1A2.lean:274:0: automatically included section variable(s) unused in theorem `FateV2.Predict.T1A2.prod_read_pos`:
+  [DecidableEq V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: FateWorld/FateV2/Predict/T1A2.lean:334:0: 'FateV2.Predict.T1A2.node_reads' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:335:0: 'FateV2.Predict.T1A2.readSet_univ_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:336:0: 'FateV2.Predict.T1A2.prod_reads_union_ext' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:337:0: 'FateV2.Predict.T1A2.prod_reads_superset' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:338:0: 'FateV2.Predict.T1A2.prod_read_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:339:0: 'FateV2.Predict.T1A2.prod_reads_nontrivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:340:0: 'FateV2.Predict.T1A2.factorizesOn_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:341:0: 'FateV2.Predict.T1A2.factorizesOn_prod_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Predict/T1A2.lean:342:0: 'FateV2.Predict.T1A2.factorizesOn_prod_reads' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8722/8726] Replayed FateWorld.FateV2.Predict.Strategy11TopoPrefix
+warning: FateWorld/FateV2/Predict/Strategy11TopoPrefix.lean:292:35: Variable name `G` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _G
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [8726/8726] Building FateWorld.FateV2.Predict.NonemptyFree2 (68s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Predict\NonemptyFree2.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\NonemptyFree2.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\NonemptyFree2.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\NonemptyFree2.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\NonemptyFree2.setup.json --json
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:287:4: Function expected at
+  lowerSet
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `lowerSet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:288:9: Tactic `unfold` failed: Local variable `lowerSet` has no definition
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:314:44: Function expected at
+  lowerSet
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `lowerSet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:314:70: Function expected at
+  lowerSet
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `lowerSet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:318:10: Unknown identifier `peel_lower`
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:320:8: Unknown identifier `lowerSet_eq_empty_of_not_nonempty`
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:330:42: Function expected at
+  lowerSet
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `lowerSet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:330:68: Function expected at
+  lowerSet
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `lowerSet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:338:12: Function expected at
+  lowerSet
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  G
+
+Hint: The identifier `lowerSet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:340:44: unsolved goals
+V : Type u
+inst✝³ : DecidableEq V
+inst✝² : Fintype V
+α : Type u
+inst✝¹ : Fintype α
+inst✝ : DecidableEq α
+G : Graph.DAG V
+x✝ : Sort u_1
+lowerSet : x✝
+p : (V → α) → ℝ
+f : V → (V → α) → ℝ
+hloc : LocalTo G f
+hfac : ∀ (x : V → α), p x = ∏ v, f v x
+hnorm : FactorNorm f
+s : V
+htop : sorry = Finset.univ \ {s}
+x : V → α
+⊢ DAGFactorization.mass sorry p x = ∏ v ∈ sorry, f v x
+error: FateWorld/FateV2/Predict/NonemptyFree2.lean:367:48: Unknown identifier `FateV2.Predict.NonemptyFree2.Strategy11Fiber.isPrefix`
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Predict.NonemptyFree2
+lake.exe : error: build failed
+所在位置 行:21 字符: 1
++ & lake build @mods 2>&1 | Out-File "$new\_tmp\v13.txt" -Encoding UTF8
++ ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

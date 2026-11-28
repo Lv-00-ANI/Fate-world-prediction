@@ -250,7 +250,7 @@ theorem isPoint_genRule_of_finset_card_one_noNonempty
   classical
   by_cases hC : Nonempty C.Carrier
   · by_cases hX : Nonempty X.Carrier
-    · exact FateV2.Rules.LawRule.isPoint_genRule_of_finset_card_one
+    · exact FateV2.Predict.LawRule.PointDecidabilityConsumer.isPoint_genRule_of_finset_card_one
         hi₀ hcard hsub
     · -- `X` 空 ⟹ 量化域空 ⟹ 空真
       intro c x
