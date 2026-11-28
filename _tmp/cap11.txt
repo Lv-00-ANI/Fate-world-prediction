@@ -1,0 +1,19 @@
+﻿⚠ [4/26] Replayed FateWorld.FateV2.Classical.Assumptions
+warning: FateWorld/FateV2/Classical/Assumptions.lean:125:38: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3033/3034] Replayed FateWorld.FateV2.Export.Carrier
+warning: FateWorld/FateV2/Export/Carrier.lean:347:0: Definition `someIdxEq_witness` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+warning: FateWorld/FateV2/Export/Carrier.lean:680:60: Variable name `S` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _S
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3034/3034] Built FateWorld.FateV2.Integration.CarrierCapstone (196s)
+Build completed successfully (3034 jobs).

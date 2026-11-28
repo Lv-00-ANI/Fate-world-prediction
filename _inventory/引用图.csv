@@ -169,11 +169,12 @@ Error.VerdictFull,Error,49,1,1,真消费
 Error.VerdictGeneral,Error,52,2,1,真消费
 Error.VerdictTheory,Error,34,1,0,假接线
 Error.VerdictUniversal,Error,83,0,0,孤立
-Export.Carrier,Export,51,1,0,假接线
+Export.Carrier,Export,51,2,1,真消费
 Export.Completeness,Export,31,0,0,孤立
 Export.Coupling,Export,41,0,0,孤立
 Export.Export,Export,6,3,2,真消费
 Export.Modality,Export,15,1,1,真消费
+Integration.CarrierCapstone,Integration,3,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
 Loop.AdaptiveEtaConsumer,Loop,21,0,0,孤立

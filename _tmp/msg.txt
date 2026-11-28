@@ -1,47 +1,39 @@
-集成：第二个集成模块 —— Rules.T112SecondQuotient 由假接线转为真消费
+集成：第三个集成模块 —— Export.Carrier 由假接线转为真消费
 
 ## 新增
 
-FateWorld/FateV2/Integration/T112QuotientCapstone.lean
+FateWorld/FateV2/Integration/CarrierCapstone.lean
 
-消费 Rules/T112SecondQuotient.lean 的既有结果：
-    attrsEquivSetoid_r        Setoid 关系 = 闭包相等
-    attrsEquiv_self_closure   A 与 A'' 同类
-    mk_attrsEquiv             商映射下 [A] = [A'']
-    closure_idempotent        闭包幂等
-    closure_isIntent          闭包结果是 intent
+消费 Export/Carrier.lean 的三条既有结果：
+    entry_mk_fst        ⟨e.fst, e.snd⟩ = e（Sigma.eta）
+    entry_roundtrip     投影与配对互逆（两半合成一个合取）
+    entry_eq_iff        同索引下 ⟨m,x⟩ = ⟨m,y⟩ ↔ x = y
 
-## 四条组合定理
+## 三条组合定理
 
-  setoid_iff_closure_eq     Setoid 关系与 attrsEquiv 的互译
-  closure_is_normal_form    闭包是二次商的正规形（关系层 + 商映射层并置）
-  closure_closed_and_intent 闭包既封闭又是 intent —— ClosureOperator 视角
-                            与 Formal Concept 视角的一致性
-  mk_eq_of_closure_eq       集合层等式直接送到商层等式（省去两步）
+  entry_reconstruct        投影-配对在整个 Entry 上互逆
+  entry_at_index_faithful  同索引下编码单射性 + 投影可还原
+  entry_ext_iff            条目外延性（等式判定降到配对后形态）
 
-## 其中 closure_closed_and_intent 的实质
+其中 entry_at_index_faithful 需要两者协同：
+    entry_roundtrip 保证投影不丢索引
+    entry_eq_iff    保证载荷可分辨
+任一条单独都不足以说明「同一模态的条目由载荷唯一决定」。
 
-下游若要在两种表述之间搬运（把 FCA 的 intent 当闭集用），
-需要知道「封闭性」与「是 intent」描述的是同一个集合。
-这需要 closure_idempotent 与 closure_isIntent **协同**，
-任一条单独都得不到本结论。
+## 本轮一次通过
+
+与前两个集成模块不同，本模块没有遇到名字解析问题
+（open FateV2.Export 一次到位），编译一次通过。
 
 ## 引用图变化
 
-    假接线  178 -> 177
-    真消费  164 -> 165
-    模块数  976 -> 977
-
-## 过程中的一处失败
-
-    error: invalid use of explicit universe parameters,
-           FormalCtx is a local variable
-
-又是 autoImplicit —— FormalCtx 实际在 FateV2.Rules（Rules/FCA.lean），
-本文件的 open 列表里没有它。补 open FateV2.Rules 后通过。
+    假接线  177 -> 176
+    真消费  165 -> 166
+    模块数  977 -> 978
 
 ## 累积
 
-集成模块 2 个（SemigraphoidCapstone、T112QuotientCapstone），
-已把 2 个模块从假接线转为真消费。
-全量构建仍为真 error 0、sorryAx 0。
+集成模块 3 个，已把 3 个模块从假接线转为真消费：
+    Modeling.CondIndepSemigraphoid
+    Rules.T112SecondQuotient
+    Export.Carrier
