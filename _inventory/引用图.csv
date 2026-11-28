@@ -175,6 +175,7 @@ Export.Coupling,Export,41,0,0,孤立
 Export.Export,Export,6,3,2,真消费
 Export.Modality,Export,15,1,1,真消费
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
+Integration.T112QuotientCapstone,Integration,4,0,0,孤立
 Loop.AdaptiveEtaConsumer,Loop,21,0,0,孤立
 Loop.BackdoorPremisesCheck,Loop,10,0,0,孤立
 Loop.BanachFixedPoint,Loop,6,0,0,孤立
@@ -954,7 +955,7 @@ Rules.T112FCASpecific,Rules,112,0,0,孤立
 Rules.T112FCASpecific2,Rules,15,0,0,孤立
 Rules.T112FCATheorems,Rules,14,1,0,假接线
 Rules.T112PairProbe,Rules,8,1,0,假接线
-Rules.T112SecondQuotient,Rules,66,1,0,假接线
+Rules.T112SecondQuotient,Rules,66,2,1,真消费
 Rules.T112UnaryClosure,Rules,9,2,2,真消费
 Rules.T611Full,Rules,32,0,0,孤立
 Rules.T611FullConsumer,Rules,10,0,0,孤立

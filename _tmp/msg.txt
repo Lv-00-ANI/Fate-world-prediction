@@ -1,49 +1,47 @@
-集成：首个证明链集成模块 —— CondIndepSemigraphoid 由假接线转为真消费
+集成：第二个集成模块 —— Rules.T112SecondQuotient 由假接线转为真消费
 
-## 做了什么
+## 新增
 
-新增 FateWorld/FateV2/Integration/SemigraphoidCapstone.lean
+FateWorld/FateV2/Integration/T112QuotientCapstone.lean
 
-它消费了 Modeling/CondIndepSemigraphoid.lean 的三条既有定理：
-    condRel_symm          对称性（semigraphoid 公理 1）
-    condRel_empty_right   空右件的平凡性
-    condRel_locate        互斥穷尽定位
+消费 Rules/T112SecondQuotient.lean 的既有结果：
+    attrsEquivSetoid_r        Setoid 关系 = 闭包相等
+    attrsEquiv_self_closure   A 与 A'' 同类
+    mk_attrsEquiv             商映射下 [A] = [A'']
+    closure_idempotent        闭包幂等
+    closure_isIntent          闭包结果是 intent
 
-并给出三条**组合**定理，它们是既有定理的真组合，不是简单重述：
+## 四条组合定理
 
-  condRel_symm_and_empty   对称 + 空右件 并置为合取
-  condRel_symm_symm        对称的两次施加回到原命题
-  condRel_locate_symm      定位 + 对称的组合（第三支 A/B 次序交换）
+  setoid_iff_closure_eq     Setoid 关系与 attrsEquiv 的互译
+  closure_is_normal_form    闭包是二次商的正规形（关系层 + 商映射层并置）
+  closure_closed_and_intent 闭包既封闭又是 intent —— ClosureOperator 视角
+                            与 Formal Concept 视角的一致性
+  mk_eq_of_closure_eq       集合层等式直接送到商层等式（省去两步）
 
-## 为什么这是「整合进证明链」而非表面功夫
+## 其中 closure_closed_and_intent 的实质
 
-- 三条新定理的**证明体**里，condRel_symm / condRel_locate /
-  condRel_empty_right 作为被调用的项出现，是真实的证明依赖，
-  不是 import 后闲置。
-- condRel_locate_symm 需要两者**协同**才能得到：定位给出三分，
-  对称给出互换后的同一形状；任一条单独都得不到本结论。
+下游若要在两种表述之间搬运（把 FCA 的 intent 当闭集用），
+需要知道「封闭性」与「是 intent」描述的是同一个集合。
+这需要 closure_idempotent 与 closure_isIntent **协同**，
+任一条单独都得不到本结论。
 
 ## 引用图变化
 
-    之前：CondIndepSemigraphoid 状态 = 假接线
-    现在：状态 = 真消费
+    假接线  178 -> 177
+    真消费  164 -> 165
+    模块数  976 -> 977
 
-全库统计：
-    假接线  179 -> 178
-    真消费  163 -> 164
-    模块数  975 -> 976（新增集成模块）
+## 过程中的一处失败
 
-## 过程中排除的三个失败
+    error: invalid use of explicit universe parameters,
+           FormalCtx is a local variable
 
-1. GenC3 不在作用域 → 查明它在 FateV2.Modeling.GenC3（CondIndepN.lean），
-   补 open 后仍不行，最后改用具名 NJoint（open 已使 GenC3 可见）。
-2. 缺实例变量 → 照抄 CondIndepSemigraphoid 的
-   [Fintype ι] [DecidableEq ι] [Nonempty ι] 等声明。
-3. 证明最后一步：rwa [Finset.union_comm A B] 找不到匹配（目标是 B ∪ A ∪ C），
-   改 simpa；且对称后第三支的 A/B 次序相反，需交换合取成分。
+又是 autoImplicit —— FormalCtx 实际在 FateV2.Rules（Rules/FCA.lean），
+本文件的 open 列表里没有它。补 open FateV2.Rules 后通过。
 
-## 下一步
+## 累积
 
-以本模块为模板，逐个域做同类集成。优先处理定义数多、
-已被 import 的假接线模块（如 Rules.T112SecondQuotient 66 个定义、
-Predict.PushFamilyMerge 54 个、Loop.EndToEndBoundFixed 53 个）。
+集成模块 2 个（SemigraphoidCapstone、T112QuotientCapstone），
+已把 2 个模块从假接线转为真消费。
+全量构建仍为真 error 0、sorryAx 0。

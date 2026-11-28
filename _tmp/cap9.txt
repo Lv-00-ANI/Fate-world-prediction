@@ -1,0 +1,19 @@
+﻿✖ [1727/1727] Building FateWorld.FateV2.Integration.T112QuotientCapstone (93s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Integration\T112QuotientCapstone.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\T112QuotientCapstone.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\T112QuotientCapstone.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\T112QuotientCapstone.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\T112QuotientCapstone.setup.json --json
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:37:14: invalid use of explicit universe parameters, `FormalCtx` is a local variable
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:46:21: Unknown identifier `K`
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:59:28: Unknown identifier `K`
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:61:2: No goals to be solved
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:75:29: Unknown identifier `K`
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:75:51: Unknown identifier `K`
+error: FateWorld/FateV2/Integration/T112QuotientCapstone.lean:86:38: Unknown identifier `K`
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Integration.T112QuotientCapstone
+lake.exe : error: build failed
+所在位置 行:6 字符: 1
++ & lake build FateWorld.FateV2.Integration.T112QuotientCapstone 2>&1 | ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

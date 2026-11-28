@@ -1,0 +1,2 @@
+﻿✔ [1727/1727] Built FateWorld.FateV2.Integration.T112QuotientCapstone (25s)
+Build completed successfully (1727 jobs).
