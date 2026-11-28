@@ -1,0 +1,44 @@
+修复：PearlLawRuleBridge 命名空间归位（Modeling 域）
+
+## 问题
+
+    error: PearlLawRuleBridge.lean:289:14: Function expected at SCM
+           but this term has type ?m.1
+
+autoImplicit 陷阱 —— SCM 不在作用域内。
+
+## 排查过程
+
+SCM 结构定义在 Modeling/PearlHierarchy.lean（namespace FateV2.Modeling
++ namespace PearlHierarchy + structure SCM）。而 PearlLawRuleBridge 的
+命名空间是 FateV2.Predict + PearlHierarchy + SCM。
+
+即：文件在 Predict 域的 PearlHierarchy 下，却要用 Modeling 域的 SCM 类型。
+
+三种修法：
+
+1. open FateV2.Modeling.PearlHierarchy
+   -> SCM 解析了，但 M.toLawRule 失败（字段记法在类型命名空间里找
+      toLawRule，而本文件把它定义在 Predict 域）。
+
+2. 把 M.toLawRule 改成 toLawRule M
+   -> 名字解析了，但参数顺序错（variable (M : SCM X Y) 的自动绑定
+      排在 X、Y 之后），Application type mismatch。
+
+3. 命名空间归位（最终采用）
+   -> 把 namespace FateV2.Predict 改为 namespace FateV2.Modeling。
+      于是 SCM 与文件同域自动解析，toLawRule 落在
+      FateV2.Modeling.PearlHierarchy.SCM 下，正是 SCM 类型的命名空间，
+      字段记法 M.toLawRule 直接可用。
+
+变更前已确认全库没有其他文件引用 FateV2.Predict.PearlHierarchy.SCM.*，
+改名安全。
+
+## 结构性判断
+
+本文件职责是「SCM 到 LawRule」的桥，SCM 在 Modeling 域，
+这个桥理应同域。原迁移把它放在 Predict 是域划分错误。
+
+## 状态
+
+FateV2 965 -> 967 / 975 = 99.2%，剩余 8 个。

@@ -1,0 +1,101 @@
+﻿⚠ [1726/1727] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+✖ [1727/1727] Building FateWorld.FateV2.Predict.PearlLawRuleBridge (114s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Predict\PearlLawRuleBridge.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\PearlLawRuleBridge.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\PearlLawRuleBridge.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\PearlLawRuleBridge.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\PearlLawRuleBridge.setup.json --json
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:351:12: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₁
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:351:27: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₂
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:364:43: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₁
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:364:58: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₂
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:376:7: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₁
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:376:22: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₂
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:377:3: Unknown identifier `L2_family_eq_of_toLawRule_eq`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:377:39: Unknown identifier `toLawRule_eq_of_L2_family_eq`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:388:7: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₁
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:388:22: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₂
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:389:2: Unknown identifier `toLawRule_eq_of_L2_family_eq`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:398:7: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₁
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:398:22: Invalid field `toLawRule`: The environment does not contain `FateV2.Modeling.PearlHierarchy.SCM.toLawRule`, so it is not possible to project the field `toLawRule` from an expression
+  M₂
+of type `SCM X Y`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:399:3: Unknown identifier `toLawRule_congr_L3_cf`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:414:44: Application type mismatch: The argument
+  toLawRule
+has type
+  SCM ?m.5 ?m.6 → LawRule.LawRule (ctxOf ?m.5) (finStateSpace ?m.5) (finStateSpace ?m.6)
+but is expected to have type
+  LawRule.LawRule ?m.1 ?m.2 ?m.3
+in the application
+  LawRule.IsPoint toLawRule
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:415:13: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:419:49: Application type mismatch: The argument
+  toLawRuleNoCtx
+has type
+  SCM ?m.5 ?m.6 → LawRule.LawRule (ctxOf Unit) (finStateSpace ?m.5) (finStateSpace ?m.6)
+but is expected to have type
+  LawRule.LawRule ?m.1 ?m.2 ?m.3
+in the application
+  LawRule.IsPoint toLawRuleNoCtx
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:420:13: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:424:56: Application type mismatch: The argument
+  toLawRule
+has type
+  SCM ?m.5 ?m.6 → LawRule.LawRule (ctxOf ?m.5) (finStateSpace ?m.5) (finStateSpace ?m.6)
+but is expected to have type
+  LawRule.LawRule ?m.1 ?m.2 ?m.3
+in the application
+  LawRule.Deterministic toLawRule
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:425:34: Unknown identifier `M.isPoint_toLawRule`
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:462:20: Application type mismatch: The argument
+  toLawRule
+has type
+  SCM ?m.5 ?m.6 → LawRule.LawRule (ctxOf ?m.5) (finStateSpace ?m.5) (finStateSpace ?m.6)
+but is expected to have type
+  LawRule.LawRule ?m.1 ?m.2 ?m.3
+in the application
+  LawRule.compose toLawRule
+error: FateWorld/FateV2/Predict/PearlLawRuleBridge.lean:463:8: Type mismatch
+  toLawRule M
+has type
+  LawRule.LawRule (ctxOf X) (finStateSpace X) (finStateSpace Y)
+but is expected to have type
+  StateSpace.Carrier ?m.2 → Set (MeasureTheory.Measure (StateSpace.Carrier ?m.3))
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Predict.PearlLawRuleBridge
+lake.exe : error: build failed
+所在位置 行:6 字符: 1
++ & lake build FateWorld.FateV2.Predict.PearlLawRuleBridge 2>&1 | Out-F ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

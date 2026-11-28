@@ -104,6 +104,7 @@ namespace FateV2.Predict.NonemptyFree2
 
 open FateV2.Loop
 open FateV2.Modeling
+open FateV2.Predict.Strategy11
 
 universe u
 
@@ -440,3 +441,4 @@ end Strategy11Fiber
 -/
 
 end FateV2.Predict.NonemptyFree2
+

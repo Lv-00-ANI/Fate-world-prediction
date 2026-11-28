@@ -88,7 +88,7 @@ import FateWorld.FateV2.Rules.LawRule
 import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
 import Mathlib.Topology.Instances.Discrete
 
-namespace FateV2.Predict
+namespace FateV2.Modeling
 
 open FateV2.Model
 open FateV2.Modeling
@@ -482,4 +482,4 @@ end SCM
 
 end PearlHierarchy
 
-end FateV2.Predict
+end FateV2.Modeling
