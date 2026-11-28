@@ -17,7 +17,7 @@
   | 7 | `FateV2.Predict.Strategy11.peel_lower` | `Strategy11TopoPrefix` | `[Nonempty V]` | ✅ 可去（**空积与 `hfac` 同时给 `1`**）|
   | 8 | `FateV2.Predict.Strategy11.peel_lower_univ_minus` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
   | 9 | `FateV2.Predict.Strategy11.peel_top_vertex` | `Strategy11TopoPrefix` | 同上 | ✅ 可去（转调 7）|
-  | 10 | `FateV2.Predict.NonemptyFree2.Strategy11Fiber.mass_prefix` | `Strategy11FiberPinned` | 同上 | ✅ 可去（转调 7）|
+  | 10 | `FateV2.Predict.Strategy11Fiber.mass_prefix` | `Strategy11FiberPinned` | 同上 | ✅ 可去（转调 7）|
 
   ⚠ **本文件共交 10 条**（任务要求 ≥4 条）。
 
@@ -358,17 +358,17 @@ variable {G : FateV2.Modeling.Graph.DAG V}
 
 set_option linter.unusedSectionVars false
 
-/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.NonemptyFree2.Strategy11Fiber.mass_prefix`
+/-- ⭐ **【无 `[Nonempty V]` 版】**：`FateV2.Predict.Strategy11Fiber.mass_prefix`
 去掉 `[Nonempty V]` 后**仍然成立**。
 
 原式只是 `S = lowerSet k` 的包装，故**直接转调** §4 的
 `peel_lower_noNonempty`。 -/
 theorem mass_prefix_noNonempty {p : (V → α) → ℝ} {f : V → (V → α) → ℝ}
     (hloc : LocalTo G f) (hfac : ∀ x, p x = ∏ v, f v x)
-    (hnorm : FactorNorm f) {S : Finset V} (hS : FateV2.Predict.NonemptyFree2.Strategy11Fiber.isPrefix G S) :
+    (hnorm : FactorNorm f) {S : Finset V} (hS : FateV2.Predict.Strategy11Fiber.isPrefix G S) :
     ∀ x, FateV2.Predict.DAGFactorization.mass S p x = ∏ v ∈ S, f v x := by
   obtain ⟨k, rfl⟩ := hS
-  exact FateV2.Predict.Strategy11.peel_lower_noNonempty hloc hfac hnorm k
+  exact FateV2.Predict.NonemptyFree2.Strategy11.peel_lower_noNonempty hloc hfac hnorm k
 
 end Strategy11Fiber
 

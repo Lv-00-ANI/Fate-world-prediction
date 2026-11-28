@@ -1,44 +1,32 @@
-修复：PearlLawRuleBridge 命名空间归位（Modeling 域）
+推进：FateV2 达 970/975 = 99.5%
 
-## 问题
+## 本轮修复 4 个
 
-    error: PearlLawRuleBridge.lean:289:14: Function expected at SCM
-           but this term has type ?m.1
+  T35Rule1SplitConsumer          错域 NonemptyFree2 前缀
+  NonemptyFree2                  过度限定 Strategy11Fiber / 反向 peel_lower_noNonempty
+  LawRuleSatisfiabilityConsumer  两处：错域 LawRule + 多余 LawRule. 前缀
+  PearlLawRuleBridge             命名空间归位（上轮）
 
-autoImplicit 陷阱 —— SCM 不在作用域内。
+## 值得记录的一处细节
 
-## 排查过程
+LawRuleSatisfiabilityConsumer 第 179-180 行原本写：
 
-SCM 结构定义在 Modeling/PearlHierarchy.lean（namespace FateV2.Modeling
-+ namespace PearlHierarchy + structure SCM）。而 PearlLawRuleBridge 的
-命名空间是 FateV2.Predict + PearlHierarchy + SCM。
+    ¬ IsPoint (LawRule.generalize R1 R2 hsub)
+    LawRule.not_isPoint_of_strict_generalize hsub hs
 
-即：文件在 Predict 域的 PearlHierarchy 下，却要用 Modeling 域的 SCM 类型。
+索引查证：
+    generalize                    → FateV2.Rules.LawRule.generalize
+    not_isPoint_of_strict_generalize → FateV2.Rules.LawRule.not_isPoint_of_strict_generalize
 
-三种修法：
+即 LawRule. 是**多余的前缀**（这两个是 FateV2.Rules.LawRule 命名空间里的
+函数，不是 LawRule 结构的字段）。文件已 open FateV2.Rules.LawRule，
+所以直接去掉前缀即可。
 
-1. open FateV2.Modeling.PearlHierarchy
-   -> SCM 解析了，但 M.toLawRule 失败（字段记法在类型命名空间里找
-      toLawRule，而本文件把它定义在 Predict 域）。
+我的第一版替换脚本没有生效（正则没匹配到裸写法），修正后才通过。
 
-2. 把 M.toLawRule 改成 toLawRule M
-   -> 名字解析了，但参数顺序错（variable (M : SCM X Y) 的自动绑定
-      排在 X、Y 之后），Application type mismatch。
+## 剩余 4 个
 
-3. 命名空间归位（最终采用）
-   -> 把 namespace FateV2.Predict 改为 namespace FateV2.Modeling。
-      于是 SCM 与文件同域自动解析，toLawRule 落在
-      FateV2.Modeling.PearlHierarchy.SCM 下，正是 SCM 类型的命名空间，
-      字段记法 M.toLawRule 直接可用。
-
-变更前已确认全库没有其他文件引用 FateV2.Predict.PearlHierarchy.SCM.*，
-改名安全。
-
-## 结构性判断
-
-本文件职责是「SCM 到 LawRule」的桥，SCM 在 Modeling 域，
-这个桥理应同域。原迁移把它放在 Predict 是域划分错误。
-
-## 状态
-
-FateV2 965 -> 967 / 975 = 99.2%，剩余 8 个。
+  Loop/WorldModelCompleteV2W
+  Predict/LawRuleAlgebraUnify
+  Predict/Rule13GenuineConsumer
+  Predict/StepExpressiveness

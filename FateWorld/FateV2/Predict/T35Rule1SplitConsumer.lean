@@ -19,7 +19,7 @@ import FateWorld.FateV2.Predict.PearlLawRuleBridge
   ## 0. 上游模块实测（`Fate/T35Rule1Split.lean`，657 行）
 
   `grep -nE "^(theorem|def|noncomputable def|instance)"` 实测 **37 条声明**
-  （`namespace FateV2.Predict.NonemptyFree2.T35Rule1Split`，import `SCMSemantics`、
+  （`namespace FateV2.Predict.T35Rule1Split`，import `SCMSemantics`、
   `FateV2.Predict`）：
 
   | 类别 | 声明 |
@@ -81,7 +81,7 @@ import FateWorld.FateV2.Predict.PearlLawRuleBridge
   * `doLaw_eq_L2_do` 是**定义等式**（`rfl`），本文件**明确标注**它是
     **对齐引理而非实质定理**，不拿它充数。
   * 本模块**不修改** `Fate/T35Rule1Split.lean` 的任何内容（只 `import`）。
-  * `MNC` / `eMNC` / `MBad` 均取自上游 `namespace FateV2.Predict.NonemptyFree2.T35Rule1Split`，
+  * `MNC` / `eMNC` / `MBad` 均取自上游 `namespace FateV2.Predict.T35Rule1Split`，
     本文件**不重复定义**同名 `def`（纪律第 95 条）。
   =========================================================================== -/
 
@@ -92,7 +92,7 @@ namespace FateV2.Predict
 open FateV2.Modeling
 namespace T35Rule1SplitConsumer
 
-open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics FateV2.Predict.NonemptyFree2.T35Rule1Split
+open FateV2.Modeling.PearlHierarchy FateV2.Modeling.SCMSemantics FateV2.Predict.T35Rule1Split
 
 /-! ===========================================================================
   §2 ⭐⭐ **接入 Pearl 因果层的数值读出**：`doLaw` ↦ `SCM.L2_do`

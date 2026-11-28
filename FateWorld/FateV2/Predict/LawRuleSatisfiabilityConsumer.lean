@@ -45,7 +45,7 @@
 import FateWorld.FateV2.Rules.LawRuleSatisfiability
 import FateWorld.FateV2.Rules.LawRulePointDecidability
 import FateWorld.FateV2.Predict.PearlLawRuleBridge
-open FateV2.Predict.LawRule
+open FateV2.Rules.LawRule
 
 namespace FateV2.Predict
 
@@ -176,8 +176,8 @@ theorem isPoint_sInf_of_isPoint_mem (S : Set (LawRule C X Y)) (R : LawRule C X Y
 theorem generalize_not_isPoint {R₁ R₂ : LawRule C X Y}
     (hsub : ∀ c x, R₁ c x ⊆ R₂ c x)
     (hs : ∃ c x μ, R₂ c x = {μ} ∧ ∃ ν ∈ R₁ c x, ν ≠ μ) :
-    ¬ IsPoint (LawRule.generalize R₁ R₂ hsub) :=
-  LawRule.not_isPoint_of_strict_generalize hsub hs
+    ¬ IsPoint (generalize R₁ R₂ hsub) :=
+  not_isPoint_of_strict_generalize hsub hs
 
 /-- ⭐⭐⭐ **组合定理**：可满足族里若有一条单点规则 `R` 和一条严格放宽规则 `G`，
 则它们的交**只由 `R` 决定**（`G` 的额外分布被 `R` 卡掉）。
