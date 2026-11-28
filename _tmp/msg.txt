@@ -1,32 +1,39 @@
-推进：FateV2 达 970/975 = 99.5%
+推进：FateV2 达 972/975 = 99.7%，剩余 3 个
 
-## 本轮修复 4 个
+## 本轮
 
-  T35Rule1SplitConsumer          错域 NonemptyFree2 前缀
-  NonemptyFree2                  过度限定 Strategy11Fiber / 反向 peel_lower_noNonempty
-  LawRuleSatisfiabilityConsumer  两处：错域 LawRule + 多余 LawRule. 前缀
-  PearlLawRuleBridge             命名空间归位（上轮）
+StepExpressiveness 通过。补 open FateV2.Model 使 Step / Frame 解析
+（与 CausalEventFormal 同一模式）。
 
-## 值得记录的一处细节
+## 剩余 3 个及已诊断的原因
 
-LawRuleSatisfiabilityConsumer 第 179-180 行原本写：
+### LawRuleAlgebraUnify
 
-    ¬ IsPoint (LawRule.generalize R1 R2 hsub)
-    LawRule.not_isPoint_of_strict_generalize hsub hs
+    error: 78:4 Function expected at
+    error: 79:6 Unknown identifier seqDet_id
 
-索引查证：
-    generalize                    → FateV2.Rules.LawRule.generalize
-    not_isPoint_of_strict_generalize → FateV2.Rules.LawRule.not_isPoint_of_strict_generalize
+LawRule C X X 里的 LawRule 解析成了**命名空间** FateV2.Rules.LawRule
+（文件有 open FateV2.Rules），不是结构 FateV2.Rules.LawRule.LawRule。
+已把 LawRule C 类形状改成全限定，但还有 compose / seqDet 等名字
+需要进一步确认归属。
 
-即 LawRule. 是**多余的前缀**（这两个是 FateV2.Rules.LawRule 命名空间里的
-函数，不是 LawRule 结构的字段）。文件已 open FateV2.Rules.LawRule，
-所以直接去掉前缀即可。
+### Rule13GenuineConsumer
 
-我的第一版替换脚本没有生效（正则没匹配到裸写法），修正后才通过。
+    error: 461:31 Unknown identifier LawRule.IsPoint
 
-## 剩余 4 个
+已补 open FateV2.Rules，待验证。
 
-  Loop/WorldModelCompleteV2W
-  Predict/LawRuleAlgebraUnify
-  Predict/Rule13GenuineConsumer
-  Predict/StepExpressiveness
+### WorldModelCompleteV2W
+
+    error: 161 行 structure 的 instance binder
+           [S : RuleSpec (...) F.X F.X] → invalid binder annotation,
+           type is not a class instance
+
+即 RuleSpec 是 structure 而非 class，不能用方括号 instance binder。
+需要改为圆括号 (S : ...)，并同步修改所有依赖 S 为 instance 的使用处。
+
+这条需要看 Legacy 原文确认原写法。
+
+## 状态
+
+11 个完成域（422 模块）保持 100%。FateV2 972/975 = 99.7%。

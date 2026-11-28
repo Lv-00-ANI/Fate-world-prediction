@@ -1,0 +1,1116 @@
+﻿⚠ [1724/1729] Replayed FateWorld.FateV2.Rules.LawRule
+warning: FateWorld/FateV2/Rules/LawRule.lean:82:4: The namespace `LawRule` is duplicated in the declaration `FateV2.Rules.LawRule.LawRule`.
+
+Note: This linter can be disabled with `set_option linter.dupNamespace false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:87:4: Overlapping instance parameters in `Rule.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+warning: FateWorld/FateV2/Rules/LawRule.lean:92:4: Overlapping instance parameters in `DetFun.toLaw`:
+
+⚠️ There are 2 `[MeasurableSpace Y.Carrier]` instances; one is sufficient.
+
+Note: This linter can be disabled with `set_option linter.overlappingInstances false`
+ℹ [1731/1734] Replayed FateWorld.FateV2.Rules.AlphaFCAConstruction
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:842:0: @AlphaData.alpha : {E : InstSpace} →
+  {M : Type u_1} → (D : AlphaData E M) → E.Carrier → Concept E.Carrier M D.ctx.Irel × Set M
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:844:0: @AlphaData.alpha_snd_isClosed : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) (e : E.Carrier),
+  D.ctx.IsClosedAttr (D.alpha e).2
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:846:0: @AlphaData.alpha_snd_eq_thIter : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [F : D.ctx.FiniteAttrs]
+  (e : E.Carrier), ∃ n, (D.alpha e).2 = D.thIter n (D.obs e)
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:848:0: @AlphaData.dgBasis_sound : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {r : Set M × Set M},
+  r ∈ D.dgBasis → D.ctx.Models r.1 r.2
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:849:0: @AlphaData.dgBasis_complete : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [D.ctx.FiniteAttrs],
+  {X | D.ctx.IsModel X} = {X | D.ctx.IsClosedAttr X}
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:850:0: @AlphaData.dgBasis_nonredundant : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) [F : D.ctx.FiniteAttrs],
+  D.ctx.IsNonRedundant D.dgBasis
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:852:0: @AlphaData.rulesUnionOf_subset_of_closed : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {C : Set M},
+  D.ctx.IsClosedAttr C → D.rulesUnionOf C ⊆ C
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:853:0: @AlphaData.rulesUnionOf_eq_of_closed_of_closureOp : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M) {C P : Set M},
+  D.ctx.IsClosedAttr C → D.ctx.IsPseudoIntent P → C = D.ctx.closureOp P → D.rulesUnionOf C = C
+info: FateWorld/FateV2/Rules/AlphaFCAConstruction.lean:854:0: @AlphaData.dgBasis_eq_empty_of_no_pseudoIntent : ∀ {E : InstSpace} {M : Type u_1} (D : AlphaData E M),
+  (∀ (P : Set M), ¬D.ctx.IsPseudoIntent P) → D.dgBasis = ∅
+⚠ [1738/1740] Replayed FateWorld.FateV2.Rules.UpsilonOperator
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:219:11: Left-hand side of simp theorem has a variable as head symbol. This means the theorem will be tried on every simp step, which can be expensive. This may be acceptable for `local` or `scoped` simp lemmas.
+Use `set_option warning.simp.varHead false` to disable this warning.
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:279:0: automatically included section variable(s) unused in theorem `FateV2.Rules.UpsilonOperator.IsCompletion.saturated_iff`:
+  [PartialOrder α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [PartialOrder α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:300:0: automatically included section variable(s) unused in theorem `FateV2.Rules.UpsilonOperator.IsCompletion.saturated_idem`:
+  [PartialOrder α]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [PartialOrder α] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:415:0: Definition `IsCompletion.ofSet` is a proposition; use `theorem` instead of `def`
+
+Note: This linter can be disabled with `set_option linter.defProp false`
+warning: FateWorld/FateV2/Rules/UpsilonOperator.lean:610:5: Variable name `hκ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hκ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [1902/1908] Replayed FateWorld.FateV2.Modeling.CausDAG
+warning: FateWorld/FateV2/Modeling/CausDAG.lean:239:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+⚠ [3554/3562] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3561/3569] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+✖ [3571/3573] Building FateWorld.FateV2.Loop.WorldModelCompleteV2W (137s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Loop\WorldModelCompleteV2W.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Loop\WorldModelCompleteV2W.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Loop\WorldModelCompleteV2W.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Loop\WorldModelCompleteV2W.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Loop\WorldModelCompleteV2W.setup.json --json
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:162:9: invalid binder annotation, type is not a class instance
+  ?m.2
+
+Note: Use the command `set_option checkBinderAnnotations false` to disable the check
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:291:16: Function expected at
+  AlphaData
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  ⟨PUnit⟩
+
+Hint: The identifier `AlphaData` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:295:16: Function expected at
+  GenOp
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  (Rule nonDegCtx nonDegFrame.X nonDegFrame.X)
+
+Hint: The identifier `GenOp` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:302:14: Unknown identifier `UpsilonOperator.Upsilon`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:306:18: Unknown identifier `ComposeOperator.MeasurableRule`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:307:4: Unknown identifier `ComposeOperator.MeasurableRule`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:308:4: Unknown identifier `ComposeOperator.MeasurableRule`
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:350:11: Function expected at
+  WorldModelCompleteV2W
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  nonDegFrame
+
+Hint: The identifier `WorldModelCompleteV2W` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:378:47: typeclass instance problem is stuck
+  Membership (Rule nonDegCtx nonDegFrame.X nonDegFrame.X) ?m.9
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `Membership` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:386:11: Function expected at
+  WorldModelCompleteV2W
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  nonDegFrame
+
+Hint: The identifier `WorldModelCompleteV2W` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Loop/WorldModelCompleteV2W.lean:411:48: typeclass instance problem is stuck
+  Membership (Rule nonDegCtx nonDegFrame.X nonDegFrame.X) ?m.63
+
+Note: Lean will not try to resolve this typeclass instance problem because the second type argument to `Membership` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: Lean exited with code 1
+✖ [8695/8698] Building FateWorld.FateV2.Predict.LawRuleAlgebraUnify (510s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Predict\LawRuleAlgebraUnify.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\LawRuleAlgebraUnify.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\LawRuleAlgebraUnify.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\LawRuleAlgebraUnify.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\LawRuleAlgebraUnify.setup.json --json
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:77:35: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:77:35: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:78:4: Function expected at
+  compose
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (seqDet (fun _ x => x) R₁)
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:78:44: Function expected at
+  compose
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:79:6: Unknown identifier `seqDet_id`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:78:61: unsolved goals
+x✝¹ : Sort u_1
+LawRule : x✝¹
+x✝ : Sort u_2
+compose : x✝
+R₁ : sorry
+R₂ : sorry
+⊢ sorry = sorry
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:86:13: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:86:13: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:87:4: Function expected at
+  seqDet
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  f
+
+Hint: The identifier `seqDet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:87:31: Function expected at
+  compose
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  (seqDet f R₁)
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:88:2: Unknown identifier `seqDet_compose`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:95:13: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:95:13: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:96:4: Function expected at
+  seqDet
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  f
+
+Hint: The identifier `seqDet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:97:6: Function expected at
+  compose
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  (seqDet (fun c x => g c (f c x)) R₁)
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:99:13: Unknown identifier `seqDet_compose_law`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:99:33: Unknown identifier `seqDet_assoc`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:105:9: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:105:29: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:105:42: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (seqDet f R)
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:106:2: Unknown identifier `seqDet_point`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:119:29: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:120:4: Function expected at
+  marginal
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `marginal` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:121:2: Unknown identifier `marginal_id`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:127:31: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:131:4: Function expected at
+  marginal
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (marginal R phi hphi)
+
+Hint: The identifier `marginal` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:132:6: Function expected at
+  marginal
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `marginal` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:133:2: Unknown identifier `marginal_comp`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:142:41: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:142:41: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:145:11: Function expected at
+  marginal
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (compose R₁ R₂)
+
+Hint: The identifier `marginal` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:145:51: Function expected at
+  marginal
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `marginal` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+warning: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:145:11: Ambiguous use of subset notation: the type is a metavariable.
+Consider adding a type annotation, e.g. `(_ : Set _) ⊆ _`.
+The term will elaborate to a different constant depending on whether the type is tagged with `@[use_set_notation_for_order]`.
+
+Note: This linter can be disabled with `set_option linter.setNotationForOrder false`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:146:8: Unknown identifier `marginal_mono`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:146:2: Tactic `apply` failed: could not unify the type of `sorry`
+  ?m.24
+with the goal
+  ∀ (c : ?m.20 R₁ R₂ phi hphi) (x : ?m.21 R₁ R₂ phi hphi c), ?m.11
+
+Y : OutSpace
+inst✝¹ : MeasurableSpace Y.Carrier
+x✝¹ : Sort u_1
+LawRule : x✝¹
+x✝ : Sort u_2
+marginal : x✝
+R₁ : sorry
+R₂ : sorry
+Z : OutSpace
+inst✝ : MeasurableSpace Z.Carrier
+phi : Y.Carrier → Z.Carrier
+hphi : Measurable phi
+⊢ ∀ (c : ?m.20 R₁ R₂ phi hphi) (x : ?m.21 R₁ R₂ phi hphi c), ?m.11
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:155:35: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:155:35: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:156:4: Function expected at
+  unionLaw
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:156:21: Function expected at
+  unionLaw
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₂
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:157:2: Unknown identifier `unionLaw_comm`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:166:41: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:166:41: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:167:4: Function expected at
+  unionLaw
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (compose R₁ R₂)
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:173:41: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:173:41: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:174:4: Function expected at
+  unionLaw
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:183:38: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:183:38: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:184:10: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:184:28: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₂
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:185:6: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (unionLaw R₁ R₂)
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:186:2: Unknown identifier `unionLaw_not_point`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:189:39: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:189:39: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:189:39: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:190:4: Function expected at
+  unionLaw
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (unionLaw R₁ R₂)
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:190:35: Function expected at
+  unionLaw
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:191:2: Unknown identifier `unionLaw_assoc`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:205:53: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:205:53: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:206:4: Function expected at
+  seqDet
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  f
+
+Hint: The identifier `seqDet` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:206:31: Function expected at
+  compose
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  (seqDet f R₁)
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:207:6: Function expected at
+  unionLaw
+but this term has type
+  ?m.4
+
+Note: Expected a function because this term is being applied to the argument
+  (compose R₁ R₂)
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:208:6: Function expected at
+  compose
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  (compose R₁ R₂)
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:208:35: Function expected at
+  compose
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  R₁
+
+Hint: The identifier `compose` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:209:9: Unknown identifier `seqDet_compose_law`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:209:8: Invalid `⟨...⟩` notation: The expected type of this term could not be determined
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:266:55: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:266:55: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+warning: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:267:19: Ambiguous use of subset notation: the type is a metavariable.
+Consider adding a type annotation, e.g. `(_ : Set _) ⊆ _`.
+The term will elaborate to a different constant depending on whether the type is tagged with `@[use_set_notation_for_order]`.
+
+Note: This linter can be disabled with `set_option linter.setNotationForOrder false`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:269:6: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  (unionLaw R1 R2)
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:270:6: Unknown identifier `unionLaw_eq_generalize`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:269:34: unsolved goals
+x✝¹ : Sort u_1
+LawRule : x✝¹
+x✝ : Sort u_2
+IsPoint : x✝
+R1 : sorry
+R2 : sorry
+hsub : ∀ (c : ?m.67 R1 R2) (x : ?m.68 R1 R2 c), ?m.7
+hs : ∃ c x μ, ?m.17 = ?m.19 ∧ ∃ ν ∈ ?m.26, ν ≠ μ
+⊢ ¬sorry
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:283:49: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:283:49: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+warning: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:284:20: Ambiguous use of subset notation: the type is a metavariable.
+Consider adding a type annotation, e.g. `(_ : Set _) ⊆ _`.
+The term will elaborate to a different constant depending on whether the type is tagged with `@[use_set_notation_for_order]`.
+
+Note: This linter can be disabled with `set_option linter.setNotationForOrder false`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:284:43: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R2
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:285:10: Function expected at
+  Compatible
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  ({R2, unionLaw R1 R2} : Set (LawRule C X Y))
+
+Hint: The identifier `Compatible` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:286:38: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:286:15: Function expected at
+  unionLaw
+but this term has type
+  ?m.4
+
+Note: Expected a function because this term is being applied to the argument
+  R1
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:287:72: Function expected at
+  unionLaw
+but this term has type
+  x✝
+
+Note: Expected a function because this term is being applied to the argument
+  R1
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:300:52: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:300:52: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:301:10: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R1
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:301:28: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R2
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:301:46: Function expected at
+  ComposeCompat
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  R1
+
+Hint: The identifier `ComposeCompat` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:302:26: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:303:28: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:304:39: Unknown identifier `compat_iff_eq`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:303:52: unsolved goals
+x✝² : Sort u_1
+LawRule : x✝²
+x✝¹ : Sort u_2
+IsPoint : x✝¹
+x✝ : Sort u_3
+ComposeCompat : x✝
+R1 : sorry
+R2 : sorry
+h1 : sorry
+h2 : sorry
+hc : sorry
+⊢ sInf {R1, R2} = R1 ∧ sInf {R1, R2} = R2
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:329:53: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:329:53: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+warning: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:330:20: Ambiguous use of subset notation: the type is a metavariable.
+Consider adding a type annotation, e.g. `(_ : Set _) ⊆ _`.
+The term will elaborate to a different constant depending on whether the type is tagged with `@[use_set_notation_for_order]`.
+
+Note: This linter can be disabled with `set_option linter.setNotationForOrder false`
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:330:41: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:331:10: Function expected at
+  Compatible
+but this term has type
+  ?m.3
+
+Note: Expected a function because this term is being applied to the argument
+  ({R, unionLaw R G} : Set (LawRule C X Y))
+
+Hint: The identifier `Compatible` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:332:35: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:332:14: Function expected at
+  unionLaw
+but this term has type
+  ?m.4
+
+Note: Expected a function because this term is being applied to the argument
+  R
+
+Hint: The identifier `unionLaw` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:333:71: Function expected at
+  unionLaw
+but this term has type
+  x✝
+
+Note: Expected a function because this term is being applied to the argument
+  R
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:339:28: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:339:28: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:356:70: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:356:70: Function expected at
+  LawRule
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  C
+
+Hint: The identifier `LawRule` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:357:10: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R1
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:357:28: Function expected at
+  IsPoint
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  R2
+
+Hint: The identifier `IsPoint` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/LawRuleAlgebraUnify.lean:357:46: maximum number of errors (100; from option `maxErrors`) reached, exiting
+error: Lean exited with code 1
+⚠ [8703/8708] Replayed FateWorld.FateV2.Predict.FinCondIndep
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:199:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_condRatio`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:270:8: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.swapXY_swapXY`:
+  [Fintype α]
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:287:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margXZ_swapXY`:
+  [Fintype β]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype β] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:295:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margYZ_swapXY`:
+  [Fintype α]
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype α] [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:321:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMulGuard_iff_sym`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:339:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.margZ_swapXY_def`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: FateWorld/FateV2/Predict/FinCondIndep.lean:436:0: automatically included section variable(s) unused in theorem `FateV2.Predict.FinCondIndep.condMul_of_factorization`:
+  [Fintype γ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype γ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [8704/8708] Replayed FateWorld.FateV2.Predict.DoCalculusRules
+warning: FateWorld/FateV2/Predict/DoCalculusRules.lean:277:17: Variable name `G` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _G
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8708/8716] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✖ [8712/8716] Building FateWorld.FateV2.Predict.StepExpressiveness (10s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Predict\StepExpressiveness.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\StepExpressiveness.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\StepExpressiveness.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\StepExpressiveness.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\StepExpressiveness.setup.json --json
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:58:56: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:59:9: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:59:27: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:59:45: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:60:10: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:60:24: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:58:43: Function expected at
+  Step
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  F
+
+Hint: The identifier `Step` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:66:46: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:66:64: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:67:9: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:67:27: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:67:45: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:66:33: Function expected at
+  Step
+but this term has type
+  ?m.2
+
+Note: Expected a function because this term is being applied to the argument
+  F
+
+Hint: The identifier `Step` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:83:13: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:83:27: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:82:41: stuck at solving universe constraint
+  imax ?u.7 ?u.8 =?= ?u.6 + 1
+while trying to unify
+  Sort (imax ?u.7 ?u.8) : Type (imax ?u.7 ?u.8)
+with
+  Type ?u.6 : Type (?u.6 + 1)
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:89:28: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:89:42: Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  F
+has type `Frame` which does not have the necessary form.
+error: FateWorld/FateV2/Predict/StepExpressiveness.lean:88:0: stuck at solving universe constraint
+  ?u.8 + 1 =?= imax ?u.9 ?u.10
+while trying to unify
+  CoeT.{(imax ?u.9 ?u.10) + 1, ?u.8 + 2} (Sort (imax ?u.9 ?u.10)) x (Type ?u.8) : Type (?u.8 + 1)
+with
+  CoeT.{(imax ?u.9 ?u.10) + 1, (imax ?u.9 ?u.10) + 1} (Sort (imax ?u.9 ?u.10)) x
+    (Sort (imax ?u.9 ?u.10)) : Type (imax ?u.9 ?u.10)
+error: Lean exited with code 1
+⚠ [8713/8716] Replayed FateWorld.FateV2.Predict.InterventionTight
+warning: FateWorld/FateV2/Predict/InterventionTight.lean:467:0: automatically included section variable(s) unused in theorem `FateV2.Predict.WorldScenario.Tight.mem_planSet`:
+  [Fintype A]
+  [Fintype X]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype A] [Fintype X] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+✖ [8716/8716] Building FateWorld.FateV2.Predict.Rule13GenuineConsumer (31s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Predict\Rule13GenuineConsumer.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\Rule13GenuineConsumer.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Predict\Rule13GenuineConsumer.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\Rule13GenuineConsumer.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Predict\Rule13GenuineConsumer.setup.json --json
+error: FateWorld/FateV2/Predict/Rule13GenuineConsumer.lean:461:31: Unknown identifier `LawRule.IsPoint`
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Loop.WorldModelCompleteV2W
+- FateWorld.FateV2.Predict.LawRuleAlgebraUnify
+- FateWorld.FateV2.Predict.StepExpressiveness
+- FateWorld.FateV2.Predict.Rule13GenuineConsumer
+lake.exe : error: build failed
+所在位置 行:7 字符: 1
++ & lake build @mods 2>&1 | Out-File "$new\_tmp\r111.txt" -Encoding UTF ...
++ ~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

@@ -111,6 +111,7 @@ universe u
 namespace R1
 
 open R249.Exog
+open FateV2.Rules
 
 /-! ### §1.1 `μ(x) = 1` 时 `condY = doLaw`（上游没有的推论） -/
 

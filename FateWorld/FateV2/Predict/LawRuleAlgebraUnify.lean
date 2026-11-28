@@ -74,7 +74,7 @@ variable [MeasurableSpace X.Carrier]
 
 「先原地不动，再取交」= 取交本身 —— 用时序复合的单位元把
 `compose` 的左手退化掉。消费 `seqDet_id`。 -/
-theorem seqDet_id_compose (R₁ R₂ : LawRule C X X) :
+theorem seqDet_id_compose (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X X) :
     compose (seqDet (fun _ x => x) R₁) R₂ = compose R₁ R₂ := by
   rw [seqDet_id]
 
@@ -83,7 +83,7 @@ theorem seqDet_id_compose (R₁ R₂ : LawRule C X X) :
 `seqDet` 是把 `compose`（逐点取交）搬到新点处的搬运工，
 故它对取交分配。直接消费 `seqDet_compose`。 -/
 theorem seqDet_compose_law (f : C.Carrier → X.Carrier → X.Carrier)
-    (R₁ R₂ : LawRule C X X) :
+    (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X X) :
     seqDet f (compose R₁ R₂) = compose (seqDet f R₁) (seqDet f R₂) :=
   seqDet_compose f R₁ R₂
 
@@ -92,7 +92,7 @@ theorem seqDet_compose_law (f : C.Carrier → X.Carrier → X.Carrier)
 先 `f`、再 `g`、再取交 `R₁ ∩ R₂`，与「先复合 `f,g` 再取交」一致。
 由 `seqDet_assoc` 与 `compose` 的分配律合成 —— **非平凡合成**。 -/
 theorem seqDet_assoc_compose (f g : C.Carrier → X.Carrier → X.Carrier)
-    (R₁ R₂ : LawRule C X X) :
+    (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X X) :
     seqDet f (seqDet g (compose R₁ R₂)) =
       compose (seqDet (fun c x => g c (f c x)) R₁)
               (seqDet (fun c x => g c (f c x)) R₂) := by
@@ -102,7 +102,7 @@ theorem seqDet_assoc_compose (f g : C.Carrier → X.Carrier → X.Carrier)
 
 时序搬运**不损失**单点性 —— 这是候选 ① 相对候选 ③ 的关键优势。 -/
 theorem seqDet_preserves_point (f : C.Carrier → X.Carrier → X.Carrier)
-    (R : LawRule C X X) (h : IsPoint R) : IsPoint (seqDet f R) :=
+    (R : FateV2.Rules.LawRule.LawRule C X X) (h : IsPoint R) : IsPoint (seqDet f R) :=
   seqDet_point f R h
 
 end SeqDetPart
@@ -116,7 +116,7 @@ variable [MeasurableSpace Y.Carrier]
   =========================================================================== -/
 
 /-- ⭐ **【候选 ② 的幺元律】**（消费 `marginal_id`）。 -/
-theorem marginal_id_law (R : LawRule C X Y) :
+theorem marginal_id_law (R : FateV2.Rules.LawRule.LawRule C X Y) :
     marginal R (fun y => y) measurable_id = R :=
   marginal_id R
 
@@ -124,7 +124,7 @@ theorem marginal_id_law (R : LawRule C X Y) :
 
 `(psi ∘ phi)_* = psi_* ∘ phi_*` 在规则层成立。
 直接消费 `marginal_comp` —— 这是边缘化作为**函子**的相容性。 -/
-theorem marginal_comp_law (R : LawRule C X Y) {Z W : OutSpace}
+theorem marginal_comp_law (R : FateV2.Rules.LawRule.LawRule C X Y) {Z W : OutSpace}
     [MeasurableSpace Z.Carrier] [MeasurableSpace W.Carrier]
     (phi : Y.Carrier → Z.Carrier) (hphi : Measurable phi)
     (psi : Z.Carrier → W.Carrier) (hpsi : Measurable psi) :
@@ -139,7 +139,7 @@ theorem marginal_comp_law (R : LawRule C X Y) {Z W : OutSpace}
 
 **这是候选 ② 与 `compose` 的桥**：`compose R₁ R₂ ⊆ R₁`，
 故 `marginal (compose R₁ R₂) ⊆ marginal R₁`。 -/
-theorem marginal_compose_subset (R₁ R₂ : LawRule C X Y) {Z : OutSpace}
+theorem marginal_compose_subset (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X Y) {Z : OutSpace}
     [MeasurableSpace Z.Carrier]
     (phi : Y.Carrier → Z.Carrier) (hphi : Measurable phi) :
     ∀ c x, marginal (compose R₁ R₂) phi hphi c x ⊆ marginal R₁ phi hphi c x := by
@@ -152,7 +152,7 @@ theorem marginal_compose_subset (R₁ R₂ : LawRule C X Y) {Z : OutSpace}
   =========================================================================== -/
 
 /-- ⭐ **【候选 ③ 的交换律】**（消费 `unionLaw_comm`）。 -/
-theorem unionLaw_comm_law (R₁ R₂ : LawRule C X Y) :
+theorem unionLaw_comm_law (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X Y) :
     unionLaw R₁ R₂ = unionLaw R₂ R₁ :=
   unionLaw_comm R₁ R₂
 
@@ -163,14 +163,14 @@ theorem unionLaw_comm_law (R₁ R₂ : LawRule C X Y) :
 把两个候选放在同一格结构中。
 
 证明走逐点集合论，**不依赖任何新假设**。 -/
-theorem compose_unionLaw_absorb (R₁ R₂ : LawRule C X Y) :
+theorem compose_unionLaw_absorb (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X Y) :
     unionLaw (compose R₁ R₂) R₁ = R₁ := by
   funext c x
   show R₁ c x ∩ R₂ c x ∪ R₁ c x = R₁ c x
   simp
 
 /-- ⭐⭐ **【候选 ③ 的并吸收 · 另一侧】** `R₁ ∪ (R₁ ∩ R₂) = R₁`。 -/
-theorem unionLaw_compose_absorb (R₁ R₂ : LawRule C X Y) :
+theorem unionLaw_compose_absorb (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X Y) :
     unionLaw R₁ (compose R₁ R₂) = R₁ := by
   funext c x
   show R₁ c x ∪ (R₁ c x ∩ R₂ c x) = R₁ c x
@@ -180,13 +180,13 @@ theorem unionLaw_compose_absorb (R₁ R₂ : LawRule C X Y) :
 
 与候选 ① 的 `seqDet_preserves_point` 对照：
 **并是唯一丢失确定性的候选**，因而在要求确定性的场景下不可用。 -/
-theorem unionLaw_loses_point {R₁ R₂ : LawRule C X Y}
+theorem unionLaw_loses_point {R₁ R₂ : FateV2.Rules.LawRule.LawRule C X Y}
     (h₁ : IsPoint R₁) (h₂ : IsPoint R₂) (hne : ∃ c x, R₁ c x ≠ R₂ c x) :
     ¬ IsPoint (unionLaw R₁ R₂) :=
   unionLaw_not_point h₁ h₂ hne
 
 /-- ⭐ **【候选 ③ 的结合律】**（消费 `unionLaw_assoc`）。 -/
-theorem unionLaw_assoc_law (R₁ R₂ R₃ : LawRule C X Y) :
+theorem unionLaw_assoc_law (R₁ R₂ R₃ : FateV2.Rules.LawRule.LawRule C X Y) :
     unionLaw (unionLaw R₁ R₂) R₃ = unionLaw R₁ (unionLaw R₂ R₃) :=
   unionLaw_assoc R₁ R₂ R₃
 
@@ -202,7 +202,7 @@ theorem unionLaw_assoc_law (R₁ R₂ R₃ : LawRule C X Y) :
 这条不是任一条的复述：它要求三条**不同模块**的定理在同一处
 给出结论，是本文件「扇入」的实际内容。 -/
 theorem three_candidates_align [MeasurableSpace X.Carrier]
-    (f : C.Carrier → X.Carrier → X.Carrier) (R₁ R₂ : LawRule C X X) :
+    (f : C.Carrier → X.Carrier → X.Carrier) (R₁ R₂ : FateV2.Rules.LawRule.LawRule C X X) :
     seqDet f (compose R₁ R₂) = compose (seqDet f R₁) (seqDet f R₂) ∧
       unionLaw (compose R₁ R₂) R₁ = R₁ ∧
       compose (compose R₁ R₂) R₁ = compose R₁ R₂ := by
@@ -263,7 +263,7 @@ variable [MeasurableSpace Y.Carrier]
 前件：`R1 ⊆ R2` 逐点，且**存在** `(c,x)` 使 `R2 c x` 为单点、`R1 c x` 中
 含一个不同于它的成员 —— 这正是「严格放宽」的语法。
 结论：`unionLaw R1 R2` 不是单点档。 -/
-theorem unionLaw_not_isPoint_of_strict_subset (R1 R2 : LawRule C X Y)
+theorem unionLaw_not_isPoint_of_strict_subset (R1 R2 : FateV2.Rules.LawRule.LawRule C X Y)
     (hsub : ∀ c x, R1 c x ⊆ R2 c x)
     (hs : ∃ c x μ, R2 c x = {μ} ∧ ∃ ν ∈ R1 c x, ν ≠ μ) :
     ¬ IsPoint (unionLaw R1 R2) := by
@@ -280,10 +280,10 @@ theorem unionLaw_not_isPoint_of_strict_subset (R1 R2 : LawRule C X Y)
 语义：**「并」在可满足组合下不产生任何新约束** —— 它是 `R2` 的放宽，
 而放宽出来的那些分布一旦与 `R2` 自己取交，全部被卡掉。
 这条把「`unionLaw` 的语义位置」与「组合的塌缩定理」接上了，两者分属不同模块。 -/
-theorem sInf_pair_unionLaw_eq_of_subset (R1 R2 : LawRule C X Y)
+theorem sInf_pair_unionLaw_eq_of_subset (R1 R2 : FateV2.Rules.LawRule.LawRule C X Y)
     (_hsub : ∀ c x, R1 c x ⊆ R2 c x) (hp : IsPoint R2)
-    (hc : Compatible ({R2, unionLaw R1 R2} : Set (LawRule C X Y))) :
-    sInf ({R2, unionLaw R1 R2} : Set (LawRule C X Y)) = R2 :=
+    (hc : Compatible ({R2, unionLaw R1 R2} : Set (FateV2.Rules.LawRule.LawRule C X Y))) :
+    sInf ({R2, unionLaw R1 R2} : Set (FateV2.Rules.LawRule.LawRule C X Y)) = R2 :=
   LawRuleSatisfiabilityConsumer.sInf_pair_eq_of_isPoint (R := R2) (G := unionLaw R1 R2) hp hc
 
 /-- ⭐⭐ **W3：【相容 ⟺ 逐点相同】×【含单点规则的可满足族交塌缩】**
@@ -297,12 +297,12 @@ theorem sInf_pair_unionLaw_eq_of_subset (R1 R2 : LawRule C X Y)
 `eq_sInf_of_isPoint_mem` 只对**任意**可满足族说「含有单点规则 ⟹ `sInf` 该规则」。
 把前者当作后者的相容性见证、并乘上单点档的闭合性（`compose_eq_of_compat`），
 才得到「`sInf` 同时落在两侧」这一**两边夹**结论。 -/
-theorem sInf_pair_eq_both_of_composeCompat {R1 R2 : LawRule C X Y}
+theorem sInf_pair_eq_both_of_composeCompat {R1 R2 : FateV2.Rules.LawRule.LawRule C X Y}
     (h1 : IsPoint R1) (h2 : IsPoint R2) (hc : ComposeCompat R1 R2) :
-    sInf ({R1, R2} : Set (LawRule C X Y)) = R1 ∧
-      sInf ({R1, R2} : Set (LawRule C X Y)) = R2 := by
+    sInf ({R1, R2} : Set (FateV2.Rules.LawRule.LawRule C X Y)) = R1 ∧
+      sInf ({R1, R2} : Set (FateV2.Rules.LawRule.LawRule C X Y)) = R2 := by
   have he : ∀ c x, R1 c x = R2 c x := (compat_iff_eq h1 h2).mp hc
-  have hcomp : Compatible ({R1, R2} : Set (LawRule C X Y)) := by
+  have hcomp : Compatible ({R1, R2} : Set (FateV2.Rules.LawRule.LawRule C X Y)) := by
     intro c x
     obtain ⟨μ, hμ⟩ := h1 c x
     exact ⟨μ, mem_sInf_iff.mpr (fun R hR => by
@@ -326,17 +326,17 @@ W4 要 `IsPoint` 的是 `R`），故**不互相蕴含**。
 `sInf_pair_eq_of_isPoint` 只需 `R ∈ S` 与 `IsPoint R`。
 故 W4 其实是 W2 那条塌缩定理的一个**实例**，
 真正的「组合」强度弱于 W1/W2/W3。**不把它计入实质接线**。 -/
-theorem sInf_pair_unionLaw_eq_left_of_isPoint (R G : LawRule C X Y)
+theorem sInf_pair_unionLaw_eq_left_of_isPoint (R G : FateV2.Rules.LawRule.LawRule C X Y)
     (_hsub : ∀ c x, R c x ⊆ G c x) (hp : IsPoint R)
-    (hc : Compatible ({R, unionLaw R G} : Set (LawRule C X Y))) :
-    sInf ({R, unionLaw R G} : Set (LawRule C X Y)) = R :=
+    (hc : Compatible ({R, unionLaw R G} : Set (FateV2.Rules.LawRule.LawRule C X Y))) :
+    sInf ({R, unionLaw R G} : Set (FateV2.Rules.LawRule.LawRule C X Y)) = R :=
   LawRuleSatisfiabilityConsumer.sInf_pair_eq_of_isPoint (R := R) (G := unionLaw R G) hp hc
 
 /-! ## §5.2  与 `LawRuleSatisfiability` 的二元相容判据对接 -/
 
 /-- **二元相容**：一族两条规则逐点有公共允许分布
 （`LawRuleSatisfiability.compose_nonempty_iff` 的族语言） -/
-def PairCompatible (R1 R2 : LawRule C X Y) : Prop :=
+def PairCompatible (R1 R2 : FateV2.Rules.LawRule.LawRule C X Y) : Prop :=
   ∀ c x, ∃ m, m ∈ R1 c x ∧ m ∈ R2 c x
 
 /-- ⭐⭐ **W5：【`compose` 非空的成员判据】×【相容 ⟺ 逐点相同】×【单点塌缩】**
@@ -353,11 +353,11 @@ def PairCompatible (R1 R2 : LawRule C X Y) : Prop :=
 
 ⚠ 本定理的 (a) 前件只有 `ComposeCompat`，结论里出现了**新的**谓词
 `PairCompatible` 与 `sInf`，二者都不在前件中。 -/
-theorem pairCompatible_and_compose_and_sInf_of_composeCompat {R1 R2 : LawRule C X Y}
+theorem pairCompatible_and_compose_and_sInf_of_composeCompat {R1 R2 : FateV2.Rules.LawRule.LawRule C X Y}
     (h1 : IsPoint R1) (h2 : IsPoint R2) (hc : ComposeCompat R1 R2) :
     PairCompatible R1 R2 ∧
       (∀ c x, compose R1 R2 c x = R1 c x) ∧
-      sInf ({R1, R2} : Set (LawRule C X Y)) = R1 := by
+      sInf ({R1, R2} : Set (FateV2.Rules.LawRule.LawRule C X Y)) = R1 := by
   have hpair : PairCompatible R1 R2 := by
     intro c x
     obtain ⟨m, hm⟩ := (compose_nonempty_iff R1 R2 c x).mp (hc c x)
@@ -382,9 +382,9 @@ theorem pairCompatible_and_compose_and_sInf_of_composeCompat {R1 R2 : LawRule C 
 而只是「两元族交取其左分量」。它**不**消费
 `FateV2.Rules.compose_top_eq`，此处亦不主张消费。
 **不计入实质接线**，仅登记为族交计算的基础引理。 -/
-theorem sInf_pair_eq_left_of_subset (R G : LawRule C X Y)
+theorem sInf_pair_eq_left_of_subset (R G : FateV2.Rules.LawRule.LawRule C X Y)
     (hsub : ∀ c x, R c x ⊆ G c x) :
-    sInf ({R, generalize R G hsub} : Set (LawRule C X Y)) = R := by
+    sInf ({R, generalize R G hsub} : Set (FateV2.Rules.LawRule.LawRule C X Y)) = R := by
   funext c x
   apply Set.Subset.antisymm
   · intro m hm
@@ -409,7 +409,7 @@ theorem sInf_pair_eq_left_of_subset (R G : LawRule C X Y)
 本模块的贡献只是 (i) 换到格语言，(ii) 把两条上游引理接成一条可复用的
 `≤` 形式。这属于**接口重述**而非新的数学内容，故**不计入实质接线**。
 `⊓`-侧的**等式**不成立（边缘化只与交有包含关系），本条只陈述不等式。 -/
-theorem marginal_compose_subset_inf (R1 R2 : LawRule C X Y) {Z : OutSpace}
+theorem marginal_compose_subset_inf (R1 R2 : FateV2.Rules.LawRule.LawRule C X Y) {Z : OutSpace}
     [MeasurableSpace Z.Carrier]
     (phi : Y.Carrier → Z.Carrier) (hphi : Measurable phi) :
     marginal (compose R1 R2) phi hphi ≤ marginal R1 phi hphi ⊓ marginal R2 phi hphi := by
@@ -445,7 +445,7 @@ variable [MeasurableSpace X.Carrier]
 重排得到 —— 需要组合律才闭合，不是任一前件的复述。
 前件仅为函数 `f` 与三条规则的**给定**（无假设）。 -/
 theorem seqDet_compose_three (f : C.Carrier → X.Carrier → X.Carrier)
-    (R1 R2 R3 : LawRule C X X) :
+    (R1 R2 R3 : FateV2.Rules.LawRule.LawRule C X X) :
     seqDet f (compose (compose R1 R2) R3) =
       compose (compose (seqDet f R1) (seqDet f R2)) (seqDet f R3) := by
   rw [seqDet_compose_law]
@@ -464,7 +464,7 @@ theorem seqDet_compose_three (f : C.Carrier → X.Carrier → X.Carrier)
 两条独立上游（`seqDet_point`、`unionLaw_not_point`），
 本定理是它们的**唯一合取处**。 -/
 theorem point_contrast_seqDet_vs_unionLaw (f : C.Carrier → X.Carrier → X.Carrier)
-    (R1 R2 : LawRule C X X)
+    (R1 R2 : FateV2.Rules.LawRule.LawRule C X X)
     (h1 : IsPoint R1) (h2 : IsPoint R2) (hne : ∃ c x, R1 c x ≠ R2 c x) :
     IsPoint (seqDet f R1) ∧ ¬ IsPoint (unionLaw R1 R2) :=
   ⟨seqDet_preserves_point f R1 h1, unionLaw_loses_point h1 h2 hne⟩
@@ -480,7 +480,7 @@ end SeqDetThree
 结论是关于 `marginal (compose R1 R2) phi`（**新规则**）的包含关系。
 由 `marginal_inter_subset`（§2）与 `compose` 与 `⊓` 的同一性给出；
 前件不含 `marginal` 或 `compose` 的任何陈述。 -/
-theorem marginal_compose_subset_of_subset (R1 R2 : LawRule C X Y) {Z : OutSpace}
+theorem marginal_compose_subset_of_subset (R1 R2 : FateV2.Rules.LawRule.LawRule C X Y) {Z : OutSpace}
     [MeasurableSpace Z.Carrier]
     (phi : Y.Carrier → Z.Carrier) (hphi : Measurable phi)
     (_hsub : ∀ c x, R1 c x ⊆ R2 c x) :
@@ -497,7 +497,7 @@ theorem marginal_compose_subset_of_subset (R1 R2 : LawRule C X Y) {Z : OutSpace}
 分别消费 `LawRuleMarginal.marginal_comp` 与 `LawRuleMarginal.marginal_inter_subset` ——
 本文件 §2 的两条独立上游。前件是映射与可测性假设，
 **不含** `marginal`-复合或 `marginal`-取交的任何陈述。 -/
-theorem marginal_two_layer (R1 R2 : LawRule C X Y) {Z W : OutSpace}
+theorem marginal_two_layer (R1 R2 : FateV2.Rules.LawRule.LawRule C X Y) {Z W : OutSpace}
     [MeasurableSpace Z.Carrier] [MeasurableSpace W.Carrier]
     (phi : Y.Carrier → Z.Carrier) (hphi : Measurable phi)
     (psi : Z.Carrier → W.Carrier) (hpsi : Measurable psi) :
