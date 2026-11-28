@@ -1,39 +1,45 @@
-集成：第三个集成模块 —— Export.Carrier 由假接线转为真消费
+修正：引用图分析的重大测量错误 —— 真消费实为 32%（原报 16%）
 
-## 新增
+## 错误
 
-FateWorld/FateV2/Integration/CarrierCapstone.lean
+refgraph.py 的 IMPORT_RE 缺少 (?m) 标志：
 
-消费 Export/Carrier.lean 的三条既有结果：
-    entry_mk_fst        ⟨e.fst, e.snd⟩ = e（Sigma.eta）
-    entry_roundtrip     投影与配对互逆（两半合成一个合取）
-    entry_eq_iff        同索引下 ⟨m,x⟩ = ⟨m,y⟩ ↔ x = y
+    IMPORT_RE = re.compile(r'^\s*...import\s+FateWorld\.FateV2\.(\S+)')
 
-## 三条组合定理
+没有 (?m)，^ 只匹配文件开头，所以**每个模块只捕获到第一条 import**。
+后果是 import 边严重缺失（此前统计 607 条，实际远多于此），
+于是几乎所有模块都被判为「孤立」或「假接线」。
 
-  entry_reconstruct        投影-配对在整个 Entry 上互逆
-  entry_at_index_faithful  同索引下编码单射性 + 投影可还原
-  entry_ext_iff            条目外延性（等式判定降到配对后形态）
+同一类 bug 我在 DECL_RE 上已经犯过一次（上轮），本轮又在 IMPORT_RE
+上重犯 —— 因为两个正则都是分别写的，修了一个没检查另一个。
 
-其中 entry_at_index_faithful 需要两者协同：
-    entry_roundtrip 保证投影不丢索引
-    entry_eq_iff    保证载荷可分辨
-任一条单独都不足以说明「同一模态的条目由载荷唯一决定」。
+## 修正后的真实数字
 
-## 本轮一次通过
+    状态        修正前            修正后
+    真消费      163 (16%)    ->   319 (32%)
+    假接线      179 (18%)    ->   351 (35%)
+    孤立        634 (65%)    ->   309 (31%)
 
-与前两个集成模块不同，本模块没有遇到名字解析问题
-（open FateV2.Export 一次到位），编译一次通过。
+即：约三分之一的模块**真正参与**了证明链，而不是此前报告的 16%。
+另有三分之一是假接线，三分之一孤立。
 
-## 引用图变化
+## 具体抽样
 
-    假接线  177 -> 176
-    真消费  165 -> 166
-    模块数  977 -> 978
+    Modeling.CausBayesBall       被import 14  被真消费 12
+    Modeling.CondIndepGeneralNZ  被import 12  被真消费  3
+    Modeling.CFMap               被import  3  被真消费  1
+    Modeling.FiniteCondIndep     被import  3  被真消费  1
 
-## 累积
+此前这些全被判为假接线或孤立，实测它们本来就已被广泛使用。
 
-集成模块 3 个，已把 3 个模块从假接线转为真消费：
-    Modeling.CondIndepSemigraphoid
-    Rules.T112SecondQuotient
-    Export.Carrier
+## 本轮新增的集成模块仍然有效
+
+FateWorld/FateV2/Integration/ModelingBatch1.lean：一次消费 4 个模块
+（CausBayesBall / CFMap / FiniteCondIndep / CondIndepGeneralNZ）的
+核心定理，把它们组合成 4 条跨模块综合定理。这些模块现在都是真消费。
+
+## 教训
+
+**同一个 bug 在同一文件的两个正则上重复出现**，说明我修 bug 时
+只修了「报告症状的那一处」，没有审查「同构的其它处」。
+此后凡修改正则，必须检查文件内所有同类正则。

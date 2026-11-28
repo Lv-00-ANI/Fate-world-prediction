@@ -38,7 +38,7 @@ END_RE = re.compile(r'^\s*end(?:\s+(\S+))?\s*$')
 DECL_RE = re.compile(
     r'(?m)^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+|partial\s+)*'
     r'(?:theorem|lemma|def|abbrev|structure|inductive|class|opaque)\s+([A-Za-z_]\w*)')
-IMPORT_RE = re.compile(r'^\s*(?:(?:module|public|private|meta)\s+)*import\s+FateWorld\.FateV2\.(\S+)')
+IMPORT_RE = re.compile(r'(?m)^\s*(?:(?:module|public|private|meta)\s+)*import\s+FateWorld\.FateV2\.(\S+)')
 
 
 def strip_comments(src):
