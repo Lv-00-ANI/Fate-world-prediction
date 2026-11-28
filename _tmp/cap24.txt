@@ -1,0 +1,109 @@
+﻿⚠ [8658/8660] Replayed FateWorld.FateV2.Predict.WorldScenario
+warning: FateWorld/FateV2/Predict/WorldScenario.lean:131:33: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8659/8663] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8662/8670] Replayed FateWorld.FateV2.Modeling.FinMeasureBridge
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:198:54: This simp argument is unused:
+  Set.indicator_of_mem
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.mem_singleton_iff, smul_eq_mul, mul_ite, mul_one,
+    mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:4: This simp argument is unused:
+  Set.mem_singleton_iff
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, smul_eq_mul, mul_ite, mul_one,
+    mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:40: This simp argument is unused:
+  mul_ite
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, Set.mem_singleton_iff, smul_eq_mul,
+    mul_one, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:49: This simp argument is unused:
+  mul_one
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, Set.mem_singleton_iff, smul_eq_mul,
+    mul_ite, mul_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:199:58: This simp argument is unused:
+  mul_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Measure.smul_apply, Measure.dirac_apply, Set.indicator_of_mem, Set.mem_singleton_iff, smul_eq_mul,
+    mul_ite, mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:364:10: This simp argument is unused:
+  Set.indicator_of_mem h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:365:10: This simp argument is unused:
+  Set.indicator_of_notMem h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: FateWorld/FateV2/Modeling/FinMeasureBridge.lean:689:17: This simp argument is unused:
+  eq_self_iff_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [and_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8666/8670] Replayed FateWorld.FateV2.Modeling.BridgeKernel
+warning: FateWorld/FateV2/Modeling/BridgeKernel.lean:519:5: Variable name `p` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _p
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Modeling/BridgeKernel.lean:522:5: Variable name `z` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _z
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8669/8670] Built FateWorld.FateV2.Modeling.NaryAlgebra (190s)
+✖ [8670/8670] Building FateWorld.FateV2.Integration.ScoreKBatch1 (360s)
+trace: .> LEAN_PATH=D:\mathlib\packages\Cli\.lake\build\lib\lean;D:\mathlib\packages\batteries\.lake\build\lib\lean;D:\mathlib\packages\Qq\.lake\build\lib\lean;D:\mathlib\packages\aesop\.lake\build\lib\lean;D:\mathlib\packages\proofwidgets\.lake\build\lib\lean;D:\mathlib\packages\importGraph\.lake\build\lib\lean;D:\mathlib\packages\LeanSearchClient\.lake\build\lib\lean;D:\mathlib\packages\plausible\.lake\build\lib\lean;D:\mathlib\packages\mathlib\.lake\build\lib\lean;C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean c:\Users\xingg\.elan\toolchains\leanprover--lean4---v4.33.0-rc1\bin\lean.exe C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\FateWorld\FateV2\Integration\ScoreKBatch1.lean -o C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\ScoreKBatch1.olean -i C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\lib\lean\FateWorld\FateV2\Integration\ScoreKBatch1.ilean -c C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\ScoreKBatch1.c --setup C:\Users\xingg\Desktop\命运计划\Fate-world-prediction\.lake\build\ir\FateWorld\FateV2\Integration\ScoreKBatch1.setup.json --json
+error: FateWorld/FateV2/Integration/ScoreKBatch1.lean:99:11: unexpected token 'in'; expected ','
+error: Lean exited with code 1
+Some required targets logged failures:
+- FateWorld.FateV2.Integration.ScoreKBatch1
+lake.exe : error: build failed
+所在位置 行:6 字符: 1
++ & lake build FateWorld.FateV2.Integration.ScoreKBatch1 2>&1 | Out-Fil ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: build failed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

@@ -1,46 +1,48 @@
-集成：Predict 域首批 —— do-算子代数与可分离性（一次通过）
-
-## 优先级
-
-    Predict.SeparableCondMul   被 import 12 次（假接线榜首）
-    Predict.DoCalculus         被 import  8 次
+集成：ScoreK + NaryAlgebra（第 10 个 capstone）
 
 ## 新增
 
-FateWorld/FateV2/Integration/PredictBatch1.lean
+FateWorld/FateV2/Integration/ScoreKBatch1.lean
 
 消费：
-    DoCalculus         do_idempotent / do_comp / do_not_injective
-    SeparableCondMul   separable_implies_condMul
+    Error.ScoreK          bandLoss_eq_zero_iff / _pos_of_lt / _pos_of_gt / _eq_zero
+    Modeling.NaryAlgebra  condIndepN_sum_factorize
 
 ## 三条组合定理
 
-  do_idempotent_and_comp      幂等 + 复合（完整代数律）
-  do_idempotent_but_lossy     幂等但非单射（稳定性 + 代价定理）
-  condMul_of_factorization    以函数参数形式暴露可分离性的内核
+  bandLoss_complete_characterization  零 ⟺ 带内，带外两向皆正
+  bandLoss_zero_and_nonneg            带内损失为零且非负
+  condIndepN_factorize_form           N 元条件独立的和因子化（含权重项形式）
 
 第一条的组合有实质：
-  do_idempotent 说「重复同一干预无效」
-  do_comp      说「后一次干预覆盖前一次」
-  合起来才是「do 构成幂等半群作用」。
+  bandLoss_eq_zero_iff 只给等价；
+  下游做分情形论证时还需要「低于下界 / 高于上界各自蕴含正损失」。
+  三条并置后一次引用即覆盖全部三种情形。
 
-第二条的对比更有意义：
-  幂等性容易让人以为「do 可逆或保持信息」，
-  do_not_injective 正是代价定理 —— 不同结构模型可映到同一点。
-  合起来才是对 do 的完整刻画：「稳定的、但丢信息的」。
+## 过程中的失败
 
-## 一次通过
+condIndepN_sum_factorize 的结论是我凭猜测写的（用了 ∏ i in s 等），
+报 unexpected token 'in'。查源文件后得到真实签名：
 
-这是集成模块里第一次完全无迭代：open 层次正确
-（FateV2.Predict + 两个内层命名空间）、变量声明照抄源文件、
-参数全部显式。印证了判据的成熟。
+    (∑ xs, (if ∀ i, xs i ∈ S i then p xs z else 0))
+        * (NMass p z) ^ (Fintype.card ι - 1)
+      = ∏ i, ∑ a, (if a ∈ S i then marg p i a z else 0)
+
+关键差别：源定理带 **(NMass p z)^(card ι - 1) 权重项**，
+且 S 是 ∀ i, Set (α i) 而非 Finset。
+按真实签名重写后通过。
+
+## 教训
+
+**不要凭印象写结论**。即使目标定理名字看起来「应该是什么样」，
+也必须先读源文件的签名。这一轮本可一次通过，却因猜测多花一次编译。
 
 ## 引用图变化
 
-    真消费  326 -> 328
-    假接线  344 -> 342
-    模块数  983 -> 984
+    真消费  328 -> 330
+    假接线  342 -> 340
+    模块数  984 -> 985
 
 ## 累积
 
-集成模块 9 个，覆盖 16 个源模块。
+集成模块 10 个，覆盖 18 个源模块。

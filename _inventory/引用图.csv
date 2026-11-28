@@ -149,7 +149,7 @@ Error.PipelineLipschitz,Error,9,1,0,假接线
 Error.R44SigmaAssembly,Error,6,0,0,孤立
 Error.Resolution,Error,11,1,0,假接线
 Error.ScoreBound,Error,4,2,0,假接线
-Error.ScoreK,Error,7,8,0,假接线
+Error.ScoreK,Error,7,9,1,真消费
 Error.ShellEscrow,Error,14,0,0,孤立
 Error.SigmaDataDependence,Error,6,1,0,假接线
 Error.SigmaEstimation,Error,16,9,3,真消费
@@ -180,6 +180,7 @@ Integration.LoopCapstone1,Integration,3,0,0,孤立
 Integration.ModelingBatch1,Integration,5,0,0,孤立
 Integration.PredictBatch1,Integration,3,0,0,孤立
 Integration.RulesErrorBatch1,Integration,3,0,0,孤立
+Integration.ScoreKBatch1,Integration,3,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
 Integration.VerdictLatticeCapstone,Integration,4,0,0,孤立
@@ -394,7 +395,7 @@ Modeling.KernelQuotientRecovery,Modeling,8,0,0,孤立
 Modeling.MainlineIntegration,Modeling,10,0,0,孤立
 Modeling.MoralGraphMarkov,Modeling,3,15,4,真消费
 Modeling.MultSUnify,Modeling,5,3,0,假接线
-Modeling.NaryAlgebra,Modeling,1,9,0,假接线
+Modeling.NaryAlgebra,Modeling,1,10,1,真消费
 Modeling.NaryAssembly,Modeling,2,4,2,真消费
 Modeling.NaryBridge,Modeling,1,4,0,假接线
 Modeling.NaryBridgeDone,Modeling,6,2,1,真消费
