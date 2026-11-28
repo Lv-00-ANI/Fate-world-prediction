@@ -2120,3 +2120,81 @@ info: FateWorld/FateV2/Rules/AlphaDataToPartition.lean:277:0: 'FateV2.Rules.Alph
 info: FateWorld/FateV2/Rules/AlphaDataToPartition.lean:278:0: 'FateV2.Rules.AlphaData.alphaCell_eq_ker' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: FateWorld/FateV2/Rules/AlphaDataToPartition.lean:279:0: 'FateV2.Rules.AlphaData.alphaQuot_eq_of_mem_alphaCell' depends on axioms: [propext, Classical.choice, Quot.sound]
 info: FateWorld/FateV2/Rules/AlphaDataToPartition.lean:280:0: 'FateV2.Rules.AlphaData.alphaCell_extent_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9137/10487] Built FateWorld.FateV2.Error.ShellEscrow (216s)
+info: FateWorld/FateV2/Error/ShellEscrow.lean:264:0: FateV2.Error.Stage2.Escrow.EscrowItem : Type
+info: FateWorld/FateV2/Error/ShellEscrow.lean:265:0: FateV2.Error.Stage2.Escrow.escrowItems : List FateV2.Error.Stage2.Escrow.EscrowItem
+info: FateWorld/FateV2/Error/ShellEscrow.lean:266:0: FateV2.Error.Stage2.Escrow.escrowItems_length : FateV2.Error.Stage2.Escrow.escrowItems.length = 8
+info: FateWorld/FateV2/Error/ShellEscrow.lean:267:0: FateV2.Error.Stage2.Escrow.escrowItems_nodup : FateV2.Error.Stage2.Escrow.escrowItems.Nodup
+info: FateWorld/FateV2/Error/ShellEscrow.lean:268:0: FateV2.Error.Stage2.Escrow.escrowItems_covers_allE : List.map FateV2.Error.Stage2.Escrow.EscrowItem.toEItem
+    FateV2.Error.Stage2.Escrow.escrowItems =
+  FateV2.Error.Stage2.allE
+info: FateWorld/FateV2/Error/ShellEscrow.lean:269:0: FateV2.Error.Stage2.Escrow.escrow_covers_every_eitem : ∀ (e : FateV2.Error.Stage2.EItem), ∃ i, i.toEItem = e
+info: FateWorld/FateV2/Error/ShellEscrow.lean:270:0: FateV2.Error.Stage2.Escrow.Proved : FateV2.Error.Stage2.Escrow.EscrowItem → Bool
+info: FateWorld/FateV2/Error/ShellEscrow.lean:271:0: FateV2.Error.Stage2.Escrow.all_unproved : FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E1 =
+    false ∧
+  FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E2 = false ∧
+    FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E3 = false ∧
+      FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E4 = false ∧
+        FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E5 = false ∧
+          FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E6 = false ∧
+            FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E7 = false ∧
+              FateV2.Error.Stage2.Escrow.Proved FateV2.Error.Stage2.Escrow.EscrowItem.E8 = false
+info: FateWorld/FateV2/Error/ShellEscrow.lean:272:0: FateV2.Error.Stage2.Escrow.no_proved_in_escrow : ∀ i ∈ FateV2.Error.Stage2.Escrow.escrowItems,
+  FateV2.Error.Stage2.Escrow.Proved i = false
+info: FateWorld/FateV2/Error/ShellEscrow.lean:273:0: FateV2.Error.Stage2.Escrow.EscrowNotice : Prop
+info: FateWorld/FateV2/Error/ShellEscrow.lean:274:0: FateV2.Error.Stage2.Escrow.escrowed_premise_is_conditional : ∀ (P_G P_G0 : ℝ) (g : ℝ → ℝ),
+  g 0 = 0 →
+    ContinuousAt g 0 →
+      ∀ ε > 0, ∃ δ > 0, ∀ (dGG0 : ℝ), |dGG0| < δ → FateV2.Error.Stage2.E4Statement P_G P_G0 g dGG0 → |P_G - P_G0| < ε
+info: FateWorld/FateV2/Error/ShellEscrow.lean:275:0: FateV2.Error.Stage2.Escrow.ShellEscrowRegistered : Prop
+info: FateWorld/FateV2/Error/ShellEscrow.lean:279:0: 'FateV2.Error.Stage2.Escrow.escrowItems_covers_allE' does not depend on any axioms
+info: FateWorld/FateV2/Error/ShellEscrow.lean:280:0: 'FateV2.Error.Stage2.Escrow.escrow_covers_every_eitem' depends on axioms: [propext, Quot.sound]
+info: FateWorld/FateV2/Error/ShellEscrow.lean:281:0: 'FateV2.Error.Stage2.Escrow.all_unproved' does not depend on any axioms
+info: FateWorld/FateV2/Error/ShellEscrow.lean:282:0: 'FateV2.Error.Stage2.Escrow.no_proved_in_escrow' does not depend on any axioms
+info: FateWorld/FateV2/Error/ShellEscrow.lean:283:0: 'FateV2.Error.Stage2.Escrow.escrowed_premise_is_conditional' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ShellEscrow.lean:284:0: 'FateV2.Error.Stage2.Escrow.ShellEscrowRegistered_true' does not depend on any axioms
+info: FateWorld/FateV2/Error/ShellEscrow.lean:285:0: 'FateV2.Error.Stage2.Escrow.EscrowNotice_true' does not depend on any axioms
+ℹ [9138/10487] Replayed FateWorld.FateV2.Error.ErrorBoundE2b
+info: FateWorld/FateV2/Error/ErrorBoundE2b.lean:168:0: 'FateV2.Error.Stage2.ErrorBoundE2b.one_add_le_exp_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2b.lean:169:0: 'FateV2.Error.Stage2.ErrorBoundE2b.prod_exp_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2b.lean:170:0: 'FateV2.Error.Stage2.ErrorBoundE2b.prod_one_add_le_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2b.lean:171:0: 'FateV2.Error.Stage2.ErrorBoundE2b.hoeffding_prod_to_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE2b.lean:172:0: 'FateV2.Error.Stage2.ErrorBoundE2b.hoeffding_linear_le_scaled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [9139/10487] Replayed FateWorld.FateV2.Predict.ErrorBoundE2e
+info: FateWorld/FateV2/Predict/ErrorBoundE2e.lean:70:0: 'FateV2.Predict.Stage2.ErrorBoundE2e.exp_le_quadratic_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [9140/10487] Built FateWorld.FateV2.Error.ErrorBoundE1Euler (42s)
+info: FateWorld/FateV2/Error/ErrorBoundE1Euler.lean:272:0: 'FateV2.Error.Stage2.ErrorBoundE1Euler.step_rec' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE1Euler.lean:273:0: 'FateV2.Error.Stage2.ErrorBoundE1Euler.geom_growth_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE1Euler.lean:274:0: 'FateV2.Error.Stage2.ErrorBoundE1Euler.euler_global_error_abstract' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE1Euler.lean:275:0: 'FateV2.Error.Stage2.ErrorBoundE1Euler.one_add_pow_le_exp_Lnh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE1Euler.lean:276:0: 'FateV2.Error.Stage2.ErrorBoundE1Euler.geom_sum_le_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FateWorld/FateV2/Error/ErrorBoundE1Euler.lean:277:0: 'FateV2.Error.Stage2.ErrorBoundE1Euler.euler_global_error_exp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [9141/10487] Replayed FateWorld.FateV2.Error.ScoreK
+warning: FateWorld/FateV2/Error/ScoreK.lean:85:38: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/ScoreK.lean:111:57: Variable name `hσ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hσ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [9143/10487] Built FateWorld.FateV2.Export.Completeness (18s)
+⚠ [9144/10487] Built FateWorld.FateV2.Export.Coupling (18s)
+warning: FateWorld/FateV2/Export/Coupling.lean:177:10: Variable name `k` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _k
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`

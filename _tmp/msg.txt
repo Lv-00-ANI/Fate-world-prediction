@@ -1,79 +1,52 @@
-完成：FateV2 975/975 = 100%，迁移结束
+分析：证明链引用图首次量化 —— 真消费仅 16%
 
-## 里程碑
+## 工具
 
-全部 13 个域 100% 通过编译：
+_migration/refgraph.py：扫全库 975 个模块
+  - 提取每模块的定义名（16571 个定义）
+  - 提取 import 边（607 条）
+  - 判定：一个模块若被别的模块 import、且其某个定义名**出现在对方代码里**（非注释），记为真消费
 
-    Predict    409/409
-    Rules      132/132
-    Loop       121/121
-    Error      114/114
-    Modeling    91/91
-    Core        36/36
-    Model       28/28
-    Meta        19/19
-    Demo         9/9
-    Export       5/5
-    Bridge       3/3
-    Classical    3/3
-    Data         1/1
-    ----------------
-    合计       975/975
+## 首次结果（三个状态）
 
-## 最后一个模块 WorldModelCompleteV2W
+    真消费   163  (16%)
+    假接线   179  (18%)   <- 被 import 但没有任何名字被实际用
+    孤立     633  (64%)   <- 没有任何模块 import 它
 
-根因：RuleSpec 等名字根本不在作用域内。Lean 的 autoImplicit
-把它们当作隐式变量（签名显示为 ?m.2），于是
-[S : RuleSpec ...] 报「type is not a class instance」。
+按域（真消费 / 假接线 / 孤立）：
 
-补了 6 个 import + 2 个 open：
-    Rules.EvaluationSystems / GammaOperator / AlphaFCAConstruction
-    / UpsilonOperator / ComposeOperator / Error.SigmaFromDomain
-    open FateV2.Rules / open FateV2.Error
+    Bridge       3    0 / 1  / 2
+    Classical    3    1 / 1  / 1
+    Core        36   13 / 2  / 21
+    Data         1    0 / 0  / 1
+    Demo        11    2 / 0  / 9
+    Error      114   13 / 21 / 80
+    Export       5    2 / 1  / 2
+    Loop       121   17 / 18 / 86
+    Meta        19    2 / 1  / 16
+    Model       28    7 / 3  / 18
+    Modeling    91   22 / 33 / 36
+    Predict    409   61 / 83 / 265
+    Rules      132   23 / 15 / 94
 
-## 113 轮全程回顾
+## 这说明什么
 
-    轮次    已编译    百分比
-      1      296      30%
-     30      348     35.7%   <- 发现 627 个模块从未被编译
-     50      488     50.1%
-     70      606     62.2%
-     90      870     89.2%
-    110      971     99.6%
-    113      975      100%
+迁移完成（975/975 全部能编译）**不等于可用**。
+64% 的模块完全孤立，18% 是假接线 —— 只有 16% 真正参与了证明链。
 
-第 30 轮的发现是本项目最关键的一次诊断：
-lake build FateWorld 依据 trace 缓存判断「已构建」，不检查
-.olean 是否存在，导致 627 个模块在「假迁移」状态下藏了 20 轮。
+这正是目标后半段「把东西整合到证明链上、把这些证明实际可用」
+要解决的问题。
 
-此后 83 轮定位并修复了 12 类系统缺陷：
-  1 import 位置 / /-! 在 import 前
-  2 缺 open（裸名 vs 前缀两种形态）
-  3 点号记法依赖命名空间位置
-  4 轮次编号前缀（R238E3 等）
-  5 残留 Fate. 前缀 / 命名空间破碎 / 前缀重复堆叠
-  6 错域引用
-  7 裸命名空间前缀
-  8 /-- 文档注释修饰 namespace
-  9 open 不跨 namespace 块 / 外层不递归
- 10 _root_. 绝对引用
- 11 FateV2 模块 import Legacy 致类型分裂
- 12 诊断命令（#check 等）失效引用
-  另加：纯文档模块被规则 8 误加 end、多 token open 行
+## 工具开发中的两个 bug（已修）
 
-## 工具沉淀
-
-  port_v2.py           迁移引擎（规则 1-8）
-  name_index.py        全库名字 → 命名空间索引（15596 个名字）
-  build_chunks.py      分块构建（按 olean 判定成败）
-  fix_leftover_fate.py 残留前缀清理
-  fix_round_ns.py      轮次编号前缀修正
-  fix_broken_ns.py     命名空间破碎修复
-  fix_wrong_domain.py  错域引用发现（不自动改）
-  verify.py            逐模块验证
+1. 初次实现把「本模块依赖谁」误当成「谁依赖本模块」，
+   导致真消费恒为 0。
+2. DECL_RE 漏了 (?m) 标志，只匹配文件第一行，
+   所有模块的 decls 都是 0 —— 定义总数 16571 是在修正后才拿到的。
 
 ## 下一步
 
-迁移阶段完成，转入第二阶段：目标要求的「把东西整合到
-证明链上、把这些证明实际可用」。
-需要引用图分析，找出孤立定理并接入主链。
+1. 优先处理「假接线」（179 个）：它们已被 import，只差真实使用，
+   是最容易接入主链的一批。
+2. 再评估「孤立」（633 个）：需要判断哪些值得接入、哪些是
+   纯文档/演示/反例模块（Demo 域 9 个孤立多为演示，可豁免）。
