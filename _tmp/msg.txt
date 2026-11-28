@@ -1,45 +1,45 @@
-修正：引用图分析的重大测量错误 —— 真消费实为 32%（原报 16%）
+集成：Core.VerdictAlgebra 进入证明链 —— 判定标准的分配格公理汇总
 
-## 错误
+## 新增
 
-refgraph.py 的 IMPORT_RE 缺少 (?m) 标志：
+FateWorld/FateV2/Integration/VerdictLatticeCapstone.lean
 
-    IMPORT_RE = re.compile(r'^\s*...import\s+FateWorld\.FateV2\.(\S+)')
+消费 Core/VerdictAlgebra.lean 的格论定理：
+    stronger_refl / stronger_trans     序是预序
+    and_is_glb / or_is_lub             glb / lub（各含三支）
+    and_idem / absorb_and_or           幂等 + 吸收
+    and_distrib_or                     分配律（双向）
+    stronger_true / false_stronger     顶 / 底
 
-没有 (?m)，^ 只匹配文件开头，所以**每个模块只捕获到第一条 import**。
-后果是 import 边严重缺失（此前统计 607 条，实际远多于此），
-于是几乎所有模块都被判为「孤立」或「假接线」。
+## 四条组合定理
 
-同一类 bug 我在 DECL_RE 上已经犯过一次（上轮），本轮又在 IMPORT_RE
-上重犯 —— 因为两个正则都是分别写的，修了一个没检查另一个。
+  criterion_glb_lub                  glb 与 lub 的四条性质并置
+  criterion_idem_absorb              幂等 + 吸收（格 vs 仅有序的分界）
+  criterion_distrib                  分配律双向
+  criterion_is_distributive_lattice  格公理汇总（八组合一）
 
-## 修正后的真实数字
+最后一条是本模块存在的理由：源文件里只有「零件」（十几条独立定理），
+没有「Criterion ι 构成分配格」这一个整体断言。本定理把它补上。
 
-    状态        修正前            修正后
-    真消费      163 (16%)    ->   319 (32%)
-    假接线      179 (18%)    ->   351 (35%)
-    孤立        634 (65%)    ->   309 (31%)
+## 一次通过
 
-即：约三分之一的模块**真正参与**了证明链，而不是此前报告的 16%。
-另有三分之一是假接线，三分之一孤立。
+本模块未遇到名字解析或实例问题（open FateV2.Core 一次到位，
+变量声明照抄源文件），编译一次通过。
 
-## 具体抽样
+## 引用图变化
 
-    Modeling.CausBayesBall       被import 14  被真消费 12
-    Modeling.CondIndepGeneralNZ  被import 12  被真消费  3
-    Modeling.CFMap               被import  3  被真消费  1
-    Modeling.FiniteCondIndep     被import  3  被真消费  1
+修正 IMPORT_RE 后首次在新基线上测量：
+    真消费  319 -> 320
+    假接线  351 -> 350
+    模块数  979 -> 980
 
-此前这些全被判为假接线或孤立，实测它们本来就已被广泛使用。
+## 累积
 
-## 本轮新增的集成模块仍然有效
+集成模块 5 个：
+    SemigraphoidCapstone    (Modeling)
+    T112QuotientCapstone    (Rules)
+    CarrierCapstone         (Export)
+    ModelingBatch1          (Modeling ×4 模块)
+    VerdictLatticeCapstone  (Core)
 
-FateWorld/FateV2/Integration/ModelingBatch1.lean：一次消费 4 个模块
-（CausBayesBall / CFMap / FiniteCondIndep / CondIndepGeneralNZ）的
-核心定理，把它们组合成 4 条跨模块综合定理。这些模块现在都是真消费。
-
-## 教训
-
-**同一个 bug 在同一文件的两个正则上重复出现**，说明我修 bug 时
-只修了「报告症状的那一处」，没有审查「同构的其它处」。
-此后凡修改正则，必须检查文件内所有同类正则。
+已把 8 个源模块由假接线转为真消费。

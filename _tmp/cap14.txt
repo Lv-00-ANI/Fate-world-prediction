@@ -1,0 +1,116 @@
+﻿⚠ [4/5] Replayed FateWorld.FateV2.Classical.Assumptions
+warning: FateWorld/FateV2/Classical/Assumptions.lean:125:38: Variable name `h` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _h
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3141/3151] Replayed FateWorld.FateV2.Modeling.CoreBasics
+warning: FateWorld/FateV2/Modeling/CoreBasics.lean:72:25: Variable name `α` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _α
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3143/3151] Built FateWorld.FateV2.Error.Loss (215s)
+✔ [3148/3157] Built FateWorld.FateV2.Loop.Residual (21s)
+✔ [3150/3157] Built FateWorld.FateV2.Loop.WriteBack (18s)
+⚠ [3151/3157] Replayed FateWorld.FateV2.Error.FitBoundary
+warning: FateWorld/FateV2/Error/FitBoundary.lean:978:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+✔ [3152/3157] Built FateWorld.FateV2.Error.BridgeNW (22s)
+✔ [3153/3157] Built FateWorld.FateV2.Error.VerdictFull (15s)
+✔ [3154/3157] Built FateWorld.FateV2.Error.VerdictTheory (14s)
+⚠ [3155/3157] Built FateWorld.FateV2.Error.VerdictGeneral (15s)
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:532:18: Variable name `σ₁` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _σ₁
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:532:21: Variable name `σ₂` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _σ₂
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:532:24: Variable name `a₁` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _a₁
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:532:27: Variable name `a₂` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _a₂
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:533:17: Variable name `f` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _f
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:533:19: Variable name `σ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _σ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Error/VerdictGeneral.lean:533:21: Variable name `a` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _a
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3156/3157] Built FateWorld.FateV2.Core.VerdictAlgebra (16s)
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:270:7: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:285:7: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:297:7: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:300:8: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:308:7: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:311:8: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: FateWorld/FateV2/Core/VerdictAlgebra.lean:610:25: Variable name `g` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _g
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [3157/3157] Built FateWorld.FateV2.Integration.VerdictLatticeCapstone (15s)
+Build completed successfully (3157 jobs).

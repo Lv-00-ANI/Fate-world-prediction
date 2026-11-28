@@ -42,7 +42,7 @@ Core.Subst,Core,7,3,2,真消费
 Core.SubstCorrect,Core,6,1,0,假接线
 Core.Syntax,Core,9,9,5,真消费
 Core.Unified,Core,34,3,1,真消费
-Core.VerdictAlgebra,Core,76,1,0,假接线
+Core.VerdictAlgebra,Core,76,2,1,真消费
 Data.Ingest,Data,81,2,0,假接线
 Demo.EdgeCases,Demo,116,1,0,假接线
 Demo.ExecutableAll,Demo,1,2,0,假接线
@@ -178,6 +178,7 @@ Integration.CarrierCapstone,Integration,3,0,0,孤立
 Integration.ModelingBatch1,Integration,5,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
+Integration.VerdictLatticeCapstone,Integration,4,0,0,孤立
 Loop.AdaptiveEtaConsumer,Loop,21,0,0,孤立
 Loop.BackdoorPremisesCheck,Loop,10,1,0,假接线
 Loop.BanachFixedPoint,Loop,6,1,0,假接线
