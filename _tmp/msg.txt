@@ -1,45 +1,44 @@
-集成：Core.VerdictAlgebra 进入证明链 —— 判定标准的分配格公理汇总
+集成：Error 域第一批 —— 3 个模块进入证明链
 
 ## 新增
 
-FateWorld/FateV2/Integration/VerdictLatticeCapstone.lean
+FateWorld/FateV2/Integration/ErrorBatch1.lean
 
-消费 Core/VerdictAlgebra.lean 的格论定理：
-    stronger_refl / stronger_trans     序是预序
-    and_is_glb / or_is_lub             glb / lub（各含三支）
-    and_idem / absorb_and_or           幂等 + 吸收
-    and_distrib_or                     分配律（双向）
-    stronger_true / false_stronger     顶 / 底
+消费 3 个 Error 域模块：
+    Error.ErrorBound       sgn_of_pos / sgn_of_neg / sgn_of_zero / sgn_trichotomy
+    Error.ErrBandLink      scoreOfTrack_le_of_ok
+    Error.VerdictTheory    fitBoundary_isMin / fitBoundary_unique_of_isMin
 
 ## 四条组合定理
 
-  criterion_glb_lub                  glb 与 lub 的四条性质并置
-  criterion_idem_absorb              幂等 + 吸收（格 vs 仅有序的分界）
-  criterion_distrib                  分配律双向
-  criterion_is_distributive_lattice  格公理汇总（八组合一）
+  sgn_trichotomy_pinned      三分 + 每种情形的常数锁定
+  band_error_implies_optimal 带内误差 ⟹ 得分最优
+  boundary_sigma_locked      边界点的 σ 被最小值唯一锁定
+  boundary_gives_min         边界点 ⟹ 取到最小值
 
-最后一条是本模块存在的理由：源文件里只有「零件」（十几条独立定理），
-没有「Criterion ι 构成分配格」这一个整体断言。本定理把它补上。
+其中 sgn_trichotomy_pinned 需要四条定理协同：trichotomy 只给三分，
+但不给「哪种情形对应哪个常数」；后者要 sgn_of_pos/neg/zero 分别钉死。
 
-## 一次通过
+## 过程中排除的三个失败
 
-本模块未遇到名字解析或实例问题（open FateV2.Core 一次到位，
-变量声明照抄源文件），编译一次通过。
+1. sgn_of_zero 类型是 sgn 0 = 0，不是 	 = 0 → sgn t = 0
+   → 需要 un h => by rw [h]; exact sgn_of_zero
+2. WorldScenario.Scenario 不在作用域（open FateV2.Predict.WorldScenario
+   不够，因为 WorldScenario 本身要先可见）
+   → 改全限定 FateV2.Predict.WorldScenario.Scenario
 
 ## 引用图变化
 
-修正 IMPORT_RE 后首次在新基线上测量：
-    真消费  319 -> 320
-    假接线  351 -> 350
-    模块数  979 -> 980
+    真消费  320 -> 323
+    假接线  350 -> 347
+    模块数  980 -> 981
 
 ## 累积
 
-集成模块 5 个：
-    SemigraphoidCapstone    (Modeling)
-    T112QuotientCapstone    (Rules)
-    CarrierCapstone         (Export)
-    ModelingBatch1          (Modeling ×4 模块)
-    VerdictLatticeCapstone  (Core)
-
-已把 8 个源模块由假接线转为真消费。
+集成模块 6 个，覆盖 11 个源模块：
+    Modeling: CondIndepSemigraphoid / CausBayesBall / CFMap /
+              FiniteCondIndep / CondIndepGeneralNZ
+    Rules:    T112SecondQuotient
+    Export:   Carrier
+    Core:     VerdictAlgebra
+    Error:    ErrorBound / ErrBandLink / VerdictTheory

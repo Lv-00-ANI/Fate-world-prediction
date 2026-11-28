@@ -76,11 +76,11 @@ Error.ContinuousEvalQ,Error,11,1,1,真消费
 Error.Decomposition,Error,15,3,0,假接线
 Error.Dimensions,Error,18,1,0,假接线
 Error.EndToEndError,Error,24,5,1,真消费
-Error.ErrBandLink,Error,35,2,0,假接线
+Error.ErrBandLink,Error,35,3,1,真消费
 Error.ErrBandLinkConsumer,Error,15,1,0,假接线
 Error.ErrDefinitions,Error,27,1,0,假接线
 Error.ErrorBand,Error,5,2,0,假接线
-Error.ErrorBound,Error,35,5,0,假接线
+Error.ErrorBound,Error,35,6,1,真消费
 Error.ErrorBoundChain,Error,34,2,1,真消费
 Error.ErrorBoundChainConsumer,Error,5,1,0,假接线
 Error.ErrorBoundE1,Error,8,1,0,假接线
@@ -167,7 +167,7 @@ Error.SupportBound,Error,18,2,1,真消费
 Error.TightCells,Error,17,1,0,假接线
 Error.VerdictFull,Error,49,3,1,真消费
 Error.VerdictGeneral,Error,52,3,1,真消费
-Error.VerdictTheory,Error,34,2,0,假接线
+Error.VerdictTheory,Error,34,3,1,真消费
 Error.VerdictUniversal,Error,83,1,0,假接线
 Export.Carrier,Export,51,4,2,真消费
 Export.Completeness,Export,31,1,0,假接线
@@ -175,6 +175,7 @@ Export.Coupling,Export,41,1,0,假接线
 Export.Export,Export,6,6,4,真消费
 Export.Modality,Export,15,2,1,真消费
 Integration.CarrierCapstone,Integration,3,0,0,孤立
+Integration.ErrorBatch1,Integration,4,0,0,孤立
 Integration.ModelingBatch1,Integration,5,0,0,孤立
 Integration.SemigraphoidCapstone,Integration,3,0,0,孤立
 Integration.T112QuotientCapstone,Integration,4,0,0,孤立
